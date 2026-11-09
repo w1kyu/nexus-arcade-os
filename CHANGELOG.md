@@ -6,6 +6,33 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-11-09 — System apps
+
+### Added
+
+- **File Explorer:** browse your files in icon, list, details or column view; preview pictures,
+  highlighted code, Markdown, audio, video and PDFs; rename, copy, cut, paste, drag and drop
+  between apps or from your computer, tag files, undo the last file change, and restore from the
+  Trash (which also empties old items automatically).
+- **Terminal:** a real shell with tabs, history search (`Ctrl+R`), tab completion, pipes (`|`),
+  redirection (`>`, `>>`, `<`), `&&`/`||`, variables, aliases, `~/.nexusrc`, 47 built-in commands
+  including `nexusfetch`, plus commands registered by apps.
+- **Nexus Edit:** tabbed code and text editor on CodeMirror 6 with syntax highlighting, side-by-side
+  Markdown preview, regex find and replace, multiple cursors, go to line, automatic draft recovery
+  across reloads, and unsaved-changes protection on close.
+- **Settings:** 14 pages covering Personalization, Desktop & Dock, Windows, Notifications,
+  Shortcuts (rebind any shortcut), Language & Region, Profiles & Lock, Storage, Apps, Privacy,
+  Accessibility, Backup & Restore, Updates and About (with full changelog and bundled library/font
+  licenses), plus instant search and `@` deep links from the command palette.
+- **System Monitor:** live Processes (per-window activity, DOM size and End task), Performance
+  graphs (FPS, frame time, JS heap, DOM nodes, animation loops and workers), Storage breakdown,
+  filterable System Log with export, and Network activity log.
+- **App Center:** browse built-in apps by category with code size, permissions, bundled screenshots
+  and changelogs; uninstall apps to hide them everywhere (and optionally clear their data) or
+  reinstall them any time.
+- **Help:** searchable user guides in English and German plus per-app help pages; press `F1` in any
+  app to jump straight to its documentation.
+
 ## [0.2.0] — 2026-10-16 — Shell
 
 ### Added

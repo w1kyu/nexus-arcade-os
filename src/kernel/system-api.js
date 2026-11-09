@@ -8,7 +8,7 @@ import { createAppStorage } from '../services/storage/app-storage.js';
 import { createAdminApi } from './system-api-admin.js';
 
 export const LIVE_URL = 'https://nexus-arcade-os.onrender.com';
-export const REPO_URL = 'https://github.com/m1m1kyu1453/nexus-arcade-os';
+export const REPO_URL = 'https://github.com/w1kyu/nexus-arcade-os';
 
 /**
  * @typedef {object} SystemApiDeps

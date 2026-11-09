@@ -25,7 +25,10 @@ async function setup() {
   return { vfs, dialogs: createDialogs(shell) };
 }
 
-const modal = () => /** @type {HTMLElement[]} */ ([...document.querySelectorAll('[role="dialog"]')]).at(-1);
+const modal = () =>
+  /** @type {HTMLElement[]} */ ([
+    ...document.querySelectorAll('.nx-modal-backdrop:not(.is-closing) [role="dialog"]'),
+  ]).at(-1);
 /** @param {string} selector */
 const find = (selector) => /** @type {HTMLInputElement} */ (modal()?.querySelector(selector));
 const flush = () => new Promise((r) => setTimeout(r, 0));

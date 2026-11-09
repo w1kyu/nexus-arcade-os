@@ -2,8 +2,9 @@
 
 ## Status
 
-- **Current phase:** 3 — System apps (phase 2 done 2026-10-16, `v0.2.0`)
-- **Next step:** phase 3: Explorer, Terminal, Nexus Edit, Settings and System Monitor P1s done. Next: App Center (3.6: list by category with size/permissions, hide = `ctx.system.apps.setEnabled`, per-app page with bundled screenshots + changelog + settings link + Clear data), then Help (3.7: `ctx.system.apps.help(id)` + general docs; F1 opens the focused app's help), then the phase 3 wrap-up (v0.3.0).
+- **Current phase:** 4 — Productivity core (phase 3 done 2026-11-09, `v0.3.0`)
+- **Next step:** phase 4 (`specs/04-productivity.md`): 4.1 Nexus Notes (Markdown editor on CodeMirror 6 + live preview, wiki links `[[Note title]]` + backlinks, per-note encryption, import/export), 4.2 Tasks, 4.3 Calendar, 4.4 Focus.
+- **Phase 3 verification:** 578 unit tests; e2e suites for File Explorer (`files.spec.js`), Terminal (`terminal.spec.js`), Nexus Edit (`editor.spec.js`), Settings (`settings.spec.js`), System Monitor (`monitor.spec.js`), App Center & Help (`appcenter-help.spec.js`), plus shell, smoke and Lite tests.
 - **Phase 2 verification:** 516 unit tests; e2e `tests/e2e/shell.spec.js` runs the done-when flows with keyboard only, mouse and touch, each restored after a reload; smoke tests (website, offline reload, Lite on `file://`).
 - **Phase 1 verification:** 336 unit tests incl. `tests/unit/system.test.js` (whole system in jsdom: launch, storage, VFS, search, crash/restart, language switch, backup → wipe → restore, newer-data read-only); e2e asserts the kernel boots (`<html data-kernel="ready">`) on the website, offline, and in Lite from `file://`.
 

@@ -60,7 +60,7 @@ test.describe('nexus edit', () => {
     await expect(editor(page).getByTestId('edit-position')).toContainText('Ln 2');
 
     // Find and go to line open their panels.
-    await page.keyboard.press('Control+f');
+    await page.keyboard.press('ControlOrMeta+f');
     await expect(editor(page).locator('.cm-search')).toBeVisible();
     await page.keyboard.press('Escape');
     await page.keyboard.press('Control+g');
@@ -69,7 +69,7 @@ test.describe('nexus edit', () => {
 
     // Unsaved changes survive a reload as a draft.
     await content(page).click();
-    await page.keyboard.press('Control+End');
+    await page.keyboard.press('ControlOrMeta+End');
     await page.keyboard.type('\nconsole.log(answer);');
     await expect(activeTab(page)).toHaveClass(/is-dirty/);
     await page.waitForTimeout(1500);

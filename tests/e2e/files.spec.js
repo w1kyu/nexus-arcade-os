@@ -106,7 +106,7 @@ test.describe('file explorer', () => {
     // Rename (F2), then undo it.
     await item(page, 'notes.md').click();
     await page.keyboard.press('F2');
-    await page.keyboard.press('Control+a');
+    await page.keyboard.press('ControlOrMeta+a');
     await page.keyboard.type('plan.md');
     await page.keyboard.press('Enter');
     await expect(item(page, 'plan.md')).toBeVisible();

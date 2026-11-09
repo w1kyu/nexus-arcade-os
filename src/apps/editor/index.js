@@ -553,6 +553,7 @@ export async function mount(container, ctx, args) {
   ctx.shortcuts.register('Mod+O', () => void openDialog(), opts);
   ctx.shortcuts.register('Mod+Alt+N', () => newTab(), opts);
   ctx.shortcuts.register('Mod+W', () => active && void closeTab(active), opts);
+  ctx.shortcuts.register('Mod+F', () => active?.editor.find(), opts);
   ctx.shortcuts.register('Mod+G', () => active?.editor.gotoLine(), opts);
   // These would otherwise open the shortcut overview and the launcher.
   ctx.shortcuts.register('Mod+/', () => active?.editor.toggleComment(), opts);

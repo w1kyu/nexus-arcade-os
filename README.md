@@ -1,15 +1,16 @@
 # ⚡ Nexus Arcade OS
 
-[![CI](https://github.com/m1m1kyu1453/nexus-arcade-os/actions/workflows/ci.yml/badge.svg)](https://github.com/m1m1kyu1453/nexus-arcade-os/actions/workflows/ci.yml)
+[![CI](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml/badge.svg)](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml)
 
 A futuristic desktop operating system that runs in your browser: windows, a dock, a file system,
 a terminal, and dozens of apps and games that share data with each other. It is an installable
 Progressive Web App and works **offline** after the first visit. There are no accounts and no
 backend: your data stays in your browser.
 
-> **Status: phase 2 (shell).** The desktop works: windows with snapping and workspaces, dock,
-> launcher, command palette, notification center, widgets, live wallpapers, lock screen, and a
-> phone layout. Apps arrive from phase 3 on. See [PROGRESS.md](PROGRESS.md) for the full roadmap.
+> **Status: phase 3 (system apps).** The desktop and core system apps are ready: File Explorer,
+> Terminal (47 commands, pipes, scripts), Nexus Edit (CodeMirror 6), Settings (14 pages), System
+> Monitor, App Center, and Help (`F1`). Productivity apps arrive in phase 4. See
+> [PROGRESS.md](PROGRESS.md) for the full roadmap.
 
 ![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
 

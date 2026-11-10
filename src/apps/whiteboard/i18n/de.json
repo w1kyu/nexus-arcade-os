@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Nexus Whiteboard",
+    "untitled": "Unbenanntes Whiteboard"
+  },
+  "file": {
+    "menu": "Datei",
+    "new": "Neues Whiteboard",
+    "open": "Öffnen...",
+    "save": "Speichern",
+    "saveAs": "Speichern unter...",
+    "templates": "Whiteboard-Vorlagen",
+    "export": "Exportieren",
+    "exportSvg": "Als SVG (.svg) exportieren",
+    "exportPng": "Als PNG (.png) exportieren",
+    "exportNboard": "Als Nexus Board (.nboard) exportieren"
+  },
+  "tools": {
+    "select": "Auswählen & Verschieben (V)",
+    "pen": "Stift (P)",
+    "highlighter": "Textmarker (H)",
+    "eraser": "Radiergummi (E)",
+    "rect": "Rechteck (R)",
+    "ellipse": "Ellipse (O)",
+    "line": "Linie (L)",
+    "arrow": "Pfeilverbindung (A)",
+    "text": "Text (T)",
+    "sticky": "Haftnotiz (S)",
+    "frame": "Rahmen / Folie (F)"
+  },
+  "actions": {
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "delete": "Löschen",
+    "duplicate": "Duplizieren",
+    "bringToFront": "In den Vordergrund",
+    "sendToBack": "In den Hintergrund",
+    "group": "Gruppieren",
+    "ungroup": "Gruppierung aufheben",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "zoomReset": "Zoom zurücksetzen (100%)",
+    "zoomFit": "Inhalt einpassen"
+  },
+  "properties": {
+    "stroke": "Linienfarbe",
+    "fill": "Füllfarbe",
+    "strokeWidth": "Strichstärke",
+    "opacity": "Deckkraft",
+    "color": "Farbe",
+    "fontSize": "Schriftgröße"
+  },
+  "templates": {
+    "title": "Vorlagen",
+    "choose": "Whiteboard-Vorlage wählen",
+    "flowchart": "Flussdiagramm",
+    "kanban": "Kanban-Board",
+    "swot": "SWOT-Analyse",
+    "use": "Vorlage verwenden"
+  },
+  "dialog": {
+    "confirmUnsaved": "Es gibt ungespeicherte Änderungen. Trotzdem fortfahren?"
+  }
+}

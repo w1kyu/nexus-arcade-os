@@ -1,0 +1,252 @@
+/* Nexus Whiteboard Styles */
+.nx-whiteboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+}
+
+/* Header */
+.nx-whiteboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nx-whiteboard-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.nx-whiteboard-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+
+.nx-whiteboard-title-input {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  max-width: 320px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.nx-whiteboard-title-input:hover,
+.nx-whiteboard-title-input:focus {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+.nx-whiteboard-status {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 6px;
+}
+
+.nx-whiteboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Buttons */
+.nx-whiteboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.nx-whiteboard-btn:hover {
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--border);
+}
+
+.nx-whiteboard-btn.active {
+  background-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nx-whiteboard-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border);
+  margin: 0 4px;
+}
+
+/* Tool shelf (top or floating) */
+.nx-whiteboard-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 10px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nx-whiteboard-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Property bar */
+.nx-whiteboard-props {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  flex-shrink: 0;
+  z-index: 9;
+}
+
+.nx-whiteboard-prop-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nx-whiteboard-color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Canvas viewport */
+.nx-whiteboard-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  cursor: default;
+}
+
+[data-theme='dark'] .nx-whiteboard-viewport {
+  background-color: #0f172a;
+  background-image: radial-gradient(#334155 1.2px, transparent 1.2px);
+}
+
+.nx-whiteboard-viewport.tool-pan {
+  cursor: grab;
+}
+
+.nx-whiteboard-viewport.tool-panning {
+  cursor: grabbing;
+}
+
+.nx-whiteboard-viewport.tool-pen,
+.nx-whiteboard-viewport.tool-highlighter {
+  cursor: crosshair;
+}
+
+.nx-whiteboard-viewport.tool-text {
+  cursor: text;
+}
+
+.nx-whiteboard-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Floating Zoom Widget */
+.nx-whiteboard-zoom-widget {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 3px 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.nx-whiteboard-zoom-label {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* Presentation Bar */
+.nx-whiteboard-present-bar {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+/* Floating Inline Text Editor */
+.nx-whiteboard-text-editor {
+  position: absolute;
+  background: transparent;
+  border: 1px dashed var(--accent);
+  outline: none;
+  font-family: var(--font-sans);
+  color: var(--text-1);
+  padding: 4px;
+  resize: none;
+  overflow: hidden;
+  z-index: 30;
+}

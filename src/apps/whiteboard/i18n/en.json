@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Nexus Whiteboard",
+    "untitled": "Untitled Whiteboard"
+  },
+  "file": {
+    "menu": "File",
+    "new": "New Whiteboard",
+    "open": "Open...",
+    "save": "Save",
+    "saveAs": "Save As...",
+    "templates": "Board Templates",
+    "export": "Export",
+    "exportSvg": "Export as SVG (.svg)",
+    "exportPng": "Export as PNG (.png)",
+    "exportNboard": "Export as Nexus Board (.nboard)"
+  },
+  "tools": {
+    "select": "Select & Move (V)",
+    "pen": "Pen (P)",
+    "highlighter": "Highlighter (H)",
+    "eraser": "Eraser (E)",
+    "rect": "Rectangle (R)",
+    "ellipse": "Ellipse (O)",
+    "line": "Line (L)",
+    "arrow": "Arrow Connector (A)",
+    "text": "Text (T)",
+    "sticky": "Sticky Note (S)",
+    "frame": "Frame / Slide (F)"
+  },
+  "actions": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "bringToFront": "Bring to Front",
+    "sendToBack": "Send to Back",
+    "group": "Group",
+    "ungroup": "Ungroup",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "zoomReset": "Reset Zoom (100%)",
+    "zoomFit": "Fit All Content"
+  },
+  "properties": {
+    "stroke": "Stroke Color",
+    "fill": "Fill Color",
+    "strokeWidth": "Thickness",
+    "opacity": "Opacity",
+    "color": "Color",
+    "fontSize": "Font Size"
+  },
+  "templates": {
+    "title": "Templates",
+    "choose": "Choose a Board Template",
+    "flowchart": "Flowchart Diagram",
+    "kanban": "Kanban Board",
+    "swot": "SWOT Analysis",
+    "use": "Use Template"
+  },
+  "dialog": {
+    "confirmUnsaved": "You have unsaved changes. Continue anyway?"
+  }
+}

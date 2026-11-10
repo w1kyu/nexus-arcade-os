@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Color Laboratory"
+  },
+  "tabs": {
+    "converter": "Converter & Picker",
+    "palette": "Palette Generator",
+    "contrast": "Contrast Checker",
+    "blindness": "Color Blindness",
+    "gradient": "Gradient Builder",
+    "image": "Extract from Image"
+  },
+  "converter": {
+    "pickerTitle": "Color Picker",
+    "valuesTitle": "Color Formats",
+    "useAccent": "Use as OS Accent",
+    "accentSet": "Accent color updated!",
+    "copied": "Copied to clipboard!",
+    "eyedropper": "Pick screen color"
+  },
+  "palette": {
+    "generate": "Generate",
+    "harmony": "Harmony:",
+    "exportCss": "Export CSS",
+    "exportJson": "Export JSON",
+    "exportScss": "Export SCSS",
+    "saveVfs": "Save to VFS",
+    "saved": "Palette saved to VFS!",
+    "lock": "Lock",
+    "unlock": "Unlock"
+  },
+  "contrast": {
+    "textColor": "Text Color",
+    "bgColor": "Background Color",
+    "ratio": "Contrast Ratio",
+    "normalText": "Normal Text",
+    "largeText": "Large Text",
+    "apcaScore": "APCA Score",
+    "sampleNormal": "The quick brown fox jumps over the lazy dog.",
+    "sampleLarge": "Large Heading Text (18pt+ / 14pt bold)"
+  },
+  "blindness": {
+    "normal": "Normal Vision",
+    "protanopia": "Protanopia (Red-Blind)",
+    "deuteranopia": "Deuteranopia (Green-Blind)",
+    "tritanopia": "Tritanopia (Blue-Blind)",
+    "achromatopsia": "Achromatopsia (Monochrome)"
+  },
+  "gradient": {
+    "type": "Type",
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Conic",
+    "angle": "Angle:",
+    "copyCss": "Copy CSS"
+  },
+  "image": {
+    "dropPrompt": "Drop an image here or click Open Image",
+    "openButton": "Open Image...",
+    "extractButton": "Extract Dominant Colors",
+    "extracted": "Extracted {count} dominant colors"
+  }
+}

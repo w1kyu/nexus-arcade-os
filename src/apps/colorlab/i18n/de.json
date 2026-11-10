@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Farblabor"
+  },
+  "tabs": {
+    "converter": "Konverter & Picker",
+    "palette": "Palettengenerator",
+    "contrast": "Kontrastrechner",
+    "blindness": "Farbenblindheit",
+    "gradient": "Farbverläufe",
+    "image": "Aus Bild extrahieren"
+  },
+  "converter": {
+    "pickerTitle": "Farbauswahl",
+    "valuesTitle": "Farbformate",
+    "useAccent": "Als OS-Akzentfarbe nutzen",
+    "accentSet": "Akzentfarbe aktualisiert!",
+    "copied": "In die Zwischenablage kopiert!",
+    "eyedropper": "Farbe vom Bildschirm wählen"
+  },
+  "palette": {
+    "generate": "Generieren",
+    "harmony": "Harmonie:",
+    "exportCss": "CSS exportieren",
+    "exportJson": "JSON exportieren",
+    "exportScss": "SCSS exportieren",
+    "saveVfs": "In VFS speichern",
+    "saved": "Palette im VFS gespeichert!",
+    "lock": "Sperren",
+    "unlock": "Entsperren"
+  },
+  "contrast": {
+    "textColor": "Textfarbe",
+    "bgColor": "Hintergrundfarbe",
+    "ratio": "Kontrastverhältnis",
+    "normalText": "Normaler Text",
+    "largeText": "Großer Text",
+    "apcaScore": "APCA-Wert",
+    "sampleNormal": "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern.",
+    "sampleLarge": "Große Überschrift (18pt+ / 14pt fett)"
+  },
+  "blindness": {
+    "normal": "Normale Sicht",
+    "protanopia": "Protanopie (Rot-Blindheit)",
+    "deuteranopia": "Deuteranopie (Grün-Blindheit)",
+    "tritanopia": "Tritanopie (Blau-Blindheit)",
+    "achromatopsia": "Achromatopsie (Vollfarbenblindheit)"
+  },
+  "gradient": {
+    "type": "Typ",
+    "linear": "Linear",
+    "radial": "Radial",
+    "conic": "Konisch",
+    "angle": "Winkel:",
+    "copyCss": "CSS kopieren"
+  },
+  "image": {
+    "dropPrompt": "Bild hier ablegen oder auf Bild öffnen klicken",
+    "openButton": "Bild öffnen...",
+    "extractButton": "Dominante Farben extrahieren",
+    "extracted": "{count} dominante Farben extrahiert"
+  }
+}

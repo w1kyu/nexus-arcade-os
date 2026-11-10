@@ -1,0 +1,45 @@
+{
+  "app": {
+    "name": "Entwicklertools"
+  },
+  "search": "Tools filtern...",
+  "categories": {
+    "data": "Daten & Formatierung",
+    "security": "Sicherheit & Kodierung",
+    "generators": "Generatoren & Tests",
+    "design": "Design & Web",
+    "reference": "Referenzen & Spickzettel"
+  },
+  "tools": {
+    "json": "JSON-Toolkit",
+    "crypto": "Kodierung & Krypto",
+    "regex": "Regex-Tester",
+    "jwt": "JWT-Debugger",
+    "uuid": "UUID / ULID / NanoID",
+    "timestamp": "Zeitstempel-Konverter",
+    "bases": "Zahlensystem-Umrechner",
+    "cron": "Cron-Ausdruck",
+    "text": "Text-Werkzeuge",
+    "table": "Markdown-Tabelle",
+    "css": "CSS-Generatoren",
+    "svg": "SVG-Optimierer",
+    "qr": "QR-Code-Generator",
+    "faker": "Testdaten-Generator",
+    "cheatsheet": "Entwickler-Spickzettel"
+  },
+  "common": {
+    "copy": "Kopieren",
+    "copied": "In die Zwischenablage kopiert!",
+    "download": "Herunterladen",
+    "clear": "Löschen",
+    "paste": "Einfügen",
+    "input": "Eingabe",
+    "output": "Ausgabe",
+    "options": "Optionen",
+    "generate": "Generieren",
+    "validate": "Validieren",
+    "format": "Formatieren",
+    "minify": "Minimieren",
+    "convert": "Konvertieren"
+  }
+}

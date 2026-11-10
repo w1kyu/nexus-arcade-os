@@ -1,0 +1,45 @@
+{
+  "app": {
+    "name": "Developer Tools"
+  },
+  "search": "Filter tools...",
+  "categories": {
+    "data": "Data & Formatting",
+    "security": "Security & Encoding",
+    "generators": "Generators & Testing",
+    "design": "Design & Web",
+    "reference": "Reference & Helpers"
+  },
+  "tools": {
+    "json": "JSON Toolkit",
+    "crypto": "Encoding & Crypto",
+    "regex": "Regex Tester",
+    "jwt": "JWT Debugger",
+    "uuid": "UUID / ULID / NanoID",
+    "timestamp": "Timestamp Converter",
+    "bases": "Base Converter",
+    "cron": "Cron Expression",
+    "text": "Text Utilities",
+    "table": "Markdown Table",
+    "css": "CSS Generators",
+    "svg": "SVG Optimizer",
+    "qr": "QR Code Generator",
+    "faker": "Fake Data Generator",
+    "cheatsheet": "Dev Cheatsheets"
+  },
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied to clipboard!",
+    "download": "Download",
+    "clear": "Clear",
+    "paste": "Paste",
+    "input": "Input",
+    "output": "Output",
+    "options": "Options",
+    "generate": "Generate",
+    "validate": "Validate",
+    "format": "Format",
+    "minify": "Minify",
+    "convert": "Convert"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Nexus Präsentationen",
+    "untitled": "Unbenannte Präsentation"
+  },
+  "toolbar": {
+    "new": "Neu",
+    "open": "Öffnen",
+    "save": "Speichern",
+    "export": "HTML exportieren",
+    "print": "Drucken / PDF",
+    "present": "Präsentieren",
+    "presenterMode": "Referentenansicht",
+    "theme": "Theme",
+    "ratio": "Seitenverhältnis",
+    "template": "Vorlagen"
+  },
+  "nav": {
+    "prev": "Vorherige Folie",
+    "next": "Nächste Folie",
+    "slideOf": "Folie {current} von {total}"
+  },
+  "presenter": {
+    "title": "Referentenansicht",
+    "currentSlide": "Aktuelle Folie",
+    "nextSlide": "Nächste Folie",
+    "notes": "Vortragsnotizen",
+    "noNotes": "Keine Notizen für diese Folie vorhanden.",
+    "timer": "Vergangene Zeit",
+    "resetTimer": "Timer zurücksetzen"
+  },
+  "export": {
+    "saved": "Präsentation erfolgreich gespeichert",
+    "htmlSaved": "Eigenständige HTML-Präsentation exportiert"
+  },
+  "dialog": {
+    "confirmNew": "Neue Präsentation erstellen? Nicht gespeicherte Änderungen gehen verloren."
+  }
+}

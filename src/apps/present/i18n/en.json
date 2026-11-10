@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Nexus Present",
+    "untitled": "Untitled Presentation"
+  },
+  "toolbar": {
+    "new": "New",
+    "open": "Open",
+    "save": "Save",
+    "export": "Export HTML",
+    "print": "Print / PDF",
+    "present": "Present",
+    "presenterMode": "Presenter Mode",
+    "theme": "Theme",
+    "ratio": "Aspect Ratio",
+    "template": "Templates"
+  },
+  "nav": {
+    "prev": "Previous slide",
+    "next": "Next slide",
+    "slideOf": "Slide {current} of {total}"
+  },
+  "presenter": {
+    "title": "Presenter View",
+    "currentSlide": "Current Slide",
+    "nextSlide": "Next Slide",
+    "notes": "Speaker Notes",
+    "noNotes": "No notes for this slide.",
+    "timer": "Elapsed Time",
+    "resetTimer": "Reset timer"
+  },
+  "export": {
+    "saved": "Presentation saved successfully",
+    "htmlSaved": "Standalone HTML presentation exported"
+  },
+  "dialog": {
+    "confirmNew": "Create new presentation? Any unsaved edits will be lost."
+  }
+}

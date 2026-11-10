@@ -1,0 +1,415 @@
+.nx-present {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg, #0f172a);
+  color: var(--color-text, #f8fafc);
+  font-family: inherit;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Toolbar */
+.nx-present-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--color-surface, #1e293b);
+  border-bottom: 1px solid var(--color-border, #334155);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nx-present-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-present-btn {
+  padding: 5px 10px;
+  background: var(--color-btn-bg, #334155);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #475569);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.nx-present-btn:hover:not(:disabled) {
+  background: var(--color-btn-hover, #475569);
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-present-btn.primary {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-present-btn.active {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+}
+
+.nx-present-select {
+  padding: 4px 8px;
+  background: var(--color-btn-bg, #334155);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #475569);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nx-present-status {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-left: 6px;
+}
+
+/* Workspace */
+.nx-present-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Editor Panel (Left) */
+.nx-present-editor-panel {
+  width: 45%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: #090d16;
+  border-right: 1px solid var(--color-border, #334155);
+}
+
+.nx-present-editor-header {
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--color-border, #334155);
+  display: flex;
+  justify-content: space-between;
+}
+
+.nx-present-textarea {
+  flex: 1;
+  background: transparent;
+  color: #f1f5f9;
+  border: none;
+  resize: none;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  outline: none;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+/* Preview Panel (Right) */
+.nx-present-preview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #020617;
+  overflow: hidden;
+}
+
+.nx-present-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: auto;
+  position: relative;
+}
+
+/* Slide Frame */
+.nx-present-slide-frame {
+  width: 800px;
+  height: 450px; /* 16:9 */
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 50px 30px 50px;
+  transition:
+    transform 0.2s ease,
+    width 0.2s,
+    height 0.2s;
+  user-select: text;
+}
+
+.nx-present-slide-frame.ratio-4-3 {
+  width: 720px;
+  height: 540px; /* 4:3 */
+}
+
+.nx-present-slide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.nx-present-slide-body h1 {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 8px;
+}
+
+.nx-present-slide-body h2 {
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.nx-present-slide-body h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.nx-present-slide-body p {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.nx-present-slide-body ul,
+.nx-present-slide-body ol {
+  font-size: 1.1rem;
+  margin-left: 28px;
+  margin-bottom: 14px;
+}
+
+.nx-present-slide-body li {
+  margin-bottom: 6px;
+}
+
+.nx-present-slide-body pre {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.nx-present-slide-body code {
+  font-family: ui-monospace, monospace;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.nx-present-slide-body blockquote {
+  border-left: 3px solid currentColor;
+  padding-left: 12px;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.nx-present-slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+
+/* Slide Navigation Bar */
+.nx-present-nav-bar {
+  height: 48px;
+  background: var(--color-surface, #1e293b);
+  border-top: 1px solid var(--color-border, #334155);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.nx-present-slide-counter {
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* Presenter Mode Modal / Overlay */
+.nx-presenter-modal {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  max-width: 95vw;
+  height: 600px;
+  max-height: 90vh;
+  background: #0f172a;
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+.nx-presenter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.nx-presenter-timer {
+  font-size: 18px;
+  font-family: ui-monospace, monospace;
+  font-weight: bold;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-presenter-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  gap: 16px;
+}
+
+.nx-presenter-slides-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 55%;
+}
+
+.nx-presenter-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-presenter-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.nx-presenter-current-preview {
+  height: 220px;
+  background: #020617;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-presenter-next-preview {
+  height: 140px;
+  background: #020617;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.nx-presenter-notes-col {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.nx-presenter-notes-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+/* Fullscreen Slide Show */
+.nx-present-fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.nx-present-fullscreen-exit-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 100000;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.nx-present-fullscreen-overlay:hover .nx-present-fullscreen-exit-btn {
+  opacity: 1;
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .nx-present-slide-frame,
+  .nx-present-slide-frame * {
+    visibility: visible;
+  }
+  .nx-present-slide-frame {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    box-shadow: none !important;
+    page-break-after: always;
+  }
+}

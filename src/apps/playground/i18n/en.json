@@ -1,0 +1,33 @@
+{
+  "app": {
+    "name": "Code Playground"
+  },
+  "toolbar": {
+    "run": "Run",
+    "templates": "Templates",
+    "layout": "Layout",
+    "exportHtml": "Export HTML",
+    "importHtml": "Import HTML",
+    "save": "Save Project",
+    "share": "Share URL",
+    "sideBySide": "Side by Side",
+    "stacked": "Stacked",
+    "previewOnly": "Preview Only",
+    "editorOnly": "Editor Only"
+  },
+  "editors": {
+    "html": "HTML",
+    "css": "CSS",
+    "js": "JavaScript"
+  },
+  "console": {
+    "title": "Console",
+    "clear": "Clear",
+    "placeholder": "Evaluate expression (e.g. 2 + 2 or document.title)..."
+  },
+  "messages": {
+    "exported": "Project exported as HTML file",
+    "saved": "Project saved in /User/Projects/{name}",
+    "copiedUrl": "Project URL copied to clipboard!"
+  }
+}

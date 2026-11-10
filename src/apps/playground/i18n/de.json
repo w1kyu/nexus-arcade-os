@@ -1,0 +1,33 @@
+{
+  "app": {
+    "name": "Code-Playground"
+  },
+  "toolbar": {
+    "run": "Ausführen",
+    "templates": "Vorlagen",
+    "layout": "Layout",
+    "exportHtml": "HTML exportieren",
+    "importHtml": "HTML importieren",
+    "save": "Projekt speichern",
+    "share": "URL teilen",
+    "sideBySide": "Nebeneinander",
+    "stacked": "Übereinander",
+    "previewOnly": "Nur Vorschau",
+    "editorOnly": "Nur Editor"
+  },
+  "editors": {
+    "html": "HTML",
+    "css": "CSS",
+    "js": "JavaScript"
+  },
+  "console": {
+    "title": "Konsole",
+    "clear": "Löschen",
+    "placeholder": "Ausdruck auswerten (z.B. 2 + 2 oder document.title)..."
+  },
+  "messages": {
+    "exported": "Projekt als HTML-Datei exportiert",
+    "saved": "Projekt gespeichert in /User/Projects/{name}",
+    "copiedUrl": "Projekt-URL in die Zwischenablage kopiert!"
+  }
+}

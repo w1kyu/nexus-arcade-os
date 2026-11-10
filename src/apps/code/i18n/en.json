@@ -1,0 +1,88 @@
+{
+  "app": {
+    "name": "Nexus Code",
+    "description": "Multi-file code editor"
+  },
+  "activity": {
+    "explorer": "Explorer",
+    "search": "Search across files",
+    "history": "Local History",
+    "preview": "Live Web Preview",
+    "runner": "Run JavaScript"
+  },
+  "explorer": {
+    "title": "EXPLORER",
+    "newFile": "New File",
+    "newFolder": "New Folder",
+    "refresh": "Refresh",
+    "collapseAll": "Collapse All",
+    "openFolder": "Open Folder",
+    "noFiles": "No files in project folder",
+    "newFilePrompt": "File name:",
+    "newFolderPrompt": "Folder name:",
+    "rename": "Rename",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete \"{name}\"?"
+  },
+  "search": {
+    "title": "SEARCH",
+    "placeholder": "Search across files...",
+    "matchCase": "Match Case",
+    "matchWholeWord": "Match Whole Word",
+    "useRegex": "Use Regular Expression",
+    "noResults": "No results found",
+    "resultsFound": "{count} results across {files} files",
+    "searching": "Searching..."
+  },
+  "history": {
+    "title": "LOCAL HISTORY",
+    "noSnapshots": "No history snapshots yet. Save files to record changes.",
+    "snapshotAt": "Snapshot at {time}",
+    "diffTitle": "Diff: {file}",
+    "revert": "Revert to this snapshot",
+    "reverted": "Reverted files to snapshot"
+  },
+  "preview": {
+    "title": "WEB PREVIEW",
+    "run": "Run",
+    "refresh": "Refresh",
+    "popout": "Open in new tab",
+    "noIndex": "No index.html found in project folder.",
+    "createTemplate": "Create sample web project"
+  },
+  "runner": {
+    "title": "RUN JAVASCRIPT (NODE-LITE)",
+    "run": "Run Active File",
+    "clear": "Clear Console",
+    "running": "Executing in worker...",
+    "finished": "Completed in {ms}ms",
+    "noJsActive": "Active file is not JavaScript (.js)"
+  },
+  "tabs": {
+    "close": "Close",
+    "closeOthers": "Close Others",
+    "closeAll": "Close All",
+    "split": "Split Editor",
+    "unsplit": "Close Split"
+  },
+  "status": {
+    "lineCol": "Ln {line}, Col {col}",
+    "encoding": "UTF-8",
+    "spaces": "Spaces: {count}",
+    "plainText": "Plain Text"
+  },
+  "quickOpen": {
+    "placeholder": "Type file name to open...",
+    "noMatches": "No matching files"
+  },
+  "goToLine": {
+    "title": "Go to Line",
+    "placeholder": "Enter line number..."
+  },
+  "messages": {
+    "saved": "File saved: {name}",
+    "projectCreated": "Sample web project created in {path}",
+    "cannotReadBinary": "Binary files cannot be opened in text editor",
+    "fileDeleted": "Deleted {name}"
+  }
+}

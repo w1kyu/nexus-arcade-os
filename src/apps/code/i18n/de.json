@@ -1,0 +1,88 @@
+{
+  "app": {
+    "name": "Nexus Code",
+    "description": "Mehrdatei-Code-Editor"
+  },
+  "activity": {
+    "explorer": "Explorer",
+    "search": "Dateien durchsuchen",
+    "history": "Lokaler Verlauf",
+    "preview": "Live-Web-Vorschau",
+    "runner": "JavaScript ausführen"
+  },
+  "explorer": {
+    "title": "EXPLORER",
+    "newFile": "Neue Datei",
+    "newFolder": "Neuer Ordner",
+    "refresh": "Aktualisieren",
+    "collapseAll": "Alle einklappen",
+    "openFolder": "Ordner öffnen",
+    "noFiles": "Keine Dateien im Projektordner",
+    "newFilePrompt": "Dateiname:",
+    "newFolderPrompt": "Ordnername:",
+    "rename": "Umbenennen",
+    "delete": "Löschen",
+    "confirmDelete": "Möchten Sie \"{name}\" wirklich löschen?"
+  },
+  "search": {
+    "title": "SUCHE",
+    "placeholder": "Dateien durchsuchen...",
+    "matchCase": "Groß-/Kleinschreibung",
+    "matchWholeWord": "Ganzes Wort",
+    "useRegex": "Regulärer Ausdruck",
+    "noResults": "Keine Treffer gefunden",
+    "resultsFound": "{count} Treffer in {files} Dateien",
+    "searching": "Suche läuft..."
+  },
+  "history": {
+    "title": "LOKALER VERLAUF",
+    "noSnapshots": "Noch keine Snapshots im Verlauf. Speichern Sie Dateien, um Änderungen aufzuzeichnen.",
+    "snapshotAt": "Snapshot von {time}",
+    "diffTitle": "Diff: {file}",
+    "revert": "Auf diesen Snapshot zurücksetzen",
+    "reverted": "Dateien auf Snapshot zurückgesetzt"
+  },
+  "preview": {
+    "title": "WEB-VORSCHAU",
+    "run": "Ausführen",
+    "refresh": "Aktualisieren",
+    "popout": "In neuem Tab öffnen",
+    "noIndex": "Keine index.html im Projektordner gefunden.",
+    "createTemplate": "Web-Beispielprojekt anlegen"
+  },
+  "runner": {
+    "title": "JAVASCRIPT AUSFÜHREN (NODE-LITE)",
+    "run": "Aktive Datei ausführen",
+    "clear": "Konsole leeren",
+    "running": "Wird im Worker ausgeführt...",
+    "finished": "Ausgeführt in {ms}ms",
+    "noJsActive": "Aktive Datei ist kein JavaScript (.js)"
+  },
+  "tabs": {
+    "close": "Schließen",
+    "closeOthers": "Andere schließen",
+    "closeAll": "Alle schließen",
+    "split": "Editor teilen",
+    "unsplit": "Geteilte Ansicht schließen"
+  },
+  "status": {
+    "lineCol": "Zeile {line}, Spalte {col}",
+    "encoding": "UTF-8",
+    "spaces": "Leerzeichen: {count}",
+    "plainText": "Reiner Text"
+  },
+  "quickOpen": {
+    "placeholder": "Dateiname zum Öffnen eingeben...",
+    "noMatches": "Keine übereinstimmenden Dateien"
+  },
+  "goToLine": {
+    "title": "Gehe zu Zeile",
+    "placeholder": "Zeilennummer eingeben..."
+  },
+  "messages": {
+    "saved": "Datei gespeichert: {name}",
+    "projectCreated": "Web-Beispielprojekt erstellt in {path}",
+    "cannotReadBinary": "Binärdateien können nicht im Texteditor geöffnet werden",
+    "fileDeleted": "{name} gelöscht"
+  }
+}

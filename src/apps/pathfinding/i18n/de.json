@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "Pfadfindungs- & Labyrinth-Labor",
+    "description": "Interaktiver Simulator für Wegfindungsalgorithmen und Labyrinth-Generator mit gewichteten Gittern und Schritt-für-Schritt-Visualisierung."
+  },
+  "controls": {
+    "algorithm": "Algorithmus:",
+    "heuristic": "Heuristik:",
+    "maze": "Labyrinth generieren",
+    "tool": "Zeichnen:",
+    "wall": "Wand",
+    "mud": "Schlamm (Kosten 5)",
+    "erase": "Löschen",
+    "start": "Start bewegen",
+    "goal": "Ziel bewegen",
+    "diagonal": "Diagonal",
+    "clearWalls": "Wände leeren",
+    "clearPath": "Pfad leeren",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "mazes": {
+    "select": "Labyrinth...",
+    "backtracker": "Rekursiver Backtracker",
+    "prim": "Randomisiertes Prim",
+    "kruskal": "Randomisiertes Kruskal",
+    "division": "Rekursive Teilung",
+    "terrain": "Zufälliges Gelände"
+  },
+  "heuristics": {
+    "manhattan": "Manhattan",
+    "euclidean": "Euklidisch",
+    "chebyshev": "Tschebyschow"
+  },
+  "stats": {
+    "title": "Ausführungsstatistiken",
+    "visited": "Besuchte Knoten",
+    "pathLength": "Pfadlänge",
+    "pathCost": "Gesamtkosten",
+    "status": "Status",
+    "searching": "Suche...",
+    "found": "Pfad gefunden",
+    "noPath": "Kein Pfad gefunden",
+    "idle": "Bereit"
+  },
+  "legend": {
+    "start": "Start",
+    "goal": "Ziel",
+    "wall": "Wand",
+    "mud": "Schlamm (5)",
+    "visited": "Besucht",
+    "path": "Pfad"
+  }
+}

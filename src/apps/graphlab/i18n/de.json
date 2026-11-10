@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "Graphen-Editor & Algorithmen",
+    "description": "Interaktiver Graphen-Visualisierer, Editor und Algorithmen-Simulator mit BFS, DFS, Dijkstra, MST und Layouts."
+  },
+  "controls": {
+    "algorithm": "Algorithmus:",
+    "preset": "Vorlage:",
+    "layout": "Layout:",
+    "force": "Kräftebasiert",
+    "circular": "Kreisförmig",
+    "grid": "Gitter",
+    "tool": "Modus:",
+    "select": "Wählen / Ziehen",
+    "addNode": "Knoten hinzufügen",
+    "addEdge": "Kante hinzufügen",
+    "delete": "Löschen",
+    "directed": "Gerichtet",
+    "clear": "Graph leeren",
+    "importExport": "Import / Export",
+    "dot": "DOT (Graphviz)",
+    "matrix": "Adjazenzmatrix",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "info": {
+    "title": "Graphen-Informationen",
+    "nodes": "Knoten",
+    "edges": "Kanten",
+    "status": "Algorithmus-Status",
+    "result": "Ergebnis",
+    "startNode": "Startknoten:"
+  }
+}

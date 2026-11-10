@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Automata Lab",
+    "description": "Interactive DFA and NFA editor, word simulator, subset construction, DFA minimization, and Thompson regex converter."
+  },
+  "controls": {
+    "preset": "Preset:",
+    "tool": "Mode:",
+    "select": "Select / Drag",
+    "addState": "Add State",
+    "addTransition": "Add Transition",
+    "toggleStart": "Toggle Start",
+    "toggleFinal": "Toggle Final",
+    "delete": "Delete",
+    "convert": "Conversions",
+    "nfaToDfa": "NFA → DFA (Subset Construction)",
+    "minimize": "Minimize DFA (Table-Filling)",
+    "regexToNfa": "Regex → ε-NFA (Thompson)",
+    "complement": "Complement (Σ* \\ L)",
+    "word": "Input Word:",
+    "simulate": "Simulate",
+    "batchTest": "Batch Test Words",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "info": {
+    "title": "Automaton Info",
+    "alphabet": "Alphabet (Σ)",
+    "states": "States",
+    "type": "Type",
+    "complete": "DFA Complete?",
+    "yes": "Yes",
+    "no": "No",
+    "simulation": "Simulation Output",
+    "batchTitle": "Batch Test Results"
+  }
+}

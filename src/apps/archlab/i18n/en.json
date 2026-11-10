@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Number & CPU Lab",
+    "description": "Interactive IEEE 754 floating point inspector, integer representations, base conversions, and Nexus-8 toy CPU simulator"
+  },
+  "tabs": {
+    "numbers": "Number Representation",
+    "cpu": "Nexus-8 CPU Simulator"
+  },
+  "numbers": {
+    "input": "Decimal Value:",
+    "bits": "Bit Width:",
+    "unsigned": "Unsigned",
+    "signMag": "Sign-Magnitude",
+    "onesComp": "One's Complement",
+    "twosComp": "Two's Complement",
+    "addition": "Binary Addition & Flags",
+    "flags": "CPU ALU Flags",
+    "ieeeTitle": "IEEE 754 Floating-Point Inspector",
+    "precision": "Precision:",
+    "sign": "Sign (s)",
+    "exponent": "Biased Exponent (e)",
+    "mantissa": "Mantissa / Fraction (m)",
+    "floatProblem": "Why is 0.1 + 0.2 ≠ 0.3?",
+    "baseConv": "Step-by-Step Base Conversion"
+  },
+  "cpu": {
+    "preset": "Example Program:",
+    "assemble": "Assemble & Load",
+    "step": "Step",
+    "run": "Run",
+    "pause": "Pause",
+    "reset": "Reset",
+    "registers": "Registers",
+    "memory": "RAM (256 Bytes)",
+    "output": "Console Output",
+    "stage": "Cycle Stage"
+  },
+  "controls": {
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  }
+}

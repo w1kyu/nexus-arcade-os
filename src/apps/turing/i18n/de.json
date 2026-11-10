@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Turing-Maschinen-Simulator",
+    "description": "Visualisierer für 1-Band-Turing-Maschinen mit Zustandstabelle, Bandkopf-Animation, Schrittausführung und Fleißigen Bibern."
+  },
+  "controls": {
+    "preset": "Maschine:",
+    "input": "Bandeingabe:",
+    "reset": "Zurücksetzen",
+    "stepLimit": "Schrittlimit:",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "info": {
+    "title": "Maschinenzustand",
+    "state": "Aktueller Zustand",
+    "head": "Kopfposition",
+    "steps": "Ausgeführte Schritte",
+    "status": "Haltestatus",
+    "tableTitle": "Übergangstabelle (δ)"
+  }
+}

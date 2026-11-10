@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "Sorting Visualizer",
+    "description": "Interactive step-by-step sorting visualizer with bar, dot, and color wheel views, sound synthesizer, and race mode."
+  },
+  "controls": {
+    "algorithm": "Algorithm:",
+    "input": "Input:",
+    "size": "Size:",
+    "view": "View:",
+    "bars": "Bars",
+    "dots": "Dots",
+    "wheel": "Color Wheel",
+    "sound": "Sound",
+    "race": "Race Mode",
+    "export": "Export",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG",
+    "save": "Save State",
+    "load": "Load State",
+    "customPrompt": "Enter numbers separated by spaces or commas:",
+    "raceSelect": "Select 2-4 algorithms for race:"
+  },
+  "inputs": {
+    "random": "Random",
+    "sorted": "Sorted",
+    "reversed": "Reversed",
+    "nearly": "Nearly Sorted",
+    "few_unique": "Few Unique",
+    "custom": "Custom List"
+  },
+  "complexity": {
+    "title": "Complexity & Properties",
+    "best": "Best Time",
+    "average": "Average Time",
+    "worst": "Worst Time",
+    "space": "Space",
+    "stable": "Stable",
+    "inPlace": "In-Place",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "race": {
+    "rank": "Rank",
+    "comps": "Comps",
+    "swaps": "Swaps",
+    "running": "Racing...",
+    "finished": "Finished"
+  }
+}

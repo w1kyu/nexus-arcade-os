@@ -1,0 +1,119 @@
+.nx-cslab-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg, #05060d);
+  color: var(--text-1, #eef2ff);
+  font-family: var(--font-sans, sans-serif);
+  overflow-y: auto;
+  padding: var(--space-4, 16px);
+  box-sizing: border-box;
+}
+
+.nx-cslab-hero {
+  margin-bottom: var(--space-4, 16px);
+}
+
+.nx-cslab-hero h2 {
+  margin: 0 0 6px 0;
+  font-size: var(--text-xl, 1.25rem);
+  color: var(--accent, #3ef0ff);
+}
+
+.nx-cslab-hero p {
+  margin: 0;
+  color: var(--text-2, #8b9bb4);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+.nx-cslab-search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: var(--space-4, 16px);
+  flex-wrap: wrap;
+}
+
+.nx-cslab-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-5, 20px);
+}
+
+.nx-cslab-card {
+  background: var(--surface-1, #0b0e1a);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-md, 10px);
+  padding: var(--space-3, 12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.nx-cslab-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, #3ef0ff);
+}
+
+.nx-cslab-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-cslab-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--surface-2, #121628);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  color: var(--accent, #3ef0ff);
+  font-weight: 600;
+}
+
+.nx-cslab-card-desc {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--text-2, #8b9bb4);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.nx-cslab-checklist {
+  background: var(--surface-1, #0b0e1a);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-md, 10px);
+  padding: var(--space-3, 12px);
+}
+
+.nx-cslab-checklist h3 {
+  margin: 0 0 8px 0;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--accent, #3ef0ff);
+}
+
+.nx-checklist-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nx-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs, 0.75rem);
+  padding: 6px 8px;
+  background: var(--surface-2, #121628);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nx-checklist-item input {
+  cursor: pointer;
+}

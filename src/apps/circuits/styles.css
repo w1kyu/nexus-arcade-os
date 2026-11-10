@@ -1,0 +1,93 @@
+.nx-circuits-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg, #05060d);
+  color: var(--text-1, #eef2ff);
+  font-family: var(--font-sans, sans-serif);
+  overflow: hidden;
+}
+
+.nx-circuits-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--surface-1, #0b0e1a);
+  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+}
+
+.nx-circuits-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.nx-circuits-canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--surface-1, #0b0e1a);
+  overflow: hidden;
+}
+
+.nx-circuits-svg {
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  user-select: none;
+}
+
+.nx-circuits-sidebar {
+  width: 360px;
+  background: var(--surface-2, #121628);
+  border-left: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  overflow-y: auto;
+}
+
+.nx-circuits-panel {
+  background: var(--surface-1, #0b0e1a);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-md, 10px);
+  padding: var(--space-3, 12px);
+  font-size: var(--text-xs, 0.75rem);
+}
+
+.nx-circuits-panel h4 {
+  margin: 0 0 8px 0;
+  color: var(--accent, #3ef0ff);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+/* KV Map Grid */
+.nx-kv-table {
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+}
+
+.nx-kv-table th,
+.nx-kv-table td {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+}
+
+.nx-kv-table td.cell-one {
+  background: rgba(62, 240, 255, 0.2);
+  color: var(--accent, #3ef0ff);
+  font-weight: bold;
+}

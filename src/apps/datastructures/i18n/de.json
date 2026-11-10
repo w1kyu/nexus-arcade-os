@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "Datenstrukturen-Visualisierer",
+    "description": "Interaktiver Visualisierer für fundamentale Datenstrukturen: Arrays, Stapel, Schlangen, Listen, BST, AVL-Bäume, Heaps, Hashtabellen und Tries."
+  },
+  "controls": {
+    "structure": "Struktur:",
+    "insert": "Einfügen",
+    "delete": "Löschen",
+    "search": "Suchen",
+    "extract": "Extrahieren",
+    "random": "Zufällig",
+    "clear": "Leeren",
+    "cliPlaceholder": "Befehl z. B. 'insert 42', 'delete 10', 'search 7', 'push 15', 'pop', 'enqueue 5', 'dequeue'",
+    "run": "Ausführen",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "structures": {
+    "array": "Dynamisches Array",
+    "stack": "Stapel (Stack LIFO)",
+    "queue": "Warteschlange (FIFO)",
+    "circular": "Ringpuffer (Circular Buffer)",
+    "slist": "Einfach verkettete Liste",
+    "dlist": "Doppelt verkettete Liste",
+    "bst": "Binärer Suchbaum (BST)",
+    "avl": "AVL-Baum (Ausgeglichen)",
+    "heap": "Binärer Heap (Max-Heap)",
+    "hash": "Hashtabelle",
+    "trie": "Trie (Präfixbaum)"
+  },
+  "info": {
+    "title": "Zustand der Datenstruktur",
+    "size": "Größe / Länge",
+    "capacity": "Kapazität",
+    "loadFactor": "Belegungsfaktor",
+    "log": "Erklärungsprotokoll"
+  }
+}

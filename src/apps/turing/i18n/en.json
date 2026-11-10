@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Turing Machine Simulator",
+    "description": "Single-tape Turing Machine visualizer with state table, head movement, step execution, and busy beaver machines."
+  },
+  "controls": {
+    "preset": "Machine:",
+    "input": "Tape Input:",
+    "reset": "Reset",
+    "stepLimit": "Step Limit:",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "info": {
+    "title": "Machine State",
+    "state": "Current State",
+    "head": "Head Position",
+    "steps": "Steps Executed",
+    "status": "Halt Status",
+    "tableTitle": "Transition Table (δ)"
+  }
+}

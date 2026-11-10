@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "Graph Editor & Algorithms",
+    "description": "Interactive graph visualizer, editor, and algorithm simulator with BFS, DFS, Dijkstra, MST, and layouts."
+  },
+  "controls": {
+    "algorithm": "Algorithm:",
+    "preset": "Preset:",
+    "layout": "Layout:",
+    "force": "Force-Directed",
+    "circular": "Circular",
+    "grid": "Grid",
+    "tool": "Mode:",
+    "select": "Select / Drag",
+    "addNode": "Add Node",
+    "addEdge": "Add Edge",
+    "delete": "Delete",
+    "directed": "Directed",
+    "clear": "Clear Graph",
+    "importExport": "Import / Export",
+    "dot": "DOT (Graphviz)",
+    "matrix": "Adjacency Matrix",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "info": {
+    "title": "Graph Information",
+    "nodes": "Nodes",
+    "edges": "Edges",
+    "status": "Algorithm Status",
+    "result": "Result",
+    "startNode": "Start Node:"
+  }
+}

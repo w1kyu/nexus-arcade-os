@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "Data Structures Visualizer",
+    "description": "Interactive visualizer for fundamental data structures: arrays, stacks, queues, lists, BST, AVL trees, heaps, hash tables, and tries."
+  },
+  "controls": {
+    "structure": "Structure:",
+    "insert": "Insert",
+    "delete": "Delete",
+    "search": "Search",
+    "extract": "Extract",
+    "random": "Random",
+    "clear": "Clear",
+    "cliPlaceholder": "Command e.g. 'insert 42', 'delete 10', 'search 7', 'push 15', 'pop', 'enqueue 5', 'dequeue'",
+    "run": "Run",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "structures": {
+    "array": "Dynamic Array",
+    "stack": "Stack (LIFO)",
+    "queue": "Queue (FIFO)",
+    "circular": "Circular Buffer",
+    "slist": "Singly Linked List",
+    "dlist": "Doubly Linked List",
+    "bst": "Binary Search Tree",
+    "avl": "AVL Tree (Balanced)",
+    "heap": "Binary Heap (Max)",
+    "hash": "Hash Table",
+    "trie": "Trie (Prefix Tree)"
+  },
+  "info": {
+    "title": "Data Structure State",
+    "size": "Size / Length",
+    "capacity": "Capacity",
+    "loadFactor": "Load Factor",
+    "log": "Explanation Log"
+  }
+}

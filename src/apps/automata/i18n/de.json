@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Automaten-Labor",
+    "description": "Interaktiver Editor für DFA und NFA, Wort-Simulator, Potenzmengenkonstruktion, DFA-Minimierung und Thompson-Regex-Konverter."
+  },
+  "controls": {
+    "preset": "Vorlage:",
+    "tool": "Modus:",
+    "select": "Wählen / Ziehen",
+    "addState": "Zustand hinzufügen",
+    "addTransition": "Übergang hinzufügen",
+    "toggleStart": "Startzustand umschalten",
+    "toggleFinal": "Endzustand umschalten",
+    "delete": "Löschen",
+    "convert": "Konvertierungen",
+    "nfaToDfa": "NFA → DFA (Potenzmengenkonstruktion)",
+    "minimize": "DFA minimieren (Äquivalenzklassen)",
+    "regexToNfa": "Regex → ε-NFA (Thompson)",
+    "complement": "Komplement (Σ* \\ L)",
+    "word": "Eingabewort:",
+    "simulate": "Simulieren",
+    "batchTest": "Wörter stapelweise testen",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "info": {
+    "title": "Automaten-Info",
+    "alphabet": "Alphabet (Σ)",
+    "states": "Zustände",
+    "type": "Typ",
+    "complete": "DFA Vollständig?",
+    "yes": "Ja",
+    "no": "Nein",
+    "simulation": "Simulationsausgabe",
+    "batchTitle": "Testergebnisse"
+  }
+}

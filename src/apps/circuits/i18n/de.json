@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "Logikschaltungen & Boole'sche Algebra",
+    "description": "Interaktiver Logikgatter-Simulator, Schaltplan-Leinwand, Wahrheitstabellen-Generator, KV-Diagramme und Quine-McCluskey-Minimierung."
+  },
+  "tabs": {
+    "circuits": "Schaltungssimulator",
+    "boolean": "Boole'sche Algebra & KV-Diagramme"
+  },
+  "controls": {
+    "preset": "Schaltungsvorlage:",
+    "tool": "Gatter / Draht hinzufügen:",
+    "switch": "Schalter",
+    "clock": "Takt",
+    "led": "LED",
+    "and": "AND-Gatter",
+    "or": "OR-Gatter",
+    "not": "NOT-Gatter",
+    "nand": "NAND-Gatter",
+    "nor": "NOR-Gatter",
+    "xor": "XOR-Gatter",
+    "xnor": "XNOR-Gatter",
+    "wire": "Draht verbinden",
+    "clear": "Leeren",
+    "generateTable": "Wahrheitstabelle erstellen",
+    "expression": "Boole'scher Ausdruck:",
+    "evaluate": "Auswerten",
+    "compareWith": "Vergleichen mit:",
+    "checkEquiv": "Äquivalenz prüfen",
+    "minimize": "Mit Quine-McCluskey minimieren",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  },
+  "info": {
+    "circuitsTitle": "Schaltungsinformationen",
+    "truthTitle": "Wahrheitstabelle",
+    "booleanTitle": "Ausdrucksanalyse",
+    "kvTitle": "Karnaugh-Veitch-Diagramm (KV)",
+    "minimizedTitle": "Minimierte Formen",
+    "classification": "Klassifikation",
+    "tautology": "Tautologie (Immer wahr)",
+    "contradiction": "Kontradiktion (Immer falsch)",
+    "contingency": "Kontingenz (Erfüllbar)"
+  }
+}

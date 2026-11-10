@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "Pathfinding & Maze Lab",
+    "description": "Interactive pathfinding algorithm simulator and maze generator with weighted grids and step-by-step visualizations."
+  },
+  "controls": {
+    "algorithm": "Algorithm:",
+    "heuristic": "Heuristic:",
+    "maze": "Generate Maze",
+    "tool": "Draw:",
+    "wall": "Wall",
+    "mud": "Mud (cost 5)",
+    "erase": "Erase",
+    "start": "Move Start",
+    "goal": "Move Goal",
+    "diagonal": "Diagonal",
+    "clearWalls": "Clear Walls",
+    "clearPath": "Clear Path",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "mazes": {
+    "select": "Maze...",
+    "backtracker": "Recursive Backtracker",
+    "prim": "Randomized Prim's",
+    "kruskal": "Randomized Kruskal's",
+    "division": "Recursive Division",
+    "terrain": "Random Terrain"
+  },
+  "heuristics": {
+    "manhattan": "Manhattan",
+    "euclidean": "Euclidean",
+    "chebyshev": "Chebyshev"
+  },
+  "stats": {
+    "title": "Execution Stats",
+    "visited": "Visited Nodes",
+    "pathLength": "Path Length",
+    "pathCost": "Total Cost",
+    "status": "Status",
+    "searching": "Searching...",
+    "found": "Path Found",
+    "noPath": "No Path Found",
+    "idle": "Idle"
+  },
+  "legend": {
+    "start": "Start",
+    "goal": "Goal",
+    "wall": "Wall",
+    "mud": "Mud (5)",
+    "visited": "Visited",
+    "path": "Path"
+  }
+}

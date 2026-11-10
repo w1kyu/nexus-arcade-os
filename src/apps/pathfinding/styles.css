@@ -1,0 +1,123 @@
+.nx-pathfinding-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg, #05060d);
+  color: var(--text-1, #eef2ff);
+  font-family: var(--font-sans, sans-serif);
+  overflow: hidden;
+}
+
+.nx-pathfinding-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--surface-1, #0b0e1a);
+  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+}
+
+.nx-pathfinding-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.nx-pathfinding-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.nx-pathfinding-grid-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--space-3, 12px);
+  overflow: auto;
+  user-select: none;
+}
+
+.nx-pathfinding-canvas {
+  box-shadow: var(--shadow-2, 0 12px 40px rgb(0 0 0 / 0.5));
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-sm, 6px);
+  cursor: crosshair;
+  background: var(--surface-2, #121628);
+}
+
+.nx-pathfinding-sidebar {
+  width: 320px;
+  background: var(--surface-2, #121628);
+  border-left: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  overflow-y: auto;
+}
+
+.nx-pathfinding-stats {
+  background: var(--surface-1, #0b0e1a);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-md, 10px);
+  padding: var(--space-3, 12px);
+}
+
+.nx-pathfinding-stats h4 {
+  margin: 0 0 var(--space-2, 8px) 0;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--accent, #3ef0ff);
+}
+
+.nx-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  font-size: var(--text-xs, 0.75rem);
+}
+
+.nx-stats-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background: var(--surface-2, #121628);
+  border-radius: var(--radius-sm, 6px);
+}
+
+.nx-stats-item span:first-child {
+  color: var(--text-3, #8791b3);
+}
+
+.nx-stats-item span:last-child {
+  font-family: var(--font-mono, monospace);
+  color: var(--text-1, #eef2ff);
+  font-weight: 600;
+}
+
+.nx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.nx-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nx-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}

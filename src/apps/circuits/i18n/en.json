@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "Logic Circuit & Boolean Lab",
+    "description": "Interactive logic gate simulator, circuit canvas, truth table generator, KV maps, and Quine-McCluskey minimization."
+  },
+  "tabs": {
+    "circuits": "Circuit Simulator",
+    "boolean": "Boolean Algebra & KV Maps"
+  },
+  "controls": {
+    "preset": "Circuit Preset:",
+    "tool": "Add Gate / Wire:",
+    "switch": "Switch",
+    "clock": "Clock",
+    "led": "LED",
+    "and": "AND Gate",
+    "or": "OR Gate",
+    "not": "NOT Gate",
+    "nand": "NAND Gate",
+    "nor": "NOR Gate",
+    "xor": "XOR Gate",
+    "xnor": "XNOR Gate",
+    "wire": "Connect Wire",
+    "clear": "Clear",
+    "generateTable": "Generate Truth Table",
+    "expression": "Boolean Expression:",
+    "evaluate": "Evaluate",
+    "compareWith": "Compare With:",
+    "checkEquiv": "Check Equivalence",
+    "minimize": "Minimize with Quine-McCluskey",
+    "save": "Save State",
+    "load": "Load State",
+    "exportPng": "Export PNG",
+    "exportSvg": "Export SVG"
+  },
+  "info": {
+    "circuitsTitle": "Circuit Information",
+    "truthTitle": "Truth Table",
+    "booleanTitle": "Expression Analysis",
+    "kvTitle": "Karnaugh Map (KV)",
+    "minimizedTitle": "Minimized Forms",
+    "classification": "Classification",
+    "tautology": "Tautology (Always True)",
+    "contradiction": "Contradiction (Always False)",
+    "contingency": "Contingency"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "app": {
+    "title": "Informatik-Labor",
+    "description": "Zentrales Lernportal für Algorithmen, Datenstrukturen, Automaten, Logikschaltungen und Rechnerarchitektur"
+  },
+  "hub": {
+    "searchPlaceholder": "Themen, Algorithmen, Klausuraufgaben suchen (z.B. Dijkstra, AVL, IEEE 754, Turing)...",
+    "allCategories": "Alle Themen",
+    "algorithms": "Algorithmen",
+    "dataStructures": "Datenstrukturen",
+    "theory": "Theoretische Informatik",
+    "hardware": "Technische Informatik & Logik",
+    "launch": "Tool starten",
+    "syllabus": "Klausurthemen & Lernfortschritt",
+    "progress": "Fortschritt: {completed} / {total} Themen gemeistert"
+  }
+}

@@ -1,0 +1,143 @@
+/* Shared Visualizer Engine styles */
+.nx-cs-engine-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--surface-2, #121628);
+  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  user-select: none;
+}
+
+.nx-cs-engine-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.nx-cs-engine-speed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-left: var(--space-2, 8px);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--text-2, #b4bdd8);
+}
+
+.nx-cs-engine-speed input[type='range'] {
+  width: 90px;
+  cursor: pointer;
+  accent-color: var(--accent, #3ef0ff);
+}
+
+.nx-cs-engine-counters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  margin-left: auto;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 0.75rem);
+}
+
+.nx-cs-counter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--surface-3, #1a2036);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-sm, 6px);
+  color: var(--text-1, #eef2ff);
+}
+
+.nx-cs-counter-badge strong {
+  color: var(--accent, #3ef0ff);
+}
+
+.nx-cs-pseudo-panel {
+  background: var(--surface-1, #0b0e1a);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-radius: var(--radius-md, 10px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs, 0.75rem);
+}
+
+.nx-cs-pseudo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--surface-2, #121628);
+  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  color: var(--text-2, #b4bdd8);
+  font-weight: 600;
+}
+
+.nx-cs-pseudo-lines {
+  padding: 8px 0;
+  overflow-y: auto;
+  max-height: 220px;
+}
+
+.nx-cs-pseudo-line {
+  display: flex;
+  align-items: center;
+  padding: 2px 12px;
+  line-height: 1.5;
+  color: var(--text-2, #b4bdd8);
+  transition: background var(--dur-fast, 120ms);
+}
+
+.nx-cs-pseudo-line-num {
+  width: 28px;
+  color: var(--text-3, #8791b3);
+  text-align: right;
+  margin-right: 12px;
+  user-select: none;
+}
+
+.nx-cs-pseudo-line-code {
+  white-space: pre;
+}
+
+.nx-cs-pseudo-line.active {
+  background: rgb(62 240 255 / 0.15);
+  color: var(--accent, #3ef0ff);
+  font-weight: 600;
+  border-left: 3px solid var(--accent, #3ef0ff);
+}
+
+.nx-cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-3, #1a2036);
+  color: var(--text-1, #eef2ff);
+  font-size: var(--text-xs, 0.75rem);
+  cursor: pointer;
+  transition: all var(--dur-fast, 120ms);
+}
+
+.nx-cs-btn:hover:not(:disabled) {
+  background: var(--accent, #3ef0ff);
+  color: var(--accent-contrast, #021014);
+}
+
+.nx-cs-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nx-cs-btn.primary {
+  background: var(--accent, #3ef0ff);
+  color: var(--accent-contrast, #021014);
+  font-weight: 600;
+}

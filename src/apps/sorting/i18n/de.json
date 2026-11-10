@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "Sortier-Visualisierer",
+    "description": "Interaktiver Schritt-für-Schritt-Visualisierer für Sortieralgorithmen mit Balken-, Punkt- und Farbradansicht, Klangsynthese und Wettrennen-Modus."
+  },
+  "controls": {
+    "algorithm": "Algorithmus:",
+    "input": "Eingabe:",
+    "size": "Größe:",
+    "view": "Ansicht:",
+    "bars": "Balken",
+    "dots": "Punkte",
+    "wheel": "Farbrad",
+    "sound": "Ton",
+    "race": "Wettrennen",
+    "export": "Exportieren",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren",
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "customPrompt": "Zahlen getrennt durch Leerzeichen oder Kommas eingeben:",
+    "raceSelect": "Wähle 2-4 Algorithmen für das Wettrennen:"
+  },
+  "inputs": {
+    "random": "Zufällig",
+    "sorted": "Sortiert",
+    "reversed": "Umgekehrt",
+    "nearly": "Fast sortiert",
+    "few_unique": "Wenige Werte",
+    "custom": "Eigene Liste"
+  },
+  "complexity": {
+    "title": "Komplexität & Eigenschaften",
+    "best": "Beste Zeit",
+    "average": "Mittlere Zeit",
+    "worst": "Schlechteste Zeit",
+    "space": "Speicher",
+    "stable": "Stabil",
+    "inPlace": "In-Place",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "race": {
+    "rank": "Platz",
+    "comps": "Vergleiche",
+    "swaps": "Tausche",
+    "running": "Läuft...",
+    "finished": "Fertig"
+  }
+}

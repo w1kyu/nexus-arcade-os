@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Zahlendarstellung & CPU-Lab",
+    "description": "Interaktiver IEEE 754 Gleitkomma-Inspektor, Ganzzahl-Formate, Basisumrechnungen und Nexus-8 CPU-Simulator"
+  },
+  "tabs": {
+    "numbers": "Zahlendarstellung",
+    "cpu": "Nexus-8 CPU-Simulator"
+  },
+  "numbers": {
+    "input": "Dezimalwert:",
+    "bits": "Bitbreite:",
+    "unsigned": "Vorzeichenlos",
+    "signMag": "Vorzeichen-Betrag",
+    "onesComp": "Einerkomplement",
+    "twosComp": "Zweierkomplement",
+    "addition": "Binäraddition & Statusflags",
+    "flags": "ALU-Statusflags",
+    "ieeeTitle": "IEEE 754 Gleitkomma-Inspektor",
+    "precision": "Genauigkeit:",
+    "sign": "Vorzeichen (s)",
+    "exponent": "Exponent mit Bias (e)",
+    "mantissa": "Mantisse / Fraktion (m)",
+    "floatProblem": "Warum ist 0.1 + 0.2 ≠ 0.3?",
+    "baseConv": "Schrittweise Basisumrechnung"
+  },
+  "cpu": {
+    "preset": "Beispielprogramm:",
+    "assemble": "Assemblieren & Laden",
+    "step": "Schritt",
+    "run": "Start",
+    "pause": "Pause",
+    "reset": "Zurücksetzen",
+    "registers": "Register",
+    "memory": "RAM (256 Bytes)",
+    "output": "Konsolenausgabe",
+    "stage": "Zyklusphase"
+  },
+  "controls": {
+    "save": "Zustand speichern",
+    "load": "Zustand laden",
+    "exportPng": "PNG exportieren",
+    "exportSvg": "SVG exportieren"
+  }
+}

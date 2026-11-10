@@ -1,0 +1,17 @@
+{
+  "app": {
+    "title": "CS Lab Hub",
+    "description": "Unified portal and learning workspace for algorithms, data structures, automata, digital circuits, and computer architecture"
+  },
+  "hub": {
+    "searchPlaceholder": "Search topics, algorithms, exam exercises (e.g. Dijkstra, AVL, IEEE 754, Turing)...",
+    "allCategories": "All Topics",
+    "algorithms": "Algorithms",
+    "dataStructures": "Data Structures",
+    "theory": "Theoretical CS",
+    "hardware": "Digital Logic & Architecture",
+    "launch": "Launch Tool",
+    "syllabus": "Exam Syllabus & Study Progress",
+    "progress": "Progress: {completed} / {total} topics mastered"
+  }
+}

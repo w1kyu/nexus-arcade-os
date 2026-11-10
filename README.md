@@ -7,10 +7,10 @@ a terminal, and dozens of apps and games that share data with each other. It is 
 Progressive Web App and works **offline** after the first visit. There are no accounts and no
 backend: your data stays in your browser.
 
-> **Status: phase 6 (office & creative suite).** All 8 Office & Creative apps (Nexus Sheets,
-> Nexus Write, Whiteboard, Mind Map, Paint, Pixel Art Studio, Nexus Present, PDF Tools) along with
-> Study & Life tools, core productivity suite and system apps are ready (33 apps total). Developer
-> tools arrive in phase 7. See [PROGRESS.md](PROGRESS.md) for the full roadmap.
+> **Status: phase 7 (developer toolkit).** All 7 Developer Toolkit apps (Code Playground,
+> Nexus Code, Developer Tools, Diff Viewer, Color Laboratory, HTTP Client, Snippet Manager) along with
+> Office & Creative suite, Study & Life tools, core productivity suite and system apps are ready (40 apps total).
+> Computer Science Learning Tools (CS Lab) arrive in phase 8. See [PROGRESS.md](PROGRESS.md) for the full roadmap.
 
 ![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
 

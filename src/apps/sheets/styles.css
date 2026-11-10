@@ -1,0 +1,299 @@
+.nx-sheets {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--nx-bg, #0b0f19);
+  color: var(--nx-text, #e2e8f0);
+  font-family: inherit;
+  font-size: 13px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.nx-sheets-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: var(--nx-surface, #121826);
+  border-bottom: 1px solid var(--nx-border, #1e293b);
+  flex-wrap: wrap;
+}
+
+.nx-sheets-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  min-width: 28px;
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--nx-text, #e2e8f0);
+  cursor: pointer;
+  font-size: 12px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.nx-sheets-btn:hover {
+  background: var(--nx-surface-2, #1a2333);
+  border-color: var(--nx-border, #1e293b);
+}
+
+.nx-sheets-btn.is-active {
+  background: rgba(var(--nx-accent-rgb, 14, 165, 233), 0.2);
+  color: var(--nx-accent, #38bdf8);
+  border-color: var(--nx-accent, #38bdf8);
+}
+
+.nx-sheets-select {
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid var(--nx-border, #1e293b);
+  background: var(--nx-bg, #0b0f19);
+  color: var(--nx-text, #e2e8f0);
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.nx-sheets-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--nx-border, #1e293b);
+  margin: 0 4px;
+}
+
+.nx-sheets-formula-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: var(--nx-surface, #121826);
+  border-bottom: 1px solid var(--nx-border, #1e293b);
+}
+
+.nx-sheets-cell-addr {
+  min-width: 50px;
+  font-family: var(--nx-font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 6px;
+  background: var(--nx-bg, #0b0f19);
+  border: 1px solid var(--nx-border, #1e293b);
+  border-radius: 4px;
+  color: var(--nx-accent, #38bdf8);
+}
+
+.nx-sheets-fx {
+  font-style: italic;
+  font-weight: bold;
+  color: var(--nx-text-muted, #94a3b8);
+  user-select: none;
+}
+
+.nx-sheets-formula-input {
+  flex: 1;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--nx-bg, #0b0f19);
+  border: 1px solid var(--nx-border, #1e293b);
+  border-radius: 4px;
+  color: var(--nx-text, #e2e8f0);
+  font-family: var(--nx-font-mono, monospace);
+  font-size: 12px;
+  outline: none;
+}
+
+.nx-sheets-formula-input:focus {
+  border-color: var(--nx-accent, #38bdf8);
+}
+
+.nx-sheets-viewport {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  background: var(--nx-bg, #0b0f19);
+}
+
+.nx-sheets-grid {
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.nx-sheets-corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 44px;
+  height: 24px;
+  background: var(--nx-surface, #121826);
+  border-right: 1px solid var(--nx-border, #1e293b);
+  border-bottom: 1px solid var(--nx-border, #1e293b);
+}
+
+.nx-sheets-col-headers {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: flex;
+  height: 24px;
+  background: var(--nx-surface, #121826);
+  border-bottom: 1px solid var(--nx-border, #1e293b);
+}
+
+.nx-sheets-col-header {
+  position: absolute;
+  top: 0;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nx-text-muted, #94a3b8);
+  border-right: 1px solid var(--nx-border, #1e293b);
+  background: var(--nx-surface, #121826);
+  box-sizing: border-box;
+}
+
+.nx-sheets-row-headers {
+  position: sticky;
+  left: 0;
+  z-index: 8;
+  width: 44px;
+  background: var(--nx-surface, #121826);
+  border-right: 1px solid var(--nx-border, #1e293b);
+}
+
+.nx-sheets-row-header {
+  position: absolute;
+  left: 0;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nx-text-muted, #94a3b8);
+  border-bottom: 1px solid var(--nx-border, #1e293b);
+  background: var(--nx-surface, #121826);
+  box-sizing: border-box;
+}
+
+.nx-sheets-cell {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 2px 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 20px;
+  cursor: cell;
+}
+
+.nx-sheets-cell.is-selected {
+  background: rgba(var(--nx-accent-rgb, 14, 165, 233), 0.15) !important;
+}
+
+.nx-sheets-cell.is-active {
+  outline: 2px solid var(--nx-accent, #38bdf8);
+  outline-offset: -2px;
+  z-index: 5;
+}
+
+.nx-sheets-fill-handle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--nx-accent, #38bdf8);
+  bottom: -3px;
+  right: -3px;
+  cursor: crosshair;
+  z-index: 6;
+}
+
+.nx-sheets-inline-input {
+  position: absolute;
+  z-index: 7;
+  padding: 2px 6px;
+  margin: 0;
+  border: 2px solid var(--nx-accent, #38bdf8);
+  outline: none;
+  background: var(--nx-bg, #0b0f19);
+  color: var(--nx-text, #e2e8f0);
+  font-family: inherit;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.nx-sheets-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--nx-surface, #121826);
+  border-top: 1px solid var(--nx-border, #1e293b);
+}
+
+.nx-sheets-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-text-muted, #94a3b8);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.nx-sheets-tab:hover {
+  background: var(--nx-surface-2, #1a2333);
+  color: var(--nx-text, #e2e8f0);
+}
+
+.nx-sheets-tab.is-active {
+  background: var(--nx-bg, #0b0f19);
+  color: var(--nx-accent, #38bdf8);
+  border-color: var(--nx-border, #1e293b);
+  font-weight: 600;
+}
+
+.nx-sheets-chart-overlay {
+  position: absolute;
+  z-index: 9;
+  background: var(--nx-surface, #121826);
+  border: 1px solid var(--nx-border, #1e293b);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-sheets-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.nx-sheets-chart-canvas {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "Nexus Sheets",
+    "untitled": "Unbenannte Tabelle"
+  },
+  "toolbar": {
+    "undo": "Rückgängig (Strg+Z)",
+    "redo": "Wiederholen (Strg+Y)",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "alignLeft": "Linksbündig",
+    "alignCenter": "Zentriert",
+    "alignRight": "Rechtsbündig",
+    "formatGeneral": "Standard",
+    "formatNumber": "Zahl (1.234,56)",
+    "formatCurrency": "Währung (€)",
+    "formatCurrencyUsd": "Währung ($)",
+    "formatPercent": "Prozent (%)",
+    "formatDate": "Datum (JJJJ-MM-TT)",
+    "sortAsc": "Aufsteigend sortieren",
+    "sortDesc": "Absteigend sortieren",
+    "addChart": "Diagramm einfügen",
+    "exportCsv": "CSV exportieren",
+    "newSheet": "Neues Blatt"
+  },
+  "chart": {
+    "bar": "Balkendiagramm",
+    "line": "Liniendiagramm",
+    "pie": "Kreisdiagramm",
+    "scatter": "Streudiagramm",
+    "title": "Diagrammtitel",
+    "range": "Datenbereich (z. B. A1:B5)",
+    "create": "Diagramm erstellen",
+    "close": "Schließen",
+    "delete": "Diagramm löschen"
+  },
+  "sheet": {
+    "add": "Blatt hinzufügen",
+    "rename": "Blatt umbenennen",
+    "delete": "Blatt löschen",
+    "confirmDelete": "Möchten Sie dieses Tabellenblatt wirklich löschen?"
+  },
+  "formula": {
+    "fx": "fx",
+    "placeholder": "Wert oder Formel eingeben (z. B. =SUM(A1:B10))"
+  }
+}

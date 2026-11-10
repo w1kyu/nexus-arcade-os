@@ -81,6 +81,92 @@ Recorded per NEXUS_BRIEF.md §2.4. Newest last.
 | 2026-10-16 | **Help pages of apps and their changelogs are English for now**; Help says so in German. The general guides (getting started, shortcuts, offline, backups, privacy, FAQ) exist in English and German. | Translating every app's help would double the docs for each new app; tracked as an open item. |
 | 2026-10-16 | **Function keys count as "strong" shortcuts** (work while typing, like Ctrl/Alt combos), so F1 opens Help from any text field. | Spec 3.7 "F1 in any app". |
 
+| 2026-11-10 | **Phase 4 library approved by owner:** `katex` (MIT, lazy-loaded) for rendering `$…# Progress
+
+## Status
+
+- **Current phase:** 4 — Productivity core (phase 3 done 2026-11-09, `v0.3.0`)
+- **Next step:** phase 4 (`specs/04-productivity.md`): 4.1 Nexus Notes (Markdown editor on CodeMirror 6 + live preview, wiki links `[[Note title]]` + backlinks, per-note encryption, import/export), 4.2 Tasks, 4.3 Calendar, 4.4 Focus.
+- **Phase 3 verification:** 578 unit tests; e2e suites for File Explorer (`files.spec.js`), Terminal (`terminal.spec.js`), Nexus Edit (`editor.spec.js`), Settings (`settings.spec.js`), System Monitor (`monitor.spec.js`), App Center & Help (`appcenter-help.spec.js`), plus shell, smoke and Lite tests.
+- **Phase 2 verification:** 516 unit tests; e2e `tests/e2e/shell.spec.js` runs the done-when flows with keyboard only, mouse and touch, each restored after a reload; smoke tests (website, offline reload, Lite on `file://`).
+- **Phase 1 verification:** 336 unit tests incl. `tests/unit/system.test.js` (whole system in jsdom: launch, storage, VFS, search, crash/restart, language switch, backup → wipe → restore, newer-data read-only); e2e asserts the kernel boots (`<html data-kernel="ready">`) on the website, offline, and in Lite from `file://`.
+
+## Decisions
+
+Recorded per NEXUS_BRIEF.md §2.4. Newest last.
+
+| Date       | Decision                                                                                                                                                                                                                                                                              | Why                                                                                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-10-15 | **Manifests are data-only** (plus lazy `load`/`search`/`migrations`/widget imports). Command handlers live in `AppModule.commands`; search providers are a lazy import.                                                                                                               | Manifests load eagerly at boot: functions would pull app code into the initial bundle (200 KB budget) and can't cross `postMessage` for phase 13 plugins. Approved by owner.            |
+| 2026-10-15 | **`mount()` returns an `AppInstance`** (`unmount`, `onSuspend`, `onResume`, `onIntent`) instead of a module-level `unmount()`.                                                                                                                                                        | A module is loaded once but apps can have several windows. Approved by owner.                                                                                                           |
+| 2026-10-15 | **`ctx.signal`, `ctx.timers`, `ctx.guard`** added to `ctx`.                                                                                                                                                                                                                           | All apps share one JS realm, so async errors can only be attributed to an app if callbacks go through ctx wrappers; the same wrappers pause loops on suspend (§5.5). Approved by owner. |
+| 2026-10-15 | **App boundary enforced by ESLint** (`no-restricted-imports` regex in `eslint.config.js`): apps import only their own files, `ui/`, `styles/`; games also `games/engine/`.                                                                                                            | §5.3 is otherwise only a convention for built-in apps.                                                                                                                                  |
+| 2026-10-15 | **Service Worker: vite-plugin-pwa in `injectManifest` mode** with our own `src/sw.js` (Workbox precaching + navigation fallback).                                                                                                                                                     | Workbox handles hashed precache lists and cache versioning; injectManifest keeps the SW ours so phase 7 can add a VFS route for iframe previews.                                        |
+| 2026-10-15 | **Update flow:** `registerType: 'prompt'`; the SW calls `skipWaiting()` only on a `SKIP_WAITING` message sent when the user clicks "Reload" in the toast. Open tabs also check for updates hourly. The changelog is shown after reload (Settings → About, phase 3), not in the toast. | A waiting SW can't reliably tell the old page what changed without an extra network fetch.                                                                                              |
+| 2026-10-15 | **`render.yaml`: `autoDeployTrigger: checksPass`** and a `no-cache` header for `/` in addition to `/index.html`.                                                                                                                                                                      | Red CI never deploys; visitors request `/`, not `/index.html`. Approved by owner.                                                                                                       |
+| 2026-10-15 | **Lite workers:** the Lite build rewrites `?worker` imports to `?worker&inline` (Blob URL, data: URL fallback). Website workers stay separate cached files.                                                                                                                           | `file://` can't load worker files; the website keeps workers cacheable and CSP-clean.                                                                                                   |
+| 2026-10-15 | **Build-time constants** (`__APP_VERSION__`, `__BUILD_DATE__`, `__EDITION__`) via Vite `define`; `window.NEXUS_EDITION` is also set by each entry as the spec asks.                                                                                                                   | A runtime global set in an entry module runs after its imports, so modules can't rely on it at import time.                                                                             |
+| 2026-10-15 | **CSP** meta tag injected in production builds only. Website: `script-src 'self'`, `style-src 'self'`, `connect-src 'self'`. Lite needs `'unsafe-inline'` for its inlined script/style.                                                                                               | Dev server needs inline scripts and an HMR websocket. `connect-src` must widen in phase 12 for user-configured AI servers.                                                              |
+| 2026-10-15 | **Fonts vendored** (Inter Variable, JetBrains Mono Variable; Latin subset woff2 from Fontsource, OFL texts next to them) in `src/styles/fonts/`, referenced relatively so Vite fingerprints them (web) and inlines them (Lite).                                                       | No npm dependency needed; ~88 KB total.                                                                                                                                                 |
+| 2026-10-15 | **PNG icons rendered with Playwright** (`npm run icons`) from `src/ui/brand/logo.svg`; output committed to `public/icons/`.                                                                                                                                                           | No extra image tool; Playwright is already a dev dependency.                                                                                                                            |
+| 2026-10-15 | **Unit tests run in Node by default**, DOM tests opt in with `// @vitest-environment jsdom`.                                                                                                                                                                                          | Node's real Blob/structuredClone work with fake-indexeddb; jsdom's Blob does not.                                                                                                       |
+| 2026-10-15 | **Persistent storage request:** phase 0 asks on the first pointer interaction; from phase 1 the storage service asks on the first real data write. The placeholder shows the current state honestly.                                                                                  | "First meaningful use", never on page load.                                                                                                                                             |
+| 2026-10-15 | **Node 24 LTS** pinned (`.nvmrc`, `engines`).                                                                                                                                                                                                                                         | Current Active LTS.                                                                                                                                                                     |
+| 2026-10-15 | **PBKDF2 iterations: 600,000** (not 310,000) for all password-based encryption and PIN hashing.                                                                                                                                                                                       | Current OWASP recommendation for PBKDF2-HMAC-SHA256.                                                                                                                                    |
+| 2026-10-15 | **Planned for phase 1:** a global `nexus-system` IndexedDB (profile list, pre-login settings) beside the per-profile databases; Web Locks leader tab for the scheduler; refuse/read-only when stored schema is newer than the code; Safari 7-day eviction warning + backup reminder.  | Risks raised in the phase 0 review and accepted by the owner.                                                                                                                           |
+
+| 2026-10-15 | **App collections are declared in `manifest.storage`** (`{ version, collections: { name: { indexes } }, migrations }`), replacing the proposed `storageVersion`/`migrations` fields; `ctx.storage.collection(name)` takes no options. | IndexedDB creates stores only during a version upgrade; declaring them lets one upgrade at boot cover all apps instead of runtime upgrades that disrupt other tabs. No app used the old shape yet. |
+| 2026-10-15 | **Storage engines share one contract** (`tests/unit/storage-engines.test.js`): IndexedDB, localStorage (whole store as JSON per key, Blobs base64) and memory, all with IndexedDB key ordering. IndexedDB schemas upgrade automatically (version bump when stores/indexes are missing); stores are never deleted. | Fallback engines behave identically; no hand-maintained IDB versions; older tabs/Lite files keep working. |
+| 2026-10-15 | **Migrations are atomic per step** and record the data version in a `meta` store; data newer than the code or a failed migration makes that app's storage **read-only** (reads work, writes rejected). | "Failed migration → keep old data, never wipe" (spec 1.2). |
+| 2026-10-15 | **An uncaught error in an app crashes its window** (first error trips the boundary; crash UI with Restart / Copy report). | Matches how real OSes treat uncaught exceptions; keeps a broken app from running in an inconsistent state. |
+
+| 2026-10-15 | **Phase 1 dialogs are the browser's alert/confirm/prompt** (`src/shell/native-dialogs.js`, "Open with…" as a numbered prompt); file/save/color dialogs reject with an honest message until phase 2. | No app needs them before the shell exists; nothing pretends to work. |
+| 2026-10-15 | **Cross-phase P1 "say so in Settings and Calendar/Clock help" (1.10)**: the text exists in EN/DE (`system: scheduler.limits`); the item is completed by phases 3–5 when those screens exist, and stays open here. Likewise the PIN notice ("privacy lock, not real security") is shown by the phase 2 lock screen. | The UI that must show them doesn't exist in phase 1. |
+| 2026-10-15 | **Debug screen (#debug, dev builds only) and the kernel test app (`src/dev/test-app`) are English-only developer tools**, never shipped in production builds. | Spec 1.13: temporary developer page. |
+| 2026-10-15 | **Apps cannot emit OS event namespaces** (`app:`, `vfs:`, `storage:`, … see docs/events.md); `ctx.events.emit` throws for them. | Keeps system events trustworthy (no spoofed `vfs:changed`). |
+| 2026-10-15 | **App messages load together with the app** (lifecycle `prepare` step before mount; also before command handlers and search providers). | Spec 1.7: lazy-loaded with the app. |
+| 2026-10-15 | **An app's search provider gets a relevance floor (score 350)** below exact/prefix matches of indexed items. | Providers filter for relevance themselves; their results shouldn't drown or be drowned by fuzzy matches. |
+
+| 2026-10-15 | **Browser-safe default shortcuts, spec combos kept as hidden aliases.** Close is `Alt+W` (plus hidden `Mod+W`, `Alt+F4`), switcher ``Alt+` `` (backtick) (plus hidden `Alt+Tab`), overview `Mod+Shift+Space` (plus hidden `Mod+Tab`). `Mod+Arrows` only act when a window is focused and no text field is. | Browsers reserve `Ctrl+W`, `Ctrl+Tab`, `Alt+Tab`; the spec combos still work where the browser lets them through (installed PWA, fullscreen). |
+| 2026-10-15 | **Desktop context menu entries appear only when their app exists** ("New note", "Open terminal here" come with Notes and Terminal). | No fake features: a menu entry must work. |
+| 2026-10-15 | **A Welcome app** (`src/apps/welcome`) opens on first start: a short tour and quick actions. | The shell needs a real window on first boot; it doubles as the onboarding until the P2 first-boot setup. |
+| 2026-10-16 | **System dialogs replace the native ones at boot** (`src/shell/dialogs`): the kernel keeps `native-dialogs.js` as the fallback for headless use and tests; the shell swaps its implementations into the same `dialogs` object, so `ctx.dialog` and the intents "Open with…" picker use them. Modal actions can veto closing (`accept`). | Kernel stays independent of the shell. |
+| 2026-10-16 | **Widgets get a `WidgetContext`**: the headless ctx plus `signal`, `timers`, `guard` (from `system.widgetContext`) and `ctx.widget` (id, size, onResize, config). Widget decls may declare `settings` (same `SettingDecl` schema, new `date` type) and `minSize`; the shell renders the settings form and stores values per placed widget. Built-in widgets use the same decl shape (`src/shell/widgets/builtin`). Only the current workspace's widgets are mounted. | Widgets need a lifetime like windows (timers must stop on removal); per-instance settings were otherwise unspecified. |
+| 2026-10-16 | **"Today's tasks" and "Now playing" widgets are deferred to Tasks (phase 4) and Music (phase 11)** as manifest widgets. | They need those apps' data; an empty placeholder widget would be a fake feature. |
+| 2026-10-16 | **Pomodoro widget end-of-phase is a scheduler job**; the running state (end time) lives in the widget config. | The notification arrives even if the widget is on another workspace, and the timer survives reloads. |
+| 2026-10-16 | **Mobile shell is CSS + a small module** (`src/shell/mobile`): `<html data-mobile>` below 768 px, the most recently focused window is the sheet, window drag/snap/maximize off; the app bar's Switcher reuses the overview. | One window manager for both layouts; session data stays compatible when the viewport changes. |
+| 2026-10-16 | **E2E covers the phase 2 "done when"** (`tests/e2e/shell.spec.js`): keyboard-only, mouse and touch (Pixel 7) flows, each ending with a reload that must restore windows, workspaces, theme and widgets. | Spec "Done when". |
+| 2026-10-16 | **Phase 3 libraries approved by owner:** CodeMirror 6 (`codemirror` + `@codemirror/*`, MIT) for Nexus Edit and code previews; `marked` (MIT) for Markdown; DOMPurify (MPL-2.0/Apache-2.0) to sanitize rendered Markdown. All lazy-loaded. | Brief §3.2 candidates; an editor and a sanitizer are not worth writing ourselves. |
+| 2026-10-16 | **`ctx.system`**: a privileged facade for built-in apps that declare the new `system` permission (plugins can never get it): apps, windows, system settings, storage, backup, log, shortcuts, profiles. All apps also get `ctx.fs.importFiles/download/recent`, `ctx.intents.openersFor/getDefault/setDefault/clearDefault` and a shared file clipboard (`ctx.clipboard.files/setFiles`). Approved by owner. | System apps must stay real apps (spec 3: "prove the app framework") but need OS-level access that normal ctx must not give plugins. |
+| 2026-10-16 | **Recent files** = files handed to an app through an intent (`services/vfs/recent.js`, last 30); they follow renames/moves and drop out on trash/delete. | One system-wide definition for Explorer's sidebar and later apps. |
+| 2026-10-16 | **`AppInstance.canClose()`** lets an app veto a normal close (unsaved changes); `lifecycle.close(id, { force })` / "End task" skip it. **`ctx.window.stateChanged()`** asks the shell to save the session soon after the app's `saveState()` changed (e.g. Explorer navigated). | Spec 3.3 "protection on close"; in-app navigation was otherwise lost on reload. |
+| 2026-10-16 | **Explorer path editing is F4** (click on the empty path bar too), not Ctrl+L. | Ctrl+L is the system lock shortcut; Alt+D belongs to the browser's address bar. |
+| 2026-10-16 | **Intents use the VFS's stored mime type** when a caller passes only a path; folders (`inode/directory`) open in the File Explorer. | Imported files keep their real type; folders had no handler. |
+| 2026-10-16 | **CSP: `media-src 'self' blob:` and `frame-src 'self' blob:`** for Explorer previews (audio/video, the browser's PDF viewer). PDFs are framed only as `application/pdf` Blobs. | Previews read VFS files as blob: URLs. |
+| 2026-10-16 | **Drag & drop between Nexus apps uses `application/x-nexus-paths`** (JSON array of VFS paths, `ui/file-icons.js` `PATHS_MIME`/`draggedPaths`). The desktop accepts it (move, Ctrl = copy). | One format for Explorer → desktop / other apps. |
+| 2026-10-16 | **Manifest fields `terminal` and `help`.** `terminal: [{ name, description, usage }]` with handlers in `AppModule.terminal` (run headless via `ctx.system.apps.runTerminal`, get a `TerminalIo`); `help: () => import('./help.md?raw')` for the Help app and F1. The File Explorer adds `explore [FOLDER]`. | Spec 3.2 "apps can register their own commands"; data-only manifests (2026-10-15 decision). |
+| 2026-10-16 | **Terminal safety:** `rm` moves to the Trash (`-P` deletes for good); `mv`/`cp` move a file they would overwrite to the Trash first. Variables are never field-split. | Nothing is lost by a typo; no "file name with spaces" surprises. |
+| 2026-10-16 | **Terminal keys:** Ctrl+L (clear), Ctrl+R (history search) and Ctrl+W (delete word) are registered as window shortcuts so they win over the system ones (lock, close); Ctrl+K stays the command palette. | App-scoped shortcuts already take precedence in the shortcut service. |
+| 2026-10-16 | **`ui/` also holds small pure helpers apps share** (`calc.js` moved from the palette, `paths.js`, `markdown.js`, `highlight.js`). ESLint's app boundary now also covers one level of app subfolders (`src/apps/<app>/<dir>/*.js`). | Apps may only import `ui/` and `styles/`; no duplicated logic. |
+| 2026-10-16 | **CodeMirror views live in a shadow root** (`src/apps/editor/editor.js`): CodeMirror (style-mod) then uses constructed style sheets, which the strict CSP allows; it would otherwise inject `<style>` tags that `style-src 'self'` blocks. Token colours (`ui/content.css`) are adopted into the shadow root. `isEditable` and the new `ui/dom.js` `focusedElement()` look into shadow roots (shortcuts in the editor, focus restore after overlays). | Keeps the website CSP without `'unsafe-inline'`. |
+| 2026-10-16 | **Nexus Edit keeps unsaved text as drafts** (app kv, per tab, flushed on `pagehide`) and restores them after a reload; closing a tab or the window with changes asks Save / Don't save / Cancel (`canClose`). Files changed elsewhere reload when clean, otherwise a notice offers both versions. | Spec 3.3 "protection on close"; nothing typed is lost to a reload. |
+| 2026-10-16 | **Edit window shortcuts** override system ones while it is focused: Ctrl+W (close tab), Ctrl+/ (comment), Ctrl+Space (completion). New file is Ctrl+Alt+N (Ctrl+N/Ctrl+T belong to the browser). | App-scoped shortcuts win; browser-reserved keys can't be used. |
+| 2026-10-16 | **New system settings for Settings:** `region` (date/number formats separate from the language; plural rules follow the language), `windowSnapping`, `windowSnapLayouts`, `focusRing` (standard/strong), `largeTargets` (44 px), `screenReaderHints` (shell live region announces windows and notifications), `backupReminderDays` (default 14; notification with a "Back up now" action, at most daily). | Spec 3.4 sections Windows, Language & Region, Accessibility, Backup. |
+| 2026-10-16 | **Licenses are generated at build time** (`virtual:nexus-licenses` in `scripts/vite-shared.js`): every non-dev package in the lockfile plus the bundled Workbox packages and the two OFL fonts, with their license texts. | Spec 3.4 "licenses of all bundled libraries and fonts"; can't go stale. |
+| 2026-10-16 | **"Clear caches" keeps the Service Worker precache** (only runtime caches go), so Nexus stays usable offline. | Clearing the precache would break offline use until the next online visit. |
+| 2026-10-16 | **Settings deep links travel as an intent** (`settings.open` → `{ page }` or `{ scope, key }`), so an open Settings window (single instance) follows them; the palette's @ mode adds "Open in Settings" and opens colour/path settings there directly. | The lifecycle passes only intents to a running single-instance app. |
+| 2026-10-16 | **Pick commands run from a shortcut open the palette** with their options (`commands.setPicker`). | Before, e.g. a shortcut on "Change theme…" did nothing. |
+| 2026-10-16 | **`ctx.dialog.openFolder()`** picks a folder (Settings path settings such as the slideshow folder). | The file dialog could only pick files. |
+| 2026-10-16 | **System Monitor numbers:** "CPU" per window = time spent in the window's guarded callbacks (error boundary, outermost call only) per second; "memory estimate" = the window's DOM elements (browsers can't measure memory per window; JS heap shown where `performance.memory` exists). Workers are counted by wrapping `Worker` at boot (`kernel/workers.js`); workers that close themselves aren't seen (said in the UI). | Spec 3.5 "where possible": honest numbers instead of guesses. |
+| 2026-10-16 | **Network log service** (`services/network/network.js`, in memory, last 200): apps that go online (HTTP client phase 7, AI phase 12) record each request; the Monitor shows them. No such app exists yet, so the tab explains that and lists nothing. | Spec 3.5 Network tab; Nexus itself never makes requests. |
+| 2026-10-16 | **Uninstalled apps are remembered per profile** (`kv system:apps`); their commands become unavailable (`commands` `sourceEnabled`), so they vanish from the launcher, dock, search, palette and shortcuts. The App Center can't uninstall itself. | Spec 3.6 "hide them everywhere"; otherwise nothing could bring apps back. |
+| 2026-10-16 | **Manifest fields `changelog` (Markdown) and `screenshots` (module exporting image URLs).** Screenshots are taken with `npm run build && npm run screenshots` (Playwright, JPEG ~40–75 KB each) and committed. App code size in the App Center comes from `virtual:nexus-app-sizes` (each app's source folder at build time). | Spec 3.6 "screenshots (taken by you during development and bundled)". |
+| 2026-10-16 | **Help pages of apps and their changelogs are English for now**; Help says so in German. The general guides (getting started, shortcuts, offline, backups, privacy, FAQ) exist in English and German. | Translating every app's help would double the docs for each new app; tracked as an open item. |
+| 2026-10-16 | **Function keys count as "strong" shortcuts** (work while typing, like Ctrl/Alt combos), so F1 opens Help from any text field. | Spec 3.7 "F1 in any app". |
+and `$…$` math in Notes (4.1) and Flashcards (5.3). Rendered with `output: 'mathml'` and inline `style` attributes stripped so strict production CSP (`style-src 'self'`) never needs `'unsafe-inline'` or extra KaTeX webfont assets. | Spec 4.1 & 5.3 math via KaTeX; native MathML is supported by modern Chromium/Firefox/Safari and keeps Nexus Lite slim. |
+| 2026-11-10 | **`ctx.crypto` exposed on `AppContext`** (`encrypt`, `decrypt`, `decryptText`, `hashSecret`, `verifySecret`, `WrongPasswordError` from `services/crypto.js`), plus `ctx.fs.downloadBlob` and `ctx.fs.zipFolder`. Approved by owner (Option A). | Notes (4.1), Journal (5.6) and Password Vault (5.11) need PBKDF2 + AES-GCM encryption while respecting the ESLint app boundary. |
+| 2026-11-10 | **Cross-app productivity integration via VFS snapshots & events:** Tasks writes `~/.config/tasks-snapshot.json` on change so Calendar (task due-date overlay) and Focus (task picker and time logging) can read and update task state even when Tasks isn't open; Notes promotes checklist items via `tasks:create-from-note`; Focus broadcasts `focus:blocker` so the Window Manager overlays distracting apps and Notifications enables Do-Not-Disturb during active work sessions. | Spec 4 "Done when": Notes, Tasks, Calendar and Focus work on their own and together offline. |
+
 ## Cuts
 
 None yet.
@@ -384,64 +470,64 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **4.1 Nexus Notes**
 
-- [ ] [P1] Markdown editor (CodeMirror 6 if approved) with live preview; modes: edit, preview, split; synchronized scrolling.
-- [ ] [P1] Formatting toolbar and shortcuts (bold, italic, headings, lists, checklists, code, quote, link, table, horizontal rule).
-- [ ] [P1] Rendering: GitHub-flavored Markdown (tables, task lists, strikethrough, footnotes), syntax-highlighted code blocks, **math via KaTeX** (`$…$`, `$$…$$`), **Mermaid-like diagrams** only if a small library is approved, otherwise skip.
-- [ ] [P1] Images: paste or drop images → stored in the VFS next to the note and embedded.
-- [ ] [P1] Autosave with a configurable delay, "saved" indicator, conflict-safe if the note is open twice.
-- [ ] [P1] Notes are `.md` files in `Documents/Notes` (so Explorer, Terminal and other apps can use them), with front-matter for tags, favorite, created/updated.
-- [ ] [P1] Sidebar: folders (nested), tags, favorites, recent, trash; drag notes between folders.
-- [ ] [P1] Full-text search with highlighted results and filters (tag, folder, date).
-- [ ] [P1] Sort by title, created, updated; pin notes.
-- [ ] [P1] **Wiki links** `[[Note title]]` with autocomplete, backlinks panel, and creating a note from a missing link.
-- [ ] [P2] **Graph view** of note links (force-directed, on canvas), click to open.
-- [ ] [P2] Daily notes (one note per day, template), note templates (meeting, lecture, project).
-- [ ] [P2] Outline panel (headings), word/character count, reading time.
-- [ ] [P2] Turn a checklist item into a task in Tasks (via intent), and show linked tasks.
+- [x] [P1] Markdown editor (CodeMirror 6 if approved) with live preview; modes: edit, preview, split; synchronized scrolling.
+- [x] [P1] Formatting toolbar and shortcuts (bold, italic, headings, lists, checklists, code, quote, link, table, horizontal rule).
+- [x] [P1] Rendering: GitHub-flavored Markdown (tables, task lists, strikethrough, footnotes), syntax-highlighted code blocks, **math via KaTeX** (`$…$`, `$$…$$`), **Mermaid-like diagrams** only if a small library is approved, otherwise skip.
+- [x] [P1] Images: paste or drop images → stored in the VFS next to the note and embedded.
+- [x] [P1] Autosave with a configurable delay, "saved" indicator, conflict-safe if the note is open twice.
+- [x] [P1] Notes are `.md` files in `Documents/Notes` (so Explorer, Terminal and other apps can use them), with front-matter for tags, favorite, created/updated.
+- [x] [P1] Sidebar: folders (nested), tags, favorites, recent, trash; drag notes between folders.
+- [x] [P1] Full-text search with highlighted results and filters (tag, folder, date).
+- [x] [P1] Sort by title, created, updated; pin notes.
+- [x] [P1] **Wiki links** `[[Note title]]` with autocomplete, backlinks panel, and creating a note from a missing link.
+- [x] [P2] **Graph view** of note links (force-directed, on canvas), click to open.
+- [x] [P2] Daily notes (one note per day, template), note templates (meeting, lecture, project).
+- [x] [P2] Outline panel (headings), word/character count, reading time.
+- [x] [P2] Turn a checklist item into a task in Tasks (via intent), and show linked tasks.
 - [ ] [P3] Focus/typewriter mode, version history view (from VFS versions).
-- [ ] [P1] Optional encryption per note (master brief §7 rules): locked notes show a lock screen, content never stored unencrypted, auto-lock after N minutes.
-- [ ] [P1] Import: `.md`, `.txt`, a folder of Markdown files. Export: single note as `.md`/`.html`/print-to-PDF, all notes as zip (if fflate approved) or a JSON bundle.
+- [x] [P1] Optional encryption per note (master brief §7 rules): locked notes show a lock screen, content never stored unencrypted, auto-lock after N minutes.
+- [x] [P1] Import: `.md`, `.txt`, a folder of Markdown files. Export: single note as `.md`/`.html`/print-to-PDF, all notes as zip (if fflate approved) or a JSON bundle.
 
 **4.2 Tasks**
 
-- [ ] [P1] Projects (with color and icon), sections inside projects, an Inbox for unsorted tasks.
-- [ ] [P1] Tasks: title, description (Markdown), subtasks (nested, with their own progress), priority (4 levels), due date and time, start date, tags, estimate, attachments (VFS files), links to notes.
-- [ ] [P1] **Quick add** with natural language parsing in EN and DE: `Prepare presentation tomorrow 14:00 #uni !high` / `Präsentation vorbereiten morgen 14 Uhr #uni !hoch`. Show what was parsed before saving.
-- [ ] [P1] Recurring tasks (using the scheduler's recurrence rules), reminders.
-- [ ] [P1] Views: list (grouped by date/project/priority), **Kanban** (custom columns per project, drag & drop, WIP limits), **Today**, **Upcoming** (next 7 days), **Overdue**, and a calendar view.
-- [ ] [P1] Filters and saved filters (e.g. "#uni and due this week and not done").
-- [ ] [P1] Progress per project, completion animation and sound, undo complete.
-- [ ] [P1] **Statistics:** completed per day/week (chart), streak, average completion time, overdue rate, time tracked per project.
-- [ ] [P2] Time tracking per task (start/stop timer, linked with Focus sessions).
+- [x] [P1] Projects (with color and icon), sections inside projects, an Inbox for unsorted tasks.
+- [x] [P1] Tasks: title, description (Markdown), subtasks (nested, with their own progress), priority (4 levels), due date and time, start date, tags, estimate, attachments (VFS files), links to notes.
+- [x] [P1] **Quick add** with natural language parsing in EN and DE: `Prepare presentation tomorrow 14:00 #uni !high` / `Präsentation vorbereiten morgen 14 Uhr #uni !hoch`. Show what was parsed before saving.
+- [x] [P1] Recurring tasks (using the scheduler's recurrence rules), reminders.
+- [x] [P1] Views: list (grouped by date/project/priority), **Kanban** (custom columns per project, drag & drop, WIP limits), **Today**, **Upcoming** (next 7 days), **Overdue**, and a calendar view.
+- [x] [P1] Filters and saved filters (e.g. "#uni and due this week and not done").
+- [x] [P1] Progress per project, completion animation and sound, undo complete.
+- [x] [P1] **Statistics:** completed per day/week (chart), streak, average completion time, overdue rate, time tracked per project.
+- [x] [P2] Time tracking per task (start/stop timer, linked with Focus sessions).
 - [ ] [P2] Eisenhower matrix view (urgent/important).
 - [ ] [P2] Dependencies (task B blocked by task A), shown on Kanban.
 - [ ] [P3] Gantt/timeline view per project.
 
 **4.3 Calendar**
 
-- [ ] [P1] Views: day, week, month, year, agenda; mini-month navigator; "today" button; week start setting (Monday by default in DE).
-- [ ] [P1] Events: title, location, description, all-day or timed, start/end with time zone, color/calendar, recurrence (full rules incl. exceptions: "edit this / this and following / all"), reminders (multiple per event).
-- [ ] [P1] Multiple calendars (Personal, Uni, Work …) with colors and visibility toggles.
-- [ ] [P1] Drag to create, drag to move, drag edges to resize events; keyboard creation.
-- [ ] [P1] Tasks with due dates and timetable entries (phase 5) appear as overlays that can be toggled.
-- [ ] [P1] **`.ics` import/export** (RFC 5545 subset: VEVENT, RRULE, EXDATE, VALARM), with unit tests.
-- [ ] [P1] Public holidays for Germany (by state, including Hesse) computed locally (Easter-based holidays included), toggleable; other countries optional.
-- [ ] [P2] Natural-language quick add ("Lunch with Max Friday 12:30").
-- [ ] [P2] Search events; print/export week as PDF via print styles.
+- [x] [P1] Views: day, week, month, year, agenda; mini-month navigator; "today" button; week start setting (Monday by default in DE).
+- [x] [P1] Events: title, location, description, all-day or timed, start/end with time zone, color/calendar, recurrence (full rules incl. exceptions: "edit this / this and following / all"), reminders (multiple per event).
+- [x] [P1] Multiple calendars (Personal, Uni, Work …) with colors and visibility toggles.
+- [x] [P1] Drag to create, drag to move, drag edges to resize events; keyboard creation.
+- [x] [P1] Tasks with due dates and timetable entries (phase 5) appear as overlays that can be toggled.
+- [x] [P1] **`.ics` import/export** (RFC 5545 subset: VEVENT, RRULE, EXDATE, VALARM), with unit tests.
+- [x] [P1] Public holidays for Germany (by state, including Hesse) computed locally (Easter-based holidays included), toggleable; other countries optional.
+- [x] [P2] Natural-language quick add ("Lunch with Max Friday 12:30").
+- [x] [P2] Search events; print/export week as PDF via print styles.
 - [ ] [P3] Show week numbers, moon phases, and sunrise/sunset (computed locally from a configured location, no network).
 
 **4.4 Focus**
 
-- [ ] [P1] Pomodoro timer with configurable work/short break/long break lengths and rounds; big, beautiful timer UI (ring) and a compact mini-window/widget mode.
-- [ ] [P1] Link a session to a task; time is logged on the task.
-- [ ] [P1] Notifications and sounds at transitions (synthesized), optional auto-start of the next phase.
-- [ ] [P1] **Distraction blocking:** user picks "distracting" apps (default: all games); during a work session they can't be opened (a blocking overlay with remaining time and an "I really need it" override that is logged).
-- [ ] [P1] Do-not-disturb automatically during work sessions.
-- [ ] [P1] **Ambient sounds generated with Web Audio:** rain, thunderstorm, white/pink/brown noise, café murmur, fireplace crackle, ocean waves, forest/birds (procedural), binaural tones; mix several with individual volumes; save mixes.
-- [ ] [P1] Statistics: focus time per day/week (charts), sessions completed, longest streak, best time of day, per task/project.
-- [ ] [P2] Goals (e.g. 4 hours/day) with progress on the widget.
-- [ ] [P2] "Flow mode": a count-up timer instead of fixed Pomodoros.
-- [ ] [P3] Session journaling: a short note after each session ("What did you get done?").
+- [x] [P1] Pomodoro timer with configurable work/short break/long break lengths and rounds; big, beautiful timer UI (ring) and a compact mini-window/widget mode.
+- [x] [P1] Link a session to a task; time is logged on the task.
+- [x] [P1] Notifications and sounds at transitions (synthesized), optional auto-start of the next phase.
+- [x] [P1] **Distraction blocking:** user picks "distracting" apps (default: all games); during a work session they can't be opened (a blocking overlay with remaining time and an "I really need it" override that is logged).
+- [x] [P1] Do-not-disturb automatically during work sessions.
+- [x] [P1] **Ambient sounds generated with Web Audio:** rain, thunderstorm, white/pink/brown noise, café murmur, fireplace crackle, ocean waves, forest/birds (procedural), binaural tones; mix several with individual volumes; save mixes.
+- [x] [P1] Statistics: focus time per day/week (charts), sessions completed, longest streak, best time of day, per task/project.
+- [x] [P2] Goals (e.g. 4 hours/day) with progress on the widget.
+- [x] [P2] "Flow mode": a count-up timer instead of fixed Pomodoros.
+- [x] [P3] Session journaling: a short note after each session ("What did you get done?").
 
 ### Phase 5 — Study & Life tools — `specs/05-study-and-life.md`
 

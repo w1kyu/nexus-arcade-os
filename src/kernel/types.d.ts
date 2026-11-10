@@ -285,6 +285,15 @@ export interface AppContext {
     cancel(id: string): Promise<void>;
     list(): Promise<Job[]>;
   };
+  /** Password-based AES-GCM-256 / PBKDF2-SHA256 helpers for encrypted notes, journals and vaults. */
+  crypto: {
+    encrypt: typeof import('../services/crypto.js').encrypt;
+    decrypt: typeof import('../services/crypto.js').decrypt;
+    decryptText: typeof import('../services/crypto.js').decryptText;
+    hashSecret: typeof import('../services/crypto.js').hashSecret;
+    verifySecret: typeof import('../services/crypto.js').verifySecret;
+    WrongPasswordError: typeof import('../services/crypto.js').WrongPasswordError;
+  };
   ai: { isAvailable(): boolean };
   /** Privileged OS API; only set for built-in apps that declare the 'system' permission. */
   system?: import('./system-api.js').SystemApi;
@@ -409,6 +418,10 @@ export interface VFS {
   ): Promise<string[]>;
   /** Downloads a file, or a folder as .zip. */
   download(path: string): Promise<void>;
+  /** Downloads a Blob as a file to the real OS. */
+  downloadBlob(blob: Blob, filename: string): void;
+  /** Zips a VFS folder into a Blob. */
+  zipFolder(path: string): Promise<Blob>;
   /** Recently opened files that still exist, newest first. */
   recent(): Promise<Array<VfsEntry & { name: string; size: number; modified: number; openedAt: number }>>;
   [operation: string]: unknown;

@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
 import { highlight } from '../../src/ui/highlight.js';
-import { renderMarkdown } from '../../src/ui/markdown.js';
+import { renderMarkdown, renderMarkdownInto } from '../../src/ui/markdown.js';
 
 describe('renderMarkdown', () => {
   it('renders GitHub-flavoured Markdown', async () => {
@@ -25,6 +25,37 @@ describe('renderMarkdown', () => {
     expect(html).toContain('rel="noopener noreferrer"');
     expect(html).not.toMatch(/ src="https:/);
     expect(html).toContain('data-blocked-src="https://example.com/a.png"');
+  });
+
+  it('renders inline and display math via KaTeX MathML without inline styles', async () => {
+    const html = await renderMarkdown(
+      'Inline $E = mc^2$ and block:\n\n$$\\int_0^1 x^2\\,dx = \\frac{1}{3}$$\n\n`$not math$`',
+    );
+    expect(html).toContain('<math');
+    expect(html).toContain('nx-math-inline');
+    expect(html).toContain('nx-math-block');
+    expect(html).toContain('<code>$not math$</code>');
+    expect(html).not.toMatch(/style=/i);
+  });
+
+  it('renders footnotes and wiki links when enabled', async () => {
+    const html = await renderMarkdown(
+      'See [[Roadmap]] and [[Missing Note|Alias]] plus note[^1].\n\n[^1]: Footnote body.',
+      { wikiLinks: true, wikiExists: (title) => title === 'Roadmap' },
+    );
+    expect(html).toContain('data-wiki="Roadmap"');
+    expect(html).toContain('class="nx-wiki-link"');
+    expect(html).toContain('data-wiki="Missing Note"');
+    expect(html).toContain('class="nx-wiki-link is-missing"');
+    expect(html).toContain('>Alias</a>');
+    expect(html).toContain('class="nx-footnotes"');
+    expect(html).toContain('Footnote body.');
+  });
+
+  it('highlights fenced code blocks in renderMarkdownInto', async () => {
+    const el = document.createElement('div');
+    await renderMarkdownInto(el, '```js\nconst answer = 42;\n```');
+    expect(el.querySelector('.tok-keyword')?.textContent).toBe('const');
   });
 });
 

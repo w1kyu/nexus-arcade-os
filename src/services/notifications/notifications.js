@@ -75,6 +75,11 @@ export function createNotifications({
   const actionHandlers = new Map();
 
   const dndActive = () => focusMode || /** @type {boolean} */ (settings.get('system', 'doNotDisturb'));
+  bus.on('focus:blocker', (/** @type {{ active?: boolean }} */ payload) => {
+    if (focusMode === Boolean(payload?.active)) return;
+    focusMode = Boolean(payload?.active);
+    bus.emit('notifications:dnd-changed', { active: dndActive() });
+  });
 
   async function prune() {
     const count = await db.count(STORE);

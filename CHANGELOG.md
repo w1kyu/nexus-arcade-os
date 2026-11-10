@@ -6,6 +6,49 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-11-10 — Productivity core
+
+### Added
+
+- **Nexus Notes:** Markdown notes stored in `Documents/Notes` with YAML front-matter, CodeMirror 6
+  editor (edit, split and live-preview modes with synchronized scrolling), formatting toolbar,
+  GitHub-flavored Markdown with footnotes, interactive task-list checkboxes, syntax-highlighted code
+  blocks, **math rendering via KaTeX** (`$…# Changelog
+
+All notable changes to Nexus Arcade OS are documented here.
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
+[Semantic Versioning](https://semver.org/) (`0.N.0` = phase N).
+
+## [Unreleased]
+
+and `$…$`, rendered to CSP-clean MathML), pasted and
+dropped VFS images, nested folders with drag-and-drop, tags, favorites, full-text search with date
+and tag filters, `[[Wiki links]]` with autocomplete and backlinks panel, force-directed Canvas
+**Graph view**, daily notes and templates, outline and reading-time inspector, checklist-to-Task
+promotion, per-note AES-GCM password encryption with auto-lock, and `.md`/`.html`/`.zip`/`.json`
+import and export.
+
+- **Tasks:** projects with colors and sections, Inbox, nested subtasks, 4 priority levels, due dates
+  and times, recurring tasks and scheduler reminders, attachments and note links, bilingual natural
+  language **quick add** in English and German (`!1 #Uni @deepwork tomorrow 14:00 every week`), List
+  view (grouped by section/date/project/priority), **Kanban** board with drag-and-drop and WIP
+  limits, Today/Upcoming/Overdue and 2-week Calendar views, saved filters, completion sound with
+  undo, "Today's tasks" desktop widget, and productivity statistics.
+- **Calendar:** Day, Week, Month, Year and Agenda views with mini-month navigator and ISO week
+  numbers; pointer drag-to-create, drag-to-move and drag-edge-to-resize on the 24-hour time grid;
+  multiple calendars with colors and visibility toggles; full recurrence rules with single-instance
+  (`EXDATE`/overrides) and "this and following" series splitting; multiple reminders per event;
+  toggleable overlays for **Tasks with due dates**, **University Timetable** and **German public
+  holidays** (computed locally by federal state, including Hesse and Easter-based holidays); natural
+  language quick add; and RFC 5545 `.ics` import and export (`VEVENT`, `RRULE`, `EXDATE`, `VALARM`).
+- **Focus:** Pomodoro timer (configurable work, short break, long break and rounds) and count-up
+  **Flow mode** with circular ring UI and compact mini-window toggle; task linking that logs
+  completed focus minutes directly onto Tasks; **procedural 10-channel Web Audio ambient mixer**
+  (rain, thunderstorm, white/pink/brown noise, café murmur, fireplace crackle, ocean waves, forest
+  and 40 Hz gamma binaural tones) with saved mixes; automatic Do-Not-Disturb and window-level
+  **distraction blocking** (blocks games and chosen apps during work sessions with a logged
+  "I really need it" override); Focus Goal desktop widget; and 7-day focus statistics.
+
 ## [0.3.0] — 2026-11-09 — System apps
 
 ### Added

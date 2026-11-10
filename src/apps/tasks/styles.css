@@ -1,0 +1,490 @@
+.nx-tasks {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: 100%;
+  background: var(--surface-1);
+  color: var(--text-1);
+  overflow: hidden;
+  font-size: var(--text-sm);
+}
+
+.nx-tasks.has-detail {
+  grid-template-columns: 210px 1fr 310px;
+}
+
+.nx-tasks-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow-y: auto;
+  padding: var(--space-2);
+  gap: var(--space-2);
+}
+
+.nx-tasks-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nx-tasks-nav-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-3);
+  padding: var(--space-1) var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.nx-tasks-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  width: 100%;
+}
+
+.nx-tasks-nav-item:hover {
+  background: var(--surface-3);
+  color: var(--text-1);
+}
+
+.nx-tasks-nav-item.is-active {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  font-weight: 600;
+}
+
+.nx-tasks-proj-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+
+.nx-tasks-proj-dot[data-color='cyan'] {
+  background: #3ef0ff;
+}
+.nx-tasks-proj-dot[data-color='emerald'] {
+  background: #10b981;
+}
+.nx-tasks-proj-dot[data-color='amber'] {
+  background: #f59e0b;
+}
+.nx-tasks-proj-dot[data-color='purple'] {
+  background: #a855f7;
+}
+.nx-tasks-proj-dot[data-color='rose'] {
+  background: #f43f5e;
+}
+.nx-tasks-proj-dot[data-color='blue'] {
+  background: #3b82f6;
+}
+
+.nx-tasks-nav-count {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--text-3);
+}
+
+.nx-tasks-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.nx-tasks-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.nx-tasks-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.nx-tasks-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nx-tasks-title-row h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.nx-tasks-progress-pill {
+  font-size: var(--text-xs);
+  background: var(--surface-3);
+  color: var(--text-2);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.nx-tasks-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.nx-tasks-quickadd {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-tasks-quickadd-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.nx-tasks-quickadd-row .nx-input {
+  flex: 1;
+}
+
+.nx-tasks-preview-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+  color: var(--text-2);
+}
+
+.nx-tasks-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.nx-tasks-chip.is-p1 {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 50%, transparent);
+}
+.nx-tasks-chip.is-p2 {
+  color: var(--warning);
+  border-color: color-mix(in srgb, var(--warning) 50%, transparent);
+}
+.nx-tasks-chip.is-p3 {
+  color: var(--info);
+  border-color: color-mix(in srgb, var(--info) 50%, transparent);
+}
+
+.nx-tasks-body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-3);
+}
+
+.nx-tasks-group {
+  margin-bottom: var(--space-4);
+}
+
+.nx-tasks-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  margin-bottom: var(--space-2);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nx-tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-tasks-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition:
+    transform 0.14s ease,
+    opacity 0.14s ease;
+}
+
+.nx-tasks-row:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.nx-tasks-row.is-selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
+}
+
+.nx-tasks-row.is-completing {
+  transform: scale(0.97);
+  opacity: 0.35;
+}
+
+.nx-tasks-row.is-done .nx-tasks-row-title {
+  text-decoration: line-through;
+  color: var(--text-3);
+}
+
+.nx-tasks-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nx-tasks-row-title {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nx-tasks-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.nx-tasks-due-overdue {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* Kanban View */
+.nx-tasks-kanban {
+  display: flex;
+  gap: var(--space-3);
+  height: 100%;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+.nx-tasks-col {
+  width: 270px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  gap: var(--space-2);
+}
+
+.nx-tasks-col.is-wip-exceeded {
+  border-color: var(--danger);
+}
+
+.nx-tasks-col.is-drop-target {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
+}
+
+.nx-tasks-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  padding: 4px;
+}
+
+.nx-tasks-col-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow-y: auto;
+  min-height: 60px;
+}
+
+/* Calendar Grid in Tasks */
+.nx-tasks-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.nx-tasks-cal-cell {
+  min-height: 92px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-tasks-cal-cell.is-today {
+  border-color: var(--accent);
+}
+
+.nx-tasks-cal-day {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.nx-tasks-cal-pill {
+  font-size: 11px;
+  background: var(--surface-3);
+  border-left: 3px solid var(--accent);
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Detail Inspector */
+.nx-tasks-detail {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow-y: auto;
+  padding: var(--space-3);
+  gap: var(--space-3);
+}
+
+.nx-tasks-detail-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nx-tasks-detail-head .nx-input {
+  flex: 1;
+  font-weight: 600;
+}
+
+.nx-tasks-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.nx-tasks-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-tasks-subitem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-tasks-subitem span {
+  flex: 1;
+}
+
+/* Statistics View */
+.nx-tasks-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nx-tasks-stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.nx-tasks-stat-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-tasks-stat-card strong {
+  font-size: var(--text-xl);
+  color: var(--accent);
+}
+
+.nx-tasks-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  height: 140px;
+  padding: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.nx-tasks-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-tasks-bar {
+  width: 100%;
+  max-width: 36px;
+  background: var(--accent);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 4px;
+}
+
+.nx-tasks-undo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px var(--space-3);
+  background: var(--surface-3);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-xs);
+}
+
+.nx-tasks-bar-svg {
+  color: var(--accent);
+}

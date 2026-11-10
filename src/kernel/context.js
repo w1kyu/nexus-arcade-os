@@ -2,13 +2,16 @@
 // Builds the `ctx` object an app receives (NEXUS_BRIEF.md §5.3). Everything is scoped to the
 // app: its own storage, settings, scheduler jobs and log tag. Subscriptions made through ctx
 // are tracked by the instance runtime and removed on unmount. Apps cannot emit system events.
+import { decrypt, decryptText, encrypt, hashSecret, verifySecret, WrongPasswordError } from '../services/crypto.js';
 import { createAppStorage } from '../services/storage/app-storage.js';
 import {
   entriesFromDataTransfer,
   entriesFromFileList,
   exportFile,
   exportFolder,
+  downloadBlob,
   importEntries,
+  zipFolder,
 } from '../services/vfs/transfer.js';
 
 /** Event namespaces only the OS may emit. Apps use their own, e.g. 'notes:saved'. */
@@ -137,6 +140,10 @@ function appFs(vfs, recent, track) {
     }
     return out;
   };
+  /** Downloads a Blob as a file to the real OS. */
+  fs.downloadBlob = (/** @type {Blob} */ blob, /** @type {string} */ filename) => downloadBlob(blob, filename);
+  /** Zips a VFS folder into a Blob. */
+  fs.zipFolder = (/** @type {string} */ path) => zipFolder(vfs, path);
   return fs;
 }
 
@@ -288,6 +295,7 @@ export function createAppContext(manifest, services, extras = {}) {
         },
         list: () => scheduler.list(appId),
       },
+      crypto: { encrypt, decrypt, decryptText, hashSecret, verifySecret, WrongPasswordError },
       ai: services.ai,
       // Privileged OS access; the registry only lets built-in apps declare 'system'.
       system: manifest.permissions?.includes('system') ? services.systemApi?.(appId, track) : undefined,

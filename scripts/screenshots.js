@@ -4,7 +4,7 @@
 // Commit the output; the App Center bundles it.
 import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { chromium } from '@playwright/test';
+import { chromium, devices } from '@playwright/test';
 
 const PORT = 4179;
 const BASE = `http://localhost:${PORT}`;
@@ -22,6 +22,10 @@ const APPS = {
   appcenter: { name: 'App Center', setup: async () => {} },
   help: { name: 'Help', setup: async () => {} },
   welcome: { name: 'Welcome', setup: async () => {} },
+  notes: { name: 'Nexus Notes', setup: async () => {} },
+  tasks: { name: 'Tasks', setup: async () => {} },
+  calendar: { name: 'Calendar', setup: async () => {} },
+  focus: { name: 'Focus', setup: async () => {} },
 };
 
 const preview = spawn(`npx vite preview --port ${PORT} --strictPort`, { shell: true, stdio: 'ignore' });
@@ -29,7 +33,12 @@ try {
   await waitForServer();
   const browser = await chromium.launch();
   for (const [folder, app] of Object.entries(APPS)) {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, colorScheme: 'dark' });
+    const page = await browser.newPage({
+      ...devices['Desktop Chrome'],
+      viewport: { width: 1280, height: 800 },
+      colorScheme: 'dark',
+      locale: 'en-US',
+    });
     await cleanProfile(page);
     if (folder !== 'welcome') await page.keyboard.press('Escape');
     if (folder !== 'welcome') await openApp(page, app.name);

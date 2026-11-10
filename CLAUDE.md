@@ -68,6 +68,7 @@ As in NEXUS_BRIEF.md §5.1, plus:
 | typescript                                                   | `tsc --noEmit` only (TypeScript 7, the Go compiler; JSDoc checking works)                 |
 | fflate                                                       | zip for backups/folder export, lazy chunk                                                 |
 | codemirror, @codemirror/* _(approved 2026-10-16)_            | Nexus Edit, code previews; lazy chunk                                                     |
+| katex _(approved 2026-11-09)_                                | LaTeX math to MathML in Notes and Flashcards, lazy chunk                                  |
 | marked, dompurify _(approved 2026-10-16)_                    | Markdown rendering (Help, previews, later Notes), always sanitized                        |
 
 Ask before adding anything else (brief §2.4).

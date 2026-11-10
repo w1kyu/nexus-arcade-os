@@ -78,6 +78,62 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
   // Layout events can fire (e.g. a resize) while the profile is still opening: nothing listens yet.
   const emit = (/** @type {string} */ type, /** @type {unknown} */ payload) => sys()?.bus.emit(type, payload);
 
+  /** @type {Set<string>} */
+  const overriddenFocusApps = new Set();
+  let busHooked = false;
+
+  /** @param {Win} w */
+  function syncFocusBlocker(w) {
+    if (!busHooked && sys()?.bus) {
+      busHooked = true;
+      sys().bus.on('focus:blocker', (/** @type {any} */ payload) => {
+        if (!payload?.active) overriddenFocusApps.clear();
+        for (const win of windows.values()) syncFocusBlocker(win);
+      });
+    }
+    const blocker = /** @type {any} */ (globalThis).__nexusFocusBlocker;
+    const isBlocked =
+      Boolean(blocker?.active) &&
+      w.appId !== 'nexus.focus' &&
+      !overriddenFocusApps.has(w.appId) &&
+      ((blocker.blockGames && w.manifest.category === 'games') ||
+        (Array.isArray(blocker.blockedApps) && blocker.blockedApps.includes(w.appId)));
+
+    let overlay = /** @type {HTMLElement | null} */ (w.el.querySelector('.nx-focus-block-overlay'));
+    if (!isBlocked) {
+      overlay?.remove();
+      return;
+    }
+    const isDe = sys()?.i18n?.locale === 'de';
+    const remText = blocker.remainingText || '25:00';
+    if (!overlay) {
+      overlay = h(
+        'div',
+        { class: 'nx-focus-block-overlay' },
+        h('h3', { text: isDe ? 'Fokus-Sitzung aktiv' : 'Focus Session Active' }),
+        h('p', {
+          class: 'nx-focus-block-time',
+          text: isDe ? `Verbleibend: ${remText}` : `Remaining: ${remText}`,
+        }),
+        h('button', {
+          type: 'button',
+          class: 'nx-btn nx-focus-override-btn',
+          text: isDe ? 'Ich brauche es wirklich' : 'I really need it',
+          onclick: (e) => {
+            e.stopPropagation();
+            overriddenFocusApps.add(w.appId);
+            overlay?.remove();
+            emit('focus:override-logged', { appId: w.appId, at: Date.now() });
+          },
+        }),
+      );
+      w.el.append(overlay);
+    } else {
+      const timeEl = overlay.querySelector('.nx-focus-block-time');
+      if (timeEl) timeEl.textContent = isDe ? `Verbleibend: ${remText}` : `Remaining: ${remText}`;
+    }
+  }
+
   /** @param {number} count */
   function setWorkspaces(count, names = []) {
     workspaces = Array.from({ length: Math.max(1, count) }, (_, i) => ({ name: names[i] ?? '' }));
@@ -618,6 +674,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
     }
     apply(w);
     raise(w);
+    syncFocusBlocker(w);
     if (queued?.minimized) {
       w.minimized = true;
       apply(w);

@@ -88,6 +88,56 @@
     border: 0;
     border-top: 1px solid var(--border);
   }
+  & .nx-math-inline math {
+    font-size: 1.05em;
+  }
+  & .nx-math-block {
+    margin: 0.9em 0;
+    overflow-x: auto;
+    text-align: center;
+    & math {
+      font-size: 1.15em;
+    }
+  }
+  & .nx-wiki-link {
+    color: var(--accent-2);
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 2px;
+    &.is-missing {
+      color: var(--warning);
+      opacity: 0.85;
+    }
+  }
+  & .nx-task-item {
+    list-style: none;
+    margin-left: -1.2em;
+    & input[type='checkbox'] {
+      accent-color: var(--accent);
+      margin-right: 0.35em;
+      vertical-align: middle;
+    }
+    &.is-done {
+      color: var(--text-3);
+      text-decoration: line-through;
+    }
+  }
+  & .nx-fn-ref a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  & .nx-footnotes {
+    margin-top: 1.5em;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    & ol {
+      padding-left: 1.4em;
+    }
+    & .nx-fn-back {
+      text-decoration: none;
+      margin-left: 0.25em;
+    }
+  }
 }
 
 .nx-code {

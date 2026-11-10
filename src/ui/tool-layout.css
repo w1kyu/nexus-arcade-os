@@ -1,0 +1,230 @@
+/* Shared tool layout for developer tools */
+.nx-tool-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-1);
+  color: var(--text-1);
+  font-size: 13px;
+}
+
+.nx-tool-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.nx-tool-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.nx-tool-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.nx-tool-panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.nx-tool-panes.stacked {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.nx-tool-panes.single-pane {
+  grid-template-columns: 1fr;
+}
+
+.nx-tool-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface-1);
+}
+
+.nx-tool-pane:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.nx-tool-panes.stacked .nx-tool-pane:first-child {
+  border-right: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.nx-tool-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.nx-tool-pane-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.nx-tool-pane-stats {
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+}
+
+.nx-tool-pane-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nx-tool-pane-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-tool-textarea {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--text-1);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.nx-tool-textarea::placeholder {
+  color: var(--text-3);
+}
+
+.nx-tool-options-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+.nx-tool-options-bar .nx-form-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-tool-options-bar label {
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.nx-tool-status {
+  padding: 4px 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  color: var(--text-2);
+}
+
+.nx-tool-status.success {
+  color: var(--accent, #10b981);
+}
+
+.nx-tool-status.error {
+  color: var(--danger, #ef4444);
+  background: color-mix(in srgb, var(--danger, #ef4444) 12%, var(--surface-2));
+}
+
+.nx-tool-history-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 260px;
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.nx-tool-history-drawer[hidden] {
+  display: none;
+}
+
+.nx-tool-history-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+
+.nx-tool-history-item {
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.nx-tool-history-item:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface-1));
+}

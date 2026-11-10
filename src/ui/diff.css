@@ -1,0 +1,129 @@
+/* Diff Viewer styling */
+.nx-diff-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-1);
+  color: var(--text-1);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.nx-diff-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  flex-wrap: wrap;
+}
+
+.nx-diff-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.nx-diff-stat-add {
+  color: var(--accent, #10b981);
+}
+
+.nx-diff-stat-del {
+  color: var(--danger, #ef4444);
+}
+
+.nx-diff-container {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  position: relative;
+}
+
+/* Side-by-side mode */
+.nx-diff-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 100%;
+}
+
+.nx-diff-split-side {
+  overflow-x: auto;
+}
+
+.nx-diff-split-side:first-child {
+  border-right: 1px solid var(--border);
+}
+
+/* Lines */
+.nx-diff-line {
+  display: flex;
+  min-height: 20px;
+  line-height: 20px;
+  white-space: pre;
+}
+
+.nx-diff-line.active-change {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.nx-diff-line-num {
+  width: 48px;
+  padding: 0 8px;
+  text-align: right;
+  color: var(--text-3);
+  user-select: none;
+  background: color-mix(in srgb, var(--surface-2) 40%, transparent);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nx-diff-line-prefix {
+  width: 20px;
+  text-align: center;
+  user-select: none;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.nx-diff-line-content {
+  flex: 1;
+  padding: 0 8px;
+  tab-size: 2;
+}
+
+/* Diff coloring */
+.nx-diff-added {
+  background: color-mix(in srgb, var(--accent, #10b981) 15%, transparent);
+}
+.nx-diff-added .nx-diff-line-prefix {
+  color: var(--accent, #10b981);
+}
+.nx-diff-added .nx-diff-word-change {
+  background: color-mix(in srgb, var(--accent, #10b981) 35%, transparent);
+  border-radius: 2px;
+}
+
+.nx-diff-deleted {
+  background: color-mix(in srgb, var(--danger, #ef4444) 15%, transparent);
+}
+.nx-diff-deleted .nx-diff-line-prefix {
+  color: var(--danger, #ef4444);
+}
+.nx-diff-deleted .nx-diff-word-change {
+  background: color-mix(in srgb, var(--danger, #ef4444) 35%, transparent);
+  border-radius: 2px;
+}
+
+.nx-diff-empty {
+  background: color-mix(in srgb, var(--surface-2) 25%, transparent);
+  user-select: none;
+}

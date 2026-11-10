@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "Diff-Betrachter"
+  },
+  "labels": {
+    "original": "Original",
+    "modified": "Geändert",
+    "openVfs": "Datei öffnen...",
+    "paste": "Einfügen",
+    "swap": "Tauschen",
+    "compare": "Vergleichen",
+    "clear": "Löschen"
+  },
+  "messages": {
+    "selectFiles": "Wählen Sie Dateien aus oder fügen Sie Text auf beiden Seiten ein, um Unterschiede zu sehen.",
+    "identical": "Die Dateien sind identisch. Keine Unterschiede gefunden.",
+    "fileOpened": "Datei geöffnet: {name}",
+    "fileError": "Datei konnte nicht gelesen werden: {name}"
+  }
+}

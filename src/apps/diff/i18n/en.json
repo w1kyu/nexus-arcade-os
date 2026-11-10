@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "Diff Viewer"
+  },
+  "labels": {
+    "original": "Original",
+    "modified": "Modified",
+    "openVfs": "Open File...",
+    "paste": "Paste",
+    "swap": "Swap",
+    "compare": "Compare",
+    "clear": "Clear"
+  },
+  "messages": {
+    "selectFiles": "Select or paste text into both sides to compare changes.",
+    "identical": "The files are identical. No differences found.",
+    "fileOpened": "Opened file: {name}",
+    "fileError": "Could not read file: {name}"
+  }
+}

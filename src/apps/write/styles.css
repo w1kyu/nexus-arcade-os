@@ -1,0 +1,605 @@
+/* Nexus Write styles */
+.nx-write {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Header bar */
+.nx-write-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nx-write-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.nx-write-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+
+.nx-write-title-input {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  max-width: 320px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.nx-write-title-input:hover,
+.nx-write-title-input:focus {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+.nx-write-status {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 6px;
+}
+
+.nx-write-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Toolbar */
+.nx-write-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 10px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nx-write-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nx-write-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border);
+  margin: 0 4px;
+}
+
+.nx-write-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.nx-write-btn:hover {
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--border);
+}
+
+.nx-write-btn.active {
+  background-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nx-write-select {
+  height: 28px;
+  padding: 0 8px;
+  font-size: 12px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  outline: none;
+  cursor: pointer;
+}
+
+.nx-write-select:focus {
+  border-color: var(--accent);
+}
+
+/* Find & Replace Bar */
+.nx-write-find-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nx-write-find-input {
+  height: 26px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  outline: none;
+  width: 160px;
+}
+
+.nx-write-find-input:focus {
+  border-color: var(--accent);
+}
+
+/* Main workspace */
+.nx-write-workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Sidebar / Outline */
+.nx-write-sidebar {
+  width: 240px;
+  background-color: var(--surface-1);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width 0.2s ease;
+}
+
+.nx-write-sidebar.collapsed {
+  width: 0;
+  border-right: none;
+}
+
+.nx-write-sidebar-header {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nx-write-outline-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+  list-style: none;
+  margin: 0;
+}
+
+.nx-write-outline-item {
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.nx-write-outline-item:hover {
+  background-color: var(--surface-2);
+  color: var(--text-1);
+}
+
+.nx-write-outline-item.level-1 {
+  font-weight: 600;
+  color: var(--text-1);
+  padding-left: 12px;
+}
+
+.nx-write-outline-item.level-2 {
+  padding-left: 24px;
+}
+
+.nx-write-outline-item.level-3 {
+  padding-left: 36px;
+  font-size: 12px;
+}
+
+.nx-write-outline-empty {
+  padding: 16px 12px;
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Viewport & Page Container */
+.nx-write-viewport {
+  flex: 1;
+  overflow: auto;
+  background-color: color-mix(in srgb, var(--surface-1) 85%, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 64px 16px;
+  user-select: text;
+}
+
+/* The Page Sheet */
+.nx-write-page {
+  background-color: var(--surface-0, #ffffff);
+  color: #111827;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  outline: none;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.15s ease;
+  transform-origin: top center;
+  word-break: break-word;
+}
+
+/* Theme adaptation for document sheet */
+[data-theme='dark'] .nx-write-page {
+  background-color: #1a1c23;
+  color: #e5e7eb;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Paper dimensions (A4: 210mm x 297mm, Letter: 8.5in x 11in) */
+.nx-write-page.size-a4.portrait {
+  width: 794px;
+  min-height: 1123px;
+}
+
+.nx-write-page.size-a4.landscape {
+  width: 1123px;
+  min-height: 794px;
+}
+
+.nx-write-page.size-letter.portrait {
+  width: 816px;
+  min-height: 1056px;
+}
+
+.nx-write-page.size-letter.landscape {
+  width: 1056px;
+  min-height: 816px;
+}
+
+/* Margins */
+.nx-write-page.margins-normal {
+  padding: 64px;
+}
+
+.nx-write-page.margins-narrow {
+  padding: 36px;
+}
+
+.nx-write-page.margins-wide {
+  padding: 96px;
+}
+
+/* Fonts inside page */
+.nx-write-page.font-sans {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.nx-write-page.font-serif {
+  font-family: 'Georgia', 'Times New Roman', Cambria, serif;
+}
+
+.nx-write-page.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Page content typography */
+.nx-write-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.nx-write-page h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.nx-write-page h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.nx-write-page p {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.nx-write-page blockquote {
+  border-left: 4px solid var(--accent, #3b82f6);
+  margin: 1rem 0;
+  padding: 0.4rem 1rem;
+  color: color-mix(in srgb, currentColor 80%, transparent);
+  background-color: color-mix(in srgb, var(--accent, #3b82f6) 6%, transparent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.nx-write-page pre {
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.nx-write-page code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: color-mix(in srgb, currentColor 8%, transparent);
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.nx-write-page hr {
+  border: none;
+  border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  margin: 1.5rem 0;
+}
+
+.nx-write-page a {
+  color: var(--accent, #2563eb);
+  text-decoration: underline;
+}
+
+.nx-write-page ul,
+.nx-write-page ol {
+  margin: 0.5rem 0 1rem 1.5rem;
+  padding: 0;
+}
+
+.nx-write-page li {
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+}
+
+/* Checklist items */
+.nx-write-page ul.checklist {
+  list-style: none;
+  margin-left: 0;
+}
+
+.nx-write-page ul.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.nx-write-page ul.checklist input[type='checkbox'] {
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+/* Tables inside document */
+.nx-write-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+
+.nx-write-page th,
+.nx-write-page td {
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.nx-write-page th {
+  background-color: color-mix(in srgb, currentColor 6%, transparent);
+  font-weight: 600;
+}
+
+.nx-write-page img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: 0.8rem 0;
+}
+
+/* Table of Contents Block */
+.nx-write-toc {
+  background-color: color-mix(in srgb, currentColor 4%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 1.2rem 0;
+  user-select: none;
+}
+
+.nx-write-toc-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: currentColor;
+}
+
+.nx-write-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nx-write-toc-item {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.nx-write-toc-h1 {
+  font-weight: 600;
+  padding-left: 0;
+}
+
+.nx-write-toc-h2 {
+  padding-left: 18px;
+}
+
+.nx-write-toc-h3 {
+  padding-left: 36px;
+  font-size: 13px;
+}
+
+/* DIN 5008 Letter Styles */
+.nx-write-letter-sender {
+  font-size: 10px;
+  text-decoration: underline;
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  margin-bottom: 12px;
+}
+
+.nx-write-letter-recipient {
+  min-height: 90px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.nx-write-letter-meta {
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+/* Footer / Status bar */
+.nx-write-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px;
+  background-color: var(--surface-1);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+.nx-write-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nx-write-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nx-write-stat-item:hover {
+  color: var(--text-1);
+}
+
+/* Print styles */
+@media print {
+  body,
+  html,
+  #app,
+  .nx-desktop,
+  .nx-window-manager,
+  .nx-window {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .nx-write-header,
+  .nx-write-toolbar,
+  .nx-write-find-bar,
+  .nx-write-sidebar,
+  .nx-write-footer,
+  .nx-window-titlebar,
+  .nx-taskbar {
+    display: none !important;
+  }
+
+  .nx-write,
+  .nx-write-workspace,
+  .nx-write-viewport {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .nx-write-page {
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+    page-break-after: always;
+  }
+}

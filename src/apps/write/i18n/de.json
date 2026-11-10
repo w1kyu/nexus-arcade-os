@@ -1,0 +1,120 @@
+{
+  "app": {
+    "title": "Nexus Dokumente",
+    "untitled": "Unbenanntes Dokument"
+  },
+  "file": {
+    "menu": "Datei",
+    "new": "Neues Dokument",
+    "open": "Öffnen...",
+    "save": "Speichern",
+    "saveAs": "Speichern unter...",
+    "templates": "Dokumentvorlagen",
+    "export": "Exportieren",
+    "exportHtml": "Als HTML exportieren",
+    "exportMd": "Als Markdown exportieren",
+    "exportTxt": "Als Text exportieren",
+    "exportNdoc": "Als Nexus Dokument (.ndoc) exportieren",
+    "import": "Importieren",
+    "importMd": "Markdown importieren",
+    "importHtml": "HTML importieren",
+    "print": "Drucken / PDF",
+    "stats": "Dokumentstatistiken"
+  },
+  "toolbar": {
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "underline": "Unterstrichen",
+    "strike": "Durchgestrichen",
+    "heading": "Überschrift",
+    "paragraph": "Normaler Text",
+    "h1": "Überschrift 1",
+    "h2": "Überschrift 2",
+    "h3": "Überschrift 3",
+    "textColor": "Textfarbe",
+    "highlight": "Hervorhebungsfarbe",
+    "alignLeft": "Linksbündig",
+    "alignCenter": "Zentriert",
+    "alignRight": "Rechtsbündig",
+    "alignJustify": "Blocksatz",
+    "bulletList": "Aufzählung",
+    "numberList": "Nummerierte Liste",
+    "checklist": "Checkliste",
+    "blockquote": "Zitat",
+    "code": "Codeblock",
+    "table": "Tabelle einfügen",
+    "link": "Link",
+    "image": "Bild einfügen",
+    "hr": "Trennlinie",
+    "toc": "Inhaltsverzeichnis",
+    "clearFormat": "Formatierung löschen",
+    "spellcheck": "Rechtschreibprüfung umschalten",
+    "findReplace": "Suchen & Ersetzen",
+    "outline": "Dokumentgliederung",
+    "pageSettings": "Seiteneinrichtung",
+    "zoom": "Zoom"
+  },
+  "outline": {
+    "title": "Gliederung",
+    "empty": "Noch keine Überschriften. Verwenden Sie Überschrift 1–3, um eine Gliederung aufzubauen."
+  },
+  "stats": {
+    "title": "Dokumentstatistiken",
+    "words": "Wörter",
+    "characters": "Zeichen",
+    "charsNoSpaces": "Zeichen (ohne Leerzeichen)",
+    "paragraphs": "Absätze",
+    "readingTime": "Lesezeit",
+    "minutes": "{count} Min."
+  },
+  "find": {
+    "find": "Suchen",
+    "replace": "Ersetzen",
+    "next": "Weiter",
+    "prev": "Zurück",
+    "replaceOne": "Ersetzen",
+    "replaceAll": "Alle ersetzen",
+    "noMatch": "Keine Treffer gefunden"
+  },
+  "page": {
+    "size": "Papierformat",
+    "orientation": "Ausrichtung",
+    "portrait": "Hochformat",
+    "landscape": "Querformat",
+    "margins": "Seitenränder",
+    "normal": "Normal (25 mm)",
+    "narrow": "Schmal (12,7 mm)",
+    "wide": "Breit (38 mm)"
+  },
+  "table": {
+    "insert": "Tabelle einfügen",
+    "rows": "Zeilen",
+    "cols": "Spalten",
+    "addRow": "Zeile hinzufügen",
+    "deleteRow": "Zeile löschen",
+    "addCol": "Spalte hinzufügen",
+    "deleteCol": "Spalte löschen",
+    "deleteTable": "Tabelle löschen"
+  },
+  "templates": {
+    "title": "Vorlagen",
+    "choose": "Vorlage wählen",
+    "blank": "Leeres Dokument",
+    "letter": "Geschäftsbrief (DIN 5008)",
+    "cv": "Lebenslauf",
+    "report": "Formeller Bericht",
+    "labReport": "Wissenschaftlicher Laborbericht",
+    "use": "Vorlage verwenden"
+  },
+  "dialog": {
+    "insertLink": "Link einfügen",
+    "linkUrl": "Link-URL",
+    "linkText": "Text",
+    "insertImage": "Bild einfügen",
+    "imageUrl": "Bild-URL oder Data-URI",
+    "imageAlt": "Alt-Text",
+    "confirmUnsaved": "Es gibt ungespeicherte Änderungen. Trotzdem fortfahren?"
+  }
+}

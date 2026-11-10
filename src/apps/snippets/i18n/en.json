@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "Snippet Manager"
+  },
+  "sidebar": {
+    "all": "All Snippets",
+    "favorites": "Favorites",
+    "folders": "Folders",
+    "tags": "Tags",
+    "newSnippet": "New Snippet",
+    "search": "Search snippets..."
+  },
+  "editor": {
+    "titlePlaceholder": "Snippet Title...",
+    "descPlaceholder": "Description...",
+    "tagsPlaceholder": "Tags (comma separated)...",
+    "language": "Language",
+    "copy": "Copy Code",
+    "copied": "Snippet copied to clipboard!",
+    "delete": "Delete",
+    "favorite": "Favorite",
+    "save": "Save",
+    "exportJson": "Export JSON",
+    "importJson": "Import JSON"
+  },
+  "messages": {
+    "selectSnippet": "Select a snippet from the list or create a new one.",
+    "deleted": "Snippet deleted",
+    "saved": "Snippet saved"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "Snippet-Manager"
+  },
+  "sidebar": {
+    "all": "Alle Snippets",
+    "favorites": "Favoriten",
+    "folders": "Ordner",
+    "tags": "Tags",
+    "newSnippet": "Neues Snippet",
+    "search": "Snippets suchen..."
+  },
+  "editor": {
+    "titlePlaceholder": "Snippet-Titel...",
+    "descPlaceholder": "Beschreibung...",
+    "tagsPlaceholder": "Tags (kommagetrennt)...",
+    "language": "Sprache",
+    "copy": "Code kopieren",
+    "copied": "Snippet in die Zwischenablage kopiert!",
+    "delete": "Löschen",
+    "favorite": "Favorit",
+    "save": "Speichern",
+    "exportJson": "JSON exportieren",
+    "importJson": "JSON importieren"
+  },
+  "messages": {
+    "selectSnippet": "Wählen Sie ein Snippet aus der Liste oder erstellen Sie ein neues.",
+    "deleted": "Snippet gelöscht",
+    "saved": "Snippet gespeichert"
+  }
+}

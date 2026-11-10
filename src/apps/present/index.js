@@ -26,7 +26,7 @@ export const commands = {
  * @type {import('../../kernel/types').AppModule['mount']}
  */
 export async function mount(container, ctx, args) {
-  const t = (/** @type {string} */ key, /** @type {Record<string, unknown>} */ [vars]) => ctx.i18n.t(key, vars);
+  const t = (/** @type {string} */ key, /** @type {Record<string, unknown>=} */ vars) => ctx.i18n.t(key, vars);
   const fs = /** @type {any} */ (ctx.fs);
 
   let currentPath = /** @type {string | null} */ (args.path ?? null);
@@ -528,10 +528,9 @@ export async function mount(container, ctx, args) {
     }
   }
 
-  // ─── Keyboard Shortcuts ──────────────────────────────────────────────────
   function handleKeyDown(e) {
-    // If typing in textarea, allow shortcuts like Mod+S, but let navigation stay in textarea
-    if (e.target === textarea) {
+    // If typing in any input or textarea, don't capture navigation keys
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
         e.preventDefault();
         saveFile();

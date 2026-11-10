@@ -20,11 +20,13 @@ export function h(tag, props = {}, ...children) {
     else if (key === 'text') el.textContent = value;
     else if (key === 'html') el.innerHTML = value;
     else if (key === 'style' && typeof value === 'object') Object.assign(el.style, value);
+    else if (key === 'style' && typeof value === 'string') el.style.cssText = value;
     else if (key === 'dataset') Object.assign(el.dataset, value);
     else if (key.startsWith('on') && typeof value === 'function') el.addEventListener(key.slice(2), value);
     else el.setAttribute(key, value === true ? '' : String(value));
   }
-  for (const child of children) if (child !== null && child !== undefined && child !== false) el.append(child);
+  for (const child of children.flat(Infinity))
+    if (child !== null && child !== undefined && child !== false) el.append(child);
   return el;
 }
 

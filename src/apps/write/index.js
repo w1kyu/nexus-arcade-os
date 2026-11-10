@@ -29,7 +29,7 @@ export const commands = {
  * @type {import('../../kernel/types').AppModule['mount']}
  */
 export async function mount(container, ctx, args) {
-  const t = (/** @type {string} */ key, /** @type {Record<string, unknown>} */ [vars]) => ctx.i18n.t(key, vars);
+  const t = (/** @type {string} */ key, /** @type {Record<string, unknown>=} */ vars) => ctx.i18n.t(key, vars);
   const fs = /** @type {any} */ (ctx.fs);
 
   let currentPath = /** @type {string | null} */ (args.path ?? null);

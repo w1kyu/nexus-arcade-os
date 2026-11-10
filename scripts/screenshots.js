@@ -39,6 +39,14 @@ const APPS = {
   vault: { name: 'Password Vault', setup: async () => {} },
   bookmarks: { name: 'Bookmarks', setup: async () => {} },
   clipboard: { name: 'Clipboard', setup: async () => {} },
+  sheets: { name: 'Nexus Sheets', setup: async () => {} },
+  write: { name: 'Nexus Write', setup: async () => {} },
+  whiteboard: { name: 'Nexus Whiteboard', setup: async () => {} },
+  mindmap: { name: 'Nexus Mind Map', setup: async () => {} },
+  paint: { name: 'Nexus Paint', setup: async () => {} },
+  pixelart: { name: 'Pixel Art Studio', setup: async () => {} },
+  present: { name: 'Nexus Present', setup: async () => {} },
+  pdf: { name: 'PDF Tools', setup: async () => {} },
 };
 
 const preview = spawn(`npx vite preview --port ${PORT} --strictPort`, { shell: true, stdio: 'ignore' });

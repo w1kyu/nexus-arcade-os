@@ -266,11 +266,16 @@ export interface AppContext {
   };
   clipboard: {
     readText(): Promise<string>;
-    writeText(text: string): Promise<void>;
-    write(items: ClipboardItem[]): Promise<void>;
+    writeText(text: string, options?: { sensitive?: boolean }): Promise<void>;
+    writeImage?(image: Blob): Promise<void>;
+    write?(items: ClipboardItem[]): Promise<void>;
     /** Files copied or cut inside Nexus (shared by Explorer and the desktop). */
     files(): { paths: string[]; cut: boolean };
     setFiles(paths: string[], options?: { cut?: boolean }): void;
+    history(): Array<{ id: string; kind: 'text' | 'image'; text?: string; image?: Blob; app: string; at: number }>;
+    remove(id: string): Promise<void>;
+    clearHistory(): Promise<void>;
+    onChange(fn: () => void): () => void;
   };
   sound: { play(name: UiSound): void };
   i18n: I18n;

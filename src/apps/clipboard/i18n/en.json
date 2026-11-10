@@ -1,0 +1,45 @@
+{
+  "tabs": {
+    "history": "History",
+    "pinned": "Pinned",
+    "snippets": "Snippets"
+  },
+  "search": {
+    "placeholder": "Search clips and snippets..."
+  },
+  "actions": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "delete": "Delete",
+    "clear": "Clear History",
+    "clearConfirm": "Are you sure you want to clear clipboard history? Pinned clips will not be deleted.",
+    "newSnippet": "New Snippet",
+    "editSnippet": "Edit Snippet",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "empty": {
+    "history": "No clipboard history yet",
+    "historySub": "Items copied inside Nexus will appear here automatically.",
+    "pinned": "No pinned clips",
+    "pinnedSub": "Pin frequently used clips so they stay saved.",
+    "snippets": "No snippets yet",
+    "snippetsSub": "Create reusable templates with {{date}}, {{time}}, or {{clipboard}} variables."
+  },
+  "snippet": {
+    "title": "Title",
+    "shortcut": "Shortcut (optional)",
+    "body": "Template text",
+    "helpVars": "Variables: {{date}}, {{time}}, {{datetime}}, {{clipboard}}"
+  },
+  "chars": "{count} chars",
+  "terminal": {
+    "cleared": "Clipboard history cleared.",
+    "empty": "Clipboard history is empty.",
+    "copied": "Copied clip to clipboard.",
+    "notFound": "Item not found.",
+    "snippetCopied": "Expanded and copied snippet \"{title}\"."
+  }
+}

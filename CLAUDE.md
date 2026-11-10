@@ -70,6 +70,7 @@ As in NEXUS_BRIEF.md §5.1, plus:
 | codemirror, @codemirror/* _(approved 2026-10-16)_            | Nexus Edit, code previews; lazy chunk                                                     |
 | katex _(approved 2026-11-09)_                                | LaTeX math to MathML in Notes and Flashcards, lazy chunk                                  |
 | marked, dompurify _(approved 2026-10-16)_                    | Markdown rendering (Help, previews, later Notes), always sanitized                        |
+| sql.js _(approved 2026-11-10)_                               | SQLite database reading for Anki .apkg import in Flashcards, lazy chunk                   |
 
 Ask before adding anything else (brief §2.4).
 

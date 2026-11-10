@@ -26,6 +26,19 @@ const APPS = {
   tasks: { name: 'Tasks', setup: async () => {} },
   calendar: { name: 'Calendar', setup: async () => {} },
   focus: { name: 'Focus', setup: async () => {} },
+  timetable: { name: 'Timetable', setup: async () => {} },
+  grades: { name: 'Grade Tracker', setup: async () => {} },
+  flashcards: { name: 'Flashcards', setup: async () => {} },
+  exams: { name: 'Exam Planner', setup: async () => {} },
+  habits: { name: 'Habits', setup: async () => {} },
+  journal: { name: 'Journal', setup: async () => {} },
+  budget: { name: 'Budget', setup: async () => {} },
+  calculator: { name: 'Calculator', setup: async () => {} },
+  converter: { name: 'Unit Converter', setup: async () => {} },
+  clock: { name: 'Clock', setup: async () => {} },
+  vault: { name: 'Password Vault', setup: async () => {} },
+  bookmarks: { name: 'Bookmarks', setup: async () => {} },
+  clipboard: { name: 'Clipboard', setup: async () => {} },
 };
 
 const preview = spawn(`npx vite preview --port ${PORT} --strictPort`, { shell: true, stdio: 'ignore' });

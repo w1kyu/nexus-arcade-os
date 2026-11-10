@@ -180,6 +180,12 @@ export const ICONS = {
   quote: '<path d="M5 12h4v5H5v-5Zm0 0c0-3 1.5-5.5 4-7M14 12h4v5h-4v-5Zm0 0c0-3 1.5-5.5 4-7"/>',
   flame: '<path d="M12 21a6 6 0 0 0 6-6c0-4-3-6-4-10-2 2-3 3.5-3 6-1-1-1.5-2-1.5-3C7 9.5 6 12 6 15a6 6 0 0 0 6 6Z"/>',
   heart: '<path d="M12 20s-8-4.6-8-10.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.4 12 20 12 20Z"/>',
+  table: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>',
+  award: '<circle cx="12" cy="8" r="5"/><path d="m8.2 12.5-1.7 8.5 5.5-3 5.5 3-1.7-8.5"/>',
+  cards: '<rect x="6" y="3" width="14" height="15" rx="2"/><path d="M4 7v13a1 1 0 0 0 1 1h13"/>',
+  wallet: '<rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 14h4v3h-4z"/>',
+  bookmark: '<path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+  clipboard: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M9 3h6a1 1 0 0 1 1 1v2H8V4a1 1 0 0 1 1-1Z"/>',
   'nexus-mark': '<path d="M12 2.5 20.5 7.5v9L12 21.5 3.5 16.5v-9Z"/><path d="M8.5 15.5v-7l7 7v-7"/>',
 };
 

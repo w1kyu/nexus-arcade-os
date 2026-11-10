@@ -1,0 +1,19 @@
+{
+  "appTitle": "Uhr",
+  "tabWorld": "Weltzeituhr",
+  "tabTimers": "Timer",
+  "tabStopwatch": "Stoppuhr",
+  "tabMeeting": "Meetingplaner",
+  "addCity": "Stadt hinzufügen",
+  "newTimer": "Neuer Timer",
+  "start": "Start",
+  "pause": "Pause",
+  "resume": "Fortsetzen",
+  "reset": "Zurücksetzen",
+  "lap": "Runde",
+  "exportLaps": "Rundenzeiten exportieren",
+  "timerName": "Timer-Name",
+  "timerDuration": "Dauer",
+  "idealTime": "Optimale Meetingzeiten (Überschneidung für alle):",
+  "noIdealTime": "Keine gemeinsame Arbeitszeit-Überschneidung über alle gewählten Städte gefunden."
+}

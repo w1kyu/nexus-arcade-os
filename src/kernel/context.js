@@ -261,6 +261,10 @@ export function createAppContext(manifest, services, extras = {}) {
         files: () => clipboard.files(),
         setFiles: (/** @type {string[]} */ paths, /** @type {{ cut?: boolean }} */ options) =>
           clipboard.setFiles(paths, options),
+        history: () => clipboard.history(),
+        remove: (/** @type {string} */ id) => clipboard.remove(id),
+        clearHistory: () => clipboard.clearHistory(),
+        onChange: (/** @type {() => void} */ fn) => track(bus.on('clipboard:changed', guard(fn))),
       },
       sound: {
         play: (/** @type {any} */ name) => sound.play(name, 'ui'),

@@ -24,6 +24,13 @@ const FUNCTIONS = {
   exp: Math.exp,
   min: Math.min,
   max: Math.max,
+  fact: (n) => {
+    if (n < 0 || Math.floor(n) !== n) return NaN;
+    if (n === 0 || n === 1) return 1;
+    let res = 1;
+    for (let i = 2; i <= n; i++) res *= i;
+    return res;
+  },
 };
 /** @type {Record<string, number>} */
 const CONSTANTS = { pi: Math.PI, e: Math.E, tau: 2 * Math.PI };
@@ -62,7 +69,7 @@ function tokenize(source) {
  * @param {string} source
  * @returns {number | null}
  */
-export function evaluate(source) {
+export function evaluate(source, vars = {}) {
   const tokens = tokenize(source);
   if (!tokens || tokens.length === 0) return null;
   let pos = 0;
@@ -130,6 +137,7 @@ export function evaluate(source) {
       return v;
     }
     if (t.type === 'id') {
+      if (vars && t.value in vars) return vars[t.value];
       if (t.value in CONSTANTS) return CONSTANTS[t.value];
       const fn = FUNCTIONS[t.value];
       if (!fn) throw new Error(`unknown ${t.value}`);
@@ -174,3 +182,5 @@ export function formatResult(value, formatNumber) {
     ? rounded.toExponential(6)
     : formatNumber(rounded, { maximumFractionDigits: 10 });
 }
+
+export const evaluateWith = evaluate;

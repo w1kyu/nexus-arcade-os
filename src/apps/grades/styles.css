@@ -1,0 +1,150 @@
+.nx-grades {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-surface-0, #0d111a);
+  color: var(--nx-text-1, #e8edf7);
+  overflow: hidden;
+  user-select: none;
+}
+
+.nx-grades-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--nx-surface-1, #131926);
+  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nx-grades-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--nx-surface-2, #1a2234);
+  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+}
+
+.nx-grades-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-grades-card-val {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--nx-accent, #38bdf8);
+}
+
+.nx-grades-progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.nx-grades-progress-fill {
+  height: 100%;
+  background: var(--nx-accent, #38bdf8);
+  transition: width 0.3s;
+}
+
+.nx-grades-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  overflow: auto;
+}
+
+@media (max-width: 800px) {
+  .nx-grades-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nx-grades-list-section,
+.nx-grades-whatif-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nx-grades-module-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.nx-grades-module-table th {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--nx-text-3, rgba(255, 255, 255, 0.5));
+  font-weight: 600;
+}
+
+.nx-grades-module-table td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.nx-grades-module-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.nx-grades-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nx-grades-badge.is-passed {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.nx-grades-badge.is-failed {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+}
+
+.nx-grades-badge.is-progress {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.nx-grades-badge.is-planned {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nx-grades-whatif-box {
+  background: var(--nx-surface-1, #131926);
+  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nx-grades-chart {
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+}

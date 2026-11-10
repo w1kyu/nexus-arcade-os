@@ -1,0 +1,45 @@
+{
+  "tabs": {
+    "history": "Verlauf",
+    "pinned": "Angeheftet",
+    "snippets": "Textbausteine"
+  },
+  "search": {
+    "placeholder": "Einträge und Textbausteine suchen..."
+  },
+  "actions": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "pin": "Anheften",
+    "unpin": "Lösen",
+    "delete": "Löschen",
+    "clear": "Verlauf leeren",
+    "clearConfirm": "Möchtest du den Verlauf der Zwischenablage wirklich leeren? Angeheftete Einträge bleiben erhalten.",
+    "newSnippet": "Neuer Textbaustein",
+    "editSnippet": "Textbaustein bearbeiten",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "empty": {
+    "history": "Noch kein Zwischenablage-Verlauf",
+    "historySub": "In Nexus kopierte Inhalte erscheinen hier automatisch.",
+    "pinned": "Keine angehefteten Einträge",
+    "pinnedSub": "Hefte häufig verwendete Texte an, um sie dauerhaft zu behalten.",
+    "snippets": "Noch keine Textbausteine",
+    "snippetsSub": "Erstelle Vorlagen mit Variablen wie {{date}}, {{time}} oder {{clipboard}}."
+  },
+  "snippet": {
+    "title": "Titel",
+    "shortcut": "Kürzel (optional)",
+    "body": "Vorlagentext",
+    "helpVars": "Variablen: {{date}}, {{time}}, {{datetime}}, {{clipboard}}"
+  },
+  "chars": "{count} Zeichen",
+  "terminal": {
+    "cleared": "Zwischenablage-Verlauf geleert.",
+    "empty": "Zwischenablage ist leer.",
+    "copied": "Eintrag in die Zwischenablage kopiert.",
+    "notFound": "Eintrag nicht gefunden.",
+    "snippetCopied": "Textbaustein \"{title}\" eingefügt und kopiert."
+  }
+}

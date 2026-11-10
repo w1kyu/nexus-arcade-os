@@ -1,0 +1,19 @@
+{
+  "appTitle": "Clock",
+  "tabWorld": "World Clock",
+  "tabTimers": "Timers",
+  "tabStopwatch": "Stopwatch",
+  "tabMeeting": "Meeting Planner",
+  "addCity": "Add City",
+  "newTimer": "New Timer",
+  "start": "Start",
+  "pause": "Pause",
+  "resume": "Resume",
+  "reset": "Reset",
+  "lap": "Lap",
+  "exportLaps": "Export Laps",
+  "timerName": "Timer Name",
+  "timerDuration": "Duration",
+  "idealTime": "Optimal meeting hours (overlap for all):",
+  "noIdealTime": "No common working-hour overlap found across all selected cities."
+}

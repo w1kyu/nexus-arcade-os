@@ -6,6 +6,69 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-11-10 — Study & Life tools
+
+### Added
+
+- **Timetable (Stundenplan):** weekly and biweekly (A/B) course grid with lecture, tutorial, lab and
+  seminar types; rooms, lecturers, colors, and semester date ranges; lecture-free periods and
+  holidays; "Now & Next" card and desktop widget; automatic Calendar sync via
+  `~/.config/timetable-snapshot.json` overlay; links to Notes folders, Task projects and Flashcard
+  decks; attendance tracking per course session; and `.ics` / JSON timetable import and export.
+- **Grade Tracker (Notenrechner):** German 1.0–5.0 academic grading scale (with 0.3/0.7 steps; 4.0
+  pass mark) with ECTS-weighted average calculation, plus alternative scales (percentages, US GPA,
+  UK honours classes, Swiss 6–1, Austrian 1–5); semester dashboard chart, module statuses (planned,
+  in progress, passed, failed), attempts tracking and retake planning; partial module grades (exam,
+  project, homework weights); and interactive What-If scenario calculator.
+- **Flashcards:** decks and subdecks with rich Markdown, syntax-highlighted code blocks, and KaTeX
+  math (`$…$`, rendered to CSP-clean MathML); card types: basic, basic + reversed, cloze deletion
+  (`{{c1::...}}`), and type-the-answer; modern FSRS spaced repetition scheduler with keyboard-only
+  study sessions (1–4, Space), retention forecast chart, review heatmap calendar, and
+  hardest-cards inspector; cram mode and custom tag study; CSV/TSV and JSON import/export; and Anki
+  `.apkg` deck import powered by `fflate` and `sql.js`.
+- **Exam & Study Planner:** exam countdown cards with rooms, module links, and topic checklists;
+  automatic study plan generator distributing exam preparation tasks across remaining study days
+  into Tasks; and readiness scores based on checklist progress and linked flashcard retention.
+- **Habits:** daily, weekday, or N-per-week habits with yes/no, count, or duration goals; check-in
+  from within the app, desktop widget, command palette, and terminal (`habit done <name>`); current
+  streaks, best streak, completion rates, and GitHub-style yearly heatmaps; scheduler reminders and
+  rest-day skipping without streak penalties.
+- **Journal:** daily rich-text Markdown entries with 5-point mood rating, tags, and embedded photos
+  from the VFS; calendar view with mood dots, "On this day" historical entries, search, writing
+  prompts (English and German), and word count stats; whole-journal AES-GCM password encryption via
+  `ctx.crypto` with automatic inactivity lock.
+- **Budget:** multi-account management (cash, bank, savings), income/expense/transfer transactions
+  with categories, tags, and recurring rules (rent, subscriptions); monthly category budget
+  allowances with visual progress bars and warnings; donut category breakdowns, monthly income vs
+  expense bars, and net balance charts; CSV transaction import with column mapping and CSV export;
+  localized `Intl` currency formatting (EUR default); savings goals and expense splitting calculator.
+- **Calculator:** multi-mode calculator with shared expression parser: Standard and Scientific modes
+  (trigonometry in deg/rad, logarithms, powers, factorials, memory, parentheses, history tape);
+  Programmer mode (side-by-side binary, octal, decimal, hexadecimal displays, 8/16/32/64-bit word
+  sizes, signed/unsigned modes, bitwise operations, and interactive 64-bit clickable bit grid);
+  Graphing mode (canvas plotting of multiple functions, pan/zoom, value tracing, numerical root and
+  intersection finder); Equation solver and Matrix operations (determinant, inverse,
+  multiplication, transpose); and Statistics mode (mean, median, standard deviation, linear
+  regression).
+- **Unit Converter:** 16 measurement categories (length, area, volume, mass, temperature, time,
+  speed, pressure, energy, power, angle, data sizes with SI `kB` vs IEC `KiB` distinction, data
+  rate, frequency, fuel economy, cooking); two-way live conversions, favorite pairs, and history;
+  number base conversions and Roman numerals.
+- **Clock:** World Clock with customizable cities and timezones via `Intl`, analog and digital
+  clocks; scheduler-backed alarms, multiple simultaneous named timers with sound, and precision
+  stopwatch with laps and export; time-zone meeting planner across multiple international locations.
+- **Password Generator & Vault:** customizable password generator with length, symbol sets, entropy
+  estimation, and English/German passphrase generation from bundled wordlists; 30-second clipboard
+  auto-clear; master-password AES-GCM encrypted vault (`ctx.crypto`) with auto-lock, categories, and
+  search; RFC 6238 TOTP two-factor authenticator with animated countdown; local password security
+  health check (weak, reused, and stale passwords); and CSV import/export.
+- **Bookmarks & Reading List:** bookmark collections with tags, notes, and zero-network
+  letter-avatar fallback; browser HTML bookmarks import and export; reading list with read/unread
+  tracking.
+- **Clipboard Manager:** automatic clipboard history tracking with search, pinned items,
+  single-click paste, clear history, and automatic exclusion of sensitive vault passwords; snippet
+  manager with dynamic variable substitution (`{{date}}`, `{{clipboard}}`).
+
 ## [0.4.0] — 2026-11-10 — Productivity core
 
 ### Added
@@ -13,20 +76,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - **Nexus Notes:** Markdown notes stored in `Documents/Notes` with YAML front-matter, CodeMirror 6
   editor (edit, split and live-preview modes with synchronized scrolling), formatting toolbar,
   GitHub-flavored Markdown with footnotes, interactive task-list checkboxes, syntax-highlighted code
-  blocks, **math rendering via KaTeX** (`$…# Changelog
-
-All notable changes to Nexus Arcade OS are documented here.
-The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
-[Semantic Versioning](https://semver.org/) (`0.N.0` = phase N).
-
-## [Unreleased]
-
-and `$…$`, rendered to CSP-clean MathML), pasted and
-dropped VFS images, nested folders with drag-and-drop, tags, favorites, full-text search with date
-and tag filters, `[[Wiki links]]` with autocomplete and backlinks panel, force-directed Canvas
-**Graph view**, daily notes and templates, outline and reading-time inspector, checklist-to-Task
-promotion, per-note AES-GCM password encryption with auto-lock, and `.md`/`.html`/`.zip`/`.json`
-import and export.
+  blocks, **math rendering via KaTeX** (`$…$` and `$$…$$`, rendered to CSP-clean MathML), pasted and
+  dropped VFS images, nested folders with drag-and-drop, tags, favorites, full-text search with date
+  and tag filters, `[[Wiki links]]` with autocomplete and backlinks panel, force-directed Canvas
+  **Graph view**, daily notes and templates, outline and reading-time inspector, checklist-to-Task
+  promotion, per-note AES-GCM password encryption with auto-lock, and `.md`/`.html`/`.zip`/`.json`
+  import and export.
 
 - **Tasks:** projects with colors and sections, Inbox, nested subtasks, 4 priority levels, due dates
   and times, recurring tasks and scheduler reminders, attachments and note links, bilingual natural

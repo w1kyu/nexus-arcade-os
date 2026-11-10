@@ -1,0 +1,14 @@
+{
+  "appTitle": "Unit Converter",
+  "category": "Category",
+  "from": "From",
+  "to": "To",
+  "value": "Value",
+  "swap": "Swap",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "numberBases": "Number Bases (2, 8, 10, 16)",
+  "romanNumerals": "Roman Numerals",
+  "arabic": "Decimal (1-3999)",
+  "roman": "Roman (e.g. MMXXVI)"
+}

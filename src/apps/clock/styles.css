@@ -1,0 +1,178 @@
+/* Clock App Styles */
+.nx-clock {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-bg-app, #12141a);
+  color: var(--nx-text-primary, #e6edf3);
+  overflow: hidden;
+}
+
+.nx-clock-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-bottom: 1px solid var(--nx-border, #2d3342);
+}
+
+.nx-clock-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* World Clock */
+.nx-clock-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.nx-clock-card {
+  background: var(--nx-bg-surface, #1a1d26);
+  border: 1px solid var(--nx-border, #2d3342);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.nx-analog-clock {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--nx-border, #2d3342);
+  background: var(--nx-bg-subtle, #212631);
+  position: relative;
+}
+
+.nx-analog-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 2px;
+}
+
+.nx-hand-hour {
+  width: 4px;
+  height: 28px;
+  background: var(--nx-text-primary, #e6edf3);
+  margin-left: -2px;
+}
+
+.nx-hand-min {
+  width: 2px;
+  height: 38px;
+  background: var(--nx-text-secondary, #94a3b8);
+  margin-left: -1px;
+}
+
+.nx-hand-sec {
+  width: 1px;
+  height: 44px;
+  background: #ff8a3d;
+  margin-left: -0.5px;
+}
+
+.nx-analog-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #ff8a3d;
+  border-radius: 50%;
+  margin-top: -3px;
+  margin-left: -3px;
+}
+
+.nx-clock-digital {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+.nx-clock-city {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nx-clock-date {
+  font-size: 11px;
+  color: var(--nx-text-muted, #7d8590);
+}
+
+/* Stopwatch */
+.nx-stopwatch-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 20px;
+}
+
+.nx-stopwatch-display {
+  font-size: 54px;
+  font-weight: 700;
+  font-family: monospace;
+  color: #ff8a3d;
+}
+
+.nx-stopwatch-laps {
+  width: 100%;
+  max-width: 440px;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--nx-border, #2d3342);
+  border-radius: 6px;
+  background: var(--nx-bg-surface, #1a1d26);
+}
+
+/* Meeting planner */
+.nx-meeting-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.nx-meeting-row {
+  display: grid;
+  grid-template-columns: 80px repeat(24, 1fr);
+  gap: 2px;
+  align-items: center;
+}
+
+.nx-meeting-cell {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: monospace;
+  border-radius: 2px;
+  background: var(--nx-bg-subtle, #212631);
+}
+
+.nx-meeting-cell.is-work {
+  background: rgba(74, 222, 128, 0.25);
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.nx-meeting-cell.is-night {
+  background: rgba(15, 23, 42, 0.5);
+  color: #475569;
+}

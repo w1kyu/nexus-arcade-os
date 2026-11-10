@@ -1,0 +1,153 @@
+/* Password Vault App Styles */
+.nx-vault {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-bg-app, #12141a);
+  color: var(--nx-text-primary, #e6edf3);
+  overflow: hidden;
+}
+
+.nx-vault-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-bottom: 1px solid var(--nx-border, #2d3342);
+}
+
+.nx-vault-toolbar-title {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-vault-banner {
+  padding: 8px 16px;
+  background: rgba(255, 138, 61, 0.1);
+  border-bottom: 1px solid rgba(255, 138, 61, 0.2);
+  font-size: 12px;
+  color: #ff8a3d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-vault-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.nx-vault-sidebar {
+  width: 280px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-right: 1px solid var(--nx-border, #2d3342);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nx-vault-sidebar-search {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--nx-border, #2d3342);
+}
+
+.nx-vault-entries-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-vault-item {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--nx-border-subtle, #212631);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: background 0.15s ease;
+}
+
+.nx-vault-item:hover {
+  background: var(--nx-bg-hover, #232834);
+}
+
+.nx-vault-item.is-selected {
+  background: var(--nx-bg-active, #2a3142);
+  border-left: 3px solid #ff8a3d;
+}
+
+.nx-vault-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
+  gap: 16px;
+}
+
+.nx-vault-detail-card {
+  background: var(--nx-bg-surface, #1a1d26);
+  border: 1px solid var(--nx-border, #2d3342);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nx-vault-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-vault-field-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nx-text-muted, #7d8590);
+  text-transform: uppercase;
+}
+
+.nx-vault-field-val-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.nx-vault-totp-card {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(74, 222, 128, 0.1));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nx-vault-totp-token {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  font-family: monospace;
+  color: #38bdf8;
+}
+
+/* Lock Screen */
+.nx-vault-lock-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+}

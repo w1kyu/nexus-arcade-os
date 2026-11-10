@@ -7,10 +7,11 @@ a terminal, and dozens of apps and games that share data with each other. It is 
 Progressive Web App and works **offline** after the first visit. There are no accounts and no
 backend: your data stays in your browser.
 
-> **Status: phase 4 (productivity core).** The desktop, system apps (File Explorer, Terminal, Nexus
-> Edit, Settings, System Monitor, App Center, Help) and connected productivity suite (Nexus Notes,
-> Tasks, Calendar, Focus) are ready. Study & Life tools arrive in phase 5. See
-> [PROGRESS.md](PROGRESS.md) for the full roadmap.
+> **Status: phase 5 (study & life tools).** All 13 Study & Life apps (Timetable, Grade
+> Tracker, Flashcards, Exam Planner, Habits, Journal, Budget, Calculator, Unit Converter, Clock,
+> Password Vault, Bookmarks, Clipboard Manager) along with the core productivity suite and system
+> apps are ready. Office & Creative tools arrive in phase 6. See [PROGRESS.md](PROGRESS.md) for the
+> full roadmap.
 
 ![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
 

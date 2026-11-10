@@ -1,0 +1,14 @@
+{
+  "appTitle": "Einheitenumrechner",
+  "category": "Kategorie",
+  "from": "Von",
+  "to": "Nach",
+  "value": "Wert",
+  "swap": "Tauschen",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "numberBases": "Zahlensysteme (2, 8, 10, 16)",
+  "romanNumerals": "Römische Zahlen",
+  "arabic": "Dezimal (1-3999)",
+  "roman": "Römisch (z.B. MMXXVI)"
+}

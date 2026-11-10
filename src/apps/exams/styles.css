@@ -1,0 +1,89 @@
+.nx-ex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-surface-0, #0d111a);
+  color: var(--nx-text-1, #e8edf7);
+  overflow: hidden;
+  user-select: none;
+}
+
+.nx-ex-toolbar {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--nx-surface-1, #131926);
+}
+
+.nx-ex-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  align-content: start;
+}
+
+.nx-ex-card {
+  background: var(--nx-surface-1, #131926);
+  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nx-ex-countdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.nx-ex-days {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--nx-accent, #38bdf8);
+}
+
+.nx-ex-badge-ready {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+.nx-ex-badge-on_track {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+.nx-ex-badge-needs_work {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+.nx-ex-badge-critical {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+}
+
+.nx-ex-topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.nx-ex-topic-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.nx-ex-topic-item.is-done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

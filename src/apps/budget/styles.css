@@ -1,0 +1,191 @@
+/* Budget App Styles */
+.nx-budget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-bg-app, #12141a);
+  color: var(--nx-text-primary, #e6edf3);
+  overflow: hidden;
+}
+
+.nx-budget-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-bottom: 1px solid var(--nx-border, #2d3342);
+}
+
+.nx-budget-toolbar-title {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-budget-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-budget-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.nx-budget-sidebar {
+  width: 280px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-right: 1px solid var(--nx-border, #2d3342);
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.nx-budget-networth-card {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(56, 189, 248, 0.15));
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-budget-networth-label {
+  font-size: 11px;
+  color: var(--nx-text-muted, #7d8590);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.nx-budget-networth-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.nx-budget-accounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nx-budget-account-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: var(--nx-bg-subtle, #212631);
+  border: 1px solid var(--nx-border, #2d3342);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nx-budget-account-item.is-selected {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.nx-budget-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 16px;
+  gap: 16px;
+}
+
+.nx-budget-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Transactions Table */
+.nx-budget-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.nx-budget-table th {
+  text-align: left;
+  padding: 8px 10px;
+  background: var(--nx-bg-surface, #1a1d26);
+  border-bottom: 1px solid var(--nx-border, #2d3342);
+  font-size: 11px;
+  color: var(--nx-text-muted, #7d8590);
+  text-transform: uppercase;
+}
+
+.nx-budget-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--nx-border-subtle, #212631);
+}
+
+.nx-budget-amount-income {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.nx-budget-amount-expense {
+  color: #f87171;
+  font-weight: 600;
+}
+
+/* Category budget progress bars */
+.nx-budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.nx-budget-card {
+  background: var(--nx-bg-surface, #1a1d26);
+  border: 1px solid var(--nx-border, #2d3342);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nx-budget-progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--nx-bg-subtle, #212631);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.nx-budget-progress-fill {
+  height: 100%;
+  background: #38bdf8;
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+.nx-budget-progress-fill.is-over {
+  background: #f87171;
+}
+
+/* Widget */
+.nx-budget-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}

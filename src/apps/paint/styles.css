@@ -1,0 +1,304 @@
+/* Nexus Paint Styles */
+.nx-paint {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Header */
+.nx-paint-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nx-paint-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.nx-paint-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+
+.nx-paint-title-input {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  max-width: 320px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.nx-paint-title-input:hover,
+.nx-paint-title-input:focus {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+.nx-paint-status {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 6px;
+}
+
+.nx-paint-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Common Buttons */
+.nx-paint-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.nx-paint-btn:hover {
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--border);
+}
+
+.nx-paint-btn.active {
+  background-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nx-paint-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border);
+  margin: 0 4px;
+}
+
+/* Property Bar (Horizontal) */
+.nx-paint-props-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 4px 12px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  flex-shrink: 0;
+  z-index: 9;
+}
+
+.nx-paint-prop-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-paint-range {
+  width: 80px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.nx-paint-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Main workspace layout */
+.nx-paint-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Tools Shelf (Vertical) */
+.nx-paint-tools-shelf {
+  width: 44px;
+  background-color: var(--surface-1);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  gap: 4px;
+  flex-shrink: 0;
+  z-index: 8;
+}
+
+/* Center Canvas Viewport */
+.nx-paint-viewport {
+  flex: 1;
+  overflow: auto;
+  background-color: #334155;
+  background-image:
+    linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+  background-size: 20px 20px;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: crosshair;
+  position: relative;
+}
+
+/* Canvas stage containing stacked layer canvases */
+.nx-paint-stage {
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.nx-paint-layer-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Overlay canvas for active drawing preview */
+.nx-paint-preview-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Right Layers Panel */
+.nx-paint-layers-panel {
+  width: 240px;
+  background-color: var(--surface-1);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 8;
+}
+
+.nx-paint-layers-header {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nx-paint-layers-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  display: flex;
+  flex-direction: column-reverse; /* Top layer on top of list */
+  gap: 4px;
+}
+
+.nx-paint-layer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background-color: var(--surface-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.nx-paint-layer-item:hover {
+  border-color: var(--border);
+}
+
+.nx-paint-layer-item.active {
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--accent);
+}
+
+.nx-paint-layer-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nx-paint-layers-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 6px 8px;
+  border-top: 1px solid var(--border);
+  background-color: var(--surface-2);
+}
+
+/* Footer / Status bar */
+.nx-paint-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px;
+  background-color: var(--surface-1);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+.nx-paint-status-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

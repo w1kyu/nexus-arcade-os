@@ -1,0 +1,78 @@
+{
+  "app": {
+    "title": "Nexus Paint",
+    "untitled": "Untitled Painting"
+  },
+  "file": {
+    "menu": "File",
+    "new": "New Painting",
+    "open": "Open...",
+    "save": "Save",
+    "saveAs": "Save As...",
+    "resizeCanvas": "Resize Canvas...",
+    "export": "Export",
+    "exportPng": "Export as PNG (.png)",
+    "exportJpg": "Export as JPEG (.jpg)",
+    "exportWebp": "Export as WebP (.webp)",
+    "exportNpaint": "Export as Layered Paint (.npaint)"
+  },
+  "tools": {
+    "brush": "Round Brush (B)",
+    "softBrush": "Soft Airbrush",
+    "pencil": "Pencil (1px)",
+    "spray": "Spray Can",
+    "eraser": "Eraser (E)",
+    "bucket": "Flood Fill Bucket (G)",
+    "eyedropper": "Eyedropper (I)",
+    "rect": "Rectangle (R)",
+    "ellipse": "Ellipse (O)",
+    "line": "Line (L)",
+    "text": "Text (T)",
+    "select": "Rectangle Selection (M)"
+  },
+  "adjustments": {
+    "title": "Adjustments",
+    "brightnessContrast": "Brightness / Contrast...",
+    "grayscale": "Grayscale",
+    "invert": "Invert Colors",
+    "hueSat": "Hue / Saturation...",
+    "blur": "Box Blur...",
+    "apply": "Apply Filter",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "hue": "Hue Shift",
+    "saturation": "Saturation",
+    "radius": "Radius"
+  },
+  "layers": {
+    "title": "Layers",
+    "add": "Add Layer",
+    "delete": "Delete Layer",
+    "duplicate": "Duplicate Layer",
+    "mergeDown": "Merge Down",
+    "opacity": "Opacity",
+    "blendMode": "Blend Mode",
+    "visibility": "Toggle Visibility",
+    "normal": "Normal",
+    "multiply": "Multiply",
+    "screen": "Screen",
+    "overlay": "Overlay"
+  },
+  "toolbar": {
+    "size": "Brush Size",
+    "opacity": "Opacity",
+    "color": "Color",
+    "symmetry": "Horizontal Symmetry Mode",
+    "undo": "Undo",
+    "redo": "Redo",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "zoomReset": "Reset Zoom (100%)"
+  },
+  "dialog": {
+    "confirmDeleteLayer": "Delete this layer?",
+    "resizePrompt": "Resize Canvas Dimensions",
+    "width": "Width (px):",
+    "height": "Height (px):"
+  }
+}

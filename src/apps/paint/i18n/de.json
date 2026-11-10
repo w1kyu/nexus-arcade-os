@@ -1,0 +1,78 @@
+{
+  "app": {
+    "title": "Nexus Malen",
+    "untitled": "Unbenanntes Bild"
+  },
+  "file": {
+    "menu": "Datei",
+    "new": "Neues Bild",
+    "open": "Öffnen...",
+    "save": "Speichern",
+    "saveAs": "Speichern unter...",
+    "resizeCanvas": "Leinwandgröße ändern...",
+    "export": "Exportieren",
+    "exportPng": "Als PNG (.png) exportieren",
+    "exportJpg": "Als JPEG (.jpg) exportieren",
+    "exportWebp": "Als WebP (.webp) exportieren",
+    "exportNpaint": "Als Nexus Paint mit Ebenen (.npaint) exportieren"
+  },
+  "tools": {
+    "brush": "Runder Pinsel (B)",
+    "softBrush": "Weicher Airbrush",
+    "pencil": "Bleistift (1px)",
+    "spray": "Sprühdose",
+    "eraser": "Radiergummi (E)",
+    "bucket": "Farbeimer (G)",
+    "eyedropper": "Pipette (I)",
+    "rect": "Rechteck (R)",
+    "ellipse": "Ellipse (O)",
+    "line": "Linie (L)",
+    "text": "Text (T)",
+    "select": "Rechteckige Auswahl (M)"
+  },
+  "adjustments": {
+    "title": "Bildanpassungen",
+    "brightnessContrast": "Helligkeit / Kontrast...",
+    "grayscale": "Graustufen",
+    "invert": "Farben invertieren",
+    "hueSat": "Farbton / Sättigung...",
+    "blur": "Weichzeichner...",
+    "apply": "Filter anwenden",
+    "brightness": "Helligkeit",
+    "contrast": "Kontrast",
+    "hue": "Farbtonverschiebung",
+    "saturation": "Sättigung",
+    "radius": "Radius"
+  },
+  "layers": {
+    "title": "Ebenen",
+    "add": "Ebene hinzufügen",
+    "delete": "Ebene löschen",
+    "duplicate": "Ebene duplizieren",
+    "mergeDown": "Nach unten zusammenführen",
+    "opacity": "Deckkraft",
+    "blendMode": "Mischmodus",
+    "visibility": "Sichtbarkeit umschalten",
+    "normal": "Normal",
+    "multiply": "Multiplizieren",
+    "screen": "Negativ multiplizieren",
+    "overlay": "Ineinanderkopieren"
+  },
+  "toolbar": {
+    "size": "Pinselgröße",
+    "opacity": "Deckkraft",
+    "color": "Farbe",
+    "symmetry": "Horizontale Symmetrie",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "zoomReset": "Zoom zurücksetzen (100%)"
+  },
+  "dialog": {
+    "confirmDeleteLayer": "Diese Ebene löschen?",
+    "resizePrompt": "Leinwandabmessungen ändern",
+    "width": "Breite (px):",
+    "height": "Höhe (px):"
+  }
+}

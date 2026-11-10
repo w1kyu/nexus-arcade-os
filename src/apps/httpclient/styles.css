@@ -1,0 +1,247 @@
+.nx-http-app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-1);
+  color: var(--text-1);
+}
+
+.nx-http-sidebar {
+  width: 230px;
+  background: var(--surface-2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.nx-http-sidebar-header {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nx-http-sidebar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.nx-http-sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nx-http-request-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+
+.nx-http-request-item:hover {
+  background: var(--surface-3);
+}
+
+.nx-http-request-item.active {
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface-2));
+  border-color: var(--accent);
+}
+
+.nx-http-method-badge {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.nx-http-method-badge.GET {
+  background: #10b981;
+  color: #fff;
+}
+.nx-http-method-badge.POST {
+  background: #3b82f6;
+  color: #fff;
+}
+.nx-http-method-badge.PUT {
+  background: #f59e0b;
+  color: #fff;
+}
+.nx-http-method-badge.DELETE {
+  background: #ef4444;
+  color: #fff;
+}
+.nx-http-method-badge.PATCH {
+  background: #8b5cf6;
+  color: #fff;
+}
+
+.nx-http-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* URL bar */
+.nx-http-url-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nx-http-method-select {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-1);
+  padding: 6px 8px;
+}
+
+.nx-http-url-input {
+  flex: 1;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-1);
+  outline: none;
+}
+
+.nx-http-url-input:focus {
+  border-color: var(--accent);
+}
+
+/* Split Panes */
+.nx-http-split {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+}
+
+.nx-http-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface-1);
+}
+
+.nx-http-pane:first-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.nx-http-tabs-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.nx-http-tab-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.nx-http-tab-btn:hover {
+  background: var(--surface-3);
+  color: var(--text-1);
+}
+
+.nx-http-tab-btn.active {
+  background: var(--surface-1);
+  color: var(--accent);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.nx-http-pane-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px 12px;
+  position: relative;
+}
+
+/* Response meta */
+.nx-http-response-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.nx-http-status-tag {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.nx-http-status-tag.ok {
+  background: #10b981;
+  color: #fff;
+}
+.nx-http-status-tag.error {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Diagnostics card */
+.nx-http-diag-card {
+  padding: 16px;
+  background: color-mix(in srgb, var(--danger, #ef4444) 10%, var(--surface-2));
+  border: 1px solid var(--danger, #ef4444);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+
+.nx-http-diag-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--danger, #ef4444);
+  margin-bottom: 6px;
+}
+
+.nx-http-diag-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-1);
+  margin-bottom: 10px;
+}

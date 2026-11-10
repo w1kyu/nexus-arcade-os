@@ -1,0 +1,38 @@
+{
+  "app": {
+    "name": "HTTP-Client"
+  },
+  "sidebar": {
+    "requests": "Gespeicherte Anfragen",
+    "history": "Verlauf",
+    "environments": "Umgebungen",
+    "newRequest": "Neue Anfrage",
+    "save": "Speichern"
+  },
+  "request": {
+    "send": "Senden",
+    "sending": "Sende...",
+    "urlPlaceholder": "URL eingeben (z.B. https://api.example.com/users oder {{baseUrl}})...",
+    "params": "Parameter",
+    "headers": "Header",
+    "body": "Body",
+    "auth": "Auth",
+    "snippets": "Code-Snippets"
+  },
+  "response": {
+    "status": "Status",
+    "time": "Dauer",
+    "size": "Größe",
+    "body": "Antwort",
+    "headers": "Header",
+    "empty": "Senden Sie eine Anfrage, um die Antwort zu sehen.",
+    "copy": "Antwort kopieren",
+    "copied": "In die Zwischenablage kopiert!"
+  },
+  "error": {
+    "corsTitle": "CORS / Browser-Netzwerk-Einschränkung",
+    "corsDesc": "Der Browser hat diese Cross-Origin-Anfrage blockiert, da der Server keine CORS-Header geliefert hat. Mit curl ausführen:",
+    "offlineTitle": "Offline",
+    "offlineDesc": "Sie arbeiten derzeit offline. Stellen Sie eine Internetverbindung her, um HTTP-Anfragen zu senden."
+  }
+}

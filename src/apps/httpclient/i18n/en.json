@@ -1,0 +1,38 @@
+{
+  "app": {
+    "name": "HTTP Client"
+  },
+  "sidebar": {
+    "requests": "Saved Requests",
+    "history": "History",
+    "environments": "Environments",
+    "newRequest": "New Request",
+    "save": "Save"
+  },
+  "request": {
+    "send": "Send",
+    "sending": "Sending...",
+    "urlPlaceholder": "Enter URL (e.g. https://api.example.com/users or {{baseUrl}})...",
+    "params": "Params",
+    "headers": "Headers",
+    "body": "Body",
+    "auth": "Auth",
+    "snippets": "Code Snippets"
+  },
+  "response": {
+    "status": "Status",
+    "time": "Time",
+    "size": "Size",
+    "body": "Body",
+    "headers": "Headers",
+    "empty": "Send a request to see the response.",
+    "copy": "Copy Response",
+    "copied": "Copied to clipboard!"
+  },
+  "error": {
+    "corsTitle": "CORS / Browser Network Restriction",
+    "corsDesc": "The browser blocked this cross-origin request because the target server did not return CORS headers. Run with curl:",
+    "offlineTitle": "Offline",
+    "offlineDesc": "You are currently working offline. Connect to the internet to send HTTP requests."
+  }
+}

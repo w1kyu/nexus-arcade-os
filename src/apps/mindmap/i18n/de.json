@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Nexus Mindmap",
+    "untitled": "Unbenannte Mindmap"
+  },
+  "file": {
+    "menu": "Datei",
+    "new": "Neue Mindmap",
+    "open": "Öffnen...",
+    "save": "Speichern",
+    "saveAs": "Speichern unter...",
+    "export": "Exportieren",
+    "exportSvg": "Als SVG (.svg) exportieren",
+    "exportPng": "Als PNG (.png) exportieren",
+    "exportMd": "Als Markdown (.md) exportieren",
+    "exportNmap": "Als Nexus Map (.nmap) exportieren",
+    "import": "Importieren",
+    "importMd": "Markdown-Gliederung importieren"
+  },
+  "toolbar": {
+    "addChild": "Unterthema hinzufügen (Tab)",
+    "addSibling": "Geschwisterthema (Enter)",
+    "delete": "Löschen (Entf)",
+    "collapse": "Ein-/Ausklappen (Leertaste)",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "layout": "Layout",
+    "layoutRight": "Baum rechts",
+    "layoutRadial": "Radialer Baum",
+    "layoutOrg": "Organigramm",
+    "color": "Knotenfarbe",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "zoomReset": "Zoom zurücksetzen",
+    "zoomFit": "Inhalt einpassen",
+    "toTasks": "Aufgaben aus Zweig erstellen"
+  },
+  "dialog": {
+    "editNode": "Thementext bearbeiten",
+    "enterText": "Thementext:",
+    "importMd": "Markdown-Gliederung importieren",
+    "pasteMd": "Markdown-Gliederung (# oder - Aufzählungszeichen) einfügen:",
+    "confirmUnsaved": "Es gibt ungespeicherte Änderungen. Trotzdem fortfahren?"
+  }
+}

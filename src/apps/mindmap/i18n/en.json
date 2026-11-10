@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Nexus Mind Map",
+    "untitled": "Untitled Mind Map"
+  },
+  "file": {
+    "menu": "File",
+    "new": "New Mind Map",
+    "open": "Open...",
+    "save": "Save",
+    "saveAs": "Save As...",
+    "export": "Export",
+    "exportSvg": "Export as SVG (.svg)",
+    "exportPng": "Export as PNG (.png)",
+    "exportMd": "Export as Markdown (.md)",
+    "exportNmap": "Export as Nexus Map (.nmap)",
+    "import": "Import",
+    "importMd": "Import Markdown Outline"
+  },
+  "toolbar": {
+    "addChild": "Add Subtopic (Tab)",
+    "addSibling": "Add Sibling (Enter)",
+    "delete": "Delete (Del)",
+    "collapse": "Collapse / Expand (Space)",
+    "undo": "Undo",
+    "redo": "Redo",
+    "layout": "Layout",
+    "layoutRight": "Right Tree",
+    "layoutRadial": "Radial Tree",
+    "layoutOrg": "Org Chart",
+    "color": "Node Color",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "zoomReset": "Reset Zoom",
+    "zoomFit": "Fit Content",
+    "toTasks": "Create Tasks from Branch"
+  },
+  "dialog": {
+    "editNode": "Edit Topic Text",
+    "enterText": "Topic text:",
+    "importMd": "Import Markdown Outline",
+    "pasteMd": "Paste markdown outline (# or - bullets):",
+    "confirmUnsaved": "You have unsaved changes. Continue anyway?"
+  }
+}

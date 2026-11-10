@@ -1,0 +1,201 @@
+/* Nexus Mind Map Styles */
+.nx-mindmap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+}
+
+/* Header */
+.nx-mindmap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nx-mindmap-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.nx-mindmap-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+
+.nx-mindmap-title-input {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  max-width: 320px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.nx-mindmap-title-input:hover,
+.nx-mindmap-title-input:focus {
+  background-color: var(--surface-2);
+  border-color: var(--border);
+}
+
+.nx-mindmap-status {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 6px;
+}
+
+.nx-mindmap-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Buttons & Controls */
+.nx-mindmap-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.nx-mindmap-btn:hover {
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--border);
+}
+
+.nx-mindmap-btn.active {
+  background-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nx-mindmap-select {
+  height: 28px;
+  padding: 0 8px;
+  font-size: 12px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  outline: none;
+  cursor: pointer;
+}
+
+.nx-mindmap-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border);
+  margin: 0 4px;
+}
+
+/* Toolbar */
+.nx-mindmap-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 10px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nx-mindmap-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nx-mindmap-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Viewport & Canvas */
+.nx-mindmap-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  cursor: grab;
+}
+
+.nx-mindmap-viewport.panning {
+  cursor: grabbing;
+}
+
+[data-theme='dark'] .nx-mindmap-viewport {
+  background-color: #0f172a;
+  background-image: radial-gradient(#334155 1.2px, transparent 1.2px);
+}
+
+.nx-mindmap-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Zoom Widget */
+.nx-mindmap-zoom-widget {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 3px 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.nx-mindmap-zoom-label {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 44px;
+  text-align: center;
+}

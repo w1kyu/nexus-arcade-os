@@ -1,0 +1,204 @@
+.nx-pdf {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg, #0f172a);
+  color: var(--color-text, #f8fafc);
+  font-family: inherit;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Toolbar */
+.nx-pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--color-surface, #1e293b);
+  border-bottom: 1px solid var(--color-border, #334155);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nx-pdf-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-pdf-btn {
+  padding: 5px 10px;
+  background: var(--color-btn-bg, #334155);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #475569);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.nx-pdf-btn:hover:not(:disabled) {
+  background: var(--color-btn-hover, #475569);
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-pdf-btn.primary {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-pdf-btn.active {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+}
+
+.nx-pdf-select {
+  padding: 4px 8px;
+  background: var(--color-btn-bg, #334155);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #475569);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Main workspace */
+.nx-pdf-workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* PDF Viewer Frame */
+.nx-pdf-viewer-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #1e293b;
+  position: relative;
+}
+
+.nx-pdf-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* Combiner / Scanner Grid View */
+.nx-pdf-combiner-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow-y: auto;
+  gap: 16px;
+}
+
+.nx-pdf-empty-dropzone {
+  flex: 1;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #475569;
+  border-radius: 8px;
+  color: #94a3b8;
+  gap: 12px;
+  padding: 32px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.nx-pdf-empty-dropzone:hover {
+  border-color: var(--color-accent, #6366f1);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.nx-pdf-pages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.nx-pdf-page-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.nx-pdf-page-thumb-wrapper {
+  width: 100%;
+  height: 220px;
+  background: #0b0f19;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.nx-pdf-page-thumb {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.nx-pdf-page-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nx-pdf-page-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.nx-pdf-page-action-btn {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  border-radius: 3px;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-pdf-page-action-btn:hover {
+  background: #475569;
+}

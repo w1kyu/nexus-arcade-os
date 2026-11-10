@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "PDF-Werkzeuge",
+    "untitled": "Unbenanntes Dokument"
+  },
+  "toolbar": {
+    "open": "PDF öffnen",
+    "addImages": "Bilder hinzufügen",
+    "generatePdf": "PDF erstellen",
+    "print": "Drucken",
+    "download": "PDF speichern",
+    "clear": "Alle leeren",
+    "pageSize": "Seitengröße",
+    "orientation": "Ausrichtung",
+    "portrait": "Hochformat",
+    "landscape": "Querformat"
+  },
+  "viewer": {
+    "noDocument": "Keine PDF geladen",
+    "openPrompt": "Öffnen Sie eine PDF-Datei oder fügen Sie gescannte Bilder hinzu, um ein neues Dokument zu erstellen."
+  },
+  "combiner": {
+    "title": "Seiten zum Kombinieren",
+    "pagesCount": "{count} Seite(n)",
+    "rotate": "90° drehen",
+    "delete": "Entfernen",
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
+    "emptyPrompt": "Bilder hier ablegen oder oben auf 'Bilder hinzufügen' klicken"
+  },
+  "dialog": {
+    "confirmClear": "Alle geladenen Seiten entfernen?",
+    "generatedSuccess": "PDF-Dokument erfolgreich generiert",
+    "errorLoading": "PDF-Datei konnte nicht gelesen werden"
+  }
+}

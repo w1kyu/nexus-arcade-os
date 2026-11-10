@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "PDF Tools",
+    "untitled": "Untitled Document"
+  },
+  "toolbar": {
+    "open": "Open PDF",
+    "addImages": "Add Images",
+    "generatePdf": "Create PDF",
+    "print": "Print",
+    "download": "Save PDF",
+    "clear": "Clear All",
+    "pageSize": "Page size",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Landscape"
+  },
+  "viewer": {
+    "noDocument": "No PDF loaded",
+    "openPrompt": "Open a PDF file or add scanned images to combine into a new document."
+  },
+  "combiner": {
+    "title": "Pages to Combine",
+    "pagesCount": "{count} page(s)",
+    "rotate": "Rotate 90°",
+    "delete": "Remove",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "emptyPrompt": "Drop images here or click 'Add Images' above"
+  },
+  "dialog": {
+    "confirmClear": "Clear all loaded pages?",
+    "generatedSuccess": "PDF document generated successfully",
+    "errorLoading": "Could not read PDF file"
+  }
+}

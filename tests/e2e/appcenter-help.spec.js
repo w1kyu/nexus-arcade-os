@@ -7,9 +7,10 @@ import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 async function palette(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
   await page.keyboard.press('Control+k');
-  await page.keyboard.type(query);
-  await expect(page.getByRole('option', { name: option }).first()).toBeVisible();
-  await page.keyboard.press('Enter');
+  await page.locator('.nx-palette-input').fill(query);
+  const opt = page.locator('.nx-palette-list').getByRole('option', { name: option }).first();
+  await expect(opt).toBeVisible();
+  await opt.click();
 }
 
 test.describe('app center and help', () => {

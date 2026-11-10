@@ -8,9 +8,13 @@ const calWin = (/** @type {Page} */ page) => page.locator('.nx-windows .nx-windo
 
 async function openCalendar(/** @type {Page} */ page) {
   await page.keyboard.press('Control+k');
-  await page.keyboard.type('Calendar');
-  await expect(page.getByRole('option', { name: /^Calendar/ }).first()).toBeVisible();
-  await page.keyboard.press('Enter');
+  await page.locator('.nx-palette-input').fill('Calendar');
+  const opt = page
+    .locator('.nx-palette-list')
+    .getByRole('option', { name: /^Calendar/ })
+    .first();
+  await expect(opt).toBeVisible();
+  await opt.click();
   await expect(calWin(page)).toBeVisible();
 }
 

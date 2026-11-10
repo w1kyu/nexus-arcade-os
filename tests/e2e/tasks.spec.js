@@ -8,9 +8,13 @@ const tasksWin = (/** @type {Page} */ page) => page.locator('.nx-windows .nx-win
 
 async function openTasks(/** @type {Page} */ page) {
   await page.keyboard.press('Control+k');
-  await page.keyboard.type('Tasks');
-  await expect(page.getByRole('option', { name: /^Tasks/ }).first()).toBeVisible();
-  await page.keyboard.press('Enter');
+  await page.locator('.nx-palette-input').fill('Tasks');
+  const opt = page
+    .locator('.nx-palette-list')
+    .getByRole('option', { name: /^Tasks/ })
+    .first();
+  await expect(opt).toBeVisible();
+  await opt.click();
   await expect(tasksWin(page)).toBeVisible();
 }
 

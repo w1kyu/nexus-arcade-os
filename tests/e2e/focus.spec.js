@@ -8,9 +8,13 @@ const focusWin = (/** @type {Page} */ page) => page.locator('.nx-windows .nx-win
 
 async function openFocus(/** @type {Page} */ page) {
   await page.keyboard.press('Control+k');
-  await page.keyboard.type('Focus');
-  await expect(page.getByRole('option', { name: /^Focus/ }).first()).toBeVisible();
-  await page.keyboard.press('Enter');
+  await page.locator('.nx-palette-input').fill('Focus');
+  const opt = page
+    .locator('.nx-palette-list')
+    .getByRole('option', { name: /^Focus/ })
+    .first();
+  await expect(opt).toBeVisible();
+  await opt.click();
   await expect(focusWin(page)).toBeVisible();
 }
 

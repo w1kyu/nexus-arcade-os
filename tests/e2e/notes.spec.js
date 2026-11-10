@@ -11,9 +11,13 @@ const previewPane = (/** @type {Page} */ page) => notesWin(page).locator('.nx-no
 
 async function openNotes(/** @type {Page} */ page) {
   await page.keyboard.press('Control+k');
-  await page.keyboard.type('Nexus Notes');
-  await expect(page.getByRole('option', { name: /^Nexus Notes/ }).first()).toBeVisible();
-  await page.keyboard.press('Enter');
+  await page.locator('.nx-palette-input').fill('Nexus Notes');
+  const opt = page
+    .locator('.nx-palette-list')
+    .getByRole('option', { name: /^Nexus Notes/ })
+    .first();
+  await expect(opt).toBeVisible();
+  await opt.click();
   await expect(notesWin(page)).toBeVisible();
 }
 

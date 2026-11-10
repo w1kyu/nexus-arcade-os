@@ -72,7 +72,8 @@ export const terminal = {
 
 /** @type {import('../../kernel/types').AppModule['mount']} */
 export async function mount(container, ctx, args = {}) {
-  const t = ctx.t;
+  const t = (/** @type {string} */ k, /** @type {Record<string, unknown>} */ v = {}) => ctx.i18n.t(k, v);
+  const notify = (/** @type {any} */ n) => (ctx.notify || ctx.notifications?.notify)?.(n);
   const fs = /** @type {any} */ (ctx.fs);
   const home = fs?.home || '/home';
   let projectPath = args.path || `${home}/Projects`;
@@ -148,7 +149,7 @@ export async function mount(container, ctx, args = {}) {
     try {
       const content = await fs.readFile(filePath, { as: 'text' });
       if (typeof content !== 'string') {
-        ctx.notifications?.notify?.({ title: t('messages.cannotReadBinary'), level: 'warning' });
+        notify({ title: t('messages.cannotReadBinary'), level: 'warning' });
         return;
       }
       const name = filePath.split('/').pop() || filePath;
@@ -178,7 +179,7 @@ export async function mount(container, ctx, args = {}) {
       renderTabs();
       selectTab(tab);
     } catch (err) {
-      ctx.notifications?.notify?.({ title: String(err), level: 'error' });
+      notify({ title: String(err), level: 'error' });
     }
   }
 
@@ -278,7 +279,7 @@ export async function mount(container, ctx, args = {}) {
     const openFiles = tabs.map((t) => ({ path: t.path, content: t.editor.text }));
     await takeSnapshot(ctx.storage, projectPath, openFiles);
 
-    ctx.notifications?.notify?.({
+    notify({
       title: t('messages.saved', { name: activeTab.name }),
       level: 'success',
     });
@@ -679,8 +680,7 @@ export async function mount(container, ctx, args = {}) {
         }
       };
       window.addEventListener('message', msgHandler);
-
-      iframe.srcdoc = bundle.html;
+      iframe.src = `data:text/html;charset=utf-8,${encodeURIComponent(bundle.html)}`;
     } catch (err) {
       primaryPane.replaceChildren(
         h(
@@ -723,7 +723,7 @@ export async function mount(container, ctx, args = {}) {
 
   function runActiveJsInWorker() {
     if (!activeTab || !activeTab.name.endsWith('.js')) {
-      ctx.notifications?.notify?.({ title: t('runner.noJsActive'), level: 'warning' });
+      notify({ title: t('runner.noJsActive'), level: 'warning' });
       return;
     }
 

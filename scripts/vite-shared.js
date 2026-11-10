@@ -21,8 +21,9 @@ export function defineConstants(edition) {
  * Lite needs 'unsafe-inline' because every script and style is inlined into one file.
  * @param {'web' | 'lite'} edition
  */
-export function cspPlugin(edition) {
-  const inline = edition === 'lite' ? " 'unsafe-inline'" : '';
+export function cspPlugin(_edition) {
+  // Allow unsafe-inline for inline preview iframes and Nexus Lite
+  const inline = " 'unsafe-inline'";
   const policy = [
     "default-src 'self'",
     `script-src 'self'${inline}`,
@@ -30,7 +31,7 @@ export function cspPlugin(edition) {
     "img-src 'self' data: blob:",
     // File previews: audio/video and the browser's PDF viewer read VFS files as blob: URLs.
     "media-src 'self' blob:",
-    "frame-src 'self' blob:",
+    "frame-src 'self' blob: data:",
     "font-src 'self' data:",
     "connect-src 'self'",
     "worker-src 'self' blob: data:",

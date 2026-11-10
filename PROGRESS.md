@@ -2,8 +2,9 @@
 
 ## Status
 
-- **Current phase:** 6 — Office & Creative suite (Phase 6 done 2026-11-10, `v0.6.0`)
-- **Next step:** Phase 7 (`specs/07-dev-tools.md`): Developer Toolkit (7.1 Code Playground, 7.2 Nexus Code, 7.3 JSON Toolkit, 7.4 Encoding & Crypto, 7.5 Regex Tester, 7.6 Diff Viewer, 7.7 API / HTTP Client, 7.8 Color Lab & Palette Generator).
+- **Current phase:** 7 — Developer Toolkit (Phase 7 done 2026-11-10, `v0.7.0`)
+- **Next step:** Phase 8 (`specs/08-cs-lab.md`): CS Lab (computer science learning tools).
+- **Phase 7 verification:** 803 unit tests (83 test files) passing; full Playwright e2e test suite passing (33 passed, 24 mobile skipped); 40 app screenshots configured; 0 missing i18n keys across 42 namespaces; single-file Lite build 5.85 MB (well under 8.00 MB budget).
 - **Phase 6 verification:** 759 unit tests (77 test files); e2e test suite passing incl. `office-creative.spec.js`; 33 app screenshots generated; 0 missing i18n keys across 35 namespaces; single-file Lite build 5.25 MB (well under 8.00 MB budget).
 - **Phase 5 verification:** 671 unit tests (69 test files); full e2e test suite passing (29 passed, 20 mobile skipped); 25 app screenshots generated; 0 missing i18n keys across 27 namespaces; single-file Lite build 4.77 MB (well under 8.00 MB budget).
 - **Phase 4 verification:** 619 unit tests; e2e suites for Notes (`notes.spec.js`), Tasks (`tasks.spec.js`), Calendar (`calendar.spec.js`), Focus (`focus.spec.js`).
@@ -92,6 +93,8 @@ Recorded per NEXUS_BRIEF.md §2.4. Newest last.
 | 2026-11-10 | **Manifest category constraint:** Manifest schema accepts `productivity`, `study`, `office`, `dev`, `cslab`, `games`, `media`, `ai`, `system`. Utility apps (`calculator`, `clipboard`, `clock`, `converter`, `vault`) are registered under `productivity`. | Spec 1.1 category validation rules. |
 | 2026-11-10 | **Named `mount` export standard:** Apps must export `export async function mount(container, ctx, args)` as a named export. | Kernel app registry (`registry.js`) requires named `mount` export. |
 | 2026-11-10 | **Shared math expression parser:** Built-in recursive descent parser with zero eval in `src/ui/calc.js` used across Calculator app (5.8) and command palette `=`. | Spec 5.8 "An expression parser written by us (no eval)". |
+| 2026-11-10 | **Shared tool layout & diff viewer:** Reusable `createToolLayout` (`src/ui/tool-layout.js`) and `createDiffViewer` (`src/ui/diff.js`) components shared across dev tools (Diff Viewer, Color Lab, Devtools, HTTP Client, Snippet Manager, Playground, Nexus Code). | Keeps dev tools consistent, avoids duplicate diff/pane code, and satisfies 7.6 / spec requirements. |
+| 2026-11-10 | **Dev preview iframe sandboxing & CSP:** Code Playground and Nexus Code run user preview documents in sandboxed iframes (`sandbox="allow-scripts"`, no `allow-same-origin`) with `data:` URI and parent CSP `'unsafe-inline'` allowing dynamic style/script execution while preserving origin isolation. | Spec 7.1/7.2 requirements; sandbox prevents access to parent origin, storage, cookies, and kernel. |
 
 ## Cuts
 
@@ -632,93 +635,93 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **7.1 Code Playground**
 
-- [ ] [P1] HTML, CSS and JavaScript editors (CodeMirror 6 if approved) with highlighting, autocomplete, bracket matching, Emmet-style HTML abbreviations if cheap, formatting (Prettier only if approved; otherwise a basic formatter).
-- [ ] [P1] Live preview in a **sandboxed iframe** (`sandbox="allow-scripts"`, no same-origin), auto-refresh with debounce or manual run (`Mod+Enter`).
-- [ ] [P1] Console panel that captures `console.log/warn/error/table`, uncaught errors with line numbers, and lets the user run expressions in the preview context.
-- [ ] [P1] Layouts: side-by-side, stacked, preview-only, editor-only; resizable panes.
-- [ ] [P1] Projects saved in the VFS (`Projects/<name>/index.html, style.css, script.js`); a project list with thumbnails.
-- [ ] [P1] Templates: blank, canvas game loop, CSS animation, fetch + JSON demo, Web Component, p5-like drawing helper (our own tiny one).
-- [ ] [P1] Export a project as a single HTML file; import a single HTML file (splitting into the three editors).
-- [ ] [P2] Additional library selection from **bundled** libraries only (no CDN), clearly listed.
-- [ ] [P2] Share as a URL (project compressed into the URL hash) — works offline for opening.
+- [x] [P1] HTML, CSS and JavaScript editors (CodeMirror 6 if approved) with highlighting, autocomplete, bracket matching, Emmet-style HTML abbreviations if cheap, formatting (Prettier only if approved; otherwise a basic formatter).
+- [x] [P1] Live preview in a **sandboxed iframe** (`sandbox="allow-scripts"`, no same-origin), auto-refresh with debounce or manual run (`Mod+Enter`).
+- [x] [P1] Console panel that captures `console.log/warn/error/table`, uncaught errors with line numbers, and lets the user run expressions in the preview context.
+- [x] [P1] Layouts: side-by-side, stacked, preview-only, editor-only; resizable panes.
+- [x] [P1] Projects saved in the VFS (`Projects/<name>/index.html, style.css, script.js`); a project list with thumbnails.
+- [x] [P1] Templates: blank, canvas game loop, CSS animation, fetch + JSON demo, Web Component, p5-like drawing helper (our own tiny one).
+- [x] [P1] Export a project as a single HTML file; import a single HTML file (splitting into the three editors).
+- [x] [P2] Additional library selection from **bundled** libraries only (no CDN), clearly listed.
+- [x] [P2] Share as a URL (project compressed into the URL hash) — works offline for opening.
 
 **7.2 Nexus Code (multi-file editor)**
 
-- [ ] [P1] A VS Code-like layout: file tree of a VFS folder, tabs, editor, status bar, command palette integration.
-- [ ] [P1] Search across files (with regex), go to file (`Mod+P`), go to line, multi-cursor, split editors.
-- [ ] [P1] Run web projects: an `index.html` in the folder is previewed in a sandboxed iframe with the other files served from the VFS (using a Service Worker route or blob URLs; document the approach).
-- [ ] [P2] Markdown preview, image preview, a built-in terminal panel (the Nexus Terminal) docked at the bottom.
-- [ ] [P2] Git-like local history: snapshots of the project folder with diff view (using the Diff Viewer component).
-- [ ] [P3] Run JavaScript files in a Worker with captured console ("node-lite").
+- [x] [P1] A VS Code-like layout: file tree of a VFS folder, tabs, editor, status bar, command palette integration.
+- [x] [P1] Search across files (with regex), go to file (`Mod+P`), go to line, multi-cursor, split editors.
+- [x] [P1] Run web projects: an `index.html` in the folder is previewed in a sandboxed iframe with the other files served from the VFS (using a Service Worker route or blob URLs; document the approach).
+- [x] [P2] Markdown preview, image preview, a built-in terminal panel (the Nexus Terminal) docked at the bottom.
+- [x] [P2] Git-like local history: snapshots of the project folder with diff view (using the Diff Viewer component).
+- [x] [P3] Run JavaScript files in a Worker with captured console ("node-lite").
 
 **7.3 JSON Toolkit**
 
-- [ ] [P1] Format (indent options), minify, validate with exact error position and message, sort keys, escape/unescape.
-- [ ] [P1] Tree view with collapse/expand, path copy (`data.items[3].name`), search.
-- [ ] [P1] Convert: JSON ↔ CSV, JSON ↔ YAML (with an approved library or our own simple YAML subset — document limits), JSON → TypeScript types / JSDoc typedefs.
-- [ ] [P2] JSONPath queries; JSON Schema validation (with an approved library).
-- [ ] [P2] JSON diff (structural, using the Diff Viewer).
+- [x] [P1] Format (indent options), minify, validate with exact error position and message, sort keys, escape/unescape.
+- [x] [P1] Tree view with collapse/expand, path copy (`data.items[3].name`), search.
+- [x] [P1] Convert: JSON ↔ CSV, JSON ↔ YAML (with an approved library or our own simple YAML subset — document limits), JSON → TypeScript types / JSDoc typedefs.
+- [x] [P2] JSONPath queries; JSON Schema validation (with an approved library).
+- [x] [P2] JSON diff (structural, using the Diff Viewer).
 
 **7.4 Encoding & Crypto tools**
 
-- [ ] [P1] Base64 (text and file, URL-safe variant), Base32, hex, binary, URL encode/decode (component and full), HTML entities, Unicode escapes (`ä`), punycode.
-- [ ] [P1] Hashes: MD5 (own implementation, tested), SHA-1, SHA-256, SHA-384, SHA-512 (SubtleCrypto), CRC32; for text and files; compare against an expected hash.
-- [ ] [P1] HMAC (SHA-256/512) with key.
-- [ ] [P2] AES-GCM encrypt/decrypt text with a password (educational, using the same crypto helpers as the OS).
-- [ ] [P2] RSA/ECDSA key pair generation and export (PEM/JWK) via SubtleCrypto.
+- [x] [P1] Base64 (text and file, URL-safe variant), Base32, hex, binary, URL encode/decode (component and full), HTML entities, Unicode escapes (`ä`), punycode.
+- [x] [P1] Hashes: MD5 (own implementation, tested), SHA-1, SHA-256, SHA-384, SHA-512 (SubtleCrypto), CRC32; for text and files; compare against an expected hash.
+- [x] [P1] HMAC (SHA-256/512) with key.
+- [x] [P2] AES-GCM encrypt/decrypt text with a password (educational, using the same crypto helpers as the OS).
+- [x] [P2] RSA/ECDSA key pair generation and export (PEM/JWK) via SubtleCrypto.
 
 **7.5 Regex Tester**
 
-- [ ] [P1] Pattern input with flags (g, i, m, s, u, y, d), test text with live **match highlighting**, groups (numbered and named) in a table, match count, error messages.
-- [ ] [P1] Replace mode with live preview, including `$1`/`$<name>` references.
-- [ ] [P1] Cheat sheet panel and a library of common patterns (email, URL, IPv4/6, dates, German postal codes, IBAN format).
-- [ ] [P1] Runs matching in a Worker with a timeout, so catastrophic backtracking can't freeze the OS.
-- [ ] [P2] Regex explanation in plain English/German (token-by-token breakdown).
-- [ ] [P2] Unit test mode: list of strings that should / should not match.
+- [x] [P1] Pattern input with flags (g, i, m, s, u, y, d), test text with live **match highlighting**, groups (numbered and named) in a table, match count, error messages.
+- [x] [P1] Replace mode with live preview, including `$1`/`$<name>` references.
+- [x] [P1] Cheat sheet panel and a library of common patterns (email, URL, IPv4/6, dates, German postal codes, IBAN format).
+- [x] [P1] Runs matching in a Worker with a timeout, so catastrophic backtracking can't freeze the OS.
+- [x] [P2] Regex explanation in plain English/German (token-by-token breakdown).
+- [x] [P2] Unit test mode: list of strings that should / should not match.
 
 **7.6 Diff Viewer**
 
-- [ ] [P1] Text diff side-by-side and inline, line and word level, ignore whitespace/case options, jump between changes.
-- [ ] [P1] Compare two VFS files, or pasted text.
-- [ ] [P2] Three-way view; export as unified diff (`.patch`).
+- [x] [P1] Text diff side-by-side and inline, line and word level, ignore whitespace/case options, jump between changes.
+- [x] [P1] Compare two VFS files, or pasted text.
+- [x] [P2] Three-way view; export as unified diff (`.patch`).
 
 **7.7 Color Laboratory**
 
-- [ ] [P1] Conversion between HEX, RGB(A), HSL(A), HSV, CMYK, **OKLCH** and CSS named colors; picker with color wheel and sliders; EyeDropper API where supported.
-- [ ] [P1] Palette generator: complementary, analogous, triadic, tetradic, monochromatic, shades/tints; random harmonious palettes; lock colors and regenerate others.
-- [ ] [P1] **Contrast checker** (WCAG 2.x AA/AAA for normal and large text; APCA as P2).
-- [ ] [P1] Save palettes; export as CSS variables, JSON, SCSS; "Use as OS accent" and "Create theme from palette" (feeds phase 13 theme editor).
-- [ ] [P2] Color blindness simulation; gradient generator (linear, radial, conic) with CSS output.
-- [ ] [P2] Extract a palette from an image in the VFS (k-means in a worker).
+- [x] [P1] Conversion between HEX, RGB(A), HSL(A), HSV, CMYK, **OKLCH** and CSS named colors; picker with color wheel and sliders; EyeDropper API where supported.
+- [x] [P1] Palette generator: complementary, analogous, triadic, tetradic, monochromatic, shades/tints; random harmonious palettes; lock colors and regenerate others.
+- [x] [P1] **Contrast checker** (WCAG 2.x AA/AAA for normal and large text; APCA as P2).
+- [x] [P1] Save palettes; export as CSS variables, JSON, SCSS; "Use as OS accent" and "Create theme from palette" (feeds phase 13 theme editor).
+- [x] [P2] Color blindness simulation; gradient generator (linear, radial, conic) with CSS output.
+- [x] [P2] Extract a palette from an image in the VFS (k-means in a worker).
 
 **7.8 Small dev tools**
 
-- [ ] **JWT decoder:** header/payload pretty-printed, expiry shown as a date with "expired" badge, signature verification for HS256 with a secret (P2: RS256 with a public key).
-- [ ] **UUID / ULID / nanoid generator:** bulk generation, versions v4 and v7, copy all.
-- [ ] **Timestamp converter:** Unix seconds/milliseconds ↔ ISO 8601 ↔ local time ↔ relative time, time zones.
-- [ ] **Number base converter:** any base 2–36, two's complement view, byte order.
-- [ ] **Cron expression tool:** explain an expression in plain EN/DE, show the next 10 run times, builder UI.
-- [ ] **Text tools:** case conversion (camel, snake, kebab, title …), slugify, sort/dedupe/reverse lines, count characters/words/lines/bytes, trim, find & replace, lorem ipsum generator (for user use only).
-- [ ] **Markdown table generator:** editable grid → Markdown/HTML/CSV.
-- [ ] **CSS generators:** box-shadow, border-radius, gradient, clip-path, cubic-bezier easing editor with preview, flexbox and grid playgrounds.
-- [ ] **SVG viewer & optimizer:** preview, basic optimization (remove metadata/comments, round numbers), convert to data URI and PNG.
-- [ ] **QR code generator** (approved library or own implementation) and reader via camera (P2, BarcodeDetector API where supported).
-- [ ] **Fake data generator** (P2): names (EN/DE), emails, addresses, dates, numbers → JSON/CSV with a schema.
-- [ ] **HTTP status code / MIME type / keyboard key code reference** (P2).
+- [x] **JWT decoder:** header/payload pretty-printed, expiry shown as a date with "expired" badge, signature verification for HS256 with a secret (P2: RS256 with a public key).
+- [x] **UUID / ULID / nanoid generator:** bulk generation, versions v4 and v7, copy all.
+- [x] **Timestamp converter:** Unix seconds/milliseconds ↔ ISO 8601 ↔ local time ↔ relative time, time zones.
+- [x] **Number base converter:** any base 2–36, two's complement view, byte order.
+- [x] **Cron expression tool:** explain an expression in plain EN/DE, show the next 10 run times, builder UI.
+- [x] **Text tools:** case conversion (camel, snake, kebab, title …), slugify, sort/dedupe/reverse lines, count characters/words/lines/bytes, trim, find & replace, lorem ipsum generator (for user use only).
+- [x] **Markdown table generator:** editable grid → Markdown/HTML/CSV.
+- [x] **CSS generators:** box-shadow, border-radius, gradient, clip-path, cubic-bezier easing editor with preview, flexbox and grid playgrounds.
+- [x] **SVG viewer & optimizer:** preview, basic optimization (remove metadata/comments, round numbers), convert to data URI and PNG.
+- [x] **QR code generator** (approved library or own implementation) and reader via camera (P2, BarcodeDetector API where supported).
+- [x] **Fake data generator** (P2): names (EN/DE), emails, addresses, dates, numbers → JSON/CSV with a schema.
+- [x] **HTTP status code / MIME type / keyboard key code reference** (P2).
 
 **7.9 HTTP Client**
 
-- [ ] [P1] Request builder: method, URL, query params table, headers table, body (JSON, form, raw text), auth helpers (Bearer, Basic).
-- [ ] [P1] Response viewer: status, time, size, headers, body pretty-printed (JSON tree, HTML preview, image preview).
-- [ ] [P1] Collections of saved requests, environments with variables (`{{baseUrl}}`), request history.
-- [ ] [P1] Clear explanation when a request fails because of CORS or being offline (not a fake error).
-- [ ] [P2] Import/export collections as JSON; generate code snippets (fetch, curl).
+- [x] [P1] Request builder: method, URL, query params table, headers table, body (JSON, form, raw text), auth helpers (Bearer, Basic).
+- [x] [P1] Response viewer: status, time, size, headers, body pretty-printed (JSON tree, HTML preview, image preview).
+- [x] [P1] Collections of saved requests, environments with variables (`{{baseUrl}}`), request history.
+- [x] [P1] Clear explanation when a request fails because of CORS or being offline (not a fake error).
+- [x] [P2] Import/export collections as JSON; generate code snippets (fetch, curl).
 
 **7.10 Snippet Manager**
 
-- [ ] [P1] Snippets with title, language, tags, description, code (highlighted); folders; search; favorites.
-- [ ] [P1] Copy with one click, insert into Code Playground / Nexus Code via intents, available in the command palette.
-- [ ] [P2] Import/export as JSON or a folder of files.
+- [x] [P1] Snippets with title, language, tags, description, code (highlighted); folders; search; favorites.
+- [x] [P1] Copy with one click, insert into Code Playground / Nexus Code via intents, available in the command palette.
+- [x] [P2] Import/export as JSON or a folder of files.
 
 ### Phase 8 — CS Lab (computer science learning tools) — `specs/08-cs-lab.md`
 

@@ -47,6 +47,13 @@ const APPS = {
   pixelart: { name: 'Pixel Art Studio', setup: async () => {} },
   present: { name: 'Nexus Present', setup: async () => {} },
   pdf: { name: 'PDF Tools', setup: async () => {} },
+  diff: { name: 'Diff Viewer', setup: async () => {} },
+  colorlab: { name: 'Color Laboratory', setup: async () => {} },
+  devtools: { name: 'Developer Tools', setup: async () => {} },
+  httpclient: { name: 'HTTP Client', setup: async () => {} },
+  snippets: { name: 'Snippet Manager', setup: async () => {} },
+  playground: { name: 'Code Playground', setup: async () => {} },
+  code: { name: 'Nexus Code', setup: async () => {} },
 };
 
 const preview = spawn(`npx vite preview --port ${PORT} --strictPort`, { shell: true, stdio: 'ignore' });

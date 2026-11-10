@@ -1,0 +1,287 @@
+.nx-pixelart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg, #1a1a24);
+  color: var(--color-text, #f0f0f5);
+  font-family: inherit;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Toolbar */
+.nx-pixelart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--color-surface, #232332);
+  border-bottom: 1px solid var(--color-border, #333345);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nx-pixelart-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nx-pixelart-btn {
+  padding: 5px 10px;
+  background: var(--color-btn-bg, #2d2d3f);
+  color: var(--color-text, #f0f0f5);
+  border: 1px solid var(--color-border, #3c3c52);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.nx-pixelart-btn:hover:not(:disabled) {
+  background: var(--color-btn-hover, #38384f);
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-pixelart-btn.active {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-pixelart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nx-pixelart-select {
+  padding: 4px 8px;
+  background: var(--color-btn-bg, #2d2d3f);
+  color: var(--color-text, #f0f0f5);
+  border: 1px solid var(--color-border, #3c3c52);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nx-pixelart-status {
+  font-size: 12px;
+  color: var(--color-muted, #94a3b8);
+  margin-left: 6px;
+}
+
+/* Main workspace */
+.nx-pixelart-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left Sidebar (Tools & Palette) */
+.nx-pixelart-sidebar {
+  width: 220px;
+  background: var(--color-surface, #232332);
+  border-right: 1px solid var(--color-border, #333345);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.nx-pixelart-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.nx-pixelart-tool-btn {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-btn-bg, #2d2d3f);
+  border: 1px solid var(--color-border, #3c3c52);
+  border-radius: 6px;
+  color: var(--color-text, #f0f0f5);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.nx-pixelart-tool-btn:hover {
+  background: var(--color-btn-hover, #38384f);
+}
+
+.nx-pixelart-tool-btn.active {
+  background: var(--color-accent, #6366f1);
+  color: #ffffff;
+  border-color: var(--color-accent, #6366f1);
+}
+
+.nx-pixelart-palette-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nx-pixelart-palette-header {
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nx-pixelart-active-color {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--color-btn-bg, #2d2d3f);
+  border-radius: 4px;
+  border: 1px solid var(--color-border, #3c3c52);
+}
+
+.nx-pixelart-color-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #ffffff40;
+}
+
+.nx-pixelart-color-text {
+  font-size: 11px;
+  font-family: monospace;
+}
+
+.nx-pixelart-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.nx-pixelart-swatch {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.nx-pixelart-swatch:hover {
+  transform: scale(1.15);
+  z-index: 1;
+}
+
+.nx-pixelart-swatch.active {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+
+/* Center Canvas Viewport */
+.nx-pixelart-viewport {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  overflow: auto;
+  position: relative;
+  background-image:
+    linear-gradient(45deg, #181824 25%, transparent 25%), linear-gradient(-45deg, #181824 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #181824 75%), linear-gradient(-45deg, transparent 75%, #181824 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
+}
+
+.nx-pixelart-canvas-container {
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--color-border, #333345);
+}
+
+.nx-pixelart-canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: crosshair;
+}
+
+/* Bottom Animation Timeline Tray */
+.nx-pixelart-timeline {
+  height: 120px;
+  background: var(--color-surface, #232332);
+  border-top: 1px solid var(--color-border, #333345);
+  display: flex;
+  flex-direction: column;
+  padding: 6px 12px;
+  gap: 6px;
+}
+
+.nx-pixelart-timeline-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nx-pixelart-frames-tray {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  flex: 1;
+  padding-bottom: 4px;
+}
+
+.nx-pixelart-frame-card {
+  width: 64px;
+  height: 64px;
+  background: #14141e;
+  border: 2px solid var(--color-border, #3c3c52);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+
+.nx-pixelart-frame-card:hover {
+  border-color: var(--color-muted, #94a3b8);
+}
+
+.nx-pixelart-frame-card.active {
+  border-color: var(--color-accent, #6366f1);
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+.nx-pixelart-frame-preview {
+  width: 52px;
+  height: 52px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.nx-pixelart-frame-number {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 1px 2px #000000;
+}

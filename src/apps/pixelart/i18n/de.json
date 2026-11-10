@@ -1,0 +1,63 @@
+{
+  "app": {
+    "title": "Pixel-Art-Studio",
+    "untitled": "Unbenanntes Sprite"
+  },
+  "toolbar": {
+    "new": "Neu",
+    "open": "Öffnen",
+    "save": "Speichern",
+    "export": "Exportieren",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "grid": "Gitternetz",
+    "onionSkin": "Zwiebelhaut",
+    "mirror": "Horizontale Spiegelung",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "resetZoom": "Zoom zurücksetzen",
+    "gridSize": "Rastergröße"
+  },
+  "tools": {
+    "pencil": "Stift (B)",
+    "eraser": "Radierer (E)",
+    "fill": "Fülleimer (G)",
+    "line": "Linie (L)",
+    "rect": "Rechteck (U)",
+    "circle": "Kreis (C)",
+    "picker": "Pipette (I)"
+  },
+  "palette": {
+    "title": "Palette",
+    "pico8": "PICO-8",
+    "gameboy": "Game Boy",
+    "c64": "Commodore 64",
+    "nes": "NES Classic",
+    "custom": "Benutzerdefiniert",
+    "addColor": "Farbe hinzufügen"
+  },
+  "timeline": {
+    "frames": "Frames",
+    "addFrame": "Frame hinzufügen",
+    "duplicateFrame": "Duplizieren",
+    "deleteFrame": "Frame löschen",
+    "play": "Abspielen",
+    "pause": "Pause",
+    "fps": "FPS",
+    "duration": "Frame ms"
+  },
+  "export": {
+    "title": "Sprite exportieren",
+    "png": "PNG (Originalgröße)",
+    "pngScaled": "PNG (Skaliert)",
+    "spriteSheet": "Sprite-Sheet (PNG)",
+    "gif": "Animiertes GIF",
+    "scale": "Skalierungsfaktor",
+    "saved": "Erfolgreich exportiert"
+  },
+  "dialog": {
+    "confirmNew": "Neues Sprite erstellen? Nicht gespeicherte Änderungen gehen verloren.",
+    "deleteFrameConfirm": "Diesen Frame wirklich löschen?",
+    "cannotDeleteLastFrame": "Der einzige Frame der Animation kann nicht gelöscht werden."
+  }
+}

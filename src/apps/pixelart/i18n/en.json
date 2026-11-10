@@ -1,0 +1,63 @@
+{
+  "app": {
+    "title": "Pixel Art Studio",
+    "untitled": "Untitled Sprite"
+  },
+  "toolbar": {
+    "new": "New",
+    "open": "Open",
+    "save": "Save",
+    "export": "Export",
+    "undo": "Undo",
+    "redo": "Redo",
+    "grid": "Grid lines",
+    "onionSkin": "Onion skin",
+    "mirror": "Horizontal mirror",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "gridSize": "Grid size"
+  },
+  "tools": {
+    "pencil": "Pencil (B)",
+    "eraser": "Eraser (E)",
+    "fill": "Bucket fill (G)",
+    "line": "Line (L)",
+    "rect": "Rectangle (U)",
+    "circle": "Circle (C)",
+    "picker": "Color picker (I)"
+  },
+  "palette": {
+    "title": "Palette",
+    "pico8": "PICO-8",
+    "gameboy": "Game Boy",
+    "c64": "Commodore 64",
+    "nes": "NES Classic",
+    "custom": "Custom",
+    "addColor": "Add color"
+  },
+  "timeline": {
+    "frames": "Frames",
+    "addFrame": "Add frame",
+    "duplicateFrame": "Duplicate",
+    "deleteFrame": "Delete frame",
+    "play": "Play",
+    "pause": "Pause",
+    "fps": "FPS",
+    "duration": "Frame ms"
+  },
+  "export": {
+    "title": "Export Sprite",
+    "png": "PNG (Original size)",
+    "pngScaled": "PNG (Scaled)",
+    "spriteSheet": "Sprite Sheet (PNG)",
+    "gif": "Animated GIF",
+    "scale": "Scale factor",
+    "saved": "Exported successfully"
+  },
+  "dialog": {
+    "confirmNew": "Create new sprite? Any unsaved changes will be lost.",
+    "deleteFrameConfirm": "Delete this frame?",
+    "cannotDeleteLastFrame": "You cannot delete the only frame in the animation."
+  }
+}

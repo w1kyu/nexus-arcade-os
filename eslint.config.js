@@ -40,7 +40,10 @@ export default [
         'error',
         {
           patterns: [
-            { regex: String.raw`^\.\./(?!\.\./(ui|styles)/)`, message: 'Apps use ctx, ui/ and styles/ only.' },
+            {
+              regex: String.raw`^\.\./(?!\.\./(ui|styles|games/engine)/)`,
+              message: 'Apps use ctx, ui/, styles/ and games/engine/ only.',
+            },
           ],
         },
       ],
@@ -55,7 +58,10 @@ export default [
         'error',
         {
           patterns: [
-            { regex: String.raw`^(\.\./){2}(?!\.\./(ui|styles)/)`, message: 'Apps use ctx, ui/ and styles/ only.' },
+            {
+              regex: String.raw`^(\.\./){2}(?!\.\./(ui|styles|games/engine)/)`,
+              message: 'Apps use ctx, ui/, styles/ and games/engine/ only.',
+            },
           ],
         },
       ],

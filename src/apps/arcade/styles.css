@@ -1,0 +1,353 @@
+/* Arcade Hub UI Styles */
+
+.nx-arcade-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #05060d;
+  color: #e0e6ed;
+  user-select: none;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.nx-arcade-header {
+  background: radial-gradient(circle at 50% 0%, #151a36 0%, #080a14 100%);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 24px 32px 18px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nx-arcade-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nx-arcade-title-group h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  text-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+}
+
+.nx-arcade-title-group p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #8b9bb4;
+}
+
+/* Profile Bar */
+.nx-arcade-profile {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nx-profile-avatar {
+  font-size: 28px;
+}
+
+.nx-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.nx-profile-name-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nx-profile-level {
+  color: #00f0ff;
+}
+
+.nx-profile-xp-text {
+  color: #8b9bb4;
+}
+
+.nx-profile-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.nx-profile-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00f0ff, #00ff88);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Navigation tabs & filters */
+.nx-arcade-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nx-arcade-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.nx-filter-btn {
+  background: #141a2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8b9bb4;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-filter-btn:hover {
+  color: #ffffff;
+  border-color: rgba(0, 240, 255, 0.4);
+}
+
+.nx-filter-btn.active {
+  background: #00f0ff;
+  color: #05060d;
+  border-color: #00f0ff;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+.nx-arcade-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #141a2e;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.nx-arcade-search-box input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  outline: none;
+  font-size: 13px;
+  width: 160px;
+}
+
+/* Game Library Grid */
+.nx-arcade-content {
+  padding: 24px 32px;
+  flex: 1;
+}
+
+.nx-arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.nx-game-card {
+  background: #0f1325;
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nx-game-card:hover,
+.nx-game-card.gamepad-selected {
+  border-color: #00f0ff;
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.nx-card-cover {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #1a2238;
+}
+
+.nx-card-cover-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+}
+
+.nx-card-favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.15s ease;
+}
+
+.nx-card-favorite-btn.favorited {
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+.nx-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.nx-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nx-card-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.nx-card-genre {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+}
+
+.nx-card-desc {
+  font-size: 12px;
+  color: #8b9bb4;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.nx-card-stats {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #8b9bb4;
+  margin-top: 6px;
+}
+
+.nx-card-stats strong {
+  color: #ffffff;
+}
+
+.nx-card-play-btn {
+  background: #00f0ff;
+  color: #05060d;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  transition: all 0.15s ease;
+}
+
+.nx-card-play-btn:hover {
+  background: #38f4ff;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+}
+
+/* Achievements Gallery Section */
+.nx-arcade-achievements {
+  margin-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+}
+
+.nx-achievements-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00f0ff;
+  margin: 0 0 16px 0;
+}
+
+.nx-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.nx-achievement-badge {
+  background: #141a2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nx-achievement-badge.unlocked {
+  border-color: rgba(255, 215, 0, 0.4);
+  background: #19223c;
+}
+
+.nx-achievement-badge.locked {
+  opacity: 0.5;
+}
+
+.nx-achievement-icon {
+  font-size: 24px;
+}
+
+.nx-achievement-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.nx-achievement-desc {
+  font-size: 11px;
+  color: #8b9bb4;
+}

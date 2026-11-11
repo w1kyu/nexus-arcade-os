@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Snake Evolution",
+    "description": "Cyber-Snake der nächsten Generation mit flüssiger Bewegung, Power-ups und Quantenkarten"
+  },
+  "menu": {
+    "play": "JETZT SPIELEN",
+    "map": "Karte",
+    "mode": "Spielmodus",
+    "difficulty": "Geschwindigkeit",
+    "normal": "Standard",
+    "hard": "Hyper",
+    "controls": "Steuerung: Pfeiltasten / WASD / Gamepad / Wischen",
+    "pause": "ESC oder P drücken für Pause"
+  },
+  "modes": {
+    "classic": "Klassisch",
+    "timeAttack": "Zeitangriff (60s)",
+    "survival": "Überleben",
+    "zen": "Zen (Kein Tod)"
+  },
+  "maps": {
+    "classic": "Klassisch Offen",
+    "walls": "Vier Räume",
+    "maze": "Cyber-Labyrinth",
+    "portals": "Quantenportale",
+    "moving": "Gefahren-Patrouille",
+    "wrap": "Torus-Drift"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Arcade Hub",
+    "description": "Your central gaming salon with games library, player level, and achievements"
+  },
+  "toolbar": {
+    "search": "Search games...",
+    "all": "All Games",
+    "action": "Action",
+    "arcade": "Arcade",
+    "puzzle": "Puzzle",
+    "reflex": "Reflex",
+    "favorites": "Favorites"
+  },
+  "stats": {
+    "highScore": "Best",
+    "played": "Played",
+    "playTime": "Total Playtime",
+    "level": "Level",
+    "xp": "XP",
+    "achievements": "Achievements"
+  },
+  "actions": {
+    "play": "PLAY",
+    "favorite": "Favorite"
+  }
+}

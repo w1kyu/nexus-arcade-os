@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "2048 Cyber",
+    "description": "The classic 2048 sliding puzzle with undo, multiple board sizes, and post-2048 endless mode"
+  },
+  "ui": {
+    "score": "SCORE",
+    "best": "BEST",
+    "undo": "Undo",
+    "restart": "Restart",
+    "boardSize": "Size",
+    "hint": "Controls: Arrow Keys / WASD / Swipe gestures to slide tiles",
+    "gameOver": "Game Over! No more moves possible.",
+    "victory": "You reached 2048! Keep going for higher scores."
+  }
+}

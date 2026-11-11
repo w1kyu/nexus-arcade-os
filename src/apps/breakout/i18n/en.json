@@ -1,0 +1,12 @@
+{
+  "app": {
+    "title": "Breakout Nexus",
+    "description": "Continuous collision ball physics, 30 handcrafted levels, and integrated level editor"
+  },
+  "menu": {
+    "campaign": "PLAY CAMPAIGN (30 LEVELS)",
+    "editor": "LEVEL EDITOR",
+    "controls": "Controls: Left/Right Arrows or Mouse to steer paddle, Space to launch/fire laser, ESC or P to Pause",
+    "levelSelect": "Start Level"
+  }
+}

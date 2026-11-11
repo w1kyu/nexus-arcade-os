@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "2048 Cyber",
+    "description": "Das klassische 2048-Schiebepuzzle mit Rückgängig-Funktion, variablen Spielfeldgrößen und Endlosmodus"
+  },
+  "ui": {
+    "score": "PUNKTE",
+    "best": "BESTE",
+    "undo": "Rückgängig",
+    "restart": "Neustart",
+    "boardSize": "Größe",
+    "hint": "Steuerung: Pfeiltasten / WASD / Wischgesten zum Verschieben",
+    "gameOver": "Spiel vorbei! Keine weiteren Züge möglich.",
+    "victory": "2048 erreicht! Spiele weiter für höhere Rekorde."
+  }
+}

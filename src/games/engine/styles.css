@@ -1,0 +1,162 @@
+/* Shared Game Engine UI Styles */
+
+.nx-game-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 6, 13, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: nx-game-fade-in 0.2s ease-out;
+}
+
+.nx-game-modal {
+  background: #0f1221;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 28px 36px;
+  min-width: 300px;
+  max-width: 420px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nx-game-modal-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.nx-game-modal-title.nx-text-danger {
+  color: #ff3366;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+.nx-game-score-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-game-score-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #8b9bb4;
+}
+
+.nx-game-score-num {
+  font-size: 40px;
+  font-weight: 900;
+  font-family: monospace;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.nx-game-badge {
+  font-size: 12px;
+  color: #8b9bb4;
+  margin-top: 4px;
+}
+
+.nx-game-badge.nx-badge-high {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  animation: nx-game-pulse 1s infinite alternate;
+}
+
+.nx-game-xp-badge {
+  font-size: 13px;
+  font-weight: bold;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.nx-game-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nx-game-btn {
+  background: #1a1e36;
+  color: #e0e6ed;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-game-btn:hover {
+  background: #252b4a;
+  border-color: rgba(0, 240, 255, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.nx-game-btn.nx-btn-primary {
+  background: #00f0ff;
+  color: #05060d;
+  border-color: #00f0ff;
+  font-weight: 700;
+}
+
+.nx-game-btn.nx-btn-primary:hover {
+  background: #33f3ff;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+}
+
+.nx-game-btn.nx-btn-danger {
+  background: rgba(255, 51, 102, 0.15);
+  color: #ff3366;
+  border-color: rgba(255, 51, 102, 0.4);
+}
+
+.nx-game-btn.nx-btn-danger:hover {
+  background: #ff3366;
+  color: #ffffff;
+}
+
+@keyframes nx-game-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nx-game-pulse {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Arcade-Zentrale",
+    "description": "Dein zentraler Gaming-Salon mit Spielebibliothek, Spielerlevel und Erfolgen"
+  },
+  "toolbar": {
+    "search": "Spiele suchen...",
+    "all": "Alle Spiele",
+    "action": "Action",
+    "arcade": "Arcade",
+    "puzzle": "Puzzle",
+    "reflex": "Reflex",
+    "favorites": "Favoriten"
+  },
+  "stats": {
+    "highScore": "Beste",
+    "played": "Gespielt",
+    "playTime": "Gesamtspielzeit",
+    "level": "Stufe",
+    "xp": "XP",
+    "achievements": "Erfolge"
+  },
+  "actions": {
+    "play": "SPIELEN",
+    "favorite": "Favorit"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Reaktionstrainer",
+    "description": "Benchmarke Reaktionszeit, Zielgenauigkeit und kognitive Gedächtnisspannen"
+  },
+  "tests": {
+    "classic": {
+      "name": "Reaktionszeit",
+      "desc": "Warte auf Grün und klicke so schnell wie möglich"
+    },
+    "aim": {
+      "name": "Ziel-Trainer",
+      "desc": "Triff 30 erscheinende Ziele mit Tempo und Präzision"
+    },
+    "sequence": {
+      "name": "Sequenz-Gedächtnis",
+      "desc": "Merke dir die aufleuchtende Tastenfolge und wiederhole sie"
+    },
+    "number": {
+      "name": "Zahlen-Gedächtnis",
+      "desc": "Merke dir immer längere Zahlenfolgen"
+    },
+    "visual": {
+      "name": "Visuelles Gedächtnis",
+      "desc": "Erinnere dich an die Positionen der aufleuchtenden Gitterkacheln"
+    },
+    "choice": {
+      "name": "Wahl-Reaktion",
+      "desc": "Drücke sofort die entsprechende Pfeiltaste"
+    }
+  },
+  "results": {
+    "completed": "Test abgeschlossen",
+    "percentile": "Perzentil",
+    "tier": "Bewertung",
+    "playAgain": "Noch einmal",
+    "menu": "Alle Tests"
+  }
+}

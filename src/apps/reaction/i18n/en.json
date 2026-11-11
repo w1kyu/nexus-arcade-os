@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Reaction Trainer",
+    "description": "Benchmark reaction time, aim precision, and cognitive memory spans"
+  },
+  "tests": {
+    "classic": {
+      "name": "Reaction Time",
+      "desc": "Wait for green and click as fast as possible"
+    },
+    "aim": {
+      "name": "Aim Trainer",
+      "desc": "Hit 30 appearing targets with speed and precision"
+    },
+    "sequence": {
+      "name": "Sequence Memory",
+      "desc": "Remember and repeat the flashing sequence of pads"
+    },
+    "number": {
+      "name": "Number Memory",
+      "desc": "Memorize increasingly long sequences of numbers"
+    },
+    "visual": {
+      "name": "Visual Memory",
+      "desc": "Recall the positions of flashed grid tiles"
+    },
+    "choice": {
+      "name": "Choice Reaction",
+      "desc": "Press the matching arrow direction immediately"
+    }
+  },
+  "results": {
+    "completed": "Test Completed",
+    "percentile": "Percentile",
+    "tier": "Rating",
+    "playAgain": "Try Again",
+    "menu": "All Tests"
+  }
+}

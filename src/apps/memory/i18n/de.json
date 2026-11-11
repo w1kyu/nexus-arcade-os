@@ -1,0 +1,18 @@
+{
+  "app": {
+    "title": "Memory Master",
+    "description": "Karten-Merkspiel mit 3D-Umdrehanimationen, Komboketten und Informatik-Themen"
+  },
+  "menu": {
+    "play": "SPIEL STARTEN",
+    "gridSize": "Gittergröße",
+    "theme": "Kartenthema",
+    "controls": "Klicke oder tippe auf Karten, um Paare zu finden. Erziele Ketten für Punkte-Multiplikatoren!"
+  },
+  "themes": {
+    "icons": "System-Icons",
+    "colors": "Cyber-Neon",
+    "cs_terms": "Informatik-Begriffe",
+    "numbers": "Mathematische Konstanten"
+  }
+}

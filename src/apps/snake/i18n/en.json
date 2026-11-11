@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Snake Evolution",
+    "description": "Next-gen cyber snake with smooth motion, power-ups, and quantum maps"
+  },
+  "menu": {
+    "play": "PLAY NOW",
+    "map": "Map",
+    "mode": "Game Mode",
+    "difficulty": "Speed",
+    "normal": "Standard",
+    "hard": "Hyper",
+    "controls": "Controls: Arrow Keys / WASD / Gamepad / Touch Swipe",
+    "pause": "Press ESC or P to Pause"
+  },
+  "modes": {
+    "classic": "Classic",
+    "timeAttack": "Time Attack (60s)",
+    "survival": "Survival",
+    "zen": "Zen (No Death)"
+  },
+  "maps": {
+    "classic": "Classic Open",
+    "walls": "Four Rooms",
+    "maze": "Cyber Labyrinth",
+    "portals": "Quantum Portals",
+    "moving": "Hazard Patrol",
+    "wrap": "Torus Drift"
+  }
+}

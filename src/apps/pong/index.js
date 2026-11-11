@@ -4,7 +4,7 @@ import { PongGame } from './game.js';
 import './styles.css';
 
 /** @type {import('../../kernel/types').AppModule['mount']} */
-export async function mount(container, ctx) {
+export async function mount(container, ctx, args) {
   const t = (/** @type {string} */ k, /** @type {Record<string, unknown>} */ v = {}) => ctx.i18n.t(k, v);
 
   const root = h('div', { class: 'nx-pong-app' });
@@ -15,7 +15,7 @@ export async function mount(container, ctx) {
   /** @type {PongGame | null} */
   let game = null;
   /** @type {'ai' | 'pvp'} */
-  let selectedMode = 'ai';
+  let selectedMode = args?.mode === 'local' || args?.mode === 'pvp' ? 'pvp' : 'ai';
   /** @type {import('./game.js').PongAiDifficulty} */
   let selectedDiff = 'skilled';
   let powerUpsEnabled = true;

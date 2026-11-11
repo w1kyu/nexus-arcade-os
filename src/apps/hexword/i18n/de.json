@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Hexword",
+    "description": "5-Buchstaben-Worträtsel auf Deutsch und Englisch mit täglichen Herausforderungen und Hard-Mode"
+  },
+  "mode": {
+    "daily": "Tageswort",
+    "random": "Freies Spiel"
+  },
+  "actions": {
+    "newGame": "Neues Wort",
+    "stats": "Statistik",
+    "share": "Raster teilen",
+    "hardMode": "Schwerer Modus"
+  },
+  "status": {
+    "tooShort": "Nicht genügend Buchstaben",
+    "notInWordList": "Nicht in der Wortliste",
+    "won": "★ Großartig! Wort erraten! ★",
+    "lost": "Vorbei! Das gesuchte Wort war {word}",
+    "copied": "Emoji-Raster in Zwischenablage kopiert!"
+  }
+}

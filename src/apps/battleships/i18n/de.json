@@ -1,0 +1,38 @@
+{
+  "app": {
+    "title": "Schiffe versenken",
+    "description": "Seekriegsführung gegen Wahrscheinlichkeits-KI mit Flotten-Platzierungseditor"
+  },
+  "placement": {
+    "title": "Aufstellungsphase",
+    "instruction": "Platziere dein {ship} ({size} Felder). Drücke R oder Drehen zum Wechseln.",
+    "rotate": "Drehen (Horizontal)",
+    "rotateVert": "Drehen (Vertikal)",
+    "randomize": "Zufällige Flotte",
+    "ready": "Gefecht starten"
+  },
+  "battle": {
+    "yourFleet": "Eigene Flotte",
+    "enemyFleet": "Feindlicher Sektor",
+    "yourTurn": "Zielerfassung bereit: Feuere auf den feindlichen Sektor!",
+    "aiThinking": "Gegner berechnet Zielkoordinaten...",
+    "miss": "Wasser! Daneben.",
+    "hit": "Volltreffer!",
+    "sunk": "Feindlicher {ship} versenkt!",
+    "aiSunk": "Alarm! Dein {ship} wurde zerstört!",
+    "victory": "★ Feindliche Flotte vernichtet! ★",
+    "defeat": "Flotte verloren — Mission gescheitert"
+  },
+  "hud": {
+    "shots": "Schüsse",
+    "hits": "Treffer",
+    "accuracy": "Trefferquote"
+  },
+  "ships": {
+    "carrier": "Flugzeugträger",
+    "battleship": "Schlachtschiff",
+    "cruiser": "Kreuzer",
+    "submarine": "U-Boot",
+    "destroyer": "Zerstörer"
+  }
+}

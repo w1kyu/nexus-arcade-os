@@ -1,0 +1,243 @@
+/* Nexus Chess Styles */
+
+.nx-chess {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--gs-bg, #0a0c16);
+  color: var(--gs-text, #e2e8f0);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  user-select: none;
+}
+
+.nx-chess-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 16px;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 680px) {
+  .nx-chess-layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
+
+.nx-chess-board-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.nx-chess-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: min(80vmin, calc(100vh - 180px), 520px);
+  aspect-ratio: 1;
+  border: 3px solid #2a3157;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(0, 240, 255, 0.1);
+  background: #0c1024;
+}
+
+.nx-chess-sq {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(24px, 6vmin, 44px);
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease;
+}
+
+.nx-chess-sq.light {
+  background: #232c4f;
+}
+
+.nx-chess-sq.dark {
+  background: #0e142e;
+}
+
+.nx-chess-sq.selected {
+  background: #3d4a80 !important;
+  box-shadow: inset 0 0 0 3px #00f0ff;
+}
+
+.nx-chess-sq.last-move {
+  background: #2a3d60 !important;
+}
+
+.nx-chess-sq.in-check {
+  background: #6e1c2e !important;
+  box-shadow: inset 0 0 12px #ff2a55;
+}
+
+.nx-chess-sq.target::after {
+  content: '';
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.65);
+  pointer-events: none;
+}
+
+.nx-chess-sq.target.has-piece::after {
+  width: 82%;
+  height: 82%;
+  border: 3px solid #00f0ff;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.nx-chess-piece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.nx-chess-piece.white {
+  color: #ffffff;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.nx-chess-piece.black {
+  color: #ff9f1c;
+  text-shadow:
+    0 0 4px rgba(255, 159, 28, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.nx-chess-panel {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: min(80vmin, calc(100vh - 180px), 520px);
+  background: #11162d;
+  border: 1px solid #242c54;
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  flex: none;
+}
+
+@media (max-width: 680px) {
+  .nx-chess-panel {
+    width: min(80vmin, calc(100vh - 180px), 520px);
+    height: 180px;
+  }
+}
+
+.nx-chess-panel-header {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gs-accent, #00f0ff);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nx-chess-history {
+  flex: 1;
+  overflow-y: auto;
+  background: #090c1a;
+  border: 1px solid #1c2345;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nx-chess-move-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.nx-chess-move-num {
+  width: 28px;
+  color: #64748b;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-chess-move-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.1s;
+}
+
+.nx-chess-move-btn:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+.nx-chess-move-btn.active {
+  background: #00f0ff22;
+  color: #00f0ff;
+  font-weight: 700;
+}
+
+.nx-chess-promo-dialog {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.nx-chess-promo-btn {
+  font-size: 36px;
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: #fff;
+  transition:
+    border-color 0.15s,
+    transform 0.1s;
+}
+
+.nx-chess-promo-btn:hover {
+  border-color: #00f0ff;
+  transform: translateY(-2px);
+}

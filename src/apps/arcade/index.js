@@ -102,6 +102,93 @@ const ARCADE_GAMES = [
     iconName: '⚡',
     bgGradient: 'linear-gradient(135deg, #14213d, #000000)',
   },
+  {
+    id: 'nexus.solitaire',
+    name: 'Solitaire Collection',
+    genre: 'cards',
+    desc: 'Klondike, Spider, and FreeCell solitaire with infinite undo, solvable deals, and auto-complete.',
+    iconName: '🂠',
+    bgGradient: 'linear-gradient(135deg, #0b3d20, #14522d)',
+  },
+  {
+    id: 'nexus.chess',
+    name: 'Nexus Chess',
+    genre: 'board',
+    desc: 'Full-featured chess engine with alpha-beta AI, puzzle challenges, PGN import/export, and move history.',
+    iconName: '♟️',
+    bgGradient: 'linear-gradient(135deg, #1f2937, #111827)',
+  },
+  {
+    id: 'nexus.connectfour',
+    name: 'Connect Four',
+    genre: 'board',
+    desc: 'Classic vertical four-in-a-row with tactical minimax AI and local two-player duel mode.',
+    iconName: '🔴',
+    bgGradient: 'linear-gradient(135deg, #1e3a8a, #1d4ed8)',
+  },
+  {
+    id: 'nexus.checkers',
+    name: 'Checkers / Dame',
+    genre: 'board',
+    desc: 'Standard and International draughts with mandatory multi-jump captures and intelligent AI opponent.',
+    iconName: '⚪',
+    bgGradient: 'linear-gradient(135deg, #374151, #1f2937)',
+  },
+  {
+    id: 'nexus.battleships',
+    name: 'Battleships',
+    genre: 'board',
+    desc: 'Naval fleet combat with ship placement editor, salvo tracking, and hunt-and-target probability AI.',
+    iconName: '🚢',
+    bgGradient: 'linear-gradient(135deg, #0c4a6e, #075985)',
+  },
+  {
+    id: 'nexus.hexword',
+    name: 'Hexword',
+    genre: 'puzzle',
+    desc: 'Daily 5-letter word puzzle in English and German with curated dictionaries and emoji grid sharing.',
+    iconName: '🔤',
+    bgGradient: 'linear-gradient(135deg, #065f46, #047857)',
+  },
+  {
+    id: 'nexus.sokoban',
+    name: 'Block Pusher',
+    genre: 'puzzle',
+    desc: 'Warehouse box-pushing puzzle with 60+ verified solvable levels, undo history, and custom level editor.',
+    iconName: '📦',
+    bgGradient: 'linear-gradient(135deg, #78350f, #92400e)',
+  },
+  {
+    id: 'nexus.nonogram',
+    name: 'Nonogram',
+    genre: 'puzzle',
+    desc: 'Picross picture logic grid puzzles with line hints, cross-out helpers, and procedural puzzle generator.',
+    iconName: '▦',
+    bgGradient: 'linear-gradient(135deg, #312e81, #4338ca)',
+  },
+  {
+    id: 'nexus.invaders',
+    name: 'Grid Invaders',
+    genre: 'arcade',
+    desc: 'Retro fixed shooter with descending alien formations, destructible shields, diving squadrons, and boss waves.',
+    iconName: '👾',
+    bgGradient: 'linear-gradient(135deg, #4c1d95, #581c87)',
+  },
+  {
+    id: 'nexus.glide',
+    name: 'Neon Glide',
+    genre: 'arcade',
+    desc: 'One-button neon flyer with aerodynamic inertia, procedural obstacles, particle trails, and ghost replay.',
+    iconName: '🔷',
+    bgGradient: 'linear-gradient(135deg, #0e7490, #155e75)',
+  },
+];
+
+const MULTIPLAYER_GAMES = [
+  { id: 'nexus.connectfour', name: 'Connect Four', icon: '🔴' },
+  { id: 'nexus.checkers', name: 'Checkers / Dame', icon: '⚪' },
+  { id: 'nexus.chess', name: 'Nexus Chess', icon: '♟️' },
+  { id: 'nexus.pong', name: 'Neon Pong', icon: '🏓' },
 ];
 
 /** @type {import('../../kernel/types').AppModule['mount']} */
@@ -162,7 +249,7 @@ export async function mount(container, ctx) {
   const toolbar = h('div', { class: 'nx-arcade-toolbar' });
   const filtersEl = h('div', { class: 'nx-arcade-filters' });
 
-  const filterTabs = ['all', 'action', 'arcade', 'puzzle', 'reflex', 'favorites'];
+  const filterTabs = ['all', 'action', 'arcade', 'cards', 'board', 'puzzle', 'reflex', 'favorites'];
   /** @type {Record<string, HTMLButtonElement>} */
   const filterBtns = {};
 
@@ -186,6 +273,11 @@ export async function mount(container, ctx) {
     launchGame(pick.id);
   });
 
+  const lobbyBtn = h('button', { class: 'nx-lobby-btn' }, `👥 ${t('toolbar.lobby')}`);
+  lobbyBtn.addEventListener('click', () => {
+    openLobbyModal();
+  });
+
   const searchBox = h('div', { class: 'nx-arcade-search-box' });
   const searchInput = /** @type {HTMLInputElement} */ (h('input', { type: 'text', placeholder: t('toolbar.search') }));
   searchInput.addEventListener('input', () => {
@@ -194,7 +286,7 @@ export async function mount(container, ctx) {
   });
   searchBox.append(searchInput);
 
-  toolbar.append(filtersEl, randomBtn, searchBox);
+  toolbar.append(filtersEl, randomBtn, lobbyBtn, searchBox);
   header.append(banner, toolbar);
 
   // Rotating featured game banner (daily rotation)
@@ -342,18 +434,139 @@ export async function mount(container, ctx) {
   /**
    * Launches game window
    * @param {string} appId
+   * @param {unknown} [args]
    */
-  async function launchGame(appId) {
+  async function launchGame(appId, args = {}) {
     if (ctx.system?.windows?.launch) {
-      await ctx.system.windows.launch(appId);
+      await ctx.system.windows.launch(appId, args);
     } else if (ctx.commands) {
       const cmdId = appId.replace('nexus.', '') + '.open';
       try {
-        await ctx.commands.execute(cmdId);
+        await ctx.commands.execute(cmdId, args);
       } catch {
         // Fallback
       }
     }
+  }
+
+  function openLobbyModal() {
+    let selectedGame = MULTIPLAYER_GAMES[0].id;
+    let p1Device = 'keyboard';
+    let p1GamepadIdx = 0;
+    let p2Device = 'keyboard';
+    let p2GamepadIdx = 1;
+
+    const overlay = h('div', { class: 'nx-lobby-overlay' });
+    const modal = h('div', { class: 'nx-lobby-modal' });
+
+    // Header
+    const mHeader = h('div', { class: 'nx-lobby-header' });
+    const mTitle = h('h2', {}, t('lobby.title'));
+    const closeBtn = h('button', { class: 'nx-lobby-close-btn' }, '✕');
+    closeBtn.addEventListener('click', () => overlay.remove());
+    mHeader.append(mTitle, closeBtn);
+
+    const mSubtitle = h('p', { class: 'nx-lobby-subtitle' }, t('lobby.subtitle'));
+
+    // Game picker
+    const gameSection = h('div', { class: 'nx-lobby-section' });
+    const gameLabel = h('label', { class: 'nx-lobby-label' }, t('lobby.game'));
+    const gameList = h('div', { class: 'nx-lobby-game-list' });
+
+    /** @type {HTMLButtonElement[]} */
+    const gameBtns = [];
+    for (const g of MULTIPLAYER_GAMES) {
+      const gBtn = /** @type {HTMLButtonElement} */ (
+        h('button', { class: `nx-lobby-game-btn ${g.id === selectedGame ? 'active' : ''}` }, `${g.icon} ${g.name}`)
+      );
+      gBtn.addEventListener('click', () => {
+        selectedGame = g.id;
+        gameBtns.forEach((b) => b.classList.remove('active'));
+        gBtn.classList.add('active');
+      });
+      gameBtns.push(gBtn);
+      gameList.append(gBtn);
+    }
+    gameSection.append(gameLabel, gameList);
+
+    // Player controls section
+    const playersRow = h('div', { class: 'nx-lobby-players-row' });
+
+    // Player 1
+    const p1Card = h('div', { class: 'nx-lobby-player-card' });
+    p1Card.append(h('h3', {}, `🔴 ${t('lobby.player1')}`));
+    const p1Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-lobby-select' }));
+    p1Select.innerHTML = `
+      <option value="keyboard">${t('lobby.keyboard')} (WASD / Left)</option>
+      <option value="gamepad-0">${t('lobby.gamepad')} 1</option>
+      <option value="gamepad-1">${t('lobby.gamepad')} 2</option>
+    `;
+    p1Select.addEventListener('change', () => {
+      const val = p1Select.value;
+      if (val.startsWith('gamepad-')) {
+        p1Device = 'gamepad';
+        p1GamepadIdx = parseInt(val.replace('gamepad-', ''), 10);
+      } else {
+        p1Device = 'keyboard';
+      }
+    });
+    p1Card.append(p1Select);
+
+    // Player 2
+    const p2Card = h('div', { class: 'nx-lobby-player-card' });
+    p2Card.append(h('h3', {}, `🟡 ${t('lobby.player2')}`));
+    const p2Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-lobby-select' }));
+    p2Select.innerHTML = `
+      <option value="keyboard" selected>${t('lobby.keyboard')} (Arrows / Right)</option>
+      <option value="gamepad-0">${t('lobby.gamepad')} 1</option>
+      <option value="gamepad-1">${t('lobby.gamepad')} 2</option>
+    `;
+    p2Select.addEventListener('change', () => {
+      const val = p2Select.value;
+      if (val.startsWith('gamepad-')) {
+        p2Device = 'gamepad';
+        p2GamepadIdx = parseInt(val.replace('gamepad-', ''), 10);
+      } else {
+        p2Device = 'keyboard';
+      }
+    });
+    p2Card.append(p2Select);
+
+    playersRow.append(p1Card, p2Card);
+
+    // Gamepad status info
+    const connectedCount =
+      typeof navigator !== 'undefined' && navigator.getGamepads
+        ? Array.from(navigator.getGamepads()).filter(Boolean).length
+        : 0;
+    const statusInfo = h(
+      'div',
+      { class: 'nx-lobby-status' },
+      connectedCount > 0 ? t('lobby.gamepadsDetected', { count: connectedCount }) : t('lobby.noGamepads'),
+    );
+
+    // Footer actions
+    const footer = h('div', { class: 'nx-lobby-footer' });
+    const cancelBtn = h('button', { class: 'nx-lobby-btn-cancel' }, t('lobby.cancel'));
+    cancelBtn.addEventListener('click', () => overlay.remove());
+
+    const startBtn = h('button', { class: 'nx-lobby-btn-start' }, `⚔️ ${t('lobby.launch')}`);
+    startBtn.addEventListener('click', () => {
+      overlay.remove();
+      launchGame(selectedGame, {
+        mode: 'local',
+        players: [
+          { device: p1Device, index: p1GamepadIdx },
+          { device: p2Device, index: p2GamepadIdx },
+        ],
+      });
+    });
+
+    footer.append(cancelBtn, startBtn);
+
+    modal.append(mHeader, mSubtitle, gameSection, playersRow, statusInfo, footer);
+    overlay.append(modal);
+    root.append(overlay);
   }
 
   async function renderAchievementsGallery() {

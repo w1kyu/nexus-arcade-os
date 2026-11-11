@@ -1,0 +1,16 @@
+{
+  "mode": { "ai": "vs AI", "local": "2 Players" },
+  "difficulty": { "label": "Difficulty", "easy": "Easy", "medium": "Medium", "hard": "Hard" },
+  "new": "New game",
+  "column": "Column {n}",
+  "movesLabel": "MOVES",
+  "status": {
+    "you": "Your turn",
+    "ai": "The AI is thinking…",
+    "player": "Player {n}'s turn",
+    "won": "Four in a row — you win!",
+    "lost": "The AI connected four.",
+    "draw": "Board full — a draw.",
+    "playerWon": "Player {n} wins!"
+  }
+}

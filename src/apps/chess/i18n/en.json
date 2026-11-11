@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Nexus Chess",
+    "description": "Tactical chess with alpha-beta AI, puzzle challenges, PGN import/export, and local 2-player"
+  },
+  "mode": {
+    "ai": "Solo vs AI",
+    "local": "Local 2P",
+    "puzzle": "Puzzles"
+  },
+  "difficulty": {
+    "label": "Strength",
+    "1": "Level 1 (Novice)",
+    "2": "Level 2 (Casual)",
+    "3": "Level 3 (Club)",
+    "4": "Level 4 (Expert)",
+    "5": "Level 5 (Master)"
+  },
+  "actions": {
+    "newGame": "New Game",
+    "flip": "Flip Board",
+    "undo": "Undo",
+    "importPgn": "Import PGN",
+    "exportPgn": "Export PGN",
+    "hint": "Hint",
+    "stats": "Stats",
+    "leaderboard": "Leaderboard"
+  },
+  "turn": {
+    "white": "White to move",
+    "black": "Black to move",
+    "aiThinking": "AI thinking...",
+    "check": "Check!",
+    "checkmate": "Checkmate! {winner} wins",
+    "stalemate": "Stalemate — Draw",
+    "drawRepetition": "Draw by threefold repetition",
+    "drawFifty": "Draw by 50-move rule",
+    "drawMaterial": "Draw by insufficient material"
+  },
+  "puzzle": {
+    "label": "Puzzle",
+    "solved": "★ Puzzle Solved!",
+    "wrong": "Incorrect move, try again",
+    "next": "Next Puzzle"
+  },
+  "pgn": {
+    "importTitle": "Import PGN",
+    "pastePrompt": "Paste PGN or moves:",
+    "importBtn": "Import",
+    "copyBtn": "Copy to Clipboard",
+    "invalid": "Unable to parse PGN"
+  },
+  "promotion": {
+    "title": "Promote Pawn",
+    "queen": "Queen",
+    "rook": "Rook",
+    "bishop": "Bishop",
+    "knight": "Knight"
+  },
+  "history": {
+    "title": "Move History",
+    "start": "Game Start"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Nexus Schach",
+    "description": "Taktisches Schach mit Alpha-Beta-KI, Rätsel-Herausforderungen, PGN-Import/Export und lokalem 2-Spieler-Modus"
+  },
+  "mode": {
+    "ai": "Gegen KI",
+    "local": "Lokal 2P",
+    "puzzle": "Rätsel"
+  },
+  "difficulty": {
+    "label": "Stufe",
+    "1": "Stufe 1 (Anfänger)",
+    "2": "Stufe 2 (Freizeit)",
+    "3": "Stufe 3 (Verein)",
+    "4": "Stufe 4 (Experte)",
+    "5": "Stufe 5 (Meister)"
+  },
+  "actions": {
+    "newGame": "Neues Spiel",
+    "flip": "Brett drehen",
+    "undo": "Rückgängig",
+    "importPgn": "PGN importieren",
+    "exportPgn": "PGN exportieren",
+    "hint": "Hinweis",
+    "stats": "Statistik",
+    "leaderboard": "Bestenliste"
+  },
+  "turn": {
+    "white": "Weiß am Zug",
+    "black": "Schwarz am Zug",
+    "aiThinking": "KI überlegt...",
+    "check": "Schach!",
+    "checkmate": "Schachmatt! {winner} gewinnt",
+    "stalemate": "Patt — Unentschieden",
+    "drawRepetition": "Remis durch dreifache Stellungswiederholung",
+    "drawFifty": "Remis durch 50-Züge-Regel",
+    "drawMaterial": "Remis durch unzureichendes Material"
+  },
+  "puzzle": {
+    "label": "Rätsel",
+    "solved": "★ Rätsel gelöst!",
+    "wrong": "Falscher Zug, versuche es noch einmal",
+    "next": "Nächstes Rätsel"
+  },
+  "pgn": {
+    "importTitle": "PGN importieren",
+    "pastePrompt": "PGN oder Zugfolge einfügen:",
+    "importBtn": "Importieren",
+    "copyBtn": "In Zwischenablage kopieren",
+    "invalid": "PGN konnte nicht gelesen werden"
+  },
+  "promotion": {
+    "title": "Bauer umwandeln",
+    "queen": "Dame",
+    "rook": "Turm",
+    "bishop": "Läufer",
+    "knight": "Springer"
+  },
+  "history": {
+    "title": "Zugverlauf",
+    "start": "Partiebeginn"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "mode": { "ai": "gegen KI", "local": "2 Spieler" },
+  "difficulty": { "label": "Schwierigkeit", "easy": "Leicht", "medium": "Mittel", "hard": "Schwer" },
+  "new": "Neues Spiel",
+  "column": "Spalte {n}",
+  "movesLabel": "ZÜGE",
+  "status": {
+    "you": "Du bist am Zug",
+    "ai": "Die KI überlegt…",
+    "player": "Spieler {n} ist am Zug",
+    "won": "Vier in einer Reihe — du gewinnst!",
+    "lost": "Die KI hat vier verbunden.",
+    "draw": "Brett voll — unentschieden.",
+    "playerWon": "Spieler {n} gewinnt!"
+  }
+}

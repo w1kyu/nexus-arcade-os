@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Solitaire-Sammlung",
+    "description": "Klondike, Spider und FreeCell Solitaire mit unbegrenztem Rückgängigmachen, lösbaren Spielen und Auto-Vervollständigung"
+  },
+  "mode": {
+    "label": "Spiel",
+    "klondike1": "Klondike (1er-Zug)",
+    "klondike3": "Klondike (3er-Zug)",
+    "freecell": "FreeCell",
+    "spider1": "Spider (1 Farbe)",
+    "spider2": "Spider (2 Farben)",
+    "spider4": "Spider (4 Farben)"
+  },
+  "actions": {
+    "newGame": "Neues Spiel",
+    "restart": "Neu starten",
+    "undo": "Rückgängig",
+    "autoComplete": "Auto-Vervollständigen",
+    "deal": "Geben",
+    "stats": "Statistik",
+    "leaderboard": "Bestenliste"
+  },
+  "hud": {
+    "moves": "Züge",
+    "score": "Punkte",
+    "time": "Zeit",
+    "completed": "Sätze"
+  },
+  "win": {
+    "title": "★ Spiel gelöst! ★",
+    "moves": "Gelöst in {moves} Zügen ({time})"
+  }
+}

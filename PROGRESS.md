@@ -2,8 +2,9 @@
 
 ## Status
 
-- **Current phase:** 10 — More games (Tier 1 complete, 2026-11-11)
-- **Next step:** Phase 10 Tier 2 games (`specs/10-more-games.md`).
+- **Current phase:** 10 — More games (Tier 1 & Tier 2 complete, 2026-11-11)
+- **Next step:** Phase 10 Tier 3 games (`specs/10-more-games.md`).
+- **Phase 10 (Tier 2) verification:** 973 unit tests (112 test files) passing; full Playwright e2e test suite passing including Phase 10 Tier 2 games and Arcade Hub multiplayer lobby (`tests/e2e/arcade.spec.js`); 0 missing i18n keys across 74 namespaces; single-file Lite build 6.50 MB (well under 8.00 MB budget).
 - **Phase 10 (Tier 1) verification:** 922 unit tests (102 test files) passing; full Playwright e2e test suite passing (36 passed, 27 mobile skipped) including `tests/e2e/arcade.spec.js`; 0 missing i18n keys across 63 namespaces; single-file Lite build 6.32 MB (well under 8.00 MB budget).
 - **Phase 9 verification:** Game engine, Arcade Hub, Snake, Breakout, Memory Master, 2048, Reaction Trainer.
 - **Phase 8 verification:** CS Lab educational tools and interactive visualizers.
@@ -98,6 +99,7 @@ Recorded per NEXUS_BRIEF.md §2.4. Newest last.
 | 2026-11-10 | **Shared math expression parser:** Built-in recursive descent parser with zero eval in `src/ui/calc.js` used across Calculator app (5.8) and command palette `=`. | Spec 5.8 "An expression parser written by us (no eval)". |
 | 2026-11-10 | **Shared tool layout & diff viewer:** Reusable `createToolLayout` (`src/ui/tool-layout.js`) and `createDiffViewer` (`src/ui/diff.js`) components shared across dev tools (Diff Viewer, Color Lab, Devtools, HTTP Client, Snippet Manager, Playground, Nexus Code). | Keeps dev tools consistent, avoids duplicate diff/pane code, and satisfies 7.6 / spec requirements. |
 | 2026-11-10 | **Dev preview iframe sandboxing & CSP:** Code Playground and Nexus Code run user preview documents in sandboxed iframes (`sandbox="allow-scripts"`, no `allow-same-origin`) with `data:` URI and parent CSP `'unsafe-inline'` allowing dynamic style/script execution while preserving origin isolation. | Spec 7.1/7.2 requirements; sandbox prevents access to parent origin, storage, cookies, and kernel. |
+| 2026-11-11 | **Phase 10 Tier 2 Games & Local Multiplayer Lobby:** Implemented Solitaire Collection (Klondike, Spider, FreeCell), Nexus Chess (invariants, alpha-beta worker search, puzzle challenges, PGN), Connect Four (minimax AI, local 2P), Checkers (Standard & International, mandatory jumps), Battleships (fleet placement editor, hunt/target parity AI), Hexword (5-letter EN/DE curated dictionaries, hard mode, share emoji grid), Block Pusher (60+ verified solvable levels, undo, custom level editor), Nonogram (procedural & bundled picross, line check, error penalty), Grid Invaders (fixed shooter, shields, boss waves), Neon Glide (one-button flyer, ghost replay). Updated Arcade Hub with category filters (Cards, Board, Classic Arcade, Puzzle) and local 2P multiplayer lobby screen mapping shared keyboard and gamepads via `readLobbyArgs`. | Spec 10 (Tier 2 & Arcade-wide additions). |
 
 ## Cuts
 
@@ -898,16 +900,16 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **Tier 2 [P2]**
 
-- [ ] **Solitaire collection:** Klondike (draw 1/3), Spider (1/2/4 suits), FreeCell; drag & drop and click-to-move, auto-complete, undo, solvable-deal option, statistics.
-- [ ] **Nexus Chess:** full rules (castling, en passant, promotion, draw by repetition/50 moves/stalemate/insufficient material), legal move highlighting, AI in a Web Worker (alpha-beta with iterative deepening, piece-square tables, several strength levels), local 2-player, PGN import/export, move list with navigation, board flip, puzzle mode with bundled puzzles (generated or public domain), analysis arrows.
-- [ ] **Connect Four:** vs AI (minimax, difficulty levels), local 2-player, win highlighting.
-- [ ] **Grid Invaders** (fixed-shooter): waves, shields, diving enemies, boss waves, power-ups.
-- [ ] **Neon Glide** (one-button flyer): procedurally generated obstacles, ghost of your best run.
-- [ ] **Nonogram:** puzzles from bundled packs (5×5 to 25×25) and generated ones, line-check helper, X marks.
-- [ ] **Block Pusher** (sokoban-style): 60+ levels (generated with a solver to verify they're solvable, or self-made), undo, move counter, level editor.
-- [ ] **Hexword** (word-guessing game): 5-letter words in EN and DE with **self-curated, license-clean word lists**, hard mode, statistics, share result as emoji grid (copy to clipboard), daily word by seed.
-- [ ] **Checkers / Dame:** international rules choice, AI, forced captures.
-- [ ] **Battleships:** vs AI with probability-based targeting, ship placement editor.
+- [x] **Solitaire collection:** Klondike (draw 1/3), Spider (1/2/4 suits), FreeCell; drag & drop and click-to-move, auto-complete, undo, solvable-deal option, statistics.
+- [x] **Nexus Chess:** full rules (castling, en passant, promotion, draw by repetition/50 moves/stalemate/insufficient material), legal move highlighting, AI in a Web Worker (alpha-beta with iterative deepening, piece-square tables, several strength levels), local 2-player, PGN import/export, move list with navigation, board flip, puzzle mode with bundled puzzles (generated or public domain), analysis arrows.
+- [x] **Connect Four:** vs AI (minimax, difficulty levels), local 2-player, win highlighting.
+- [x] **Grid Invaders** (fixed-shooter): waves, shields, diving enemies, boss waves, power-ups.
+- [x] **Neon Glide** (one-button flyer): procedurally generated obstacles, ghost of your best run.
+- [x] **Nonogram:** puzzles from bundled packs (5×5 to 25×25) and generated ones, line-check helper, X marks.
+- [x] **Block Pusher** (sokoban-style): 60+ levels (generated with a solver to verify they're solvable, or self-made), undo, move counter, level editor.
+- [x] **Hexword** (word-guessing game): 5-letter words in EN and DE with **self-curated, license-clean word lists**, hard mode, statistics, share result as emoji grid (copy to clipboard), daily word by seed.
+- [x] **Checkers / Dame:** international rules choice, AI, forced captures.
+- [x] **Battleships:** vs AI with probability-based targeting, ship placement editor.
 
 **Tier 3 [P3]**
 
@@ -923,7 +925,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **Arcade-wide additions**
 
-- [ ] [P2] Local multiplayer lobby screen for games that support it (assign gamepads/keyboard sides).
+- [x] [P2] Local multiplayer lobby screen for games that support it (assign gamepads/keyboard sides).
 - [x] [P2] Seasonal/rotating "featured game" on the Arcade home and a "random game" button.
 - [ ] [P3] Online multiplayer is **out of scope** (no backend). Don't fake it.
 

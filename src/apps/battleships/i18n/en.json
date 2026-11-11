@@ -1,0 +1,38 @@
+{
+  "app": {
+    "title": "Battleships",
+    "description": "Naval grid warfare against probability-density AI with fleet placement editor"
+  },
+  "placement": {
+    "title": "Deployment Phase",
+    "instruction": "Place your {ship} ({size} cells). Press R or Rotate to flip orientation.",
+    "rotate": "Rotate (Horizontal)",
+    "rotateVert": "Rotate (Vertical)",
+    "randomize": "Randomize Fleet",
+    "ready": "Start Battle"
+  },
+  "battle": {
+    "yourFleet": "Your Fleet",
+    "enemyFleet": "Radar Recon (Enemy)",
+    "yourTurn": "Coordinates lock: Fire on enemy grid!",
+    "aiThinking": "Enemy calculating trajectory...",
+    "miss": "Splash! Missed.",
+    "hit": "Direct hit!",
+    "sunk": "Enemy {ship} sunk!",
+    "aiSunk": "Alert! Your {ship} was destroyed!",
+    "victory": "★ Enemy Fleet Annihilated! ★",
+    "defeat": "Fleet Lost — Mission Failed"
+  },
+  "hud": {
+    "shots": "Shots",
+    "hits": "Hits",
+    "accuracy": "Accuracy"
+  },
+  "ships": {
+    "carrier": "Carrier",
+    "battleship": "Battleship",
+    "cruiser": "Cruiser",
+    "submarine": "Submarine",
+    "destroyer": "Destroyer"
+  }
+}

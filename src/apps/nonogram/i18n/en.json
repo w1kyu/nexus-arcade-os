@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Nonogram",
+    "description": "Japanese Picross grid logic puzzles with line-check helpers, penalty options, and procedural generator"
+  },
+  "hud": {
+    "puzzle": "Puzzle",
+    "errors": "Errors",
+    "time": "Time"
+  },
+  "actions": {
+    "toolFill": "Fill (■)",
+    "toolCross": "Cross (✕)",
+    "penalty": "Error Penalty",
+    "reset": "Reset",
+    "undo": "Undo",
+    "procedural": "Generate Random",
+    "stats": "Stats"
+  },
+  "status": {
+    "solved": "★ Puzzle Solved! ★",
+    "penaltyMsg": "Error! +20s penalty"
+  }
+}

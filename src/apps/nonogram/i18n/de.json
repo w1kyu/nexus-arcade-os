@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Nonogramm",
+    "description": "Japanische Picross-Gitterrätsel mit Zeilenprüfer, Strafzeit-Option und prozeduralem Generator"
+  },
+  "hud": {
+    "puzzle": "Rätsel",
+    "errors": "Fehler",
+    "time": "Zeit"
+  },
+  "actions": {
+    "toolFill": "Füllen (■)",
+    "toolCross": "Kreuzen (✕)",
+    "penalty": "Strafzeit",
+    "reset": "Zurücksetzen",
+    "undo": "Rückgängig",
+    "procedural": "Zufällig generieren",
+    "stats": "Statistik"
+  },
+  "status": {
+    "solved": "★ Rätsel gelöst! ★",
+    "penaltyMsg": "Fehler! +20s Strafe"
+  }
+}

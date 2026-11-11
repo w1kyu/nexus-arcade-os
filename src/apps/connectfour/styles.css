@@ -1,0 +1,117 @@
+/* Connect Four */
+
+.nx-c4-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  padding: 10px;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #16204a, #0d1330);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.15);
+  width: min(100%, calc((100vh - 220px) * 7 / 6), 560px);
+  max-height: 100%;
+  aspect-ratio: 7 / 6;
+  box-sizing: border-box;
+}
+
+.nx-c4-col {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.nx-c4-col:disabled {
+  cursor: default;
+}
+
+.nx-c4-col:hover:not(:disabled),
+.nx-c4-col.cursor,
+.nx-c4-col:focus-visible {
+  background: rgba(255, 255, 255, 0.07);
+  outline: none;
+}
+
+.nx-c4-col.cursor {
+  box-shadow: inset 0 0 0 2px var(--gs-accent);
+}
+
+.nx-c4-cell {
+  position: relative;
+  margin: 8%;
+  border-radius: 50%;
+  background: #05060d;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+.nx-c4-cell[data-player='1'] {
+  background: radial-gradient(circle at 35% 30%, #7ff8ff, #00b8d4 70%);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.nx-c4-cell[data-player='2'] {
+  background: radial-gradient(circle at 35% 30%, #ffc56e, #ff8a00 70%);
+  box-shadow: 0 0 10px rgba(255, 138, 0, 0.5);
+}
+
+/* Second cue besides color: player 2 discs carry a ring. */
+.nx-c4-cell[data-player='2']::after {
+  content: '';
+  position: absolute;
+  inset: 26%;
+  border-radius: 50%;
+  border: 3px solid rgba(40, 16, 0, 0.75);
+}
+
+.nx-c4-cell.drop {
+  animation: nx-c4-drop 0.32s cubic-bezier(0.5, 0, 0.9, 0.6);
+}
+
+.nx-c4-cell.win {
+  animation: nx-c4-win 0.55s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes nx-c4-drop {
+  from {
+    transform: translateY(calc(var(--fall, 1) * -125%));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes nx-c4-win {
+  from {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  to {
+    transform: scale(1.14);
+    filter: brightness(1.5);
+    box-shadow: 0 0 22px #fff;
+  }
+}
+
+.nx-c4 .nx-gs-status[data-turn='1'] {
+  color: #5cf6ff;
+}
+
+.nx-c4 .nx-gs-status[data-turn='2'] {
+  color: #ffa53d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-c4-cell.drop,
+  .nx-c4-cell.win {
+    animation: none;
+  }
+  .nx-c4-cell.win {
+    outline: 3px solid #fff;
+  }
+}

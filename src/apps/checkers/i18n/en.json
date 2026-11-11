@@ -1,0 +1,23 @@
+{
+  "mode": { "ai": "vs AI", "local": "2 Players" },
+  "variant": {
+    "label": "Rules",
+    "standard": "Standard (8×8)",
+    "international": "International (10×10)",
+    "short": { "standard": "8×8", "international": "10×10" }
+  },
+  "difficulty": { "label": "Difficulty", "easy": "Easy", "medium": "Medium", "hard": "Hard" },
+  "new": "New game",
+  "undo": "Undo",
+  "movesLabel": "MOVES",
+  "status": {
+    "you": "Your turn",
+    "ai": "The AI is thinking…",
+    "player": "Player {n}'s turn",
+    "mustCapture": "you must capture",
+    "won": "You win!",
+    "lost": "The AI wins.",
+    "draw": "Draw — 40 moves without progress.",
+    "playerWon": "Player {n} wins!"
+  }
+}

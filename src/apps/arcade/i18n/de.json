@@ -8,14 +8,30 @@
     "all": "Alle Spiele",
     "action": "Action",
     "arcade": "Arcade",
+    "cards": "Karten",
+    "board": "Brettspiele",
     "puzzle": "Puzzle",
     "reflex": "Reflex",
     "favorites": "Favoriten",
-    "random": "Zufälliges Spiel"
+    "random": "Zufälliges Spiel",
+    "lobby": "Lokale 2P-Lobby"
   },
   "featured": {
     "badge": "HIGHLIGHT-SPIEL",
     "play": "JETZT SPIELEN"
+  },
+  "lobby": {
+    "title": "Lokale 2-Spieler-Lobby",
+    "subtitle": "Controller für geteilten Bildschirm und Duelle konfigurieren",
+    "game": "Spiel auswählen",
+    "player1": "Spieler 1",
+    "player2": "Spieler 2",
+    "keyboard": "Tastatur",
+    "gamepad": "Gamepad",
+    "noGamepads": "Keine Gamepads verbunden (Tastatursteuerung aktiv)",
+    "gamepadsDetected": "{count} Gamepad(s) verbunden",
+    "launch": "Match starten",
+    "cancel": "Abbrechen"
   },
   "stats": {
     "highScore": "Beste",

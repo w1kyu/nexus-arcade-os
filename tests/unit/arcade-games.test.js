@@ -124,6 +124,16 @@ describe('Phase 9 — Arcade Games Unit Tests', () => {
         (await import('../../src/apps/sudoku/manifest.js')).default,
         (await import('../../src/apps/typing/manifest.js')).default,
         (await import('../../src/apps/pong/manifest.js')).default,
+        (await import('../../src/apps/solitaire/manifest.js')).default,
+        (await import('../../src/apps/chess/manifest.js')).default,
+        (await import('../../src/apps/connectfour/manifest.js')).default,
+        (await import('../../src/apps/checkers/manifest.js')).default,
+        (await import('../../src/apps/battleships/manifest.js')).default,
+        (await import('../../src/apps/hexword/manifest.js')).default,
+        (await import('../../src/apps/sokoban/manifest.js')).default,
+        (await import('../../src/apps/nonogram/manifest.js')).default,
+        (await import('../../src/apps/invaders/manifest.js')).default,
+        (await import('../../src/apps/glide/manifest.js')).default,
       ];
       const { validateManifest } = await import('../../src/kernel/manifest.js');
       for (const m of manifests) {

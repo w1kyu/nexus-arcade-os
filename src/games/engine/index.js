@@ -14,3 +14,4 @@ export * from './audio.js';
 export * from './scene.js';
 export * from './scores.js';
 export * from './ui.js';
+export * from './shell.js';

@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "Block Pusher",
+    "description": "Sokoban warehouse puzzle with 60+ verified solvable levels and level editor"
+  },
+  "hud": {
+    "level": "Level",
+    "steps": "Steps",
+    "pushes": "Pushes"
+  },
+  "actions": {
+    "restart": "Restart",
+    "undo": "Undo",
+    "prev": "Prev",
+    "next": "Next",
+    "editor": "Editor",
+    "play": "Play Level",
+    "testSolve": "Test Solvability",
+    "export": "Export XSB",
+    "import": "Import XSB",
+    "stats": "Stats"
+  },
+  "editor": {
+    "wall": "Wall",
+    "floor": "Floor",
+    "target": "Goal",
+    "box": "Box",
+    "player": "Player",
+    "solvable": "Solvable solution found!",
+    "unsolvable": "No solution found or exceeds search limit"
+  },
+  "status": {
+    "cleared": "★ Level Cleared! ★",
+    "imported": "Level imported successfully"
+  }
+}

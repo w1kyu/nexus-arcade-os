@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Solitaire Collection",
+    "description": "Klondike, Spider, and FreeCell solitaire with infinite undo, solvable deals, and auto-complete"
+  },
+  "mode": {
+    "label": "Game",
+    "klondike1": "Klondike (Draw 1)",
+    "klondike3": "Klondike (Draw 3)",
+    "freecell": "FreeCell",
+    "spider1": "Spider (1 Suit)",
+    "spider2": "Spider (2 Suits)",
+    "spider4": "Spider (4 Suits)"
+  },
+  "actions": {
+    "newGame": "New Deal",
+    "restart": "Restart Deal",
+    "undo": "Undo",
+    "autoComplete": "Auto Complete",
+    "deal": "Deal",
+    "stats": "Stats",
+    "leaderboard": "Leaderboard"
+  },
+  "hud": {
+    "moves": "Moves",
+    "score": "Score",
+    "time": "Time",
+    "completed": "Sets"
+  },
+  "win": {
+    "title": "★ Deal Cleared! ★",
+    "moves": "Solved in {moves} moves ({time})"
+  }
+}

@@ -1,0 +1,100 @@
+/* Checkers / Dame */
+
+.nx-ck-board {
+  --size: 8;
+  display: grid;
+  grid-template-columns: repeat(var(--size), 1fr);
+  width: min(100%, calc(100vh - 230px), 600px);
+  aspect-ratio: 1;
+  border: 3px solid #2a3157;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12);
+  flex: none;
+}
+
+.nx-ck-sq {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.nx-ck-sq.light {
+  background: #2b3358;
+}
+
+.nx-ck-sq.dark {
+  background: #0c1024;
+  cursor: pointer;
+}
+
+.nx-ck-sq.dark:focus-visible,
+.nx-ck-sq.cursor {
+  outline: 2px solid var(--gs-accent);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.nx-ck-sq.last {
+  background: #1a2244;
+}
+
+.nx-ck-sq[data-piece]:not([data-piece=''])::before {
+  content: '';
+  position: absolute;
+  inset: 11%;
+  border-radius: 50%;
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.55),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+}
+
+.nx-ck-sq[data-piece^='1']::before {
+  background: radial-gradient(circle at 35% 30%, #8ffaff, #00a8c4 75%);
+}
+
+.nx-ck-sq[data-piece^='2']::before {
+  background: radial-gradient(circle at 35% 30%, #ffd08a, #f07c00 75%);
+  /* Second cue besides color: a dark ring. */
+  border: 3px double rgba(50, 20, 0, 0.8);
+  box-sizing: border-box;
+}
+
+.nx-ck-sq[data-piece$='k']::after {
+  content: '♛';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(14px, 3.2vmin, 26px);
+  color: #0a0d1c;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.nx-ck-sq.movable::before {
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 1px;
+}
+
+.nx-ck-sq.selected::before {
+  outline: 3px solid var(--gs-warn);
+  outline-offset: 1px;
+}
+
+.nx-ck-sq.target {
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.6) 0 18%, #0c1024 20%);
+}
+
+.nx-ck-sq.jumped::before {
+  opacity: 0.3;
+}
+
+.nx-ck-count-1 {
+  color: #5cf6ff;
+}
+
+.nx-ck-count-2 {
+  color: #ffa53d;
+}

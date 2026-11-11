@@ -1,0 +1,6 @@
+{
+  "app": {
+    "title": "Neon Glide",
+    "description": "Ein-Tasten-Flugspiel mit Trägheitsphysik, prozedural generierten Neon-Hindernissen und Geist-Wiederholung"
+  }
+}

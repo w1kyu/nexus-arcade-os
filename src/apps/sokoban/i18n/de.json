@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "Block Pusher",
+    "description": "Sokoban Lagerhaus-Rätsel mit über 60 überprüften lösbaren Levels und Level-Editor"
+  },
+  "hud": {
+    "level": "Level",
+    "steps": "Schritte",
+    "pushes": "Schübe"
+  },
+  "actions": {
+    "restart": "Neustart",
+    "undo": "Rückgängig",
+    "prev": "Vorheriges",
+    "next": "Nächstes",
+    "editor": "Editor",
+    "play": "Level spielen",
+    "testSolve": "Lösbarkeit prüfen",
+    "export": "XSB exportieren",
+    "import": "XSB importieren",
+    "stats": "Statistik"
+  },
+  "editor": {
+    "wall": "Wand",
+    "floor": "Boden",
+    "target": "Ziel",
+    "box": "Kiste",
+    "player": "Spieler",
+    "solvable": "Lösbare Lösung gefunden!",
+    "unsolvable": "Keine Lösung gefunden oder Suchlimit überschritten"
+  },
+  "status": {
+    "cleared": "★ Level gemeistert! ★",
+    "imported": "Level erfolgreich importiert"
+  }
+}

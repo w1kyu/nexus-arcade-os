@@ -139,4 +139,88 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
 
     expect(errors).toEqual([]);
   });
+
+  test('launches and plays Phase 10 Tier 2 games and verifies Arcade Hub multiplayer lobby', async ({ page }) => {
+    test.setTimeout(90_000);
+    const errors = collectErrors(page);
+    await startNexus(page);
+    await page.keyboard.press('Escape');
+
+    // 1. Open Arcade Hub and check Cards & Board category filter tabs
+    const hubWin = await openAppFromPalette(page, 'Arcade Hub', 'nexus.arcade');
+    await expect(hubWin.locator('.nx-arcade-app')).toBeVisible();
+
+    const cardsTab = hubWin.locator('.nx-filter-btn', { hasText: 'Cards' });
+    await expect(cardsTab).toBeVisible();
+    await cardsTab.click();
+    await expect(hubWin.locator('.nx-game-card')).toHaveCount(1);
+    await expect(hubWin.locator('.nx-card-name')).toContainText('Solitaire Collection');
+
+    const boardTab = hubWin.locator('.nx-filter-btn', { hasText: 'Board' });
+    await expect(boardTab).toBeVisible();
+    await boardTab.click();
+    await expect(hubWin.locator('.nx-game-card')).toHaveCount(4);
+
+    // Test Local 2-Player Lobby Modal
+    const lobbyBtn = hubWin.locator('.nx-lobby-btn');
+    await expect(lobbyBtn).toBeVisible();
+    await lobbyBtn.click();
+    const lobbyModal = hubWin.locator('.nx-lobby-modal');
+    await expect(lobbyModal).toBeVisible();
+    // Close lobby modal
+    await lobbyModal.locator('.nx-lobby-close-btn').click();
+    await expect(lobbyModal).not.toBeVisible();
+
+    // 2. Solitaire Collection
+    const solWin = await openAppFromPalette(page, 'Solitaire Collection', 'nexus.solitaire');
+    await expect(solWin.locator('.nx-solitaire')).toBeVisible();
+    await expect(solWin.locator('.nx-sol-table')).toBeVisible();
+
+    // 3. Nexus Chess
+    const chessWin = await openAppFromPalette(page, 'Nexus Chess', 'nexus.chess');
+    await expect(chessWin.locator('.nx-chess')).toBeVisible();
+    await expect(chessWin.locator('.nx-chess-board')).toBeVisible();
+
+    // 4. Connect Four
+    const c4Win = await openAppFromPalette(page, 'Connect Four', 'nexus.connectfour');
+    await expect(c4Win.locator('.nx-c4')).toBeVisible();
+    await expect(c4Win.locator('.nx-c4-col').first()).toBeVisible();
+
+    // 5. Checkers
+    const ckWin = await openAppFromPalette(page, 'Checkers', 'nexus.checkers');
+    await expect(ckWin.locator('.nx-ck')).toBeVisible();
+    await expect(ckWin.locator('.nx-ck-board')).toBeVisible();
+
+    // 6. Battleships
+    const bsWin = await openAppFromPalette(page, 'Battleships', 'nexus.battleships');
+    await expect(bsWin.locator('.nx-battleships')).toBeVisible();
+    await expect(bsWin.locator('.nx-bs-grid.player')).toBeVisible();
+
+    // 7. Hexword
+    const hwWin = await openAppFromPalette(page, 'Hexword', 'nexus.hexword');
+    await expect(hwWin.locator('.nx-hexword')).toBeVisible();
+    await expect(hwWin.locator('.nx-hw-grid')).toBeVisible();
+
+    // 8. Block Pusher (Sokoban)
+    const skWin = await openAppFromPalette(page, 'Block Pusher', 'nexus.sokoban');
+    await expect(skWin.locator('.nx-sokoban')).toBeVisible();
+    await expect(skWin.locator('.nx-sk-stage')).toBeVisible();
+
+    // 9. Nonogram
+    const ngWin = await openAppFromPalette(page, 'Nonogram', 'nexus.nonogram');
+    await expect(ngWin.locator('.nx-nonogram')).toBeVisible();
+    await expect(ngWin.locator('.nx-ng-board')).toBeVisible();
+
+    // 10. Grid Invaders
+    const invWin = await openAppFromPalette(page, 'Grid Invaders', 'nexus.invaders');
+    await expect(invWin.locator('.nx-invaders')).toBeVisible();
+    await expect(invWin.locator('.nx-invaders-canvas')).toBeVisible();
+
+    // 11. Neon Glide
+    const glideWin = await openAppFromPalette(page, 'Neon Glide', 'nexus.glide');
+    await expect(glideWin.locator('.nx-glide')).toBeVisible();
+    await expect(glideWin.locator('.nx-glide-canvas')).toBeVisible();
+
+    expect(errors).toEqual([]);
+  });
 });

@@ -170,6 +170,26 @@ export class GameRenderer {
   }
 
   /**
+   * Clears the virtual canvas with a background color.
+   * @param {string} [color]
+   */
+  clear(color = '#05060d') {
+    const ctx = this.ctx;
+    ctx.setTransform(
+      this.dpr * this.viewport.scale,
+      0,
+      0,
+      this.dpr * this.viewport.scale,
+      this.dpr * this.viewport.x,
+      this.dpr * this.viewport.y,
+    );
+    if (color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, this.virtualWidth, this.virtualHeight);
+    }
+  }
+
+  /**
    * Ends frame: restores canvas state.
    */
   endFrame() {

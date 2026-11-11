@@ -1,0 +1,23 @@
+{
+  "mode": { "ai": "gegen KI", "local": "2 Spieler" },
+  "variant": {
+    "label": "Regeln",
+    "standard": "Standard (8×8)",
+    "international": "International (10×10)",
+    "short": { "standard": "8×8", "international": "10×10" }
+  },
+  "difficulty": { "label": "Schwierigkeit", "easy": "Leicht", "medium": "Mittel", "hard": "Schwer" },
+  "new": "Neues Spiel",
+  "undo": "Rückgängig",
+  "movesLabel": "ZÜGE",
+  "status": {
+    "you": "Du bist am Zug",
+    "ai": "Die KI überlegt…",
+    "player": "Spieler {n} ist am Zug",
+    "mustCapture": "du musst schlagen",
+    "won": "Du gewinnst!",
+    "lost": "Die KI gewinnt.",
+    "draw": "Remis — 40 Züge ohne Fortschritt.",
+    "playerWon": "Spieler {n} gewinnt!"
+  }
+}

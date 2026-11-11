@@ -365,11 +365,29 @@ export class InputManager {
   }
 
   /**
+   * Alias for isDown()
+   * @param {string} action
+   * @returns {boolean}
+   */
+  isActionActive(action) {
+    return this.isDown(action);
+  }
+
+  /**
    * Alias for justPressed()
    * @param {string} action
    * @returns {boolean}
    */
   isActionJustPressed(action) {
+    return this.justPressed(action);
+  }
+
+  /**
+   * Alias for justPressed()
+   * @param {string} action
+   * @returns {boolean}
+   */
+  wasActionJustPressed(action) {
     return this.justPressed(action);
   }
 

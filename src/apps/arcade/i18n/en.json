@@ -8,14 +8,30 @@
     "all": "All Games",
     "action": "Action",
     "arcade": "Arcade",
+    "cards": "Cards",
+    "board": "Board",
     "puzzle": "Puzzle",
     "reflex": "Reflex",
     "favorites": "Favorites",
-    "random": "Random Game"
+    "random": "Random Game",
+    "lobby": "Local 2P Lobby"
   },
   "featured": {
     "badge": "FEATURED TITLE",
     "play": "PLAY NOW"
+  },
+  "lobby": {
+    "title": "Local 2-Player Lobby",
+    "subtitle": "Configure controllers for head-to-head shared screen multiplayer",
+    "game": "Select Game",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "keyboard": "Keyboard",
+    "gamepad": "Gamepad",
+    "noGamepads": "No gamepads connected (keyboard controls active)",
+    "gamepadsDetected": "{count} gamepad(s) connected",
+    "launch": "Start Match",
+    "cancel": "Cancel"
   },
   "stats": {
     "highScore": "Best",

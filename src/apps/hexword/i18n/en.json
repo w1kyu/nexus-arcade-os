@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Hexword",
+    "description": "5-letter word puzzle in English and German with daily seeded challenges and hard mode"
+  },
+  "mode": {
+    "daily": "Daily Word",
+    "random": "Free Play"
+  },
+  "actions": {
+    "newGame": "New Word",
+    "stats": "Stats",
+    "share": "Share Grid",
+    "hardMode": "Hard Mode"
+  },
+  "status": {
+    "tooShort": "Not enough letters",
+    "notInWordList": "Not in word list",
+    "won": "★ Impressive! You solved it! ★",
+    "lost": "Game Over! The word was {word}",
+    "copied": "Emoji grid copied to clipboard!"
+  }
+}

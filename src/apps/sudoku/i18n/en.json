@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "Sudoku",
+    "description": "Deterministic board generator with unique solution guarantees, pencil marks, auto-notes, and hints."
+  },
+  "difficulty": {
+    "veryEasy": "Very Easy",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "expert": "Expert",
+    "daily": "Daily"
+  },
+  "status": {
+    "mistakes": "Mistakes: {count} / {max}"
+  },
+  "actions": {
+    "undo": "Undo",
+    "erase": "Erase",
+    "notes": "Notes",
+    "autoNotes": "Auto Notes",
+    "hint": "Hint",
+    "applyHint": "Apply Solution"
+  }
+}

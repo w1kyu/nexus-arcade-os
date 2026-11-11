@@ -2,8 +2,11 @@
 
 ## Status
 
-- **Current phase:** 7 — Developer Toolkit (Phase 7 done 2026-11-10, `v0.7.0`)
-- **Next step:** Phase 8 (`specs/08-cs-lab.md`): CS Lab (computer science learning tools).
+- **Current phase:** 10 — More games (Tier 1 complete, 2026-11-11)
+- **Next step:** Phase 10 Tier 2 games (`specs/10-more-games.md`).
+- **Phase 10 (Tier 1) verification:** 922 unit tests (102 test files) passing; full Playwright e2e test suite passing (36 passed, 27 mobile skipped) including `tests/e2e/arcade.spec.js`; 0 missing i18n keys across 63 namespaces; single-file Lite build 6.32 MB (well under 8.00 MB budget).
+- **Phase 9 verification:** Game engine, Arcade Hub, Snake, Breakout, Memory Master, 2048, Reaction Trainer.
+- **Phase 8 verification:** CS Lab educational tools and interactive visualizers.
 - **Phase 7 verification:** 803 unit tests (83 test files) passing; full Playwright e2e test suite passing (33 passed, 24 mobile skipped); 40 app screenshots configured; 0 missing i18n keys across 42 namespaces; single-file Lite build 5.85 MB (well under 8.00 MB budget).
 - **Phase 6 verification:** 759 unit tests (77 test files); e2e test suite passing incl. `office-creative.spec.js`; 33 app screenshots generated; 0 missing i18n keys across 35 namespaces; single-file Lite build 5.25 MB (well under 8.00 MB budget).
 - **Phase 5 verification:** 671 unit tests (69 test files); full e2e test suite passing (29 passed, 20 mobile skipped); 25 app screenshots generated; 0 missing i18n keys across 27 namespaces; single-file Lite build 4.77 MB (well under 8.00 MB budget).
@@ -886,12 +889,12 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **Tier 1 [P1]**
 
-- [ ] **Blockfall** (falling-blocks puzzle): 7 standard piece shapes, rotation system with wall kicks, hold piece, next queue (5), ghost piece, hard/soft drop, lock delay, line-clear animations, levels and speed curve, T-spin-style bonus moves, modes: marathon, sprint (40 lines), ultra (2 minutes), zen.
-- [ ] **Minesweeper:** beginner/intermediate/expert/custom, first click always safe (and opens an area), chording, flags and question marks, timer, no-guess board generator option (P2).
-- [ ] **Void Drifter** (asteroids-style): vector graphics with glow, inertia flight, splitting asteroids, UFO enemies, waves, hyperspace with risk, power-ups (shield, triple shot, rapid fire), particles and screen shake.
-- [ ] **Sudoku:** generator with unique solutions at 5 difficulty levels (rated by required techniques), pencil marks, auto-notes, highlight same numbers, mistakes check (optional), hints that explain the technique (naked single, hidden single, pairs …), timer, daily puzzle.
-- [ ] **Typing Trainer:** WPM/accuracy/consistency, lessons for touch typing (QWERTY and QWERTZ layouts with an on-screen keyboard and finger hints), modes: words, quotes (bundled, public-domain or own), **code typing** (snippets in JS/Python/Java/C), German text mode with umlauts, error heatmap per key, progress graphs.
-- [ ] **Neon Pong:** vs AI (3 difficulties), local 2-player, ball spin, power-ups mode, first to 11.
+- [x] **Blockfall** (falling-blocks puzzle): 7 standard piece shapes, rotation system with wall kicks, hold piece, next queue (5), ghost piece, hard/soft drop, lock delay, line-clear animations, levels and speed curve, T-spin-style bonus moves, modes: marathon, sprint (40 lines), ultra (2 minutes), zen.
+- [x] **Minesweeper:** beginner/intermediate/expert/custom, first click always safe (and opens an area), chording, flags and question marks, timer, no-guess board generator option (P2).
+- [x] **Void Drifter** (asteroids-style): vector graphics with glow, inertia flight, splitting asteroids, UFO enemies, waves, hyperspace with risk, power-ups (shield, triple shot, rapid fire), particles and screen shake.
+- [x] **Sudoku:** generator with unique solutions at 5 difficulty levels (rated by required techniques), pencil marks, auto-notes, highlight same numbers, mistakes check (optional), hints that explain the technique (naked single, hidden single, pairs …), timer, daily puzzle.
+- [x] **Typing Trainer:** WPM/accuracy/consistency, lessons for touch typing (QWERTY and QWERTZ layouts with an on-screen keyboard and finger hints), modes: words, quotes (bundled, public-domain or own), **code typing** (snippets in JS/Python/Java/C), German text mode with umlauts, error heatmap per key, progress graphs.
+- [x] **Neon Pong:** vs AI (3 difficulties), local 2-player, ball spin, power-ups mode, first to 11.
 
 **Tier 2 [P2]**
 
@@ -921,7 +924,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 **Arcade-wide additions**
 
 - [ ] [P2] Local multiplayer lobby screen for games that support it (assign gamepads/keyboard sides).
-- [ ] [P2] Seasonal/rotating "featured game" on the Arcade home and a "random game" button.
+- [x] [P2] Seasonal/rotating "featured game" on the Arcade home and a "random game" button.
 - [ ] [P3] Online multiplayer is **out of scope** (no backend). Don't fake it.
 
 ### Phase 11 — Media Center — `specs/11-media.md`

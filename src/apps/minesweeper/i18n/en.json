@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Minesweeper",
+    "description": "Classic cyber minesweeper with safe first click opening, chording, and custom grid sizes."
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "expert": "Expert",
+    "custom": "Custom"
+  },
+  "custom": {
+    "title": "Custom Minefield",
+    "rows": "Rows (8-30):",
+    "cols": "Columns (8-40):",
+    "mines": "Mines:",
+    "apply": "Create Field",
+    "cancel": "Cancel"
+  }
+}

@@ -1,0 +1,122 @@
+/* Neon Pong styles */
+
+.nx-pong-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #04050a;
+  color: #f0f0ff;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.nx-pong-canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.nx-pong-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Menu overlay */
+.nx-pong-menu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 5, 10, 0.95);
+  z-index: 20;
+  padding: 24px;
+}
+
+.nx-pong-title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #00f0ff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  margin: 0 0 8px;
+}
+
+.nx-pong-subtitle {
+  font-size: 14px;
+  color: #8e9aaf;
+  margin-bottom: 24px;
+  text-align: center;
+  max-width: 440px;
+}
+
+.nx-pong-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.nx-pong-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.nx-pong-btn {
+  padding: 8px 16px;
+  background: #121828;
+  border: 1px solid #23314d;
+  color: #94a3b8;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-pong-btn:hover {
+  background: #1c2740;
+  color: #ffffff;
+}
+
+.nx-pong-btn.active {
+  background: #00f0ff;
+  border-color: #00f0ff;
+  color: #000000;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+.nx-pong-play-btn {
+  padding: 12px 42px;
+  background: #ff3399;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(255, 51, 153, 0.5);
+  transition: all 0.2s ease;
+}
+
+.nx-pong-play-btn:hover {
+  background: #ff55b0;
+  transform: scale(1.04);
+}
+
+.nx-pong-hint {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.6;
+}

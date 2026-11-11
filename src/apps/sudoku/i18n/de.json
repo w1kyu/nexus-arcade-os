@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "Sudoku",
+    "description": "Deterministischer Sudoku-Generator mit eindeutiger Lösungsgarantie, Notizen, Auto-Kandidaten und Hinweisen."
+  },
+  "difficulty": {
+    "veryEasy": "Sehr einfach",
+    "easy": "Einfach",
+    "medium": "Mittel",
+    "hard": "Schwer",
+    "expert": "Experte",
+    "daily": "Täglich"
+  },
+  "status": {
+    "mistakes": "Fehler: {count} / {max}"
+  },
+  "actions": {
+    "undo": "Rückgängig",
+    "erase": "Löschen",
+    "notes": "Notizen",
+    "autoNotes": "Auto-Notizen",
+    "hint": "Hinweis",
+    "applyHint": "Lösung einsetzen"
+  }
+}

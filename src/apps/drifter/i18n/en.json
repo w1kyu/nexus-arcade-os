@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Void Drifter",
+    "description": "Neon vector space combat with inertia physics, splitting asteroids, UFO patrols, and hyperspace jumps."
+  },
+  "menu": {
+    "play": "Launch Mission",
+    "controls": "Controls: Up / W to Thrust, Left / Right or A / D to Rotate, Space / J to Fire, Shift / H to Hyperspace, Esc to Pause."
+  }
+}

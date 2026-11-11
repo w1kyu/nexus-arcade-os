@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Neon Pong",
+    "description": "Hochgeschwindigkeits-Cyber-Paddelduell mit Ball-Spin-Dynamik, Power-ups und Satz bis 11 Punkte."
+  },
+  "modes": {
+    "ai": "vs KI",
+    "pvp": "Lokales 2-Spieler"
+  },
+  "difficulty": {
+    "casual": "Locker",
+    "skilled": "Geübt",
+    "master": "Meister"
+  },
+  "menu": {
+    "powerups": "Power-ups",
+    "play": "Match starten",
+    "controls": "Steuerung: Spieler 1 nutzt W / S (oder Pfeile vs KI). Spieler 2 nutzt Oben / Unten. Esc für Pause."
+  }
+}

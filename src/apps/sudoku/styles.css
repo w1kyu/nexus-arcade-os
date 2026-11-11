@@ -1,0 +1,220 @@
+/* Sudoku Styles */
+
+.nx-sudoku-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #090d16;
+  color: #e6edf3;
+  user-select: none;
+  overflow: auto;
+  position: relative;
+  align-items: center;
+}
+
+.nx-sudoku-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 580px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nx-sudoku-diff-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.nx-sudoku-btn {
+  padding: 6px 10px;
+  background: #161f30;
+  border: 1px solid #28374f;
+  color: #a0aec0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-sudoku-btn:hover {
+  background: #202d45;
+  color: #ffffff;
+}
+
+.nx-sudoku-btn.active {
+  background: #00f0ff;
+  border-color: #00f0ff;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.nx-sudoku-status {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 540px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #8e9aaf;
+  font-weight: 600;
+}
+
+.nx-sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 52px);
+  grid-template-rows: repeat(9, 52px);
+  background: #111827;
+  border: 3px solid #00f0ff;
+  border-radius: 6px;
+  box-shadow: 0 4px 25px rgba(0, 240, 255, 0.15);
+  margin: 10px 0;
+}
+
+@media (max-width: 540px) {
+  .nx-sudoku-board {
+    grid-template-columns: repeat(9, 36px);
+    grid-template-rows: repeat(9, 36px);
+  }
+}
+
+.nx-sudoku-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  background: #111827;
+  border: 1px solid #1f2937;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* 3x3 Box borders */
+.nx-sudoku-cell[data-col='2'],
+.nx-sudoku-cell[data-col='5'] {
+  border-right: 2px solid #00f0ff;
+}
+.nx-sudoku-cell[data-row='2'],
+.nx-sudoku-cell[data-row='5'] {
+  border-bottom: 2px solid #00f0ff;
+}
+
+.nx-sudoku-cell.clue {
+  color: #00f0ff;
+}
+
+.nx-sudoku-cell.selected {
+  background: rgba(0, 240, 255, 0.35) !important;
+  box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.8);
+}
+
+.nx-sudoku-cell.peer {
+  background: rgba(0, 240, 255, 0.08);
+}
+
+.nx-sudoku-cell.same-num {
+  background: rgba(0, 240, 255, 0.22);
+}
+
+.nx-sudoku-cell.conflict {
+  color: #ff3838 !important;
+  background: rgba(255, 56, 56, 0.25) !important;
+}
+
+/* Pencil notes inside cell */
+.nx-sudoku-notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nx-sudoku-note-num {
+  font-size: 9px;
+  font-weight: 600;
+  color: #8e9aaf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-sudoku-note-num.highlight {
+  color: #00f0ff;
+  font-weight: 800;
+}
+
+/* Actions bar */
+.nx-sudoku-actions {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nx-sudoku-keypad {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nx-sudoku-key {
+  width: 44px;
+  height: 48px;
+  background: #1a2333;
+  border: 1px solid #2e3e57;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.nx-sudoku-key:hover {
+  background: #25334a;
+  border-color: #00f0ff;
+}
+
+.nx-sudoku-key:active {
+  transform: scale(0.95);
+}
+
+.nx-sudoku-hint-dialog {
+  max-width: 400px;
+  padding: 20px;
+  background: #111827;
+  border: 2px solid #00f0ff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.nx-sudoku-hint-tech {
+  color: #00f0ff;
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.nx-sudoku-hint-desc {
+  color: #e6edf3;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}

@@ -152,6 +152,14 @@ export class ParticleSystem {
     ctx.restore();
   }
 
+  /**
+   * Alias for render()
+   * @param {CanvasRenderingContext2D} ctx
+   */
+  draw(ctx) {
+    this.render(ctx);
+  }
+
   clear() {
     for (const p of this.particles) {
       this.pool.release(p);

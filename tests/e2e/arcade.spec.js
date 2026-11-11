@@ -84,4 +84,59 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
 
     expect(errors).toEqual([]);
   });
+
+  test('launches and plays Phase 10 Tier 1 games (Blockfall, Minesweeper, Drifter, Sudoku, Typing, Pong)', async ({
+    page,
+  }) => {
+    test.setTimeout(90_000);
+    const errors = collectErrors(page);
+    await startNexus(page);
+    await page.keyboard.press('Escape');
+
+    // 1. Blockfall
+    const blockfallWin = await openAppFromPalette(page, 'Blockfall', 'nexus.blockfall');
+    await expect(blockfallWin.locator('.nx-blockfall-app')).toBeVisible();
+    await blockfallWin.locator('.nx-blockfall-play-btn').click();
+    await expect(blockfallWin.locator('.nx-blockfall-canvas')).toBeVisible();
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Space');
+
+    // 2. Minesweeper
+    const minesWin = await openAppFromPalette(page, 'Minesweeper', 'nexus.minesweeper');
+    await expect(minesWin.locator('.nx-minesweeper-app')).toBeVisible();
+    const cell = minesWin.locator('.nx-minesweeper-cell[data-row="4"][data-col="4"]');
+    await cell.click();
+    await expect(cell).toHaveClass(/revealed/);
+
+    // 3. Void Drifter
+    const drifterWin = await openAppFromPalette(page, 'Void Drifter', 'nexus.drifter');
+    await expect(drifterWin.locator('.nx-drifter-app')).toBeVisible();
+    await drifterWin.locator('.nx-drifter-play-btn').click();
+    await expect(drifterWin.locator('.nx-drifter-canvas')).toBeVisible();
+    await page.keyboard.press('ArrowUp');
+
+    // 4. Sudoku
+    const sudokuWin = await openAppFromPalette(page, 'Sudoku', 'nexus.sudoku');
+    await expect(sudokuWin.locator('.nx-sudoku-app')).toBeVisible();
+    await expect(sudokuWin.locator('.nx-sudoku-board')).toBeVisible();
+    const sCell = sudokuWin.locator('.nx-sudoku-cell[data-row="0"][data-col="0"]');
+    await sCell.click();
+    await expect(sCell).toHaveClass(/selected/);
+
+    // 5. Typing Trainer
+    const typingWin = await openAppFromPalette(page, 'Typing Trainer', 'nexus.typing');
+    await expect(typingWin.locator('.nx-typing-app')).toBeVisible();
+    await expect(typingWin.locator('.nx-typing-keyboard')).toBeVisible();
+    await typingWin.locator('.nx-typing-text-wrap').click();
+    await page.keyboard.type('a');
+
+    // 6. Neon Pong
+    const pongWin = await openAppFromPalette(page, 'Neon Pong', 'nexus.pong');
+    await expect(pongWin.locator('.nx-pong-app')).toBeVisible();
+    await pongWin.locator('.nx-pong-play-btn').click();
+    await expect(pongWin.locator('.nx-pong-canvas')).toBeVisible();
+    await page.keyboard.press('KeyW');
+
+    expect(errors).toEqual([]);
+  });
 });

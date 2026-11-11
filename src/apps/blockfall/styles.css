@@ -1,0 +1,158 @@
+/* Blockfall styles */
+
+.nx-blockfall-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #06060c;
+  color: #f0f0ff;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.nx-blockfall-canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.nx-blockfall-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Menu overlay */
+.nx-blockfall-menu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 6, 12, 0.95);
+  z-index: 20;
+  padding: 24px;
+}
+
+.nx-blockfall-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  margin: 0 0 8px;
+}
+
+.nx-blockfall-subtitle {
+  font-size: 14px;
+  color: #8e9aaf;
+  margin-bottom: 24px;
+  text-align: center;
+  max-width: 420px;
+}
+
+.nx-blockfall-modes {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nx-blockfall-mode-btn {
+  padding: 10px 18px;
+  background: #141428;
+  border: 1px solid #303055;
+  color: #c0c0d8;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nx-blockfall-mode-btn:hover {
+  background: #1e1e3c;
+  border-color: #00f0ff;
+  color: #ffffff;
+}
+
+.nx-blockfall-mode-btn.active {
+  background: #00f0ff;
+  color: #000000;
+  border-color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+.nx-blockfall-play-btn {
+  padding: 12px 36px;
+  background: #00e676;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0, 230, 118, 0.4);
+  transition: all 0.2s ease;
+}
+
+.nx-blockfall-play-btn:hover {
+  background: #25ff8f;
+  transform: scale(1.04);
+}
+
+.nx-blockfall-hint {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #6c7a89;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Touch controls overlay */
+.nx-blockfall-touch-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.nx-blockfall-touch-dpad,
+.nx-blockfall-touch-actions {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.nx-blockfall-touch-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 26px;
+  background: rgba(20, 20, 40, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.nx-blockfall-touch-btn:active {
+  background: rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+}

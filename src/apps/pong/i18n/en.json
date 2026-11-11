@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Neon Pong",
+    "description": "High-velocity cyber paddle battle with ball spin dynamics, power-ups, and first-to-11 match scoring."
+  },
+  "modes": {
+    "ai": "vs AI",
+    "pvp": "Local 2-Player"
+  },
+  "difficulty": {
+    "casual": "Casual",
+    "skilled": "Skilled",
+    "master": "Master"
+  },
+  "menu": {
+    "powerups": "Power-ups",
+    "play": "Start Match",
+    "controls": "Controls: Player 1 uses W / S (or Arrows vs AI). Player 2 uses Up / Down. Esc to Pause."
+  }
+}

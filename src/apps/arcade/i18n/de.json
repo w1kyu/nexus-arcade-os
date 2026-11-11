@@ -10,7 +10,12 @@
     "arcade": "Arcade",
     "puzzle": "Puzzle",
     "reflex": "Reflex",
-    "favorites": "Favoriten"
+    "favorites": "Favoriten",
+    "random": "Zufälliges Spiel"
+  },
+  "featured": {
+    "badge": "HIGHLIGHT-SPIEL",
+    "play": "JETZT SPIELEN"
   },
   "stats": {
     "highScore": "Beste",

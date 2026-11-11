@@ -351,3 +351,83 @@
   font-size: 11px;
   color: #8b9bb4;
 }
+
+/* Featured game banner */
+.nx-arcade-featured {
+  margin: 16px 32px 0 32px;
+  background: linear-gradient(135deg, rgba(20, 26, 50, 0.9), rgba(10, 14, 28, 0.95));
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nx-featured-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffdd00;
+  background: rgba(255, 221, 0, 0.15);
+  border: 1px solid rgba(255, 221, 0, 0.4);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: 6px;
+}
+
+.nx-featured-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.nx-featured-desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+  max-width: 600px;
+}
+
+.nx-featured-play-btn {
+  padding: 10px 24px;
+  background: #00f0ff;
+  color: #05060d;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  transition: all 0.15s ease;
+}
+
+.nx-featured-play-btn:hover {
+  background: #4df7ff;
+  transform: scale(1.04);
+}
+
+.nx-random-btn {
+  background: #2a154d;
+  border: 1px solid #7d5fff;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.nx-random-btn:hover {
+  background: #3c1e6e;
+  box-shadow: 0 0 10px rgba(125, 95, 255, 0.5);
+}

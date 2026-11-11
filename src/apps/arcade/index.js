@@ -31,6 +31,54 @@ const ARCADE_GAMES = [
     bgGradient: 'linear-gradient(135deg, #10002b, #240046)',
   },
   {
+    id: 'nexus.blockfall',
+    name: 'Blockfall',
+    genre: 'puzzle',
+    desc: 'Super Rotation falling-blocks puzzle with ghost projection, hold piece, and 4 game modes.',
+    iconName: '🧊',
+    bgGradient: 'linear-gradient(135deg, #091b29, #003666)',
+  },
+  {
+    id: 'nexus.minesweeper',
+    name: 'Minesweeper',
+    genre: 'puzzle',
+    desc: 'Tactical mine clearance with safe first click opening, chording, and custom grid sizes.',
+    iconName: '💣',
+    bgGradient: 'linear-gradient(135deg, #1b1f24, #2d333b)',
+  },
+  {
+    id: 'nexus.drifter',
+    name: 'Void Drifter',
+    genre: 'action',
+    desc: 'Vector neon space combat with inertia physics, splitting asteroids, and UFO enemies.',
+    iconName: '🚀',
+    bgGradient: 'linear-gradient(135deg, #120b24, #2a154d)',
+  },
+  {
+    id: 'nexus.sudoku',
+    name: 'Sudoku',
+    genre: 'puzzle',
+    desc: 'Logic number placement with unique solutions, pencil notes, and technique hints.',
+    iconName: '🔢',
+    bgGradient: 'linear-gradient(135deg, #0d1b2a, #1b263b)',
+  },
+  {
+    id: 'nexus.typing',
+    name: 'Typing Trainer',
+    genre: 'reflex',
+    desc: 'Professional touch typing trainer with WPM benchmarks, visual keyboard, and code mode.',
+    iconName: '⌨️',
+    bgGradient: 'linear-gradient(135deg, #161a29, #232b42)',
+  },
+  {
+    id: 'nexus.pong',
+    name: 'Neon Pong',
+    genre: 'arcade',
+    desc: 'High-velocity cyber table tennis with spin dynamics, power-ups, and AI or 2-player modes.',
+    iconName: '🏓',
+    bgGradient: 'linear-gradient(135deg, #240046, #3c096c)',
+  },
+  {
     id: 'nexus.memory',
     name: 'Memory Master',
     genre: 'puzzle',
@@ -132,6 +180,12 @@ export async function mount(container, ctx) {
     filtersEl.append(btn);
   }
 
+  const randomBtn = h('button', { class: 'nx-random-btn' }, `🎲 ${t('toolbar.random')}`);
+  randomBtn.addEventListener('click', () => {
+    const pick = ARCADE_GAMES[Math.floor(Math.random() * ARCADE_GAMES.length)];
+    launchGame(pick.id);
+  });
+
   const searchBox = h('div', { class: 'nx-arcade-search-box' });
   const searchInput = /** @type {HTMLInputElement} */ (h('input', { type: 'text', placeholder: t('toolbar.search') }));
   searchInput.addEventListener('input', () => {
@@ -140,8 +194,25 @@ export async function mount(container, ctx) {
   });
   searchBox.append(searchInput);
 
-  toolbar.append(filtersEl, searchBox);
+  toolbar.append(filtersEl, randomBtn, searchBox);
   header.append(banner, toolbar);
+
+  // Rotating featured game banner (daily rotation)
+  const today = new Date();
+  const featuredIndex = (today.getDate() + today.getMonth() * 31) % ARCADE_GAMES.length;
+  const featuredGame = ARCADE_GAMES[featuredIndex];
+
+  const featuredBanner = h('div', { class: 'nx-arcade-featured' });
+  const featuredLeft = h(
+    'div',
+    {},
+    h('span', { class: 'nx-featured-badge' }, `★ ${t('featured.badge')}`),
+    h('h2', { class: 'nx-featured-title' }, `${featuredGame.iconName} ${featuredGame.name}`),
+    h('p', { class: 'nx-featured-desc' }, featuredGame.desc),
+  );
+  const featuredPlayBtn = h('button', { class: 'nx-featured-play-btn' }, t('featured.play'));
+  featuredPlayBtn.addEventListener('click', () => launchGame(featuredGame.id));
+  featuredBanner.append(featuredLeft, featuredPlayBtn);
 
   // Content Area
   const content = h('div', { class: 'nx-arcade-content' });
@@ -155,7 +226,7 @@ export async function mount(container, ctx) {
   achievementsSec.append(achievementsTitle, achievementsGrid);
   content.append(achievementsSec);
 
-  root.append(header, content);
+  root.append(header, featuredBanner, content);
   container.append(root);
 
   async function updateProfile() {

@@ -1,0 +1,18 @@
+{
+  "app": {
+    "title": "Typing Trainer",
+    "description": "Master touch typing with WPM, accuracy, consistency tracking, QWERTY/QWERTZ visual guide, and code typing."
+  },
+  "modes": {
+    "words": "Common Words",
+    "quotes": "Quotes",
+    "code": "Code Typing",
+    "german": "German Umlauts"
+  },
+  "stats": {
+    "wpm": "WPM",
+    "rawWpm": "RAW WPM",
+    "accuracy": "ACCURACY",
+    "consistency": "CONSISTENCY"
+  }
+}

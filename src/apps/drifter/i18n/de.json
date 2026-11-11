@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Void Drifter",
+    "description": "Neon-Vektor-Weltraumkampf mit Trägheitsphysik, spaltenden Asteroiden, UFO-Patrouillen und Hyperraum-Sprüngen."
+  },
+  "menu": {
+    "play": "Mission starten",
+    "controls": "Steuerung: Oben / W für Schub, Links / Rechts oder A / D zum Drehen, Leertaste / J zum Feuern, Umschalt / H für Hyperraum, Esc für Pause."
+  }
+}

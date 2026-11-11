@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Minesweeper",
+    "description": "Klassisches Cyber-Minesweeper mit sicherem ersten Klick, Akkord-Aufdecken und benutzerdefinierten Rastergrößen."
+  },
+  "difficulty": {
+    "beginner": "Anfänger",
+    "intermediate": "Fortgeschritten",
+    "expert": "Experte",
+    "custom": "Benutzerdefiniert"
+  },
+  "custom": {
+    "title": "Eigenes Minenfeld",
+    "rows": "Reihen (8-30):",
+    "cols": "Spalten (8-40):",
+    "mines": "Minen:",
+    "apply": "Feld erstellen",
+    "cancel": "Abbrechen"
+  }
+}

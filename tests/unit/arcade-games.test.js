@@ -110,7 +110,7 @@ describe('Phase 9 — Arcade Games Unit Tests', () => {
   });
 
   describe('Manifest validation', () => {
-    it('validates all phase 9 app manifests', async () => {
+    it('validates all phase 9 and phase 10 app manifests', async () => {
       const manifests = [
         (await import('../../src/apps/arcade/manifest.js')).default,
         (await import('../../src/apps/snake/manifest.js')).default,
@@ -118,6 +118,12 @@ describe('Phase 9 — Arcade Games Unit Tests', () => {
         (await import('../../src/apps/memory/manifest.js')).default,
         (await import('../../src/apps/2048/manifest.js')).default,
         (await import('../../src/apps/reaction/manifest.js')).default,
+        (await import('../../src/apps/blockfall/manifest.js')).default,
+        (await import('../../src/apps/minesweeper/manifest.js')).default,
+        (await import('../../src/apps/drifter/manifest.js')).default,
+        (await import('../../src/apps/sudoku/manifest.js')).default,
+        (await import('../../src/apps/typing/manifest.js')).default,
+        (await import('../../src/apps/pong/manifest.js')).default,
       ];
       const { validateManifest } = await import('../../src/kernel/manifest.js');
       for (const m of manifests) {

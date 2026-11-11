@@ -356,6 +356,24 @@ export class InputManager {
   }
 
   /**
+   * Alias for isDown()
+   * @param {string} action
+   * @returns {boolean}
+   */
+  isActionDown(action) {
+    return this.isDown(action);
+  }
+
+  /**
+   * Alias for justPressed()
+   * @param {string} action
+   * @returns {boolean}
+   */
+  isActionJustPressed(action) {
+    return this.justPressed(action);
+  }
+
+  /**
    * Returns continuous axis value in [-1, 1]
    * @param {'horizontal' | 'vertical'} axis
    */

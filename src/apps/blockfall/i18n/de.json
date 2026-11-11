@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "Blockfall",
+    "description": "Blockstapel-Puzzlespiel der nächsten Generation mit SRS-Kicks, Schatten-Vorschau und 4 Spielmodi."
+  },
+  "modes": {
+    "marathon": "Marathon",
+    "sprint": "Sprint (40 Reihen)",
+    "ultra": "Ultra (2 Min)",
+    "zen": "Zen-Modus"
+  },
+  "menu": {
+    "play": "Spiel starten",
+    "controls": "Steuerung: Links / Rechts bewegen, Unten für sanften Fall, Leertaste für Sofort-Fall, Oben / Z / X zum Drehen, C oder Umschalt zum Halten, Esc für Pause."
+  }
+}

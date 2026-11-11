@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "Blockfall",
+    "description": "Next-gen falling blocks puzzle with SRS kicks, ghost piece, and 4 game modes."
+  },
+  "modes": {
+    "marathon": "Marathon",
+    "sprint": "Sprint (40 Lines)",
+    "ultra": "Ultra (2 Min)",
+    "zen": "Zen Mode"
+  },
+  "menu": {
+    "play": "Start Game",
+    "controls": "Controls: Left / Right to move, Down for Soft Drop, Space for Hard Drop, Up / Z / X to rotate, C or Shift for Hold, Esc for Pause."
+  }
+}

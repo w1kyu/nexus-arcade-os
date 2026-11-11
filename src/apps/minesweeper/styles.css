@@ -1,0 +1,192 @@
+/* Minesweeper Styles */
+
+.nx-minesweeper-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #0d1117;
+  color: #e6edf3;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.nx-minesweeper-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nx-minesweeper-diff-group {
+  display: flex;
+  gap: 6px;
+}
+
+.nx-minesweeper-btn {
+  padding: 6px 12px;
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-minesweeper-btn:hover {
+  background: #30363d;
+  color: #ffffff;
+}
+
+.nx-minesweeper-btn.active {
+  background: #238636;
+  border-color: #2ea043;
+  color: #ffffff;
+}
+
+.nx-minesweeper-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #1b2028;
+  border-bottom: 2px solid #30363d;
+}
+
+.nx-minesweeper-lcd {
+  background: #000000;
+  color: #ff3333;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #441111;
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.nx-minesweeper-face-btn {
+  font-size: 26px;
+  background: #21262d;
+  border: 2px solid #30363d;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.nx-minesweeper-face-btn:active {
+  transform: scale(0.92);
+}
+
+.nx-minesweeper-board-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 20px;
+  background: #0d1117;
+}
+
+.nx-minesweeper-board {
+  display: grid;
+  background: #21262d;
+  padding: 6px;
+  border: 3px solid #30363d;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nx-minesweeper-cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  background: #30363d;
+  border-top: 2px solid #484f58;
+  border-left: 2px solid #484f58;
+  border-bottom: 2px solid #161b22;
+  border-right: 2px solid #161b22;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nx-minesweeper-cell.revealed {
+  background: #161b22;
+  border: 1px solid #21262d;
+  cursor: default;
+}
+
+.nx-minesweeper-cell.exploded {
+  background: #da3633 !important;
+}
+
+/* Number colors (high contrast & colorblind safe) */
+.nx-minesweeper-cell[data-count='1'] {
+  color: #58a6ff;
+}
+.nx-minesweeper-cell[data-count='2'] {
+  color: #3fb950;
+}
+.nx-minesweeper-cell[data-count='3'] {
+  color: #f85149;
+}
+.nx-minesweeper-cell[data-count='4'] {
+  color: #bc8cff;
+}
+.nx-minesweeper-cell[data-count='5'] {
+  color: #f0883e;
+}
+.nx-minesweeper-cell[data-count='6'] {
+  color: #39c5bb;
+}
+.nx-minesweeper-cell[data-count='7'] {
+  color: #f6e05e;
+}
+.nx-minesweeper-cell[data-count='8'] {
+  color: #8b949e;
+}
+
+/* Custom modal */
+.nx-minesweeper-custom-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.nx-minesweeper-input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.nx-minesweeper-input-row input {
+  width: 70px;
+  padding: 4px 8px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #ffffff;
+  border-radius: 4px;
+}

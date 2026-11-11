@@ -1,0 +1,21 @@
+{
+  "app": {
+    "title": "Match-3 Puzzle",
+    "description": "Tausche und verbinde Cyber-Edelsteine mit Kaskaden und Zielen"
+  },
+  "hud": {
+    "level": "Level",
+    "score": "Punkte",
+    "moves": "Züge",
+    "goal": "Ziel"
+  },
+  "actions": {
+    "restart": "Neustart",
+    "newGame": "Neues Spiel",
+    "selectLevel": "Level"
+  },
+  "status": {
+    "victory": "Level abgeschlossen!",
+    "defeat": "Keine Züge mehr! Nochmal versuchen."
+  }
+}

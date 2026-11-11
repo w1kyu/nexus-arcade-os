@@ -182,6 +182,78 @@ const ARCADE_GAMES = [
     iconName: '🔷',
     bgGradient: 'linear-gradient(135deg, #0e7490, #155e75)',
   },
+  {
+    id: 'nexus.griddefense',
+    name: 'Grid Defense',
+    genre: 'action',
+    desc: 'Tower defense with 11 maps, 6 upgradable tower types, enemy creep varieties, waves, and speed controls.',
+    iconName: '🏰',
+    bgGradient: 'linear-gradient(135deg, #1e1b4b, #2e1065)',
+  },
+  {
+    id: 'nexus.runner',
+    name: 'Pixel Runner',
+    genre: 'action',
+    desc: 'Precision platformer with tight coyote-jump physics, 20 handcrafted levels, and custom level editor.',
+    iconName: '🏃',
+    bgGradient: 'linear-gradient(135deg, #022c22, #064e3b)',
+  },
+  {
+    id: 'nexus.racer',
+    name: 'Neon Racer',
+    genre: 'arcade',
+    desc: 'Top-down neon racing circuit with drift physics, AI opponents, ghost car replay, and 5 tracks.',
+    iconName: '🏎️',
+    bgGradient: 'linear-gradient(135deg, #831843, #701a75)',
+  },
+  {
+    id: 'nexus.uttt',
+    name: 'Ultimate Tic-Tac-Toe',
+    genre: 'board',
+    desc: 'Strategic nested 9x9 board with forced sub-grid targeting, heuristic AI, and local 2-player mode.',
+    iconName: '⚔️',
+    bgGradient: 'linear-gradient(135deg, #172554, #1e3a8a)',
+  },
+  {
+    id: 'nexus.mahjong',
+    name: 'Mahjong Solitaire',
+    genre: 'puzzle',
+    desc: 'Tile-matching with 3D layouts, elevation occlusion, hint, shuffle, and 100% solvable deals.',
+    iconName: '🀄',
+    bgGradient: 'linear-gradient(135deg, #14532d, #166534)',
+  },
+  {
+    id: 'nexus.match3',
+    name: 'Match-3 Puzzle',
+    genre: 'puzzle',
+    desc: 'Swap matcher with cascade combos, special bombs and lasers, and 10 objective levels.',
+    iconName: '💎',
+    bgGradient: 'linear-gradient(135deg, #701a75, #4a044e)',
+  },
+  {
+    id: 'nexus.bubbles',
+    name: 'Bubble Shooter',
+    genre: 'arcade',
+    desc: 'Aim and bank-shot trajectory physics with color matching, cluster pops, and floating bubble cascades.',
+    iconName: '🫧',
+    bgGradient: 'linear-gradient(135deg, #0369a1, #0c4a6e)',
+  },
+  {
+    id: 'nexus.life',
+    name: 'Game of Life Sandbox',
+    genre: 'puzzle',
+    desc: 'Toroidal cellular automata simulator with pattern library, interactive pencil, and 5 rule engines.',
+    iconName: '🧬',
+    bgGradient: 'linear-gradient(135deg, #042f2e, #134e4a)',
+  },
+  {
+    id: 'nexus.quiz',
+    name: 'Quiz Arena',
+    genre: 'reflex',
+    desc: 'Trivia quiz arena with CS fundamentals and web architecture packs in EN and DE, streaks, and lifelines.',
+    iconName: '💡',
+    bgGradient: 'linear-gradient(135deg, #451a03, #78350f)',
+  },
 ];
 
 const MULTIPLAYER_GAMES = [
@@ -189,6 +261,7 @@ const MULTIPLAYER_GAMES = [
   { id: 'nexus.checkers', name: 'Checkers / Dame', icon: '⚪' },
   { id: 'nexus.chess', name: 'Nexus Chess', icon: '♟️' },
   { id: 'nexus.pong', name: 'Neon Pong', icon: '🏓' },
+  { id: 'nexus.uttt', name: 'Ultimate Tic-Tac-Toe', icon: '⚔️' },
 ];
 
 /** @type {import('../../kernel/types').AppModule['mount']} */

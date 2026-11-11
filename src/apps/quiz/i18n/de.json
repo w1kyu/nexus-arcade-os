@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Quiz-Arena",
+    "description": "Zweisprachiges Quiz über Informatik, Logik und Serien-Boni"
+  },
+  "hud": {
+    "question": "Frage",
+    "score": "Punkte",
+    "streak": "Serie",
+    "timer": "Zeit"
+  },
+  "actions": {
+    "fiftyFifty": "50:50 Joker",
+    "next": "Nächste Frage",
+    "restart": "Nochmal spielen",
+    "customPack": "Paket laden"
+  },
+  "status": {
+    "correct": "Richtig! +{pts} Pkt. ({mult}x Serie)",
+    "incorrect": "Falsch! Die richtige Antwort war: {ans}",
+    "timeOut": "Zeit abgelaufen!",
+    "complete": "Runde abgeschlossen!"
+  }
+}

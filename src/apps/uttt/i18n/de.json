@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Ultimate Tic-Tac-Toe",
+    "description": "Strategisches verschachteltes 9x9-Brett mit taktischen Zielregeln"
+  },
+  "mode": {
+    "ai": "vs KI",
+    "local": "Lokal 2P"
+  },
+  "difficulty": {
+    "label": "Schwierigkeit",
+    "easy": "Einfach",
+    "medium": "Mittel",
+    "hard": "Schwer"
+  },
+  "hud": {
+    "moves": "Züge",
+    "turn": "Am Zug"
+  },
+  "actions": {
+    "newGame": "Neues Spiel",
+    "undo": "Rückgängig",
+    "stats": "Statistiken"
+  },
+  "status": {
+    "you": "Du bist am Zug (X)",
+    "ai": "KI denkt nach...",
+    "player": "Spieler {n} ist am Zug",
+    "won": "Sieg! Du hast gewonnen!",
+    "lost": "Niederlage! KI hat gewonnen!",
+    "playerWon": "Spieler {n} gewinnt!",
+    "draw": "Unentschieden!"
+  }
+}

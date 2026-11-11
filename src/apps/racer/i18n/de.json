@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "Neon Racer",
+    "description": "Top-Down-Cyber-Rennen mit KI-Rivalen und Geist-Wiederholungen"
+  },
+  "hud": {
+    "lap": "Runde",
+    "time": "Zeit",
+    "bestLap": "Beste Runde",
+    "speed": "Tempo",
+    "pos": "Pos"
+  },
+  "actions": {
+    "selectTrack": "Strecke",
+    "newRace": "Neues Rennen",
+    "restart": "Rennen neustarten"
+  },
+  "status": {
+    "getReady": "BEREIT!",
+    "go": "LOS!",
+    "finished": "RENNEN BEENDET",
+    "won": "1. Platz! Sieg!",
+    "rank": "Platz: #{rank}"
+  }
+}

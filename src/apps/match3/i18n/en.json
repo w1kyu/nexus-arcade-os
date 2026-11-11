@@ -1,0 +1,21 @@
+{
+  "app": {
+    "title": "Match-3 Puzzle",
+    "description": "Swap and match cyber gems with cascade combos and level objectives"
+  },
+  "hud": {
+    "level": "Level",
+    "score": "Score",
+    "moves": "Moves",
+    "goal": "Goal"
+  },
+  "actions": {
+    "restart": "Restart",
+    "newGame": "New Game",
+    "selectLevel": "Level"
+  },
+  "status": {
+    "victory": "Level Complete!",
+    "defeat": "Out of Moves! Try again."
+  }
+}

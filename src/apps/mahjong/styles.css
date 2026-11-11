@@ -1,0 +1,102 @@
+.nx-mahjong {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #09121d;
+  color: #f1f5f9;
+  font-family: var(--nx-font-family, system-ui, sans-serif);
+  user-select: none;
+  overflow: hidden;
+}
+
+.nx-mahjong-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #0f1c2e;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+
+.nx-mahjong-hud {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nx-mahjong-hud b {
+  color: #38bdf8;
+  font-family: monospace;
+}
+
+.nx-mahjong-main {
+  flex: 1;
+  position: relative;
+  background: #060d16;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-mahjong-board {
+  position: relative;
+  width: 780px;
+  height: 520px;
+}
+
+.nx-mahjong-tile {
+  position: absolute;
+  width: 44px;
+  height: 56px;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #0f172a;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.nx-mahjong-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.6);
+}
+
+.nx-mahjong-tile.selected {
+  outline: 3px solid #00f0ff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.7);
+  transform: translateY(-4px);
+}
+
+.nx-mahjong-tile.hint {
+  outline: 3px solid #facc15;
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.8);
+  animation: nx-pulse 1s infinite alternate;
+}
+
+.nx-mahjong-tile.dimmed {
+  opacity: 0.55;
+  filter: grayscale(40%);
+}
+
+@keyframes nx-pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}

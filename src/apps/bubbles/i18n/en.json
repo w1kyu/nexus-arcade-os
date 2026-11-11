@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Bubble Shooter",
+    "description": "Aim and bounce bubbles to match 3 or more of the same color"
+  },
+  "hud": {
+    "level": "Level",
+    "score": "Score",
+    "shots": "Shots"
+  },
+  "actions": {
+    "restart": "Restart",
+    "newGame": "New Game",
+    "selectLevel": "Level"
+  },
+  "status": {
+    "victory": "Board Cleared! Victory!",
+    "defeat": "Ceiling Overrun! Game Over."
+  }
+}

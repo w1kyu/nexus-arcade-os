@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "Grid Defense",
+    "description": "Cyber-Tower-Defense mit aufrüstbaren Geschützen und Gegnerwellen"
+  },
+  "hud": {
+    "credits": "Credits",
+    "lives": "Leben",
+    "wave": "Welle",
+    "score": "Punkte",
+    "speed": "Tempo"
+  },
+  "actions": {
+    "startWave": "Welle starten",
+    "nextWave": "Nächste Welle",
+    "waveActive": "Welle läuft...",
+    "upgrade": "Aufrüsten",
+    "sell": "Verkaufen",
+    "selectMap": "Karte",
+    "newGame": "Neues Spiel",
+    "stats": "Statistiken"
+  },
+  "towers": {
+    "pulse": "Puls-Blaster",
+    "plasma": "Plasma-Mörser",
+    "frost": "Frost-Emitter",
+    "tesla": "Tesla-Spule",
+    "railgun": "Railgun-Scharfschütze",
+    "disruptor": "Leerenspaltung"
+  },
+  "targetModes": {
+    "first": "Ziel: Erster",
+    "last": "Ziel: Letzter",
+    "strong": "Ziel: Stärkster",
+    "weak": "Ziel: Schwächster"
+  },
+  "status": {
+    "level": "Stufe",
+    "damage": "Schaden",
+    "range": "Reichweite",
+    "fireRate": "Feuerrate",
+    "kills": "Abschüsse",
+    "maxLevel": "Maximale Stufe erreicht",
+    "victory": "Sieg! Alle Wellen abgewehrt!",
+    "defeat": "Raster überrannt! Kern zerstört."
+  }
+}

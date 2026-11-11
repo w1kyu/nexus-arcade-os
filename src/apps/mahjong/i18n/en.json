@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Mahjong Solitaire",
+    "description": "Tile-matching with 3D layouts and guaranteed solvable deals"
+  },
+  "hud": {
+    "tilesLeft": "Tiles Left",
+    "matches": "Matches",
+    "time": "Time"
+  },
+  "actions": {
+    "newDeal": "New Deal",
+    "hint": "Hint",
+    "shuffle": "Shuffle",
+    "undo": "Undo",
+    "highlightFree": "Highlight Free",
+    "selectLayout": "Layout"
+  },
+  "status": {
+    "cleared": "Board Cleared! Victory!",
+    "noMoves": "No more matches available. Try shuffling!"
+  }
+}

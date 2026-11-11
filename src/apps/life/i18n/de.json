@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Spiel des Lebens",
+    "description": "Zellulärer Automat mit Musterbibliothek und alternativen Regelsystemen"
+  },
+  "hud": {
+    "gen": "Gen",
+    "pop": "Pop",
+    "rule": "Regel"
+  },
+  "actions": {
+    "play": "Start",
+    "pause": "Pause",
+    "step": "Schritt",
+    "clear": "Leeren",
+    "random": "Zufall",
+    "stampPattern": "Muster"
+  },
+  "rules": {
+    "conway": "Conway's Life (B3/S23)",
+    "highlife": "HighLife (B36/S23)",
+    "seeds": "Seeds (B2/S)",
+    "brians_brain": "Brian's Brain",
+    "day_night": "Day & Night"
+  },
+  "patterns": {
+    "none": "Stift (Zeichnen)",
+    "glider": "Gleiter",
+    "lwss": "Raumschiff",
+    "blinker": "Blinker",
+    "pulsar": "Pulsar",
+    "gosper_gun": "Gleiter-Kanone"
+  }
+}

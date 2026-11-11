@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Pixel Runner",
+    "description": "Präzisions-Plattformer mit reaktiver Physik und integriertem Level-Editor"
+  },
+  "hud": {
+    "level": "Level",
+    "coins": "Münzen",
+    "deaths": "Tode",
+    "time": "Zeit"
+  },
+  "actions": {
+    "editor": "Level-Editor",
+    "play": "Spielen",
+    "nextLevel": "Nächstes Level",
+    "prevLevel": "Vorheriges Level",
+    "restart": "Level neustarten",
+    "export": "Exportieren",
+    "import": "Importieren",
+    "newLevel": "Leeren"
+  },
+  "editor": {
+    "tileSolid": "Block",
+    "tileSpike": "Stacheln",
+    "tileCoin": "Münze",
+    "tileBouncer": "Sprungfeder",
+    "tileOneway": "Plattform",
+    "tileCrumble": "Bröckelblock",
+    "tileCheckpoint": "Kontrollpunkt",
+    "tilePortal": "Ausgangsportal",
+    "tileKey": "Schlüssel",
+    "tileDoor": "Tür",
+    "eraser": "Radierer"
+  },
+  "status": {
+    "cleared": "Level abgeschlossen!",
+    "youDied": "Drücke R oder Leertaste zum Wiederbeleben"
+  }
+}

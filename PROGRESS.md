@@ -2,8 +2,9 @@
 
 ## Status
 
-- **Current phase:** 10 — More games (Tier 1 & Tier 2 complete, 2026-11-11)
-- **Next step:** Phase 10 Tier 3 games (`specs/10-more-games.md`).
+- **Current phase:** 10 — More games (complete, 2026-11-11)
+- **Next step:** Phase 11 — Media Center (`specs/11-media.md`).
+- **Phase 10 (Tier 3) verification:** 121 unit test files (1,023 tests) passing; full Playwright e2e test suite passing including Phase 10 Tier 3 games and Arcade Hub categories (`tests/e2e/arcade.spec.js`); 0 missing i18n keys across 83 namespaces; single-file Lite build 6.62 MB (well under 8.00 MB budget).
 - **Phase 10 (Tier 2) verification:** 973 unit tests (112 test files) passing; full Playwright e2e test suite passing including Phase 10 Tier 2 games and Arcade Hub multiplayer lobby (`tests/e2e/arcade.spec.js`); 0 missing i18n keys across 74 namespaces; single-file Lite build 6.50 MB (well under 8.00 MB budget).
 - **Phase 10 (Tier 1) verification:** 922 unit tests (102 test files) passing; full Playwright e2e test suite passing (36 passed, 27 mobile skipped) including `tests/e2e/arcade.spec.js`; 0 missing i18n keys across 63 namespaces; single-file Lite build 6.32 MB (well under 8.00 MB budget).
 - **Phase 9 verification:** Game engine, Arcade Hub, Snake, Breakout, Memory Master, 2048, Reaction Trainer.
@@ -913,15 +914,15 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **Tier 3 [P3]**
 
-- [ ] **Grid Defense** (tower defense): 10+ maps, 6 tower types with upgrades, enemy types, waves, speed controls.
-- [ ] **Pixel Runner** (platformer): tight controls (coyote time, jump buffering, variable jump height), 20+ levels, collectibles, **level editor** using Pixel Art Studio sprites, share levels as files.
-- [ ] **Neon Racer** (top-down racing): tracks, AI opponents, lap times, ghost cars.
-- [ ] **Ultimate Tic-Tac-Toe:** vs AI (MCTS in a worker) and 2-player.
-- [ ] **Mahjong Solitaire:** layouts, shuffle, hint, only solvable deals.
-- [ ] **Match-3 puzzle:** combos, special tiles, level goals.
-- [ ] **Bubble shooter:** aim with bank shots, color matching, levels.
-- [ ] **Game of Life & cellular automata sandbox:** draw patterns, step/run, pattern library (glider, gun …), other rules (HighLife, Seeds, Brian's Brain).
-- [ ] **Quiz arena:** quiz packs (CS basics, general knowledge EN/DE, written by us), user-made quiz packs, timer, streaks.
+- [x] **Grid Defense** (tower defense): 10+ maps, 6 tower types with upgrades, enemy types, waves, speed controls.
+- [x] **Pixel Runner** (platformer): tight controls (coyote time, jump buffering, variable jump height), 20+ levels, collectibles, **level editor** using Pixel Art Studio sprites, share levels as files.
+- [x] **Neon Racer** (top-down racing): tracks, AI opponents, lap times, ghost cars.
+- [x] **Ultimate Tic-Tac-Toe:** vs AI (MCTS in a worker) and 2-player.
+- [x] **Mahjong Solitaire:** layouts, shuffle, hint, only solvable deals.
+- [x] **Match-3 puzzle:** combos, special tiles, level goals.
+- [x] **Bubble shooter:** aim with bank shots, color matching, levels.
+- [x] **Game of Life & cellular automata sandbox:** draw patterns, step/run, pattern library (glider, gun …), other rules (HighLife, Seeds, Brian's Brain).
+- [x] **Quiz arena:** quiz packs (CS basics, general knowledge EN/DE, written by us), user-made quiz packs, timer, streaks.
 
 **Arcade-wide additions**
 

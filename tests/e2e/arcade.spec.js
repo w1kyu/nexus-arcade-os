@@ -159,7 +159,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const boardTab = hubWin.locator('.nx-filter-btn', { hasText: 'Board' });
     await expect(boardTab).toBeVisible();
     await boardTab.click();
-    await expect(hubWin.locator('.nx-game-card')).toHaveCount(4);
+    await expect(hubWin.locator('.nx-game-card')).toHaveCount(5);
 
     // Test Local 2-Player Lobby Modal
     const lobbyBtn = hubWin.locator('.nx-lobby-btn');
@@ -220,6 +220,70 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const glideWin = await openAppFromPalette(page, 'Neon Glide', 'nexus.glide');
     await expect(glideWin.locator('.nx-glide')).toBeVisible();
     await expect(glideWin.locator('.nx-glide-canvas')).toBeVisible();
+
+    expect(errors).toEqual([]);
+  });
+  test('launches and plays Phase 10 Tier 3 games and verifies Arcade Hub categories', async ({ page }) => {
+    test.setTimeout(90_000);
+    const errors = collectErrors(page);
+    await startNexus(page);
+    await page.keyboard.press('Escape');
+
+    // 1. Verify Arcade Hub has the new games and categories
+    const hubWin = await openAppFromPalette(page, 'Arcade Hub', 'nexus.arcade');
+    await expect(hubWin.locator('.nx-arcade-app')).toBeVisible();
+    await expect(hubWin.locator('.nx-game-card').first()).toBeVisible();
+
+    const search = hubWin.locator('.nx-arcade-search-box input');
+    await search.fill('defense');
+    await expect(hubWin.locator('.nx-game-card')).toHaveCount(1);
+    await expect(hubWin.locator('.nx-card-name')).toContainText('Grid Defense');
+    await search.fill('');
+
+    // 2. Grid Defense
+    const gdWin = await openAppFromPalette(page, 'Grid Defense', 'nexus.griddefense');
+    await expect(gdWin.locator('.nx-gd')).toBeVisible();
+    await expect(gdWin.locator('canvas')).toBeVisible();
+
+    // 3. Pixel Runner
+    const runnerWin = await openAppFromPalette(page, 'Pixel Runner', 'nexus.runner');
+    await expect(runnerWin.locator('.nx-runner')).toBeVisible();
+    await expect(runnerWin.locator('.nx-runner-canvas')).toBeVisible();
+
+    // 4. Neon Racer
+    const racerWin = await openAppFromPalette(page, 'Neon Racer', 'nexus.racer');
+    await expect(racerWin.locator('.nx-racer')).toBeVisible();
+    await expect(racerWin.locator('.nx-racer-canvas')).toBeVisible();
+
+    // 5. Ultimate Tic-Tac-Toe
+    const utttWin = await openAppFromPalette(page, 'Ultimate Tic-Tac-Toe', 'nexus.uttt');
+    await expect(utttWin.locator('.nx-uttt')).toBeVisible();
+    await expect(utttWin.locator('.nx-uttt-macro-grid')).toBeVisible();
+
+    // 6. Mahjong Solitaire
+    const mahjongWin = await openAppFromPalette(page, 'Mahjong Solitaire', 'nexus.mahjong');
+    await expect(mahjongWin.locator('.nx-mahjong')).toBeVisible();
+    await expect(mahjongWin.locator('.nx-mahjong-board')).toBeVisible();
+
+    // 7. Match-3 Puzzle
+    const match3Win = await openAppFromPalette(page, 'Match-3 Puzzle', 'nexus.match3');
+    await expect(match3Win.locator('.nx-match3')).toBeVisible();
+    await expect(match3Win.locator('.nx-match3-grid')).toBeVisible();
+
+    // 8. Bubble Shooter
+    const bubblesWin = await openAppFromPalette(page, 'Bubble Shooter', 'nexus.bubbles');
+    await expect(bubblesWin.locator('.nx-bubbles')).toBeVisible();
+    await expect(bubblesWin.locator('.nx-bubbles-canvas')).toBeVisible();
+
+    // 9. Game of Life Sandbox
+    const lifeWin = await openAppFromPalette(page, 'Game of Life', 'nexus.life');
+    await expect(lifeWin.locator('.nx-life')).toBeVisible();
+    await expect(lifeWin.locator('.nx-life-canvas')).toBeVisible();
+
+    // 10. Quiz Arena
+    const quizWin = await openAppFromPalette(page, 'Quiz Arena', 'nexus.quiz');
+    await expect(quizWin.locator('.nx-quiz')).toBeVisible();
+    await expect(quizWin.locator('.nx-quiz-hud')).toBeVisible();
 
     expect(errors).toEqual([]);
   });

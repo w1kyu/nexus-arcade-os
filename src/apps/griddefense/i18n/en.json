@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "Grid Defense",
+    "description": "Cyber tower defense with upgradable turrets and enemy waves"
+  },
+  "hud": {
+    "credits": "Credits",
+    "lives": "Lives",
+    "wave": "Wave",
+    "score": "Score",
+    "speed": "Speed"
+  },
+  "actions": {
+    "startWave": "Start Wave",
+    "nextWave": "Next Wave",
+    "waveActive": "Wave in progress...",
+    "upgrade": "Upgrade",
+    "sell": "Sell",
+    "selectMap": "Map",
+    "newGame": "New Game",
+    "stats": "Statistics"
+  },
+  "towers": {
+    "pulse": "Pulse Blaster",
+    "plasma": "Plasma Mortar",
+    "frost": "Frost Emitter",
+    "tesla": "Tesla Coil",
+    "railgun": "Railgun Sniper",
+    "disruptor": "Void Disruptor"
+  },
+  "targetModes": {
+    "first": "Target: First",
+    "last": "Target: Last",
+    "strong": "Target: Strongest",
+    "weak": "Target: Weakest"
+  },
+  "status": {
+    "level": "Level",
+    "damage": "Damage",
+    "range": "Range",
+    "fireRate": "Fire Rate",
+    "kills": "Kills",
+    "maxLevel": "Max Level reached",
+    "victory": "Victory! All waves repelled!",
+    "defeat": "Grid Overrun! Core destroyed."
+  }
+}

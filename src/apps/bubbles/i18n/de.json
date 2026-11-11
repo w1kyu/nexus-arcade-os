@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Bubble Shooter",
+    "description": "Ziele und lasse Blasen abprallen, um 3 oder mehr gleiche Farben zu treffen"
+  },
+  "hud": {
+    "level": "Level",
+    "score": "Punkte",
+    "shots": "Schüsse"
+  },
+  "actions": {
+    "restart": "Neustart",
+    "newGame": "Neues Spiel",
+    "selectLevel": "Level"
+  },
+  "status": {
+    "victory": "Brett abgeräumt! Sieg!",
+    "defeat": "Decke überrannt! Spiel vorbei."
+  }
+}

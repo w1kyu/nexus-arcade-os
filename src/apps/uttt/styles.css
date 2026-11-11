@@ -1,0 +1,133 @@
+.nx-uttt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #090c15;
+  color: #f1f5f9;
+  font-family: var(--nx-font-family, system-ui, sans-serif);
+  user-select: none;
+  overflow: hidden;
+}
+
+.nx-uttt-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+
+.nx-uttt-status {
+  padding: 6px 12px;
+  background: #111827;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #38bdf8;
+  border-bottom: 1px solid #1f2937;
+}
+
+.nx-uttt-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: auto;
+}
+
+.nx-uttt-macro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #334155;
+  max-width: 520px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.nx-uttt-sub-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: #0b0f19;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid #1e293b;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.nx-uttt-sub-board.active {
+  border-color: #00f0ff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.4);
+}
+
+.nx-uttt-sub-board.won-x {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+}
+
+.nx-uttt-sub-board.won-o {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
+
+.nx-uttt-macro-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  font-weight: 900;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.nx-uttt-macro-overlay.x {
+  color: #00f0ff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+}
+
+.nx-uttt-macro-overlay.o {
+  color: #ef4444;
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+}
+
+.nx-uttt-cell {
+  background: #162032;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  color: #f1f5f9;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  aspect-ratio: 1;
+  transition: background 0.15s;
+}
+
+.nx-uttt-cell:hover:not(:disabled) {
+  background: #25334d;
+}
+
+.nx-uttt-cell:disabled {
+  cursor: default;
+}
+
+.nx-uttt-cell.x {
+  color: #00f0ff;
+}
+
+.nx-uttt-cell.o {
+  color: #ef4444;
+}

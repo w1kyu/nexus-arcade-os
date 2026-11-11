@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Mahjong Solitaire",
+    "description": "Kachel-Matching mit 3D-Layouts und lösbaren Verteilungen"
+  },
+  "hud": {
+    "tilesLeft": "Übrige Kacheln",
+    "matches": "Mögliche Paare",
+    "time": "Zeit"
+  },
+  "actions": {
+    "newDeal": "Neues Spiel",
+    "hint": "Hinweis",
+    "shuffle": "Mischen",
+    "undo": "Rückgängig",
+    "highlightFree": "Freie hervorheben",
+    "selectLayout": "Layout"
+  },
+  "status": {
+    "cleared": "Brett abgeräumt! Sieg!",
+    "noMoves": "Keine Züge mehr möglich. Bitte mischen!"
+  }
+}

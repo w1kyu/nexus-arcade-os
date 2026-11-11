@@ -1,0 +1,52 @@
+.nx-life {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #080a14;
+  color: #f1f5f9;
+  font-family: var(--nx-font-family, system-ui, sans-serif);
+  user-select: none;
+  overflow: hidden;
+}
+
+.nx-life-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #0f1626;
+  border-bottom: 1px solid #1e293b;
+  flex-wrap: wrap;
+}
+
+.nx-life-hud {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nx-life-hud b {
+  color: #38bdf8;
+  font-family: monospace;
+}
+
+.nx-life-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #04060c;
+  overflow: hidden;
+}
+
+.nx-life-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  outline: none;
+  cursor: crosshair;
+}

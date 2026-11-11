@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Quiz Arena",
+    "description": "Bilingual trivia on CS fundamentals, logic puzzles, and streaks"
+  },
+  "hud": {
+    "question": "Question",
+    "score": "Score",
+    "streak": "Streak",
+    "timer": "Time"
+  },
+  "actions": {
+    "fiftyFifty": "50:50 Lifeline",
+    "next": "Next Question",
+    "restart": "Play Again",
+    "customPack": "Import Pack"
+  },
+  "status": {
+    "correct": "Correct! +{pts} pts ({mult}x streak)",
+    "incorrect": "Incorrect! The correct answer was: {ans}",
+    "timeOut": "Time is up!",
+    "complete": "Round Complete!"
+  }
+}

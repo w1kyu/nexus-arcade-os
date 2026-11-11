@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "Neon Racer",
+    "description": "Top-down cyber racing with AI rivals and personal best ghost replays"
+  },
+  "hud": {
+    "lap": "Lap",
+    "time": "Time",
+    "bestLap": "Best Lap",
+    "speed": "Speed",
+    "pos": "Pos"
+  },
+  "actions": {
+    "selectTrack": "Track",
+    "newRace": "New Race",
+    "restart": "Restart Race"
+  },
+  "status": {
+    "getReady": "GET READY!",
+    "go": "GO!",
+    "finished": "RACE COMPLETE",
+    "won": "1st Place Victory!",
+    "rank": "Rank: #{rank}"
+  }
+}

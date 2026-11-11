@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "Pixel Runner",
+    "description": "Precision neon platformer with tight physics and custom level editor"
+  },
+  "hud": {
+    "level": "Level",
+    "coins": "Coins",
+    "deaths": "Deaths",
+    "time": "Time"
+  },
+  "actions": {
+    "editor": "Level Editor",
+    "play": "Play Mode",
+    "nextLevel": "Next Level",
+    "prevLevel": "Prev Level",
+    "restart": "Restart Level",
+    "export": "Export Level",
+    "import": "Import Level",
+    "newLevel": "Clear Canvas"
+  },
+  "editor": {
+    "tileSolid": "Block",
+    "tileSpike": "Spikes",
+    "tileCoin": "Coin",
+    "tileBouncer": "Spring",
+    "tileOneway": "Platform",
+    "tileCrumble": "Crumble",
+    "tileCheckpoint": "Checkpoint",
+    "tilePortal": "Exit Portal",
+    "tileKey": "Key",
+    "tileDoor": "Door",
+    "eraser": "Eraser"
+  },
+  "status": {
+    "cleared": "Level Complete!",
+    "youDied": "Press R or Space to respawn"
+  }
+}

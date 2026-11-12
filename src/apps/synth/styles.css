@@ -1,0 +1,137 @@
+.nx-synth {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--nx-bg-app, #090d16);
+  color: var(--nx-text, #f8fafc);
+  overflow: hidden;
+  user-select: none;
+}
+
+.nx-synth-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--nx-surface-1, #1e293b);
+  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  gap: 12px;
+}
+
+/* Visualizer oscilloscope strip */
+.nx-synth-visualizer-bar {
+  height: 70px;
+  background: #04060a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-synth-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Parameter modules dashboard */
+.nx-synth-dashboard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 14px 20px;
+  overflow-y: auto;
+  align-content: start;
+}
+
+.nx-synth-module {
+  background: var(--nx-surface-1, #1e293b);
+  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nx-synth-module-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #818cf8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 4px;
+}
+
+.nx-synth-param-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+
+/* Piano Keyboard */
+.nx-synth-keyboard-wrap {
+  height: 140px;
+  background: #0f172a;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  position: relative;
+  overflow-x: auto;
+}
+
+.nx-synth-keyboard {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.nx-synth-key-white {
+  width: 38px;
+  height: 100%;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nx-synth-key-white:active,
+.nx-synth-key-white.is-active {
+  background: #c7d2fe;
+}
+
+.nx-synth-key-black {
+  width: 24px;
+  height: 60%;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 0 0 4px 4px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  font-size: 9px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.nx-synth-key-black:active,
+.nx-synth-key-black.is-active {
+  background: #6366f1;
+}

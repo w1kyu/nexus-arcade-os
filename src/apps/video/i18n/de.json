@@ -1,0 +1,12 @@
+{
+  "app.title": "Videoplayer",
+  "app.description": "Lokaler Videoplayer mit Untertiteln, Einzelbild-Schaltung, PiP und Screenshot-Export",
+  "video.playlist": "Wiedergabeliste",
+  "video.stepBack": "1 Bild zurück",
+  "video.stepForward": "1 Bild vor",
+  "video.loopAB": "A-B Schleife",
+  "video.subtitles": "Untertitel laden (.srt, .vtt)",
+  "video.screenshot": "Frame als Screenshot speichern",
+  "video.pip": "Bild-im-Bild",
+  "video.fullscreen": "Vollbild"
+}

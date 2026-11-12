@@ -246,6 +246,7 @@ export interface AppContext {
   window: WindowHandle;
   dialog: Dialogs;
   notify(notification: NotificationInit): NotificationHandle;
+  notifications?: { show(notification: NotificationInit): NotificationHandle };
   commands: {
     register(command: CommandDef): Unsub;
     execute(id: string, args?: unknown): Promise<unknown>;

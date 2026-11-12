@@ -1,0 +1,12 @@
+{
+  "app.title": "Video Player",
+  "app.description": "Local video player with subtitles, frame-stepping, PiP and screenshot export",
+  "video.playlist": "Playlist",
+  "video.stepBack": "Step -1 frame",
+  "video.stepForward": "Step +1 frame",
+  "video.loopAB": "A-B Loop",
+  "video.subtitles": "Load Subtitles (.srt, .vtt)",
+  "video.screenshot": "Screenshot Frame to Pictures",
+  "video.pip": "Picture-in-Picture",
+  "video.fullscreen": "Fullscreen"
+}

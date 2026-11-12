@@ -1,0 +1,11 @@
+{
+  "app.title": "Nexus Fotos",
+  "app.description": "Lokale Fotogalerie, EXIF-Metadaten-Inspektor und Foto-Editor",
+  "photos.title": "Nexus Fotos",
+  "photos.all": "Alle Fotos",
+  "photos.favorites": "Favoriten",
+  "photos.sortDate": "Nach Datum sortieren",
+  "photos.sortName": "Nach Name sortieren",
+  "photos.sortSize": "Nach Größe sortieren",
+  "photos.import": "Fotos importieren"
+}

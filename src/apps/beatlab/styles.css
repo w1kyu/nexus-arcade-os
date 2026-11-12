@@ -1,0 +1,110 @@
+.nx-beatlab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--nx-bg-app, #0f172a);
+  color: var(--nx-text, #f8fafc);
+  overflow: hidden;
+  user-select: none;
+}
+
+.nx-beatlab-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--nx-surface-1, #1e293b);
+  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  gap: 12px;
+}
+
+.nx-beatlab-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  gap: 10px;
+}
+
+/* 16-step matrix grid */
+.nx-beatlab-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-beatlab-track-info {
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  padding-right: 8px;
+}
+
+.nx-beatlab-track-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.nx-beatlab-track-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.15));
+  background: transparent;
+  color: var(--nx-text-muted, #94a3b8);
+  cursor: pointer;
+}
+
+.nx-beatlab-track-btn.is-active-mute {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.nx-beatlab-track-btn.is-active-solo {
+  background: #eab308;
+  color: #000000;
+  border-color: #eab308;
+}
+
+.nx-beatlab-steps {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+}
+
+.nx-beatlab-step {
+  flex: 1;
+  height: 38px;
+  border-radius: 6px;
+  background: #182234;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  position: relative;
+}
+
+.nx-beatlab-step:hover {
+  background: #243247;
+}
+
+.nx-beatlab-step.is-beat-start {
+  border-left: 2px solid rgba(99, 102, 241, 0.4);
+}
+
+.nx-beatlab-step.is-active {
+  background: var(--nx-accent, #6366f1);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+}
+
+.nx-beatlab-step.is-current {
+  outline: 2px solid #22d3ee;
+  box-shadow: 0 0 12px #22d3ee;
+}

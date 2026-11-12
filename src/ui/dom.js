@@ -14,7 +14,7 @@ import { iconSvg } from './icons/icons.js';
  */
 export function h(tag, props = {}, ...children) {
   const el = document.createElement(tag);
-  for (const [key, value] of Object.entries(props)) {
+  for (const [key, value] of Object.entries(props ?? {})) {
     if (value === undefined || value === null || value === false) continue;
     if (key === 'class') el.className = value;
     else if (key === 'text') el.textContent = value;

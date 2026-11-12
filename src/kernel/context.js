@@ -216,6 +216,9 @@ export function createAppContext(manifest, services, extras = {}) {
       window: extras.window ?? null,
       dialog: services.dialogs,
       notify: (/** @type {any} */ init) => notifications.notify({ ...init, app: appId }),
+      notifications: {
+        show: (/** @type {any} */ init) => notifications.notify({ ...init, app: appId }),
+      },
       commands: {
         register: (/** @type {any} */ command) =>
           track(commands.register({ ...command, source: appId, run: guard(command.run) })),

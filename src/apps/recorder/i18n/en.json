@@ -1,0 +1,5 @@
+{
+  "app.title": "Voice Recorder",
+  "app.description": "Audio recording studio with live waveform and trimming",
+  "recorder.recordings": "Saved Recordings"
+}

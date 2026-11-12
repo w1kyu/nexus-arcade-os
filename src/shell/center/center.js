@@ -21,11 +21,13 @@ export function createNotificationCenter(shell) {
   const content = h('div', { class: 'nx-center-list' });
   const clearAll = h('button', { class: 'nx-btn is-ghost', type: 'button' });
   const heading = h('h2', { id: 'nx-center-title' });
+  const mediaCard = h('div', { class: 'nx-qs-media', hidden: true });
   const panel = h(
     'aside',
     { class: 'nx-center nx-glass', role: 'dialog', 'aria-labelledby': 'nx-center-title', tabindex: '-1' },
     tiles,
     h('div', { class: 'nx-qs-volume' }, icon('volume-low', { size: 16 }), volume, icon('volume', { size: 16 })),
+    mediaCard,
     h('div', { class: 'nx-center-head' }, heading, clearAll),
     content,
   );
@@ -254,8 +256,63 @@ export function createNotificationCenter(shell) {
     );
   }
 
+  function renderMediaCard() {
+    const engine = /** @type {any} */ (globalThis).__nexus_music_engine;
+    const track = engine?.currentTrack;
+    if (!track) {
+      mediaCard.hidden = true;
+      return;
+    }
+    mediaCard.hidden = false;
+    const playBtn = h(
+      'button',
+      {
+        class: 'nx-btn is-ghost',
+        type: 'button',
+        onclick: () => {
+          engine.togglePlay();
+          renderMediaCard();
+        },
+      },
+      icon(engine.isPlaying ? 'pause' : 'play', { size: 16 }),
+    );
+
+    const nextBtn = h(
+      'button',
+      {
+        class: 'nx-btn is-ghost',
+        type: 'button',
+        onclick: () => {
+          engine.next();
+          renderMediaCard();
+        },
+      },
+      icon('skip-forward', { size: 16 }),
+    );
+
+    mediaCard.replaceChildren(
+      icon('music', { size: 20 }),
+      h(
+        'div',
+        { style: 'flex: 1; min-width: 0;' },
+        h('div', {
+          style: 'font-weight: 600; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;',
+          text: track.title,
+        }),
+        h('div', {
+          style:
+            'font-size: 11px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;',
+          text: track.artist,
+        }),
+      ),
+      playBtn,
+      nextBtn,
+    );
+  }
+
   function render() {
     renderTiles();
+    renderMediaCard();
     void renderList();
   }
 

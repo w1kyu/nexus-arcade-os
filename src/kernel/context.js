@@ -59,7 +59,7 @@ const RESERVED_EVENTS = [
  * @property {import('../services/sound/sound.js').Sound} sound
  * @property {import('../services/achievements/achievements.js').Achievements} achievements
  * @property {import('../services/scheduler/scheduler.js').Scheduler} scheduler
- * @property {import('../services/ai/ai.js').Ai} ai
+ * @property {import('../services/ai/ai.js').AiService} ai
  * @property {{ alert(message: string): Promise<void>, confirm(message: string): Promise<boolean>, prompt(message: string, value?: string): Promise<string | null>, [name: string]: unknown }} dialogs
  * @property {{ edition: 'web' | 'lite', dev: boolean }} env
  * @property {(appId: string) => boolean} isReadOnly  data newer than the code, or a failed migration

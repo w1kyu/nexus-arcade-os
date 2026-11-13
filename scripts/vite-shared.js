@@ -33,7 +33,7 @@ export function cspPlugin(_edition) {
     "media-src 'self' blob:",
     "frame-src 'self' blob: data:",
     "font-src 'self' data:",
-    "connect-src 'self'",
+    "connect-src 'self' https: http: blob: data:",
     "worker-src 'self' blob: data:",
     "manifest-src 'self'",
     "object-src 'none'",

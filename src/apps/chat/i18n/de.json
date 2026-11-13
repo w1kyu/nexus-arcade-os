@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "KI-Chat",
+    "description": "Konversationelle KI mit lokalen und Remote-Modellen, Tools und Code-Assistent"
+  },
+  "actions": {
+    "newChat": "Neuer Chat",
+    "send": "Senden",
+    "stop": "Stopp",
+    "regenerate": "Neu generieren",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "speak": "Vorlesen",
+    "confirm": "Bestätigen",
+    "deny": "Ablehnen",
+    "attach": "Datei oder Bild anhängen",
+    "voice": "Spracheingabe",
+    "templates": "Prompt-Vorlagen",
+    "settings": "KI-Einstellungen",
+    "export": "Exportieren",
+    "exportMd": "Als Markdown (.md) exportieren",
+    "exportJson": "Als JSON (.json) exportieren",
+    "exportHtml": "Als HTML (.html) exportieren",
+    "import": "JSON importieren",
+    "pin": "Anheften",
+    "unpin": "Lösen",
+    "rename": "Umbenennen",
+    "delete": "Löschen",
+    "archive": "Archivieren",
+    "apply": "Anwenden",
+    "insert": "Einfügen",
+    "runPlayground": "Im Playground ausführen",
+    "openInCode": "In Nexus Code öffnen",
+    "explainCode": "Erklären",
+    "findBugs": "Fehler suchen",
+    "addComments": "Kommentare hinzufügen",
+    "writeTests": "Tests schreiben",
+    "optimize": "Optimieren"
+  },
+  "sidebar": {
+    "search": "Chats durchsuchen...",
+    "pinned": "Angeheftet",
+    "recent": "Verlauf",
+    "empty": "Noch keine Chats",
+    "untitled": "Neuer Chat"
+  },
+  "toolbar": {
+    "model": "Modell",
+    "persona": "Persona",
+    "parameters": "Parameter",
+    "useNotes": "Notizen nutzen",
+    "compare": "Vergleich",
+    "codePanel": "Code-Panel"
+  },
+  "parameters": {
+    "temperature": "Temperatur: {val}",
+    "topP": "Top P: {val}",
+    "maxTokens": "Max Tokens: {val}",
+    "systemPrompt": "System-Prompt"
+  },
+  "emptyState": {
+    "title": "Kein KI-Provider konfiguriert",
+    "subtitle": "Nexus verbindet sich direkt mit Ihren lokalen oder Cloud-KI-Servern. Antworten werden niemals vorgetäuscht.",
+    "button": "KI in den Einstellungen konfigurieren",
+    "ollamaGuide": "Ollama: `ollama run llama3` ausführen und `OLLAMA_ORIGINS=\"*\"` setzen",
+    "openaiGuide": "OpenAI / LM Studio: Verbindung zu einer beliebigen OpenAI-kompatiblen API"
+  },
+  "tools": {
+    "approvalRequired": "Tool-Ausführung bestätigen",
+    "alwaysAllowReadOnly": "Nur-Lese-Tools in diesem Chat immer erlauben",
+    "executed": "Erfolgreich ausgeführt",
+    "denied": "Ausführung vom Benutzer abgelehnt"
+  },
+  "rag": {
+    "badge": "RAG",
+    "sources": "Referenzierte Notizen:",
+    "citation": "📄 {title} ({score}% Übereinstimmung)",
+    "noChunks": "Keine relevanten Notizen für diesen Prompt gefunden."
+  },
+  "compare": {
+    "modelA": "Modell A",
+    "modelB": "Modell B"
+  },
+  "codePanel": {
+    "title": "Code-Assistent",
+    "current": "Aktueller Code",
+    "suggested": "KI-Vorschlag",
+    "diff": "Änderungen"
+  },
+  "input": {
+    "placeholder": "Nachricht eingeben... (Umschalt+Eingabe für neue Zeile)",
+    "tokenEstimate": "~{count} Tokens",
+    "listening": "Höre zu..."
+  }
+}

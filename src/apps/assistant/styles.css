@@ -1,0 +1,89 @@
+.nx-assistant {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 12px;
+  gap: 10px;
+  background: var(--bg-surface, #1e1e24);
+  color: var(--text-main, #f0f0f5);
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+.nx-assistant-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nx-assistant-action-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #ddd);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-assistant-action-btn:hover {
+  background: var(--accent-primary, #6366f1);
+  color: #fff;
+  border-color: var(--accent-primary, #6366f1);
+}
+
+.nx-assistant-input-area {
+  height: 110px;
+  background: var(--bg-input, #24242e);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-md, 8px);
+  color: var(--text-main, #fff);
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+
+.nx-assistant-output-area {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg-surface-alt, #18181e);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-md, 8px);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.nx-assistant-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nx-assistant-btn-primary {
+  padding: 6px 14px;
+  background: var(--accent-primary, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nx-assistant-btn-secondary {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main, #fff);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 6px);
+  font-size: 13px;
+  cursor: pointer;
+}

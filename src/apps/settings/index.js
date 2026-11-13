@@ -8,6 +8,7 @@ import { accessibility, desktop, language, notifications, personalization, windo
 import { profiles } from './pages/profiles.js';
 import { shortcuts } from './pages/shortcuts.js';
 import { about, backup, updates } from './pages/system.js';
+import { ai } from './pages/ai.js';
 import './styles.css';
 
 /** @typedef {import('./pages/types.js').Page} Page */
@@ -24,6 +25,7 @@ const PAGES = [
   storage,
   apps,
   privacy,
+  ai,
   accessibility,
   backup,
   updates,

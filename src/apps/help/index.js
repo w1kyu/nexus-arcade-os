@@ -6,7 +6,7 @@ import { highlight } from '../../ui/highlight.js';
 import { renderMarkdownInto } from '../../ui/markdown.js';
 import './styles.css';
 
-const GENERAL = ['getting-started', 'shortcuts', 'offline', 'backups', 'privacy', 'faq'];
+const GENERAL = ['getting-started', 'shortcuts', 'offline', 'backups', 'privacy', 'ai-setup', 'faq'];
 /** Lazy raw Markdown of the general guides: './docs/<locale>/<id>.md'. */
 const DOCS = import.meta.glob('./docs/*/*.md', { query: '?raw', import: 'default' });
 

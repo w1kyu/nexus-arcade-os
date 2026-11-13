@@ -1,0 +1,26 @@
+{
+  "app": {
+    "title": "KI-Assistent",
+    "description": "Schneller KI-Schreib- und Programmierassistent für Texte im gesamten Betriebssystem"
+  },
+  "actions": {
+    "explain": "Erklären",
+    "summarize": "Zusammenfassen",
+    "translate": "Übersetzen",
+    "refactor": "Refaktorisieren",
+    "fixGrammar": "Grammatik korrigieren",
+    "run": "KI fragen",
+    "copy": "Ergebnis kopieren",
+    "copied": "Kopiert!",
+    "openInChat": "Im Chat öffnen",
+    "stop": "Stopp"
+  },
+  "input": {
+    "placeholder": "Text eingeben oder Aktion wählen...",
+    "customPrompt": "Eigene Anweisung (optional)..."
+  },
+  "emptyState": {
+    "title": "KI nicht konfiguriert",
+    "message": "Konfigurieren Sie einen KI-Provider in den Einstellungen, um Assistenten-Funktionen zu nutzen."
+  }
+}

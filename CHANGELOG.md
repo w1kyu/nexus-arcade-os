@@ -6,6 +6,44 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.12.0] — 2026-11-13 — AI Workspace
+
+### Added
+
+- **AI Provider Layer (`src/services/ai/`):**
+  - Universal provider abstraction (`listModels()`, `chat(messages, options)` with streaming tokens, `cancel()`, `embed(texts)`).
+  - Native adapters for **Ollama** (`/api/tags`, `/api/chat`, `/api/embed`), **Lemonade** (OpenAI-compatible server), **OpenAI-compatible endpoints** (LM Studio, llama.cpp server, vLLM, LocalAI, OpenRouter, etc.), and **Anthropic Messages API** with browser header handling.
+  - Profile manager with multiple saved profiles and diagnostic connection testing (offline, DNS/connection refused, CORS blocked, 401 unauthorized, model not found).
+  - Security: device-key AES-GCM encryption at rest for API keys; never exposed in backups or logs unless opted in.
+  - Live token and timing statistics per message (tokens in/out, tok/s, latency, duration).
+  - RAG knowledge indexing engine: chunking with overlap, vector storage in IndexedDB, cosine similarity retrieval, note citations with intent links.
+  - OS tool calling: structured actions (create note, append note, search notes, create task, list today's tasks, create calendar event, start focus session, open app, set theme/wallpaper, create flashcards) with interactive user approval confirmation cards.
+- **Nexus Chat (`nexus.chat`):**
+  - Multi-conversation management with search, pin/unpin, folders, rename, delete, and archive.
+  - Markdown message rendering with syntax-highlighted code blocks, KaTeX math rendering, tables, and copy actions.
+  - Streaming responses with stop button, regeneration, and message branching/editing with variant navigation.
+  - Model & parameter switcher per conversation (temperature, top-p, context length, system prompt).
+  - Personas / assistants library (CS Tutor, Translator, Code Reviewer, Exam Coach) with custom prompt injection.
+  - Prompt templates library with dynamic variable replacement (`{{topic}}`, `{{language}}`, etc.) and variable form prompt modal.
+  - Context attachments: VFS files, code snippets, drag-and-drop, and images for vision-capable models.
+  - Side-by-side Code Assistant panel with "Apply to Code" actions from assistant code blocks and diff viewer integration.
+  - Compare mode to query multiple models side-by-side.
+  - Speech synthesis read-aloud support.
+  - Export conversation as Markdown, JSON, or HTML, and import from JSON.
+- **Nexus Assistant (`nexus.assistant`):**
+  - Quick AI assistant app with action presets: "Ask AI", "Explain", "Summarize", "Translate", "Refactor", "Fix grammar".
+  - Quick action toolbar with copy, replace, and append integration across the OS.
+- **Cross-App AI Integrations:**
+  - **Terminal:** `ai "question"` command and `ai explain <command>` with `--help` and streaming CLI output.
+  - **Notes:** AI toolbar assistant dropdown for summarize, continue writing, fix grammar, translate, outline, and explain selection.
+  - **Playground:** AI assistance button to explain code, fix runtime errors, and optimize snippets.
+- **AI Settings & Help Documentation:**
+  - Settings page (`src/apps/settings/pages/ai.js`) for managing active providers, adding/editing profiles, testing connections, and viewing token usage stats.
+  - Setup guides in Help Center (`src/apps/help/docs/{en,de}/ai-setup.md`) covering Ollama setup, CORS origins (`OLLAMA_ORIGINS`), Lemonade, and local OpenAI endpoints.
+- **Testing & Quality Assurance:**
+  - Unit tests for adapters, orchestrator, and prompt template parser in `tests/unit/ai-*.test.js` (1,065 unit tests passing).
+  - End-to-end Playwright test suite `tests/e2e/ai.spec.js` asserting empty state, provider configuration, connection diagnostics, streaming chat with KaTeX math and code blocks, Code panel toggle, Assistant quick actions, and Terminal `ai` command.
+
 ## [0.11.0] — 2026-11-12 — Media Center Suite
 
 ### Added

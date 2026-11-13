@@ -56,6 +56,11 @@
       "intro": "What is kept about your activity, and how to clear it.",
       "keywords": "privacy history clipboard recent files log tracking clear"
     },
+    "ai": {
+      "title": "AI Workspace",
+      "intro": "Configure local and remote AI models (Ollama, OpenAI, Lemonade, Anthropic), encrypted keys, and notes search.",
+      "keywords": "ai llm gpt ollama claude openai anthropic models provider api key embeddings rag assistant chat"
+    },
     "accessibility": {
       "title": "Accessibility",
       "intro": "Reduced motion, high contrast, text size, focus ring, screen readers and larger targets.",

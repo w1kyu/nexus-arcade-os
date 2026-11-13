@@ -1148,6 +1148,16 @@ export async function mount(container, ctx, args = {}) {
         label: t('addImage'),
         onClick: () => pickImageFile(),
       }),
+      ...(ctx.ai?.isAvailable()
+        ? [
+            h('span', { class: 'nx-sep' }),
+            iconButton({
+              icon: 'sparkles',
+              label: 'AI Assistant',
+              onClick: (e) => showAiNotesMenu(/** @type {HTMLElement} */ (e.currentTarget)),
+            }),
+          ]
+        : []),
     );
 
     cmEditor.setText(active.body);
@@ -1158,6 +1168,92 @@ export async function mount(container, ctx, args = {}) {
     replace(mainEl, topbar, metaBar, fmtToolbar, workspaceEl, statusEl);
     renderStatus();
     void renderPreview();
+  }
+
+  function showAiNotesMenu(triggerEl) {
+    const rect = triggerEl.getBoundingClientRect();
+    const menu = h('div', {
+      class: 'nx-notes-ai-menu',
+      style: `position: fixed; top: ${rect.bottom + 4}px; left: ${rect.left}px; background: var(--bg-surface, #24242e); border: 1px solid var(--border-subtle, rgba(255,255,255,0.15)); border-radius: 6px; padding: 4px; z-index: 1000; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 2px;`,
+    });
+
+    const items = [
+      {
+        label: 'Summarize Note',
+        run: async () => {
+          ctx.notify({ title: 'AI: Summarizing note...', duration: 2000 });
+          const res = await ctx.ai.complete(`Summarize the following note in 3-5 bullet points:\n\n${cmEditor.text}`);
+          cmEditor.insertText(`\n\n## Summary\n${res}\n`);
+        },
+      },
+      {
+        label: 'Continue Writing',
+        run: async () => {
+          ctx.notify({ title: 'AI: Continuing note...', duration: 2000 });
+          const res = await ctx.ai.complete(
+            `Continue writing the following note smoothly and cohesively:\n\n${cmEditor.text}`,
+          );
+          cmEditor.insertText(`\n\n${res}\n`);
+        },
+      },
+      {
+        label: 'Fix Grammar (EN/DE)',
+        run: async () => {
+          ctx.notify({ title: 'AI: Checking grammar...', duration: 2000 });
+          const res = await ctx.ai.complete(
+            `Fix any grammar, spelling, or punctuation errors in this text without changing meaning. Output only the corrected text:\n\n${cmEditor.text}`,
+          );
+          cmEditor.setText(res);
+        },
+      },
+      {
+        label: 'Generate Outline',
+        run: async () => {
+          ctx.notify({ title: 'AI: Generating outline...', duration: 2000 });
+          const res = await ctx.ai.complete(
+            `Generate a structured Markdown outline for this note:\n\n${cmEditor.text}`,
+          );
+          cmEditor.insertText(`\n\n## Outline\n${res}\n`);
+        },
+      },
+      {
+        label: 'Ask AI Assistant...',
+        run: () => {
+          ctx.commands.execute('shell.launchApp', {
+            appId: 'nexus.assistant',
+            args: { text: cmEditor.text },
+          });
+        },
+      },
+    ];
+
+    for (const it of items) {
+      const btn = h(
+        'button',
+        {
+          class: 'nx-notes-menu-item',
+          style:
+            'text-align: left; padding: 6px 12px; background: transparent; border: none; color: #fff; font-size: 12px; cursor: pointer; border-radius: 4px;',
+          onmouseenter: (e) => /** @type {HTMLElement} */ (e.target.style.background = 'rgba(255,255,255,0.08)'),
+          onmouseleave: (e) => /** @type {HTMLElement} */ (e.target.style.background = 'transparent'),
+          onclick: () => {
+            menu.remove();
+            void it.run();
+          },
+        },
+        it.label,
+      );
+      menu.appendChild(btn);
+    }
+
+    document.body.appendChild(menu);
+    const closeListener = (/** @type {PointerEvent} */ e) => {
+      if (!menu.contains(/** @type {Node} */ (e.target))) {
+        menu.remove();
+        window.removeEventListener('pointerdown', closeListener);
+      }
+    };
+    setTimeout(() => window.addEventListener('pointerdown', closeListener), 10);
   }
 
   // ─── Inspector (Outline, Backlinks, Checklist -> Tasks) ────────────────

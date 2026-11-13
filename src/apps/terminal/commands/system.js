@@ -473,4 +473,57 @@ export const systemCommands = {
   false: { complete: 'none', run: () => 1 },
 
   exit: { complete: 'none', run: (io) => void io.shell.ui.closeTab?.() },
+
+  ai: {
+    complete: 'none',
+    async run(io) {
+      const aiService = io.shell.os?.ai;
+      if (!aiService || !aiService.isAvailable()) {
+        io.err('AI is not configured. Configure an AI provider in Settings → AI Workspace.\n');
+        return 1;
+      }
+      if (io.args.length === 0 || io.args[0] === '--help' || io.args[0] === '-h') {
+        io.out(
+          'Nexus AI Command - Ask AI or explain terminal commands\nUsage: ai "<question>" or ai explain <command>\n',
+        );
+        return 0;
+      }
+      const first = io.args[0];
+      if (first === 'explain' && io.args.length === 1) {
+        io.err('Usage: ai explain <command>\n');
+        return 1;
+      }
+      const prompt =
+        first === 'explain'
+          ? `Explain the shell command "${io.args.slice(1).join(' ')}" in detail. Show its purpose, common options/flags, and 2-3 practical examples for terminal usage. Be concise.`
+          : io.args.join(' ');
+
+      try {
+        io.out('Thinking...\r');
+        let full = '';
+        await aiService.chat(
+          [
+            {
+              role: 'system',
+              content:
+                'You are a helpful terminal CLI assistant for Nexus Arcade OS. Keep answers concise, factual, and formatted for a terminal.',
+            },
+            { role: 'user', content: prompt },
+          ],
+          {
+            onToken(delta) {
+              if (!full) io.out('\r             \r');
+              full += delta;
+              io.out(delta);
+            },
+          },
+        );
+        io.out('\n');
+        return 0;
+      } catch (err) {
+        io.err(`\nai error: ${/** @type {Error} */ (err).message}\n`);
+        return 1;
+      }
+    },
+  },
 };

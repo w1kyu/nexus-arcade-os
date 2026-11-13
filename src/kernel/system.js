@@ -374,7 +374,14 @@ async function openProfile(options, k, profile) {
     notifications,
     whenLeader: options.whenLeader,
   });
-  const ai = createAi(bus);
+  const network = createNetworkLog({ bus });
+  const ai = createAi({
+    bus,
+    store: kv('system:ai'),
+    network,
+    log: logger.child('ai'),
+  });
+  await ai.load();
   progress('services');
 
   // 7. App data migrations. Problems make that app's storage read-only, never wipe data.
@@ -595,7 +602,6 @@ async function openProfile(options, k, profile) {
     logEntries: () => logger.entries(),
   });
   const backupState = kv('system:backup');
-  const network = createNetworkLog({ bus });
 
   /** Parts of ctx.system only the shell can provide (window titles, updates …). */
   const systemHost = {};

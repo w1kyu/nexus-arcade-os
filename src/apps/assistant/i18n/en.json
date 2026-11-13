@@ -1,0 +1,26 @@
+{
+  "app": {
+    "title": "AI Assistant",
+    "description": "Quick AI writing and coding assistant for text across the OS"
+  },
+  "actions": {
+    "explain": "Explain",
+    "summarize": "Summarize",
+    "translate": "Translate",
+    "refactor": "Refactor",
+    "fixGrammar": "Fix Grammar",
+    "run": "Ask AI",
+    "copy": "Copy Result",
+    "copied": "Copied!",
+    "openInChat": "Open in Chat",
+    "stop": "Stop"
+  },
+  "input": {
+    "placeholder": "Enter text or select an action...",
+    "customPrompt": "Custom instruction (optional)..."
+  },
+  "emptyState": {
+    "title": "AI Not Configured",
+    "message": "Configure an AI provider in Settings to use assistant features."
+  }
+}

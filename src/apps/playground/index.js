@@ -65,6 +65,26 @@ export async function mount(container, ctx) {
     importBtn,
     saveBtn,
     shareBtn,
+    ...(ctx.ai?.isAvailable()
+      ? [
+          h(
+            'button',
+            {
+              class: 'nx-button ghost small',
+              title: 'Ask AI Assistant',
+              onclick: () => {
+                const codeToAssist = jsCode ? `// JavaScript:\n${jsCode}` : htmlCode;
+                ctx.commands.execute('shell.launchApp', {
+                  appId: 'nexus.assistant',
+                  args: { text: codeToAssist },
+                });
+              },
+            },
+            icon('sparkles', { size: 14 }),
+            'AI',
+          ),
+        ]
+      : []),
   );
   toolbar.append(leftToolbar, rightToolbar);
 

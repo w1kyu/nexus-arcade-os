@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "AI Chat",
+    "description": "Conversational AI with local and remote models, tools, and code assistant"
+  },
+  "actions": {
+    "newChat": "New Chat",
+    "send": "Send",
+    "stop": "Stop",
+    "regenerate": "Regenerate",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "speak": "Read aloud",
+    "confirm": "Confirm",
+    "deny": "Deny",
+    "attach": "Attach file or image",
+    "voice": "Voice input",
+    "templates": "Prompt templates",
+    "settings": "AI Settings",
+    "export": "Export",
+    "exportMd": "Export as Markdown (.md)",
+    "exportJson": "Export as JSON (.json)",
+    "exportHtml": "Export as HTML (.html)",
+    "import": "Import JSON",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "rename": "Rename",
+    "delete": "Delete",
+    "archive": "Archive",
+    "apply": "Apply",
+    "insert": "Insert",
+    "runPlayground": "Run in Playground",
+    "openInCode": "Open in Nexus Code",
+    "explainCode": "Explain",
+    "findBugs": "Find Bugs",
+    "addComments": "Add Comments",
+    "writeTests": "Write Tests",
+    "optimize": "Optimize"
+  },
+  "sidebar": {
+    "search": "Search conversations...",
+    "pinned": "Pinned",
+    "recent": "Recent",
+    "empty": "No conversations yet",
+    "untitled": "New Chat"
+  },
+  "toolbar": {
+    "model": "Model",
+    "persona": "Persona",
+    "parameters": "Parameters",
+    "useNotes": "Use Notes",
+    "compare": "Compare",
+    "codePanel": "Code Panel"
+  },
+  "parameters": {
+    "temperature": "Temperature: {val}",
+    "topP": "Top P: {val}",
+    "maxTokens": "Max Tokens: {val}",
+    "systemPrompt": "System Prompt"
+  },
+  "emptyState": {
+    "title": "No AI Provider Configured",
+    "subtitle": "Nexus connects directly to your local or cloud AI servers. It never fakes AI output.",
+    "button": "Configure AI in Settings",
+    "ollamaGuide": "Ollama: Run `ollama run llama3` and set `OLLAMA_ORIGINS=\"*\"`",
+    "openaiGuide": "OpenAI / LM Studio: Connect to any OpenAI-compatible API"
+  },
+  "tools": {
+    "approvalRequired": "Tool Execution Approval",
+    "alwaysAllowReadOnly": "Allow read-only tools without asking in this chat",
+    "executed": "Executed successfully",
+    "denied": "Execution denied by user"
+  },
+  "rag": {
+    "badge": "RAG",
+    "sources": "Referenced Notes:",
+    "citation": "📄 {title} ({score}% match)",
+    "noChunks": "No relevant notes found for this prompt."
+  },
+  "compare": {
+    "modelA": "Model A",
+    "modelB": "Model B"
+  },
+  "codePanel": {
+    "title": "Code Assistant",
+    "current": "Current Code",
+    "suggested": "Assistant Suggestion",
+    "diff": "Changes Diff"
+  },
+  "input": {
+    "placeholder": "Type a message... (Shift+Enter for newline)",
+    "tokenEstimate": "~{count} tokens",
+    "listening": "Listening..."
+  }
+}

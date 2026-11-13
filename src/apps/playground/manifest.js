@@ -12,7 +12,7 @@ export default {
   category: 'dev',
   keywords: ['playground', 'codepen', 'jsfiddle', 'html', 'css', 'javascript', 'live', 'preview', 'sandbox', 'editor'],
   window: { width: 1120, height: 740, minWidth: 640, minHeight: 460 },
-  permissions: ['vfs', 'clipboard', 'intents'],
+  permissions: ['vfs', 'clipboard', 'intents', 'ai'],
   commands: [
     { id: 'playground.open', title: { en: 'Open Code Playground', de: 'Code-Playground öffnen' }, icon: 'play' },
     {

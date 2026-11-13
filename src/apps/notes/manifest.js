@@ -11,7 +11,7 @@ export default {
   category: 'productivity',
   keywords: ['notes', 'markdown', 'knowledge', 'wiki', 'journal', 'notizen', 'wissen'],
   window: { width: 1040, height: 680, minWidth: 520, minHeight: 360, singleInstance: true },
-  permissions: ['vfs', 'intents', 'notifications', 'clipboard'],
+  permissions: ['vfs', 'intents', 'notifications', 'clipboard', 'ai'],
   handles: [
     { action: 'open', types: ['text/markdown', '.md', '.markdown'] },
     { action: 'share', types: ['text/plain', 'text/markdown'] },

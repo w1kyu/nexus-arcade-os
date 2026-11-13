@@ -56,6 +56,11 @@
       "intro": "Was über deine Aktivität gespeichert wird und wie du es löschst.",
       "keywords": "datenschutz verlauf zwischenablage zuletzt dateien protokoll tracking löschen"
     },
+    "ai": {
+      "title": "KI-Arbeitsbereich",
+      "intro": "Lokale und Remote-KI-Modelle (Ollama, OpenAI, Lemonade, Anthropic), verschlüsselte Schlüssel und Notizensuche konfigurieren.",
+      "keywords": "ki ai llm gpt ollama claude openai anthropic modelle provider api schlüssel embeddings rag assistent chat"
+    },
     "accessibility": {
       "title": "Barrierefreiheit",
       "intro": "Weniger Bewegung, hoher Kontrast, Textgröße, Fokusrahmen, Screenreader und größere Flächen.",

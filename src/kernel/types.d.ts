@@ -300,7 +300,7 @@ export interface AppContext {
     verifySecret: typeof import('../services/crypto.js').verifySecret;
     WrongPasswordError: typeof import('../services/crypto.js').WrongPasswordError;
   };
-  ai: { isAvailable(): boolean };
+  ai: import('../services/ai/ai.js').AiService;
   /** Privileged OS API; only set for built-in apps that declare the 'system' permission. */
   system?: import('./system-api.js').SystemApi;
   log: Logger;

@@ -11,7 +11,7 @@ export default {
   category: 'system',
   keywords: ['shell', 'console', 'command line', 'bash', 'cli', 'konsole', 'kommandozeile'],
   window: { width: 780, height: 500, minWidth: 360, minHeight: 240 },
-  permissions: ['vfs', 'intents', 'clipboard', 'notifications', 'system'],
+  permissions: ['vfs', 'intents', 'clipboard', 'notifications', 'system', 'ai'],
   commands: [
     {
       id: 'terminal.open',

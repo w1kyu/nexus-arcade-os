@@ -6,6 +6,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.1] — 2026-11-14 — Performance, Cross-Browser & Test Stability
+
+### Performance
+
+- **Mobile Boot Optimization (`src/kernel/system.js`, `src/shell/`):** Gated eager `AudioContext` instantiation behind real first-gesture listeners (`pointerdown` / `keydown`), lazy-loaded secondary boot/assistant/plugin/search helpers (`whats-new.js`, `ai`, `search/sources.js`, `commands`, `plugins/package.js`, `wallpaper.js`), and tightened boot splash timing (`900 ms` first visit / `450 ms` repeat).
+- Shrinks the initial JS entry bundle from `180.65 kB` to **`161.88 kB` gzipped** (under 200 KB budget) and lifts live Mobile Lighthouse Performance from `69` (`TBT 1,670 ms`) to **`99`** (`FCP 0.8 s`, `LCP 2.0 s`, **`TBT 0 ms`**, Desktop **`100`**).
+
+### Fixed
+
+- **WebKit IndexedDB & Shortcut Compatibility (`src/services/vfs/vfs.js`, `src/services/storage/serialize.js`):** Stored binary VFS files as `Uint8Array` (keeping backwards-compatible reads for existing `Blob` records) to eliminate WebKit `UnknownError` during IndexedDB writes, added alignment-safe binary chunk round-tripping in `.nexus-backup`, handled macOS/WebKit `Option+P` via `e.code === 'KeyP'` in Files, kept Settings sidebar buttons stable across refreshes, and ignored synthetic `pointermove` events on Command Palette re-renders.
+- **Accessibility (`src/shell/topbar.js`):** Updated `.nx-tb-clock` `aria-label` to include the visible clock text prefix (`"${label}, Calendar"`), clearing the `label-content-name-mismatch` audit (`100` Accessibility).
+- **Notes & E2E Stability (`src/apps/notes/index.js`, `tests/e2e/`):** Serialized note renames to avoid race conditions, made keyboard modifier helpers platform-aware (`Meta` on Apple platforms, `Control` elsewhere), closed arcade game windows cleanly between sub-checks for WebKit software-rendering stability, ignored top-level `file://` navigation differences in Firefox `lite.spec.js`, and extended `smoke.spec.js` timeouts to `240 s` when `NEXUS_BASE_URL` runs against cold CDN precaching.
+
+### Changed
+
+- **Cross-Browser CI (`.github/workflows/ci.yml`, `playwright.config.js`):** Added dedicated `cross-browser` GitHub Actions matrix jobs running the full Playwright Web + Nexus Lite (`file://`) suites on **Firefox** and **WebKit** alongside **Chromium**.
+
 ## [1.0.0] — 2026-11-13 — Ecosystem, Polish & Final Release
 
 ### Added

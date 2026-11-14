@@ -1,12 +1,12 @@
 # ⚡ Nexus Arcade OS
 
 [![CI](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml/badge.svg)](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-1.0.0-3ef0ff)
+![Version](https://img.shields.io/badge/version-1.0.1-3ef0ff)
 ![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97)
 
 A complete, offline-first desktop operating system that runs inside your browser: overlapping & snapped windows, virtual file system, real shell terminal, theme engine, sandboxed plugin SDK, 91 built-in apps & arcade games, local-first AI workspace, and zero backend dependencies.
 
-> **Version 1.0.0 — General Release.** All 13 development phases are complete: Kernel, Desktop Shell, System Utilities, Productivity Core, Study & Life Tools, Office & Creative Suite, Developer Toolkit, CS Lab, Game Engine & 31-Game Arcade, Media Center, AI Workspace, Sandboxed Plugin SDK, Theme Editor, Sync Folder, Gamification & Accessibility Audits.
+> **Version 1.0.1 — General Release.** All 13 development phases are complete: Kernel, Desktop Shell, System Utilities, Productivity Core, Study & Life Tools, Office & Creative Suite, Developer Toolkit, CS Lab, Game Engine & 31-Game Arcade, Media Center, AI Workspace, Sandboxed Plugin SDK, Theme Editor, Sync Folder, Gamification & Cross-Browser Audits.
 
 ![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
 

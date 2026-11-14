@@ -2,9 +2,9 @@
 
 ## Status
 
-- **Current phase:** 13 — Ecosystem, polish & v1.0.0 release (ready for release, 2026-11-13)
-- **Next step:** Tag `v1.0.0`, push to `main`, create GitHub Release with `dist/nexus-lite.html`, and run post-deploy live checks (`docs/release.md`).
-- **Phase 13 (v1.0.0) verification:** 135 unit test files (1,084 tests) passing; full Playwright E2E suite passing (`web`, `web-mobile`, `lite`, `tests/e2e/phase13.spec.js`, `tests/e2e/a11y.spec.js` with `@axe-core/playwright`); 0 missing i18n keys across 94 namespaces; 778 precached PWA entries; single-file Lite build 6.99 MB (under 8.00 MB budget).
+- **Current phase:** 13 — Ecosystem, polish & v1.0.0 release (released 2026-11-14, tag `v1.0.0` at `59535b8`)
+- **Next step:** Post-1.0 follow-ups — profile/reduce mobile boot TBT (`1,670 ms` under 4× CPU throttle; Lighthouse mobile Perf `69`), add Firefox/WebKit to CI, bump `smoke.spec.js` live SW timeout for 778-asset CDN precaching, and optionally record `[P2]` README demo media.
+- **Phase 13 (v1.0.0) verification:** 135 unit test files (1,084 tests) passing; full Playwright E2E suite passing (`web`, `web-mobile`, `lite`, `tests/e2e/phase13.spec.js`, `tests/e2e/a11y.spec.js` with `@axe-core/playwright`); 0 missing i18n keys across 94 namespaces; 778 precached PWA entries; initial JS `180.65 kB` gzipped (≤ 200 KB budget); single-file Lite build `6.99 MB` (< 8.00 MB budget); CI run `43534359569` green; GitHub Release `v1.0.0` published; live Render (`https://nexus-arcade-os.onrender.com`) verified for offline reload, `v0.6.0 → v1.0.0` SW update + "What's New" `1.0.0` modal, Desktop Lighthouse (`99/100/100/100`), Mobile Lighthouse (`69/100/100/100`), and Chromium + WebKit cross-browser runs.
 - **Phase 12 verification:** AI Provider layer (Ollama, Lemonade, OpenAI-compatible, Anthropic), Nexus Chat, Nexus Assistant, RAG knowledge indexing, tool calling with approval cards, and cross-app AI integrations (1,065 unit tests passing; `tests/e2e/ai.spec.js`).
 - **Phase 11 verification:** 126 unit test files (1,040 tests) passing; Playwright e2e test suite passing (`tests/e2e/media.spec.js`); 0 missing i18n keys across 91 namespaces; single-file Lite build 6.78 MB (well under 8.00 MB budget).
 - **Phase 10 (Tier 3) verification:** 121 unit test files (1,023 tests) passing; full Playwright e2e test suite passing including Phase 10 Tier 3 games and Arcade Hub categories (`tests/e2e/arcade.spec.js`); 0 missing i18n keys across 83 namespaces; single-file Lite build 6.62 MB (well under 8.00 MB budget).
@@ -1104,14 +1104,14 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **13.6 Quality audits (all [P1])**
 
-- [ ] **Performance:** Lighthouse scores ≥ 90 for Performance, Accessibility, Best Practices, and PWA checks on the live site; initial JS within budget; no long tasks > 100 ms during normal use; 60 fps with 8 open windows on a mid-range laptop. Profile and fix the worst offenders. — _local Vite bundle & 6.99 MB Lite build verified; live Render Lighthouse pass runs post-deploy._
+- [ ] **Performance:** Lighthouse scores ≥ 90 for Performance, Accessibility, Best Practices, and PWA checks on the live site; initial JS within budget; no long tasks > 100 ms during normal use; 60 fps with 8 open windows on a mid-range laptop. Profile and fix the worst offenders. — _Initial JS `180.65 kB` gzipped (≤ 200 KB) and Desktop Lighthouse passed (`99` Perf / `100` A11y / `100` Best Practices / `100` SEO; `FCP 0.2 s`, `LCP 0.6 s`, `TBT 20 ms`, `CLS 0.002`, `SI 1.2 s`; Lighthouse 12+ omits separate PWA score, PWA install/offline/update verified directly). Mobile Lighthouse (4× CPU throttle) scored `69` Perf (`FCP 0.8 s`, `LCP 2.6 s`, `TBT 1,670 ms`, `CLS 0`), `100` A11y (1 minor `label-content-name-mismatch` on `.nx-tb-clock`), `100` Best Practices, `100` SEO — keep open to optimize mobile boot TBT._
 - [x] **Accessibility:** automated checks with axe-core (dev dependency, ask) in the e2e suite for every app; manual keyboard-only pass through every app; screen-reader spot checks (NVDA or VoiceOver) of the shell and three core apps. — _automated `@axe-core/playwright` WCAG 2.0/2.1 AA suite (`tests/e2e/a11y.spec.js`), keyboard navigation, ARIA labels, strong focus ring, and 44 px target modes verified._
 - [x] **i18n:** CI check shows 0 missing keys in EN and DE; review German texts for natural phrasing (no literal translations); date/number formats correct.
 - [x] **Offline:** every app opened and used with the network disabled after a fresh install; results recorded in `docs/offline-audit.md`.
-- [x] **Nexus Lite:** final list of included/excluded apps, size, and a test pass from `file://` in Chrome, Firefox and Safari. — _size verified at 6.99 MB (budget 8.00 MB) and tested over `file://` in `tests/e2e/lite.spec.js`; manual Firefox/Safari pass recommended before release announcement._
+- [x] **Nexus Lite:** final list of included/excluded apps, size, and a test pass from `file://` in Chrome, Firefox and Safari. — _size verified at `6.99 MB` (budget `8.00 MB`) and tested over `file://` in Chromium (`tests/e2e/lite.spec.js`) and WebKit (`file://` `0` console errors); manual Firefox/Safari desktop pass still recommended._
 - [x] **Security review:** sanitization everywhere user content is rendered, sandbox attributes, CSP, crypto parameters, no secrets in logs/backups by default; record findings in `docs/security.md`.
 - [x] **Data safety:** migration tests from every earlier version's data format (fixtures saved in each phase) to v1.0.
-- [ ] **Cross-browser:** full e2e suite on Chromium, Firefox and WebKit in CI. — _full Chromium desktop, mobile, and `file://` Lite suites passing; Firefox/WebKit CI & manual cross-browser checks remain for release._
+- [ ] **Cross-browser:** full e2e suite on Chromium, Firefox and WebKit in CI. — _Chromium (`web`, `web-mobile`, `lite`) and local WebKit (`file://` Lite & website) verified; Playwright Firefox failed to launch inside the macOS sandbox (`Could not find profile folder`), and `.github/workflows/ci.yml` currently runs Chromium only._
 
 **13.7 Documentation**
 
@@ -1121,6 +1121,6 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **13.8 Release v1.0**
 
-- [ ] [P1] Version `1.0.0`, final changelog, git tag, **GitHub Release** with release notes and `nexus-lite.html` attached (via `gh release create`). — _version `1.0.0` & `CHANGELOG.md` complete; git tag & `gh release create` run upon push._
-- [ ] [P1] Verify the live Render site after deploy: fresh visit, install as PWA, offline use, update flow from the previous version. — _post-deploy step (`npm run test:live`)._
+- [x] [P1] Version `1.0.0`, final changelog, git tag, **GitHub Release** with release notes and `nexus-lite.html` attached (via `gh release create`). — _released 2026-11-14: annotated tag `v1.0.0` at `59535b8`, CI run `43534359569` green, GitHub Release `https://github.com/w1kyu/nexus-arcade-os/releases/tag/v1.0.0` published with `dist/nexus-lite.html` (`6.99 MB`)._
+- [x] [P1] Verify the live Render site after deploy: fresh visit, install as PWA, offline use, update flow from the previous version. — _verified on `https://nexus-arcade-os.onrender.com`: `npm run test:live` 38 passed / 35 mobile-skipped (`notes.spec.js` passed in 4.5 s on re-run after parallel load; `smoke.spec.js` timed out at Playwright's 30 s default due to ~100–147 s cold CDN precaching of 778 assets); dedicated Playwright live verification confirmed full SW precache (`147,241 ms`), offline reload (`0` errors, active SW controller, IndexedDB + Search Worker), and `v0.6.0 → v1.0.0` SW update toast → Reload → "What's New" (`1.0.0`) modal._
 - [ ] [P2] A short demo video/GIF of the main features for the README. — _optional post-release media._

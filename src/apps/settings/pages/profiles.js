@@ -9,7 +9,7 @@ import { group, infoRow } from '../form.js';
 export const profiles = {
   id: 'profiles',
   icon: 'user',
-  keys: ['idleLockMinutes', 'fastBoot'],
+  keys: ['idleLockMinutes', 'fastBoot', 'dailyTips'],
   async render(pc) {
     const { t, system } = pc;
     const me = /** @type {any} */ (await system.profiles.current());
@@ -43,7 +43,7 @@ export const profiles = {
           h('div', { class: 'nx-set-control' }, name),
         ),
         infoRow(t('profile.color'), t('profile.colorHint'), accent),
-        infoRow(t('profile.user'), null, h('code', { text: me?.username ?? '' })),
+        infoRow(t('profile.user'), me?.demo ? t('profile.demoDesc') : null, h('code', { text: me?.username ?? '' })),
       ),
       group(
         t('group.lock'),
@@ -78,15 +78,15 @@ export const profiles = {
           }),
         ),
       ),
-      group(t('group.startup'), pc.row('fastBoot')),
+      group(t('group.startup'), pc.row('fastBoot'), pc.row('dailyTips')),
       group(
         t('group.otherProfiles'),
         ...all
           .filter((p) => p.id !== me?.id)
           .map((p) =>
             infoRow(
-              p.name,
-              p.locked ? t(`lock.on.${p.locked}`) : null,
+              p.demo ? `${p.name} (${t('profile.demoTag')})` : p.name,
+              p.locked ? t(`lock.on.${p.locked}`) : p.demo ? t('profile.demoDesc') : null,
               h('button', {
                 type: 'button',
                 class: 'nx-btn is-danger',
@@ -113,6 +113,12 @@ export const profiles = {
             class: 'nx-btn',
             text: t('profile.addButton'),
             onclick: () => void addProfile(pc),
+          }),
+          h('button', {
+            type: 'button',
+            class: 'nx-btn',
+            text: t('profile.demoButton'),
+            onclick: () => void pc.command('shell.demoProfile'),
           }),
         ),
         infoRow(

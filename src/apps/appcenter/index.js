@@ -73,9 +73,75 @@ export function mount(container, ctx, args) {
     dataSizes = new Map((usage?.apps ?? []).map((a) => [a.id, a.bytes]));
   }
 
+  const pluginFileInput = h('input', {
+    type: 'file',
+    class: 'nx-visually-hidden',
+    accept: '.nexus-plugin,.zip,.js',
+    'aria-label': t('installPluginFile'),
+    dataset: { testid: 'appcenter-plugin-input' },
+  });
+
+  async function installFromComputer(/** @type {File} */ file) {
+    try {
+      const info = await system.plugins.installFromFile(file, file.name);
+      ctx.notify({ title: t('installed', { name: local(info.name) }), timeoutMs: 3000 });
+      category = 'plugins';
+      detail = info.id;
+      render();
+    } catch (err) {
+      await /** @type {any} */ (ctx.dialog).alert(
+        t('installFailed', { error: String(/** @type {Error} */ (err)?.message ?? err) }),
+      );
+    }
+  }
+
+  async function installFromVfs() {
+    const devMode = h('input', { type: 'checkbox' });
+    const picked = await /** @type {any} */ (ctx.dialog).openFile({
+      title: t('installPluginVfs'),
+      accept: ['.nexus-plugin', '.zip', '.js'],
+      startIn: `${ctx.fs.home}`,
+    });
+    const path = Array.isArray(picked) ? picked[0] : picked;
+    if (!path) return;
+    const useDev = await openModal({
+      title: t('installPluginVfs'),
+      body: h(
+        'div',
+        { class: 'nx-ac-form' },
+        h('p', { text: path }),
+        h('label', { class: 'nx-ac-check' }, devMode, t('devModeLabel')),
+      ),
+      actions: [
+        { label: t('cancel'), value: false },
+        { label: t('install'), value: true, variant: 'primary' },
+      ],
+      dismissValue: false,
+    });
+    if (!useDev) return;
+    try {
+      const info = await system.plugins.installFromVfs(path, { devMode: devMode.checked });
+      ctx.notify({ title: t('installed', { name: local(info.name) }), timeoutMs: 3000 });
+      category = 'plugins';
+      detail = info.id;
+      render();
+    } catch (err) {
+      await /** @type {any} */ (ctx.dialog).alert(
+        t('installFailed', { error: String(/** @type {Error} */ (err)?.message ?? err) }),
+      );
+    }
+  }
+
+  pluginFileInput.addEventListener('change', () => {
+    const f = pluginFileInput.files?.[0];
+    pluginFileInput.value = '';
+    if (f) void installFromComputer(f);
+  });
+
   function renderNav() {
     const list = apps();
     const counts = new Map(CATEGORIES.map((c) => [c, list.filter((a) => a.category === c).length]));
+    const pluginCount = list.filter((a) => a.isPlugin).length;
     const item = (/** @type {string} */ id, /** @type {string} */ label, /** @type {number} */ count) =>
       h(
         'li',
@@ -102,10 +168,30 @@ export function mount(container, ctx, args) {
         'ul',
         {},
         item('all', t('all'), list.length),
+        item('plugins', t('pluginCategory'), pluginCount),
         ...CATEGORIES.filter((c) => counts.get(c)).map((c) => item(c, t(`category.${c}`), counts.get(c) ?? 0)),
         item('hidden', t('hiddenApps'), list.filter((a) => !a.enabled).length),
       ),
-      h('p', { class: 'nx-ac-plugins', text: t('plugins') }),
+      h(
+        'div',
+        { class: 'nx-ac-plugin-box' },
+        h('p', { class: 'nx-ac-plugins', text: t('plugins') }),
+        pluginFileInput,
+        h('button', {
+          type: 'button',
+          class: 'nx-btn',
+          text: t('installPluginFile'),
+          dataset: { testid: 'appcenter-install-plugin' },
+          onclick: () => pluginFileInput.click(),
+        }),
+        h('button', {
+          type: 'button',
+          class: 'nx-btn is-ghost',
+          text: t('installPluginVfs'),
+          dataset: { testid: 'appcenter-install-vfs' },
+          onclick: () => void installFromVfs(),
+        }),
+      ),
     );
   }
 
@@ -116,16 +202,27 @@ export function mount(container, ctx, args) {
     const q = search.value.trim().toLowerCase();
     const list = apps().filter(
       (a) =>
-        (category === 'all' || (category === 'hidden' ? !a.enabled : a.category === category)) &&
+        (category === 'all' ||
+          (category === 'plugins' ? a.isPlugin : category === 'hidden' ? !a.enabled : a.category === category)) &&
         (!q || `${local(a.name)} ${local(a.description)} ${a.keywords.join(' ')}`.toLowerCase().includes(q)),
     );
-    const title = category === 'all' ? t('all') : category === 'hidden' ? t('hiddenApps') : t(`category.${category}`);
+    const title =
+      category === 'all'
+        ? t('all')
+        : category === 'plugins'
+          ? t('pluginCategory')
+          : category === 'hidden'
+            ? t('hiddenApps')
+            : t(`category.${category}`);
     ctx.window?.setTitle(`${title} — ${t('title')}`);
     main.replaceChildren(
       h('h2', { class: 'nx-ac-heading', text: title }),
       list.length
         ? h('ul', { class: 'nx-ac-grid', dataset: { testid: 'appcenter-grid' } }, ...list.map(card))
-        : h('p', { class: 'nx-empty', text: category === 'hidden' ? t('noneHidden') : t('noMatch') }),
+        : h('p', {
+            class: 'nx-empty',
+            text: category === 'hidden' ? t('noneHidden') : category === 'plugins' ? t('nonePlugins') : t('noMatch'),
+          }),
     );
   }
 
@@ -151,7 +248,11 @@ export function mount(container, ctx, args) {
           h('span', { class: 'nx-ac-meta', text: meta(a) }),
         ),
       ),
-      a.enabled ? null : h('span', { class: 'nx-badge', text: t('hidden') }),
+      !a.enabled
+        ? h('span', { class: 'nx-badge', text: t('hidden') })
+        : a.isPlugin
+          ? h('span', { class: 'nx-badge', text: t('pluginBadge') })
+          : null,
     );
   }
 
@@ -177,6 +278,7 @@ export function mount(container, ctx, args) {
       detail = null;
       return render();
     }
+    const pluginMeta = a.isPlugin ? system.plugins?.get(id) : null;
     ctx.window?.setTitle(`${local(a.name)} — ${t('title')}`);
     const [shots, changelog] = await Promise.all([
       system.apps.screenshots(id).catch(() => []),
@@ -218,6 +320,28 @@ export function mount(container, ctx, args) {
               render();
             },
           }),
+      pluginMeta && pluginMeta.source?.kind === 'vfs'
+        ? h('button', {
+            type: 'button',
+            class: 'nx-btn',
+            text: t('reloadPlugin'),
+            dataset: { testid: 'reload-plugin' },
+            onclick: async () => {
+              await system.plugins.reload(id);
+              ctx.notify({ title: t('reloaded', { name: local(a.name) }), timeoutMs: 2500 });
+              render();
+            },
+          })
+        : null,
+      a.isPlugin
+        ? h('button', {
+            type: 'button',
+            class: 'nx-btn is-danger',
+            text: t('removePlugin'),
+            dataset: { testid: 'remove-plugin' },
+            onclick: () => void removePlugin(id),
+          })
+        : null,
       a.settings.length
         ? h('button', {
             type: 'button',
@@ -227,15 +351,21 @@ export function mount(container, ctx, args) {
               void ctx.commands.execute('settings.open', { scope: id, key: a.settings[0]?.key }).catch(() => {}),
           })
         : null,
-      h('button', {
-        type: 'button',
-        class: 'nx-btn is-danger',
-        text: t('clearData'),
-        dataset: { testid: 'clear-data' },
-        disabled: !a.collections.length && !a.settings.length && !data,
-        onclick: () => void clearData(id),
-      }),
+      !a.isPlugin
+        ? h('button', {
+            type: 'button',
+            class: 'nx-btn is-danger',
+            text: t('clearData'),
+            dataset: { testid: 'clear-data' },
+            disabled: !a.collections.length && !a.settings.length && !data,
+            onclick: () => void clearData(id),
+          })
+        : null,
     );
+
+    const permStatuses = a.isPlugin
+      ? new Map((system.permissions?.list(id) ?? []).map((x) => [x.permission, x.status]))
+      : null;
 
     main.replaceChildren(
       h(
@@ -255,11 +385,24 @@ export function mount(container, ctx, args) {
           h('p', { text: local(a.description) }),
           h('p', {
             class: 'nx-ac-meta',
-            text: `${t(`category.${a.category}`)} · ${t('version', { version: a.version })}${a.enabled ? '' : ` · ${t('hidden')}`}`,
+            text: `${t(`category.${a.category}`)} · ${t('version', { version: a.version })}${a.isPlugin ? ` · ${t('pluginBadge')}` : ''}${a.enabled ? '' : ` · ${t('hidden')}`}`,
           }),
         ),
       ),
       actions,
+      pluginMeta && pluginMeta.source?.kind === 'vfs'
+        ? h(
+            'label',
+            { class: 'nx-ac-check' },
+            h('input', {
+              type: 'checkbox',
+              checked: pluginMeta.devMode,
+              onchange: (/** @type {Event} */ e) =>
+                void system.plugins.setDevMode(id, /** @type {HTMLInputElement} */ (e.target).checked),
+            }),
+            `${t('devModeLabel')} (${pluginMeta.source.path})`,
+          )
+        : null,
       shots.length
         ? h(
             'section',
@@ -305,22 +448,56 @@ export function mount(container, ctx, args) {
           ? h(
               'ul',
               { class: 'nx-ac-perms', dataset: { testid: 'permissions' } },
-              ...a.permissions.map((p) =>
-                h(
+              ...a.permissions.map((p) => {
+                const st = permStatuses?.get(p);
+                return h(
                   'li',
                   {},
                   icon(PERM_ICONS[p] ?? 'shield', { size: 16 }),
                   h('strong', { text: t(`perm.${p}.title`) }),
-                  h('span', { text: t(`perm.${p}.body`) }),
-                ),
-              ),
+                  h('span', { text: `${t(`perm.${p}.body`)}${st ? ` (${t(`permState.${st}`)})` : ''}` }),
+                );
+              }),
             )
           : h('p', { class: 'nx-ac-meta', text: t('noPermissions') }),
-        h('p', { class: 'nx-ac-meta', text: t('builtIn') }),
+        h('p', { class: 'nx-ac-meta', text: a.isPlugin ? t('pluginNote') : t('builtIn') }),
+        a.isPlugin && a.permissions.length
+          ? h('button', {
+              type: 'button',
+              class: 'nx-btn is-ghost',
+              text: t('managePermissions'),
+              onclick: () => void ctx.commands.execute('settings.open', { page: 'apps' }).catch(() => {}),
+            })
+          : null,
       ),
       changelog ? h('section', { class: 'nx-ac-section' }, h('h3', { text: t('changelog') }), notes) : null,
     );
     main.focus({ preventScroll: true });
+  }
+
+  /** @param {string} id */
+  async function removePlugin(id) {
+    const a = /** @type {NonNullable<ReturnType<typeof system.apps.get>>} */ (system.apps.get(id));
+    const wipe = h('input', { type: 'checkbox' });
+    const ok = await openModal({
+      title: t('removePluginTitle', { name: local(a.name) }),
+      body: h(
+        'div',
+        { class: 'nx-ac-form' },
+        h('p', { text: t('removePluginBody') }),
+        h('label', { class: 'nx-ac-check' }, wipe, t('uninstallWipe')),
+      ),
+      actions: [
+        { label: t('cancel'), value: false },
+        { label: t('removePlugin'), value: true, variant: 'danger' },
+      ],
+      dismissValue: false,
+    });
+    if (!ok) return;
+    await system.plugins.uninstall(id, { wipeData: wipe.checked });
+    detail = null;
+    ctx.notify({ title: t('removed', { name: local(a.name) }), timeoutMs: 3000 });
+    render();
   }
 
   /** @param {string} id */
@@ -381,6 +558,9 @@ export function mount(container, ctx, args) {
     items[(i + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length]?.focus();
   });
   ctx.events.on('app:enabled-changed', () => render());
+  ctx.events.on('app:registered', () => render());
+  ctx.events.on('app:unregistered', () => render());
+  ctx.events.on('permissions:changed', () => detail && render());
   ctx.i18n.onChange(() => {
     search.placeholder = t('search');
     render();

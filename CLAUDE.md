@@ -94,3 +94,10 @@ Ask before adding anything else (brief §2.4).
 - Session saves are debounced (600 ms): tests wait ~1 s before a reload that must restore state. Apps call `ctx.window.stateChanged()` when their `saveState()` changes.
 - The Bash tool collapses backslashes in heredocs (`\\n` → newline, `\\d` → `d`): write files or patch scripts containing backslashes with the Write/Edit tools.
 - Global shortcuts run in the capture phase, even in inputs for Ctrl/Alt combos: an app that needs a key (Terminal Ctrl+L) registers it with `ctx.shortcuts` (window scope wins).
+
+## Handoff Prompt Cycle
+
+- At the end of every substantial task or chat, include a `### Next Chat Prompt` section with a single ready-to-paste Markdown code block containing:
+  - Current branch, commit/working-tree state, and verified check results.
+  - Exact next goals/tasks from `PROGRESS.md` and `specs/`.
+  - An explicit instruction at the end of that prompt to repeat this handoff prompt cycle at the end of the next chat.

@@ -72,6 +72,10 @@ body {
   }
 }
 
+:root[data-icon-style='filled'] .nx-icon {
+  fill: color-mix(in srgb, currentColor 24%, transparent);
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -95,4 +99,17 @@ button {
   animation-duration: 0s !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0s !important;
+}
+
+@keyframes nxRainbowHue {
+  from {
+    filter: hue-rotate(0deg) saturate(1.2);
+  }
+  to {
+    filter: hue-rotate(360deg) saturate(1.2);
+  }
+}
+
+:root.nx-rainbow-party body {
+  animation: nxRainbowHue 1.2s linear 2;
 }

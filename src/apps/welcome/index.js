@@ -38,6 +38,16 @@ export function mount(container, ctx) {
             {
               class: 'nx-btn is-primary',
               type: 'button',
+              onclick: ctx.guard(() => ctx.commands.execute('shell.tour')),
+            },
+            icon('sparkles', { size: 16 }),
+            t('actions.tour'),
+          ),
+          h(
+            'button',
+            {
+              class: 'nx-btn',
+              type: 'button',
               onclick: ctx.guard(() => ctx.commands.execute('shell.palette')),
             },
             icon('search', { size: 16 }),
@@ -48,6 +58,18 @@ export function mount(container, ctx) {
             { class: 'nx-btn', type: 'button', onclick: ctx.guard(() => ctx.commands.execute('shell.personalize')) },
             icon('palette', { size: 16 }),
             t('actions.personalize'),
+          ),
+          h(
+            'button',
+            { class: 'nx-btn', type: 'button', onclick: ctx.guard(() => ctx.commands.execute('shell.whatsNew')) },
+            icon('star', { size: 16 }),
+            t('actions.whatsNew'),
+          ),
+          h(
+            'button',
+            { class: 'nx-btn', type: 'button', onclick: ctx.guard(() => ctx.commands.execute('shell.demoProfile')) },
+            icon('users', { size: 16 }),
+            t('actions.demo'),
           ),
           h(
             'button',

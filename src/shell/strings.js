@@ -7,7 +7,8 @@ const en = {
   offlineReady: 'Nexus is ready to work offline.',
   dismiss: 'Dismiss',
   bootTitle: 'Nexus is starting',
-  bootSkip: 'Press any key to skip',
+  bootSkip: 'Press any key to skip (hold Shift for Safe Mode)',
+  bootSafeMode: 'Safe mode active (plugins & custom CSS paused)',
   bootSteps: {
     storage: 'Opening storage…',
     profile: 'Loading your profile…',
@@ -29,7 +30,8 @@ const de = {
   offlineReady: 'Nexus ist bereit für die Offline-Nutzung.',
   dismiss: 'Schließen',
   bootTitle: 'Nexus startet',
-  bootSkip: 'Beliebige Taste zum Überspringen',
+  bootSkip: 'Beliebige Taste zum Überspringen (Shift für abgesicherten Modus)',
+  bootSafeMode: 'Abgesicherter Modus aktiv (Plugins & eigenes CSS pausiert)',
   bootSteps: {
     storage: 'Speicher wird geöffnet …',
     profile: 'Profil wird geladen …',

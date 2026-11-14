@@ -395,35 +395,16 @@ export async function mount(container, ctx) {
   container.append(root);
 
   async function updateProfile() {
-    if (ctx.achievements) {
-      try {
-        await ctx.achievements.stat('nexus.arcade', 'gamesPlayed', 0);
-      } catch {
-        // Ignore
-      }
-    }
+    const levelInfo = ctx.achievements?.level?.() ?? { level: 1, xp: 0, current: 0, needed: 100 };
+    const currentLvl = levelInfo.level;
+    const xpCurrent = levelInfo.current;
+    const xpNeeded = Math.max(1, levelInfo.needed);
 
-    // Try reading profile level
-    if (ctx.system?.info) {
-      try {
-        const info = ctx.system.info();
-        if (info?.profile) {
-          // Profile exists
-        }
-      } catch {
-        // Ignore
-      }
-    }
-
-    // Default or calculated level/XP
-    const xp = 120;
-    const currentLvl = Math.max(1, Math.floor(xp / 100) + 1);
-    const xpCurrent = xp % 100;
-    const xpNeeded = 100;
-
-    nameRow.querySelector('.nx-profile-level').textContent = `${t('stats.level')} ${currentLvl}`;
-    nameRow.querySelector('.nx-profile-xp-text').textContent = `${xpCurrent} / ${xpNeeded} ${t('stats.xp')}`;
-    barFill.style.width = `${(xpCurrent / xpNeeded) * 100}%`;
+    const lvlEl = nameRow.querySelector('.nx-profile-level');
+    const xpEl = nameRow.querySelector('.nx-profile-xp-text');
+    if (lvlEl) lvlEl.textContent = `${t('stats.level')} ${currentLvl}`;
+    if (xpEl) xpEl.textContent = `${xpCurrent} / ${xpNeeded} ${t('stats.xp')}`;
+    barFill.style.width = `${Math.min(100, Math.round((xpCurrent / xpNeeded) * 100))}%`;
   }
 
   async function renderGameGrid() {
@@ -643,54 +624,47 @@ export async function mount(container, ctx) {
   }
 
   async function renderAchievementsGallery() {
-    achievementsGrid.innerHTML = '';
-    const sampleAchievements = [
-      {
-        id: 'snake_first_food',
-        title: 'First Byte',
-        desc: 'Eat your first food particle in Snake Evolution',
-        icon: 'star',
-        unlocked: true,
-      },
-      {
-        id: 'breakout_first_block',
-        title: 'Brick Breaker',
-        desc: 'Destroy your first block in Breakout',
-        icon: 'star',
-        unlocked: true,
-      },
-      {
-        id: 'memory_first_match',
-        title: 'Synapse Fire',
-        desc: 'Find your first matching card pair',
-        icon: 'star',
-        unlocked: true,
-      },
-      {
-        id: '2048_reach_2048',
-        title: 'Singularity 2048',
-        desc: 'Form the legendary 2048 tile',
-        icon: 'trophy',
-        unlocked: false,
-      },
-      {
-        id: 'reaction_sub_200',
-        title: 'Lightning Synapse',
-        desc: 'Achieve an average reaction time under 200 ms',
-        icon: 'trophy',
-        unlocked: false,
-      },
-    ];
+    achievementsGrid.replaceChildren();
+    const locale = ctx.i18n.locale === 'de' ? 'de' : 'en';
+    const all = (await ctx.achievements?.listAll?.().catch(() => [])) ?? [];
+    const list = all.sort((a, b) => Number(!!b.unlockedAt) - Number(!!a.unlockedAt)).slice(0, 12);
 
-    for (const ach of sampleAchievements) {
-      const badge = h('div', { class: `nx-achievement-badge ${ach.unlocked ? 'unlocked' : 'locked'}` });
-      badge.innerHTML = `
-        <div class="nx-achievement-icon">${ach.unlocked ? '🏆' : '🔒'}</div>
-        <div>
-          <div class="nx-achievement-name">${ach.title}</div>
-          <div class="nx-achievement-desc">${ach.desc}</div>
-        </div>
-      `;
+    if (!list.length) {
+      achievementsGrid.append(
+        h('p', {
+          class: 'nx-achievement-desc',
+          text: t('stats.achievementsEmpty') || 'Play games to unlock achievements!',
+        }),
+      );
+      return;
+    }
+
+    for (const ach of list) {
+      const unlocked = !!ach.unlockedAt;
+      const titleText = ach.title
+        ? typeof ach.title === 'string'
+          ? ach.title
+          : (ach.title[locale] ?? ach.title.en)
+        : '???';
+      const descText = ach.description
+        ? typeof ach.description === 'string'
+          ? ach.description
+          : (ach.description[locale] ?? ach.description.en)
+        : locale === 'de'
+          ? 'Geheimer Erfolg'
+          : 'Secret achievement';
+      const progressSuffix = !unlocked && ach.goal ? ` (${Math.min(ach.progress, ach.goal)}/${ach.goal})` : '';
+      const badge = h(
+        'div',
+        { class: `nx-achievement-badge ${unlocked ? 'unlocked' : 'locked'}` },
+        h('div', { class: 'nx-achievement-icon', text: unlocked ? '🏆' : '🔒' }),
+        h(
+          'div',
+          {},
+          h('div', { class: 'nx-achievement-name', text: titleText }),
+          h('div', { class: 'nx-achievement-desc', text: `${descText}${progressSuffix}` }),
+        ),
+      );
       achievementsGrid.append(badge);
     }
   }

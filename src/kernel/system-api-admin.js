@@ -7,6 +7,7 @@ import { getPersistence, requestPersistence } from '../services/storage/persist.
 import { deleteQuarantined, listQuarantine } from '../services/storage/quarantine.js';
 import { approximateSize, estimateQuota } from '../services/storage/quota.js';
 import { downloadBlob } from '../services/vfs/transfer.js';
+import { createSyncFolder } from '../services/backup/sync-folder.js';
 import { liveWorkers } from './workers.js';
 
 /**
@@ -27,6 +28,10 @@ import { liveWorkers } from './workers.js';
  * @property {{ get(key: string): Promise<unknown>, set(key: string, value: unknown): Promise<void>, delete(key: string): Promise<void>, entries(): Promise<Record<string, unknown>> }} intentDefaults
  * @property {{ get(key: string): Promise<unknown>, set(key: string, value: unknown): Promise<void> }} backupState
  * @property {import('../services/network/network.js').NetworkLog} network
+ * @property {import('../services/plugins/manager.js').PluginManager | null} [plugins]
+ * @property {import('../services/permissions/permissions.js').Permissions} [permissions]
+ * @property {import('../services/theme/engine.js').ThemeService} [theme]
+ * @property {import('../services/settings/settings.js').Settings} [settings]
  * @property {string} engineKind
  * @property {(text: import('./types').L10n | string) => string} localize
  */
@@ -123,6 +128,8 @@ export function createAdminApi(deps) {
     },
   };
 
+  const syncFolder = createSyncFolder({ vfs });
+
   const backups = {
     /**
      * Exports the whole profile as a `.nexus-backup` file and downloads it.
@@ -136,14 +143,17 @@ export function createAdminApi(deps) {
     },
     /** @param {Blob} file @param {string} [password] */
     inspect: (file, password) => backup.inspect(file, password),
+    /** @param {Blob} file @param {string} [password] */
+    inspectMerge: (file, password) => backup.inspectMerge(file, password),
     /**
      * Restores a backup; the page must reload afterwards (migrations run on boot).
      * @param {Blob} file
-     * @param {{ mode: 'replace' | 'merge', password?: string }} options
+     * @param {{ mode: 'replace' | 'merge', password?: string, conflictStrategy?: 'keep' | 'overwrite' }} options
      */
     restore: (file, options) => backup.restore(file, options),
     /** @returns {Promise<number | null>} when the last backup was made here */
     lastBackupAt: async () => /** @type {number | null} */ ((await deps.backupState.get('lastAt')) ?? null),
+    syncFolder,
   };
 
   const keyboard = {
@@ -180,7 +190,7 @@ export function createAdminApi(deps) {
     setLock: (lock) => profiles.setLock(deps.profile.id, lock),
     /** @param {string} current */
     clearLock: (current) => profiles.clearLock(deps.profile.id, current),
-    /** @param {{ name: string, accent?: string }} init */
+    /** @param {{ name: string, accent?: string, demo?: boolean }} init */
     create: (init) => profiles.create(init),
     /** Deletes another profile and all its data (not the open one). @param {string} id */
     async remove(id) {
@@ -267,6 +277,130 @@ export function createAdminApi(deps) {
     clear: () => deps.network.clear(),
   };
 
+  const permissionsApi = {
+    /** @param {string} appId @param {import('./types').Permission} perm */
+    status: (appId, perm) => deps.permissions?.status(appId, perm) ?? 'denied',
+    /** @param {string} appId @param {import('./types').Permission} perm */
+    revoke: (appId, perm) => deps.permissions?.revoke(appId, perm) ?? Promise.resolve(),
+    /** @param {string} appId */
+    list(appId) {
+      const m = registry.get(appId);
+      return (m?.permissions ?? []).map((p) => ({
+        permission: p,
+        status: deps.permissions?.status(appId, p) ?? 'denied',
+      }));
+    },
+  };
+
+  const pluginsApi = {
+    list: () => deps.plugins?.list() ?? [],
+    /** @param {string} id */
+    has: (id) => deps.plugins?.has(id) ?? false,
+    /** @param {string} id */
+    get: (id) => deps.plugins?.get(id) ?? null,
+    /** @param {Blob} file @param {string} [filename] */
+    installFromFile: (file, filename) => {
+      if (!deps.plugins) throw new Error('Plugins unavailable');
+      return deps.plugins.installFromFile(file, filename);
+    },
+    /** @param {string} path @param {{ devMode?: boolean }} [options] */
+    installFromVfs: (path, options) => {
+      if (!deps.plugins) throw new Error('Plugins unavailable');
+      return deps.plugins.installFromVfs(path, options);
+    },
+    /** @param {string} id */
+    reload: (id) => {
+      if (!deps.plugins) throw new Error('Plugins unavailable');
+      return deps.plugins.reload(id);
+    },
+    /** @param {string} id @param {boolean} devMode */
+    setDevMode: (id, devMode) => deps.plugins?.setDevMode(id, devMode) ?? Promise.resolve(),
+    /** @param {string} id @param {{ wipeData?: boolean }} [options] */
+    uninstall: (id, options) => deps.plugins?.uninstall(id, options) ?? Promise.resolve(),
+  };
+
+  const CARD_SETTING_KEYS = [
+    'theme',
+    'customTheme',
+    'accent',
+    'wallpaper',
+    'wallpaperFit',
+    'wallpaperDim',
+    'wallpaperBlur',
+    'fontScale',
+    'fontFamily',
+    'windowRadius',
+    'titlebarStyle',
+    'iconStyle',
+    'transparency',
+  ];
+
+  const profileCard = {
+    async exportCard() {
+      const settingsObj = /** @type {Record<string, unknown>} */ ({});
+      for (const k of CARD_SETTING_KEYS) {
+        try {
+          settingsObj[k] = deps.settings?.get('system', k);
+        } catch {
+          // ignore
+        }
+      }
+      const session = /** @type {any} */ (await db.get('kv', ['system:shell', 'session'])) ?? {};
+      return {
+        format: 'nexus-profile-card',
+        version: 1,
+        name: /** @type {any} */ (deps.profile)?.name ?? 'Nexus Profile',
+        exportedAt: Date.now(),
+        settings: settingsObj,
+        dock: Array.isArray(session.pinned) ? session.pinned : [],
+        widgets: Array.isArray(session.widgets) ? session.widgets : [],
+      };
+    },
+    /** @param {unknown} raw */
+    async importCard(raw) {
+      if (!raw || typeof raw !== 'object' || /** @type {any} */ (raw).format !== 'nexus-profile-card') {
+        throw new Error('Invalid Nexus profile card file.');
+      }
+      const card = /** @type {Record<string, any>} */ (raw);
+      let appliedSettings = 0;
+      if (card.settings && typeof card.settings === 'object' && deps.settings) {
+        for (const k of CARD_SETTING_KEYS) {
+          if (k in card.settings) {
+            try {
+              await deps.settings.set('system', k, card.settings[k]);
+              appliedSettings++;
+            } catch {
+              // ignore incompatible setting values
+            }
+          }
+        }
+      }
+      let layoutChanged = false;
+      const existing = /** @type {Record<string, any> | undefined} */ (await db.get('kv', ['system:shell', 'session']));
+      /** @type {Record<string, any>} */
+      const nextSession =
+        existing && typeof existing === 'object'
+          ? { ...existing }
+          : { version: 1, workspaces: { count: 4, names: [], current: 0 }, windows: [], pinned: [], recentApps: [] };
+      if (Array.isArray(card.dock)) {
+        nextSession.pinned = card.dock.filter(
+          (/** @type {unknown} */ id) => typeof id === 'string' && registry.has(id),
+        );
+        layoutChanged = true;
+      }
+      if (Array.isArray(card.widgets)) {
+        nextSession.widgets = card.widgets.filter(
+          (/** @type {unknown} */ w) => w && typeof w === 'object' && typeof (/** @type {any} */ (w).key) === 'string',
+        );
+        layoutChanged = true;
+      }
+      if (layoutChanged) {
+        await db.put('kv', nextSession, ['system:shell', 'session']);
+      }
+      return { appliedSettings, layoutChanged };
+    },
+  };
+
   return {
     storage,
     backup: backups,
@@ -278,5 +412,8 @@ export function createAdminApi(deps) {
     log,
     performance,
     network,
+    permissions: permissionsApi,
+    plugins: pluginsApi,
+    profileCard,
   };
 }

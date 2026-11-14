@@ -8,6 +8,7 @@ import { accessibility, desktop, language, notifications, personalization, windo
 import { profiles } from './pages/profiles.js';
 import { shortcuts } from './pages/shortcuts.js';
 import { about, backup, updates } from './pages/system.js';
+import { themeEditor } from './pages/theme-editor.js';
 import { ai } from './pages/ai.js';
 import './styles.css';
 
@@ -16,6 +17,7 @@ import './styles.css';
 /** In the order of the spec: Personalization … About. */
 const PAGES = [
   personalization,
+  themeEditor,
   desktop,
   windows,
   notifications,
@@ -54,8 +56,8 @@ export function mount(container, ctx, args) {
     typeof text === 'string' ? text : (text[ctx.i18n.locale] ?? text.en);
   const saved = /** @type {{ page?: string } | undefined} */ (args.restoredState);
   /** @type {Record<string, unknown>} */
-  const link = /** @type {any} */ (args.intent?.data ?? args);
-  let current = byId.has(String(link.page)) ? String(link.page) : (saved?.page ?? 'personalization');
+  const link = { .../** @type {Record<string, unknown>} */ (args.intent?.data ?? args) };
+  let current = !saved?.page && byId.has(String(link.page)) ? String(link.page) : (saved?.page ?? 'personalization');
   let renderToken = 0;
 
   const search = h('input', {
@@ -120,6 +122,7 @@ export function mount(container, ctx, args) {
     toast,
     refresh: () => void show(current),
     navigate: (page, highlight) => void show(page, highlight),
+    link,
     confirm: (message, options) => /** @type {any} */ (ctx.dialog).confirm(message, options),
   };
 
@@ -213,6 +216,7 @@ export function mount(container, ctx, args) {
 
   /** Deep link: a page, or a setting (scope + key). @param {Record<string, unknown>} a */
   function openLink(a) {
+    Object.assign(link, a);
     const scope = typeof a.scope === 'string' ? a.scope : 'system';
     const key = typeof a.key === 'string' ? a.key : '';
     if (key) {
@@ -343,7 +347,9 @@ export function mount(container, ctx, args) {
   });
 
   renderNav();
-  void show(current).then(() => openLink(link));
+  void show(current).then(() => {
+    if (!saved?.page) openLink(link);
+  });
 
   return {
     saveState: () => ({ page: current }),

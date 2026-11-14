@@ -18,10 +18,15 @@ export function createPermissions({ store, ask, appInfo, bus }) {
   let decisions = {};
   /** @type {Map<string, Promise<boolean>>} one prompt at a time per app+permission */
   const asking = new Map();
+  let askFn = ask;
 
   const save = () => store.set('decisions', decisions);
 
   return {
+    setAsk(/** @type {(appId: string, permission: Permission) => Promise<boolean>} */ fn) {
+      askFn = fn;
+    },
+
     async load() {
       const saved = await store.get('decisions');
       decisions = saved && typeof saved === 'object' ? /** @type {typeof decisions} */ (saved) : {};
@@ -35,13 +40,14 @@ export function createPermissions({ store, ask, appInfo, bus }) {
     async request(appId, permission) {
       const app = appInfo(appId);
       if (!app || !app.declared.includes(permission)) return false;
+      if (!app.builtIn && permission === 'system') return false;
       if (app.builtIn) return true;
       const decision = decisions[appId]?.[permission];
       if (decision) return decision === 'granted';
       const key = `${appId}\u0000${permission}`;
       let pending = asking.get(key);
       if (!pending) {
-        pending = ask(appId, permission).then(async (granted) => {
+        pending = askFn(appId, permission).then(async (granted) => {
           (decisions[appId] ??= {})[permission] = granted ? 'granted' : 'denied';
           await save();
           bus.emit('permissions:changed', { app: appId, permission, granted });
@@ -57,6 +63,7 @@ export function createPermissions({ store, ask, appInfo, bus }) {
     status(/** @type {string} */ appId, /** @type {Permission} */ permission) {
       const app = appInfo(appId);
       if (!app || !app.declared.includes(permission)) return 'denied';
+      if (!app.builtIn && permission === 'system') return 'denied';
       if (app.builtIn) return 'granted';
       return decisions[appId]?.[permission] ?? 'ask';
     },
@@ -67,6 +74,14 @@ export function createPermissions({ store, ask, appInfo, bus }) {
       delete decisions[appId][permission];
       await save();
       bus.emit('permissions:changed', { app: appId, permission, granted: false });
+    },
+
+    /** Removes all stored permission decisions for an app/plugin. */
+    async clearApp(/** @type {string} */ appId) {
+      if (!decisions[appId]) return;
+      delete decisions[appId];
+      await save();
+      bus.emit('permissions:changed', { app: appId, permission: null, granted: false });
     },
   };
 }

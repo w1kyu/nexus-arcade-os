@@ -1,0 +1,44 @@
+{
+  "title": "Profil & Erfolge",
+  "levelBadge": "Stufe {level}",
+  "totalXp": "{xp} EP gesamt",
+  "nextLevel": "{current} / {needed} EP bis zur nächsten Stufe",
+  "unlockedCount": "{unlocked} von {total} Erfolgen freigeschaltet",
+  "tabs": {
+    "achievements": "Erfolge",
+    "stats": "Aktivitätsstatistik",
+    "wrapped": "Nexus-Rückblick"
+  },
+  "filters": {
+    "all": "Alle",
+    "unlocked": "Freigeschaltet",
+    "locked": "Gesperrt",
+    "system": "System"
+  },
+  "appSystem": "Nexus System",
+  "secretTitle": "Geheimer Erfolg",
+  "secretDesc": "Erkunde Nexus weiter, um diesen Meilenstein zu entdecken.",
+  "unlockedOn": "Freigeschaltet am {date}",
+  "progressLabel": "{progress} / {goal}",
+  "emptyAchievements": "Keine Erfolge entsprechen diesem Filter.",
+  "stats": {
+    "title": "App-Aktivität & Arbeitsbereich",
+    "filesTitle": "Dateien im Arbeitsbereich",
+    "filesCount": "{count} lokal gespeicherte Dateien",
+    "appsTracked": "{count} Apps mit erfasster Aktivität",
+    "empty": "Nutze Apps und spiele Arcade-Spiele, um dein Aktivitätsprofil aufzubauen.",
+    "appsLaunched": "Gestartete Apps",
+    "gamesPlayed": "Gespielte Partien",
+    "metric": "Aktivität"
+  },
+  "wrapped": {
+    "headline": "Nexus-Rückblick {year}",
+    "subhead": "Deine lokale Jahresübersicht für {profile}",
+    "cardLevel": "Aktueller Rang",
+    "cardAchievements": "Erreichte Meilensteine",
+    "cardApps": "Verschiedene Apps",
+    "cardFiles": "Dateien im Workspace",
+    "exportBtn": "Zusammenfassung exportieren (.txt)",
+    "exported": "Zusammenfassung exportiert"
+  }
+}

@@ -72,7 +72,20 @@
     "close": "Close",
     "chooseFolder": "Choose a folder",
     "selectFolder": "Use this folder",
-    "noSubfolders": "No folders inside"
+    "noSubfolders": "No folders inside",
+    "permissionTitle": "Permission request — {name}",
+    "permissionBody": "The plugin “{name}” wants to use the “{permission}” capability:",
+    "permissionAllow": "Allow",
+    "permissionDeny": "Deny",
+    "perm": {
+      "vfs": "Read and modify files in your virtual file system.",
+      "notifications": "Show system notifications.",
+      "clipboard": "Read from and write to the clipboard.",
+      "network": "Connect to remote URLs you configure.",
+      "ai": "Send prompts to your configured AI provider.",
+      "scheduler": "Schedule reminders and background timers.",
+      "intents": "Open files in other apps and share data."
+    }
   },
   "commands": {
     "category": "System",
@@ -376,7 +389,9 @@
     "name": "Name",
     "optionalPin": "PIN (optional, 4–12 digits)",
     "create": "Create",
-    "lockCommand": "Lock the screen"
+    "lockCommand": "Lock the screen",
+    "demoBadge": "Demo",
+    "tryDemo": "Try Demo Profile"
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",
@@ -472,5 +487,89 @@
     "focused": "{title}",
     "closed": "{app} closed",
     "notification": "Notification: {title}. {body}"
+  },
+  "tour": {
+    "title": "First-run tour",
+    "command": "Start interactive tour",
+    "badge": "Step {step} of {total}",
+    "back": "Back",
+    "skip": "Skip",
+    "next": "Next",
+    "finish": "Done",
+    "steps": {
+      "app": {
+        "title": "Open any app",
+        "body": "Launch productivity tools, CS simulations, local AI chat, and 30 arcade games from the App Launcher.",
+        "action": "Open Launcher"
+      },
+      "snap": {
+        "title": "Snap & tile windows",
+        "body": "Drag windows to any screen edge, hover the Maximize button for layouts, or use Ctrl+Arrow shortcuts.",
+        "action": "Snap active window"
+      },
+      "palette": {
+        "title": "Command Palette",
+        "body": "Press Ctrl+K anywhere to search apps, commands, files (/), settings (@), calculations (=), and help (?).",
+        "action": "Open Palette"
+      },
+      "workspaces": {
+        "title": "Virtual workspaces",
+        "body": "Organize tasks across multiple desktops using the workspace dots or the Overview (Ctrl+Shift+Space).",
+        "action": "Open Overview"
+      },
+      "backup": {
+        "title": "Your data stays local",
+        "body": "Everything stays in your browser. Export an encrypted backup or set up a Sync Folder anytime.",
+        "action": "Open Backup"
+      }
+    }
+  },
+  "whatsNew": {
+    "title": "What’s new in Nexus {version}",
+    "command": "What’s new (release notes)",
+    "close": "Continue"
+  },
+  "tips": {
+    "tryAction": "Try it",
+    "palette": {
+      "title": "Tip: Quick launcher & math",
+      "body": "Press Ctrl+K and type “= 42 * 12” or “/roadmap” to calculate or jump straight to a file."
+    },
+    "snap": {
+      "title": "Tip: Window tiling",
+      "body": "Take the 5-step interactive tour anytime from Welcome or the Command Palette."
+    },
+    "workspaces": {
+      "title": "Tip: Workspaces",
+      "body": "Keep coding, notes, and games separated across virtual workspaces."
+    },
+    "themeEditor": {
+      "title": "Tip: Custom Themes",
+      "body": "Build your own palette with live WCAG contrast checks in Settings → Theme Editor."
+    },
+    "backup": {
+      "title": "Tip: Zero-backend portability",
+      "body": "Mirror your workspace to a local folder or download an encrypted backup in Settings → Backup."
+    },
+    "plugins": {
+      "title": "Tip: Sandboxed Plugins",
+      "body": "Install isolated third-party widgets, themes, and apps from .nexus-plugin packages in App Center."
+    },
+    "widgets": {
+      "title": "Tip: Desktop Widgets",
+      "body": "Right-click the desktop to pin live Pomodoro, Clock, Calendar, and plugin widgets."
+    },
+    "profile": {
+      "title": "Tip: XP & Achievements",
+      "body": "Track your milestones, app statistics, and Nexus Wrapped yearly summary in the Profile app."
+    }
+  },
+  "demo": {
+    "profileName": "Demo Explorer",
+    "command": "Create and launch Demo Profile"
+  },
+  "easterEgg": {
+    "konamiTitle": "Secret code activated!",
+    "konamiBody": "Up, up, down, down… you unlocked the desktop easter egg."
   }
 }

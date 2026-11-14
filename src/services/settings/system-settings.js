@@ -309,4 +309,82 @@ export const SYSTEM_SETTINGS = [
     label: L('Remind me to back up every (days)', 'An ein Backup erinnern alle (Tage)'),
     description: L('0 turns the reminder off.', '0 schaltet die Erinnerung aus.'),
   },
+  // Theme Editor & Personalization (Phase 13)
+  {
+    key: 'titlebarStyle',
+    type: 'enum',
+    default: 'windows',
+    options: [
+      { value: 'windows', label: L('Standard (buttons on right)', 'Standard (Schaltflächen rechts)') },
+      { value: 'macos', label: L('Traffic lights (left)', 'Ampel-Schaltflächen (links)') },
+    ],
+    label: L('Window title bar style', 'Fenster-Titelleiste'),
+  },
+  {
+    key: 'windowRadius',
+    type: 'number',
+    default: 16,
+    min: 0,
+    max: 24,
+    step: 2,
+    label: L('Window corner radius (px)', 'Fenster-Eckenradius (px)'),
+  },
+  {
+    key: 'fontFamily',
+    type: 'enum',
+    default: 'inter',
+    options: [
+      { value: 'inter', label: L('Inter (Default)', 'Inter (Standard)') },
+      { value: 'jetbrains', label: L('JetBrains Mono', 'JetBrains Mono') },
+      { value: 'system', label: L('System UI', 'Systemschriftart') },
+    ],
+    label: L('Interface font', 'Oberflächenschriftart'),
+  },
+  {
+    key: 'iconStyle',
+    type: 'enum',
+    default: 'outline',
+    options: [
+      { value: 'outline', label: L('Outline', 'Kontur') },
+      { value: 'filled', label: L('Filled accent', 'Gefüllter Akzent') },
+    ],
+    label: L('Icon style', 'Symbolstil'),
+  },
+  {
+    key: 'customCss',
+    type: 'string',
+    default: '',
+    label: L('Custom CSS', 'Eigenes CSS'),
+  },
+  {
+    key: 'customCssSafeMode',
+    type: 'boolean',
+    default: false,
+    label: L(
+      'Safe mode for Custom CSS (disable custom styles)',
+      'Abgesicherter Modus für eigenes CSS (eigene Stile deaktivieren)',
+    ),
+  },
+  {
+    key: 'customTheme',
+    type: 'string',
+    default: '',
+    label: L('Active custom theme JSON', 'Aktives eigenes Design (JSON)'),
+  },
+  // Onboarding & Discoverability (Phase 13)
+  {
+    key: 'dailyTips',
+    type: 'boolean',
+    default: true,
+    label: L(
+      'Show occasional feature tips (max 1 per day)',
+      'Gelegentliche Tipps zu Funktionen zeigen (max. 1 pro Tag)',
+    ),
+  },
+  {
+    key: 'tourCompleted',
+    type: 'boolean',
+    default: false,
+    label: L('First-run tour completed', 'Einführungstour abgeschlossen'),
+  },
 ];

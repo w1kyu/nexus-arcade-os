@@ -186,6 +186,7 @@ export async function loginScreen({ parent, kernel }) {
               },
               avatar(p, 72),
               h('span', { text: p.name }),
+              p.demo ? h('small', {}, icon('sparkles', { size: 12 }), t('lock.demoBadge')) : null,
               p.locked
                 ? h('small', {}, icon('lock', { size: 12 }), t(p.locked === 'pin' ? 'lock.pin' : 'lock.password'))
                 : null,
@@ -193,10 +194,27 @@ export async function loginScreen({ parent, kernel }) {
           ),
         ),
         h(
-          'button',
-          { class: 'nx-btn is-ghost', type: 'button', onclick: create },
-          icon('user-plus', { size: 16 }),
-          t('lock.createProfile'),
+          'div',
+          { class: 'nx-lock-row' },
+          h(
+            'button',
+            { class: 'nx-btn is-ghost', type: 'button', onclick: create },
+            icon('user-plus', { size: 16 }),
+            t('lock.createProfile'),
+          ),
+          h(
+            'button',
+            {
+              class: 'nx-btn is-ghost',
+              type: 'button',
+              onclick: async () => {
+                const demo = await profiles.create({ name: t('demo.profileName'), demo: true });
+                finish(demo);
+              },
+            },
+            icon('sparkles', { size: 16 }),
+            t('lock.tryDemo'),
+          ),
         ),
       );
       /** @type {HTMLElement | null} */ (

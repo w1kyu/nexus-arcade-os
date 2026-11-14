@@ -29,6 +29,7 @@ import { storageBreakdown, withQuotaReporting } from '../services/storage/quota.
 import { selectEngine } from '../services/storage/select.js';
 import { createThemeService } from '../services/theme/engine.js';
 import { createNetworkLog } from '../services/network/network.js';
+import { createPluginManager } from '../services/plugins/manager.js';
 import { createRecentFiles } from '../services/vfs/recent.js';
 import { createVfs, VFS_STORE_SCHEMA } from '../services/vfs/vfs.js';
 import { createNativeDialogs } from '../shell/native-dialogs.js';
@@ -42,6 +43,8 @@ import { createLogger } from './logger.js';
 import { createRegistry } from './registry.js';
 import { createRuntime } from './runtime.js';
 import { createTabRelay } from './tab-relay.js';
+import { connectOsAchievements } from './os-achievements.js';
+import { populateDemoWorkspace } from '../services/profiles/demo.js';
 import { trackWorkers } from './workers.js';
 
 /** @typedef {import('./types').AppManifest} AppManifest */
@@ -296,11 +299,15 @@ async function openProfile(options, k, profile) {
   /** @param {string | import('./types').L10n} text */
   const localize = (text) => (typeof text === 'string' ? text : (text[i18n.locale] ?? text.en));
 
+  const isSafeMode = () =>
+    Boolean(/** @type {any} */ (globalThis).__nexusSafeMode) || Boolean(win?.location?.search?.includes('safemode=1'));
+
   const theme = createThemeService({
     settings,
     bus,
     root: /** @type {HTMLElement} */ (doc?.documentElement),
     matchMedia: win?.matchMedia?.bind(win),
+    isSafeMode,
   });
   if (doc) theme.apply();
   progress('theme');
@@ -362,7 +369,16 @@ async function openProfile(options, k, profile) {
   });
   for (const m of registry.list({ includeDisabled: true }))
     if (m.achievements?.length) achievements.register(m.id, m.achievements);
+  const detachOsAchievements = connectOsAchievements({ bus, achievements, kv: kv('system:os-stats') });
   await achievements.load();
+  if (/** @type {any} */ (profile).demo) {
+    const profileMeta = kv('system:profile-meta');
+    if (!(await profileMeta.get('isDemo'))) {
+      await populateDemoWorkspace(vfs, { kv: profileMeta }).catch((err) =>
+        log.warn('Demo workspace setup failed', err),
+      );
+    }
+  }
   bus.on('xp:level-up', ({ level }) => {
     notifications.notify({ title: i18n.t('system', 'achievements.levelUp', { level }), silent: true }).catch(() => {});
   });
@@ -461,14 +477,16 @@ async function openProfile(options, k, profile) {
     storedMime: async (path) => (await vfs.stat(path))?.mime,
   });
 
+  /** @type {ReturnType<typeof createPluginManager> | null} */
+  let plugins = null;
   const permissions = createPermissions({
     store: kv('system:permissions'),
     bus,
     appInfo: (id) => {
       const m = registry.get(id);
-      return m && { builtIn: true, declared: m.permissions ?? [] };
+      return m && { builtIn: !(plugins?.has(id) ?? false), declared: m.permissions ?? [] };
     },
-    ask: async () => false, // plugins arrive in phase 13 with their prompt UI
+    ask: async () => false,
   });
   await permissions.load();
 
@@ -533,12 +551,6 @@ async function openProfile(options, k, profile) {
   }
   registerSystemCommands({ commands, settings, i18n, theme });
 
-  // Apps hidden in the App Center stay hidden (per profile).
-  const appState = kv('system:apps');
-  const hidden = /** @type {unknown} */ (await appState.get('hidden'));
-  if (Array.isArray(hidden)) for (const id of hidden) if (registry.has(id)) registry.setEnabled(id, false);
-  bus.on('app:enabled-changed', () => void appState.set('hidden', registry.disabledIds()));
-
   lifecycle = createLifecycle({
     registry,
     bus,
@@ -549,6 +561,38 @@ async function openProfile(options, k, profile) {
     createContext: (manifest, extras) => createAppContext(manifest, services, extras),
     prepare: (manifest) => i18n.load(manifest.id),
   });
+
+  plugins = createPluginManager({
+    kv: kv('system:plugins'),
+    pluginKv: (scope) => kv(scope),
+    registry,
+    lifecycle,
+    permissions,
+    vfs,
+    notifications,
+    clipboard,
+    intents,
+    scheduler,
+    ai,
+    commands,
+    shortcuts,
+    settings,
+    i18n,
+    theme,
+    dialogs,
+    bus,
+    log: logger.child('plugins'),
+    localize,
+    isSafeMode,
+  });
+  await plugins.loadAll();
+
+  // Apps hidden in the App Center stay hidden (per profile).
+  const appState = kv('system:apps');
+  const hidden = /** @type {unknown} */ (await appState.get('hidden'));
+  if (Array.isArray(hidden)) for (const id of hidden) if (registry.has(id)) registry.setEnabled(id, false);
+  bus.on('app:enabled-changed', () => void appState.set('hidden', registry.disabledIds()));
+
   bus.on('app:launched', () => sound.play('open'));
   bus.on('app:closed', () => sound.play('close'));
   bus.on('app:crashed', () => sound.play('error'));
@@ -638,6 +682,10 @@ async function openProfile(options, k, profile) {
       intentDefaults: kv('system:intents'),
       backupState,
       network,
+      plugins,
+      permissions,
+      theme,
+      settings,
       engineKind: engine.kind,
       localize,
     },
@@ -695,6 +743,7 @@ async function openProfile(options, k, profile) {
 
   return {
     ...services,
+    kv,
     engine,
     storageWarning: selected.warning,
     systemDb,
@@ -704,6 +753,7 @@ async function openProfile(options, k, profile) {
     lifecycle,
     search,
     permissions,
+    plugins,
     backup,
     migrationResults,
     localize,
@@ -713,6 +763,8 @@ async function openProfile(options, k, profile) {
     async stop() {
       sources.stop();
       scheduler.stop();
+      plugins?.dispose();
+      detachOsAchievements();
       relay.close();
       clearInterval(trashTimer);
       detachShortcuts();
@@ -762,7 +814,7 @@ function registerSystemCommands({ commands, settings, i18n, theme }) {
     title: live('commands.nextTheme'),
     category,
     run: () => {
-      const ids = theme.themes().map((th) => th.id);
+      const ids = (theme.builtInThemes?.() ?? theme.themes()).map((th) => th.id);
       return settings.set('system', 'theme', ids[(ids.indexOf(theme.current) + 1) % ids.length]);
     },
   });

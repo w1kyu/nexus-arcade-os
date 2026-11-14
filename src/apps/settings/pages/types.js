@@ -14,6 +14,7 @@
  * @property {(message: string) => void} toast
  * @property {() => void} refresh           re-render the page
  * @property {(page: string, highlight?: string) => void} navigate
+ * @property {Record<string, unknown>} [link]
  * @property {(message: string, options?: { title?: string, okLabel?: string, danger?: boolean }) => Promise<boolean>} confirm
  */
 

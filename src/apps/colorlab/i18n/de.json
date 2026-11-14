@@ -27,7 +27,8 @@
     "saveVfs": "In VFS speichern",
     "saved": "Palette im VFS gespeichert!",
     "lock": "Sperren",
-    "unlock": "Entsperren"
+    "unlock": "Entsperren",
+    "createTheme": "OS-Design erstellen"
   },
   "contrast": {
     "textColor": "Textfarbe",

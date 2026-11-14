@@ -282,9 +282,38 @@ export interface AppContext {
   i18n: I18n;
   theme: { readonly current: string; token(name: string): string; onChange(fn: () => void): Unsub };
   achievements: {
-    unlock(id: string): void;
-    progress(id: string, value: number): void;
-    stat(key: string, delta?: number): void;
+    unlock(id: string): Promise<boolean> | void;
+    progress(id: string, value: number): Promise<void> | void;
+    stat(key: string, delta?: number): Promise<number> | void;
+    award?(amount: number): Promise<void> | void;
+    list?(app?: string): Promise<
+      Array<{
+        app: string;
+        id: string;
+        title: L10n | null;
+        description: L10n | null;
+        icon?: string;
+        secret: boolean;
+        goal?: number;
+        progress: number;
+        unlockedAt: number | null;
+      }>
+    >;
+    listAll?(): Promise<
+      Array<{
+        app: string;
+        id: string;
+        title: L10n | null;
+        description: L10n | null;
+        icon?: string;
+        secret: boolean;
+        goal?: number;
+        progress: number;
+        unlockedAt: number | null;
+      }>
+    >;
+    level?(): { level: number; xp: number; current: number; needed: number };
+    allStats?(): Record<string, Record<string, number>>;
   };
   scheduler: {
     schedule(job: JobInit): Promise<string>;

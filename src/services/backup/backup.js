@@ -173,11 +173,85 @@ export function createBackup({ db, profile, nexusVersion, cryptoOptions, now = (
     },
 
     /**
+     * Inspects merge conflicts against the current profile DB without modifying anything.
      * @param {Blob} file
-     * @param {{ mode: 'replace' | 'merge', password?: string }} options
+     * @param {string} [password]
+     */
+    async inspectMerge(file, password) {
+      const { needsPassword, manifest, files } = await open(file, password);
+      if (needsPassword || !manifest || !files) {
+        throw new InvalidBackupError('This backup is encrypted: enter its password');
+      }
+      const { strFromU8 } = await fflate();
+      const get = (/** @type {string} */ ref) => files[`blobs/${ref}`] ?? new Uint8Array(0);
+      const known = new Set(db.storeNames());
+      const stores = Object.keys(manifest.stores).filter((s) => known.has(s) && !SKIP_STORES.has(s));
+
+      /** @type {Map<string, any>} */
+      const existingVfsByPath = new Map();
+      if (known.has('vfs-nodes')) {
+        await db.iterate('vfs-nodes', undefined, (val) => {
+          if (val && typeof val === 'object' && typeof val.path === 'string') {
+            existingVfsByPath.set(val.path, val);
+          }
+        });
+      }
+
+      /** @type {{ path: string, existingAt?: number, incomingAt?: number }[]} */
+      const vfsConflicts = [];
+      /** @type {Record<string, number>} */
+      const byStore = {};
+      let recordConflicts = 0;
+
+      for (const store of stores) {
+        const raw = files[`stores/${encodeURIComponent(store)}.json`];
+        if (!raw) continue;
+        const entries = decode(JSON.parse(strFromU8(raw)), { get });
+        const inline = db.keyPathOf(store) !== null;
+        const keyPath = db.keyPathOf(store);
+
+        if (store === 'vfs-nodes') {
+          for (const [, val] of entries) {
+            if (!val || typeof val !== 'object' || typeof val.path !== 'string') continue;
+            if (val.path === '/' || val.type === 'folder') continue;
+            const prev = existingVfsByPath.get(val.path);
+            if (prev) {
+              vfsConflicts.push({
+                path: val.path,
+                existingAt: prev.modified ?? prev.created,
+                incomingAt: val.modified ?? val.created,
+              });
+              byStore[store] = (byStore[store] ?? 0) + 1;
+            }
+          }
+          continue;
+        }
+
+        for (const [key, val] of entries) {
+          const lookupKey = inline && typeof keyPath === 'string' ? val?.[keyPath] : key;
+          if (lookupKey === undefined) continue;
+          const prev = await db.get(store, lookupKey);
+          if (prev !== undefined) {
+            recordConflicts++;
+            byStore[store] = (byStore[store] ?? 0) + 1;
+          }
+        }
+      }
+
+      return {
+        vfsConflicts,
+        recordConflicts,
+        byStore,
+        totalConflicts: vfsConflicts.length + recordConflicts,
+      };
+    },
+
+    /**
+     * @param {Blob} file
+     * @param {{ mode: 'replace' | 'merge', password?: string, conflictStrategy?: 'keep' | 'overwrite' }} options
      * @returns {Promise<{ restored: Record<string, number>, skipped: number, unknownStores: string[] }>}
      */
-    async restore(file, { mode, password }) {
+    async restore(file, { mode, password, conflictStrategy = 'keep' }) {
       const { needsPassword, manifest, files } = await open(file, password);
       if (needsPassword || !manifest || !files)
         throw new InvalidBackupError('This backup is encrypted: enter its password');
@@ -211,12 +285,44 @@ export function createBackup({ db, profile, nexusVersion, cryptoOptions, now = (
           }
         });
       } else {
+        /** @type {Map<string, unknown>} */
+        const existingVfsIdByPath = new Map();
+        if (known.has('vfs-nodes')) {
+          await db.iterate('vfs-nodes', undefined, (val, _k, pk) => {
+            if (val && typeof val === 'object' && typeof val.path === 'string') {
+              existingVfsIdByPath.set(val.path, pk);
+            }
+          });
+        }
         for (const [store, entries] of data) {
           restored[store] = 0;
           const inline = db.keyPathOf(store) !== null;
+          const keyPath = db.keyPathOf(store);
           for (const [key, value] of entries) {
+            if (conflictStrategy === 'keep') {
+              const lookupKey = inline && typeof keyPath === 'string' ? value?.[keyPath] : key;
+              if (store === 'vfs-nodes' && value?.path && existingVfsIdByPath.has(value.path)) {
+                skipped++;
+                continue;
+              }
+              if (lookupKey !== undefined && (await db.get(store, lookupKey)) !== undefined) {
+                skipped++;
+                continue;
+              }
+            } else if (store === 'vfs-nodes' && value?.path && existingVfsIdByPath.has(value.path)) {
+              const oldPk = existingVfsIdByPath.get(value.path);
+              const newPk = inline && typeof keyPath === 'string' ? value?.[keyPath] : key;
+              if (oldPk !== undefined && oldPk !== newPk) {
+                await db.delete('vfs-nodes', /** @type {IDBValidKey} */ (oldPk)).catch(() => {});
+                existingVfsIdByPath.delete(value.path);
+              }
+            }
             try {
               await db.put(store, value, inline ? undefined : key);
+              if (store === 'vfs-nodes' && value?.path) {
+                const pk = inline && typeof keyPath === 'string' ? value?.[keyPath] : key;
+                existingVfsIdByPath.set(value.path, pk);
+              }
               restored[store]++;
             } catch (error) {
               if (/** @type {Error} */ (error)?.name !== 'ConstraintError') throw error;

@@ -16,6 +16,11 @@ import { createAnnouncer } from './announcer.js';
 import { createPalette } from './palette/palette.js';
 import { createShortcutsOverlay } from './shortcuts/shortcuts-overlay.js';
 import { createPersonalize } from './personalize/personalize.js';
+import { createTour } from './tour/tour.js';
+import { createWhatsNew } from './whats-new.js';
+import { installEasterEggs } from './easter-eggs.js';
+import { registerCommand } from './util.js';
+import { createTipsService } from '../services/tips/tips.js';
 import { startShell } from './shell.js';
 import { pickStrings } from './strings.js';
 import { createToastHost } from './toast.js';
@@ -29,18 +34,24 @@ export function boot(root) {
   document.documentElement.lang = locale;
   const toasts = createToastHost(document.body);
 
-  const bootScreen = showBootScreen(document.body, { title: t.bootTitle, skip: t.bootSkip, steps: t.bootSteps });
+  const bootScreen = showBootScreen(document.body, {
+    title: t.bootTitle,
+    skip: t.bootSkip,
+    safeMode: t.bootSafeMode,
+    steps: t.bootSteps,
+  });
   const system = startShell(root, {
     onProgress: bootScreen.progress,
     onLog: bootScreen.log,
     beforeLogin: bootScreen.hide,
-  }).then(
-    (shell) => {
+  })
+    .then((shell) => {
       const sys = shell.system();
       // Swap the kernel's native fallbacks for the system dialogs (same object, so ctx.dialog and
       // the intents picker pick them up).
       shell.ui.dialogs = createDialogs(shell);
       Object.assign(sys.dialogs, shell.ui.dialogs);
+      sys.permissions.setAsk((appId, permission) => shell.ui.dialogs.askPermission(appId, permission));
       shell.ui.wallpaper = createWallpaper(shell);
       shell.ui.desktop = createDesktop(shell);
       shell.ui.widgets = createWidgetHost(shell);
@@ -57,25 +68,50 @@ export function boot(root) {
       shell.ui.shortcuts = createShortcutsOverlay(shell);
       shell.ui.mobile = createMobileShell(shell);
       shell.ui.announcer = createAnnouncer(shell);
+      shell.ui.tour = createTour(shell);
+      shell.ui.whatsNew = createWhatsNew(shell);
+      installEasterEggs(shell);
+      registerCommand(sys, {
+        id: 'shell.demoProfile',
+        title: 'demo.command',
+        icon: 'sparkles',
+        category: 'shell',
+        run: async () => {
+          const created = await sys.profiles.create({ name: shell.t('demo.profileName'), demo: true });
+          const kernel = /** @type {any} */ (shell).kernel;
+          if (kernel?.systemKv) await kernel.systemKv.set('lastProfile', created.id);
+          await shell.session.save();
+          location.reload();
+        },
+      });
       rememberFastBoot(!!sys.settings.get('system', 'fastBoot'));
       sys.settings.onChange('system', 'fastBoot', (on) => rememberFastBoot(!!on));
       void bootScreen.done();
       shell.wm.relayout();
       if (!shell.wm.list().length && !shell.session.data.windows.length) void shell.launch('nexus.welcome');
+      void shell.ui.whatsNew.checkOnBoot().catch(() => {});
+      const tips = createTipsService({
+        kv: sys.kv('system:tips'),
+        settings: sys.settings,
+        notifications: sys.notifications,
+        executeCommand: (id, args) => sys.commands.execute(id, args),
+        text: (k, vars) => shell.t(k, vars),
+        profileCreatedAt: sys.profile.createdAt,
+      });
+      setTimeout(() => void tips.maybeShowTip().catch(() => {}), 2500);
       showNotificationToasts(sys, toasts, t.dismiss);
       if (import.meta.env.DEV) void wireDebugScreen(sys);
       document.documentElement.dataset.kernel = 'ready';
       document.documentElement.dataset.storage = sys.engine.kind;
       document.documentElement.dataset.search = sys.search.backendKind;
       return sys;
-    },
-    (error) => {
+    })
+    .catch((error) => {
       document.documentElement.dataset.kernel = 'failed';
       bootScreen.hide();
       console.error('Nexus could not start', error);
       throw error;
-    },
-  );
+    });
 
   return {
     t,

@@ -72,7 +72,20 @@
     "close": "Schließen",
     "chooseFolder": "Ordner wählen",
     "selectFolder": "Diesen Ordner verwenden",
-    "noSubfolders": "Keine Ordner darin"
+    "noSubfolders": "Keine Ordner darin",
+    "permissionTitle": "Berechtigungsanfrage — {name}",
+    "permissionBody": "Das Plugin „{name}“ möchte die Berechtigung „{permission}“ verwenden:",
+    "permissionAllow": "Erlauben",
+    "permissionDeny": "Verweigern",
+    "perm": {
+      "vfs": "Dateien in deinem virtuellen Dateisystem lesen und ändern.",
+      "notifications": "Systembenachrichtigungen anzeigen.",
+      "clipboard": "Aus der Zwischenablage lesen und hineinschreiben.",
+      "network": "Mit konfigurierten Servern verbinden.",
+      "ai": "Anfragen an deinen eingerichteten KI-Anbieter senden.",
+      "scheduler": "Erinnerungen und Zeitpläne anlegen.",
+      "intents": "Dateien in anderen Apps öffnen und Daten teilen."
+    }
   },
   "commands": {
     "category": "System",
@@ -376,7 +389,9 @@
     "name": "Name",
     "optionalPin": "PIN (optional, 4–12 Ziffern)",
     "create": "Erstellen",
-    "lockCommand": "Bildschirm sperren"
+    "lockCommand": "Bildschirm sperren",
+    "demoBadge": "Demo",
+    "tryDemo": "Demo-Profil testen"
   },
   "shortcuts": {
     "title": "Tastenkürzel",
@@ -472,5 +487,89 @@
     "focused": "{title}",
     "closed": "{app} geschlossen",
     "notification": "Benachrichtigung: {title}. {body}"
+  },
+  "tour": {
+    "title": "Einführungstour",
+    "command": "Interaktive Tour starten",
+    "badge": "Schritt {step} von {total}",
+    "back": "Zurück",
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "finish": "Fertig",
+    "steps": {
+      "app": {
+        "title": "Apps entdecken",
+        "body": "Starte Produktivitäts-Tools, Informatik-Labore, lokalen KI-Chat und 30 Arcade-Spiele über den App-Starter.",
+        "action": "Starter öffnen"
+      },
+      "snap": {
+        "title": "Fenster andocken",
+        "body": "Ziehe Fenster an den Rand, nutze das Maximieren-Menü für Layouts oder drücke Strg+Pfeiltasten.",
+        "action": "Fenster andocken"
+      },
+      "palette": {
+        "title": "Befehlspalette",
+        "body": "Drücke überall Strg+K für Apps, Befehle, Dateien (/), Einstellungen (@), Rechner (=) und Hilfe (?).",
+        "action": "Palette öffnen"
+      },
+      "workspaces": {
+        "title": "Arbeitsflächen",
+        "body": "Verteile deine Aufgaben auf mehrere Desktops oder wechsle in der Übersicht (Strg+Umschalt+Leertaste).",
+        "action": "Übersicht öffnen"
+      },
+      "backup": {
+        "title": "Lokal & portabel",
+        "body": "Alles bleibt sicher im Browser. Exportiere jederzeit ein verschlüsseltes Backup oder synchronisiere mit einem Ordner.",
+        "action": "Backup öffnen"
+      }
+    }
+  },
+  "whatsNew": {
+    "title": "Neuigkeiten in Nexus {version}",
+    "command": "Was ist neu (Versionshinweise)",
+    "close": "Weiter"
+  },
+  "tips": {
+    "tryAction": "Ausprobieren",
+    "palette": {
+      "title": "Tipp: Schnellstart & Rechner",
+      "body": "Drücke Strg+K und tippe „= 42 * 12“ oder „/Roadmap“, um direkt zu rechnen oder Dateien zu öffnen."
+    },
+    "snap": {
+      "title": "Tipp: Fenster-Layouts",
+      "body": "Starte die 5-Schritte-Tour jederzeit über die Willkommen-App oder die Befehlspalette."
+    },
+    "workspaces": {
+      "title": "Tipp: Arbeitsflächen",
+      "body": "Halte Code, Notizen und Spiele auf getrennten virtuellen Arbeitsflächen übersichtlich."
+    },
+    "themeEditor": {
+      "title": "Tipp: Eigene Designs",
+      "body": "Erstelle eigene Farbpaletten mit Live-WCAG-Kontrastprüfung unter Einstellungen → Design-Editor."
+    },
+    "backup": {
+      "title": "Tipp: Portables Backup",
+      "body": "Spiegle deinen Arbeitsbereich in einen lokalen Ordner oder exportiere ein verschlüsseltes Backup."
+    },
+    "plugins": {
+      "title": "Tipp: Sandboxed-Plugins",
+      "body": "Installiere isolierte Widgets, Designs und Apps als .nexus-plugin im App Center."
+    },
+    "widgets": {
+      "title": "Tipp: Desktop-Widgets",
+      "body": "Rechtsklick auf den Desktop öffnet die Widget-Galerie für Pomodoro, Uhr, Kalender und Plugins."
+    },
+    "profile": {
+      "title": "Tipp: XP & Erfolge",
+      "body": "Verfolge deine Meilensteine, Statistiken und deinen Nexus-Jahresrückblick in der Profil-App."
+    }
+  },
+  "demo": {
+    "profileName": "Demo-Entdecker",
+    "command": "Demo-Profil erstellen und starten"
+  },
+  "easterEgg": {
+    "konamiTitle": "Geheimcode aktiviert!",
+    "konamiBody": "Hoch, hoch, runter, runter … du hast das Desktop-Easter-Egg gefunden."
   }
 }

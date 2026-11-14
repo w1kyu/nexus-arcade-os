@@ -188,6 +188,7 @@ export async function mount(container, ctx, args) {
   const view = h('div', {
     class: 'nx-files-view',
     role: 'listbox',
+    'aria-label': t('title'),
     'aria-multiselectable': 'true',
     tabindex: '0',
     dataset: { testid: 'files-view' },

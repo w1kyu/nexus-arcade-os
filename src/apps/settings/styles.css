@@ -493,3 +493,174 @@
 .nx-set a.nx-btn {
   text-decoration: none;
 }
+
+.nx-te-preview,
+.nx-te-contrast,
+.nx-te-tokens {
+  width: 100%;
+}
+
+.nx-te-mini-backdrop {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.nx-te-mini-win {
+  border: 1px solid;
+  overflow: hidden;
+}
+
+.nx-te-mini-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid;
+  font-weight: 600;
+  font-size: var(--text-xs);
+  &.is-macos {
+    flex-direction: row-reverse;
+  }
+}
+
+.nx-te-mini-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-te-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.nx-te-wbtn {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.nx-te-mini-body {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.nx-te-mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nx-te-mini-btn {
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.nx-te-mini-input {
+  flex: 1 1 120px;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  font-size: var(--text-xs);
+}
+
+.nx-te-mini-chart {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.nx-te-mini-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nx-te-badge {
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.nx-te-contrast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+
+.nx-te-contrast-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: var(--text-xs);
+  & > strong {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+  &.is-fail {
+    border-color: var(--danger);
+  }
+}
+
+.nx-te-level {
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--surface-3);
+}
+
+.nx-te-tokens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--space-2);
+}
+
+.nx-te-token {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.nx-te-token-name {
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.nx-te-token-inputs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-te-hex {
+  width: 84px;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.nx-te-css {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  resize: vertical;
+}

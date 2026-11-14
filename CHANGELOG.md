@@ -6,6 +6,37 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-11-13 — Ecosystem, Polish & Final Release
+
+### Added
+
+- **Sandboxed Plugin SDK (`src/services/plugins/`):**
+  - Install plugins from `.nexus-plugin` (zip or JSON bundle), VFS folders, or single `.js` files with `@nexus-plugin` headers.
+  - Real browser isolation: plugins run inside `<iframe sandbox="allow-scripts">` (opaque `null` origin, no `allow-same-origin`) with strict inner CSP and per-instance `channelId` + `event.source`-verified `postMessage` RPC bridge.
+  - Permission-checked access to VFS, notifications, clipboard, intents, scheduler, and AI; `system` permission permanently blocked; permission prompt & revocation in **Settings → Apps**.
+  - Support for desktop plugin widgets, plugin-contributed OS themes, plugin terminal commands, crash isolation, and **Dev Mode** auto-reload when watching a VFS folder.
+  - Added two complete examples in `examples/plugins/` (`pomodoro-stats/` and `markdown-wordcloud.js`) and `docs/plugin-sdk.md`.
+- **Theme Editor & Personalization (`src/apps/settings/pages/theme-editor.js`):**
+  - Live design token editor with real-time OS preview, WCAG AA/AAA contrast warnings, palette extraction from current wallpaper (`src/ui/color-extract.js`), Color Lab theme integration, and `.nexus-theme` JSON import/export.
+  - Window corner radius slider, font family selector, icon accent style (`outline` / `filled`), and **Titlebar Style** switch (macOS left traffic lights vs. Windows right buttons).
+  - Advanced Custom CSS with live toggle and Boot Safe Mode escape hatch, plus exportable/importable **Profile Cards**.
+- **Zero-Backend Sync & Data Portability (`src/services/backup/`):**
+  - Restore wizard with side-by-side merge conflict detection (`inspectMerge`) and backup reminder polish.
+  - **Sync Folder** via File System Access API (`src/services/backup/sync-folder.js`) for Chromium browsers with two-way conflict detection and honest fallback notice on Firefox/Safari.
+  - Device-to-device transfer combining exported archive files with an offline SVG QR pairing summary (`src/ui/qr.js`).
+- **Onboarding, Discoverability & Gamification:**
+  - Interactive, skippable 5-step First-Run Tour (`src/shell/tour/tour.js`), max-daily feature discovery tips (`src/services/tips/tips.js`), Demo Profile creator (`src/services/profiles/demo.js`), Boot Safe Mode (`Shift` / `?safemode=1`), and "What's New" modal (`src/shell/whats-new.js`) powered by `CHANGELOG.md`.
+  - Central **Profile & Achievements** app (`nexus.profile`) displaying XP, level progress, app activity breakdown, OS-wide achievements (`src/kernel/os-achievements.js`), yearly **Nexus Wrapped** summary, and subtle desktop easter eggs (`src/shell/easter-eggs.js`).
+- **Accessibility, Security, Offline Audits & v1.0 Documentation:**
+  - Automated WCAG 2.0/2.1 AA Playwright audit (`tests/e2e/a11y.spec.js` via `@axe-core/playwright`) plus keyboard focusability & ARIA labeling improvements across Profile, App Center, File Explorer, Markdown checkboxes/code blocks, and CodeMirror scrollers.
+  - Historical version data migration tests (`tests/unit/migrations-v1.test.js` with `v0.1` and `v0.6` snapshots).
+  - Complete documentation suite (`docs/plugin-sdk.md`, `docs/app-api.md`, `docs/design-system.md`, `docs/testing.md`, `docs/offline-audit.md`, `docs/security.md`, `docs/release.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, GitHub issue templates, and updated `README.md`).
+
+### Fixed
+
+- Exposed `kv` on the profile `System` handle in `src/kernel/system.js` and fixed `.then().catch()` error handling in `src/shell/boot.js` plus `sys.systemApi('nexus.shell')` invocation in `src/shell/whats-new.js`.
+- Prevented Settings intent handling (`src/apps/settings/index.js`) from mutating `info.args` on reload.
+
 ## [0.12.0] — 2026-11-13 — AI Workspace
 
 ### Added

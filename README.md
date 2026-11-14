@@ -1,64 +1,83 @@
 # ⚡ Nexus Arcade OS
 
 [![CI](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml/badge.svg)](https://github.com/w1kyu/nexus-arcade-os/actions/workflows/ci.yml)
+![Version](https://img.shields.io/badge/version-1.0.0-3ef0ff)
+![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97)
 
-A futuristic desktop operating system that runs in your browser: windows, a dock, a file system,
-a terminal, and dozens of apps and games that share data with each other. It is an installable
-Progressive Web App and works **offline** after the first visit. There are no accounts and no
-backend: your data stays in your browser.
+A complete, offline-first desktop operating system that runs inside your browser: overlapping & snapped windows, virtual file system, real shell terminal, theme engine, sandboxed plugin SDK, 91 built-in apps & arcade games, local-first AI workspace, and zero backend dependencies.
 
-> **Status: phase 7 (developer toolkit).** All 7 Developer Toolkit apps (Code Playground,
-> Nexus Code, Developer Tools, Diff Viewer, Color Laboratory, HTTP Client, Snippet Manager) along with
-> Office & Creative suite, Study & Life tools, core productivity suite and system apps are ready (40 apps total).
-> Computer Science Learning Tools (CS Lab) arrive in phase 8. See [PROGRESS.md](PROGRESS.md) for the full roadmap.
+> **Version 1.0.0 — General Release.** All 13 development phases are complete: Kernel, Desktop Shell, System Utilities, Productivity Core, Study & Life Tools, Office & Creative Suite, Developer Toolkit, CS Lab, Game Engine & 31-Game Arcade, Media Center, AI Workspace, Sandboxed Plugin SDK, Theme Editor, Sync Folder, Gamification & Accessibility Audits.
 
 ![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
 
-**Live site:** https://nexus-arcade-os.onrender.com · **Nexus Lite:** [download `nexus-lite.html`](https://nexus-arcade-os.onrender.com/nexus-lite.html)
+**Live PWA:** https://nexus-arcade-os.onrender.com · **Nexus Lite:** [download `nexus-lite.html`](https://nexus-arcade-os.onrender.com/nexus-lite.html)
 
-## Two editions
+---
 
-- **Website:** installable PWA with offline support and automatic update notices.
-- **Nexus Lite:** the same OS as a single `nexus-lite.html` file. Download it, double-click it,
-  done. No server, no install. (No offline installer or update notices, since it _is_ the file.)
-  Data in Lite is separate from the website; use backup/restore to move it.
+## Two Editions, One Codebase
+
+| Feature              | Website Edition (PWA)                                         | Nexus Lite (`nexus-lite.html`)                                              |
+| -------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Install / Launch** | Installable Progressive Web App                               | Single self-contained HTML file (~7 MB) — double-click to run via `file://` |
+| **Offline Support**  | Full Workbox precaching of app chunks, fonts, WASM, and icons | Built-in (`window.NEXUS_EDITION === 'lite'`), zero external requests        |
+| **Apps Included**    | All 91 built-in apps + Plugin SDK                             | All 91 built-in apps + Plugin SDK (workers inlined via Blob URLs)           |
+| **Updates**          | Automatic update prompt with one-click reload                 | Replace the single HTML file; use `.nexus-backup` to transfer profile data  |
+
+---
+
+## Feature Overview (91 Built-In Apps)
+
+- **Desktop Shell & Personalization:** Multi-workspace window manager with halves/thirds/quarters snapping, dock with badges & magnification, Command Palette (`Ctrl+K`), Quick Switcher (``Alt+` ``), Desktop Widgets, 6 animated Canvas/WebGL live wallpapers, Interactive First-Run Tour, Daily Discovery Tips, Demo Profile, and **Live Theme Editor** (token editor, WCAG AA/AAA contrast warnings, wallpaper color extraction, macOS/Windows titlebars, `.nexus-theme` import/export, Profile Cards).
+- **Productivity & Personal Life:** **Nexus Notes** (CodeMirror 6, KaTeX MathML, `[[Wiki links]]`, graph view, per-note AES-GCM encryption), **Tasks** (Kanban, bilingual EN/DE natural quick-add), **Calendar** (Day/Week/Month/Year + Tasks/Timetable/German Holidays + `.ics`), **Focus** (Pomodoro + Flow + 10-channel procedural Web Audio ambient mixer), **Habits**, **Journal** (encrypted), **Budget**, **Calculator** (Standard, Scientific, 64-bit Programmer, Graphing, Matrix, Stats), **Unit Converter**, **Clock**, **Password Vault & TOTP**, **Bookmarks**, **Clipboard Manager**.
+- **Study & CS Lab:** **Timetable (Stundenplan)**, **Grade Tracker**, **Flashcards** (FSRS + `.apkg` Anki import), **Exam Planner**, **Sorting Visualizer**, **Pathfinding**, **Graph Lab**, **Data Structures**, **Logic Circuits**, **Turing Machine**, **Number Systems & IEEE 754**, **SQL Playground** (`sql.js` WASM), **Nexus-8 CPU Simulator**, and **CS Lab**.
+- **Office & Creative Suite:** **Nexus Sheets** (10,000 × 100 virtual grid, 40+ formulas, embedded charts), **Nexus Write** (A4/Letter print layouts), **Nexus Whiteboard**, **Nexus Mind Map**, **Nexus Paint** (layers & blend modes), **Pixel Art Studio** (animated `.gif` export), **Nexus Present** (Markdown slides), **PDF Tools**.
+- **Developer Toolkit:** **Code Playground**, **Nexus Code** (multi-file IDE + Node-Lite worker), **Developer Tools** (JSON/YAML/CSV, Crypto, Regex tester, JWT, Cron, UUID, QR, SVG), **Diff Viewer**, **Color Laboratory** (OKLCH, APCA, colorblindness sim), **HTTP Client**, **Snippet Manager**.
+- **Media Center:** **Nexus Music** (ID3/Vorbis/MP4 tags, `.lrc` lyrics, 10-band EQ, 5 visualizers, MediaSession), **Video Player** (`.vtt`/`.srt` subtitles, PiP), **Nexus Photos** (EXIF viewer, non-destructive editor), **Voice Recorder**, **Camera** (WebGL shaders & QR scanner), **Screen Recorder**, **Beat Lab** (Web Audio drum machine + WAV render), **Synthesizer** (polyphonic + Web MIDI).
+- **AI Workspace (`nexus.chat` & `nexus.assistant`):** Connects strictly to **user-configured** endpoints (Ollama, Lemonade, OpenAI-compatible servers, Anthropic) with encrypted device-key API secrets, streaming chat, RAG indexing over Notes, OS tool calling with approval cards, and integrations inside Notes, Tasks, Flashcards, Sheets, Code Playground, Terminal, and Photos.
+- **Arcade (31 Games + Hub):** Snake Evolution, Breakout (+ level editor), Memory Master, 2048, Reaction Trainer, Blockfall, Minesweeper, Void Drifter, Sudoku, Typing Trainer, Neon Pong, Solitaire Collection, Nexus Chess (Web Worker AI + puzzles), Connect Four, Grid Invaders, Neon Glide, Nonogram, Block Pusher, Hexword (EN/DE), Checkers, Battleships, Grid Defense, Pixel Runner, Neon Racer, Ultimate Tic-Tac-Toe, Mahjong Solitaire, Match-3, Bubble Shooter, Cellular Automata, Quiz Arena, with local 2P multiplayer & gamepad support.
+- **System, Sync & Gamification:** **File Explorer**, **Terminal** (pipes, redirection, app commands), **Nexus Edit**, **System Monitor**, **Settings** (15 pages), **App Center** (install/manage sandboxed `.nexus-plugin` & `.js` plugins), **Help** (`F1`), **Profile & Achievements** (XP, levels, OS-wide badges, **Nexus Wrapped**), `.nexus-backup` conflict wizard, **Sync Folder** (File System Access API), and QR pairing transfer.
+
+---
 
 ## Privacy
 
-No analytics, no tracking, no external requests. The only network requests Nexus will ever make
-are ones you configure yourself (an AI server, the HTTP client app).
+Zero analytics, zero tracking, zero telemetry. All personal data stays strictly inside your browser's IndexedDB (`nexus-profile-<id>`). Outbound network traffic occurs **only** when you explicitly configure an AI endpoint or send a request in HTTP Client. See [Security Review](docs/security.md).
 
-## Run it locally
+---
 
-Requires Node 24 (`.nvmrc`).
+## Build & Run Locally
+
+Requires Node **24 LTS** (`.nvmrc`).
 
 ```sh
 npm install
-npm run dev          # development server
-npm run build        # dist/ (website) + dist/nexus-lite.html
-npm run preview      # serve the production build
-npm test             # unit tests
-npx playwright install chromium   # once
-npm run test:e2e     # end-to-end tests against the build (run `npm run build` first)
+npm run dev          # Start development server
+npm run build        # Build dist/ (PWA) + dist/nexus-lite.html (< 8.00 MB budget)
+npm run preview      # Preview production build
+npm test             # Run Vitest unit & migration tests
+npx playwright install chromium   # Once
+npm run test:e2e     # Run Playwright E2E + axe-core WCAG AA tests
+npm run lint         # ESLint + Prettier + EN/DE i18n key check
+npm run typecheck    # TypeScript checkJs verification
 ```
 
-## Architecture
+---
 
-Vanilla JavaScript (ES2022 modules, Web Components), no UI framework. Vite for bundling, Vitest and
-Playwright for tests, JSDoc types checked with `tsc`. Every app is its own lazily loaded chunk and
-talks to the OS only through a `ctx` object. Details: [docs/architecture.md](docs/architecture.md).
+## Documentation & Extending Nexus
 
-## Writing an app
+- [Architecture Overview](docs/architecture.md)
+- [Plugin SDK Guide](docs/plugin-sdk.md) & [`examples/plugins/`](examples/plugins/)
+- [App API Reference](docs/app-api.md) & [`src/kernel/types.d.ts`](src/kernel/types.d.ts)
+- [OS Event Reference](docs/events.md)
+- [Design System](docs/design-system.md)
+- [Offline & Nexus Lite Audit](docs/offline-audit.md)
+- [Security Review](docs/security.md)
+- [Testing Guide](docs/testing.md) & [Release Process](docs/release.md)
 
-Every app is a folder in `src/apps/<name>/` with a data-only `manifest.js` and a lazily loaded
-`index.js` that exports `mount(container, ctx, args)` and returns `{ unmount, onSuspend, onResume }`.
-Apps reach the OS only through `ctx`: storage collections declared in the manifest, the file
-system, settings, notifications, commands, shortcuts, intents, i18n, theme, scheduler and more.
+---
 
-Types: [`src/kernel/types.d.ts`](src/kernel/types.d.ts) · Events: [docs/events.md](docs/events.md) ·
-A complete example: [`src/dev/test-app`](src/dev/test-app).
+## Contributing & License
 
-## License
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-[MIT](LICENSE). Bundled fonts: Inter and JetBrains Mono, both under the SIL Open Font License
-(texts in `src/styles/fonts/`).
+Licensed under the [MIT License](LICENSE). Bundled self-hosted fonts: Inter Variable and JetBrains Mono Variable under the SIL Open Font License 1.1 (`src/styles/fonts/`).

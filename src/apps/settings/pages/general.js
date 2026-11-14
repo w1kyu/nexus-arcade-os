@@ -47,6 +47,16 @@ export const personalization = {
         pc.row('transparency'),
         pc.row('animation'),
         pc.row('batterySaver'),
+        infoRow(
+          t('pages.themeEditor.title'),
+          t('pages.themeEditor.intro'),
+          h('button', {
+            type: 'button',
+            class: 'nx-btn',
+            text: t('themeEditor.open'),
+            onclick: () => pc.navigate('themeEditor'),
+          }),
+        ),
       ),
       group(
         t('group.wallpaper'),

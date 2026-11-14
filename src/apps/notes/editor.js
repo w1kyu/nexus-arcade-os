@@ -158,6 +158,7 @@ export function createNoteEditor({ text, locale, readOnly = false, getNoteTitles
       ],
     }),
   });
+  view.scrollDOM.tabIndex = 0;
 
   // Load Markdown language parser lazily.
   const mdDesc = LanguageDescription.matchFilename(languages, 'note.md');

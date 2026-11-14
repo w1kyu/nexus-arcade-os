@@ -187,9 +187,38 @@ export const apps = {
   async render(pc) {
     const { t, system } = pc;
     const withSettings = system.apps.list().filter((a) => a.settings.length);
+    const plugins = system.plugins?.list() ?? [];
     const defaults = await system.defaults.list();
     const fc = { ctx: pc.ctx, local: pc.local, t };
     return [
+      group(
+        t('group.pluginPermissions'),
+        ...(plugins.length
+          ? plugins.flatMap((p) => {
+              const list = system.permissions?.list(p.id) ?? [];
+              if (!list.length) return [infoRow(pc.local(p.name), t('apps.noPermDeclared'))];
+              return list.map(({ permission, status }) =>
+                infoRow(
+                  `${pc.local(p.name)} — ${permission}`,
+                  t(`apps.permStatus.${status}`),
+                  status === 'granted' || status === 'denied'
+                    ? h('button', {
+                        type: 'button',
+                        class: 'nx-btn is-ghost',
+                        text: t('apps.revoke'),
+                        dataset: { testid: `revoke-${p.id}-${permission}` },
+                        onclick: async () => {
+                          await system.permissions.revoke(p.id, permission);
+                          pc.toast(t('apps.revoked'));
+                          pc.refresh();
+                        },
+                      })
+                    : null,
+                ),
+              );
+            })
+          : [h('p', { class: 'nx-set-desc', text: t('apps.noPlugins') })]),
+      ),
       ...withSettings.map((a) =>
         group(
           pc.local(a.name),

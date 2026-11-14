@@ -486,6 +486,8 @@ export function createWidgetHost(shell) {
   }
 
   sys.bus.on('workspace:changed', () => render());
+  sys.bus.on('app:registered', () => render());
+  sys.bus.on('app:unregistered', () => render());
   // Built-in widgets format with the system language: remount them when it changes.
   sys.bus.on('i18n:changed', () => {
     for (const id of [...mounted.keys()]) unmount(id);

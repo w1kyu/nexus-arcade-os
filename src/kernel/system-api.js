@@ -28,7 +28,7 @@ export const REPO_URL = 'https://github.com/w1kyu/nexus-arcade-os';
  */
 
 /** Plain, structured-cloneable description of an app for system UIs. @param {import('./types').AppManifest} m */
-function describe(m) {
+function describe(m, isPlugin = false) {
   return {
     id: m.id,
     name: m.name,
@@ -45,21 +45,25 @@ function describe(m) {
     terminal: m.terminal ?? [],
     hasHelp: typeof m.help === 'function',
     hasChangelog: typeof m.changelog === 'function',
+    isPlugin,
   };
 }
 
 /** @param {SystemApiDeps} deps */
 export function createSystemApi(deps) {
   const { registry, lifecycle, settings, db, bus, localize, host, theme } = deps;
+  const isPlugin = (/** @type {string} */ id) => deps.admin.plugins?.has(id) ?? false;
 
   const apps = {
     /** @param {{ includeDisabled?: boolean }} [options] */
     list: ({ includeDisabled = false } = {}) =>
-      registry.list({ includeDisabled }).map((m) => ({ ...describe(m), enabled: registry.isEnabled(m.id) })),
+      registry
+        .list({ includeDisabled })
+        .map((m) => ({ ...describe(m, isPlugin(m.id)), enabled: registry.isEnabled(m.id) })),
     /** @param {string} id */
     get(id) {
       const m = registry.get(id);
-      return m ? { ...describe(m), enabled: registry.isEnabled(id) } : null;
+      return m ? { ...describe(m, isPlugin(id)), enabled: registry.isEnabled(id) } : null;
     },
     /** @param {string} id */
     has: (id) => registry.isEnabled(id),
@@ -174,9 +178,15 @@ export function createSystemApi(deps) {
 
   const themes = {
     list: () => theme.themes().map((t) => ({ id: t.id, name: t.name, scheme: t.scheme })),
+    all: () => theme.themes(),
     get current() {
       return theme.current;
     },
+    get currentTheme() {
+      return theme.currentTheme;
+    },
+    /** @param {any} t */
+    activateCustom: (t) => theme.activateCustomTheme(t),
   };
 
   /** Version, edition, profile and boot time (Terminal `nexusfetch`, Settings → About). */

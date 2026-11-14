@@ -30,7 +30,7 @@ export function rememberFastBoot(on) {
 
 /**
  * @param {HTMLElement} parent
- * @param {{ steps: Record<string, string>, skip: string, title: string }} text
+ * @param {{ steps: Record<string, string>, skip: string, title: string, safeMode?: string }} text
  */
 export function showBootScreen(parent, text) {
   const fast = read(FAST_BOOT_KEY) === '1';
@@ -49,10 +49,18 @@ export function showBootScreen(parent, text) {
     log,
     h('p', { class: 'nx-boot-skip', text: text.skip }),
   );
+  const safeFromUrl = typeof location !== 'undefined' && location.search.includes('safemode=1');
+  if (safeFromUrl) /** @type {any} */ (globalThis).__nexusSafeMode = true;
   if (fast) el.hidden = true;
   parent.append(el);
   let skipped = fast;
-  const skip = () => {
+  const skip = (/** @type {Event} */ ev) => {
+    if (ev instanceof KeyboardEvent && ev.key === 'Shift') {
+      /** @type {any} */ (globalThis).__nexusSafeMode = true;
+      label.textContent = text.safeMode ?? 'Safe mode active (plugins & custom CSS paused)';
+      addEventListener('keydown', skip, { once: true, capture: true });
+      return;
+    }
     skipped = true;
     hide();
   };

@@ -1,7 +1,8 @@
 // @ts-check
-// Settings → Backup & Restore, Updates and About.
+// Settings → Backup & Restore, Sync Folder, Device Transfer, Updates and About.
 import { h, icon } from '../../../ui/dom.js';
 import { renderMarkdownInto } from '../../../ui/markdown.js';
+import { generateQrSvg } from '../../../ui/qr.js';
 import { group, infoRow } from '../form.js';
 
 /** @type {import('./types.js').Page} */
@@ -12,6 +13,7 @@ export const backup = {
   async render(pc) {
     const { t, system, ctx } = pc;
     const last = await system.backup.lastBackupAt();
+    const sysBackup = /** @type {any} */ (system.backup);
 
     // ─── Export ─────────────────────────────────────────────────────────
     const password = h('input', {
@@ -57,7 +59,7 @@ export const backup = {
       }
     });
 
-    // ─── Import ─────────────────────────────────────────────────────────
+    // ─── Import & Merge Conflict Wizard ─────────────────────────────────
     const fileInput = h('input', {
       type: 'file',
       accept: '.nexus-backup,application/zip,application/json',
@@ -108,10 +110,55 @@ export const backup = {
       const records = Object.values(m.stores).reduce((a, b) => a + b, 0);
       const mode = h(
         'select',
-        { class: 'nx-select', 'aria-label': t('backup.mode') },
+        { class: 'nx-select', 'aria-label': t('backup.mode'), dataset: { testid: 'backup-mode' } },
         h('option', { value: 'replace', text: t('backup.replace') }),
         h('option', { value: 'merge', text: t('backup.merge') }),
       );
+      const strategy = h(
+        'select',
+        { class: 'nx-select', 'aria-label': t('backup.conflictStrategy') },
+        h('option', { value: 'keep', text: t('backup.conflictKeep') }),
+        h('option', { value: 'overwrite', text: t('backup.conflictOverwrite') }),
+      );
+      const conflictBox = h('div', { hidden: true, dataset: { testid: 'backup-conflicts' } });
+
+      async function inspectConflictsIfMerge() {
+        if (mode.value !== 'merge') {
+          conflictBox.hidden = true;
+          conflictBox.replaceChildren();
+          return;
+        }
+        conflictBox.hidden = false;
+        conflictBox.replaceChildren(h('p', { class: 'nx-set-desc', text: t('backup.checkingConflicts') }));
+        try {
+          const report = await sysBackup.inspectMerge(file, pass);
+          if (!report.totalConflicts) {
+            conflictBox.replaceChildren(
+              h('p', { class: 'nx-set-success' }, icon('success', { size: 16 }), t('backup.noConflicts')),
+            );
+          } else {
+            const list = report.vfsConflicts
+              .slice(0, 8)
+              .map((/** @type {{ path: string }} */ c) => h('li', { text: c.path }));
+            conflictBox.replaceChildren(
+              h(
+                'p',
+                { class: 'nx-set-warning' },
+                icon('warning', { size: 16 }),
+                t('backup.conflictsFound', { files: report.vfsConflicts.length, records: report.recordConflicts }),
+              ),
+              list.length ? h('ul', { class: 'nx-set-desc' }, ...list) : null,
+              h('label', { class: 'nx-field' }, h('span', { text: t('backup.conflictStrategy') }), strategy),
+            );
+          }
+        } catch (err) {
+          conflictBox.replaceChildren(
+            h('p', { class: 'nx-set-error', text: String(/** @type {Error} */ (err).message) }),
+          );
+        }
+      }
+      mode.addEventListener('change', () => void inspectConflictsIfMerge());
+
       preview.replaceChildren(
         h(
           'dl',
@@ -136,6 +183,7 @@ export const backup = {
             )
           : null,
         h('label', { class: 'nx-field' }, h('span', { text: t('backup.mode') }), mode),
+        conflictBox,
         h('p', { class: 'nx-set-desc', text: t('backup.modeHint') }),
         h('button', {
           type: 'button',
@@ -152,9 +200,10 @@ export const backup = {
             )
               return;
             try {
-              const result = await system.backup.restore(file, {
+              const result = await sysBackup.restore(file, {
                 mode: /** @type {'replace' | 'merge'} */ (mode.value),
                 password: pass,
+                conflictStrategy: /** @type {'keep' | 'overwrite'} */ (strategy.value),
               });
               await ctx.storage.kv.set('restored', { at: Date.now(), skipped: result.skipped });
               // Migrations and every service start fresh with the restored data.
@@ -166,6 +215,58 @@ export const backup = {
         }),
       );
     }
+
+    // ─── Sync Folder (Chromium File System Access API + fallback) ──────
+    const syncFolder = sysBackup.syncFolder;
+    const syncStrategy = h(
+      'select',
+      { class: 'nx-select', 'aria-label': t('backup.syncStrategy') },
+      h('option', { value: 'newest', text: t('backup.syncNewest') }),
+      h('option', { value: 'keep-local', text: t('backup.syncLocal') }),
+      h('option', { value: 'keep-remote', text: t('backup.syncRemote') }),
+      h('option', { value: 'skip', text: t('backup.syncSkip') }),
+    );
+    const syncStatus = h('div', { class: 'nx-set-preview' });
+
+    function renderSyncSummary() {
+      const s = syncFolder?.lastSummary;
+      if (!s) {
+        syncStatus.replaceChildren();
+        return;
+      }
+      syncStatus.replaceChildren(
+        h('p', {
+          class: 'nx-set-desc',
+          text: t('backup.syncSummary', {
+            folder: s.folderName,
+            pushed: s.pushed,
+            pulled: s.pulled,
+            conflicts: s.conflicts.length,
+          }),
+        }),
+      );
+    }
+    renderSyncSummary();
+
+    // ─── Device-to-Device Transfer & Pairing QR ────────────────────────
+    const sysInfo = system.info();
+    const vfsNodes = await ctx.fs.walk(ctx.fs.home).catch(() => []);
+    const fileCount = vfsNodes.filter((n) => n.type === 'file').length;
+    const pairingPayload = JSON.stringify({
+      app: 'Nexus Arcade OS',
+      version: sysInfo.version,
+      profile: sysInfo.profile.name,
+      files: fileCount,
+      exportedAt: new Date().toISOString().slice(0, 19),
+    });
+    const qrDoc = new DOMParser().parseFromString(
+      generateQrSvg(pairingPayload, { size: 25, fg: '#111827', bg: '#ffffff' }),
+      'image/svg+xml',
+    );
+    const qrNode = document.importNode(qrDoc.documentElement, true);
+    qrNode.style.width = '136px';
+    qrNode.style.height = '136px';
+    qrNode.style.borderRadius = '8px';
 
     const restored = /** @type {{ at: number, skipped: number } | undefined} */ (await ctx.storage.kv.get('restored'));
     if (restored) await ctx.storage.kv.delete('restored');
@@ -211,6 +312,83 @@ export const backup = {
           h('p', { class: 'nx-set-desc', text: t('backup.importHint') }),
           h('label', { class: 'nx-btn' }, fileInput, icon('upload', { size: 16 }), t('backup.choose')),
           preview,
+        ),
+      ),
+      group(
+        t('group.syncFolder'),
+        h(
+          'div',
+          { class: 'nx-set-row is-stack', dataset: { testid: 'sync-folder' } },
+          h('p', { class: 'nx-set-desc', text: t('backup.syncHint') }),
+          syncFolder?.supported
+            ? h(
+                'div',
+                { class: 'nx-set-inline' },
+                h('button', {
+                  type: 'button',
+                  class: 'nx-btn',
+                  text: syncFolder.connected
+                    ? t('backup.syncConnected', { folder: syncFolder.folderName })
+                    : t('backup.syncChoose'),
+                  onclick: async () => {
+                    try {
+                      await syncFolder.chooseFolder();
+                      pc.refresh();
+                    } catch (err) {
+                      if (/** @type {Error} */ (err).name !== 'AbortError') {
+                        pc.toast(String(/** @type {Error} */ (err).message));
+                      }
+                    }
+                  },
+                }),
+                syncStrategy,
+                h('button', {
+                  type: 'button',
+                  class: 'nx-btn is-primary',
+                  disabled: !syncFolder.connected,
+                  text: t('backup.syncNow'),
+                  onclick: async () => {
+                    try {
+                      await syncFolder.sync({ conflictStrategy: syncStrategy.value });
+                      renderSyncSummary();
+                      pc.toast(t('backup.syncDone'));
+                    } catch (err) {
+                      pc.toast(String(/** @type {Error} */ (err).message));
+                    }
+                  },
+                }),
+              )
+            : h('p', { class: 'nx-set-note' }, icon('info', { size: 16 }), t('backup.syncUnsupported')),
+          syncStatus,
+        ),
+      ),
+      group(
+        t('group.deviceTransfer'),
+        h(
+          'div',
+          { class: 'nx-set-row', dataset: { testid: 'device-transfer' } },
+          h(
+            'div',
+            { class: 'nx-set-text' },
+            h('strong', { class: 'nx-set-label', text: t('backup.transferTitle') }),
+            h('p', { class: 'nx-set-desc', text: t('backup.transferHint') }),
+            h('p', {
+              class: 'nx-set-desc',
+              text: t('backup.transferSummary', { profile: sysInfo.profile.name, files: fileCount }),
+            }),
+            h(
+              'button',
+              {
+                type: 'button',
+                class: 'nx-btn',
+                style: { marginTop: '8px' },
+                onclick: () => exportBtn.click(),
+              },
+              icon('download', { size: 16 }),
+              t('backup.transferDownload'),
+            ),
+          ),
+          h('div', { class: 'nx-set-control' }, qrNode),
         ),
       ),
     ];

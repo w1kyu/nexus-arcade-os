@@ -24,8 +24,11 @@
     "help": "All shortcuts"
   },
   "actions": {
+    "tour": "Start interactive tour",
     "palette": "Open the command palette",
     "personalize": "Personalize",
+    "whatsNew": "What’s new",
+    "demo": "Try demo profile",
     "another": "Open another window"
   },
   "opened": "Window {n}"

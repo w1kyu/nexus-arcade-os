@@ -292,6 +292,10 @@ export function createAppContext(manifest, services, extras = {}) {
         progress: (/** @type {string} */ id, /** @type {number} */ value) => achievements.progress(appId, id, value),
         stat: (/** @type {string} */ key, /** @type {number} */ delta) => achievements.stat(appId, key, delta),
         award: (/** @type {number} */ amount) => achievements.award(appId, amount),
+        list: (/** @type {string | undefined} */ targetApp) => achievements.list(targetApp ?? appId),
+        listAll: () => achievements.list(),
+        level: () => achievements.level(),
+        allStats: () => achievements.allStats(),
       },
       scheduler: {
         schedule: (/** @type {any} */ job) => scheduler.schedule(appId, job),

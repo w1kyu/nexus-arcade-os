@@ -378,6 +378,32 @@ export function createDialogs(shell) {
     return accepted && chosen ? { appId: chosen, always: always.checked } : null;
   }
 
+  /**
+   * Prompts the user the first time a plugin requests a permission.
+   * @param {string} appId
+   * @param {string} permission
+   * @returns {Promise<boolean>}
+   */
+  async function askPermission(appId, permission) {
+    const m = sys.registry.get(appId);
+    const name = m ? appName(sys, appId) : appId;
+    const permDesc = t(`dialog.perm.${permission}`);
+    return openModal({
+      title: t('dialog.permissionTitle', { name }),
+      body: h(
+        'div',
+        { class: 'nx-dlg-stack', dataset: { testid: 'permission-prompt' } },
+        h('p', { text: t('dialog.permissionBody', { name, permission }) }),
+        h('p', { style: { fontWeight: '600' }, text: permDesc }),
+      ),
+      actions: [
+        { label: t('dialog.permissionDeny'), value: false },
+        { label: t('dialog.permissionAllow'), value: true, variant: 'primary' },
+      ],
+      dismissValue: false,
+    });
+  }
+
   return {
     alert,
     confirm,
@@ -390,5 +416,6 @@ export function createDialogs(shell) {
     openFolder: (options = {}) => browse({ ...options, mode: 'folder' }),
     color,
     pickApp,
+    askPermission,
   };
 }

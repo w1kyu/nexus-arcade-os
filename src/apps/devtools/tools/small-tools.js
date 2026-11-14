@@ -4,6 +4,9 @@
 // QR code generator, Fake data generator, and Cheatsheet references.
 
 import { base64Decode, base64Encode, hmac } from './crypto-math.js';
+import { generateQrSvg } from '../../../ui/qr.js';
+
+export { generateQrSvg };
 
 // ─── 1. JWT DECODER ──────────────────────────────────────────────────────────
 
@@ -361,70 +364,7 @@ export function optimizeSvg(/** @type {string} */ svgStr) {
   return res;
 }
 
-// ─── 9. QR CODE GENERATOR ───────────────────────────────────────────────────
-
-/**
- * Generates an SVG QR code for text.
- * Pure self-contained QR matrix generator (handles Alphanumeric and Byte modes).
- * @param {string} text
- * @returns {string} SVG string
- */
-export function generateQrSvg(text) {
-  // Simple 21x21 QR code generator (Version 1, Error Correction Level L)
-  const size = 25;
-  const grid = Array.from({ length: size }, () => Array(size).fill(false));
-
-  // Finder patterns at top-left, top-right, bottom-left
-  const drawFinder = (/** @type {number} */ r, /** @type {number} */ c) => {
-    for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 7; j++) {
-        if (i === 0 || i === 6 || j === 0 || j === 6 || (i >= 2 && i <= 4 && j >= 2 && j <= 4)) {
-          grid[r + i][c + j] = true;
-        }
-      }
-    }
-  };
-
-  drawFinder(0, 0);
-  drawFinder(0, size - 7);
-  drawFinder(size - 7, 0);
-
-  // Timing patterns
-  for (let i = 8; i < size - 8; i++) {
-    grid[6][i] = i % 2 === 0;
-    grid[i][6] = i % 2 === 0;
-  }
-
-  // Data mapping based on input text hash
-  const bytes = new TextEncoder().encode(text);
-  let bitIdx = 0;
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      // Skip finders & timing
-      if ((r < 8 && c < 8) || (r < 8 && c >= size - 8) || (r >= size - 8 && c < 8) || r === 6 || c === 6) {
-        continue;
-      }
-      const b = bytes[bitIdx % bytes.length] || 0;
-      grid[r][c] = ((b >> (bitIdx % 8)) & 1) === 1;
-      bitIdx++;
-    }
-  }
-
-  // Render to SVG
-  const cellSize = 10;
-  const total = size * cellSize;
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" width="${total}" height="${total}">\n`;
-  svg += `<rect width="${total}" height="${total}" fill="#ffffff"/>\n`;
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      if (grid[r][c]) {
-        svg += `<rect x="${c * cellSize}" y="${r * cellSize}" width="${cellSize}" height="${cellSize}" fill="#000000"/>\n`;
-      }
-    }
-  }
-  svg += '</svg>';
-  return svg;
-}
+// QR generator re-exported from ../../../ui/qr.js above.
 
 // ─── 10. FAKE DATA GENERATOR ────────────────────────────────────────────────
 

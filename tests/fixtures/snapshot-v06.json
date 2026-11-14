@@ -1,0 +1,31 @@
+{
+  "format": "nexus-backup",
+  "formatVersion": 1,
+  "nexusVersion": "0.6.0",
+  "createdAt": "2026-11-10T18:00:00.000Z",
+  "profile": {
+    "name": "Phase 6 Creator",
+    "username": "creative",
+    "accent": "#ff4fd8"
+  },
+  "stores": {
+    "meta": 2,
+    "settings": 5,
+    "kv": 2
+  },
+  "legacySettings": [
+    { "scope": "system", "key": "theme", "value": "synthwave" },
+    { "scope": "system", "key": "titlebarStyle", "value": "macos" },
+    { "scope": "system", "key": "unknownFutureKey", "value": "ignored" }
+  ],
+  "legacyCustomTheme": {
+    "name": "Legacy Neon",
+    "scheme": "dark",
+    "colors": {
+      "bg": "#05060d",
+      "text1": "#eef2ff",
+      "accent": "#ff4fd8"
+    }
+  },
+  "legacyNotes": [{ "id": "p6-n1", "title": "Studio Script", "tags": ["creative"], "text": "Hello v0.6" }]
+}

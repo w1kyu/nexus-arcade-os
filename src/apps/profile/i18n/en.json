@@ -1,0 +1,44 @@
+{
+  "title": "Profile & Achievements",
+  "levelBadge": "Level {level}",
+  "totalXp": "{xp} total XP",
+  "nextLevel": "{current} / {needed} XP to next level",
+  "unlockedCount": "{unlocked} of {total} achievements unlocked",
+  "tabs": {
+    "achievements": "Achievements",
+    "stats": "Activity Stats",
+    "wrapped": "Nexus Wrapped"
+  },
+  "filters": {
+    "all": "All",
+    "unlocked": "Unlocked",
+    "locked": "Locked",
+    "system": "System"
+  },
+  "appSystem": "Nexus System",
+  "secretTitle": "Secret Achievement",
+  "secretDesc": "Keep exploring Nexus to discover how to unlock this milestone.",
+  "unlockedOn": "Unlocked {date}",
+  "progressLabel": "{progress} / {goal}",
+  "emptyAchievements": "No achievements match this filter.",
+  "stats": {
+    "title": "App Activity & Workspace Metrics",
+    "filesTitle": "Workspace Files",
+    "filesCount": "{count} files stored locally",
+    "appsTracked": "{count} apps with tracked activity",
+    "empty": "Start using apps and playing arcade games to build your activity profile.",
+    "appsLaunched": "Apps launched",
+    "gamesPlayed": "Games played",
+    "metric": "Activity"
+  },
+  "wrapped": {
+    "headline": "Nexus Wrapped {year}",
+    "subhead": "Your local-first milestone snapshot on {profile}",
+    "cardLevel": "Current Rank",
+    "cardAchievements": "Milestones Earned",
+    "cardApps": "Unique Apps Launched",
+    "cardFiles": "Workspace Files",
+    "exportBtn": "Export Summary (.txt)",
+    "exported": "Summary exported"
+  }
+}

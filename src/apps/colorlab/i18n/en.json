@@ -27,7 +27,8 @@
     "saveVfs": "Save to VFS",
     "saved": "Palette saved to VFS!",
     "lock": "Lock",
-    "unlock": "Unlock"
+    "unlock": "Unlock",
+    "createTheme": "Create OS Theme"
   },
   "contrast": {
     "textColor": "Text Color",

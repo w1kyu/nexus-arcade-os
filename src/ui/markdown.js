@@ -226,7 +226,13 @@ export async function renderMarkdown(markdown, options = {}) {
           const checked = item.checked ? ' checked' : '';
           const disabled = interactiveTasks ? '' : ' disabled';
           const stripped = body.replace(/^<input[^>]*>\s*/i, '');
-          return `<li class="nx-task-item${item.checked ? ' is-done' : ''}" data-task-index="${idx}"><input type="checkbox"${checked}${disabled} data-task-index="${idx}"> ${stripped}</li>\n`;
+          const labelText =
+            (item.text ?? '')
+              .split('\n')[0]
+              .replace(/^\[[ xX]\]\s*/, '')
+              .replace(/<[^>]+>/g, '')
+              .trim() || `Task ${idx + 1}`;
+          return `<li class="nx-task-item${item.checked ? ' is-done' : ''}" data-task-index="${idx}"><input type="checkbox"${checked}${disabled} data-task-index="${idx}" aria-label="${escapeHtml(labelText)}"> ${stripped}</li>\n`;
         }
         return `<li>${body}</li>\n`;
       },
@@ -317,6 +323,7 @@ export async function highlightCodeBlocks(el) {
 export async function renderMarkdownInto(el, markdown, options = {}) {
   el.classList.add('nx-markdown');
   el.innerHTML = await renderMarkdown(markdown, options);
+  for (const pre of el.querySelectorAll('pre')) pre.setAttribute('tabindex', '0');
   if (options.highlightCode !== false) {
     await highlightCodeBlocks(el);
   }

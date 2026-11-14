@@ -285,6 +285,7 @@ const GENERAL_ICONS = {
   offline: 'offline',
   backups: 'archive',
   privacy: 'shield',
+  'ai-setup': 'sparkles',
   faq: 'help',
 };
 

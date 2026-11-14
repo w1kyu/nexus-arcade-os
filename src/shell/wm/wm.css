@@ -163,6 +163,59 @@
   }
 }
 
+:root[data-titlebar='macos'] {
+  & .nx-titlebar {
+    padding: 0 var(--space-3);
+  }
+  & .nx-window-controls {
+    order: -1;
+    gap: 8px;
+    align-items: center;
+    margin-right: var(--space-2);
+  }
+  & .nx-window-ctrl {
+    width: 13px;
+    height: 13px;
+    border-radius: 999px;
+    color: #0a0a0a;
+    border: 1px solid rgb(0 0 0 / 0.18);
+    & svg {
+      width: 9px;
+      height: 9px;
+      opacity: 0;
+      transition: opacity var(--dur-fast);
+    }
+    &:hover svg,
+    &:focus-visible svg {
+      opacity: 1;
+    }
+  }
+  & .nx-window-controls:hover .nx-window-ctrl svg {
+    opacity: 1;
+  }
+  & .nx-window-ctrl.is-close {
+    order: -3;
+    background: #ff5f57;
+    &:hover {
+      background: #ff4740;
+    }
+  }
+  & .nx-window-ctrl.is-minimize {
+    order: -2;
+    background: #febc2e;
+    &:hover {
+      background: #f5ae19;
+    }
+  }
+  & .nx-window-ctrl.is-maximize {
+    order: -1;
+    background: #28c840;
+    &:hover {
+      background: #1fb837;
+    }
+  }
+}
+
 .nx-window-body {
   position: relative;
   min-height: 0;

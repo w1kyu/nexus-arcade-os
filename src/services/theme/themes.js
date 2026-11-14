@@ -212,7 +212,31 @@ export const THEMES = [
 
 export const DEFAULT_THEME = 'neon-night';
 
+/** @type {Map<string, Theme[]>} source id -> themes */
+const dynamicBySource = new Map();
+
+/**
+ * Registers custom or plugin-provided themes at runtime.
+ * @param {string} source
+ * @param {Theme[]} themes
+ */
+export function registerDynamicThemes(source, themes) {
+  dynamicBySource.set(source, themes);
+  return () => unregisterDynamicThemes(source);
+}
+
+/** @param {string} source */
+export function unregisterDynamicThemes(source) {
+  dynamicBySource.delete(source);
+}
+
+/** All built-in + currently registered dynamic themes. @returns {Theme[]} */
+export function allThemes() {
+  const dynamic = [...dynamicBySource.values()].flat();
+  return dynamic.length ? [...THEMES, ...dynamic] : THEMES;
+}
+
 /** @param {string} id */
 export function getTheme(id) {
-  return THEMES.find((t) => t.id === id) ?? /** @type {Theme} */ (THEMES.find((t) => t.id === DEFAULT_THEME));
+  return allThemes().find((t) => t.id === id) ?? /** @type {Theme} */ (THEMES.find((t) => t.id === DEFAULT_THEME));
 }

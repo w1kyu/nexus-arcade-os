@@ -145,6 +145,8 @@ export function createAchievements({ db, bus, log, store, onUnlock, now = Date.n
     /** @param {string} app */
     stats: (app) => ({ ...(stats[app] ?? {}) }),
 
+    allStats: () => Object.fromEntries(Object.entries(stats).map(([app, s]) => [app, { ...s }])),
+
     /**
      * Declared achievements with state. Secret ones hide title/description until unlocked.
      * @param {string} [app]

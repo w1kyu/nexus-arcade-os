@@ -18,6 +18,7 @@ const STORE = 'profiles';
  * @property {number} createdAt
  * @property {number} lastUsedAt
  * @property {boolean} [guest]   wiped on sign-out
+ * @property {boolean} [demo]    removable sample demo profile
  * @property {{ kind: 'pin' | 'password', hash: import('../crypto.js').SecretHash }} [lock]
  */
 
@@ -100,10 +101,10 @@ export function createProfiles({
     },
 
     /**
-     * @param {{ name: string, accent?: string, guest?: boolean, image?: Blob }} input
+     * @param {{ name: string, accent?: string, guest?: boolean, demo?: boolean, image?: Blob }} input
      * @returns {Promise<PublicProfile>}
      */
-    async create({ name, accent = '#3ef0ff', guest = false, image }) {
+    async create({ name, accent = '#3ef0ff', guest = false, demo = false, image }) {
       const cleanName = validName(name);
       const id = newId();
       const profile = await systemDb.transaction(STORE, 'readwrite', async (tx) => {
@@ -122,6 +123,7 @@ export function createProfiles({
           createdAt: t,
           lastUsedAt: t,
           ...(guest ? { guest: true } : {}),
+          ...(demo ? { demo: true } : {}),
         };
         await tx.put(STORE, profile);
         return profile;

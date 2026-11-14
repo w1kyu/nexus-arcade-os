@@ -1,0 +1,27 @@
+{
+  "format": "nexus-backup",
+  "formatVersion": 1,
+  "nexusVersion": "0.1.0",
+  "createdAt": "2026-10-15T12:00:00.000Z",
+  "profile": {
+    "name": "Phase 1 User",
+    "username": "ada",
+    "accent": "#3ef0ff"
+  },
+  "stores": {
+    "meta": 1,
+    "settings": 3,
+    "vfs-nodes": 2,
+    "kv": 2
+  },
+  "legacySettings": [
+    { "scope": "system", "key": "language", "value": "en" },
+    { "scope": "system", "key": "theme", "value": "neon-night" },
+    { "scope": "system", "key": "fontScale", "value": 99 }
+  ],
+  "legacyKv": [
+    ["system:apps", { "disabled": [] }],
+    ["system:tour", { "done": true }]
+  ],
+  "legacyNotes": [{ "id": "legacy-n1", "body": "Phase 1 early note body" }]
+}

@@ -30,8 +30,11 @@
     "help": "Alle Tastenkürzel"
   },
   "actions": {
+    "tour": "Interaktive Tour starten",
     "palette": "Befehlspalette öffnen",
     "personalize": "Personalisieren",
+    "whatsNew": "Was ist neu",
+    "demo": "Demo-Profil testen",
     "another": "Weiteres Fenster öffnen"
   },
   "opened": "Fenster {n}"

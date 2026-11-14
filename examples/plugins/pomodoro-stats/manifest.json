@@ -1,0 +1,45 @@
+{
+  "id": "plugin.pomodoro-stats",
+  "name": { "en": "Focus Stats Widget", "de": "Fokus-Statistik-Widget" },
+  "version": "1.0.0",
+  "description": {
+    "en": "Log daily focus sessions and track streaks from a sandboxed desktop widget.",
+    "de": "Erfasse tägliche Fokus-Sitzungen und verfolge Serien über ein Sandbox-Desktop-Widget."
+  },
+  "author": "Nexus Arcade OS",
+  "category": "productivity",
+  "icon": "timer",
+  "permissions": ["notifications"],
+  "main": "main.js",
+  "widgets": [
+    {
+      "id": "focus-pulse",
+      "title": { "en": "Focus Streak", "de": "Fokus-Serie" },
+      "size": [2, 2]
+    }
+  ],
+  "themes": [
+    {
+      "id": "amber-focus",
+      "name": { "en": "Amber Focus (Plugin)", "de": "Bernstein Fokus (Plugin)" },
+      "scheme": "dark",
+      "glow": 0.65,
+      "colors": {
+        "bg": "#0b0d14",
+        "surface1": "#131724",
+        "surface2": "#1b2133",
+        "surface3": "#242c42",
+        "border": "#303b57",
+        "text1": "#f3f5fc",
+        "text2": "#b7c1da",
+        "text3": "#7b88a8",
+        "accent": "#f59e0b",
+        "accent2": "#38bdf8",
+        "success": "#22c55e",
+        "warning": "#f59e0b",
+        "danger": "#ef4444",
+        "info": "#38bdf8"
+      }
+    }
+  ]
+}

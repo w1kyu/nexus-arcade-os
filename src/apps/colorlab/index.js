@@ -263,6 +263,12 @@ export async function mount(container, ctx) {
     icon('download', { size: 14 }),
     t('palette.saveVfs'),
   );
+  const createThemeBtn = h(
+    'button',
+    { class: 'nx-button primary small' },
+    icon('palette', { size: 14 }),
+    t('palette.createTheme'),
+  );
 
   palBar.append(
     h('label', { style: 'font-size: 12px; font-weight: 600;' }, t('palette.harmony')),
@@ -272,6 +278,7 @@ export async function mount(container, ctx) {
     exportJsonBtn,
     exportScssBtn,
     saveVfsBtn,
+    createThemeBtn,
   );
 
   const paletteRow = h('div', { class: 'nx-colorlab-palette-row' });
@@ -349,6 +356,14 @@ export async function mount(container, ctx) {
     const scss = currentPalette.map((p, i) => `$color-${i + 1}: ${p.hex};`).join('\n');
     await navigator.clipboard.writeText(scss);
     ctx.notifications?.notify?.({ title: t('converter.copied'), level: 'info' });
+  });
+
+  createThemeBtn.addEventListener('click', () => {
+    void ctx.commands?.execute?.('settings.open', {
+      page: 'themeEditor',
+      seed: currentPalette[0]?.hex,
+      secondary: currentPalette[1]?.hex,
+    });
   });
 
   saveVfsBtn.addEventListener('click', async () => {

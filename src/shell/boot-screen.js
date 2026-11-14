@@ -35,7 +35,7 @@ export function rememberFastBoot(on) {
 export function showBootScreen(parent, text) {
   const fast = read(FAST_BOOT_KEY) === '1';
   const firstVisit = read(BOOTED_KEY) !== '1';
-  const minMs = fast ? 0 : firstVisit ? 1800 : 450;
+  const minMs = fast ? 0 : firstVisit ? 900 : 450;
   const started = performance.now();
   const bar = h('div', { class: 'nx-boot-bar-fill' });
   const label = h('p', { class: 'nx-boot-step', 'aria-live': 'polite' });

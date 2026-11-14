@@ -1,16 +1,16 @@
 // @ts-check
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
 async function openAppFromPalette(/** @type {Page} */ page, name, appId) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await expect(page.locator('.nx-palette-input')).toBeFocused();
   await page.keyboard.type(name);
   const opt = page.getByRole('option', { name: new RegExp(`^${name}`) }).first();
   await expect(opt).toBeVisible();
-  await page.keyboard.press('Enter');
+  await opt.click();
   const win = page.locator(`.nx-windows .nx-window[data-app="${appId}"]`);
   await expect(win).toBeVisible();
   return win;

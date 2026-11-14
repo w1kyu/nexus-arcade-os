@@ -67,10 +67,15 @@ export async function encode(value, hooks = {}) {
     }
     return { [TAG]: 'blob', ...data, type: value.type };
   }
-  if (value instanceof ArrayBuffer) return { [TAG]: 'buffer', v: bytesToBase64(new Uint8Array(value)) };
+  if (value instanceof ArrayBuffer) {
+    const bytes = new Uint8Array(value);
+    const data = hooks.put ? { ref: hooks.put(bytes) } : { v: bytesToBase64(bytes) };
+    return { [TAG]: 'buffer', ...data };
+  }
   if (ArrayBuffer.isView(value)) {
     const bytes = new Uint8Array(value.buffer, value.byteOffset, value.byteLength);
-    return { [TAG]: 'view', ctor: value.constructor.name, v: bytesToBase64(bytes) };
+    const data = hooks.put ? { ref: hooks.put(bytes) } : { v: bytesToBase64(bytes) };
+    return { [TAG]: 'view', ctor: value.constructor.name, ...data };
   }
   if (value instanceof Map) return { [TAG]: 'map', v: await encode([...value.entries()], hooks) };
   if (value instanceof Set) return { [TAG]: 'set', v: await encode([...value.values()], hooks) };
@@ -114,14 +119,19 @@ export function decode(value, hooks = {}) {
           type: obj.type,
           lastModified: obj.lastModified,
         });
-      case 'buffer':
-        return base64ToBytes(obj.v).buffer;
+      case 'buffer': {
+        const bytes = binary(obj, hooks);
+        return bytes.byteOffset === 0 && bytes.byteLength === bytes.buffer.byteLength
+          ? bytes.buffer
+          : bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+      }
       case 'view': {
-        const bytes = base64ToBytes(obj.v);
+        const bytes = binary(obj, hooks);
         const Ctor = TYPED_ARRAYS[/** @type {keyof typeof TYPED_ARRAYS} */ (obj.ctor)] ?? Uint8Array;
-        if (Ctor === DataView) return new DataView(bytes.buffer);
+        if (Ctor === DataView) return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
         const size = /** @type {{ BYTES_PER_ELEMENT: number }} */ (/** @type {unknown} */ (Ctor)).BYTES_PER_ELEMENT;
-        return new /** @type {any} */ (Ctor)(bytes.buffer, 0, bytes.byteLength / size);
+        const aligned = bytes.byteOffset % size === 0 ? bytes : bytes.slice();
+        return new /** @type {any} */ (Ctor)(aligned.buffer, aligned.byteOffset, aligned.byteLength / size);
       }
       case 'map':
         return new Map(decode(obj.v, hooks));

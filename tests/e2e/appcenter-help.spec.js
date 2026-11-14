@@ -1,12 +1,12 @@
 // App Center (uninstall hides an app everywhere and survives a reload; install brings it back)
 // and Help (F1 opens the focused app's page; links, search, table of contents).
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
 async function palette(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill(query);
   const opt = page.locator('.nx-palette-list').getByRole('option', { name: option }).first();
   await expect(opt).toBeVisible();
@@ -36,7 +36,7 @@ test.describe('app center and help', () => {
     await center.getByTestId('uninstall').click();
     await page.locator('.nx-modal').getByRole('button', { name: 'Uninstall' }).click();
     await expect(center.getByTestId('install')).toBeVisible();
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await page.keyboard.type('Terminal');
     await page.waitForTimeout(500);
     await expect(page.getByRole('option', { name: /^Terminal/ })).toHaveCount(0);
@@ -46,14 +46,14 @@ test.describe('app center and help', () => {
     await page.waitForTimeout(1200);
     await page.reload();
     await waitForDesktop(page);
-    await page.keyboard.press('Control+Alt+t');
+    await pressMod(page, 'Alt+t');
     await page.waitForTimeout(500);
     await expect(page.locator('.nx-windows [data-testid="terminal"]')).toHaveCount(0);
     await center.locator('[data-category="hidden"]').click();
     await center.locator('[data-testid="appcenter-card"][data-app="nexus.terminal"] button').click();
     await center.getByTestId('install').click();
     await expect(center.getByTestId('uninstall')).toBeVisible();
-    await page.keyboard.press('Control+Alt+t');
+    await pressMod(page, 'Alt+t');
     await expect(page.locator('.nx-windows [data-testid="terminal"]')).toBeVisible();
     expect(errors).toEqual([]);
   });
@@ -62,7 +62,7 @@ test.describe('app center and help', () => {
     const errors = collectErrors(page);
     await startNexus(page);
     await page.keyboard.press('Escape');
-    await page.keyboard.press('Control+Alt+t');
+    await pressMod(page, 'Alt+t');
     const input = page.locator('.nx-windows [data-testid="term-input"]');
     await expect(input).toBeFocused();
     await page.keyboard.press('F1');

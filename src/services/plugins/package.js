@@ -4,7 +4,6 @@
 //   - .nexus-plugin JSON bundles
 //   - VFS folders containing manifest.json + main.js
 //   - Single .js files containing an @nexus-plugin { ... } metadata header
-import { strFromU8, unzipSync } from 'fflate';
 import { validateManifest } from '../../kernel/manifest.js';
 
 /** @typedef {import('../../kernel/types').L10n} L10n */
@@ -314,7 +313,8 @@ export function parseFilesMap(files) {
  * Parses a zip archive (`Uint8Array`) containing a plugin.
  * @param {Uint8Array} bytes
  */
-export function parseZipPlugin(bytes) {
+export async function parseZipPlugin(bytes) {
+  const { strFromU8, unzipSync } = await import('fflate');
   let unzipped;
   try {
     unzipped = unzipSync(bytes);

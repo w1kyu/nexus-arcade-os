@@ -1,7 +1,7 @@
 // Terminal main flows: real work across apps with pipes and files, completion, history,
 // Ctrl+C, the pager, app commands, tabs; tabs and folders survive a reload.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, modKey, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -26,7 +26,7 @@ test.describe('terminal', () => {
     const errors = collectErrors(page);
     await startNexus(page);
     await page.keyboard.press('Escape');
-    await page.keyboard.press('Control+Alt+t');
+    await pressMod(page, 'Alt+t');
     await expect(input(page)).toBeFocused();
 
     // Real work: folders, files, redirection and pipes.
@@ -59,7 +59,7 @@ test.describe('terminal', () => {
     await page.keyboard.press('Control+c');
     await expect(input(page)).toBeVisible();
     await expect(output(page)).toContainText('^C');
-    await input(page).press('Control+l');
+    await input(page).press(`${await modKey(page)}+l`);
     await expect(output(page)).not.toContainText('^C');
     await expect(page.locator('.nx-lock')).toHaveCount(0); // Ctrl+L didn't lock the screen
 
@@ -104,7 +104,7 @@ test.describe('terminal', () => {
     const errors = collectErrors(page);
     await startNexus(page);
     await page.keyboard.press('Escape');
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await page.keyboard.type('File Explorer');
     await expect(page.getByRole('option', { name: /File Explorer/ }).first()).toBeVisible();
     await page.keyboard.press('Enter');

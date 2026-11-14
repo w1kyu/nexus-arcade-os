@@ -58,9 +58,15 @@ export function categoryVolume(get, category) {
  * @param {object} options
  * @param {import('../settings/settings.js').Settings} options.settings
  * @param {() => boolean} [options.quiet]  true while Do-not-disturb is on (UI sounds pause)
+ * @param {() => boolean} [options.ready]  false before a user gesture in the browser
  * @param {typeof AudioContext | null} [options.AudioContextImpl]  null = no Web Audio
  */
-export function createSound({ settings, quiet = () => false, AudioContextImpl = globalThis.AudioContext }) {
+export function createSound({
+  settings,
+  quiet = () => false,
+  ready = () => true,
+  AudioContextImpl = globalThis.AudioContext,
+}) {
   /** @type {AudioContext | null} */
   let ctx = null;
   /** @type {Map<SoundCategory, GainNode>} */
@@ -100,6 +106,7 @@ export function createSound({ settings, quiet = () => false, AudioContextImpl = 
       const tones = SOUNDS[name];
       if (!tones || categoryVolume(get, category) === 0) return;
       if (category === 'ui' && quiet()) return;
+      if (!ready()) return;
       const audio = context();
       const bus = buses.get(category);
       if (!audio || !bus) return;

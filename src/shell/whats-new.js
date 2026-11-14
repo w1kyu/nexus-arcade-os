@@ -4,7 +4,6 @@
 // and is always accessible via the `shell.whatsNew` command or Settings → Updates.
 import { version as APP_VERSION } from '../env.js';
 import { h } from '../ui/dom.js';
-import { renderMarkdownInto } from '../ui/markdown.js';
 import { openModal } from '../ui/overlay.js';
 import { registerCommand } from './util.js';
 
@@ -33,6 +32,7 @@ export function createWhatsNew(shell) {
       .catch(() => '');
     const md = latestOnly ? extractLatestChangelog(raw) : raw;
     const body = h('div', { class: 'nx-markdown', style: { maxHeight: '62vh', overflowY: 'auto' } });
+    const { renderMarkdownInto } = await import('../ui/markdown.js');
     await renderMarkdownInto(body, md);
     await openModal({
       title: t('whatsNew.title', { version: APP_VERSION }),

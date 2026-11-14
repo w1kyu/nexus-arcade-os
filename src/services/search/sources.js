@@ -89,6 +89,8 @@ export function connectSearchSources({ search, bus, registry, commands, settings
     await search.index([...registry.list().map(appDoc), ...commandDocs(), ...settingDocs()]);
   }
 
+  let commandSyncQueued = false;
+
   /** @type {(() => void)[]} */
   const unsubs = [
     bus.on('app:registered', ({ id }) => {
@@ -102,7 +104,12 @@ export function connectSearchSources({ search, bus, registry, commands, settings
       else search.remove([`app:${id}`]);
     }),
     bus.on('commands:changed', () => {
-      search.removePrefix('command:').then(() => search.index(commandDocs()));
+      if (commandSyncQueued) return;
+      commandSyncQueued = true;
+      queueMicrotask(() => {
+        commandSyncQueued = false;
+        void search.removePrefix('command:').then(() => search.index(commandDocs()));
+      });
     }),
     bus.on('i18n:changed', () => reindexAll()),
     bus.on('vfs:changed', async (change) => {

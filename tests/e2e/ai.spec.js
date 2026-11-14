@@ -1,7 +1,7 @@
 // Nexus AI Workspace e2e: provider configuration, chat streaming with markdown/math,
 // prompt templates, personas, assistant quick intents, and terminal AI command.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -11,7 +11,7 @@ const settingsWin = (/** @type {Page} */ page) => page.locator('.nx-windows .nx-
 
 async function openApp(/** @type {Page} */ page, nameQuery) {
   await page.keyboard.press('Escape');
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill(nameQuery);
   const opt = page
     .locator('.nx-palette-list')
@@ -138,7 +138,7 @@ test.describe('nexus ai workspace', () => {
 
     // 6. Test Terminal `ai` command
     await page.keyboard.press('Escape');
-    await page.keyboard.press('Control+Alt+t');
+    await pressMod(page, 'Alt+t');
     const term = page.locator('.nx-windows [data-testid="terminal"]');
     await expect(term).toBeVisible();
     const termInput = term.locator('.nx-term-session:not([hidden]) [data-testid="term-input"]');

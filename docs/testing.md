@@ -11,8 +11,11 @@ npm run format      # Prettier write
 npm run typecheck   # tsc -p jsconfig.json (strict JSDoc type checking)
 npm run lint        # ESLint + Prettier check + i18n EN/DE key check
 npm test            # Vitest unit & contract test suite
-npm run build       # Builds dist/ (Website PWA) and dist/nexus-lite.html (must stay <= 8.00 MB)
-npm run test:e2e    # Playwright E2E suite (runs against built dist/)
+npm run build          # Builds dist/ (Website PWA) and dist/nexus-lite.html (must stay <= 8.00 MB)
+npm run test:e2e       # Playwright Chromium suite (web, web-mobile, lite)
+npm run test:e2e:firefox
+npm run test:e2e:webkit
+npm run test:e2e:all   # Full Playwright matrix (Chromium, Firefox, WebKit)
 ```
 
 Run `npm run build` before `npm run test:e2e` because Playwright tests execute against `vite preview` and the generated `dist/nexus-lite.html`.
@@ -38,16 +41,19 @@ Run `npm run build` before `npm run test:e2e` because Playwright tests execute a
 
 ## 3. End-to-End Tests (`tests/e2e/`)
 
-Configured in [`playwright.config.js`](../playwright.config.js) with three projects:
+Configured in [`playwright.config.js`](../playwright.config.js) across Chromium, Firefox, and WebKit:
 
-1. **`web`**: Desktop Chromium (`1280×800`) against `vite preview`.
+1. **`web`**: Desktop Chromium (`1280×800`) against `vite preview` (or `NEXUS_BASE_URL` via `npm run test:live`).
 2. **`web-mobile`**: Mobile Chrome (`Pixel 7`) testing sheet windows, gestures, and responsive app bar.
-3. **`lite`**: Loads `dist/nexus-lite.html` directly over `file://` (`tests/e2e/lite.spec.js`).
+3. **`lite`**: Loads `dist/nexus-lite.html` directly over `file://` in Chromium (`tests/e2e/lite.spec.js`).
+4. **`web-firefox` / `lite-firefox`**: Desktop Firefox against `vite preview` and `file://` Lite bundle (`npm run test:e2e:firefox`).
+5. **`web-webkit` / `lite-webkit`**: Desktop Safari (WebKit) against `vite preview` and `file://` Lite bundle (`npm run test:e2e:webkit`).
 
 ### Important Helpers (`tests/helpers/nexus.js`)
 
 - `startNexus(page, opts)` clears storage for a clean profile, handles the boot screen, and returns a clean desktop ready for assertions.
 - `collectErrors(page)` captures `console.error` and uncaught `pageerror` exceptions so every E2E test fails on runtime errors.
+- `modKey(page)` / `pressMod(page, key)` dispatches platform-aware `Mod+...` shortcuts (`Meta` on Apple platforms such as WebKit Desktop Safari, `Control` elsewhere).
 
 ### Accessibility Suite (`tests/e2e/a11y.spec.js`)
 
@@ -65,5 +71,7 @@ Uses `@axe-core/playwright` (`AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa'
 ## 5. Continuous Integration (`.github/workflows/ci.yml`)
 
 Every push to `main` and every pull request runs:
-`npm ci` → `npm run lint` → `npm run typecheck` → `npm test` → `npm run build` → `npm run test:e2e`.
-Render (`render.yaml`) triggers deployment only when CI passes (`autoDeployTrigger: checksPass`).
+
+- **`ci` job:** `npm ci` → `npm run lint` → `npm run typecheck` → `npm test` → `npm run build` → `npm run test:e2e` (Chromium `web`, `web-mobile`, `lite`).
+- **`cross-browser` matrix job (`firefox`, `webkit`):** `npm ci` → `npm run build` → `npm run test:e2e:<browser>` (`web-<browser>` + `lite-<browser>`).
+  Render (`render.yaml`) triggers deployment only when CI passes (`autoDeployTrigger: checksPass`).

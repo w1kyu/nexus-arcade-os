@@ -2,12 +2,12 @@
 // install/run/uninstall, live Theme Editor + .nexus-theme export, and Profile & Achievements.
 import { resolve } from 'node:path';
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
 async function paletteRun(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   const input = page.locator('.nx-palette-input');
   await expect(input).toBeFocused();
   await input.fill(query);
@@ -83,7 +83,7 @@ test.describe('phase 13 ecosystem & polish', () => {
     await startNexus(page);
     await page.keyboard.press('Escape');
 
-    await page.keyboard.press('Control+Comma');
+    await pressMod(page, 'Comma');
     const settingsWin = page.locator('.nx-windows [data-testid="settings"]');
     await settingsWin.locator('[data-testid="settings-nav"][data-page="themeEditor"]').click();
 

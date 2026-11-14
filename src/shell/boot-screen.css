@@ -31,10 +31,10 @@
   & path {
     stroke-dasharray: 160;
     stroke-dashoffset: 160;
-    animation: nx-boot-draw 1.2s var(--ease-out) forwards;
+    animation: nx-boot-draw 0.65s var(--ease-out) forwards;
   }
   & path + path {
-    animation-delay: 0.35s;
+    animation-delay: 0.2s;
   }
 }
 

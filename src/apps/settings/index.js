@@ -132,31 +132,41 @@ export function mount(container, ctx, args) {
     live.textContent = message;
   }
 
+  /** @type {Map<string, HTMLButtonElement>} */
+  const navButtons = new Map();
+
   function renderNav() {
-    nav.replaceChildren(
-      h(
-        'ul',
-        {},
-        ...PAGES.map((p) =>
+    if (!navButtons.size) {
+      const list = h('ul');
+      for (const p of PAGES) {
+        const btn = /** @type {HTMLButtonElement} */ (
           h(
-            'li',
-            {},
-            h(
-              'button',
-              {
-                type: 'button',
-                class: `nx-set-nav-item${p.id === current ? ' is-current' : ''}`,
-                'aria-current': p.id === current ? 'page' : undefined,
-                dataset: { page: p.id, testid: 'settings-nav' },
-                onclick: () => void show(p.id),
-              },
-              icon(p.icon, { size: 18 }),
-              h('span', { text: t(`pages.${p.id}.title`) }),
-            ),
-          ),
-        ),
-      ),
-    );
+            'button',
+            {
+              type: 'button',
+              class: 'nx-set-nav-item',
+              dataset: { page: p.id, testid: 'settings-nav' },
+              onclick: () => void show(p.id),
+            },
+            icon(p.icon, { size: 18 }),
+            h('span', { text: t(`pages.${p.id}.title`) }),
+          )
+        );
+        navButtons.set(p.id, btn);
+        list.append(h('li', {}, btn));
+      }
+      nav.replaceChildren(list);
+    }
+    for (const p of PAGES) {
+      const btn = navButtons.get(p.id);
+      if (!btn) continue;
+      const isCurrent = p.id === current;
+      btn.classList.toggle('is-current', isCurrent);
+      if (isCurrent) btn.setAttribute('aria-current', 'page');
+      else btn.removeAttribute('aria-current');
+      const label = btn.querySelector('span');
+      if (label) label.textContent = t(`pages.${p.id}.title`);
+    }
   }
 
   /**
@@ -167,6 +177,7 @@ export function mount(container, ctx, args) {
   async function show(id, highlight) {
     const page = byId.get(id) ?? personalization;
     const changedPage = page.id !== current;
+    if (changedPage) clearTimeout(refreshTimer);
     current = page.id;
     const mine = ++renderToken;
     const scrollTop = changedPage ? 0 : content.scrollTop;

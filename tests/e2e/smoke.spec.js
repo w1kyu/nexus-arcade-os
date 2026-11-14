@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { collectErrors, startNexus } from '../helpers/nexus.js';
 
+test.beforeEach(() => {
+  if (process.env.NEXUS_BASE_URL) test.setTimeout(240_000);
+});
+
 /** The desktop is up: kernel ready, top bar, and the Welcome window on first start. */
 async function expectDesktop(page) {
   await expect(page.locator('html')).toHaveAttribute('data-kernel', 'ready', { timeout: 15_000 });

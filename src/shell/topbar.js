@@ -141,8 +141,9 @@ export function createTopBar(shell) {
   // Clock + calendar ---------------------------------------------------------
   const renderClock = () => {
     const now = new Date();
-    clockBtn.textContent = `${sys.i18n.format.date(now, { weekday: 'short', day: 'numeric', month: 'short' })}  ${sys.i18n.format.time(now)}`;
-    clockBtn.setAttribute('aria-label', sys.i18n.format.dateTime(now));
+    const label = `${sys.i18n.format.date(now, { weekday: 'short', day: 'numeric', month: 'short' })}  ${sys.i18n.format.time(now)}`;
+    clockBtn.textContent = label;
+    clockBtn.setAttribute('aria-label', `${label}, ${t('shell.calendar')}`);
   };
   clockBtn.addEventListener('click', () => openPopover(clockBtn, calendar(sys), { label: t('shell.calendar') }));
   const tick = () => {

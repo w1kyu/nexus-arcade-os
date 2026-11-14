@@ -3,11 +3,6 @@
 // Universal provider abstraction: Ollama, Lemonade, OpenAI-compatible endpoints, Anthropic.
 // API keys are encrypted at rest. Requests are never faked.
 
-import { createAnthropicAdapter } from './adapters/anthropic.js';
-import { createLemonadeAdapter } from './adapters/lemonade.js';
-import { createOllamaAdapter } from './adapters/ollama.js';
-import { createOpenAiAdapter } from './adapters/openai.js';
-import { testProviderConnection } from './diagnostics.js';
 import { createRagService } from './rag.js';
 import { decryptApiKey, encryptApiKey, getDeviceKey } from './security.js';
 import { executeToolCall, formatToolConfirmation, getOpenAiToolDefinitions, TOOL_DECLARATIONS } from './tools.js';
@@ -153,15 +148,23 @@ export function createAi({ bus, store, network, log }) {
     };
 
     switch (profile.type) {
-      case 'ollama':
+      case 'ollama': {
+        const { createOllamaAdapter } = await import('./adapters/ollama.js');
         return createOllamaAdapter(config);
-      case 'lemonade':
+      }
+      case 'lemonade': {
+        const { createLemonadeAdapter } = await import('./adapters/lemonade.js');
         return createLemonadeAdapter(config);
-      case 'anthropic':
+      }
+      case 'anthropic': {
+        const { createAnthropicAdapter } = await import('./adapters/anthropic.js');
         return createAnthropicAdapter(config);
+      }
       case 'openai':
-      default:
+      default: {
+        const { createOpenAiAdapter } = await import('./adapters/openai.js');
         return createOpenAiAdapter(config);
+      }
     }
   }
 
@@ -304,6 +307,7 @@ export function createAi({ bus, store, network, log }) {
       }
 
       const adapter = await createAdapterForProfile(profile);
+      const { testProviderConnection } = await import('./diagnostics.js');
       return testProviderConnection(adapter, profile);
     },
 

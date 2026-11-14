@@ -1,7 +1,7 @@
 // Settings main flows: search and deep links, theme, language, accessibility, shortcuts, PIN
 // lock, licenses, and backup → change → restore.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, modKey, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -12,7 +12,7 @@ const row = (/** @type {Page} */ page, /** @type {string} */ id) => settings(pag
 
 async function openSettings(/** @type {Page} */ page) {
   await page.keyboard.press('Escape');
-  await page.keyboard.press('Control+Comma');
+  await pressMod(page, 'Comma');
   await expect(settings(page)).toBeVisible();
 }
 
@@ -37,7 +37,7 @@ test.describe('settings', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'synthwave');
 
     // The palette's @ mode opens a setting in Settings.
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await page.keyboard.type('@Keyboard focus ring');
     await expect(page.getByRole('option', { name: /Keyboard focus ring/ }).first()).toBeVisible();
     await page.keyboard.press('Enter');
@@ -66,7 +66,7 @@ test.describe('settings', () => {
     const themeRow = settings(page).locator('[data-command="system.theme.pick"]');
     await themeRow.getByRole('button', { name: 'Change', exact: true }).click();
     await page.keyboard.press('Control+Alt+j');
-    await expect(themeRow.locator('kbd')).toHaveText('Ctrl+Alt+J');
+    await expect(themeRow.locator('kbd')).toHaveText((await modKey(page)) === 'Meta' ? '⌃⌥J' : 'Ctrl+Alt+J');
     await page.keyboard.press('Control+Alt+j');
     await expect(page.locator('.nx-palette-input')).toBeFocused();
     await page.keyboard.press('Escape'); // back from the theme list

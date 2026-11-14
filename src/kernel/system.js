@@ -44,7 +44,6 @@ import { createRegistry } from './registry.js';
 import { createRuntime } from './runtime.js';
 import { createTabRelay } from './tab-relay.js';
 import { connectOsAchievements } from './os-achievements.js';
-import { populateDemoWorkspace } from '../services/profiles/demo.js';
 import { trackWorkers } from './workers.js';
 
 /** @typedef {import('./types').AppManifest} AppManifest */
@@ -328,6 +327,16 @@ async function openProfile(options, k, profile) {
   const trashTimer = setInterval(() => void purgeTrash().catch(() => {}), 6 * 3_600_000);
   progress('files');
 
+  let soundUnlocked = !win;
+  const unlockSound = () => {
+    soundUnlocked = true;
+    win?.removeEventListener('pointerdown', unlockSound, true);
+    win?.removeEventListener('keydown', unlockSound, true);
+  };
+  if (win) {
+    win.addEventListener('pointerdown', unlockSound, true);
+    win.addEventListener('keydown', unlockSound, true);
+  }
   /** @type {ReturnType<typeof createSound>} */
   let sound;
   const notifications = createNotifications({
@@ -343,6 +352,7 @@ async function openProfile(options, k, profile) {
   sound = createSound({
     settings,
     quiet: () => notifications.doNotDisturb,
+    ready: () => soundUnlocked,
     AudioContextImpl: options.AudioContextImpl,
   });
 
@@ -374,6 +384,7 @@ async function openProfile(options, k, profile) {
   if (/** @type {any} */ (profile).demo) {
     const profileMeta = kv('system:profile-meta');
     if (!(await profileMeta.get('isDemo'))) {
+      const { populateDemoWorkspace } = await import('../services/profiles/demo.js');
       await populateDemoWorkspace(vfs, { kv: profileMeta }).catch((err) =>
         log.warn('Demo workspace setup failed', err),
       );
@@ -599,6 +610,7 @@ async function openProfile(options, k, profile) {
   const detachShortcuts = win ? shortcuts.attach(win) : () => {};
 
   progress('apps');
+  if (win) await new Promise((r) => win.setTimeout(r, 0));
   const search = createSearch({
     backend:
       options.searchBackend ??
@@ -768,6 +780,8 @@ async function openProfile(options, k, profile) {
       relay.close();
       clearInterval(trashTimer);
       detachShortcuts();
+      win?.removeEventListener('pointerdown', unlockSound, true);
+      win?.removeEventListener('keydown', unlockSound, true);
       for (const i of lifecycle.list()) await lifecycle.close(i.id, { force: true });
       await logger.flush();
       rawDb.close();

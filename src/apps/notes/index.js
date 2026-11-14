@@ -1433,33 +1433,44 @@ export async function mount(container, ctx, args = {}) {
   }
 
   // ─── Actions: Rename, Pin, Favorite, Move, Trash, Encrypt ──────────────
+  let renameQueue = Promise.resolve();
   /** @param {string} rawNewTitle */
-  async function renameActiveNote(rawNewTitle) {
-    const active = getActiveNote();
-    if (!active) return;
-    const newTitle = sanitizeTitle(rawNewTitle);
-    if (newTitle === active.title) return;
-    const oldTitle = active.title;
-    const oldPath = active.path;
-    if (active.body.startsWith(`# ${oldTitle}\n`)) {
-      active.body = `# ${newTitle}\n` + active.body.slice(`# ${oldTitle}\n`.length);
-    }
-    const newPath = await fs.uniquePath(joinPath(parentOf(active.path), `${newTitle}.md`));
-    selfWritingPaths.add(oldPath);
-    selfWritingPaths.add(newPath);
-    await fs.move(oldPath, newPath);
-    selfWritingPaths.delete(oldPath);
-    selfWritingPaths.delete(newPath);
-    const session = unlockedSessions.get(oldPath);
-    if (session) {
-      unlockedSessions.delete(oldPath);
-      unlockedSessions.set(newPath, session);
-    }
-    notesMap.delete(oldPath);
-    const renamedEntry = await readNoteEntry(newPath);
-    renamedEntry.body = active.body;
-    await saveNoteNow(renamedEntry);
-    selectNote(newPath);
+  function renameActiveNote(rawNewTitle) {
+    const targetPath = state.activePath;
+    renameQueue = renameQueue
+      .then(async () => {
+        if (!targetPath || state.activePath !== targetPath) return;
+        const active = getActiveNote();
+        if (!active) return;
+        const newTitle = sanitizeTitle(rawNewTitle);
+        if (newTitle === active.title) return;
+        const oldTitle = active.title;
+        const oldPath = active.path;
+        if (active.body.startsWith(`# ${oldTitle}\n`)) {
+          active.body = `# ${newTitle}\n` + active.body.slice(`# ${oldTitle}\n`.length);
+        }
+        const newPath = await fs.uniquePath(joinPath(parentOf(active.path), `${newTitle}.md`));
+        selfWritingPaths.add(oldPath);
+        selfWritingPaths.add(newPath);
+        try {
+          await fs.move(oldPath, newPath);
+        } finally {
+          selfWritingPaths.delete(oldPath);
+          selfWritingPaths.delete(newPath);
+        }
+        const session = unlockedSessions.get(oldPath);
+        if (session) {
+          unlockedSessions.delete(oldPath);
+          unlockedSessions.set(newPath, session);
+        }
+        notesMap.delete(oldPath);
+        const renamedEntry = await readNoteEntry(newPath);
+        renamedEntry.body = active.body;
+        await saveNoteNow(renamedEntry);
+        selectNote(newPath);
+      })
+      .catch(() => {});
+    return renameQueue;
   }
 
   /** @param {NoteEntry} note */

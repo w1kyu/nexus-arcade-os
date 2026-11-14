@@ -137,4 +137,28 @@ describe('sound', () => {
     expect(sound.output('ui')).toBeNull();
     expect(sound.available).toBe(false);
   });
+
+  it('defers AudioContext creation until ready() is true', async () => {
+    const db = await createMemoryEngine().open('p', SETTINGS_STORE_SCHEMA);
+    const settings = createSettings({ db, bus: createEventBus(), log: createLogger().child('s') });
+    settings.register('system', SYSTEM_SETTINGS);
+    await settings.load();
+    let audio;
+    let unlocked = false;
+    const sound = createSound({
+      settings,
+      ready: () => unlocked,
+      AudioContextImpl: class extends FakeAudioContext {
+        constructor() {
+          super();
+          audio = this;
+        }
+      },
+    });
+    sound.play('notification', 'notifications');
+    expect(audio).toBeUndefined();
+    unlocked = true;
+    sound.play('notification', 'notifications');
+    expect(audio.oscillators).toHaveLength(2);
+  });
 });

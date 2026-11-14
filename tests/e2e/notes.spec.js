@@ -1,7 +1,7 @@
 // Nexus Notes e2e: create notes, live preview + KaTeX math, wiki-links + backlinks,
 // search/filter, and per-note password encryption.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -10,7 +10,7 @@ const editorContent = (/** @type {Page} */ page) => notesWin(page).locator('.nx-
 const previewPane = (/** @type {Page} */ page) => notesWin(page).locator('.nx-notes-preview-pane');
 
 async function openNotes(/** @type {Page} */ page) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill('Nexus Notes');
   const opt = page
     .locator('.nx-palette-list')
@@ -37,8 +37,10 @@ test.describe('nexus notes', () => {
     // Create a new note and write Markdown with math and a wiki link.
     await notesWin(page).getByRole('button', { name: 'New note' }).click();
     const titleInput = notesWin(page).locator('.nx-notes-title-input');
+    await expect(titleInput).toHaveValue('Untitled note');
     await titleInput.fill('Quantum Physics');
     await titleInput.press('Enter');
+    await expect(previewPane(page).locator('h1')).toHaveText('Quantum Physics');
 
     await editorContent(page).click();
     await page.keyboard.type('Energy $E = \\hbar \\omega$ and see [[Experiment Log]].');

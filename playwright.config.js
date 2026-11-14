@@ -36,5 +36,25 @@ export default defineConfig({
       testMatch: /lite\.spec\.js/,
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'web-firefox',
+      testIgnore: /lite\.spec\.js/,
+      use: { ...devices['Desktop Firefox'], baseURL },
+    },
+    {
+      name: 'lite-firefox',
+      testMatch: /lite\.spec\.js/,
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'web-webkit',
+      testIgnore: /lite\.spec\.js/,
+      use: { ...devices['Desktop Safari'], baseURL },
+    },
+    {
+      name: 'lite-webkit',
+      testMatch: /lite\.spec\.js/,
+      use: { ...devices['Desktop Safari'] },
+    },
   ],
 });

@@ -1,7 +1,7 @@
 // System Monitor main flows: processes with End task, live performance numbers, the log with
 // filters and export, and the network state.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -10,7 +10,7 @@ const tab = (/** @type {Page} */ page, /** @type {string} */ id) =>
   monitor(page).locator(`[data-testid="monitor-tab"][data-tab="${id}"]`);
 
 async function palette(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill(query);
   const opt = page.locator('.nx-palette-list').getByRole('option', { name: option }).first();
   await expect(opt).toBeVisible();

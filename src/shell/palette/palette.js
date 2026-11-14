@@ -461,6 +461,9 @@ export function createPalette(shell) {
     render();
   }
 
+  let lastPointerX = -1;
+  let lastPointerY = -1;
+
   function render() {
     if (!items.length) {
       replace(
@@ -484,7 +487,12 @@ export function createPalette(shell) {
             class: `nx-palette-item${i === active ? ' is-active' : ''}`,
             role: 'option',
             'aria-selected': String(i === active),
-            onpointermove: () => i !== active && setActive(i),
+            onpointermove: (/** @type {PointerEvent} */ e) => {
+              if (e.clientX === lastPointerX && e.clientY === lastPointerY) return;
+              lastPointerX = e.clientX;
+              lastPointerY = e.clientY;
+              if (i !== active) setActive(i);
+            },
             onclick: () => item.activate(),
           },
           h('span', { class: 'nx-palette-icon' }, icon(item.icon ?? 'arrow-right', { size: 18 })),

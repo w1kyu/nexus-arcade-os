@@ -140,7 +140,8 @@ export function createWallpaper(shell) {
   sys.settings.onChange('system', '*', (_v, key) => {
     if (/^(wallpaper|slideshow|batterySaver)/.test(key)) void apply();
   });
-  void apply();
+  const scheduleApply = globalThis.requestAnimationFrame ?? ((fn) => setTimeout(fn, 0));
+  scheduleApply(() => void apply());
 
   return {
     apply,

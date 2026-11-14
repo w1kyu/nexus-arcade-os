@@ -1,7 +1,7 @@
 // File Explorer main flows: create, upload, preview, views, copy/paste, rename, trash/restore,
 // undo, tags and search; the location survives a reload.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -14,7 +14,7 @@ const status = (/** @type {Page} */ page) => files(page).getByTestId('files-stat
 
 async function openExplorer(/** @type {Page} */ page) {
   await page.keyboard.press('Escape'); // leave the Welcome window
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.keyboard.type('File Explorer');
   await expect(page.getByRole('option', { name: /File Explorer/ }).first()).toBeVisible();
   await page.keyboard.press('Enter');
@@ -50,7 +50,7 @@ test.describe('file explorer', () => {
     await files(page)
       .getByTestId('files-view')
       .click({ position: { x: 300, y: 200 } });
-    await page.keyboard.press('Control+Shift+N');
+    await pressMod(page, 'Shift+N');
     await expect(files(page).locator('.nx-files-rename')).toBeFocused();
     await page.keyboard.type('Work');
     await page.keyboard.press('Enter');
@@ -94,13 +94,13 @@ test.describe('file explorer', () => {
 
     // Copy notes.md into Work with the keyboard.
     await item(page, 'notes.md').click();
-    await page.keyboard.press('Control+c');
+    await pressMod(page, 'c');
     await item(page, 'Work').dblclick();
     await expect(files(page).getByTestId('files-crumbs')).toContainText('Work');
     await files(page)
       .getByTestId('files-view')
       .click({ position: { x: 300, y: 200 } });
-    await page.keyboard.press('Control+v');
+    await pressMod(page, 'v');
     await expect(item(page, 'notes.md')).toBeVisible();
 
     // Rename (F2), then undo it.
@@ -110,7 +110,7 @@ test.describe('file explorer', () => {
     await page.keyboard.type('plan.md');
     await page.keyboard.press('Enter');
     await expect(item(page, 'plan.md')).toBeVisible();
-    await page.keyboard.press('Control+z');
+    await pressMod(page, 'z');
     await expect(item(page, 'notes.md')).toBeVisible();
 
     // Back, then trash app.js; it shows in the trash with its original location; restore it.

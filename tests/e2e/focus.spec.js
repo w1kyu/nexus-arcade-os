@@ -1,13 +1,13 @@
 // @ts-check
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
 const focusWin = (/** @type {Page} */ page) => page.locator('.nx-windows .nx-window[data-app="nexus.focus"]');
 
 async function openFocus(/** @type {Page} */ page) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill('Focus');
   const opt = page
     .locator('.nx-palette-list')
@@ -50,7 +50,7 @@ test.describe('focus', () => {
       .click();
 
     // Open App Center while Focus work session is active -> distraction blocker overlay appears
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await page.keyboard.type('App Center');
     await expect(page.getByRole('option', { name: /^App Center/ }).first()).toBeVisible();
     await page.keyboard.press('Enter');

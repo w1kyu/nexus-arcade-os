@@ -1,12 +1,12 @@
 // Automated WCAG 2.0 / 2.1 AA accessibility checks via @axe-core/playwright across shell & core apps.
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
 async function openAppViaPalette(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   const input = page.locator('.nx-palette-input');
   await expect(input).toBeVisible();
   await input.focus();
@@ -57,7 +57,7 @@ test.describe('accessibility (axe-core WCAG AA)', () => {
     await closeTop();
 
     // 2. Settings + Theme Editor + Backup tabs
-    await page.keyboard.press('Control+Comma');
+    await pressMod(page, 'Comma');
     const settingsWin = page.locator('.nx-windows [data-testid="settings"]');
     await expect(settingsWin).toBeVisible();
     await expectNoSeriousViolations(page, 'settings general');

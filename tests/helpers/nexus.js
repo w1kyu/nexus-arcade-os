@@ -60,3 +60,23 @@ export async function waitForDesktop(page) {
   await expect(page.locator('html')).toHaveAttribute('data-kernel', 'ready', { timeout: 15_000 });
   await expect(page.locator('.nx-boot')).toHaveCount(0, { timeout: 10_000 });
 }
+
+/**
+ * Modifier Nexus maps `Mod+...` to in this browser (`Meta` on Apple platforms, `Control` elsewhere).
+ * @param {import('@playwright/test').Page} page
+ */
+export async function modKey(page) {
+  const apple = await page.evaluate(() =>
+    /mac|iphone|ipad|ipod/i.test(/** @type {any} */ (navigator).userAgentData?.platform ?? navigator.platform ?? ''),
+  );
+  return apple ? 'Meta' : 'Control';
+}
+
+/**
+ * Presses a `Mod+<key>` shortcut matching the running browser's platform (`Control` or `Meta`).
+ * @param {import('@playwright/test').Page} page
+ * @param {string} key
+ */
+export async function pressMod(page, key) {
+  await page.keyboard.press(`${await modKey(page)}+${key}`);
+}

@@ -41,6 +41,7 @@ export function createCommands({ bus, log, context, localize, sourceEnabled = ()
   const changed = () => bus.emit('commands:changed', {});
   /** @param {Command} c */
   const usable = (c) => !c.source || sourceEnabled(c.source);
+  const collator = new Intl.Collator();
 
   return {
     /**
@@ -83,7 +84,7 @@ export function createCommands({ bus, log, context, localize, sourceEnabled = ()
           title: localize(c.title),
           category: c.category === undefined ? undefined : localize(c.category),
         }))
-        .sort((a, b) => (a.category ?? '').localeCompare(b.category ?? '') || a.title.localeCompare(b.title));
+        .sort((a, b) => collator.compare(a.category ?? '', b.category ?? '') || collator.compare(a.title, b.title));
     },
 
     /**

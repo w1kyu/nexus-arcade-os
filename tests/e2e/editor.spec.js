@@ -1,7 +1,7 @@
 // Nexus Edit main flows: write and save a new file, unsaved-changes protection (incl. a reload),
 // highlighting, find, go to line, and opening files from the File Explorer (double-click, drag).
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 
@@ -10,7 +10,7 @@ const content = (/** @type {Page} */ page) => editor(page).locator('.nx-edit-pan
 const activeTab = (/** @type {Page} */ page) => editor(page).locator('.nx-edit-tab.is-active');
 
 async function palette(/** @type {Page} */ page, /** @type {string} */ query, /** @type {RegExp} */ option) {
-  await page.keyboard.press('Control+k');
+  await pressMod(page, 'k');
   await page.locator('.nx-palette-input').fill(query);
   const opt = page.locator('.nx-palette-list').getByRole('option', { name: option }).first();
   await expect(opt).toBeVisible();
@@ -48,7 +48,7 @@ test.describe('nexus edit', () => {
     await content(page).click();
     await page.keyboard.type('const answer = 42;\n// done');
     await expect(activeTab(page)).toHaveClass(/is-dirty/);
-    await page.keyboard.press('Control+s');
+    await pressMod(page, 's');
     const dialog = page.getByRole('dialog', { name: 'Save as' });
     await dialog.getByLabel('File name').fill('answer.js');
     await dialog.getByRole('button', { name: 'Save' }).click();
@@ -61,10 +61,10 @@ test.describe('nexus edit', () => {
     await expect(editor(page).getByTestId('edit-position')).toContainText('Ln 2');
 
     // Find and go to line open their panels.
-    await page.keyboard.press('ControlOrMeta+f');
+    await pressMod(page, 'f');
     await expect(editor(page).locator('.cm-search')).toBeVisible();
     await page.keyboard.press('Escape');
-    await page.keyboard.press('Control+g');
+    await pressMod(page, 'g');
     await expect(editor(page).locator('.cm-goto-line')).toBeVisible();
     await page.keyboard.press('Escape');
 

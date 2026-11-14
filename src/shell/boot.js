@@ -40,12 +40,13 @@ export function boot(root) {
     safeMode: t.bootSafeMode,
     steps: t.bootSteps,
   });
+  const yieldMain = () => new Promise((r) => setTimeout(r, 0));
   const system = startShell(root, {
     onProgress: bootScreen.progress,
     onLog: bootScreen.log,
     beforeLogin: bootScreen.hide,
   })
-    .then((shell) => {
+    .then(async (shell) => {
       const sys = shell.system();
       // Swap the kernel's native fallbacks for the system dialogs (same object, so ctx.dialog and
       // the intents picker pick them up).
@@ -57,6 +58,7 @@ export function boot(root) {
       shell.ui.widgets = createWidgetHost(shell);
       shell.ui.topbar = createTopBar(shell);
       shell.ui.dock = createDock(shell);
+      await yieldMain();
       registerShellCommands(shell);
       shell.ui.palette = createPalette(shell);
       shell.ui.launcher = createLauncher(shell);
@@ -66,6 +68,7 @@ export function boot(root) {
       shell.ui.switcher = createSwitcher(shell);
       shell.ui.lock = createLockScreen(shell);
       shell.ui.shortcuts = createShortcutsOverlay(shell);
+      await yieldMain();
       shell.ui.mobile = createMobileShell(shell);
       shell.ui.announcer = createAnnouncer(shell);
       shell.ui.tour = createTour(shell);
@@ -88,6 +91,7 @@ export function boot(root) {
       sys.settings.onChange('system', 'fastBoot', (on) => rememberFastBoot(!!on));
       void bootScreen.done();
       shell.wm.relayout();
+      await yieldMain();
       if (!shell.wm.list().length && !shell.session.data.windows.length) void shell.launch('nexus.welcome');
       void shell.ui.whatsNew.checkOnBoot().catch(() => {});
       const tips = createTipsService({

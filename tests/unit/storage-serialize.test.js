@@ -59,4 +59,32 @@ describe('serialize', () => {
     const bytes = new Uint8Array(80_000).map((_, i) => i % 256);
     expect(base64ToBytes(bytesToBase64(bytes))).toEqual(bytes);
   });
+
+  it('stores binary payloads through external BinaryHooks including unaligned views', async () => {
+    const store = new Map();
+    let seq = 0;
+    const put = (bytes) => {
+      const ref = String(++seq);
+      // Wrap inside a larger offset buffer to verify alignment-safe decoding.
+      const padded = new Uint8Array(bytes.byteLength + 1);
+      padded.set(bytes, 1);
+      store.set(ref, padded.subarray(1));
+      return ref;
+    };
+    const get = (ref) => store.get(ref);
+    const encoded = await encode(
+      {
+        bytes: new Uint8Array([1, 2, 3]),
+        floats: new Float32Array([1.5, -2.25]),
+        buffer: new Uint8Array([9, 8]).buffer,
+      },
+      { put },
+    );
+    expect(store.size).toBe(3);
+    const out = decode(JSON.parse(JSON.stringify(encoded)), { get });
+    expect(out.bytes).toEqual(new Uint8Array([1, 2, 3]));
+    expect(out.floats).toBeInstanceOf(Float32Array);
+    expect([...out.floats]).toEqual([1.5, -2.25]);
+    expect([...new Uint8Array(out.buffer)]).toEqual([9, 8]);
+  });
 });

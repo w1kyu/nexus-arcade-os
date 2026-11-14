@@ -1,7 +1,7 @@
 // Phase 2 "done when": the shell works entirely with the keyboard, with the mouse and with touch,
 // and everything is restored after a reload.
 import { expect, test } from '@playwright/test';
-import { collectErrors, startNexus, waitForDesktop } from '../helpers/nexus.js';
+import { collectErrors, pressMod, startNexus, waitForDesktop } from '../helpers/nexus.js';
 
 const windows = (/** @type {import('@playwright/test').Page} */ page) => page.locator('.nx-windows .nx-window');
 const appBar = (/** @type {import('@playwright/test').Page} */ page) =>
@@ -25,37 +25,37 @@ test.describe('desktop', () => {
     await expect(welcome(page)).toBeFocused();
 
     // Snap the Welcome window to the left half.
-    await page.keyboard.press('Control+ArrowLeft');
+    await pressMod(page, 'ArrowLeft');
     await expect(windows(page).first()).toHaveClass(/is-snapped/);
 
     // A second window from the command palette, snapped right.
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await expect(page.locator('.nx-palette-input')).toBeFocused();
     await page.keyboard.type('Welcome');
     await expect(page.getByRole('option', { name: /Welcome/ }).first()).toBeVisible();
     await page.keyboard.press('Enter');
     await expect(windows(page)).toHaveCount(2);
-    await page.keyboard.press('Control+ArrowRight');
+    await pressMod(page, 'ArrowRight');
     await expect(windows(page).nth(1)).toHaveClass(/is-snapped/);
 
     // Move it to workspace 2 (the view follows the window).
-    await page.keyboard.press('Control+Shift+ArrowRight');
+    await pressMod(page, 'Shift+ArrowRight');
     await expect(page.locator('.nx-workspace.is-current')).toHaveAttribute('data-index', '1');
     await expect(page.locator('.nx-workspace.is-current .nx-window')).toHaveCount(1);
 
     // Launcher and shortcut overlay open and close with the keyboard.
-    await page.keyboard.press('Control+Space');
+    await pressMod(page, 'Space');
     await expect(page.locator('.nx-launcher-backdrop')).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.locator('.nx-launcher-backdrop')).toBeHidden();
-    await page.keyboard.press('Control+/');
+    await pressMod(page, '/');
     await expect(page.getByRole('dialog', { name: 'Keyboard shortcuts' })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog', { name: 'Keyboard shortcuts' })).toBeHidden();
 
     // Change the theme through the palette.
     const theme = await page.locator('html').getAttribute('data-theme');
-    await page.keyboard.press('Control+k');
+    await pressMod(page, 'k');
     await page.keyboard.type('>Next theme');
     await expect(page.getByRole('option', { name: /Next theme/ })).toBeVisible();
     await page.keyboard.press('Enter');

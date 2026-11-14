@@ -1402,7 +1402,7 @@ export async function mount(container, ctx, args) {
     if (e.altKey && key === 'ArrowRight') return (handled(), forward());
     if ((e.altKey && key === 'ArrowUp') || (key === 'Backspace' && !mod)) return (handled(), up());
     if (e.altKey && key === 'Enter') return (handled(), void showProperties());
-    if (e.altKey && lower === 'p') return (handled(), togglePreview());
+    if (e.altKey && (lower === 'p' || e.code === 'KeyP')) return (handled(), togglePreview());
     if (key === 'F5' || (mod && lower === 'r')) return (handled(), void load());
     if (key === 'F4') return (handled(), editPath());
     if (mod && lower === 'f') return (handled(), searchInput.focus());

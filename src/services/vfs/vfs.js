@@ -3,7 +3,7 @@
 //
 // - 'vfs-nodes' holds metadata (one record per file/folder, unique `path` index, `parent`
 //   index for listing, multi-entry `tags` index); 'vfs-content' holds file content (a string
-//   for text, a Blob for binary) keyed by node id. Metadata listings never load content.
+//   for text, a Uint8Array for binary) keyed by node id. Metadata listings never load content.
 // - Every multi-step change (rename/move of a folder with all descendants, recursive copy,
 //   trash, restore) is one transaction: it happens completely or not at all.
 // - Trashed items move under '/.trash' and remember where they came from.
@@ -139,13 +139,21 @@ export function createVfs({ db, bus, user, now = Date.now, newId = () => crypto.
     bus.emit('vfs:changed', { type, path: node.path, oldPath, nodeType: node.type, id: node.id });
   }
 
-  /** @param {FileData} data @returns {{ content: string | Blob, size: number, text: boolean }} */
-  function toContent(data) {
+  /** @param {FileData} data @returns {Promise<{ content: string | Uint8Array, size: number, text: boolean }>} */
+  async function toContent(data) {
     if (typeof data === 'string') return { content: data, size: new TextEncoder().encode(data).byteLength, text: true };
-    if (data instanceof Blob) return { content: data, size: data.size, text: false };
-    if (data instanceof ArrayBuffer || ArrayBuffer.isView(data)) {
-      const blob = new Blob([/** @type {BlobPart} */ (data)]);
-      return { content: blob, size: blob.size, text: false };
+    if (data instanceof Blob) {
+      const bytes = new Uint8Array(await data.arrayBuffer());
+      return { content: bytes, size: bytes.byteLength, text: false };
+    }
+    if (data instanceof ArrayBuffer) {
+      const bytes = new Uint8Array(data);
+      return { content: bytes, size: bytes.byteLength, text: false };
+    }
+    if (ArrayBuffer.isView(data)) {
+      const bytes = new Uint8Array(data.byteLength);
+      bytes.set(new Uint8Array(data.buffer, data.byteOffset, data.byteLength));
+      return { content: bytes, size: bytes.byteLength, text: false };
     }
     throw new VfsError('EINVAL', 'File data must be a string, Blob, ArrayBuffer or typed array');
   }
@@ -349,7 +357,7 @@ export function createVfs({ db, bus, user, now = Date.now, newId = () => crypto.
     async writeFile(path, data, { mime, createParents = false, tags, meta, system = false } = {}) {
       const p = abs(path);
       if (p === '/') throw new VfsError('EISDIR', 'Is a folder', p);
-      const { content, size } = toContent(data);
+      const { content, size } = await toContent(data);
       const result = await write(async (tx) => {
         /** @type {VfsNode[]} */
         let createdFolders = [];
@@ -401,9 +409,19 @@ export function createVfs({ db, bus, user, now = Date.now, newId = () => crypto.
       });
       const value = content ?? '';
       const mode = as ?? (typeof value === 'string' || isTextMime(node.mime) ? 'text' : 'blob');
-      if (mode === 'text') return typeof value === 'string' ? value : value.text();
-      const blob = typeof value === 'string' ? new Blob([value], { type: node.mime }) : value;
-      return mode === 'blob' ? blob : blob.arrayBuffer();
+      if (mode === 'text') {
+        if (typeof value === 'string') return value;
+        if (value instanceof Blob) return value.text();
+        return new TextDecoder().decode(value);
+      }
+      const blob = value instanceof Blob ? value : new Blob([/** @type {BlobPart} */ (value)], { type: node.mime });
+      if (mode === 'blob') return blob;
+      if (typeof value === 'string') return new TextEncoder().encode(value).buffer;
+      if (value instanceof ArrayBuffer) return value;
+      if (ArrayBuffer.isView(value)) {
+        return /** @type {ArrayBuffer} */ (value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength));
+      }
+      return blob.arrayBuffer();
     },
 
     /** @param {string} path @returns {Promise<string>} */

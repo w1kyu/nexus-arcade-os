@@ -111,6 +111,45 @@ export class ParticleSystem {
   }
 
   /**
+   * Convenience burst helper supporting `(x, y, options)` and `(x, y, color, count)`.
+   * @param {number} x
+   * @param {number} y
+   * @param {string | string[] | Record<string, any>} [optsOrColor]
+   * @param {number} [countArg]
+   */
+  burst(x, y, optsOrColor = {}, countArg) {
+    if (typeof optsOrColor === 'string' || Array.isArray(optsOrColor)) {
+      this.emit({ x, y, color: optsOrColor, count: countArg ?? 12 });
+      return;
+    }
+    const opts = optsOrColor ?? {};
+    const speed =
+      opts.speed ??
+      (opts.speedMin != null && opts.speedMax != null
+        ? (opts.speedMin + opts.speedMax) / 2
+        : (opts.speedMax ?? opts.speedMin));
+    const life =
+      opts.life ??
+      (opts.lifeMin != null && opts.lifeMax != null
+        ? (opts.lifeMin + opts.lifeMax) / 2
+        : (opts.lifeMax ?? opts.lifeMin));
+    this.emit({
+      x,
+      y,
+      count: opts.count ?? countArg ?? 20,
+      color: opts.color,
+      speed,
+      life,
+      spread: opts.spread,
+      angle: opts.angle,
+      sizeStart: opts.sizeStart ?? opts.size,
+      sizeEnd: opts.sizeEnd,
+      gravity: opts.gravity,
+      drag: opts.drag,
+    });
+  }
+
+  /**
    * Updates all active particles.
    * @param {number} dt Delta time in seconds
    */

@@ -407,8 +407,10 @@ export async function mount(container, ctx) {
     barFill.style.width = `${Math.min(100, Math.round((xpCurrent / xpNeeded) * 100))}%`;
   }
 
+  let renderSeq = 0;
+
   async function renderGameGrid() {
-    gridEl.innerHTML = '';
+    const seq = ++renderSeq;
 
     const filtered = ARCADE_GAMES.filter((g) => {
       if (activeFilter === 'favorites') {
@@ -422,8 +424,20 @@ export async function mount(container, ctx) {
       return true;
     });
 
+    const statsList = await Promise.all(
+      filtered.map(async (g) => {
+        const scoresService = new GameScoreService(g.id, ctx);
+        const lb = await scoresService.getLeaderboard('classic');
+        return { bestScore: lb.length > 0 ? lb[0].score : 0, played: lb.length };
+      }),
+    );
+    if (seq !== renderSeq) return;
+
+    const frag = document.createDocumentFragment();
+
     for (let i = 0; i < filtered.length; i++) {
       const g = filtered[i];
+      const { bestScore, played } = statsList[i];
       const card = h('div', { class: `nx-game-card ${i === selectedCardIndex ? 'gamepad-selected' : ''}` });
 
       // Cover Art
@@ -466,13 +480,9 @@ export async function mount(container, ctx) {
 
       // Stats
       const statsRow = h('div', { class: 'nx-card-stats' });
-      const scoresService = new GameScoreService(g.id, ctx);
-      const lb = await scoresService.getLeaderboard('classic');
-      const bestScore = lb.length > 0 ? lb[0].score : 0;
-
       statsRow.innerHTML = `
         <span>${t('stats.highScore')}: <strong>${bestScore}</strong></span>
-        <span>${t('stats.played')}: <strong>${lb.length}</strong></span>
+        <span>${t('stats.played')}: <strong>${played}</strong></span>
       `;
 
       // Play button
@@ -481,8 +491,10 @@ export async function mount(container, ctx) {
 
       body.append(headerRow, desc, statsRow, playBtn);
       card.append(cover, body);
-      gridEl.append(card);
+      frag.append(card);
     }
+
+    gridEl.replaceChildren(frag);
   }
 
   /**

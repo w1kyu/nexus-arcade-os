@@ -18,7 +18,7 @@ test('nexus-lite.html runs the desktop from file:// with no console errors', asy
   await expect(page.locator('html')).toHaveAttribute('data-storage', 'indexeddb');
   await expect(page.locator('html')).toHaveAttribute('data-search', 'worker');
 
-  // Fully self-contained: the only file loaded is the HTML itself.
-  expect(requests).toEqual([liteUrl]);
+  // Fully self-contained: no secondary file/network requests (Firefox does not emit a request event for top-level file:// navigation).
+  expect(requests.filter((u) => u !== liteUrl)).toEqual([]);
   expect(errors, errors.join('\n')).toEqual([]);
 });

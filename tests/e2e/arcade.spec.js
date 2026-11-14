@@ -19,6 +19,11 @@ async function openAppFromPalette(/** @type {Page} */ page, name, appId) {
   return win;
 }
 
+async function closeWindow(/** @type {import('@playwright/test').Locator} */ win) {
+  await win.locator('[data-action="close"]').first().click();
+  await expect(win).toBeHidden();
+}
+
 test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
   test.skip(({ isMobile }) => isMobile, 'keyboard and window flows');
 
@@ -39,6 +44,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await expect(hubWin.locator('.nx-game-card')).toHaveCount(1);
     await expect(hubWin.locator('.nx-card-name')).toContainText('Snake Evolution');
     await search.fill('');
+    await closeWindow(hubWin);
 
     // 2. Open 2048 Cyber from Palette and test sliding tiles
     const puzzleWin = await openAppFromPalette(page, '2048', 'nexus.2048');
@@ -52,6 +58,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const undoBtn = puzzleWin.locator('button', { hasText: 'Undo' });
     await expect(undoBtn).toBeVisible();
     await undoBtn.click();
+    await closeWindow(puzzleWin);
 
     // 3. Open Memory Master and interact with cards
     const memWin = await openAppFromPalette(page, 'Memory Master', 'nexus.memory');
@@ -62,6 +69,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const firstCard = memWin.locator('.nx-memory-card').first();
     await firstCard.click();
     await expect(firstCard).toHaveClass(/flipped/);
+    await closeWindow(memWin);
 
     // 4. Open Snake Evolution
     const snakeWin = await openAppFromPalette(page, 'Snake Evolution', 'nexus.snake');
@@ -69,6 +77,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const playSnakeBtn = snakeWin.locator('.nx-snake-play-btn');
     await playSnakeBtn.click();
     await expect(snakeWin.locator('.nx-snake-canvas')).toBeVisible();
+    await closeWindow(snakeWin);
 
     // 5. Open Breakout Nexus
     const breakoutWin = await openAppFromPalette(page, 'Breakout Nexus', 'nexus.breakout');
@@ -76,11 +85,13 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const campaignBtn = breakoutWin.locator('button', { hasText: /CAMPAIGN/i });
     await campaignBtn.click();
     await expect(breakoutWin.locator('.nx-breakout-canvas')).toBeVisible();
+    await closeWindow(breakoutWin);
 
     // 6. Open Reaction Trainer
     const reactionWin = await openAppFromPalette(page, 'Reaction Trainer', 'nexus.reaction');
     await expect(reactionWin.locator('.nx-reaction-app')).toBeVisible();
     await expect(reactionWin.locator('.nx-reaction-card').first()).toBeVisible();
+    await closeWindow(reactionWin);
 
     expect(errors).toEqual([]);
   });
@@ -100,6 +111,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await expect(blockfallWin.locator('.nx-blockfall-canvas')).toBeVisible();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Space');
+    await closeWindow(blockfallWin);
 
     // 2. Minesweeper
     const minesWin = await openAppFromPalette(page, 'Minesweeper', 'nexus.minesweeper');
@@ -107,6 +119,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const cell = minesWin.locator('.nx-minesweeper-cell[data-row="4"][data-col="4"]');
     await cell.click();
     await expect(cell).toHaveClass(/revealed/);
+    await closeWindow(minesWin);
 
     // 3. Void Drifter
     const drifterWin = await openAppFromPalette(page, 'Void Drifter', 'nexus.drifter');
@@ -114,6 +127,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await drifterWin.locator('.nx-drifter-play-btn').click();
     await expect(drifterWin.locator('.nx-drifter-canvas')).toBeVisible();
     await page.keyboard.press('ArrowUp');
+    await closeWindow(drifterWin);
 
     // 4. Sudoku
     const sudokuWin = await openAppFromPalette(page, 'Sudoku', 'nexus.sudoku');
@@ -122,6 +136,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const sCell = sudokuWin.locator('.nx-sudoku-cell[data-row="0"][data-col="0"]');
     await sCell.click();
     await expect(sCell).toHaveClass(/selected/);
+    await closeWindow(sudokuWin);
 
     // 5. Typing Trainer
     const typingWin = await openAppFromPalette(page, 'Typing Trainer', 'nexus.typing');
@@ -129,6 +144,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await expect(typingWin.locator('.nx-typing-keyboard')).toBeVisible();
     await typingWin.locator('.nx-typing-text-wrap').click();
     await page.keyboard.type('a');
+    await closeWindow(typingWin);
 
     // 6. Neon Pong
     const pongWin = await openAppFromPalette(page, 'Neon Pong', 'nexus.pong');
@@ -136,6 +152,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await pongWin.locator('.nx-pong-play-btn').click();
     await expect(pongWin.locator('.nx-pong-canvas')).toBeVisible();
     await page.keyboard.press('KeyW');
+    await closeWindow(pongWin);
 
     expect(errors).toEqual([]);
   });
@@ -170,56 +187,67 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // Close lobby modal
     await lobbyModal.locator('.nx-lobby-close-btn').click();
     await expect(lobbyModal).not.toBeVisible();
+    await closeWindow(hubWin);
 
     // 2. Solitaire Collection
     const solWin = await openAppFromPalette(page, 'Solitaire Collection', 'nexus.solitaire');
     await expect(solWin.locator('.nx-solitaire')).toBeVisible();
     await expect(solWin.locator('.nx-sol-table')).toBeVisible();
+    await closeWindow(solWin);
 
     // 3. Nexus Chess
     const chessWin = await openAppFromPalette(page, 'Nexus Chess', 'nexus.chess');
     await expect(chessWin.locator('.nx-chess')).toBeVisible();
     await expect(chessWin.locator('.nx-chess-board')).toBeVisible();
+    await closeWindow(chessWin);
 
     // 4. Connect Four
     const c4Win = await openAppFromPalette(page, 'Connect Four', 'nexus.connectfour');
     await expect(c4Win.locator('.nx-c4')).toBeVisible();
     await expect(c4Win.locator('.nx-c4-col').first()).toBeVisible();
+    await closeWindow(c4Win);
 
     // 5. Checkers
     const ckWin = await openAppFromPalette(page, 'Checkers', 'nexus.checkers');
     await expect(ckWin.locator('.nx-ck')).toBeVisible();
     await expect(ckWin.locator('.nx-ck-board')).toBeVisible();
+    await closeWindow(ckWin);
 
     // 6. Battleships
     const bsWin = await openAppFromPalette(page, 'Battleships', 'nexus.battleships');
     await expect(bsWin.locator('.nx-battleships')).toBeVisible();
     await expect(bsWin.locator('.nx-bs-grid.player')).toBeVisible();
+    await closeWindow(bsWin);
 
     // 7. Hexword
     const hwWin = await openAppFromPalette(page, 'Hexword', 'nexus.hexword');
     await expect(hwWin.locator('.nx-hexword')).toBeVisible();
     await expect(hwWin.locator('.nx-hw-grid')).toBeVisible();
+    await closeWindow(hwWin);
 
     // 8. Block Pusher (Sokoban)
     const skWin = await openAppFromPalette(page, 'Block Pusher', 'nexus.sokoban');
     await expect(skWin.locator('.nx-sokoban')).toBeVisible();
     await expect(skWin.locator('.nx-sk-stage')).toBeVisible();
+    await closeWindow(skWin);
 
     // 9. Nonogram
     const ngWin = await openAppFromPalette(page, 'Nonogram', 'nexus.nonogram');
     await expect(ngWin.locator('.nx-nonogram')).toBeVisible();
     await expect(ngWin.locator('.nx-ng-board')).toBeVisible();
+    await closeWindow(ngWin);
 
     // 10. Grid Invaders
     const invWin = await openAppFromPalette(page, 'Grid Invaders', 'nexus.invaders');
     await expect(invWin.locator('.nx-invaders')).toBeVisible();
     await expect(invWin.locator('.nx-invaders-canvas')).toBeVisible();
+    await closeWindow(invWin);
 
     // 11. Neon Glide
     const glideWin = await openAppFromPalette(page, 'Neon Glide', 'nexus.glide');
     await expect(glideWin.locator('.nx-glide')).toBeVisible();
     await expect(glideWin.locator('.nx-glide-canvas')).toBeVisible();
+    await closeWindow(glideWin);
 
     expect(errors).toEqual([]);
   });
@@ -239,51 +267,61 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     await expect(hubWin.locator('.nx-game-card')).toHaveCount(1);
     await expect(hubWin.locator('.nx-card-name')).toContainText('Grid Defense');
     await search.fill('');
+    await closeWindow(hubWin);
 
     // 2. Grid Defense
     const gdWin = await openAppFromPalette(page, 'Grid Defense', 'nexus.griddefense');
     await expect(gdWin.locator('.nx-gd')).toBeVisible();
     await expect(gdWin.locator('canvas')).toBeVisible();
+    await closeWindow(gdWin);
 
     // 3. Pixel Runner
     const runnerWin = await openAppFromPalette(page, 'Pixel Runner', 'nexus.runner');
     await expect(runnerWin.locator('.nx-runner')).toBeVisible();
     await expect(runnerWin.locator('.nx-runner-canvas')).toBeVisible();
+    await closeWindow(runnerWin);
 
     // 4. Neon Racer
     const racerWin = await openAppFromPalette(page, 'Neon Racer', 'nexus.racer');
     await expect(racerWin.locator('.nx-racer')).toBeVisible();
     await expect(racerWin.locator('.nx-racer-canvas')).toBeVisible();
+    await closeWindow(racerWin);
 
     // 5. Ultimate Tic-Tac-Toe
     const utttWin = await openAppFromPalette(page, 'Ultimate Tic-Tac-Toe', 'nexus.uttt');
     await expect(utttWin.locator('.nx-uttt')).toBeVisible();
     await expect(utttWin.locator('.nx-uttt-macro-grid')).toBeVisible();
+    await closeWindow(utttWin);
 
     // 6. Mahjong Solitaire
     const mahjongWin = await openAppFromPalette(page, 'Mahjong Solitaire', 'nexus.mahjong');
     await expect(mahjongWin.locator('.nx-mahjong')).toBeVisible();
     await expect(mahjongWin.locator('.nx-mahjong-board')).toBeVisible();
+    await closeWindow(mahjongWin);
 
     // 7. Match-3 Puzzle
     const match3Win = await openAppFromPalette(page, 'Match-3 Puzzle', 'nexus.match3');
     await expect(match3Win.locator('.nx-match3')).toBeVisible();
     await expect(match3Win.locator('.nx-match3-grid')).toBeVisible();
+    await closeWindow(match3Win);
 
     // 8. Bubble Shooter
     const bubblesWin = await openAppFromPalette(page, 'Bubble Shooter', 'nexus.bubbles');
     await expect(bubblesWin.locator('.nx-bubbles')).toBeVisible();
     await expect(bubblesWin.locator('.nx-bubbles-canvas')).toBeVisible();
+    await closeWindow(bubblesWin);
 
     // 9. Game of Life Sandbox
     const lifeWin = await openAppFromPalette(page, 'Game of Life', 'nexus.life');
     await expect(lifeWin.locator('.nx-life')).toBeVisible();
     await expect(lifeWin.locator('.nx-life-canvas')).toBeVisible();
+    await closeWindow(lifeWin);
 
     // 10. Quiz Arena
     const quizWin = await openAppFromPalette(page, 'Quiz Arena', 'nexus.quiz');
     await expect(quizWin.locator('.nx-quiz')).toBeVisible();
     await expect(quizWin.locator('.nx-quiz-hud')).toBeVisible();
+    await closeWindow(quizWin);
 
     expect(errors).toEqual([]);
   });

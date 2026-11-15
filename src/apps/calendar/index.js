@@ -1103,7 +1103,16 @@ export async function mount(container, ctx, args = {}) {
       gutterEl,
       ...dayColumns,
     );
-    const scrollEl = h('div', { class: 'nx-cal-timegrid-scroll' }, gridBodyEl);
+    const scrollEl = h(
+      'div',
+      {
+        class: 'nx-cal-timegrid-scroll',
+        tabindex: '0',
+        role: 'region',
+        'aria-label': ctx.i18n.t(state.view === 'day' ? 'viewDay' : 'viewWeek'),
+      },
+      gridBodyEl,
+    );
     queueMicrotask(() => {
       scrollEl.scrollTop = 8 * 48; // Scroll to 08:00 by default
     });

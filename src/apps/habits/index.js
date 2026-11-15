@@ -240,10 +240,12 @@ export async function mount(root, ctx) {
               }),
               button({
                 icon: 'edit',
+                title: ctx.i18n.t('editHabit'),
                 onClick: () => showHabitModal(habit),
               }),
               button({
                 icon: 'trash',
+                title: ctx.i18n.t('deleteHabit'),
                 onClick: async () => {
                   if (confirm(ctx.i18n.t('confirmDelete'))) {
                     await habitsCol.delete(habit.id);

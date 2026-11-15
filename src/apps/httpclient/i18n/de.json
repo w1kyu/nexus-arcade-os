@@ -17,7 +17,8 @@
     "headers": "Header",
     "body": "Body",
     "auth": "Auth",
-    "snippets": "Code-Snippets"
+    "snippets": "Code-Snippets",
+    "method": "HTTP-Methode"
   },
   "response": {
     "status": "Status",

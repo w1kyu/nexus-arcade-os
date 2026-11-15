@@ -189,7 +189,7 @@ export async function mount(container, ctx, args = {}) {
       // Topics Checklist
       const topicList = h('div', { class: 'nx-ex-topic-list' });
       for (const topic of ex.topics) {
-        const check = h('input', { type: 'checkbox' });
+        const check = h('input', { type: 'checkbox', 'aria-label': topic.title });
         check.checked = topic.done;
         check.addEventListener('change', async () => {
           topic.done = check.checked;
@@ -234,6 +234,7 @@ export async function mount(container, ctx, args = {}) {
         }),
         button({
           icon: 'edit',
+          title: ctx.i18n.t('editExam'),
           onClick: () => promptEditExam(ex),
         }),
       );

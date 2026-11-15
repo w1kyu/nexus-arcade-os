@@ -172,7 +172,11 @@ export async function mount(root, ctx) {
       );
     });
 
-    const grid = h('div', { class: 'nx-clock-grid' }, ...cards);
+    const grid = h(
+      'div',
+      { class: 'nx-clock-grid', tabindex: '0', role: 'region', 'aria-label': ctx.i18n.t('tabWorld') },
+      ...cards,
+    );
     replace(host, grid);
   }
 
@@ -226,6 +230,7 @@ export async function mount(root, ctx) {
           }),
           button({
             icon: 'trash',
+            title: ctx.i18n.t('deleteTimer'),
             onClick: () => {
               const idx = timers.findIndex((x) => x.id === t.id);
               if (idx !== -1) timers.splice(idx, 1);

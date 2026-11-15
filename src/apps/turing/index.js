@@ -69,7 +69,7 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-turing-controls-row' });
 
   // Preset Select
-  const presetSelect = h('select', { class: 'nx-input small' }, [
+  const presetSelect = h('select', { 'aria-label': t('controls.preset').replace(/:$/, ''), class: 'nx-input small' }, [
     ...Object.entries(TURING_PRESETS).map(([k, p]) =>
       h(
         'option',
@@ -89,6 +89,7 @@ export async function mount(container, ctx) {
   // Input Field
   const inputLabel = h('span', { style: 'font-size:var(--text-xs);color:var(--text-2)' }, t('controls.input'));
   const tapeInput = h('input', {
+    'aria-label': t('controls.input').replace(/:$/, ''),
     type: 'text',
     class: 'nx-input small',
     value: inputTapeStr,

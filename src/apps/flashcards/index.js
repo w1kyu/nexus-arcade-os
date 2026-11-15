@@ -284,6 +284,7 @@ export async function mount(container, ctx, args = {}) {
           { style: { textAlign: 'right' } },
           button({
             icon: 'edit',
+            title: ctx.i18n.t('editCard'),
             onClick: () => promptEditCard(card),
           }),
         ),

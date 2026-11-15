@@ -10,5 +10,9 @@
   "numberBases": "Number Bases (2, 8, 10, 16)",
   "romanNumerals": "Roman Numerals",
   "arabic": "Decimal (1-3999)",
-  "roman": "Roman (e.g. MMXXVI)"
+  "roman": "Roman (e.g. MMXXVI)",
+  "fromUnit": "Convert from unit",
+  "fromValue": "Value to convert",
+  "toUnit": "Convert to unit",
+  "toValue": "Converted value"
 }

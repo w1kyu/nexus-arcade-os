@@ -73,7 +73,7 @@ export async function mount(container, ctx) {
   const urlBar = h('div', { class: 'nx-http-url-bar' });
   const methodSelect = h(
     'select',
-    { class: 'nx-http-method-select' },
+    { class: 'nx-http-method-select', 'aria-label': t('request.method') },
     h('option', { value: 'GET' }, 'GET'),
     h('option', { value: 'POST' }, 'POST'),
     h('option', { value: 'PUT' }, 'PUT'),

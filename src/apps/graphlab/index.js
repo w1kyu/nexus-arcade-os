@@ -129,7 +129,7 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-graphlab-controls-row' });
 
   // Algo select
-  const algoSelect = h('select', { class: 'nx-input small' }, [
+  const algoSelect = h('select', { 'aria-label': t('controls.algorithm').replace(/:$/, ''), class: 'nx-input small' }, [
     ...Object.entries(GRAPH_ALGORITHMS).map(([k, meta]) =>
       h(
         'option',
@@ -157,7 +157,7 @@ export async function mount(container, ctx) {
   });
 
   // Preset select
-  const presetSelect = h('select', { class: 'nx-input small' }, [
+  const presetSelect = h('select', { 'aria-label': t('controls.preset').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.preset')),
     ...Object.entries(GRAPH_PRESETS).map(([k, p]) =>
       h('option', { value: k }, p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en),
@@ -178,7 +178,7 @@ export async function mount(container, ctx) {
   });
 
   // Layout select
-  const layoutSelect = h('select', { class: 'nx-input small' }, [
+  const layoutSelect = h('select', { 'aria-label': t('controls.layout').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.layout')),
     h('option', { value: 'force' }, t('controls.force')),
     h('option', { value: 'circular' }, t('controls.circular')),
@@ -211,7 +211,7 @@ export async function mount(container, ctx) {
   });
 
   // Tool Mode Select
-  const toolSelect = h('select', { class: 'nx-input small' }, [
+  const toolSelect = h('select', { 'aria-label': t('controls.tool').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: 'select', selected: true }, t('controls.select')),
     h('option', { value: 'addNode' }, t('controls.addNode')),
     h('option', { value: 'addEdge' }, t('controls.addEdge')),

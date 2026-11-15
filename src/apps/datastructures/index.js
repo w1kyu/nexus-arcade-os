@@ -55,19 +55,23 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-ds-controls-row' });
 
   // Structure selector
-  const structSelect = h('select', { class: 'nx-input small' }, [
-    h('option', { value: 'array' }, t('structures.array')),
-    h('option', { value: 'stack' }, t('structures.stack')),
-    h('option', { value: 'queue' }, t('structures.queue')),
-    h('option', { value: 'circular' }, t('structures.circular')),
-    h('option', { value: 'slist' }, t('structures.slist')),
-    h('option', { value: 'dlist' }, t('structures.dlist')),
-    h('option', { value: 'bst' }, t('structures.bst')),
-    h('option', { value: 'avl', selected: true }, t('structures.avl')),
-    h('option', { value: 'heap' }, t('structures.heap')),
-    h('option', { value: 'hash' }, t('structures.hash')),
-    h('option', { value: 'trie' }, t('structures.trie')),
-  ]);
+  const structSelect = h(
+    'select',
+    { 'aria-label': t('controls.structure').replace(/:$/, ''), class: 'nx-input small' },
+    [
+      h('option', { value: 'array' }, t('structures.array')),
+      h('option', { value: 'stack' }, t('structures.stack')),
+      h('option', { value: 'queue' }, t('structures.queue')),
+      h('option', { value: 'circular' }, t('structures.circular')),
+      h('option', { value: 'slist' }, t('structures.slist')),
+      h('option', { value: 'dlist' }, t('structures.dlist')),
+      h('option', { value: 'bst' }, t('structures.bst')),
+      h('option', { value: 'avl', selected: true }, t('structures.avl')),
+      h('option', { value: 'heap' }, t('structures.heap')),
+      h('option', { value: 'hash' }, t('structures.hash')),
+      h('option', { value: 'trie' }, t('structures.trie')),
+    ],
+  );
   structSelect.addEventListener('change', () => {
     switchStructure(structSelect.value);
   });
@@ -96,7 +100,11 @@ export async function mount(container, ctx) {
     populateRandom();
   });
 
-  const clearBtn = h('button', { class: 'nx-cs-btn' }, icon('trash', { size: 14 }));
+  const clearBtn = h(
+    'button',
+    { class: 'nx-cs-btn', title: t('controls.clear'), 'aria-label': t('controls.clear') },
+    icon('trash', { size: 14 }),
+  );
   clearBtn.addEventListener('click', () => {
     switchStructure(currentStructureKey);
   });

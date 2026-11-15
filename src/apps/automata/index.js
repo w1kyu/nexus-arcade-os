@@ -66,7 +66,7 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-automata-controls-row' });
 
   // Preset select
-  const presetSelect = h('select', { class: 'nx-input small' }, [
+  const presetSelect = h('select', { 'aria-label': t('controls.preset').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.preset')),
     ...Object.entries(AUTOMATA_PRESETS).map(([k, p]) =>
       h('option', { value: k }, p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en),
@@ -87,7 +87,7 @@ export async function mount(container, ctx) {
   });
 
   // Tool Mode Select
-  const toolSelect = h('select', { class: 'nx-input small' }, [
+  const toolSelect = h('select', { 'aria-label': t('controls.tool').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: 'select', selected: true }, t('controls.select')),
     h('option', { value: 'addState' }, t('controls.addState')),
     h('option', { value: 'addTransition' }, t('controls.addTransition')),
@@ -101,7 +101,7 @@ export async function mount(container, ctx) {
   });
 
   // Conversion Menu Select
-  const convertSelect = h('select', { class: 'nx-input small' }, [
+  const convertSelect = h('select', { 'aria-label': t('controls.convert'), class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.convert')),
     h('option', { value: 'nfaToDfa' }, t('controls.nfaToDfa')),
     h('option', { value: 'minimize' }, t('controls.minimize')),
@@ -183,6 +183,7 @@ export async function mount(container, ctx) {
   const simBar = h('div', { class: 'nx-automata-sim-bar' });
   const wordLabel = h('span', { style: 'font-size:var(--text-xs);color:var(--text-2)' }, t('controls.word'));
   const wordInput = h('input', {
+    'aria-label': t('controls.word').replace(/:$/, ''),
     type: 'text',
     class: 'nx-input small',
     value: inputWord,

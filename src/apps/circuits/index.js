@@ -83,15 +83,19 @@ export async function mount(container, ctx) {
     });
 
     // Preset select
-    const presetSelect = h('select', { class: 'nx-input small' }, [
-      ...Object.entries(CIRCUIT_PRESETS).map(([k, p]) =>
-        h(
-          'option',
-          { value: k, selected: k === selectedPresetKey },
-          p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en,
+    const presetSelect = h(
+      'select',
+      { 'aria-label': t('controls.preset').replace(/:$/, ''), class: 'nx-input small' },
+      [
+        ...Object.entries(CIRCUIT_PRESETS).map(([k, p]) =>
+          h(
+            'option',
+            { value: k, selected: k === selectedPresetKey },
+            p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en,
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
     presetSelect.addEventListener('change', () => {
       selectedPresetKey = presetSelect.value;
       const p = CIRCUIT_PRESETS[selectedPresetKey];
@@ -103,7 +107,7 @@ export async function mount(container, ctx) {
       renderCircuitSidebar();
     });
 
-    const addSelect = h('select', { class: 'nx-input small' }, [
+    const addSelect = h('select', { 'aria-label': t('controls.tool').replace(/:$/, ''), class: 'nx-input small' }, [
       h('option', { value: '' }, t('controls.tool')),
       h('option', { value: 'switch' }, t('controls.switch')),
       h('option', { value: 'clock' }, t('controls.clock')),

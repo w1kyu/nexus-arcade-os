@@ -21,7 +21,7 @@ export async function mount(container, ctx) {
   const runBtn = h('button', { class: 'nx-button primary small' }, icon('play', { size: 14 }), t('toolbar.run'));
 
   // Templates select
-  const templateSelect = h('select', { class: 'nx-select' });
+  const templateSelect = h('select', { class: 'nx-select', 'aria-label': t('toolbar.templates') });
   for (const [key, item] of Object.entries(TEMPLATES)) {
     templateSelect.append(h('option', { value: key }, item.name));
   }
@@ -29,7 +29,7 @@ export async function mount(container, ctx) {
   // Layout select
   const layoutSelect = h(
     'select',
-    { class: 'nx-select' },
+    { class: 'nx-select', 'aria-label': t('toolbar.layout') },
     h('option', { value: 'side-by-side' }, t('toolbar.sideBySide')),
     h('option', { value: 'stacked' }, t('toolbar.stacked')),
     h('option', { value: 'preview-only' }, t('toolbar.previewOnly')),
@@ -102,15 +102,30 @@ export async function mount(container, ctx) {
 
   // Editors content
   const htmlPanel = h('div', { class: 'nx-playground-editor-panel' });
-  const htmlTextarea = h('textarea', { class: 'nx-playground-textarea', value: htmlCode, spellcheck: 'false' });
+  const htmlTextarea = h('textarea', {
+    class: 'nx-playground-textarea',
+    value: htmlCode,
+    spellcheck: 'false',
+    'aria-label': t('editors.html'),
+  });
   htmlPanel.append(htmlTextarea);
 
   const cssPanel = h('div', { class: 'nx-playground-editor-panel', hidden: true });
-  const cssTextarea = h('textarea', { class: 'nx-playground-textarea', value: cssCode, spellcheck: 'false' });
+  const cssTextarea = h('textarea', {
+    class: 'nx-playground-textarea',
+    value: cssCode,
+    spellcheck: 'false',
+    'aria-label': t('editors.css'),
+  });
   cssPanel.append(cssTextarea);
 
   const jsPanel = h('div', { class: 'nx-playground-editor-panel', hidden: true });
-  const jsTextarea = h('textarea', { class: 'nx-playground-textarea', value: jsCode, spellcheck: 'false' });
+  const jsTextarea = h('textarea', {
+    class: 'nx-playground-textarea',
+    value: jsCode,
+    spellcheck: 'false',
+    'aria-label': 'JavaScript',
+  });
   jsPanel.append(jsTextarea);
 
   editorsPane.append(editorTabs, htmlPanel, cssPanel, jsPanel);

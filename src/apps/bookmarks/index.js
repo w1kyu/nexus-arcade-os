@@ -258,11 +258,13 @@ export async function mount(root, ctx) {
             : null,
           button({
             icon: 'edit',
+            title: ctx.i18n.t('editBookmark'),
             size: 'small',
             onClick: () => showBookmarkModal(b),
           }),
           button({
             icon: 'trash',
+            title: ctx.i18n.t('deleteBookmark'),
             size: 'small',
             onClick: async () => {
               if (confirm(ctx.i18n.t('confirmDelete'))) {

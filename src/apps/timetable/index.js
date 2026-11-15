@@ -223,7 +223,7 @@ export async function mount(container, ctx, args = {}) {
     replace(root);
 
     // 1. Toolbar
-    const semesterSelect = h('select', { class: 'nx-select' });
+    const semesterSelect = h('select', { class: 'nx-select', 'aria-label': ctx.i18n.t('activeSemester') });
     for (const sem of semesters.filter((s) => !s.archived)) {
       const opt = h('option', { value: sem.id, text: sem.name });
       if (sem.id === activeSemesterId) opt.selected = true;
@@ -310,7 +310,12 @@ export async function mount(container, ctx, args = {}) {
     const nowNextBar = h('div', { class: 'nx-tt-now-next-bar' }, nowCard, nextCard);
 
     // 3. Grid container
-    const gridContainer = h('div', { class: 'nx-tt-grid-container' });
+    const gridContainer = h('div', {
+      class: 'nx-tt-grid-container',
+      tabindex: '0',
+      role: 'region',
+      'aria-label': ctx.i18n.t('currentWeek'),
+    });
 
     // Grid header
     const gridHeader = h('div', { class: 'nx-tt-grid-header' }, h('div', { text: '' }));

@@ -15,5 +15,6 @@
   "timerName": "Timer Name",
   "timerDuration": "Duration",
   "idealTime": "Optimal meeting hours (overlap for all):",
-  "noIdealTime": "No common working-hour overlap found across all selected cities."
+  "noIdealTime": "No common working-hour overlap found across all selected cities.",
+  "deleteTimer": "Delete timer"
 }

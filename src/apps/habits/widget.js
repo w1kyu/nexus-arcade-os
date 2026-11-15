@@ -120,6 +120,7 @@ export async function mount(root, ctx) {
           h('strong', { style: { fontSize: '13px' }, text: ctx.i18n.t('appTitle') }),
           button({
             icon: 'flame',
+            title: ctx.i18n.t('openApp'),
             size: 'small',
             onClick: () => void ctx.commands.execute('shell.launchApp', { appId: 'nexus.habits' }),
           }),

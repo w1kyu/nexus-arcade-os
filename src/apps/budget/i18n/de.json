@@ -56,5 +56,6 @@
   "delete": "Löschen",
   "confirmDelete": "Möchtest du dies wirklich löschen?",
   "noTransactionsYet": "Noch keine Buchungen vorhanden.",
-  "noAccountsYet": "Noch keine Konten angelegt. Erstelle dein erstes Konto!"
+  "noAccountsYet": "Noch keine Konten angelegt. Erstelle dein erstes Konto!",
+  "openApp": "Finanzen öffnen"
 }

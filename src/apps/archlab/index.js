@@ -139,6 +139,7 @@ export async function mount(container, ctx) {
     const controlsBar = h('div', { style: 'display:flex;gap:12px;align-items:center;flex-wrap:wrap;' }, [
       h('span', { style: 'font-size:12px;color:var(--text-2)' }, t('numbers.input')),
       h('input', {
+        'aria-label': t('numbers.input').replace(/:$/, ''),
         type: 'number',
         class: 'nx-input small',
         value: String(intVal),
@@ -146,12 +147,16 @@ export async function mount(container, ctx) {
         style: 'width:100px;',
       }),
       h('span', { style: 'font-size:12px;color:var(--text-2)' }, t('numbers.bits')),
-      h('select', { class: 'nx-input small', id: 'num-bits-select' }, [
-        h('option', { value: '4', selected: intBits === 4 }, '4 bits'),
-        h('option', { value: '8', selected: intBits === 8 }, '8 bits'),
-        h('option', { value: '16', selected: intBits === 16 }, '16 bits'),
-        h('option', { value: '32', selected: intBits === 32 }, '32 bits'),
-      ]),
+      h(
+        'select',
+        { 'aria-label': t('numbers.bits').replace(/:$/, ''), class: 'nx-input small', id: 'num-bits-select' },
+        [
+          h('option', { value: '4', selected: intBits === 4 }, '4 bits'),
+          h('option', { value: '8', selected: intBits === 8 }, '8 bits'),
+          h('option', { value: '16', selected: intBits === 16 }, '16 bits'),
+          h('option', { value: '32', selected: intBits === 32 }, '32 bits'),
+        ],
+      ),
     ]);
 
     const intInput = /** @type {HTMLInputElement} */ (controlsBar.querySelector('#num-int-input'));
@@ -226,6 +231,7 @@ export async function mount(container, ctx) {
         h('div', { style: 'display:flex;gap:8px;align-items:center;margin-bottom:8px;' }, [
           h('span', {}, 'A:'),
           h('input', {
+            'aria-label': `${t('numbers.addition')} A`,
             type: 'number',
             class: 'nx-input small',
             value: String(addA),
@@ -237,6 +243,7 @@ export async function mount(container, ctx) {
           }),
           h('span', {}, 'B:'),
           h('input', {
+            'aria-label': `${t('numbers.addition')} B`,
             type: 'number',
             class: 'nx-input small',
             value: String(addB),
@@ -269,6 +276,7 @@ export async function mount(container, ctx) {
         h('h4', { style: 'margin:0' }, t('numbers.ieeeTitle')),
         h('div', { style: 'display:flex;gap:8px;align-items:center;' }, [
           h('input', {
+            'aria-label': t('numbers.ieeeTitle'),
             type: 'number',
             step: 'any',
             class: 'nx-input small',
@@ -282,6 +290,7 @@ export async function mount(container, ctx) {
           h(
             'select',
             {
+              'aria-label': t('numbers.precision').replace(/:$/, ''),
               class: 'nx-input small',
               onchange: (e) => {
                 floatPrec = /** @type {any} */ (/** @type {HTMLSelectElement} */ (e.target).value);
@@ -423,7 +432,7 @@ export async function mount(container, ctx) {
     // Controls Row
     const controlsRow = h('div', { style: 'display:flex;flex-wrap:wrap;gap:8px;align-items:center;' });
 
-    const presetSelect = h('select', { class: 'nx-input small' }, [
+    const presetSelect = h('select', { 'aria-label': t('cpu.preset').replace(/:$/, ''), class: 'nx-input small' }, [
       ...Object.entries(CPU_PRESETS).map(([k, p]) =>
         h(
           'option',

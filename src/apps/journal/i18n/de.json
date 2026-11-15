@@ -39,5 +39,6 @@
   "cancel": "Abbrechen",
   "delete": "Löschen",
   "confirmDelete": "Möchtest du diesen Tagebucheintrag wirklich löschen?",
-  "noEntriesYet": "Noch keine Tagebucheinträge vorhanden. Beginne mit deinem ersten Eintrag!"
+  "noEntriesYet": "Noch keine Tagebucheinträge vorhanden. Beginne mit deinem ersten Eintrag!",
+  "openApp": "Tagebuch öffnen"
 }

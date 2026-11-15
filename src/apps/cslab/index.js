@@ -141,7 +141,7 @@ export async function mount(container, ctx) {
     renderToolsGrid();
   });
 
-  const catSelect = h('select', { class: 'nx-input small' }, [
+  const catSelect = h('select', { 'aria-label': t('hub.allCategories'), class: 'nx-input small' }, [
     h('option', { value: 'all' }, t('hub.allCategories')),
     h('option', { value: 'algorithms' }, t('hub.algorithms')),
     h('option', { value: 'dataStructures' }, t('hub.dataStructures')),

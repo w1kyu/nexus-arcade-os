@@ -133,7 +133,7 @@ export async function mount(container, ctx) {
 
   const langSelect = h(
     'select',
-    { class: 'nx-select' },
+    { class: 'nx-select', 'aria-label': t('editor.language') },
     h('option', { value: 'javascript' }, 'JavaScript'),
     h('option', { value: 'typescript' }, 'TypeScript'),
     h('option', { value: 'html' }, 'HTML'),

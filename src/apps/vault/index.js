@@ -390,6 +390,7 @@ export async function mount(root, ctx) {
         }),
         button({
           icon: 'trash',
+          title: ctx.i18n.t('deleteEntry'),
           onClick: async () => {
             if (confirm(ctx.i18n.t('confirmDelete'))) {
               await credsCol.delete(entry.id);
@@ -424,6 +425,7 @@ export async function mount(root, ctx) {
     const passSpan = h('span', { text: '••••••••••••' });
     const eyeBtn = button({
       icon: 'eye',
+      title: ctx.i18n.t('showPassword'),
       size: 'small',
       onClick: () => {
         showPass = !showPass;

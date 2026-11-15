@@ -91,7 +91,11 @@ export async function mount(root, ctx) {
     const catOptions = CATEGORIES.map((c) =>
       h('option', { value: c.id, selected: c.id === selectedCatId, text: c.name[ctx.i18n.lang] ?? c.name.en }),
     );
-    const catSelect = h('select', { class: 'nx-select', style: { width: '220px' } }, ...catOptions);
+    const catSelect = h(
+      'select',
+      { class: 'nx-select', style: { width: '220px' }, 'aria-label': ctx.i18n.t('category') },
+      ...catOptions,
+    );
     catSelect.addEventListener('change', (e) => {
       selectedCatId = /** @type {HTMLSelectElement} */ (e.target).value;
       const cat = CATEGORIES.find((c) => c.id === selectedCatId);
@@ -119,15 +123,27 @@ export async function mount(root, ctx) {
     const fromOptions = curCat.units.map((u) =>
       h('option', { value: u.id, selected: u.id === fromUnitId, text: u.name[ctx.i18n.lang] ?? u.name.en }),
     );
-    const fromSelect = h('select', { class: 'nx-select' }, ...fromOptions);
-    const leftInput = h('input', { type: 'number', step: 'any', class: 'nx-conv-val-input', value: leftValStr });
+    const fromSelect = h('select', { class: 'nx-select', 'aria-label': ctx.i18n.t('fromUnit') }, ...fromOptions);
+    const leftInput = h('input', {
+      type: 'number',
+      step: 'any',
+      class: 'nx-conv-val-input',
+      value: leftValStr,
+      'aria-label': ctx.i18n.t('fromValue'),
+    });
 
     // Right Panel
     const toOptions = curCat.units.map((u) =>
       h('option', { value: u.id, selected: u.id === toUnitId, text: u.name[ctx.i18n.lang] ?? u.name.en }),
     );
-    const toSelect = h('select', { class: 'nx-select' }, ...toOptions);
-    const rightInput = h('input', { type: 'number', step: 'any', class: 'nx-conv-val-input', value: rightValStr });
+    const toSelect = h('select', { class: 'nx-select', 'aria-label': ctx.i18n.t('toUnit') }, ...toOptions);
+    const rightInput = h('input', {
+      type: 'number',
+      step: 'any',
+      class: 'nx-conv-val-input',
+      value: rightValStr,
+      'aria-label': ctx.i18n.t('toValue'),
+    });
 
     function updateFromLeft() {
       const num = parseFloat(leftInput.value);

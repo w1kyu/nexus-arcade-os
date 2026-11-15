@@ -34,5 +34,6 @@
   "cancel": "Abbrechen",
   "delete": "Löschen",
   "confirmDelete": "Möchtest du diese Gewohnheit und alle Einträge wirklich löschen?",
-  "noHabitsYet": "Noch keine Gewohnheiten vorhanden. Erstelle deine erste!"
+  "noHabitsYet": "Noch keine Gewohnheiten vorhanden. Erstelle deine erste!",
+  "openApp": "Gewohnheiten öffnen"
 }

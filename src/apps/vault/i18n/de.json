@@ -41,5 +41,6 @@
   "search": "Tresor durchsuchen...",
   "copy": "Kopieren",
   "copied": "Kopiert (Zwischenablage leert sich in 30s)",
-  "noEntriesYet": "Noch keine Zugangsdaten im Tresor. Erstelle deinen ersten Eintrag!"
+  "noEntriesYet": "Noch keine Zugangsdaten im Tresor. Erstelle deinen ersten Eintrag!",
+  "showPassword": "Passwort zeigen oder verbergen"
 }

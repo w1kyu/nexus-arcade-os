@@ -56,5 +56,6 @@
   "delete": "Delete",
   "confirmDelete": "Are you sure you want to delete this?",
   "noTransactionsYet": "No transactions recorded yet.",
-  "noAccountsYet": "No accounts created yet. Add an account to get started!"
+  "noAccountsYet": "No accounts created yet. Add an account to get started!",
+  "openApp": "Open Budget"
 }

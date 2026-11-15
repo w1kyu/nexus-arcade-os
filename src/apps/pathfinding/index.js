@@ -96,7 +96,7 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-pathfinding-controls-row' });
 
   // Algo select
-  const algoSelect = h('select', { class: 'nx-input small' }, [
+  const algoSelect = h('select', { 'aria-label': t('controls.algorithm').replace(/:$/, ''), class: 'nx-input small' }, [
     ...Object.entries(PATHFINDING_ALGORITHMS).map(([k, meta]) =>
       h(
         'option',
@@ -112,11 +112,15 @@ export async function mount(container, ctx) {
   });
 
   // Heuristic select
-  const heuristicSelect = h('select', { class: 'nx-input small' }, [
-    h('option', { value: 'manhattan', selected: true }, t('heuristics.manhattan')),
-    h('option', { value: 'euclidean' }, t('heuristics.euclidean')),
-    h('option', { value: 'chebyshev' }, t('heuristics.chebyshev')),
-  ]);
+  const heuristicSelect = h(
+    'select',
+    { 'aria-label': t('controls.heuristic').replace(/:$/, ''), class: 'nx-input small' },
+    [
+      h('option', { value: 'manhattan', selected: true }, t('heuristics.manhattan')),
+      h('option', { value: 'euclidean' }, t('heuristics.euclidean')),
+      h('option', { value: 'chebyshev' }, t('heuristics.chebyshev')),
+    ],
+  );
   heuristicSelect.addEventListener('change', () => {
     heuristic = heuristicSelect.value;
     resetAlgorithm();
@@ -135,7 +139,7 @@ export async function mount(container, ctx) {
   });
 
   // Maze Generator Select
-  const mazeSelect = h('select', { class: 'nx-input small' }, [
+  const mazeSelect = h('select', { 'aria-label': t('controls.maze'), class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('mazes.select')),
     h('option', { value: 'backtracker' }, t('mazes.backtracker')),
     h('option', { value: 'prim' }, t('mazes.prim')),
@@ -159,7 +163,7 @@ export async function mount(container, ctx) {
   });
 
   // Tool Select (Wall, Mud, Erase, Start, Goal)
-  const toolSelect = h('select', { class: 'nx-input small' }, [
+  const toolSelect = h('select', { 'aria-label': t('controls.tool').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: 'wall', selected: true }, t('controls.wall')),
     h('option', { value: 'mud' }, t('controls.mud')),
     h('option', { value: 'erase' }, t('controls.erase')),
@@ -292,7 +296,12 @@ export async function mount(container, ctx) {
 
   // Main Canvas Pane
   const main = h('div', { class: 'nx-pathfinding-main' });
-  const gridWrap = h('div', { class: 'nx-pathfinding-grid-wrap' });
+  const gridWrap = h('div', {
+    class: 'nx-pathfinding-grid-wrap',
+    tabindex: '0',
+    role: 'region',
+    'aria-label': t('app.title'),
+  });
   const canvas = document.createElement('canvas');
   canvas.className = 'nx-pathfinding-canvas';
   canvas.width = cols * cellSize;

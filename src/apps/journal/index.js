@@ -355,6 +355,7 @@ export async function mount(root, ctx) {
         }),
         button({
           icon: 'trash',
+          title: ctx.i18n.t('deleteEntry'),
           onClick: async () => {
             if (confirm(ctx.i18n.t('confirmDelete'))) {
               await entriesCol.delete(entry.id);
@@ -440,6 +441,7 @@ export async function mount(root, ctx) {
       class: 'nx-input',
       value: dateVal,
       style: { width: '180px' },
+      'aria-label': ctx.i18n.t('date'),
     });
     dateInput.addEventListener('input', (e) => {
       dateVal = /** @type {HTMLInputElement} */ (e.target).value;
@@ -485,7 +487,7 @@ export async function mount(root, ctx) {
     const prompts = WRITING_PROMPTS[ctx.i18n.lang === 'de' ? 'de' : 'en'];
     const promptSelect = h(
       'select',
-      { class: 'nx-select', style: { width: '100%' } },
+      { class: 'nx-select', style: { width: '100%' }, 'aria-label': ctx.i18n.t('writingPrompts') },
       h('option', { value: '', text: ctx.i18n.t('writingPrompts') }),
       ...prompts.map((p) => h('option', { value: p, text: p })),
     );

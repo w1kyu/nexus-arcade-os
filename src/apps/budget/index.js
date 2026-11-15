@@ -237,6 +237,7 @@ export async function mount(root, ctx) {
         }),
         button({
           icon: 'plus',
+          title: ctx.i18n.t('newAccount'),
           size: 'small',
           onClick: () => showAccountModal(),
         }),
@@ -340,6 +341,7 @@ export async function mount(root, ctx) {
           {},
           button({
             icon: 'trash',
+            title: ctx.i18n.t('deleteTransaction'),
             size: 'small',
             onClick: async () => {
               if (confirm(ctx.i18n.t('confirmDelete'))) {

@@ -41,5 +41,6 @@
   "search": "Search vault...",
   "copy": "Copy",
   "copied": "Copied (clipboard auto-clears in 30s)",
-  "noEntriesYet": "No credentials in vault yet. Create your first entry!"
+  "noEntriesYet": "No credentials in vault yet. Create your first entry!",
+  "showPassword": "Show or hide the password"
 }

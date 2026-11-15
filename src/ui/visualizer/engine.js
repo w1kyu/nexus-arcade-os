@@ -416,7 +416,13 @@ export function renderPseudocodePanel(codeByLocale, getCurrentLine, opts = {}) {
   });
 
   header.append(title, langSelect);
-  const linesContainer = h('div', { class: 'nx-cs-pseudo-lines' });
+  // A scrolling region must be reachable by keyboard (axe scrollable-region-focusable).
+  const linesContainer = h('div', {
+    class: 'nx-cs-pseudo-lines',
+    tabindex: '0',
+    role: 'region',
+    'aria-label': s.pseudocode,
+  });
   panel.append(header, linesContainer);
 
   function renderLines() {

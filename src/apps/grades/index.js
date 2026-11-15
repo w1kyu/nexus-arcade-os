@@ -304,6 +304,7 @@ export async function mount(container, ctx, _args = {}) {
           { style: { textAlign: 'right' } },
           button({
             icon: 'edit',
+            title: ctx.i18n.t('editModule'),
             onClick: () => promptEditModule(m),
           }),
         ),
@@ -325,6 +326,7 @@ export async function mount(container, ctx, _args = {}) {
       max: '5.0',
       step: '0.1',
       value: String(whatIfTargetGrade),
+      'aria-label': ctx.i18n.t('targetGrade'),
     });
     whatIfTargetInput.addEventListener('change', () => {
       whatIfTargetGrade = Number(whatIfTargetInput.value) || 2.0;
@@ -359,7 +361,7 @@ export async function mount(container, ctx, _args = {}) {
     );
 
     // Scenario Simulator
-    const modSelect = h('select', { class: 'nx-select' });
+    const modSelect = h('select', { class: 'nx-select', 'aria-label': ctx.i18n.t('moduleName') });
     for (const m of modules) {
       const opt = h('option', { value: m.id, text: `${m.name} (${m.ects} ECTS)` });
       if (m.id === simModuleId) opt.selected = true;
@@ -370,7 +372,7 @@ export async function mount(container, ctx, _args = {}) {
       render();
     });
 
-    const gradeSelect = h('select', { class: 'nx-select' });
+    const gradeSelect = h('select', { class: 'nx-select', 'aria-label': ctx.i18n.t('grade') });
     for (const g of GERMAN_GRADES) {
       const opt = h('option', { value: String(g), text: String(g.toFixed(1)) });
       if (Math.abs(g - simGrade) < 0.05) opt.selected = true;

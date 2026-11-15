@@ -77,7 +77,9 @@ export async function mount(container, ctx, args) {
     btn('zoom-out', 'toolbar.zoomOut', () => setFont(zoom(state.fontSize, -1))),
     btn('zoom-in', 'toolbar.zoomIn', () => setFont(zoom(state.fontSize, 1))),
   );
-  const tabBar = h('div', { class: 'nx-edit-tabs', role: 'tablist', 'aria-label': t('tabs') });
+  // A group of buttons, not a tablist: each file also has a close button, which a tablist may not
+  // contain (axe aria-required-children). The open file is marked with aria-current.
+  const tabBar = h('div', { class: 'nx-edit-tabs', role: 'group', 'aria-label': t('tabs') });
   const body = h('div', { class: 'nx-edit-body' });
   const empty = h(
     'div',
@@ -233,15 +235,13 @@ export async function mount(container, ctx, args) {
           'div',
           {
             class: `nx-edit-tab${tab === active ? ' is-active' : ''}${dirty ? ' is-dirty' : ''}`,
-            role: 'presentation',
           },
           h(
             'button',
             {
               type: 'button',
-              role: 'tab',
               class: 'nx-edit-tab-label',
-              'aria-selected': String(tab === active),
+              'aria-current': tab === active ? 'true' : undefined,
               title: tab.path ?? title,
               onclick: () => select(tab),
               onauxclick: (/** @type {MouseEvent} */ e) => e.button === 1 && void closeTab(tab),

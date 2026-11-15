@@ -15,5 +15,6 @@
   "timerName": "Timer-Name",
   "timerDuration": "Dauer",
   "idealTime": "Optimale Meetingzeiten (Überschneidung für alle):",
-  "noIdealTime": "Keine gemeinsame Arbeitszeit-Überschneidung über alle gewählten Städte gefunden."
+  "noIdealTime": "Keine gemeinsame Arbeitszeit-Überschneidung über alle gewählten Städte gefunden.",
+  "deleteTimer": "Timer löschen"
 }

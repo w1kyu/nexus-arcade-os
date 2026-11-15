@@ -88,7 +88,7 @@ export async function mount(container, ctx) {
   const controlsRow = h('div', { class: 'nx-sorting-controls-row' });
 
   // Algorithm select
-  const algoSelect = h('select', { class: 'nx-input small' }, [
+  const algoSelect = h('select', { 'aria-label': t('controls.algorithm').replace(/:$/, ''), class: 'nx-input small' }, [
     ...Object.entries(SORTING_ALGORITHMS).map(([key, meta]) =>
       h(
         'option',
@@ -103,7 +103,7 @@ export async function mount(container, ctx) {
   });
 
   // Input select
-  const inputSelect = h('select', { class: 'nx-input small' }, [
+  const inputSelect = h('select', { 'aria-label': t('controls.input').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: 'random', selected: true }, t('inputs.random')),
     h('option', { value: 'sorted' }, t('inputs.sorted')),
     h('option', { value: 'reversed' }, t('inputs.reversed')),
@@ -122,6 +122,7 @@ export async function mount(container, ctx) {
 
   // Size slider
   const sizeSlider = h('input', {
+    'aria-label': t('controls.size').replace(/:$/, ''),
     type: 'range',
     min: '5',
     max: '200',
@@ -135,7 +136,7 @@ export async function mount(container, ctx) {
   });
 
   // View select
-  const viewSelect = h('select', { class: 'nx-input small' }, [
+  const viewSelect = h('select', { 'aria-label': t('controls.view').replace(/:$/, ''), class: 'nx-input small' }, [
     h('option', { value: 'bars', selected: true }, t('controls.bars')),
     h('option', { value: 'dots' }, t('controls.dots')),
     h('option', { value: 'wheel' }, t('controls.wheel')),

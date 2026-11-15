@@ -50,7 +50,9 @@ export function icon(name, options) {
  */
 export function button({ label, icon: iconName, variant, size, onClick, type = 'button', title }) {
   const iconOnly = !label && !!iconName;
-  const cls = ['nx-btn', variant && `is-${variant}`, size && `is-${size}`, iconOnly && 'is-icon'].filter(Boolean);
+  // Only the design-system sizes; older callers pass other values ('small'), which stay default size.
+  const sizeClass = size === 'sm' || size === 'lg' ? `is-${size}` : '';
+  const cls = ['nx-btn', variant && `is-${variant}`, sizeClass, iconOnly && 'is-icon'].filter(Boolean);
   return h(
     'button',
     {

@@ -10,5 +10,9 @@
   "numberBases": "Zahlensysteme (2, 8, 10, 16)",
   "romanNumerals": "Römische Zahlen",
   "arabic": "Dezimal (1-3999)",
-  "roman": "Römisch (z.B. MMXXVI)"
+  "roman": "Römisch (z.B. MMXXVI)",
+  "fromUnit": "Ausgangseinheit",
+  "fromValue": "Wert zum Umrechnen",
+  "toUnit": "Zieleinheit",
+  "toValue": "Umgerechneter Wert"
 }

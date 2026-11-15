@@ -4,8 +4,8 @@ export default {
   id: 'nexus.arcade',
   name: { en: 'Arcade Hub', de: 'Arcade-Zentrale' },
   description: {
-    en: 'Your central gaming salon with games library, player level, and achievements',
-    de: 'Dein zentraler Gaming-Salon mit Spielebibliothek, Spielerlevel und Erfolgen',
+    en: 'All games in one place, with your level, favorites and achievements',
+    de: 'Alle Spiele an einem Ort, mit deinem Level, Favoriten und Erfolgen',
   },
   version: '1.0.0',
   icon: 'gamepad',

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.reaction',
   name: { en: 'Reaction Trainer', de: 'Reaktionstrainer' },
   description: {
-    en: 'Benchmark reaction time, aim precision, and cognitive memory spans',
-    de: 'Benchmarke Reaktionszeit, Zielgenauigkeit und kognitive Gedächtnisspannen',
+    en: 'Test your reaction time, aim and memory',
+    de: 'Reaktionszeit, Treffsicherheit und Gedächtnis testen',
   },
   version: '1.0.0',
   icon: 'gamepad',

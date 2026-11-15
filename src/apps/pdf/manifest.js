@@ -3,8 +3,8 @@ export default {
   id: 'nexus.pdf',
   name: { en: 'PDF Tools', de: 'PDF-Werkzeuge' },
   description: {
-    en: 'View PDF files and combine scanned documents or photos into multi-page PDFs',
-    de: 'PDF-Dateien anzeigen und gescannte Dokumente oder Fotos zu mehrseitigen PDFs kombinieren',
+    en: 'View PDFs and combine documents or photos into one PDF',
+    de: 'PDFs ansehen und Dokumente oder Fotos zu einer PDF zusammenfügen',
   },
   version: '1.0.0',
   icon: 'file-text',

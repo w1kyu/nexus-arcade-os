@@ -4,8 +4,8 @@ export default {
   id: 'nexus.clock',
   name: { en: 'Clock', de: 'Uhr' },
   description: {
-    en: 'World clock (analog + digital), multiple named timers, stopwatch with laps & export, and time-zone meeting planner',
-    de: 'Weltzeituhr (analog & digital), mehrere benannte Timer, Stoppuhr mit Rundenzeiten und Zeitzonen-Meetingplaner',
+    en: 'World clock, timers, a stopwatch and a meeting planner across time zones',
+    de: 'Weltuhr, Timer, Stoppuhr und ein Meeting-Planer über Zeitzonen hinweg',
   },
   version: '1.0.0',
   icon: 'clock',

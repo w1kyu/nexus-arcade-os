@@ -1,10 +1,10 @@
 {
   "app": {
     "title": "Snake Evolution",
-    "description": "Cyber-Snake der nächsten Generation mit flüssiger Bewegung, Power-ups und Quantenkarten"
+    "description": "Die Schlange steuern, fressen, wachsen und dem eigenen Schwanz ausweichen"
   },
   "menu": {
-    "play": "JETZT SPIELEN",
+    "play": "Jetzt spielen",
     "map": "Karte",
     "mode": "Spielmodus",
     "difficulty": "Geschwindigkeit",

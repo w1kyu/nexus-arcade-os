@@ -4,8 +4,8 @@ export default {
   id: 'nexus.racer',
   name: { en: 'Neon Racer', de: 'Neon Racer' },
   description: {
-    en: 'Top-down neon racing with tracks, AI opponents, lap times, and ghost replay',
-    de: 'Top-Down-Neon-Rennspiel mit Rennstrecken, KI-Gegnern, Rundenzeiten und Geist-Replay',
+    en: 'Race against the computer on top-down tracks and beat your lap times',
+    de: 'Von oben gesehen gegen den Computer fahren und die eigenen Rundenzeiten schlagen',
   },
   version: '1.0.0',
   icon: 'navigation',

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Quiz-Arena",
-    "description": "Zweisprachiges Quiz über Informatik, Logik und Serien-Boni"
+    "description": "Quizfragen auf Zeit beantworten oder eigene Quizpakete erstellen"
   },
   "hud": {
     "question": "Frage",

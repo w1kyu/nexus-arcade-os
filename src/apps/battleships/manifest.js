@@ -4,8 +4,8 @@ export default {
   id: 'nexus.battleships',
   name: { en: 'Battleships', de: 'Schiffe versenken' },
   description: {
-    en: 'Naval grid warfare against probability-density AI with fleet placement editor',
-    de: 'Seekriegsführung gegen Wahrscheinlichkeits-KI mit Flotten-Platzierungseditor',
+    en: "Place your fleet and sink the computer's ships before it finds yours",
+    de: 'Flotte aufstellen und die Schiffe des Computers versenken, bevor er deine findet',
   },
   version: '1.0.0',
   icon: 'target',

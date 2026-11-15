@@ -4,8 +4,8 @@ export default {
   id: 'nexus.life',
   name: { en: 'Game of Life', de: 'Spiel des Lebens' },
   description: {
-    en: 'Cellular automata sandbox with pattern library, multiple rule sets, and interactive drawing',
-    de: 'Zellulärer Automaten-Sandbox mit Musterbibliothek, Regelsätzen und interaktivem Zeichnen',
+    en: "Draw cells and watch patterns grow in Conway's Game of Life",
+    de: 'Zellen zeichnen und Muster in Conways Spiel des Lebens wachsen sehen',
   },
   version: '1.0.0',
   icon: 'cpu',

@@ -1,10 +1,10 @@
 {
   "app": {
     "title": "Snake Evolution",
-    "description": "Next-gen cyber snake with smooth motion, power-ups, and quantum maps"
+    "description": "Steer the snake, eat to grow and stay clear of your own tail"
   },
   "menu": {
-    "play": "PLAY NOW",
+    "play": "Play now",
     "map": "Map",
     "mode": "Game Mode",
     "difficulty": "Speed",

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.glide',
   name: { en: 'Neon Glide', de: 'Neon Glide' },
   description: {
-    en: 'One-button flight with inertia physics, procedurally generated neon obstacles, and ghost replay',
-    de: 'Ein-Tasten-Flugspiel mit Trägheitsphysik, prozedural generierten Neon-Hindernissen und Geist-Wiederholung',
+    en: 'Tap to fly through a neon tunnel and beat your best run',
+    de: 'Mit einem Tipp durch einen Neon-Tunnel fliegen und den eigenen Rekord schlagen',
   },
   version: '1.0.0',
   icon: 'navigation',

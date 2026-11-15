@@ -4,8 +4,8 @@ export default {
   id: 'nexus.vault',
   name: { en: 'Password Vault', de: 'Passwort-Tresor' },
   description: {
-    en: 'Master password AES-GCM encrypted vault, password & passphrase generator, RFC 6238 TOTP authenticator, and local health check',
-    de: 'AES-GCM verschlüsselter Passwort-Manager, Passwort- und Passphrasen-Generator, RFC 6238 TOTP Authentifikator und lokale Sicherheitsprüfung',
+    en: 'Store passwords encrypted, create new ones and get sign-in codes',
+    de: 'Passwörter verschlüsselt speichern, neue erzeugen und Anmeldecodes erhalten',
   },
   version: '1.0.0',
   icon: 'shield',

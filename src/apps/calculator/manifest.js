@@ -4,8 +4,8 @@ export default {
   id: 'nexus.calculator',
   name: { en: 'Calculator', de: 'Rechner' },
   description: {
-    en: 'Standard, Scientific, Programmer (8/16/32/64-bit, clickable bits), Graphing, Matrix, and Statistics calculator',
-    de: 'Standard-, Wissenschafts-, Programmierer- (8/16/32/64-Bit, Klick-Bits), Funktionsgraph-, Matrix- und Statistik-Rechner',
+    en: 'Calculate, plot graphs and work with bits, matrices and statistics',
+    de: 'Rechnen, Graphen zeichnen und mit Bits, Matrizen und Statistik arbeiten',
   },
   version: '1.0.0',
   icon: 'cpu',

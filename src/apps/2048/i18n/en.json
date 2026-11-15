@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "2048 Cyber",
-    "description": "The classic 2048 sliding puzzle with undo, multiple board sizes, and post-2048 endless mode"
+    "description": "Slide matching tiles together to reach 2048, then keep going"
   },
   "ui": {
     "score": "SCORE",

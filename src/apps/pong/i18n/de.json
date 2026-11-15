@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Neon Pong",
-    "description": "Hochgeschwindigkeits-Cyber-Paddelduell mit Ball-Spin-Dynamik, Power-ups und Satz bis 11 Punkte."
+    "description": "Tischtennis mit Spin und Power-ups, gegen den Computer oder Freunde"
   },
   "modes": {
     "ai": "vs KI",

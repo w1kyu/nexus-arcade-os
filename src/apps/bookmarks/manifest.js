@@ -4,8 +4,8 @@ export default {
   id: 'nexus.bookmarks',
   name: { en: 'Bookmarks', de: 'Lesezeichen' },
   description: {
-    en: 'Organize bookmark collections, tags, reading list with read/unread tracking, and browser HTML import/export',
-    de: 'Lesezeichen-Sammlungen, Tags, Leseliste mit Gelesen-Status und Browser-HTML Import/Export',
+    en: 'Save links in collections and keep a reading list',
+    de: 'Links in Sammlungen speichern und eine Leseliste führen',
   },
   version: '1.0.0',
   icon: 'bookmark',

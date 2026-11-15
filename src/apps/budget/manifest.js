@@ -4,8 +4,8 @@ export default {
   id: 'nexus.budget',
   name: { en: 'Budget', de: 'Finanzen' },
   description: {
-    en: 'Personal accounts, transactions, category budgets, reports, CSV bank import/export, and expense splitting',
-    de: 'Persönliche Konten, Transaktionen, Kategorie-Budgets, Auswertungen, CSV-Bankimport und Ausgaben-Teilung',
+    en: 'Track accounts, spending and budgets, and import bank statements',
+    de: 'Konten, Ausgaben und Budgets im Blick behalten und Kontoauszüge importieren',
   },
   version: '1.0.0',
   icon: 'wallet',

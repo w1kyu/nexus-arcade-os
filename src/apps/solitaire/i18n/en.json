@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Solitaire Collection",
-    "description": "Klondike, Spider, and FreeCell solitaire with infinite undo, solvable deals, and auto-complete"
+    "description": "Play Klondike, Spider and FreeCell with unlimited undo"
   },
   "mode": {
     "label": "Game",

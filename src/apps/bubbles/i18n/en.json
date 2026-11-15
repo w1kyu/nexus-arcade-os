@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Bubble Shooter",
-    "description": "Aim and bounce bubbles to match 3 or more of the same color"
+    "description": "Aim and bounce bubbles to clear groups of the same color"
   },
   "hud": {
     "level": "Level",

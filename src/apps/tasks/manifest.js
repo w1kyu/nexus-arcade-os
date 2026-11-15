@@ -3,8 +3,8 @@ export default {
   id: 'nexus.tasks',
   name: { en: 'Tasks', de: 'Aufgaben' },
   description: {
-    en: 'Projects, Kanban boards, bilingual quick add, recurring tasks and productivity stats',
-    de: 'Projekte, Kanban-Boards, zweisprachige Schnelleingabe, wiederkehrende Aufgaben und Statistiken',
+    en: 'Plan tasks and projects in lists or boards, including repeating tasks',
+    de: 'Aufgaben und Projekte in Listen oder Boards planen, auch wiederkehrende',
   },
   version: '1.0.0',
   icon: 'checklist',

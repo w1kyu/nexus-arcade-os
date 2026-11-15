@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "KI-Assistent",
-    "description": "Schneller KI-Schreib- und Programmierassistent für Texte im gesamten Betriebssystem"
+    "description": "Text aus jeder App von der KI umschreiben, zusammenfassen oder erklären lassen"
   },
   "actions": {
     "explain": "Erklären",

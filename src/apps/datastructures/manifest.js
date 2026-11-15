@@ -4,8 +4,8 @@ export default {
   id: 'nexus.datastructures',
   name: { en: 'Data Structures Visualizer', de: 'Datenstrukturen-Visualisierer' },
   description: {
-    en: 'Interactive visualizer for arrays, stacks, queues, BST, AVL trees, heaps, and hash tables',
-    de: 'Interaktiver Visualisierer für Arrays, Stapel, Schlangen, BST, AVL-Bäume, Heaps und Hashtabellen',
+    en: 'Watch stacks, queues, trees, heaps and hash tables change step by step',
+    de: 'Stapel, Warteschlangen, Bäume, Heaps und Hashtabellen Schritt für Schritt verfolgen',
   },
   version: '1.0.0',
   icon: 'layers',

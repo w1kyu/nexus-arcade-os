@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Synthesizer",
-    "description": "Polyphoner Synthesizer mit dualen Oszillatoren, Resonanzfilter, Arpeggiator, Effekten und Web-MIDI-Unterstützung"
+    "description": "Klänge mit einem Synthesizer spielen und formen, per Tastatur oder MIDI"
   },
   "controls": {
     "preset": "Klang-Voreinstellung",

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.archlab',
   name: { en: 'Number & CPU Lab', de: 'Zahlendarstellung & CPU-Lab' },
   description: {
-    en: 'Interactive IEEE-754 floating-point inspector, integer formats, base conversions, and Nexus-8 toy CPU simulator',
-    de: 'Interaktiver IEEE 754 Gleitkomma-Inspektor, Ganzzahl-Formate, Basisumrechnungen und Nexus-8 CPU-Simulator',
+    en: 'See how computers store numbers and run a tiny CPU step by step',
+    de: 'Sehen, wie Computer Zahlen speichern, und eine kleine CPU Schritt für Schritt ausführen',
   },
   version: '1.0.0',
   icon: 'cpu',

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.playground',
   name: { en: 'Code Playground', de: 'Code-Playground' },
   description: {
-    en: 'Interactive HTML, CSS and JavaScript sandbox with live preview, captured console and starter templates',
-    de: 'Interaktive HTML-, CSS- und JavaScript-Sandbox mit Live-Vorschau, Konsole und Vorlagen',
+    en: 'Try out HTML, CSS and JavaScript with a live preview',
+    de: 'HTML, CSS und JavaScript mit Live-Vorschau ausprobieren',
   },
   version: '1.0.0',
   icon: 'play',

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Ultimate Tic-Tac-Toe",
-    "description": "Strategisches verschachteltes 9x9-Brett mit taktischen Zielregeln"
+    "description": "Tic-Tac-Toe in Tic-Tac-Toe, gegen den Computer oder Freunde"
   },
   "mode": {
     "ai": "vs KI",

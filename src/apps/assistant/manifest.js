@@ -4,8 +4,8 @@ export default {
   id: 'nexus.assistant',
   name: { en: 'Nexus Assistant', de: 'Nexus Assistent' },
   description: {
-    en: 'Quick AI writing and coding assistant for text across the OS',
-    de: 'Schneller KI-Schreib- und Programmierassistent für Texte im gesamten Betriebssystem',
+    en: 'Ask AI to rewrite, summarize or explain text from any app',
+    de: 'Text aus jeder App von der KI umschreiben, zusammenfassen oder erklären lassen',
   },
   version: '1.0.0',
   icon: 'sparkles',

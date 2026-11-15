@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Solitaire-Sammlung",
-    "description": "Klondike, Spider und FreeCell Solitaire mit unbegrenztem Rückgängigmachen, lösbaren Spielen und Auto-Vervollständigung"
+    "description": "Klondike, Spider und FreeCell mit unbegrenztem Rückgängig spielen"
   },
   "mode": {
     "label": "Spiel",

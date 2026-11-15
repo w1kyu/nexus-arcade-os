@@ -4,8 +4,8 @@ export default {
   id: 'nexus.automata',
   name: { en: 'Automata Lab', de: 'Automaten-Labor' },
   description: {
-    en: 'Interactive DFA/NFA editor, word simulator, subset construction, and Thompson regex converter',
-    de: 'Interaktiver DFA/NFA-Editor, Wort-Simulator, Potenzmengenkonstruktion und Thompson-Regex-Konverter',
+    en: 'Build finite automata, test words and turn regular expressions into machines',
+    de: 'Endliche Automaten bauen, Wörter testen und reguläre Ausdrücke in Automaten umwandeln',
   },
   version: '1.0.0',
   icon: 'refresh',

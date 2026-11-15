@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Minesweeper",
-    "description": "Klassisches Cyber-Minesweeper mit sicherem ersten Klick, Akkord-Aufdecken und benutzerdefinierten Rastergrößen."
+    "description": "Das Feld räumen, ohne eine Mine zu treffen"
   },
   "difficulty": {
     "beginner": "Anfänger",

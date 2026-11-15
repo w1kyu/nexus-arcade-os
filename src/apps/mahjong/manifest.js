@@ -4,8 +4,8 @@ export default {
   id: 'nexus.mahjong',
   name: { en: 'Mahjong Solitaire', de: 'Mahjong Solitaire' },
   description: {
-    en: 'Classic 3D tile-matching with multiple layouts, hints, shuffle, and verified solvable deals',
-    de: 'Klassisches 3D-Kachel-Matching mit mehreren Layouts, Hinweisen, Mischen und garantierten Lösungen',
+    en: 'Match pairs of free tiles until the board is clear',
+    de: 'Paare freier Steine finden, bis das Feld leer ist',
   },
   version: '1.0.0',
   icon: 'layers',

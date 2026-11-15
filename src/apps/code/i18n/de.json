@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nexus Code",
-    "description": "Mehrdatei-Code-Editor"
+    "description": "Projekte mit mehreren Dateien bearbeiten und Webseiten live ansehen"
   },
   "activity": {
     "explorer": "Explorer",
@@ -11,7 +11,7 @@
     "runner": "JavaScript ausführen"
   },
   "explorer": {
-    "title": "EXPLORER",
+    "title": "Explorer",
     "newFile": "Neue Datei",
     "newFolder": "Neuer Ordner",
     "refresh": "Aktualisieren",
@@ -35,7 +35,7 @@
     "searching": "Suche läuft..."
   },
   "history": {
-    "title": "LOKALER VERLAUF",
+    "title": "Lokaler Verlauf",
     "noSnapshots": "Noch keine Snapshots im Verlauf. Speichern Sie Dateien, um Änderungen aufzuzeichnen.",
     "snapshotAt": "Snapshot von {time}",
     "diffTitle": "Diff: {file}",
@@ -43,7 +43,7 @@
     "reverted": "Dateien auf Snapshot zurückgesetzt"
   },
   "preview": {
-    "title": "WEB-VORSCHAU",
+    "title": "Web-Vorschau",
     "run": "Ausführen",
     "refresh": "Aktualisieren",
     "popout": "In neuem Tab öffnen",
@@ -51,7 +51,7 @@
     "createTemplate": "Web-Beispielprojekt anlegen"
   },
   "runner": {
-    "title": "JAVASCRIPT AUSFÜHREN (NODE-LITE)",
+    "title": "JavaScript ausführen (Node-lite)",
     "run": "Aktive Datei ausführen",
     "clear": "Konsole leeren",
     "running": "Wird im Worker ausgeführt...",

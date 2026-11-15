@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sorting Visualizer",
-    "description": "Interactive step-by-step sorting visualizer with bar, dot, and color wheel views, sound synthesizer, and race mode."
+    "description": "Watch and hear sorting algorithms work, side by side"
   },
   "controls": {
     "algorithm": "Algorithm:",

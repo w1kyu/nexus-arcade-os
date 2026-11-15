@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Blockfall",
-    "description": "Next-gen falling blocks puzzle with SRS kicks, ghost piece, and 4 game modes."
+    "description": "Rotate falling blocks to clear lines, in four game modes"
   },
   "modes": {
     "marathon": "Marathon",

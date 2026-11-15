@@ -3,8 +3,8 @@ export default {
   id: 'nexus.sheets',
   name: { en: 'Nexus Sheets', de: 'Nexus Tabellen' },
   description: {
-    en: 'Professional spreadsheet with formula engine, 40+ functions, virtual scrolling, charts and CSV/TSV support',
-    de: 'Professionelle Tabellenkalkulation mit Formel-Engine, über 40 Funktionen, virtuellem Scrollen, Diagrammen und CSV/TSV-Unterstützung',
+    en: 'Work with tables, formulas and charts, and open CSV files',
+    de: 'Mit Tabellen, Formeln und Diagrammen arbeiten und CSV-Dateien öffnen',
   },
   version: '1.0.0',
   icon: 'table',

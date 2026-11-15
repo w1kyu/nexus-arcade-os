@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Void Drifter",
-    "description": "Neon-Vektor-Weltraumkampf mit Trägheitsphysik, spaltenden Asteroiden, UFO-Patrouillen und Hyperraum-Sprüngen."
+    "description": "Ein treibendes Raumschiff steuern und Asteroiden und UFOs abschießen"
   },
   "menu": {
     "play": "Mission starten",

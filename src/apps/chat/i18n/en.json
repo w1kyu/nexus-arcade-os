@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "AI Chat",
-    "description": "Conversational AI with local and remote models, tools, and code assistant"
+    "description": "Chat with AI models on your computer or in the cloud"
   },
   "actions": {
     "newChat": "New Chat",

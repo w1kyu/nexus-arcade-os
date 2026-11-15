@@ -4,8 +4,8 @@ export default {
   id: 'nexus.grades',
   name: { en: 'Grade Tracker', de: 'Notenrechner' },
   description: {
-    en: 'German 1.0–5.0 and international grading scales, ECTS-weighted GPA, semester dashboard, and What-If calculator',
-    de: 'Deutsches 1,0–5,0-System & internationale Notenskalen, ECTS-gewichteter Schnitt, Semester-Dashboard und Was-wäre-wenn-Rechner',
+    en: 'Track your grades and your weighted average, and plan what you still need',
+    de: 'Noten und den gewichteten Schnitt erfassen und planen, was noch nötig ist',
   },
   version: '1.0.0',
   icon: 'award',

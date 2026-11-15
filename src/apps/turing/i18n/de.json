@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Turing-Maschinen-Simulator",
-    "description": "Visualisierer für 1-Band-Turing-Maschinen mit Zustandstabelle, Bandkopf-Animation, Schrittausführung und Fleißigen Bibern."
+    "description": "Turingmaschinen bauen und auf dem Band ablaufen sehen"
   },
   "controls": {
     "preset": "Maschine:",

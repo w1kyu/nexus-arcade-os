@@ -4,8 +4,8 @@ export default {
   id: 'nexus.typing',
   name: { en: 'Typing Trainer', de: 'Typing Trainer' },
   description: {
-    en: 'Professional touch typing trainer with WPM benchmarks, visual keyboard finger hints, and code mode',
-    de: 'Professioneller Tipptrainer mit WPM-Benchmarks, visuellen Fingerhinweisen und Code-Modus',
+    en: 'Learn touch typing and track your speed, for text and code',
+    de: 'Zehnfingerschreiben lernen und das Tempo verfolgen, für Text und Code',
   },
   version: '1.0.0',
   icon: 'keyboard',

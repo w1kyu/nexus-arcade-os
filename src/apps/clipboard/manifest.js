@@ -4,8 +4,8 @@ export default {
   id: 'nexus.clipboard',
   name: { en: 'Clipboard', de: 'Zwischenablage' },
   description: {
-    en: 'Clipboard history, pinned clips, and text snippets with variable templates',
-    de: 'Zwischenablage-Verlauf, angeheftete Einträge und Textbausteine mit Vorlagenvariablen',
+    en: 'Find what you copied earlier and keep text snippets at hand',
+    de: 'Früher Kopiertes wiederfinden und Textbausteine griffbereit halten',
   },
   version: '1.0.0',
   icon: 'clipboard',

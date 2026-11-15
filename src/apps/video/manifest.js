@@ -4,8 +4,8 @@ export default {
   id: 'nexus.video',
   name: { en: 'Video Player', de: 'Videoplayer' },
   description: {
-    en: 'Local video player with frame-stepping, Picture-in-Picture, A-B loop, subtitles (.srt/.vtt) and frame screenshot export',
-    de: 'Lokaler Videoplayer mit Einzelbild-Schaltung, Bild-im-Bild, A-B-Schleife, Untertiteln und Frame-Screenshot-Export',
+    en: 'Play your videos with subtitles, loops and frame-by-frame stepping',
+    de: 'Eigene Videos mit Untertiteln, Schleifen und Einzelbildschritten abspielen',
   },
   version: '1.0.0',
   icon: 'file-video',

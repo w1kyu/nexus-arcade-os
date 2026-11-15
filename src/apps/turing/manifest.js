@@ -4,8 +4,8 @@ export default {
   id: 'nexus.turing',
   name: { en: 'Turing Machine Simulator', de: 'Turing-Maschinen-Simulator' },
   description: {
-    en: 'Single-tape Turing Machine visualizer with state table, head movement, and busy beaver machines',
-    de: 'Visualisierer für 1-Band-Turing-Maschinen mit Zustandstabelle, Bandkopf-Animation und Fleißigen Bibern',
+    en: 'Build Turing machines and watch them run on the tape',
+    de: 'Turingmaschinen bauen und auf dem Band ablaufen sehen',
   },
   version: '1.0.0',
   icon: 'terminal',

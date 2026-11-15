@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Musik",
-    "description": "Lokaler Musikplayer mit Mediathek, Metadaten-Parser, 10-Band-EQ und Visualizern"
+    "description": "Die eigene Musiksammlung abspielen, mit Equalizer und Visualisierungen"
   },
   "music": {
     "songs": "Titel",

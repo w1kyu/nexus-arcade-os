@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "2048 Cyber",
-    "description": "Das klassische 2048-Schiebepuzzle mit Rückgängig-Funktion, variablen Spielfeldgrößen und Endlosmodus"
+    "description": "Gleiche Kacheln zusammenschieben, bis 2048 erreicht ist, und dann weiterspielen"
   },
   "ui": {
     "score": "PUNKTE",

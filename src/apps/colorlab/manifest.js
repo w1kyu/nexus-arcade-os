@@ -4,8 +4,8 @@ export default {
   id: 'nexus.colorlab',
   name: { en: 'Color Laboratory', de: 'Farblabor' },
   description: {
-    en: 'Color converter, palette generator, WCAG contrast checker, color blindness simulator and gradient builder',
-    de: 'Farbkonverter, Palettengenerator, WCAG-Kontrastrechner, Farbfehlsichtigkeits-Simulator und Verlaufs-Editor',
+    en: 'Convert colors, build palettes and check contrast for readability',
+    de: 'Farben umrechnen, Paletten erstellen und Kontraste auf Lesbarkeit prüfen',
   },
   version: '1.0.0',
   icon: 'palette',

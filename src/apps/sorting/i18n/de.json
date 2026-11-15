@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sortier-Visualisierer",
-    "description": "Interaktiver Schritt-für-Schritt-Visualisierer für Sortieralgorithmen mit Balken-, Punkt- und Farbradansicht, Klangsynthese und Wettrennen-Modus."
+    "description": "Sortieralgorithmen nebeneinander arbeiten sehen und hören"
   },
   "controls": {
     "algorithm": "Algorithmus:",

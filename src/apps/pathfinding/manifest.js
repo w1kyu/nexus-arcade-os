@@ -4,8 +4,8 @@ export default {
   id: 'nexus.pathfinding',
   name: { en: 'Pathfinding & Maze Lab', de: 'Pfadfindungs- & Labyrinth-Labor' },
   description: {
-    en: 'Interactive pathfinding algorithm simulator and maze generator with weighted grids',
-    de: 'Interaktiver Simulator für Wegfindungsalgorithmen und Labyrinth-Generator mit gewichteten Gittern',
+    en: 'Generate mazes and watch pathfinding algorithms solve them',
+    de: 'Labyrinthe erzeugen und zusehen, wie Wegfindungs-Algorithmen sie lösen',
   },
   version: '1.0.0',
   icon: 'target',

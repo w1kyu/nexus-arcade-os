@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Blockfall",
-    "description": "Blockstapel-Puzzlespiel der nächsten Generation mit SRS-Kicks, Schatten-Vorschau und 4 Spielmodi."
+    "description": "Fallende Blöcke drehen und Reihen abräumen, in vier Spielmodi"
   },
   "modes": {
     "marathon": "Marathon",

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sprachmemos",
-    "description": "Audio-Aufnahmestudio mit Live-Wellenform und Schnitt"
+    "description": "Audio aufnehmen, Stellen markieren und Aufnahmen kürzen"
   },
   "recorder": {
     "recordings": "Gespeicherte Aufnahmen"

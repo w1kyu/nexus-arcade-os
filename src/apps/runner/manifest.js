@@ -4,8 +4,8 @@ export default {
   id: 'nexus.runner',
   name: { en: 'Pixel Runner', de: 'Pixel Runner' },
   description: {
-    en: 'Precision neon platformer with 20 levels, tight physics, collectibles, and level editor',
-    de: 'Präzisions-Plattformer mit 20 Leveln, agiler Physik, Sammelobjekten und Level-Editor',
+    en: 'Run and jump through 20 levels, or build your own',
+    de: 'Durch 20 Levels laufen und springen oder eigene bauen',
   },
   version: '1.0.0',
   icon: 'navigation',

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.chess',
   name: { en: 'Nexus Chess', de: 'Nexus Schach' },
   description: {
-    en: 'Tactical chess with alpha-beta AI, puzzle challenges, PGN import/export, and local 2-player',
-    de: 'Taktisches Schach mit Alpha-Beta-KI, Rätsel-Herausforderungen, PGN-Import/Export und lokalem 2-Spieler-Modus',
+    en: 'Play chess against the computer or a friend, and solve puzzles',
+    de: 'Schach gegen den Computer oder gegen Freunde spielen und Aufgaben lösen',
   },
   version: '1.0.0',
   icon: 'gamepad',

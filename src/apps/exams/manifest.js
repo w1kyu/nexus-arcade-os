@@ -4,8 +4,8 @@ export default {
   id: 'nexus.exams',
   name: { en: 'Exam Planner', de: 'Klausurenplaner' },
   description: {
-    en: 'Exam countdown cards, topic checklists, automated study plan generator into Tasks, and readiness score',
-    de: 'Prüfungs-Countdown-Karten, Themen-Checklisten, automatische Lernplan-Generierung in Aufgaben und Bereitschaftswert',
+    en: 'Count down to exams, check off topics and get a study plan',
+    de: 'Bis zu Prüfungen herunterzählen, Themen abhaken und einen Lernplan bekommen',
   },
   version: '1.0.0',
   icon: 'target',

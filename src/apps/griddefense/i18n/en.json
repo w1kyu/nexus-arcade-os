@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Grid Defense",
-    "description": "Cyber tower defense with upgradable turrets and enemy waves"
+    "description": "Build and upgrade towers to stop waves of enemies"
   },
   "hud": {
     "credits": "Credits",

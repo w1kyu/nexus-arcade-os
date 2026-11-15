@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Hexword",
-    "description": "5-letter word puzzle in English and German with daily seeded challenges and hard mode"
+    "description": "Guess the five-letter word in six tries, in English or German"
   },
   "mode": {
     "daily": "Daily Word",

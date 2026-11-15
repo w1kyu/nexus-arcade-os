@@ -4,8 +4,8 @@ export default {
   id: 'nexus.invaders',
   name: { en: 'Grid Invaders', de: 'Grid Invaders' },
   description: {
-    en: 'Vector fixed-shooter with descending alien formations, bunker shields, and boss waves',
-    de: 'Vektor-Shooter mit herabsinkenden Alien-Formationen, Bunkerschilden und Boss-Wellen',
+    en: 'Shoot down waves of descending aliens from behind your shields',
+    de: 'Herabsteigende Alienwellen hinter deinen Schutzschilden abschießen',
   },
   version: '1.0.0',
   icon: 'zap',

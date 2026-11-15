@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Informatik-Labor",
-    "description": "Zentrales Lernportal für Algorithmen, Datenstrukturen, Automaten, Logikschaltungen und Rechnerarchitektur"
+    "description": "Der Einstieg zum Lernen von Algorithmen, Datenstrukturen, Automaten und Schaltungen"
   },
   "hub": {
     "searchPlaceholder": "Themen, Algorithmen, Klausuraufgaben suchen (z.B. Dijkstra, AVL, IEEE 754, Turing)...",

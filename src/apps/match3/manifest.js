@@ -4,8 +4,8 @@ export default {
   id: 'nexus.match3',
   name: { en: 'Match-3 Puzzle', de: 'Match-3 Puzzle' },
   description: {
-    en: 'Swap and match vibrant cyber gems with cascade combos, special bombs, and level goals',
-    de: 'Tausche und verbinde Cyber-Edelsteine mit Kaskaden-Kombos, Bomben und Level-Zielen',
+    en: "Swap gems to match three or more and reach each level's goal",
+    de: 'Steine tauschen, drei oder mehr verbinden und das Levelziel erreichen',
   },
   version: '1.0.0',
   icon: 'sparkles',

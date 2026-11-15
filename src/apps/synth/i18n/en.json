@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Synthesizer",
-    "description": "Polyphonic analog modeling synthesizer with dual oscillators, resonant filter, arpeggiator, effects and Web MIDI support"
+    "description": "Play and shape sounds on a synthesizer with your keyboard or MIDI"
   },
   "controls": {
     "preset": "Sound preset",

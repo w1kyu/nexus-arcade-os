@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Spiel des Lebens",
-    "description": "Zellulärer Automat mit Musterbibliothek und alternativen Regelsystemen"
+    "description": "Zellen zeichnen und Muster in Conways Spiel des Lebens wachsen sehen"
   },
   "hud": {
     "gen": "Gen",

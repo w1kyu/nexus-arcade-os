@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Graph Editor & Algorithms",
-    "description": "Interactive graph visualizer, editor, and algorithm simulator with BFS, DFS, Dijkstra, MST, and layouts."
+    "description": "Draw graphs and watch search and shortest-path algorithms run"
   },
   "controls": {
     "algorithm": "Algorithm:",

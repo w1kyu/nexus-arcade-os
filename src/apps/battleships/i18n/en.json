@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Battleships",
-    "description": "Naval grid warfare against probability-density AI with fleet placement editor"
+    "description": "Place your fleet and sink the computer's ships before it finds yours"
   },
   "placement": {
     "title": "Deployment Phase",

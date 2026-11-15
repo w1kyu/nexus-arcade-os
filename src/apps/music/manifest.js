@@ -4,8 +4,8 @@ export default {
   id: 'nexus.music',
   name: { en: 'Nexus Music', de: 'Nexus Musik' },
   description: {
-    en: 'Local music player with library, ID3v2/Vorbis/MP4 metadata, 10-band EQ, 5 visualizer modes and Media Session integration',
-    de: 'Lokaler Musikplayer mit Mediathek, ID3v2/Vorbis/MP4-Metadaten, 10-Band-Equalizer, 5 Visualizer-Modi und Media-Session-Steuerung',
+    en: 'Play your music collection with an equalizer and visualizers',
+    de: 'Die eigene Musiksammlung abspielen, mit Equalizer und Visualisierungen',
   },
   version: '1.0.0',
   icon: 'music',

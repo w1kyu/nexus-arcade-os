@@ -4,8 +4,8 @@ export default {
   id: 'nexus.snake',
   name: { en: 'Snake Evolution', de: 'Snake Evolution' },
   description: {
-    en: 'Next-gen cyber snake with smooth motion, power-ups, and quantum maps',
-    de: 'Cyber-Snake der nächsten Generation mit flüssiger Bewegung, Power-ups und Quantenkarten',
+    en: 'Steer the snake, eat to grow and stay clear of your own tail',
+    de: 'Die Schlange steuern, fressen, wachsen und dem eigenen Schwanz ausweichen',
   },
   version: '1.0.0',
   icon: 'gamepad',

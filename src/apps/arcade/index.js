@@ -8,7 +8,7 @@ import './styles.css';
  * @property {string} id
  * @property {string} name
  * @property {string} genre
- * @property {string} desc
+ * @property {string} [desc]   localized manifest description (filled in at mount)
  * @property {string} iconName
  * @property {string} bgGradient
  */
@@ -18,7 +18,6 @@ const ARCADE_GAMES = [
     id: 'nexus.snake',
     name: 'Snake Evolution',
     genre: 'action',
-    desc: 'Interpolated cyber snake with 6 maps, power-up cascades, and hazard patrols.',
     iconName: '🐍',
     bgGradient: 'linear-gradient(135deg, #051923, #003554)',
   },
@@ -26,7 +25,6 @@ const ARCADE_GAMES = [
     id: 'nexus.breakout',
     name: 'Breakout Nexus',
     genre: 'arcade',
-    desc: 'Continuous ball collision physics, 30 handcrafted levels, and integrated level editor.',
     iconName: '🧱',
     bgGradient: 'linear-gradient(135deg, #10002b, #240046)',
   },
@@ -34,7 +32,6 @@ const ARCADE_GAMES = [
     id: 'nexus.blockfall',
     name: 'Blockfall',
     genre: 'puzzle',
-    desc: 'Super Rotation falling-blocks puzzle with ghost projection, hold piece, and 4 game modes.',
     iconName: '🧊',
     bgGradient: 'linear-gradient(135deg, #091b29, #003666)',
   },
@@ -42,7 +39,6 @@ const ARCADE_GAMES = [
     id: 'nexus.minesweeper',
     name: 'Minesweeper',
     genre: 'puzzle',
-    desc: 'Tactical mine clearance with safe first click opening, chording, and custom grid sizes.',
     iconName: '💣',
     bgGradient: 'linear-gradient(135deg, #1b1f24, #2d333b)',
   },
@@ -50,7 +46,6 @@ const ARCADE_GAMES = [
     id: 'nexus.drifter',
     name: 'Void Drifter',
     genre: 'action',
-    desc: 'Vector neon space combat with inertia physics, splitting asteroids, and UFO enemies.',
     iconName: '🚀',
     bgGradient: 'linear-gradient(135deg, #120b24, #2a154d)',
   },
@@ -58,7 +53,6 @@ const ARCADE_GAMES = [
     id: 'nexus.sudoku',
     name: 'Sudoku',
     genre: 'puzzle',
-    desc: 'Logic number placement with unique solutions, pencil notes, and technique hints.',
     iconName: '🔢',
     bgGradient: 'linear-gradient(135deg, #0d1b2a, #1b263b)',
   },
@@ -66,7 +60,6 @@ const ARCADE_GAMES = [
     id: 'nexus.typing',
     name: 'Typing Trainer',
     genre: 'reflex',
-    desc: 'Professional touch typing trainer with WPM benchmarks, visual keyboard, and code mode.',
     iconName: '⌨️',
     bgGradient: 'linear-gradient(135deg, #161a29, #232b42)',
   },
@@ -74,7 +67,6 @@ const ARCADE_GAMES = [
     id: 'nexus.pong',
     name: 'Neon Pong',
     genre: 'arcade',
-    desc: 'High-velocity cyber table tennis with spin dynamics, power-ups, and AI or 2-player modes.',
     iconName: '🏓',
     bgGradient: 'linear-gradient(135deg, #240046, #3c096c)',
   },
@@ -82,7 +74,6 @@ const ARCADE_GAMES = [
     id: 'nexus.memory',
     name: 'Memory Master',
     genre: 'puzzle',
-    desc: 'Card matching trainer with 3D flip animations, combo scoring, and CS themes.',
     iconName: '🃏',
     bgGradient: 'linear-gradient(135deg, #0b132b, #1c2541)',
   },
@@ -90,7 +81,6 @@ const ARCADE_GAMES = [
     id: 'nexus.2048',
     name: '2048 Cyber',
     genre: 'puzzle',
-    desc: 'The classic 2048 sliding puzzle with undo, multiple board sizes, and endless mode.',
     iconName: '🔢',
     bgGradient: 'linear-gradient(135deg, #1f1d36, #3f3351)',
   },
@@ -98,7 +88,6 @@ const ARCADE_GAMES = [
     id: 'nexus.reaction',
     name: 'Reaction Trainer',
     genre: 'reflex',
-    desc: 'Benchmark sensory reaction time, aim precision, and cognitive memory spans.',
     iconName: '⚡',
     bgGradient: 'linear-gradient(135deg, #14213d, #000000)',
   },
@@ -106,7 +95,6 @@ const ARCADE_GAMES = [
     id: 'nexus.solitaire',
     name: 'Solitaire Collection',
     genre: 'cards',
-    desc: 'Klondike, Spider, and FreeCell solitaire with infinite undo, solvable deals, and auto-complete.',
     iconName: '🂠',
     bgGradient: 'linear-gradient(135deg, #0b3d20, #14522d)',
   },
@@ -114,7 +102,6 @@ const ARCADE_GAMES = [
     id: 'nexus.chess',
     name: 'Nexus Chess',
     genre: 'board',
-    desc: 'Full-featured chess engine with alpha-beta AI, puzzle challenges, PGN import/export, and move history.',
     iconName: '♟️',
     bgGradient: 'linear-gradient(135deg, #1f2937, #111827)',
   },
@@ -122,7 +109,6 @@ const ARCADE_GAMES = [
     id: 'nexus.connectfour',
     name: 'Connect Four',
     genre: 'board',
-    desc: 'Classic vertical four-in-a-row with tactical minimax AI and local two-player duel mode.',
     iconName: '🔴',
     bgGradient: 'linear-gradient(135deg, #1e3a8a, #1d4ed8)',
   },
@@ -130,7 +116,6 @@ const ARCADE_GAMES = [
     id: 'nexus.checkers',
     name: 'Checkers / Dame',
     genre: 'board',
-    desc: 'Standard and International draughts with mandatory multi-jump captures and intelligent AI opponent.',
     iconName: '⚪',
     bgGradient: 'linear-gradient(135deg, #374151, #1f2937)',
   },
@@ -138,7 +123,6 @@ const ARCADE_GAMES = [
     id: 'nexus.battleships',
     name: 'Battleships',
     genre: 'board',
-    desc: 'Naval fleet combat with ship placement editor, salvo tracking, and hunt-and-target probability AI.',
     iconName: '🚢',
     bgGradient: 'linear-gradient(135deg, #0c4a6e, #075985)',
   },
@@ -146,7 +130,6 @@ const ARCADE_GAMES = [
     id: 'nexus.hexword',
     name: 'Hexword',
     genre: 'puzzle',
-    desc: 'Daily 5-letter word puzzle in English and German with curated dictionaries and emoji grid sharing.',
     iconName: '🔤',
     bgGradient: 'linear-gradient(135deg, #065f46, #047857)',
   },
@@ -154,7 +137,6 @@ const ARCADE_GAMES = [
     id: 'nexus.sokoban',
     name: 'Block Pusher',
     genre: 'puzzle',
-    desc: 'Warehouse box-pushing puzzle with 60+ verified solvable levels, undo history, and custom level editor.',
     iconName: '📦',
     bgGradient: 'linear-gradient(135deg, #78350f, #92400e)',
   },
@@ -162,7 +144,6 @@ const ARCADE_GAMES = [
     id: 'nexus.nonogram',
     name: 'Nonogram',
     genre: 'puzzle',
-    desc: 'Picross picture logic grid puzzles with line hints, cross-out helpers, and procedural puzzle generator.',
     iconName: '▦',
     bgGradient: 'linear-gradient(135deg, #312e81, #4338ca)',
   },
@@ -170,7 +151,6 @@ const ARCADE_GAMES = [
     id: 'nexus.invaders',
     name: 'Grid Invaders',
     genre: 'arcade',
-    desc: 'Retro fixed shooter with descending alien formations, destructible shields, diving squadrons, and boss waves.',
     iconName: '👾',
     bgGradient: 'linear-gradient(135deg, #4c1d95, #581c87)',
   },
@@ -178,7 +158,6 @@ const ARCADE_GAMES = [
     id: 'nexus.glide',
     name: 'Neon Glide',
     genre: 'arcade',
-    desc: 'One-button neon flyer with aerodynamic inertia, procedural obstacles, particle trails, and ghost replay.',
     iconName: '🔷',
     bgGradient: 'linear-gradient(135deg, #0e7490, #155e75)',
   },
@@ -186,7 +165,6 @@ const ARCADE_GAMES = [
     id: 'nexus.griddefense',
     name: 'Grid Defense',
     genre: 'action',
-    desc: 'Tower defense with 11 maps, 6 upgradable tower types, enemy creep varieties, waves, and speed controls.',
     iconName: '🏰',
     bgGradient: 'linear-gradient(135deg, #1e1b4b, #2e1065)',
   },
@@ -194,7 +172,6 @@ const ARCADE_GAMES = [
     id: 'nexus.runner',
     name: 'Pixel Runner',
     genre: 'action',
-    desc: 'Precision platformer with tight coyote-jump physics, 20 handcrafted levels, and custom level editor.',
     iconName: '🏃',
     bgGradient: 'linear-gradient(135deg, #022c22, #064e3b)',
   },
@@ -202,7 +179,6 @@ const ARCADE_GAMES = [
     id: 'nexus.racer',
     name: 'Neon Racer',
     genre: 'arcade',
-    desc: 'Top-down neon racing circuit with drift physics, AI opponents, ghost car replay, and 5 tracks.',
     iconName: '🏎️',
     bgGradient: 'linear-gradient(135deg, #831843, #701a75)',
   },
@@ -210,7 +186,6 @@ const ARCADE_GAMES = [
     id: 'nexus.uttt',
     name: 'Ultimate Tic-Tac-Toe',
     genre: 'board',
-    desc: 'Strategic nested 9x9 board with forced sub-grid targeting, heuristic AI, and local 2-player mode.',
     iconName: '⚔️',
     bgGradient: 'linear-gradient(135deg, #172554, #1e3a8a)',
   },
@@ -218,7 +193,6 @@ const ARCADE_GAMES = [
     id: 'nexus.mahjong',
     name: 'Mahjong Solitaire',
     genre: 'puzzle',
-    desc: 'Tile-matching with 3D layouts, elevation occlusion, hint, shuffle, and 100% solvable deals.',
     iconName: '🀄',
     bgGradient: 'linear-gradient(135deg, #14532d, #166534)',
   },
@@ -226,7 +200,6 @@ const ARCADE_GAMES = [
     id: 'nexus.match3',
     name: 'Match-3 Puzzle',
     genre: 'puzzle',
-    desc: 'Swap matcher with cascade combos, special bombs and lasers, and 10 objective levels.',
     iconName: '💎',
     bgGradient: 'linear-gradient(135deg, #701a75, #4a044e)',
   },
@@ -234,7 +207,6 @@ const ARCADE_GAMES = [
     id: 'nexus.bubbles',
     name: 'Bubble Shooter',
     genre: 'arcade',
-    desc: 'Aim and bank-shot trajectory physics with color matching, cluster pops, and floating bubble cascades.',
     iconName: '🫧',
     bgGradient: 'linear-gradient(135deg, #0369a1, #0c4a6e)',
   },
@@ -242,7 +214,6 @@ const ARCADE_GAMES = [
     id: 'nexus.life',
     name: 'Game of Life Sandbox',
     genre: 'puzzle',
-    desc: 'Toroidal cellular automata simulator with pattern library, interactive pencil, and 5 rule engines.',
     iconName: '🧬',
     bgGradient: 'linear-gradient(135deg, #042f2e, #134e4a)',
   },
@@ -250,7 +221,6 @@ const ARCADE_GAMES = [
     id: 'nexus.quiz',
     name: 'Quiz Arena',
     genre: 'reflex',
-    desc: 'Trivia quiz arena with CS fundamentals and web architecture packs in EN and DE, streaks, and lifelines.',
     iconName: '💡',
     bgGradient: 'linear-gradient(135deg, #451a03, #78350f)',
   },
@@ -267,6 +237,16 @@ const MULTIPLAYER_GAMES = [
 /** @type {import('../../kernel/types').AppModule['mount']} */
 export async function mount(container, ctx) {
   const t = (/** @type {string} */ k, /** @type {Record<string, unknown>} */ v = {}) => ctx.i18n.t(k, v);
+  // Names and descriptions come from each game's manifest, so they follow the language.
+  const loc = (/** @type {unknown} */ v) =>
+    typeof v === 'string'
+      ? v
+      : /** @type {Record<string, string> | undefined} */ (v?.[ctx.i18n.locale] ?? /** @type {any} */ (v)?.en ?? '');
+  /** @type {ArcadeGameDef[]} */
+  const games = ARCADE_GAMES.map((g) => {
+    const info = ctx.system?.apps?.get(g.id);
+    return { ...g, name: loc(info?.name) || g.name, desc: loc(info?.description) };
+  });
 
   const root = h('div', { class: 'nx-arcade-app' });
 
@@ -346,7 +326,7 @@ export async function mount(container, ctx) {
 
   const randomBtn = h('button', { class: 'nx-btn is-sm' }, `🎲 ${t('toolbar.random')}`);
   randomBtn.addEventListener('click', () => {
-    const pick = ARCADE_GAMES[Math.floor(Math.random() * ARCADE_GAMES.length)];
+    const pick = games[Math.floor(Math.random() * games.length)];
     launchGame(pick.id);
   });
 
@@ -368,8 +348,8 @@ export async function mount(container, ctx) {
 
   // Rotating featured game banner (daily rotation)
   const today = new Date();
-  const featuredIndex = (today.getDate() + today.getMonth() * 31) % ARCADE_GAMES.length;
-  const featuredGame = ARCADE_GAMES[featuredIndex];
+  const featuredIndex = (today.getDate() + today.getMonth() * 31) % games.length;
+  const featuredGame = games[featuredIndex];
 
   const featuredBanner = h('div', { class: 'nx-arcade-featured' });
   const featuredLeft = h(
@@ -416,13 +396,17 @@ export async function mount(container, ctx) {
   async function renderGameGrid() {
     const seq = ++renderSeq;
 
-    const filtered = ARCADE_GAMES.filter((g) => {
+    const filtered = games.filter((g) => {
       if (activeFilter === 'favorites') {
         if (!favorites.has(g.id)) return false;
       } else if (activeFilter !== 'all') {
         if (g.genre !== activeFilter) return false;
       }
-      if (searchQuery && !g.name.toLowerCase().includes(searchQuery) && !g.desc.toLowerCase().includes(searchQuery)) {
+      if (
+        searchQuery &&
+        !g.name.toLowerCase().includes(searchQuery) &&
+        !(g.desc ?? '').toLowerCase().includes(searchQuery)
+      ) {
         return false;
       }
       return true;
@@ -490,7 +474,7 @@ export async function mount(container, ctx) {
       `;
 
       // Play button
-      const playBtn = h('button', { class: 'nx-btn is-primary nx-card-play' }, t('actions.play'));
+      const playBtn = h('button', { class: 'nx-btn nx-card-play' }, t('actions.play'));
       playBtn.addEventListener('click', () => launchGame(g.id));
 
       body.append(headerRow, desc, statsRow, playBtn);

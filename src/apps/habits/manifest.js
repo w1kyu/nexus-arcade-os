@@ -4,8 +4,8 @@ export default {
   id: 'nexus.habits',
   name: { en: 'Habits', de: 'Gewohnheiten' },
   description: {
-    en: 'Daily and weekly habit tracking, streak counters, GitHub-style yearly heatmaps, and quick check-ins',
-    de: 'Tägliche & wöchentliche Gewohnheiten, Serien-Zähler, GitHub-Heatmaps und Schnell-Check-ins',
+    en: 'Track daily and weekly habits and keep your streaks going',
+    de: 'Tägliche und wöchentliche Gewohnheiten verfolgen und Serien halten',
   },
   version: '1.0.0',
   icon: 'flame',

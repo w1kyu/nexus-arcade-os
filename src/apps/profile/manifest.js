@@ -3,8 +3,8 @@ export default {
   id: 'nexus.profile',
   name: { en: 'Profile & Achievements', de: 'Profil & Erfolge' },
   description: {
-    en: 'Level, XP progress, cross-app achievements, activity breakdown, and Nexus Wrapped summary',
-    de: 'Stufe, EP-Fortschritt, app-übergreifende Erfolge, Aktivitätsstatistik und Nexus-Rückblick',
+    en: 'Your level, achievements and a summary of how you use Nexus',
+    de: 'Dein Level, deine Erfolge und eine Übersicht, wie du Nexus nutzt',
   },
   version: '1.0.0',
   icon: 'award',

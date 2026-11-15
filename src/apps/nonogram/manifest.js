@@ -4,8 +4,8 @@ export default {
   id: 'nexus.nonogram',
   name: { en: 'Nonogram', de: 'Nonogramm' },
   description: {
-    en: 'Japanese Picross grid logic puzzles with line-check helpers, penalty options, and procedural generator',
-    de: 'Japanische Picross-Gitterrätsel mit Zeilenprüfer, Strafzeit-Option und prozeduralem Generator',
+    en: 'Fill in the grid from the number clues to reveal a picture',
+    de: 'Das Raster anhand der Zahlenhinweise ausfüllen und ein Bild aufdecken',
   },
   version: '1.0.0',
   icon: 'grid',

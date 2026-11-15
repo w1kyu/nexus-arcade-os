@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Beat Lab",
-    "description": "Synthetischer 16-Step-Drumcomputer mit Lookahead-Timing und WAV-Export"
+    "description": "Schlagzeug-Patterns in einem 16-Schritt-Raster programmieren und als Audio exportieren"
   },
   "controls": {
     "tempo": "Tempo (BPM)",

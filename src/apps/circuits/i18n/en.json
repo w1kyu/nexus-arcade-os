@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Logic Circuit & Boolean Lab",
-    "description": "Interactive logic gate simulator, circuit canvas, truth table generator, KV maps, and Quine-McCluskey minimization."
+    "description": "Build logic circuits, get their truth tables and simplify them"
   },
   "tabs": {
     "circuits": "Circuit Simulator",

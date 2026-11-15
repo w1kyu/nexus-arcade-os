@@ -3,8 +3,8 @@ export default {
   id: 'nexus.mindmap',
   name: { en: 'Nexus Mind Map', de: 'Nexus Mindmap' },
   description: {
-    en: 'Visual mind mapping and brainstorming with automatic layouts, keyboard navigation and Markdown export',
-    de: 'Visuelle Ideen- und Wissensstrukturierung mit automatischen Layouts und Tastatursteuerung',
+    en: 'Collect ideas in a mind map and export it as Markdown',
+    de: 'Ideen in einer Mindmap sammeln und als Markdown exportieren',
   },
   version: '1.0.0',
   icon: 'share',

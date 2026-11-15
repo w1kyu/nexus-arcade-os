@@ -4,8 +4,8 @@ export default {
   id: 'nexus.calendar',
   name: { en: 'Calendar', de: 'Kalender' },
   description: {
-    en: 'Day, week, month, year, and agenda calendar with .ics import/export, German holidays, and task overlays',
-    de: 'Tag-, Wochen-, Monats-, Jahres- und Agendakalender mit .ics-Import/Export, Feiertagen und Aufgaben-Overlay',
+    en: 'Plan your days and weeks, with holidays, tasks and calendar files',
+    de: 'Tage und Wochen planen, mit Feiertagen, Aufgaben und Kalenderdateien',
   },
   version: '1.0.0',
   icon: 'calendar',

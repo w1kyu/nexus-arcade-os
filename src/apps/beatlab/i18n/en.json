@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Beat Lab",
-    "description": "16-step synthesized drum machine with lookahead scheduling and WAV export"
+    "description": "Program drum patterns on a 16-step grid and export them as audio"
   },
   "controls": {
     "tempo": "Tempo (BPM)",

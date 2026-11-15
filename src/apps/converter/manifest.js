@@ -4,8 +4,8 @@ export default {
   id: 'nexus.converter',
   name: { en: 'Unit Converter', de: 'Einheitenumrechner' },
   description: {
-    en: 'Two-way live conversion across 16 categories including SI vs IEC data size, cooking, number bases, and Roman numerals',
-    de: 'Interaktiver Umrechner über 16 Kategorien inklusive SI / IEC Datengrößen, Kochen, Zahlensysteme und Römische Zahlen',
+    en: 'Convert units, data sizes, number bases and more as you type',
+    de: 'Einheiten, Datengrößen, Zahlensysteme und mehr direkt beim Tippen umrechnen',
   },
   version: '1.0.0',
   icon: 'refresh-cw',

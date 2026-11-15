@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Fotos",
-    "description": "Lokale Fotogalerie, EXIF-Metadaten-Inspektor und Foto-Editor"
+    "description": "Fotos ansehen und bearbeiten und private Details vor dem Teilen entfernen"
   },
   "photos": {
     "title": "Nexus Fotos",

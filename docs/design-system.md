@@ -115,3 +115,14 @@ root.append(frame.root);
 ### App CSS
 
 App stylesheets use tokens only: no hard-coded colors, font sizes from the type ramp, no app-local copies of shared controls (`scripts/check-tokens.js`, baseline in `scripts/token-baseline.json`). Specialised controls with no shared equivalent are named for their role, not their element (`.nx-calc-key`, `.nx-camera-shutter`, `.nx-quiz-option`). Kept on purpose: game art colors (tiles, boards, cards, swatches), document typography that scales with the document (Write pages, Present slides) and 8–9 px glyphs inside game and visualizer cells.
+
+## 3. Voice
+
+Rule 12 of the skill in practice. Nexus talks like a helpful colleague: plain, short, specific.
+
+- **Sentence case** everywhere inside windows: buttons, headings, menu items, labels ("Play now", "Local history"). No all-caps calls to action; mono uppercase belongs to the shell (titlebar, top-bar app name) and game HUD readouts.
+- **Say what it does for the user.** App descriptions are one sentence that starts from the user's goal ("Plan tasks and projects in lists or boards"), not the implementation ("Kanban boards with bilingual NLP quick add"). Technical detail (algorithms, formats, standards) goes in the app's Help page.
+- **No marketing words:** professional, next-gen, ultimate, powerful, seamless, vibrant, salon, cascades, quantum, high-velocity. If a sentence still works without the adjective, drop it.
+- **Honest states.** Empty states say what's missing and offer one next step ("No notes yet. Create one with New note."). Errors say what happened and how to fix it. Never pretend: no fake data, no "AI" output without a configured model.
+- **Actions** are verbs ("Save", "Export…"); `…` marks an action that asks for more before it runs. Confirmations name the thing ("Delete 3 notes?") and the button repeats the verb ("Delete"), never "OK".
+- **Both languages.** Every string ships in English and German; German uses "du", keeps nouns capitalized and follows the same sentence-case rule ("Spiel starten", not "SPIEL STARTEN").

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.solitaire',
   name: { en: 'Solitaire Collection', de: 'Solitaire-Sammlung' },
   description: {
-    en: 'Klondike, Spider, and FreeCell solitaire with infinite undo, solvable deals, and auto-complete',
-    de: 'Klondike, Spider und FreeCell Solitaire mit unbegrenztem Rückgängigmachen, lösbaren Spielen und Auto-Vervollständigung',
+    en: 'Play Klondike, Spider and FreeCell with unlimited undo',
+    de: 'Klondike, Spider und FreeCell mit unbegrenztem Rückgängig spielen',
   },
   version: '1.0.0',
   icon: 'gamepad',

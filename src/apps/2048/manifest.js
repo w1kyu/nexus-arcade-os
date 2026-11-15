@@ -4,8 +4,8 @@ export default {
   id: 'nexus.2048',
   name: { en: '2048 Cyber', de: '2048 Cyber' },
   description: {
-    en: 'The classic 2048 sliding puzzle with undo, multiple board sizes, and post-2048 endless mode',
-    de: 'Das klassische 2048-Schiebepuzzle mit Rückgängig-Funktion, variablen Spielfeldgrößen und Endlosmodus',
+    en: 'Slide matching tiles together to reach 2048, then keep going',
+    de: 'Gleiche Kacheln zusammenschieben, bis 2048 erreicht ist, und dann weiterspielen',
   },
   version: '1.0.0',
   icon: 'gamepad',

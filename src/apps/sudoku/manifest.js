@@ -4,8 +4,8 @@ export default {
   id: 'nexus.sudoku',
   name: { en: 'Sudoku', de: 'Sudoku' },
   description: {
-    en: 'Logic number placement with unique solutions, pencil notes, auto-candidates, and technique hints',
-    de: 'Logisches Zahlenrätsel mit eindeutigen Lösungen, Bleistift-Notizen und Technik-Hinweisen',
+    en: "Solve sudokus with pencil notes, and get hints when you're stuck",
+    de: 'Sudokus lösen, mit Notizen und Tipps, wenn es nicht weitergeht',
   },
   version: '1.0.0',
   icon: 'hash',

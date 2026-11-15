@@ -3,8 +3,8 @@ export default {
   id: 'nexus.pixelart',
   name: { en: 'Pixel Art Studio', de: 'Pixel-Art-Studio' },
   description: {
-    en: 'Retro sprite editor and animation studio with onion skinning, retro palettes and GIF export',
-    de: 'Retro-Sprite-Editor und Animationsstudio mit Zwiebelhaut-Vorschau, Retro-Farbpaletten und GIF-Export',
+    en: 'Draw pixel sprites, animate them and export GIFs',
+    de: 'Pixel-Sprites zeichnen, animieren und als GIF exportieren',
   },
   version: '1.0.0',
   icon: 'sparkles',

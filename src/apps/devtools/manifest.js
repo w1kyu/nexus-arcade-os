@@ -4,8 +4,8 @@ export default {
   id: 'nexus.devtools',
   name: { en: 'Developer Tools', de: 'Entwicklertools' },
   description: {
-    en: 'All-in-one developer toolbox: JSON toolkit, encoders, crypto hashes, regex tester, JWT debugger, UUIDs and CSS generators',
-    de: 'All-in-One Entwickler-Toolbox: JSON-Toolkit, Encoder, Krypto-Hashes, Regex-Tester, JWT-Debugger, UUIDs und CSS-Generatoren',
+    en: 'Format JSON, test regular expressions, decode tokens and generate IDs',
+    de: 'JSON formatieren, reguläre Ausdrücke testen, Tokens dekodieren und IDs erzeugen',
   },
   version: '1.0.0',
   icon: 'code',

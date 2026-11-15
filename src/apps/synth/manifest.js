@@ -4,8 +4,8 @@ export default {
   id: 'nexus.synth',
   name: { en: 'Synthesizer', de: 'Synthesizer' },
   description: {
-    en: 'Polyphonic analog modeling synthesizer with dual oscillators, resonant filter, arpeggiator, effects and Web MIDI support',
-    de: 'Polyphoner Synthesizer mit dualen Oszillatoren, Resonanzfilter, Arpeggiator, Effekten und Web-MIDI-Unterstützung',
+    en: 'Play and shape sounds on a synthesizer with your keyboard or MIDI',
+    de: 'Klänge mit einem Synthesizer spielen und formen, per Tastatur oder MIDI',
   },
   version: '1.0.0',
   icon: 'activity',

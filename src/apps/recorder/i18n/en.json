@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Voice Recorder",
-    "description": "Audio recording studio with live waveform and trimming"
+    "description": "Record audio, mark moments and trim your recordings"
   },
   "recorder": {
     "recordings": "Saved Recordings"

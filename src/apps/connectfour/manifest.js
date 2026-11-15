@@ -4,8 +4,8 @@ export default {
   id: 'nexus.connectfour',
   name: { en: 'Connect Four', de: 'Vier gewinnt' },
   description: {
-    en: 'Drop discs and connect four in a row against a minimax AI or a friend',
-    de: 'Wirf Scheiben ein und verbinde vier in einer Reihe, gegen eine Minimax-KI oder zu zweit',
+    en: 'Drop discs to get four in a row before the computer or a friend does',
+    de: 'Scheiben einwerfen und vier in eine Reihe bringen, gegen den Computer oder Freunde',
   },
   version: '1.0.0',
   icon: 'gamepad',

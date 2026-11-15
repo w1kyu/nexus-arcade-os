@@ -4,8 +4,8 @@ export default {
   id: 'nexus.drifter',
   name: { en: 'Void Drifter', de: 'Void Drifter' },
   description: {
-    en: 'Vector neon space combat with inertia physics, splitting asteroids, and UFO enemies',
-    de: 'Vektor-Neon-Weltraumkampf mit Trägheitsphysik, spaltenden Asteroiden und UFO-Gegnern',
+    en: 'Steer a drifting ship and shoot asteroids and UFOs',
+    de: 'Ein treibendes Raumschiff steuern und Asteroiden und UFOs abschießen',
   },
   version: '1.0.0',
   icon: 'rocket',

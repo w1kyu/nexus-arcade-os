@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nonogram",
-    "description": "Japanese Picross grid logic puzzles with line-check helpers, penalty options, and procedural generator"
+    "description": "Fill in the grid from the number clues to reveal a picture"
   },
   "hud": {
     "puzzle": "Puzzle",

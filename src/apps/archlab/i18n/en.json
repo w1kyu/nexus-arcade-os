@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Number & CPU Lab",
-    "description": "Interactive IEEE 754 floating point inspector, integer representations, base conversions, and Nexus-8 toy CPU simulator"
+    "description": "See how computers store numbers and run a tiny CPU step by step"
   },
   "tabs": {
     "numbers": "Number Representation",

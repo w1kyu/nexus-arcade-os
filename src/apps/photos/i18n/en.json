@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Photos",
-    "description": "Local photo gallery, EXIF metadata inspector and photo editor"
+    "description": "Browse and edit your photos, and remove private details before sharing"
   },
   "photos": {
     "title": "Nexus Photos",

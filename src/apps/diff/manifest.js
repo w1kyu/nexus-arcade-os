@@ -4,8 +4,8 @@ export default {
   id: 'nexus.diff',
   name: { en: 'Diff Viewer', de: 'Diff-Betrachter' },
   description: {
-    en: 'Compare text or files side-by-side and inline with unified diff export',
-    de: 'Texte oder Dateien nebeneinander und zeilenweise vergleichen mit Patch-Export',
+    en: 'Compare two texts or files and see what changed',
+    de: 'Zwei Texte oder Dateien vergleichen und Änderungen sehen',
   },
   version: '1.0.0',
   icon: 'layout-split',

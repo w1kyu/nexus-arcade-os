@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "CS Lab Hub",
-    "description": "Unified portal and learning workspace for algorithms, data structures, automata, digital circuits, and computer architecture"
+    "description": "Start here to learn algorithms, data structures, automata and circuits"
   },
   "hub": {
     "searchPlaceholder": "Search topics, algorithms, exam exercises (e.g. Dijkstra, AVL, IEEE 754, Turing)...",

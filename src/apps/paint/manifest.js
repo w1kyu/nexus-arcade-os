@@ -3,8 +3,8 @@ export default {
   id: 'nexus.paint',
   name: { en: 'Nexus Paint', de: 'Nexus Malen' },
   description: {
-    en: 'Layered raster painting studio with brushes, flood fill, adjustments and multi-format export',
-    de: 'Ebenenbasierte Mal- und Bildbearbeitungs-App mit Pinseln, Füllwerkzeug und Bildfiltern',
+    en: 'Paint and edit images in layers and export them',
+    de: 'Bilder in Ebenen malen, bearbeiten und exportieren',
   },
   version: '1.0.0',
   icon: 'palette',

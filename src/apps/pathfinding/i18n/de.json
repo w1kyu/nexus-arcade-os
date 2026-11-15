@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Pfadfindungs- & Labyrinth-Labor",
-    "description": "Interaktiver Simulator für Wegfindungsalgorithmen und Labyrinth-Generator mit gewichteten Gittern und Schritt-für-Schritt-Visualisierung."
+    "description": "Labyrinthe erzeugen und zusehen, wie Wegfindungs-Algorithmen sie lösen"
   },
   "controls": {
     "algorithm": "Algorithmus:",

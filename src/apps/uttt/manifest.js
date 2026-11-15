@@ -4,8 +4,8 @@ export default {
   id: 'nexus.uttt',
   name: { en: 'Ultimate Tic-Tac-Toe', de: 'Ultimate Tic-Tac-Toe' },
   description: {
-    en: 'Strategic nested 9x9 board vs tactical AI or local 2-player duel',
-    de: 'Strategisches verschachteltes 9x9-Brett gegen taktische KI oder zu zweit',
+    en: 'Tic-tac-toe inside tic-tac-toe, against the computer or a friend',
+    de: 'Tic-Tac-Toe in Tic-Tac-Toe, gegen den Computer oder Freunde',
   },
   version: '1.0.0',
   icon: 'grid',

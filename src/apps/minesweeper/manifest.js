@@ -3,10 +3,7 @@
 export default {
   id: 'nexus.minesweeper',
   name: { en: 'Minesweeper', de: 'Minesweeper' },
-  description: {
-    en: 'Tactical mine clearance with safe first click opening, chording, and custom grid sizes',
-    de: 'Taktische Minenräumung mit sicherem ersten Klick, Akkord-Klicks und flexiblen Rastergrößen',
-  },
+  description: { en: 'Clear the field without hitting a mine', de: 'Das Feld räumen, ohne eine Mine zu treffen' },
   version: '1.0.0',
   icon: 'target',
   category: 'games',

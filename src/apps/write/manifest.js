@@ -3,8 +3,8 @@ export default {
   id: 'nexus.write',
   name: { en: 'Nexus Write', de: 'Nexus Dokumente' },
   description: {
-    en: 'Professional document processor with page layout, rich text, outline, templates and print export',
-    de: 'Professionelle Textverarbeitung mit Seitenlayout, Rich-Text, Gliederung, Vorlagen und Druckexport',
+    en: 'Write documents with headings, page layout and printing',
+    de: 'Dokumente mit Überschriften, Seitenlayout und Druck schreiben',
   },
   version: '1.0.0',
   icon: 'file-text',

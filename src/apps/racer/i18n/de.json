@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Neon Racer",
-    "description": "Top-Down-Cyber-Rennen mit KI-Rivalen und Geist-Wiederholungen"
+    "description": "Von oben gesehen gegen den Computer fahren und die eigenen Rundenzeiten schlagen"
   },
   "hud": {
     "lap": "Runde",

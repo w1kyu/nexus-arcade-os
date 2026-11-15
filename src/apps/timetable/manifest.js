@@ -4,8 +4,8 @@ export default {
   id: 'nexus.timetable',
   name: { en: 'Timetable', de: 'Stundenplan' },
   description: {
-    en: 'Weekly university course grid, biweekly A/B weeks, semesters, attendance tracking, and Calendar sync',
-    de: 'Wöchentlicher Vorlesungsplan, A/B-Wochen, Semesterverwaltung, Anwesenheitserfassung und Kalender-Sync',
+    en: 'Lay out your weekly classes and track attendance',
+    de: 'Den Stundenplan der Woche anlegen und die Anwesenheit erfassen',
   },
   version: '1.0.0',
   icon: 'table',

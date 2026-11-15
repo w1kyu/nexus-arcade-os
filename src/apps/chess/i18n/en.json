@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Chess",
-    "description": "Tactical chess with alpha-beta AI, puzzle challenges, PGN import/export, and local 2-player"
+    "description": "Play chess against the computer or a friend, and solve puzzles"
   },
   "mode": {
     "ai": "Solo vs AI",

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.blockfall',
   name: { en: 'Blockfall', de: 'Blockfall' },
   description: {
-    en: 'Super Rotation falling-blocks puzzle with ghost projection, hold piece, and 4 game modes',
-    de: 'Blockstapel-Puzzlespiel mit Super Rotation, Schatten-Vorschau, Haltespeicher und 4 Spielmodi',
+    en: 'Rotate falling blocks to clear lines, in four game modes',
+    de: 'Fallende Blöcke drehen und Reihen abräumen, in vier Spielmodi',
   },
   version: '1.0.0',
   icon: 'select-box',

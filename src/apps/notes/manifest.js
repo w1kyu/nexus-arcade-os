@@ -3,8 +3,8 @@ export default {
   id: 'nexus.notes',
   name: { en: 'Nexus Notes', de: 'Nexus Notizen' },
   description: {
-    en: 'Markdown knowledge base with live preview, wiki links, backlinks, KaTeX math and per-note encryption',
-    de: 'Markdown-Wissensdatenbank mit Live-Vorschau, Wiki-Links, Backlinks, KaTeX-Mathematik und Verschlüsselung',
+    en: 'Write linked notes in Markdown, with math and optional encryption',
+    de: 'Verknüpfte Notizen in Markdown schreiben, mit Formeln und optionaler Verschlüsselung',
   },
   version: '1.0.0',
   icon: 'note',

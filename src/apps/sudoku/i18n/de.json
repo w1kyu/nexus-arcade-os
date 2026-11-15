@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sudoku",
-    "description": "Deterministischer Sudoku-Generator mit eindeutiger Lösungsgarantie, Notizen, Auto-Kandidaten und Hinweisen."
+    "description": "Sudokus lösen, mit Notizen und Tipps, wenn es nicht weitergeht"
   },
   "difficulty": {
     "veryEasy": "Sehr einfach",

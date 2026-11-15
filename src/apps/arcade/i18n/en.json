@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Arcade Hub",
-    "description": "Your central gaming salon with games library, player level, and achievements"
+    "description": "All games in one place, with your level, favorites and achievements"
   },
   "toolbar": {
     "search": "Search games...",
@@ -17,8 +17,8 @@
     "lobby": "Local 2P Lobby"
   },
   "featured": {
-    "badge": "FEATURED TITLE",
-    "play": "PLAY NOW"
+    "badge": "Featured",
+    "play": "Play now"
   },
   "lobby": {
     "title": "Local 2-Player Lobby",
@@ -44,7 +44,7 @@
     "achievementsEmpty": "Play games to unlock achievements."
   },
   "actions": {
-    "play": "PLAY",
+    "play": "Play",
     "favorite": "Favorite"
   }
 }

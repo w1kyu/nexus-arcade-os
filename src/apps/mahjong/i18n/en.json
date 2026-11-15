@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Mahjong Solitaire",
-    "description": "Tile-matching with 3D layouts and guaranteed solvable deals"
+    "description": "Match pairs of free tiles until the board is clear"
   },
   "hud": {
     "tilesLeft": "Tiles Left",

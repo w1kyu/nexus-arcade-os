@@ -4,8 +4,8 @@ export default {
   id: 'nexus.flashcards',
   name: { en: 'Flashcards', de: 'Karteikarten' },
   description: {
-    en: 'Decks and subdecks, Markdown & KaTeX math, cloze deletion, FSRS spaced repetition, and Anki .apkg import',
-    de: 'Stapel & Unterstapel, Markdown & KaTeX-Formeln, Lückentexte, FSRS-Spaced-Repetition und Anki-.apkg-Import',
+    en: 'Learn with flashcards that come back just before you would forget them',
+    de: 'Mit Karteikarten lernen, die kurz vor dem Vergessen wiederkommen',
   },
   version: '1.0.0',
   icon: 'cards',

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Turing Machine Simulator",
-    "description": "Single-tape Turing Machine visualizer with state table, head movement, step execution, and busy beaver machines."
+    "description": "Build Turing machines and watch them run on the tape"
   },
   "controls": {
     "preset": "Machine:",

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.beatlab',
   name: { en: 'Beat Lab', de: 'Beat Lab' },
   description: {
-    en: '16-step synthesized drum machine with lookahead scheduling, swing, kit presets and WAV audio export',
-    de: 'Synthetischer 16-Step-Drumcomputer mit Lookahead-Timing, Swing, Drum-Kits und WAV-Audioexport',
+    en: 'Program drum patterns on a 16-step grid and export them as audio',
+    de: 'Schlagzeug-Patterns in einem 16-Schritt-Raster programmieren und als Audio exportieren',
   },
   version: '1.0.0',
   icon: 'disc',

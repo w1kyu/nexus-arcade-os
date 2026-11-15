@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Quiz Arena",
-    "description": "Bilingual trivia on CS fundamentals, logic puzzles, and streaks"
+    "description": "Answer timed trivia questions or make your own quiz packs"
   },
   "hud": {
     "question": "Question",

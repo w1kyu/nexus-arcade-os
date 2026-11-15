@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Reaction Trainer",
-    "description": "Benchmark reaction time, aim precision, and cognitive memory spans"
+    "description": "Test your reaction time, aim and memory"
   },
   "tests": {
     "classic": {

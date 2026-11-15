@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Mahjong Solitaire",
-    "description": "Kachel-Matching mit 3D-Layouts und lösbaren Verteilungen"
+    "description": "Paare freier Steine finden, bis das Feld leer ist"
   },
   "hud": {
     "tilesLeft": "Übrige Kacheln",

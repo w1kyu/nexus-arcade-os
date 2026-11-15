@@ -4,8 +4,8 @@ export default {
   id: 'nexus.griddefense',
   name: { en: 'Grid Defense', de: 'Grid Defense' },
   description: {
-    en: 'Tactical cyber tower defense with 10+ maps, 6 upgradable tower types, and boss creep waves',
-    de: 'Taktisches Cyber-Tower-Defense mit 10+ Karten, 6 aufrüstbaren Türmen und Boss-Wellen',
+    en: 'Build and upgrade towers to stop waves of enemies',
+    de: 'Türme bauen und verbessern, um Gegnerwellen aufzuhalten',
   },
   version: '1.0.0',
   icon: 'shield',

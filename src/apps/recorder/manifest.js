@@ -4,8 +4,8 @@ export default {
   id: 'nexus.recorder',
   name: { en: 'Voice Recorder', de: 'Sprachmemos' },
   description: {
-    en: 'Audio recording studio with live waveform, bookmarks, speed playback and audio trimming',
-    de: 'Audio-Aufnahmestudio mit Live-Wellenform, Lesezeichen, Geschwindigkeitsregelung und Schnitt',
+    en: 'Record audio, mark moments and trim your recordings',
+    de: 'Audio aufnehmen, Stellen markieren und Aufnahmen kürzen',
   },
   version: '1.0.0',
   icon: 'file-audio',

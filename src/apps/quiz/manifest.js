@@ -4,8 +4,8 @@ export default {
   id: 'nexus.quiz',
   name: { en: 'Quiz Arena', de: 'Quiz-Arena' },
   description: {
-    en: 'Trivia arena featuring CS fundamentals, logic puzzles, timers, streaks, and custom quiz packs',
-    de: 'Trivia-Arena mit Informatik-Grundlagen, Logikrätseln, Zeitleiste, Serien und eigenen Quiz-Paketen',
+    en: 'Answer timed trivia questions or make your own quiz packs',
+    de: 'Quizfragen auf Zeit beantworten oder eigene Quizpakete erstellen',
   },
   version: '1.0.0',
   icon: 'help-circle',

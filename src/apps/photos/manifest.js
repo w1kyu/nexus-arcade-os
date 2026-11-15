@@ -4,8 +4,8 @@ export default {
   id: 'nexus.photos',
   name: { en: 'Nexus Photos', de: 'Nexus Fotos' },
   description: {
-    en: 'Local photo gallery, EXIF metadata inspector, lightbox viewer and photo editor with privacy redaction',
-    de: 'Lokale Fotogalerie, EXIF-Metadaten-Inspektor, Lightbox-Betrachter und Foto-Editor mit Zensurpinsel',
+    en: 'Browse and edit your photos, and remove private details before sharing',
+    de: 'Fotos ansehen und bearbeiten und private Details vor dem Teilen entfernen',
   },
   version: '1.0.0',
   icon: 'image',

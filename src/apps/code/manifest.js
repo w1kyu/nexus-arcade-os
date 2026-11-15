@@ -4,8 +4,8 @@ export default {
   id: 'nexus.code',
   name: { en: 'Nexus Code', de: 'Nexus Code' },
   description: {
-    en: 'Multi-file code editor with project workspace, live web preview, search and local history',
-    de: 'Mehrdatei-Code-Editor mit Projektarbeitsbereich, Live-Web-Vorschau, Suche und lokalem Verlauf',
+    en: 'Edit multi-file projects and preview web pages as you type',
+    de: 'Projekte mit mehreren Dateien bearbeiten und Webseiten live ansehen',
   },
   version: '1.0.0',
   icon: 'code',

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Arcade-Zentrale",
-    "description": "Dein zentraler Gaming-Salon mit Spielebibliothek, Spielerlevel und Erfolgen"
+    "description": "Alle Spiele an einem Ort, mit deinem Level, Favoriten und Erfolgen"
   },
   "toolbar": {
     "search": "Spiele suchen...",
@@ -17,8 +17,8 @@
     "lobby": "Lokale 2P-Lobby"
   },
   "featured": {
-    "badge": "HIGHLIGHT-SPIEL",
-    "play": "JETZT SPIELEN"
+    "badge": "Empfohlen",
+    "play": "Jetzt spielen"
   },
   "lobby": {
     "title": "Lokale 2-Spieler-Lobby",
@@ -44,7 +44,7 @@
     "achievementsEmpty": "Spiele, um Erfolge freizuschalten."
   },
   "actions": {
-    "play": "SPIELEN",
+    "play": "Spielen",
     "favorite": "Favorit"
   }
 }

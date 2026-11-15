@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Schach",
-    "description": "Taktisches Schach mit Alpha-Beta-KI, Rätsel-Herausforderungen, PGN-Import/Export und lokalem 2-Spieler-Modus"
+    "description": "Schach gegen den Computer oder gegen Freunde spielen und Aufgaben lösen"
   },
   "mode": {
     "ai": "Gegen KI",

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Pixel Runner",
-    "description": "Präzisions-Plattformer mit reaktiver Physik und integriertem Level-Editor"
+    "description": "Durch 20 Levels laufen und springen oder eigene bauen"
   },
   "hud": {
     "level": "Level",

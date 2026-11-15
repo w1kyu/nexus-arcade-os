@@ -4,8 +4,8 @@ export default {
   id: 'nexus.checkers',
   name: { en: 'Checkers', de: 'Dame' },
   description: {
-    en: 'Draughts with standard and international rules, forced captures, multi-jumps and an AI opponent',
-    de: 'Dame nach Standard- und internationalen Regeln mit Schlagzwang, Mehrfachsprüngen und KI-Gegner',
+    en: 'Play draughts against the computer or a friend',
+    de: 'Dame gegen den Computer oder gegen Freunde spielen',
   },
   version: '1.0.0',
   icon: 'gamepad',

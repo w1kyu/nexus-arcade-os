@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Videoplayer",
-    "description": "Lokaler Videoplayer mit Untertiteln, Einzelbild-Schaltung, PiP und Screenshot-Export"
+    "description": "Eigene Videos mit Untertiteln, Schleifen und Einzelbildschritten abspielen"
   },
   "video": {
     "playlist": "Wiedergabeliste",

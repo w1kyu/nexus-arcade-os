@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Minesweeper",
-    "description": "Classic cyber minesweeper with safe first click opening, chording, and custom grid sizes."
+    "description": "Clear the field without hitting a mine"
   },
   "difficulty": {
     "beginner": "Beginner",

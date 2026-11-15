@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Pathfinding & Maze Lab",
-    "description": "Interactive pathfinding algorithm simulator and maze generator with weighted grids and step-by-step visualizations."
+    "description": "Generate mazes and watch pathfinding algorithms solve them"
   },
   "controls": {
     "algorithm": "Algorithm:",

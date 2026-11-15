@@ -3,8 +3,8 @@ export default {
   id: 'nexus.whiteboard',
   name: { en: 'Nexus Whiteboard', de: 'Nexus Whiteboard' },
   description: {
-    en: 'Infinite canvas with freehand drawing, shapes, sticky notes, connectors and export',
-    de: 'Unendliche Leinwand mit Freihandzeichnung, Formen, Haftnotizen, Verbindern und Export',
+    en: 'Sketch on an endless canvas with shapes, sticky notes and arrows',
+    de: 'Auf einer endlosen Fläche skizzieren, mit Formen, Haftnotizen und Pfeilen',
   },
   version: '1.0.0',
   icon: 'layers',

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Neon Pong",
-    "description": "High-velocity cyber paddle battle with ball spin dynamics, power-ups, and first-to-11 match scoring."
+    "description": "Table tennis with spin and power-ups, against the computer or a friend"
   },
   "modes": {
     "ai": "vs AI",

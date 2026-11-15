@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Data Structures Visualizer",
-    "description": "Interactive visualizer for fundamental data structures: arrays, stacks, queues, lists, BST, AVL trees, heaps, hash tables, and tries."
+    "description": "Watch stacks, queues, trees, heaps and hash tables change step by step"
   },
   "controls": {
     "structure": "Structure:",

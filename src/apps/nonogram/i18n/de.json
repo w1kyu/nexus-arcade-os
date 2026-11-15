@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nonogramm",
-    "description": "Japanische Picross-Gitterrätsel mit Zeilenprüfer, Strafzeit-Option und prozeduralem Generator"
+    "description": "Das Raster anhand der Zahlenhinweise ausfüllen und ein Bild aufdecken"
   },
   "hud": {
     "puzzle": "Rätsel",

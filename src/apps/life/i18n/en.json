@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Game of Life",
-    "description": "Cellular automata simulator with pattern library and alternate rule sets"
+    "description": "Draw cells and watch patterns grow in Conway's Game of Life"
   },
   "hud": {
     "gen": "Gen",

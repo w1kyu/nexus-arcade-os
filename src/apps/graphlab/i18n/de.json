@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Graphen-Editor & Algorithmen",
-    "description": "Interaktiver Graphen-Visualisierer, Editor und Algorithmen-Simulator mit BFS, DFS, Dijkstra, MST und Layouts."
+    "description": "Graphen zeichnen und Such- und Kürzeste-Wege-Algorithmen ablaufen sehen"
   },
   "controls": {
     "algorithm": "Algorithmus:",

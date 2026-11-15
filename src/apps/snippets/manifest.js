@@ -4,8 +4,8 @@ export default {
   id: 'nexus.snippets',
   name: { en: 'Snippet Manager', de: 'Snippet-Manager' },
   description: {
-    en: 'Organize, search, and copy code snippets with syntax highlighting and IDE insertion',
-    de: 'Code-Snippets organisieren, durchsuchen und kopieren mit Syntax-Highlighting und IDE-Einfügen',
+    en: 'Keep code snippets organized and copy them in one click',
+    de: 'Code-Schnipsel ordnen und mit einem Klick kopieren',
   },
   version: '1.0.0',
   icon: 'file-code',

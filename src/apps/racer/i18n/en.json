@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Neon Racer",
-    "description": "Top-down cyber racing with AI rivals and personal best ghost replays"
+    "description": "Race against the computer on top-down tracks and beat your lap times"
   },
   "hud": {
     "lap": "Lap",

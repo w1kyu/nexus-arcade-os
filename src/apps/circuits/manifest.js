@@ -4,8 +4,8 @@ export default {
   id: 'nexus.circuits',
   name: { en: 'Logic Circuit & Boolean Lab', de: 'Logikgatter & Boolesche Algebra' },
   description: {
-    en: 'Interactive logic gate simulator, circuit canvas, truth table generator, KV maps, and Quine-McCluskey minimization',
-    de: 'Interaktiver Logikschaltungs-Simulator, Wahrheitstabellen, KV-Diagramme und Quine-McCluskey-Minimierung',
+    en: 'Build logic circuits, get their truth tables and simplify them',
+    de: 'Logikschaltungen bauen, Wahrheitstabellen erzeugen und Schaltungen vereinfachen',
   },
   version: '1.0.0',
   icon: 'cpu',

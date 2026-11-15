@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Schiffe versenken",
-    "description": "Seekriegsführung gegen Wahrscheinlichkeits-KI mit Flotten-Platzierungseditor"
+    "description": "Flotte aufstellen und die Schiffe des Computers versenken, bevor er deine findet"
   },
   "placement": {
     "title": "Aufstellungsphase",

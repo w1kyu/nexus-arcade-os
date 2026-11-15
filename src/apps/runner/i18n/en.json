@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Pixel Runner",
-    "description": "Precision neon platformer with tight physics and custom level editor"
+    "description": "Run and jump through 20 levels, or build your own"
   },
   "hud": {
     "level": "Level",

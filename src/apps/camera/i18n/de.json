@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Kamera",
-    "description": "Foto-Automat mit Selbstauslöser, Serienbildern und Live-Filtern"
+    "description": "Fotos und Videos mit Filtern und Selbstauslöser aufnehmen und QR-Codes scannen"
   },
   "controls": {
     "device": "Kamera",

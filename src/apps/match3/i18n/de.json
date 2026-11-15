@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Match-3 Puzzle",
-    "description": "Tausche und verbinde Cyber-Edelsteine mit Kaskaden und Zielen"
+    "description": "Steine tauschen, drei oder mehr verbinden und das Levelziel erreichen"
   },
   "hud": {
     "level": "Level",

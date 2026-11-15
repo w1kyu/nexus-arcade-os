@@ -1,10 +1,10 @@
 {
   "app": {
     "title": "Memory Master",
-    "description": "Card matching trainer with 3D flip animations, combo chains, and CS themes"
+    "description": "Flip cards and find the matching pairs"
   },
   "menu": {
-    "play": "START GAME",
+    "play": "Start game",
     "gridSize": "Grid Size",
     "theme": "Card Theme",
     "controls": "Click or Tap cards to reveal matching pairs. Form chains to multiply your score!"

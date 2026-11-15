@@ -4,8 +4,8 @@ export default {
   id: 'nexus.graphlab',
   name: { en: 'Graph Editor & Algorithms', de: 'Graphen-Editor & Algorithmen' },
   description: {
-    en: 'Interactive graph visualizer, editor, and algorithm simulator with BFS, DFS, Dijkstra, and MST',
-    de: 'Interaktiver Graphen-Visualisierer, Editor und Algorithmen-Simulator mit BFS, DFS, Dijkstra und MST',
+    en: 'Draw graphs and watch search and shortest-path algorithms run',
+    de: 'Graphen zeichnen und Such- und Kürzeste-Wege-Algorithmen ablaufen sehen',
   },
   version: '1.0.0',
   icon: 'share',

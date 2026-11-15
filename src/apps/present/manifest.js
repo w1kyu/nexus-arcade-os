@@ -3,8 +3,8 @@ export default {
   id: 'nexus.present',
   name: { en: 'Nexus Present', de: 'Nexus Präsentationen' },
   description: {
-    en: 'Markdown slide deck editor and presenter with speaker notes, themes and HTML export',
-    de: 'Markdown-Präsentationsprogramm mit Referentenansicht, Folien-Themes und HTML-Export',
+    en: 'Write slides in Markdown and present them with speaker notes',
+    de: 'Folien in Markdown schreiben und mit Sprechernotizen präsentieren',
   },
   version: '1.0.0',
   icon: 'presentation',

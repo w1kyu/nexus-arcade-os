@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Reaktionstrainer",
-    "description": "Benchmarke Reaktionszeit, Zielgenauigkeit und kognitive Gedächtnisspannen"
+    "description": "Reaktionszeit, Treffsicherheit und Gedächtnis testen"
   },
   "tests": {
     "classic": {

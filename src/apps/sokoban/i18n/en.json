@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Block Pusher",
-    "description": "Sokoban warehouse puzzle with 60+ verified solvable levels and level editor"
+    "description": "Push every box onto its target in 60 puzzles, or build your own"
   },
   "hud": {
     "level": "Level",

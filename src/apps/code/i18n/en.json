@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nexus Code",
-    "description": "Multi-file code editor"
+    "description": "Edit multi-file projects and preview web pages as you type"
   },
   "activity": {
     "explorer": "Explorer",
@@ -11,7 +11,7 @@
     "runner": "Run JavaScript"
   },
   "explorer": {
-    "title": "EXPLORER",
+    "title": "Explorer",
     "newFile": "New File",
     "newFolder": "New Folder",
     "refresh": "Refresh",
@@ -35,7 +35,7 @@
     "searching": "Searching..."
   },
   "history": {
-    "title": "LOCAL HISTORY",
+    "title": "Local history",
     "noSnapshots": "No history snapshots yet. Save files to record changes.",
     "snapshotAt": "Snapshot at {time}",
     "diffTitle": "Diff: {file}",
@@ -43,7 +43,7 @@
     "reverted": "Reverted files to snapshot"
   },
   "preview": {
-    "title": "WEB PREVIEW",
+    "title": "Web preview",
     "run": "Run",
     "refresh": "Refresh",
     "popout": "Open in new tab",
@@ -51,7 +51,7 @@
     "createTemplate": "Create sample web project"
   },
   "runner": {
-    "title": "RUN JAVASCRIPT (NODE-LITE)",
+    "title": "Run JavaScript (Node-lite)",
     "run": "Run Active File",
     "clear": "Clear Console",
     "running": "Executing in worker...",

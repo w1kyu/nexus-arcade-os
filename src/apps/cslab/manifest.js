@@ -4,8 +4,8 @@ export default {
   id: 'nexus.cslab',
   name: { en: 'CS Lab Hub', de: 'Informatik-Labor' },
   description: {
-    en: 'Unified portal and learning workspace for algorithms, data structures, automata, digital circuits, and computer architecture',
-    de: 'Zentrales Lernportal für Algorithmen, Datenstrukturen, Automaten, Logikschaltungen und Rechnerarchitektur',
+    en: 'Start here to learn algorithms, data structures, automata and circuits',
+    de: 'Der Einstieg zum Lernen von Algorithmen, Datenstrukturen, Automaten und Schaltungen',
   },
   version: '1.0.0',
   icon: 'layers',

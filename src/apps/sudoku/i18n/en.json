@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Sudoku",
-    "description": "Deterministic board generator with unique solution guarantees, pencil marks, auto-notes, and hints."
+    "description": "Solve sudokus with pencil notes, and get hints when you're stuck"
   },
   "difficulty": {
     "veryEasy": "Very Easy",

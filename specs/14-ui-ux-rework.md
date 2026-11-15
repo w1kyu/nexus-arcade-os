@@ -148,8 +148,8 @@ _Ratchet at target (2026-11-15): colors 1,813 → 169 (game art), app-local cont
 
 ## 14.6 Copy & content
 
-- [P1] App descriptions: one plain sentence per app, user benefit rather than implementation (EN + DE). Technical detail moves to Help.
-- [P1] A voice guide in `docs/design-system.md`: sentence case, no all-caps CTAs, no marketing words ("salon", "cascades"), honest empty states.
+- [x] [P1] App descriptions: one plain sentence per app, user benefit rather than implementation (EN + DE). Technical detail moves to Help. _Done 2026-11-15: 86 rewritten (Files, Help, Monitor, Settings, Welcome were already plain); the games' menu subtitles use the same sentence, and the Arcade hub reads names and descriptions from the manifests instead of its own English-only copies._
+- [x] [P1] A voice guide in `docs/design-system.md`: sentence case, no all-caps CTAs, no marketing words ("salon", "cascades"), honest empty states. _Done: `docs/design-system.md` §3; all-caps buttons and panel titles in Arcade, Breakout, Code, Memory, Snake and Typing are sentence case now (EN + DE)._
 - [P2] Help pages get a screenshot per app from the 14.2 run.
 
 ## 14.7 Motion, sound, accessibility, release

@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Automaten-Labor",
-    "description": "Interaktiver Editor für DFA und NFA, Wort-Simulator, Potenzmengenkonstruktion, DFA-Minimierung und Thompson-Regex-Konverter."
+    "description": "Endliche Automaten bauen, Wörter testen und reguläre Ausdrücke in Automaten umwandeln"
   },
   "controls": {
     "preset": "Vorlage:",

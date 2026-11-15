@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Automata Lab",
-    "description": "Interactive DFA and NFA editor, word simulator, subset construction, DFA minimization, and Thompson regex converter."
+    "description": "Build finite automata, test words and turn regular expressions into machines"
   },
   "controls": {
     "preset": "Preset:",

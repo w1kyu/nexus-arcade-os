@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Nexus Music",
-    "description": "Local music player with library, metadata parser, 10-band EQ and visualizers"
+    "description": "Play your music collection with an equalizer and visualizers"
   },
   "music": {
     "songs": "Songs",

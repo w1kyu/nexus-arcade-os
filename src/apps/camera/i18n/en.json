@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Camera",
-    "description": "Photo booth with countdown, burst and live filters"
+    "description": "Take photos and videos with filters and a timer, and scan QR codes"
   },
   "controls": {
     "device": "Camera",

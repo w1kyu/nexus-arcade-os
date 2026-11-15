@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Logikschaltungen & Boole'sche Algebra",
-    "description": "Interaktiver Logikgatter-Simulator, Schaltplan-Leinwand, Wahrheitstabellen-Generator, KV-Diagramme und Quine-McCluskey-Minimierung."
+    "description": "Logikschaltungen bauen, Wahrheitstabellen erzeugen und Schaltungen vereinfachen"
   },
   "tabs": {
     "circuits": "Schaltungssimulator",

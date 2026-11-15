@@ -4,8 +4,8 @@ export default {
   id: 'nexus.camera',
   name: { en: 'Camera', de: 'Kamera' },
   description: {
-    en: 'Photo booth and video recorder with countdown timer, burst mode, live shader filters and QR code scanner',
-    de: 'Foto-Automat und Video-Aufnahme mit Selbstauslöser, Serienbildern, Live-Filtern und QR-Code-Scanner',
+    en: 'Take photos and videos with filters and a timer, and scan QR codes',
+    de: 'Fotos und Videos mit Filtern und Selbstauslöser aufnehmen und QR-Codes scannen',
   },
   version: '1.0.0',
   icon: 'camera',

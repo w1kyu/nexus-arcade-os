@@ -4,8 +4,8 @@ export default {
   id: 'nexus.focus',
   name: { en: 'Focus', de: 'Fokus' },
   description: {
-    en: 'Pomodoro & Flow timer with procedural Web Audio ambient soundscapes, distraction blocking, and task logging',
-    de: 'Pomodoro- & Flow-Timer mit prozeduralen Web-Audio-Klangwelten, Ablenkungsschutz und Aufgaben-Zeiterfassung',
+    en: 'Work in focused sessions with a timer and calm background sounds',
+    de: 'In konzentrierten Sitzungen arbeiten, mit Timer und ruhigen Hintergrundklängen',
   },
   version: '1.0.0',
   icon: 'timer',

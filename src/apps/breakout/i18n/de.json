@@ -1,11 +1,11 @@
 {
   "app": {
     "title": "Breakout Nexus",
-    "description": "Kontinuierliche Ballphysik, 30 handgefertigte Level und integrierter Level-Editor"
+    "description": "Mit dem Ball Steine zerschlagen, in 30 Levels oder in eigenen"
   },
   "menu": {
-    "campaign": "KAMPAGNE SPIELEN (30 LEVEL)",
-    "editor": "LEVEL-EDITOR",
+    "campaign": "Kampagne spielen (30 Level)",
+    "editor": "Level-Editor",
     "controls": "Steuerung: Links/Rechts-Pfeile oder Maus zum Steuern, Leertaste zum Starten/Laser, ESC oder P für Pause",
     "levelSelect": "Startlevel"
   }

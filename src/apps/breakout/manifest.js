@@ -4,8 +4,8 @@ export default {
   id: 'nexus.breakout',
   name: { en: 'Breakout Nexus', de: 'Breakout Nexus' },
   description: {
-    en: 'Continuous collision ball physics, 30 handcrafted levels, and integrated level editor',
-    de: 'Kontinuierliche Ballphysik, 30 handgefertigte Level und integrierter Level-Editor',
+    en: 'Bounce the ball to break bricks in 30 levels, or build your own',
+    de: 'Mit dem Ball Steine zerschlagen, in 30 Levels oder in eigenen',
   },
   version: '1.0.0',
   icon: 'gamepad',

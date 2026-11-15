@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Video Player",
-    "description": "Local video player with subtitles, frame-stepping, PiP and screenshot export"
+    "description": "Play your videos with subtitles, loops and frame-by-frame stepping"
   },
   "video": {
     "playlist": "Playlist",

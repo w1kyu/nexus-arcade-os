@@ -3,8 +3,8 @@ export default {
   id: 'nexus.appcenter',
   name: { en: 'App Center', de: 'App Center' },
   description: {
-    en: 'All apps by category: details, permissions, install and uninstall',
-    de: 'Alle Apps nach Kategorie: Details, Berechtigungen, installieren und deinstallieren',
+    en: 'Browse apps by category, check their permissions and install or remove them',
+    de: 'Apps nach Kategorie durchsuchen, Berechtigungen prüfen und Apps installieren oder entfernen',
   },
   version: '1.0.0',
   icon: 'apps',

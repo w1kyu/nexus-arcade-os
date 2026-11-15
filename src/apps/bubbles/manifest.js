@@ -4,8 +4,8 @@ export default {
   id: 'nexus.bubbles',
   name: { en: 'Bubble Shooter', de: 'Bubble Shooter' },
   description: {
-    en: 'Aim and bank-shot trajectory bubble shooter with hexagonal color clusters and cascades',
-    de: 'Bubble-Shooter mit Bandenschuss-Physik, hexagonalen Farb-Clustern und Kaskaden',
+    en: 'Aim and bounce bubbles to clear groups of the same color',
+    de: 'Blasen zielen und abprallen lassen, um gleichfarbige Gruppen abzuräumen',
   },
   version: '1.0.0',
   icon: 'target',

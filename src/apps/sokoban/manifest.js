@@ -4,8 +4,8 @@ export default {
   id: 'nexus.sokoban',
   name: { en: 'Block Pusher', de: 'Block Pusher' },
   description: {
-    en: 'Sokoban warehouse puzzle with 60+ verified solvable levels and level editor',
-    de: 'Sokoban Lagerhaus-Rätsel mit über 60 überprüften lösbaren Levels und Level-Editor',
+    en: 'Push every box onto its target in 60 puzzles, or build your own',
+    de: 'Alle Kisten auf ihre Ziele schieben, in 60 Rätseln oder eigenen',
   },
   version: '1.0.0',
   icon: 'package',

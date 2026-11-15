@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Typing Trainer",
-    "description": "Meistere das Zehnfingersystem mit WPM, Genauigkeit, Gleichmäßigkeit, QWERTY/QWERTZ-Führung und Code-Tippen."
+    "description": "Zehnfingerschreiben lernen und das Tempo verfolgen, für Text und Code"
   },
   "modes": {
     "words": "Häufige Wörter",
@@ -11,8 +11,8 @@
   },
   "stats": {
     "wpm": "WPM",
-    "rawWpm": "ROH-WPM",
-    "accuracy": "GENAUIGKEIT",
-    "consistency": "GLEICHMÄSSIGKEIT"
+    "rawWpm": "Roh-WPM",
+    "accuracy": "Genauigkeit",
+    "consistency": "Gleichmäßigkeit"
   }
 }

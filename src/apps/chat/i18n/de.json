@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "KI-Chat",
-    "description": "Konversationelle KI mit lokalen und Remote-Modellen, Tools und Code-Assistent"
+    "description": "Mit KI-Modellen auf deinem Rechner oder in der Cloud chatten"
   },
   "actions": {
     "newChat": "Neuer Chat",

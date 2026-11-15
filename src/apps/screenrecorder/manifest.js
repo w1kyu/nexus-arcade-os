@@ -4,8 +4,8 @@ export default {
   id: 'nexus.screenrecorder',
   name: { en: 'Screen Recorder', de: 'Bildschirmaufnahme' },
   description: {
-    en: 'Capture your screen, browser tabs or window with optional microphone audio and WebM export',
-    de: 'Bildschirm, Fenster oder Browser-Tabs aufnehmen mit Mikrofon-Ton und WebM-Export',
+    en: 'Record your screen, a tab or a window, with or without your microphone',
+    de: 'Bildschirm, Tab oder Fenster aufnehmen, mit oder ohne Mikrofon',
   },
   version: '1.0.0',
   icon: 'monitor',

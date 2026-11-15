@@ -4,8 +4,8 @@ export default {
   id: 'nexus.hexword',
   name: { en: 'Hexword', de: 'Hexword' },
   description: {
-    en: '5-letter word puzzle in English and German with daily seeded challenges and hard mode',
-    de: '5-Buchstaben-Worträtsel auf Deutsch und Englisch mit täglichen Herausforderungen und Hard-Mode',
+    en: 'Guess the five-letter word in six tries, in English or German',
+    de: 'Das Wort mit fünf Buchstaben in sechs Versuchen erraten, auf Deutsch oder Englisch',
   },
   version: '1.0.0',
   icon: 'edit',

@@ -4,8 +4,8 @@ export default {
   id: 'nexus.sorting',
   name: { en: 'Sorting Visualizer', de: 'Sortier-Visualisierer' },
   description: {
-    en: 'Interactive sorting algorithm visualizer with sound, race mode, and complexity analysis',
-    de: 'Interaktiver Visualisierer für Sortieralgorithmen mit Ton, Wettrennen und Komplexitätsanalyse',
+    en: 'Watch and hear sorting algorithms work, side by side',
+    de: 'Sortieralgorithmen nebeneinander arbeiten sehen und hören',
   },
   version: '1.0.0',
   icon: 'sort',

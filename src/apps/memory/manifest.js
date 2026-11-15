@@ -3,10 +3,7 @@
 export default {
   id: 'nexus.memory',
   name: { en: 'Memory Master', de: 'Memory Master' },
-  description: {
-    en: 'Card matching trainer with 3D flip animations, combo chains, and CS themes',
-    de: 'Karten-Merkspiel mit 3D-Umdrehanimationen, Komboketten und Informatik-Themen',
-  },
+  description: { en: 'Flip cards and find the matching pairs', de: 'Karten aufdecken und passende Paare finden' },
   version: '1.0.0',
   icon: 'gamepad',
   category: 'games',

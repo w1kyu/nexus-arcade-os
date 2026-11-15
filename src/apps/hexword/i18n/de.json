@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Hexword",
-    "description": "5-Buchstaben-Worträtsel auf Deutsch und Englisch mit täglichen Herausforderungen und Hard-Mode"
+    "description": "Das Wort mit fünf Buchstaben in sechs Versuchen erraten, auf Deutsch oder Englisch"
   },
   "mode": {
     "daily": "Tageswort",

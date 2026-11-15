@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Void Drifter",
-    "description": "Neon vector space combat with inertia physics, splitting asteroids, UFO patrols, and hyperspace jumps."
+    "description": "Steer a drifting ship and shoot asteroids and UFOs"
   },
   "menu": {
     "play": "Launch Mission",

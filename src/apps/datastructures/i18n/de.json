@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Datenstrukturen-Visualisierer",
-    "description": "Interaktiver Visualisierer für fundamentale Datenstrukturen: Arrays, Stapel, Schlangen, Listen, BST, AVL-Bäume, Heaps, Hashtabellen und Tries."
+    "description": "Stapel, Warteschlangen, Bäume, Heaps und Hashtabellen Schritt für Schritt verfolgen"
   },
   "controls": {
     "structure": "Struktur:",

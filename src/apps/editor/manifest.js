@@ -3,8 +3,8 @@ export default {
   id: 'nexus.editor',
   name: { en: 'Nexus Edit', de: 'Nexus Edit' },
   description: {
-    en: 'Text and code editor with syntax highlighting, find & replace and tabs',
-    de: 'Text- und Code-Editor mit Syntaxhervorhebung, Suchen & Ersetzen und Tabs',
+    en: 'Edit text and code files in tabs with syntax highlighting',
+    de: 'Text- und Codedateien in Tabs mit Syntaxhervorhebung bearbeiten',
   },
   version: '1.0.0',
   icon: 'file-code',

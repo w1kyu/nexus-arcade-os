@@ -4,8 +4,8 @@ export default {
   id: 'nexus.httpclient',
   name: { en: 'HTTP Client', de: 'HTTP-Client' },
   description: {
-    en: 'REST API client with environment variables, response viewer, curl generator and offline diagnostics',
-    de: 'REST-API-Client mit Umgebungsvariablen, Antwort-Inspektor, curl-Generator und Offline-Diagnose',
+    en: 'Send requests to web APIs and inspect the responses',
+    de: 'Anfragen an Web-APIs senden und die Antworten prüfen',
   },
   version: '1.0.0',
   icon: 'globe',

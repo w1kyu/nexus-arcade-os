@@ -4,8 +4,8 @@ export default {
   id: 'nexus.pong',
   name: { en: 'Neon Pong', de: 'Neon Pong' },
   description: {
-    en: 'High-velocity cyber table tennis with spin dynamics, power-ups, and AI or 2-player modes',
-    de: 'Cyber-Tischtennis mit Spin-Physik, Power-ups sowie KI- und 2-Spieler-Modus',
+    en: 'Table tennis with spin and power-ups, against the computer or a friend',
+    de: 'Tischtennis mit Spin und Power-ups, gegen den Computer oder Freunde',
   },
   version: '1.0.0',
   icon: 'gamepad',

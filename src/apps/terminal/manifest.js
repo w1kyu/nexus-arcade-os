@@ -3,8 +3,8 @@ export default {
   id: 'nexus.terminal',
   name: { en: 'Terminal', de: 'Terminal' },
   description: {
-    en: 'A shell for files and apps: pipes, redirection, history, tabs',
-    de: 'Eine Shell für Dateien und Apps: Pipes, Umleitung, Verlauf, Tabs',
+    en: 'Work with files and apps from a command line',
+    de: 'Dateien und Apps über eine Kommandozeile bedienen',
   },
   version: '1.0.0',
   icon: 'terminal',

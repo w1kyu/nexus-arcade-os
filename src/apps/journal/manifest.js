@@ -4,8 +4,8 @@ export default {
   id: 'nexus.journal',
   name: { en: 'Journal', de: 'Tagebuch' },
   description: {
-    en: 'Daily personal journal with mood tracking, VFS photos, "On this day", writing prompts, and AES-GCM password encryption',
-    de: 'Tägliches Journal mit Stimmungstracker, VFS-Fotos, "An diesem Tag", Schreibimpulsen und AES-GCM Passwort-Verschlüsselung',
+    en: 'Write a daily journal, note your mood and lock it with a password',
+    de: 'Ein tägliches Tagebuch schreiben, die Stimmung festhalten und es mit Passwort schützen',
   },
   version: '1.0.0',
   icon: 'book',

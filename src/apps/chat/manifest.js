@@ -4,8 +4,8 @@ export default {
   id: 'nexus.chat',
   name: { en: 'Nexus Chat', de: 'Nexus Chat' },
   description: {
-    en: 'Conversational AI with local and remote models, tools, and code assistant',
-    de: 'Konversationelle KI mit lokalen und Remote-Modellen, Tools und Code-Assistent',
+    en: 'Chat with AI models on your computer or in the cloud',
+    de: 'Mit KI-Modellen auf deinem Rechner oder in der Cloud chatten',
   },
   version: '1.0.0',
   icon: 'chat',

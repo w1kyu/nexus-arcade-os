@@ -5,8 +5,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--gs-bg, #070d19);
-  color: #f1f5f9;
+  background: var(--gs-bg, var(--bg));
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   font-family:
@@ -30,24 +30,24 @@
 
 .nx-ng-board {
   display: grid;
-  background: #0f172a;
+  background: var(--surface-sunken);
   padding: 8px;
   border-radius: 8px;
-  border: 2px solid #334155;
+  border: 2px solid var(--border);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.6),
     0 0 20px rgba(0, 240, 255, 0.1);
 }
 
 .nx-ng-corner {
-  background: #090e1a;
-  border-right: 2px solid #475569;
-  border-bottom: 2px solid #475569;
+  background: var(--bg);
+  border-right: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 
 .nx-ng-col-clues {
   display: flex;
-  border-bottom: 2px solid #475569;
+  border-bottom: 2px solid var(--border);
 }
 
 .nx-ng-col-clue-item {
@@ -61,19 +61,19 @@
   font-family: ui-monospace, monospace;
   font-size: clamp(10px, 1.8vmin, 13px);
   font-weight: 700;
-  color: #94a3b8;
-  border-right: 1px solid #1e293b;
+  color: var(--text-2);
+  border-right: 1px solid var(--border);
   box-sizing: border-box;
 }
 
 .nx-ng-col-clue-item.quad-right {
-  border-right: 2px solid #475569;
+  border-right: 2px solid var(--border);
 }
 
 .nx-ng-row-clues {
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #475569;
+  border-right: 2px solid var(--border);
 }
 
 .nx-ng-row-clue-item {
@@ -86,13 +86,13 @@
   font-family: ui-monospace, monospace;
   font-size: clamp(10px, 1.8vmin, 13px);
   font-weight: 700;
-  color: #94a3b8;
-  border-bottom: 1px solid #1e293b;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
   box-sizing: border-box;
 }
 
 .nx-ng-row-clue-item.quad-bottom {
-  border-bottom: 2px solid #475569;
+  border-bottom: 2px solid var(--border);
 }
 
 .nx-ng-clue.satisfied {
@@ -103,50 +103,50 @@
 /* Grid Cells */
 .nx-ng-grid {
   display: grid;
-  background: #090e1a;
+  background: var(--bg);
 }
 
 .nx-ng-cell {
   aspect-ratio: 1;
-  border-right: 1px solid #1e293b;
-  border-bottom: 1px solid #1e293b;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 0;
-  background: #090e1a;
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-sizing: border-box;
   font-size: clamp(12px, 2.2vmin, 20px);
-  color: #64748b;
+  color: var(--text-3);
   transition: background-color 0.1s ease;
 }
 
 .nx-ng-cell.quad-right {
-  border-right: 2px solid #475569;
+  border-right: 2px solid var(--border);
 }
 
 .nx-ng-cell.quad-bottom {
-  border-bottom: 2px solid #475569;
+  border-bottom: 2px solid var(--border);
 }
 
 .nx-ng-cell:hover {
-  background: #1e293b;
+  background: var(--surface-2);
 }
 
 .nx-ng-cell.filled {
-  background: #00f0ff !important;
+  background: var(--accent) !important;
   box-shadow:
     inset 0 0 6px rgba(255, 255, 255, 0.8),
     0 0 8px rgba(0, 240, 255, 0.6);
 }
 
 .nx-ng-cell.crossed {
-  background: #0d1527;
+  background: var(--surface-sunken);
 }
 
 .nx-ng-cell.error {
-  background: #ef4444 !important;
+  background: var(--danger) !important;
   animation: nx-shake 0.2s ease;
 }
 

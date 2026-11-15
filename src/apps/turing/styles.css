@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--bg, #05060d);
-  color: var(--text-1, #eef2ff);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--font-sans, sans-serif);
   overflow: hidden;
 }
@@ -16,8 +16,8 @@
   justify-content: space-between;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: var(--surface-1, #0b0e1a);
-  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-turing-main {
@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: var(--surface-1, #0b0e1a);
+  background: var(--surface-1);
   padding: var(--space-4, 16px);
   overflow: auto;
 }
@@ -56,8 +56,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--surface-2, #121628);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-right: none;
   font-family: var(--font-mono, monospace);
   position: relative;
@@ -65,13 +65,13 @@
 }
 
 .nx-tape-cell:last-child {
-  border-right: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-right: 1px solid var(--border);
 }
 
 .nx-tape-cell.head {
-  background: rgba(62, 240, 255, 0.2);
-  border-color: var(--accent, #3ef0ff);
-  border-right: 1px solid var(--accent, #3ef0ff);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: var(--accent);
+  border-right: 1px solid var(--accent);
   transform: scale(1.08);
   z-index: 2;
 }
@@ -79,19 +79,19 @@
 .nx-tape-cell-val {
   font-size: 18px;
   font-weight: bold;
-  color: var(--text-1, #eef2ff);
+  color: var(--text-1);
 }
 
 .nx-tape-cell-idx {
   font-size: 9px;
-  color: var(--text-3, #8791b3);
+  color: var(--text-3);
   margin-top: 2px;
 }
 
 .nx-tape-head-pointer {
   position: absolute;
   top: 4px;
-  color: var(--accent, #3ef0ff);
+  color: var(--accent);
   font-size: 18px;
   animation: bounce 0.6s infinite alternate;
 }
@@ -107,8 +107,8 @@
 
 .nx-turing-sidebar {
   width: 340px;
-  background: var(--surface-2, #121628);
-  border-left: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: var(--space-3, 12px);
@@ -126,11 +126,11 @@
 .nx-table-view th,
 .nx-table-view td {
   padding: 4px 6px;
-  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
 .nx-table-view tr.active-trans {
-  background: rgba(255, 200, 87, 0.2);
-  color: var(--warning, #ffc857);
+  background: color-mix(in srgb, var(--warning) 20%, transparent);
+  color: var(--warning);
 }

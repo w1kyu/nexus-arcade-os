@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 14px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-clock-body {
@@ -34,8 +34,8 @@
 }
 
 .nx-clock-card {
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -48,8 +48,8 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 2px solid var(--nx-border, #2d3342);
-  background: var(--nx-bg-subtle, #212631);
+  border: 2px solid var(--border);
+  background: var(--surface-2);
   position: relative;
 }
 
@@ -64,21 +64,22 @@
 .nx-hand-hour {
   width: 4px;
   height: 28px;
-  background: var(--nx-text-primary, #e6edf3);
+  background: var(--text-1);
   margin-left: -2px;
 }
 
 .nx-hand-min {
   width: 2px;
   height: 38px;
-  background: var(--nx-text-secondary, #94a3b8);
+  background: var(--text-2);
   margin-left: -1px;
 }
 
 .nx-hand-sec {
   width: 1px;
   height: 44px;
-  background: #ff8a3d;
+  background: var(--warning);
+  color: var(--bg);
   margin-left: -0.5px;
 }
 
@@ -88,7 +89,8 @@
   left: 50%;
   width: 6px;
   height: 6px;
-  background: #ff8a3d;
+  background: var(--warning);
+  color: var(--bg);
   border-radius: 50%;
   margin-top: -3px;
   margin-left: -3px;
@@ -107,7 +109,7 @@
 
 .nx-clock-date {
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
 }
 
 /* Stopwatch */
@@ -125,7 +127,7 @@
   font-size: 54px;
   font-weight: 700;
   font-family: monospace;
-  color: #ff8a3d;
+  color: var(--warning);
 }
 
 .nx-stopwatch-laps {
@@ -133,9 +135,9 @@
   max-width: 440px;
   max-height: 240px;
   overflow-y: auto;
-  border: 1px solid var(--nx-border, #2d3342);
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background: var(--nx-bg-surface, #1a1d26);
+  background: var(--surface-1);
 }
 
 /* Meeting planner */
@@ -163,16 +165,16 @@
   font-size: 10px;
   font-family: monospace;
   border-radius: 2px;
-  background: var(--nx-bg-subtle, #212631);
+  background: var(--surface-2);
 }
 
 .nx-meeting-cell.is-work {
-  background: rgba(74, 222, 128, 0.25);
-  color: #4ade80;
+  background: color-mix(in srgb, var(--success) 25%, transparent);
+  color: var(--success);
   font-weight: 700;
 }
 
 .nx-meeting-cell.is-night {
-  background: rgba(15, 23, 42, 0.5);
-  color: #475569;
+  background: color-mix(in srgb, var(--bg) 50%, transparent);
+  color: var(--text-3);
 }

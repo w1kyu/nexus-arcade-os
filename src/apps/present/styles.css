@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--color-bg, #0f172a);
-  color: var(--color-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: inherit;
   overflow: hidden;
   user-select: none;
@@ -16,8 +16,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 6px 12px;
-  background: var(--color-surface, #1e293b);
-  border-bottom: 1px solid var(--color-border, #334155);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -30,9 +30,9 @@
 
 .nx-present-btn {
   padding: 5px 10px;
-  background: var(--color-btn-bg, #334155);
-  color: var(--color-text, #f8fafc);
-  border: 1px solid var(--color-border, #475569);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
@@ -45,26 +45,26 @@
 }
 
 .nx-present-btn:hover:not(:disabled) {
-  background: var(--color-btn-hover, #475569);
-  border-color: var(--color-accent, #6366f1);
+  background: var(--surface-hover);
+  border-color: var(--accent);
 }
 
 .nx-present-btn.primary {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
-  border-color: var(--color-accent, #6366f1);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
 }
 
 .nx-present-btn.active {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .nx-present-select {
   padding: 4px 8px;
-  background: var(--color-btn-bg, #334155);
-  color: var(--color-text, #f8fafc);
-  border: 1px solid var(--color-border, #475569);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .nx-present-status {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-2);
   margin-left: 6px;
 }
 
@@ -90,8 +90,8 @@
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  background: #090d16;
-  border-right: 1px solid var(--color-border, #334155);
+  background: var(--bg);
+  border-right: 1px solid var(--border);
 }
 
 .nx-present-editor-header {
@@ -100,9 +100,9 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #94a3b8;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid var(--color-border, #334155);
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--bg) 20%, transparent);
+  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
 }
@@ -110,7 +110,7 @@
 .nx-present-textarea {
   flex: 1;
   background: transparent;
-  color: #f1f5f9;
+  color: var(--text-1);
   border: none;
   resize: none;
   padding: 12px;
@@ -127,7 +127,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #020617;
+  background: var(--bg);
   overflow: hidden;
 }
 
@@ -146,7 +146,7 @@
   width: 800px;
   height: 450px; /* 16:9 */
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 40px color-mix(in srgb, var(--shadow-ink) 80%, transparent);
   border-radius: 6px;
   overflow: hidden;
   display: flex;
@@ -208,7 +208,7 @@
 }
 
 .nx-present-slide-body pre {
-  background: rgba(0, 0, 0, 0.35);
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
   padding: 12px;
   border-radius: 6px;
   font-family: ui-monospace, monospace;
@@ -219,7 +219,7 @@
 
 .nx-present-slide-body code {
   font-family: ui-monospace, monospace;
-  background: rgba(255, 255, 255, 0.12);
+  background: color-mix(in srgb, var(--text-1) 12%, transparent);
   padding: 2px 5px;
   border-radius: 3px;
 }
@@ -236,7 +236,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid color-mix(in srgb, var(--text-1) 15%, transparent);
   font-size: 0.8rem;
   opacity: 0.65;
 }
@@ -244,8 +244,8 @@
 /* Slide Navigation Bar */
 .nx-present-nav-bar {
   height: 48px;
-  background: var(--color-surface, #1e293b);
-  border-top: 1px solid var(--color-border, #334155);
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -255,7 +255,7 @@
 .nx-present-slide-counter {
   font-size: 12px;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--text-2);
 }
 
 /* Presenter Mode Modal / Overlay */
@@ -266,8 +266,8 @@
   max-width: 95vw;
   height: 600px;
   max-height: 90vh;
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--surface-sunken);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -276,15 +276,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-presenter-timer {
   font-size: 18px;
   font-family: ui-monospace, monospace;
   font-weight: bold;
-  color: #38bdf8;
+  color: var(--accent);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -306,8 +306,8 @@
 }
 
 .nx-presenter-card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 8px;
   display: flex;
@@ -319,12 +319,12 @@
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--text-2);
 }
 
 .nx-presenter-current-preview {
   height: 220px;
-  background: #020617;
+  background: var(--bg);
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -334,7 +334,7 @@
 
 .nx-presenter-next-preview {
   height: 140px;
-  background: #020617;
+  background: var(--bg);
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -345,8 +345,8 @@
 
 .nx-presenter-notes-col {
   flex: 1;
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 12px;
   display: flex;
@@ -357,7 +357,7 @@
 .nx-presenter-notes-body {
   font-size: 14px;
   line-height: 1.6;
-  color: #e2e8f0;
+  color: var(--text-1);
   white-space: pre-wrap;
   user-select: text;
 }
@@ -367,7 +367,7 @@
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #000000;
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -378,9 +378,9 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  color: var(--text-1);
+  border: 1px solid color-mix(in srgb, var(--text-1) 20%, transparent);
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 12px;

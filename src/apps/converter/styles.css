@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-conv-body {
@@ -41,8 +41,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px;
 }
@@ -53,7 +53,7 @@
   font-family: monospace;
   background: transparent;
   border: none;
-  color: var(--nx-text-primary, #e6edf3);
+  color: var(--text-1);
   width: 100%;
   outline: none;
 }
@@ -66,18 +66,18 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
-  color: #ff8a3d;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  color: var(--warning);
 }
 
 .nx-conv-swap-btn:hover {
-  background: var(--nx-bg-hover, #232834);
+  background: var(--surface-hover);
 }
 
 .nx-conv-extra-card {
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px;
   display: flex;

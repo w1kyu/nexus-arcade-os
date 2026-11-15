@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--bg, #05060d);
-  color: var(--text-1, #eef2ff);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--font-sans, sans-serif);
   overflow-y: auto;
   padding: var(--space-4, 16px);
@@ -18,12 +18,12 @@
 .nx-cslab-hero h2 {
   margin: 0 0 6px 0;
   font-size: var(--text-xl, 1.25rem);
-  color: var(--accent, #3ef0ff);
+  color: var(--accent);
 }
 
 .nx-cslab-hero p {
   margin: 0;
-  color: var(--text-2, #8b9bb4);
+  color: var(--text-2);
   font-size: var(--text-sm, 0.875rem);
 }
 
@@ -42,8 +42,8 @@
 }
 
 .nx-cslab-card {
-  background: var(--surface-1, #0b0e1a);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
   display: flex;
@@ -57,7 +57,7 @@
 
 .nx-cslab-card:hover {
   transform: translateY(-2px);
-  border-color: var(--accent, #3ef0ff);
+  border-color: var(--accent);
 }
 
 .nx-cslab-card-header {
@@ -70,22 +70,22 @@
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 4px;
-  background: var(--surface-2, #121628);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
-  color: var(--accent, #3ef0ff);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--accent);
   font-weight: 600;
 }
 
 .nx-cslab-card-desc {
   font-size: var(--text-xs, 0.75rem);
-  color: var(--text-2, #8b9bb4);
+  color: var(--text-2);
   line-height: 1.4;
   margin: 0;
 }
 
 .nx-cslab-checklist {
-  background: var(--surface-1, #0b0e1a);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
 }
@@ -93,7 +93,7 @@
 .nx-cslab-checklist h3 {
   margin: 0 0 8px 0;
   font-size: var(--text-sm, 0.875rem);
-  color: var(--accent, #3ef0ff);
+  color: var(--accent);
 }
 
 .nx-checklist-items {
@@ -109,7 +109,7 @@
   gap: 8px;
   font-size: var(--text-xs, 0.75rem);
   padding: 6px 8px;
-  background: var(--surface-2, #121628);
+  background: var(--surface-2);
   border-radius: 6px;
   cursor: pointer;
 }

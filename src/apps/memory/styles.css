@@ -5,8 +5,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: #05060d;
-  color: #e0e6ed;
+  background: var(--bg);
+  color: var(--text-1);
   user-select: none;
   position: relative;
   overflow: hidden;
@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #0f152a 0%, #05060d 100%);
+  background: radial-gradient(circle at center, var(--surface-sunken) 0%, var(--bg) 100%);
   z-index: 10;
   gap: 20px;
   padding: 24px;
@@ -30,14 +30,14 @@
   font-size: 38px;
   font-weight: 900;
   letter-spacing: 3px;
-  color: #00f0ff;
-  text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  color: var(--accent);
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent) 60%, transparent);
   margin: 0;
 }
 
 .nx-memory-subtitle {
   font-size: 14px;
-  color: #8b9bb4;
+  color: var(--text-2);
   letter-spacing: 1.5px;
   margin-top: -12px;
 }
@@ -60,15 +60,15 @@
 .nx-memory-form-group label {
   font-size: 12px;
   font-weight: 600;
-  color: #8b9bb4;
+  color: var(--text-2);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .nx-memory-form-group select {
-  background: #141a2e;
-  color: #ffffff;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: var(--surface-sunken);
+  color: var(--text-1);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
@@ -76,8 +76,8 @@
 }
 
 .nx-memory-play-btn {
-  background: #00f0ff;
-  color: #05060d;
+  background: var(--accent);
+  color: var(--accent-contrast);
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 1.5px;
@@ -85,15 +85,17 @@
   border-radius: 8px;
   padding: 12px 48px;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent);
   transition: all 0.2s ease;
   margin-top: 10px;
 }
 
 .nx-memory-play-btn:hover {
-  background: #38f4ff;
+  background: var(--accent);
+
+  color: var(--accent-contrast);
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 80%, transparent);
 }
 
 /* In-game board */
@@ -109,8 +111,8 @@
 .nx-memory-hud {
   display: flex;
   justify-content: space-around;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--text-1) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
   border-radius: 8px;
   padding: 10px 16px;
   margin-bottom: 16px;
@@ -126,20 +128,20 @@
 .nx-hud-label {
   font-size: 11px;
   font-weight: 700;
-  color: #8b9bb4;
+  color: var(--text-2);
   letter-spacing: 1px;
 }
 
 .nx-hud-val {
   font-size: 18px;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-1);
   font-family: monospace;
 }
 
 .nx-hud-val.active {
-  color: #ffd700;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  color: var(--warning);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--warning) 60%, transparent);
 }
 
 .nx-memory-grid {
@@ -178,8 +180,8 @@
 
 .nx-memory-card.matched .nx-memory-card-inner {
   transform: rotateY(180deg);
-  box-shadow: 0 0 16px rgba(0, 255, 136, 0.8);
-  border: 2px solid #00ff88;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--success) 80%, transparent);
+  border: 2px solid var(--success);
 }
 
 .nx-memory-card-face {

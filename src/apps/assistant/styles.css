@@ -5,8 +5,8 @@
   width: 100%;
   padding: 12px;
   gap: 10px;
-  background: var(--bg-surface, #1e1e24);
-  color: var(--text-main, #f0f0f5);
+  background: var(--surface-1);
+  color: var(--text-1);
   font-family: var(--font-sans, system-ui, sans-serif);
 }
 
@@ -21,25 +21,25 @@
   font-size: 12px;
   font-weight: 500;
   border-radius: var(--radius-sm, 6px);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
-  color: var(--text-secondary, #ddd);
+  background: color-mix(in srgb, var(--text-1) 6%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-2);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .nx-assistant-action-btn:hover {
-  background: var(--accent-primary, #6366f1);
-  color: #fff;
-  border-color: var(--accent-primary, #6366f1);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
 }
 
 .nx-assistant-input-area {
   height: 110px;
-  background: var(--bg-input, #24242e);
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 8px);
-  color: var(--text-main, #fff);
+  color: var(--text-1);
   padding: 8px 10px;
   font-size: 13px;
   font-family: inherit;
@@ -50,8 +50,8 @@
 .nx-assistant-output-area {
   flex: 1;
   overflow-y: auto;
-  background: var(--bg-surface-alt, #18181e);
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 8px);
   padding: 10px 12px;
   font-size: 13px;
@@ -69,8 +69,8 @@
 
 .nx-assistant-btn-primary {
   padding: 6px 14px;
-  background: var(--accent-primary, #6366f1);
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-contrast);
   border: none;
   border-radius: var(--radius-sm, 6px);
   font-size: 13px;
@@ -80,9 +80,9 @@
 
 .nx-assistant-btn-secondary {
   padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-main, #fff);
-  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  background: color-mix(in srgb, var(--text-1) 8%, transparent);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm, 6px);
   font-size: 13px;
   cursor: pointer;

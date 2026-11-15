@@ -5,8 +5,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--gs-bg, #0b0f19);
-  color: #f8fafc;
+  background: var(--gs-bg, var(--bg));
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   font-family:
@@ -47,7 +47,7 @@
 
 .nx-hw-cell {
   aspect-ratio: 1;
-  border: 2px solid #334155;
+  border: 2px solid var(--border);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
   font-size: clamp(18px, 4.5vw, 28px);
   font-weight: 800;
   text-transform: uppercase;
-  background: rgba(15, 23, 42, 0.6);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
   transition:
     transform 0.15s ease,
     background-color 0.25s ease,
@@ -63,26 +63,26 @@
 }
 
 .nx-hw-cell.filled {
-  border-color: #64748b;
+  border-color: var(--border);
   animation: nx-pop 0.1s ease;
 }
 
 .nx-hw-cell.correct {
-  background: #16a34a !important;
-  border-color: #22c55e !important;
-  color: #fff;
+  background: var(--success) !important;
+  border-color: var(--success) !important;
+  color: var(--bg);
 }
 
 .nx-hw-cell.present {
-  background: #ca8a04 !important;
-  border-color: #eab308 !important;
-  color: #fff;
+  background: var(--warning) !important;
+  border-color: var(--warning) !important;
+  color: var(--bg);
 }
 
 .nx-hw-cell.absent {
-  background: #334155 !important;
-  border-color: #475569 !important;
-  color: #94a3b8;
+  background: var(--surface-3) !important;
+  border-color: var(--border) !important;
+  color: var(--text-2);
 }
 
 @keyframes nx-pop {
@@ -119,8 +119,8 @@
   height: clamp(42px, 6vh, 52px);
   border: none;
   border-radius: 4px;
-  background: #1e293b;
-  color: #f1f5f9;
+  background: var(--surface-2);
+  color: var(--text-1);
   font-size: clamp(12px, 2.5vw, 15px);
   font-weight: 700;
   cursor: pointer;
@@ -137,20 +137,20 @@
 }
 
 .nx-hw-key:hover {
-  background: #334155;
+  background: var(--surface-3);
 }
 
 .nx-hw-key.correct {
-  background: #16a34a;
-  color: #fff;
+  background: var(--success);
+  color: var(--bg);
 }
 
 .nx-hw-key.present {
-  background: #ca8a04;
-  color: #fff;
+  background: var(--warning);
+  color: var(--bg);
 }
 
 .nx-hw-key.absent {
-  background: #0f172a;
-  color: #475569;
+  background: var(--surface-sunken);
+  color: var(--text-3);
 }

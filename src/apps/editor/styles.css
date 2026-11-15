@@ -91,6 +91,7 @@
   flex: none;
   border-radius: 50%;
   background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .nx-edit-tab-close {

@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--bg, #05060d);
-  color: var(--text-1, #eef2ff);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--font-sans, sans-serif);
   overflow: hidden;
 }
@@ -16,8 +16,8 @@
   justify-content: space-between;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: var(--surface-1, #0b0e1a);
-  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-circuits-main {
@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: var(--surface-1, #0b0e1a);
+  background: var(--surface-1);
   overflow: hidden;
 }
 
@@ -46,8 +46,8 @@
 
 .nx-circuits-sidebar {
   width: 360px;
-  background: var(--surface-2, #121628);
-  border-left: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: var(--space-3, 12px);
@@ -56,8 +56,8 @@
 }
 
 .nx-circuits-panel {
-  background: var(--surface-1, #0b0e1a);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
   font-size: var(--text-xs, 0.75rem);
@@ -65,7 +65,7 @@
 
 .nx-circuits-panel h4 {
   margin: 0 0 8px 0;
-  color: var(--accent, #3ef0ff);
+  color: var(--accent);
   font-size: var(--text-sm, 0.875rem);
 }
 
@@ -83,11 +83,11 @@
   height: 36px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  border: 1px solid var(--border);
 }
 
 .nx-kv-table td.cell-one {
-  background: rgba(62, 240, 255, 0.2);
-  color: var(--accent, #3ef0ff);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--accent);
   font-weight: bold;
 }

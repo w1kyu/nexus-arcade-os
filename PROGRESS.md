@@ -1136,6 +1136,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 **14.5 App migration**
 
 - [x] [P1] Accessibility across all apps: axe serious/critical 68 → 0 (sheet run, 91 apps). — _icon buttons, selects, sliders, text fields named (EN/DE); scroll regions focusable; board squares named; dotted message keys (raw keys in 8 media apps) nested, `check-i18n.js` rejects them (`check-i18n.test.js`)._
+- [x] [P1] Token debt: hard-coded colors in app CSS 1,813 → 170 (left: game art kept on purpose: 2048 tiles, chess/checkers boards, card faces, minesweeper numbers, swatches, sprites). — _532 colors sat behind variables that never existed (`--nx-border`, `--nx-text-primary`, …), so those apps stayed dark in light themes; the game shell (`--gs-*`) had a fixed dark palette. Text on accent/status backgrounds uses `--accent-contrast` / `--danger-contrast` / `--bg`. New token `--shadow-ink`. Also: Calendar shared the class `.nx-cal` with the top-bar clock popover (`width: 272px`) and squeezed its main view (top bar classes now `.nx-tb-cal-*`); 29 icon names used in apps didn't exist (blank squares): added the icons/aliases, `icons.test.js` checks every literal name._
 - [ ] [P1] Wave 1 (system). — _in progress: phone layout fix for Settings/App Center (e2e `settings.spec.js` "system apps on a phone"), Help on `createAppFrame`, App Center tiles, Settings font tokens; 0 axe findings in the 8 apps._
 
 **14.4 Shell**

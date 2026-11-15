@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--color-bg, #1a1a24);
-  color: var(--color-text, #f0f0f5);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: inherit;
   overflow: hidden;
   user-select: none;
@@ -16,8 +16,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 6px 12px;
-  background: var(--color-surface, #232332);
-  border-bottom: 1px solid var(--color-border, #333345);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -30,9 +30,9 @@
 
 .nx-pixelart-btn {
   padding: 5px 10px;
-  background: var(--color-btn-bg, #2d2d3f);
-  color: var(--color-text, #f0f0f5);
-  border: 1px solid var(--color-border, #3c3c52);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
@@ -45,14 +45,14 @@
 }
 
 .nx-pixelart-btn:hover:not(:disabled) {
-  background: var(--color-btn-hover, #38384f);
-  border-color: var(--color-accent, #6366f1);
+  background: var(--surface-hover);
+  border-color: var(--accent);
 }
 
 .nx-pixelart-btn.active {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
-  border-color: var(--color-accent, #6366f1);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
 }
 
 .nx-pixelart-btn:disabled {
@@ -62,9 +62,9 @@
 
 .nx-pixelart-select {
   padding: 4px 8px;
-  background: var(--color-btn-bg, #2d2d3f);
-  color: var(--color-text, #f0f0f5);
-  border: 1px solid var(--color-border, #3c3c52);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .nx-pixelart-status {
   font-size: 12px;
-  color: var(--color-muted, #94a3b8);
+  color: var(--text-3);
   margin-left: 6px;
 }
 
@@ -87,8 +87,8 @@
 /* Left Sidebar (Tools & Palette) */
 .nx-pixelart-sidebar {
   width: 220px;
-  background: var(--color-surface, #232332);
-  border-right: 1px solid var(--color-border, #333345);
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -108,22 +108,22 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  background: var(--color-btn-bg, #2d2d3f);
-  border: 1px solid var(--color-border, #3c3c52);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 6px;
-  color: var(--color-text, #f0f0f5);
+  color: var(--text-1);
   cursor: pointer;
   font-size: 11px;
 }
 
 .nx-pixelart-tool-btn:hover {
-  background: var(--color-btn-hover, #38384f);
+  background: var(--surface-hover);
 }
 
 .nx-pixelart-tool-btn.active {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
-  border-color: var(--color-accent, #6366f1);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
 }
 
 .nx-pixelart-palette-section {
@@ -145,16 +145,16 @@
   align-items: center;
   gap: 8px;
   padding: 6px;
-  background: var(--color-btn-bg, #2d2d3f);
+  background: var(--surface-2);
   border-radius: 4px;
-  border: 1px solid var(--color-border, #3c3c52);
+  border: 1px solid var(--border);
 }
 
 .nx-pixelart-color-chip {
   width: 28px;
   height: 28px;
   border-radius: 4px;
-  border: 1px solid #ffffff40;
+  border: 1px solid color-mix(in srgb, var(--text-1) 25%, transparent);
 }
 
 .nx-pixelart-color-text {
@@ -192,7 +192,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #12121a;
+  background: var(--surface-sunken);
   overflow: auto;
   position: relative;
   background-image:
@@ -208,8 +208,8 @@
 
 .nx-pixelart-canvas-container {
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--color-border, #333345);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--shadow-ink) 60%, transparent);
+  border: 1px solid var(--border);
 }
 
 .nx-pixelart-canvas {
@@ -222,8 +222,8 @@
 /* Bottom Animation Timeline Tray */
 .nx-pixelart-timeline {
   height: 120px;
-  background: var(--color-surface, #232332);
-  border-top: 1px solid var(--color-border, #333345);
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 6px 12px;
@@ -248,8 +248,8 @@
 .nx-pixelart-frame-card {
   width: 64px;
   height: 64px;
-  background: #14141e;
-  border: 2px solid var(--color-border, #3c3c52);
+  background: var(--surface-sunken);
+  border: 2px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -261,12 +261,12 @@
 }
 
 .nx-pixelart-frame-card:hover {
-  border-color: var(--color-muted, #94a3b8);
+  border-color: var(--text-3);
 }
 
 .nx-pixelart-frame-card.active {
-  border-color: var(--color-accent, #6366f1);
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--info) 50%, transparent);
 }
 
 .nx-pixelart-frame-preview {
@@ -282,6 +282,6 @@
   left: 4px;
   font-size: 9px;
   font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0 1px 2px #000000;
+  color: var(--text-1);
+  text-shadow: 0 1px 2px var(--shadow-ink);
 }

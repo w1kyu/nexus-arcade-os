@@ -205,8 +205,8 @@ export function createTopBar(shell) {
 function calendar(sys) {
   const today = new Date();
   let view = new Date(today.getFullYear(), today.getMonth(), 1);
-  const title = h('strong', { class: 'nx-cal-title', 'aria-live': 'polite' });
-  const grid = h('div', { class: 'nx-cal-grid', role: 'grid' });
+  const title = h('strong', { class: 'nx-tb-cal-title', 'aria-live': 'polite' });
+  const grid = h('div', { class: 'nx-tb-cal-grid', role: 'grid' });
   const nav = (/** @type {number} */ delta) => {
     view = new Date(view.getFullYear(), view.getMonth() + delta, 1);
     render();
@@ -220,7 +220,7 @@ function calendar(sys) {
       const d = new Date(2024, 0, 7 + ((i + firstDay()) % 7)); // a week starting on Sunday
       cells.push(
         h('span', {
-          class: 'nx-cal-dow',
+          class: 'nx-tb-cal-dow',
           role: 'columnheader',
           text: sys.i18n.format.date(d, { weekday: 'narrow' }),
           title: sys.i18n.format.date(d, { weekday: 'long' }),
@@ -235,7 +235,7 @@ function calendar(sys) {
         d === today.getDate() && view.getMonth() === today.getMonth() && view.getFullYear() === today.getFullYear();
       cells.push(
         h('span', {
-          class: `nx-cal-day${isToday ? ' is-today' : ''}`,
+          class: `nx-tb-cal-day${isToday ? ' is-today' : ''}`,
           role: 'gridcell',
           'aria-current': isToday ? 'date' : undefined,
           text: String(d),
@@ -247,10 +247,10 @@ function calendar(sys) {
   render();
   return h(
     'div',
-    { class: 'nx-cal' },
+    { class: 'nx-tb-cal' },
     h(
       'div',
-      { class: 'nx-cal-head' },
+      { class: 'nx-tb-cal-head' },
       h(
         'button',
         {
@@ -274,6 +274,6 @@ function calendar(sys) {
       ),
     ),
     grid,
-    h('p', { class: 'nx-cal-today', text: sys.i18n.format.date(today, { dateStyle: 'full' }) }),
+    h('p', { class: 'nx-tb-cal-today', text: sys.i18n.format.date(today, { dateStyle: 'full' }) }),
   );
 }

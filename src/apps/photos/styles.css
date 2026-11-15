@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--nx-bg-app, #090d16);
-  color: var(--nx-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   position: relative;
@@ -13,8 +13,8 @@
 /* Gallery Header */
 .nx-photos-header {
   padding: 12px 20px;
-  background: var(--nx-surface-1, #1e293b);
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,8 +55,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  background: var(--nx-surface-1, #1e293b);
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   overflow: hidden;
   cursor: pointer;
   transition:
@@ -67,14 +67,14 @@
 
 .nx-photos-thumb-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow-ink) 40%, transparent);
 }
 
 .nx-photos-thumb-img {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
-  background: #0f172a;
+  background: var(--surface-sunken);
 }
 
 .nx-photos-thumb-meta {
@@ -107,7 +107,7 @@
 .nx-photos-viewer {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.94);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
   display: flex;
   flex-direction: column;
   z-index: 20;
@@ -118,9 +118,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background: rgba(15, 23, 42, 0.8);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   z-index: 25;
 }
 
@@ -158,9 +158,9 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 15%, transparent);
+  color: var(--text-1);
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -173,7 +173,7 @@
 }
 
 .nx-photos-nav-btn:hover {
-  background: rgba(99, 102, 241, 0.8);
+  background: color-mix(in srgb, var(--info) 80%, transparent);
 }
 
 .nx-photos-nav-prev {
@@ -187,8 +187,8 @@
 /* Metadata Panel Sidebar */
 .nx-photos-meta-panel {
   width: 280px;
-  background: rgba(15, 23, 42, 0.95);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   padding: 16px;
   overflow-y: auto;
   display: flex;
@@ -201,10 +201,10 @@
 .nx-photos-meta-heading {
   font-weight: 700;
   font-size: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
   padding-bottom: 6px;
   margin-top: 8px;
-  color: #818cf8;
+  color: var(--info);
 }
 
 .nx-photos-meta-row {
@@ -214,7 +214,7 @@
 }
 
 .nx-photos-meta-label {
-  color: #94a3b8;
+  color: var(--text-2);
 }
 
 .nx-photos-meta-value {
@@ -227,7 +227,7 @@
 .nx-photos-editor {
   position: absolute;
   inset: 0;
-  background: #090d16;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
   z-index: 30;
@@ -238,8 +238,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background: #1e293b;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
 }
 
 .nx-photos-editor-workspace {
@@ -255,20 +255,20 @@
   justify-content: center;
   padding: 20px;
   overflow: auto;
-  background: #06090e;
+  background: var(--bg);
   position: relative;
 }
 
 .nx-photos-canvas {
   max-width: 100%;
   max-height: 100%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--shadow-ink) 60%, transparent);
 }
 
 .nx-photos-editor-sidebar {
   width: 280px;
-  background: #1e293b;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
+  border-left: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   padding: 16px;
   overflow-y: auto;
   display: flex;
@@ -286,5 +286,5 @@
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-2);
 }

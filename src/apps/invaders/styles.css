@@ -5,7 +5,7 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: #02050b;
+  background: var(--bg);
   overflow: hidden;
   position: relative;
 }

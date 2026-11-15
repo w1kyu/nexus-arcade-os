@@ -5,8 +5,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--gs-bg, #080c14);
-  color: #f1f5f9;
+  background: var(--gs-bg, var(--bg));
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   font-family:
@@ -31,10 +31,10 @@
 .nx-sk-grid {
   display: grid;
   gap: 2px;
-  background: #040711;
+  background: var(--bg);
   padding: 8px;
   border-radius: 8px;
-  border: 2px solid #1e293b;
+  border: 2px solid var(--border);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.6),
     0 0 24px rgba(0, 240, 255, 0.08);
@@ -98,8 +98,8 @@
   gap: 8px;
   align-items: center;
   padding: 6px 12px;
-  background: #0f172a;
-  border-bottom: 1px solid #1e293b;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
   width: 100%;
   box-sizing: border-box;
   flex-wrap: wrap;
@@ -107,17 +107,17 @@
 
 .nx-sk-tool-btn {
   padding: 4px 10px;
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: #f8fafc;
+  color: var(--text-1);
   font-size: 13px;
   cursor: pointer;
 }
 
 .nx-sk-tool-btn.active {
-  background: #00f0ff;
-  color: #040711;
+  background: var(--accent);
+  color: var(--accent-contrast);
   font-weight: 700;
-  border-color: #00f0ff;
+  border-color: var(--accent);
 }

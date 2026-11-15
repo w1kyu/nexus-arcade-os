@@ -64,6 +64,7 @@
   bottom: 6px;
   width: 3px;
   background: var(--accent);
+  color: var(--accent-contrast);
   border-radius: 0 2px 2px 0;
 }
 
@@ -254,6 +255,7 @@
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .nx-code-editor-panes {
@@ -295,7 +297,7 @@
 .nx-code-preview-iframe {
   flex: 1;
   border: none;
-  background: #fff;
+  background: var(--surface-1);
   width: 100%;
   height: 100%;
 }
@@ -371,7 +373,7 @@
 .nx-code-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: color-mix(in srgb, #000 40%, transparent);
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -384,7 +386,7 @@
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-ink) 40%, transparent);
   display: flex;
   flex-direction: column;
   overflow: hidden;

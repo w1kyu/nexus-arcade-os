@@ -1,7 +1,7 @@
 {
   "apps": {
     "2048": {
-      "colors": 54,
+      "colors": 36,
       "controls": 1,
       "fontSizes": 6
     },
@@ -11,132 +11,132 @@
       "fontSizes": 33
     },
     "archlab": {
-      "colors": 29,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 6
     },
     "assistant": {
-      "colors": 18,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 5
     },
     "automata": {
-      "colors": 15,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "battleships": {
-      "colors": 30,
+      "colors": 2,
       "controls": 0,
       "fontSizes": 5
     },
     "beatlab": {
-      "colors": 20,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 2
     },
     "blockfall": {
-      "colors": 26,
+      "colors": 0,
       "controls": 3,
       "fontSizes": 6
     },
     "bookmarks": {
-      "colors": 18,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 4
     },
     "breakout": {
-      "colors": 17,
+      "colors": 4,
       "controls": 1,
       "fontSizes": 4
     },
     "bubbles": {
-      "colors": 6,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 1
     },
     "budget": {
-      "colors": 26,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 6
     },
     "calculator": {
-      "colors": 27,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 5
     },
     "calendar": {
-      "colors": 56,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 15
     },
     "camera": {
-      "colors": 13,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 1
     },
     "chat": {
-      "colors": 100,
+      "colors": 0,
       "controls": 7,
       "fontSizes": 28
     },
     "checkers": {
-      "colors": 19,
+      "colors": 17,
       "controls": 0,
       "fontSizes": 1
     },
     "chess": {
-      "colors": 37,
+      "colors": 18,
       "controls": 2,
       "fontSizes": 4
     },
     "circuits": {
-      "colors": 13,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "clipboard": {
-      "colors": 58,
+      "colors": 0,
       "controls": 4,
       "fontSizes": 14
     },
     "clock": {
-      "colors": 21,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 5
     },
     "code": {
-      "colors": 3,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 9
     },
     "colorlab": {
-      "colors": 7,
+      "colors": 1,
       "controls": 1,
       "fontSizes": 8
     },
     "connectfour": {
-      "colors": 18,
+      "colors": 9,
       "controls": 0,
       "fontSizes": 0
     },
     "converter": {
-      "colors": 13,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 1
     },
     "cslab": {
-      "colors": 15,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 6
     },
     "datastructures": {
-      "colors": 20,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 4
     },
     "devtools": {
-      "colors": 6,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 5
     },
@@ -146,7 +146,7 @@
       "fontSizes": 2
     },
     "drifter": {
-      "colors": 11,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 4
     },
@@ -156,7 +156,7 @@
       "fontSizes": 0
     },
     "exams": {
-      "colors": 16,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 2
     },
@@ -166,97 +166,87 @@
       "fontSizes": 0
     },
     "flashcards": {
-      "colors": 29,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 2
     },
     "focus": {
-      "colors": 19,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 7
     },
-    "glide": {
-      "colors": 1,
-      "controls": 0,
-      "fontSizes": 0
-    },
     "grades": {
-      "colors": 26,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "graphlab": {
-      "colors": 12,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "griddefense": {
-      "colors": 31,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 7
     },
     "habits": {
-      "colors": 21,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 6
     },
     "hexword": {
-      "colors": 23,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "httpclient": {
-      "colors": 17,
+      "colors": 0,
       "controls": 3,
       "fontSizes": 9
     },
-    "invaders": {
-      "colors": 1,
-      "controls": 0,
-      "fontSizes": 0
-    },
     "journal": {
-      "colors": 21,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 8
     },
     "life": {
-      "colors": 6,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 1
     },
     "mahjong": {
-      "colors": 16,
+      "colors": 10,
       "controls": 0,
       "fontSizes": 2
     },
     "match3": {
-      "colors": 18,
+      "colors": 6,
       "controls": 0,
       "fontSizes": 2
     },
     "memory": {
-      "colors": 33,
+      "colors": 9,
       "controls": 1,
       "fontSizes": 9
     },
     "mindmap": {
-      "colors": 5,
+      "colors": 0,
       "controls": 3,
       "fontSizes": 5
     },
     "minesweeper": {
-      "colors": 44,
+      "colors": 9,
       "controls": 2,
       "fontSizes": 4
     },
     "music": {
-      "colors": 40,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 14
     },
     "nonogram": {
-      "colors": 30,
+      "colors": 4,
       "controls": 0,
       "fontSizes": 3
     },
@@ -266,72 +256,72 @@
       "fontSizes": 2
     },
     "paint": {
-      "colors": 6,
+      "colors": 4,
       "controls": 2,
       "fontSizes": 7
     },
     "pathfinding": {
-      "colors": 15,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "pdf": {
-      "colors": 34,
+      "colors": 0,
       "controls": 3,
       "fontSizes": 3
     },
     "photos": {
-      "colors": 28,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 5
     },
     "pixelart": {
-      "colors": 46,
+      "colors": 6,
       "controls": 3,
       "fontSizes": 7
     },
     "playground": {
-      "colors": 4,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 5
     },
     "pong": {
-      "colors": 20,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 5
     },
     "present": {
-      "colors": 49,
+      "colors": 0,
       "controls": 4,
       "fontSizes": 17
     },
     "quiz": {
-      "colors": 27,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 5
     },
     "racer": {
-      "colors": 6,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 1
     },
     "reaction": {
-      "colors": 37,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 8
     },
     "recorder": {
-      "colors": 20,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 4
     },
     "runner": {
-      "colors": 14,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 2
     },
     "screenrecorder": {
-      "colors": 11,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 1
     },
@@ -341,12 +331,12 @@
       "fontSizes": 0
     },
     "sheets": {
-      "colors": 57,
+      "colors": 2,
       "controls": 4,
       "fontSizes": 11
     },
     "snake": {
-      "colors": 21,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 6
     },
@@ -356,32 +346,32 @@
       "fontSizes": 6
     },
     "sokoban": {
-      "colors": 28,
+      "colors": 16,
       "controls": 1,
       "fontSizes": 2
     },
     "solitaire": {
-      "colors": 23,
+      "colors": 11,
       "controls": 0,
       "fontSizes": 4
     },
     "sorting": {
-      "colors": 16,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 4
     },
     "sudoku": {
-      "colors": 39,
+      "colors": 0,
       "controls": 1,
       "fontSizes": 7
     },
     "synth": {
-      "colors": 20,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 4
     },
     "tasks": {
-      "colors": 6,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
@@ -391,42 +381,42 @@
       "fontSizes": 0
     },
     "timetable": {
-      "colors": 36,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 6
     },
     "turing": {
-      "colors": 19,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 4
     },
     "typing": {
-      "colors": 37,
+      "colors": 2,
       "controls": 1,
       "fontSizes": 6
     },
     "uttt": {
-      "colors": 27,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 3
     },
     "vault": {
-      "colors": 21,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 5
     },
     "video": {
-      "colors": 22,
+      "colors": 0,
       "controls": 0,
       "fontSizes": 5
     },
     "whiteboard": {
-      "colors": 6,
+      "colors": 0,
       "controls": 2,
       "fontSizes": 5
     },
     "write": {
-      "colors": 13,
+      "colors": 4,
       "controls": 4,
       "fontSizes": 22
     }

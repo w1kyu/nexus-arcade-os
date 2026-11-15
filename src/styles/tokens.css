@@ -28,6 +28,7 @@
   --danger-contrast: #000000;
   --info: #7cb4ff;
   --scrim: rgb(2 4 10 / 0.6);
+  --shadow-ink: #000000;
 
   /* App category hues (icon grammar, rule 13): glyph color on app tiles, also usable for tags. */
   --hue-productivity: #34d399;

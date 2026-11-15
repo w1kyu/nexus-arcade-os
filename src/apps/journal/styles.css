@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-journal-toolbar-title {
@@ -39,8 +39,8 @@
 
 .nx-journal-sidebar {
   width: 280px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-right: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -48,7 +48,7 @@
 
 .nx-journal-sidebar-search {
   padding: 10px 12px;
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-journal-entries-list {
@@ -60,7 +60,7 @@
 
 .nx-journal-entry-item {
   padding: 10px 14px;
-  border-bottom: 1px solid var(--nx-border-subtle, #212631);
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -69,12 +69,12 @@
 }
 
 .nx-journal-entry-item:hover {
-  background: var(--nx-bg-hover, #232834);
+  background: var(--surface-hover);
 }
 
 .nx-journal-entry-item.is-selected {
-  background: var(--nx-bg-active, #2a3142);
-  border-left: 3px solid #ff8a3d;
+  background: var(--surface-active);
+  border-left: 3px solid var(--warning);
 }
 
 .nx-journal-entry-meta {
@@ -82,13 +82,13 @@
   align-items: center;
   justify-content: space-between;
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
 }
 
 .nx-journal-entry-title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--nx-text-primary, #e6edf3);
+  color: var(--text-1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -96,7 +96,7 @@
 
 .nx-journal-entry-snippet {
   font-size: 12px;
-  color: var(--nx-text-secondary, #94a3b8);
+  color: var(--text-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -132,17 +132,17 @@
 }
 
 .nx-journal-tag {
-  background: var(--nx-bg-subtle, #212631);
+  background: var(--surface-2);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 11px;
-  color: var(--nx-text-secondary, #94a3b8);
+  color: var(--text-2);
 }
 
 .nx-journal-markdown {
   font-size: 14px;
   line-height: 1.6;
-  color: var(--nx-text-primary, #e6edf3);
+  color: var(--text-1);
 }
 
 .nx-journal-photos {
@@ -156,12 +156,12 @@
   height: 90px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid var(--nx-border, #2d3342);
+  border: 1px solid var(--border);
 }
 
 .nx-journal-on-this-day {
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 16px;
   display: flex;
@@ -172,7 +172,7 @@
 .nx-journal-on-this-day-title {
   font-size: 12px;
   font-weight: 600;
-  color: #ff8a3d;
+  color: var(--warning);
   display: flex;
   align-items: center;
   gap: 6px;

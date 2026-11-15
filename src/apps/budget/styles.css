@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-budget-toolbar-title {
@@ -39,8 +39,8 @@
 
 .nx-budget-sidebar {
   width: 280px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-right: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 14px;
@@ -49,8 +49,12 @@
 }
 
 .nx-budget-networth-card {
-  background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(56, 189, 248, 0.15));
-  border: 1px solid rgba(74, 222, 128, 0.3);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--success) 15%, transparent),
+    color-mix(in srgb, var(--accent) 15%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
   border-radius: 8px;
   padding: 14px;
   display: flex;
@@ -60,7 +64,7 @@
 
 .nx-budget-networth-label {
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -69,7 +73,7 @@
 .nx-budget-networth-val {
   font-size: 22px;
   font-weight: 700;
-  color: #4ade80;
+  color: var(--success);
 }
 
 .nx-budget-accounts-list {
@@ -83,15 +87,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 10px;
-  background: var(--nx-bg-subtle, #212631);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 6px;
   cursor: pointer;
 }
 
 .nx-budget-account-item.is-selected {
-  border-color: #38bdf8;
-  background: rgba(56, 189, 248, 0.1);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .nx-budget-main {
@@ -121,25 +125,25 @@
 .nx-budget-table th {
   text-align: left;
   padding: 8px 10px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
   text-transform: uppercase;
 }
 
 .nx-budget-table td {
   padding: 8px 10px;
-  border-bottom: 1px solid var(--nx-border-subtle, #212631);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-budget-amount-income {
-  color: #4ade80;
+  color: var(--success);
   font-weight: 600;
 }
 
 .nx-budget-amount-expense {
-  color: #f87171;
+  color: var(--danger);
   font-weight: 600;
 }
 
@@ -151,8 +155,8 @@
 }
 
 .nx-budget-card {
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 14px;
   display: flex;
@@ -163,20 +167,23 @@
 .nx-budget-progress-track {
   width: 100%;
   height: 8px;
-  background: var(--nx-bg-subtle, #212631);
+  background: var(--surface-2);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .nx-budget-progress-fill {
   height: 100%;
-  background: #38bdf8;
+  background: var(--accent);
+  color: var(--accent-contrast);
   border-radius: 4px;
   transition: width 0.2s ease;
 }
 
 .nx-budget-progress-fill.is-over {
-  background: #f87171;
+  background: var(--danger);
+
+  color: var(--danger-contrast);
 }
 
 /* Widget */

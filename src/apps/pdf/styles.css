@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--color-bg, #0f172a);
-  color: var(--color-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: inherit;
   overflow: hidden;
   user-select: none;
@@ -16,8 +16,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 6px 12px;
-  background: var(--color-surface, #1e293b);
-  border-bottom: 1px solid var(--color-border, #334155);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -30,9 +30,9 @@
 
 .nx-pdf-btn {
   padding: 5px 10px;
-  background: var(--color-btn-bg, #334155);
-  color: var(--color-text, #f8fafc);
-  border: 1px solid var(--color-border, #475569);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
@@ -45,26 +45,26 @@
 }
 
 .nx-pdf-btn:hover:not(:disabled) {
-  background: var(--color-btn-hover, #475569);
-  border-color: var(--color-accent, #6366f1);
+  background: var(--surface-hover);
+  border-color: var(--accent);
 }
 
 .nx-pdf-btn.primary {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
-  border-color: var(--color-accent, #6366f1);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
 }
 
 .nx-pdf-btn.active {
-  background: var(--color-accent, #6366f1);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .nx-pdf-select {
   padding: 4px 8px;
-  background: var(--color-btn-bg, #334155);
-  color: var(--color-text, #f8fafc);
-  border: 1px solid var(--color-border, #475569);
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
@@ -85,7 +85,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #1e293b;
+  background: var(--surface-2);
   position: relative;
 }
 
@@ -94,7 +94,7 @@
   width: 100%;
   height: 100%;
   border: none;
-  background: #ffffff;
+  background: var(--surface-1);
 }
 
 /* Combiner / Scanner Grid View */
@@ -114,9 +114,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #475569;
+  border: 2px dashed var(--border);
   border-radius: 8px;
-  color: #94a3b8;
+  color: var(--text-2);
   gap: 12px;
   padding: 32px;
   cursor: pointer;
@@ -126,8 +126,8 @@
 }
 
 .nx-pdf-empty-dropzone:hover {
-  border-color: var(--color-accent, #6366f1);
-  background: rgba(99, 102, 241, 0.05);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--info) 5%, transparent);
 }
 
 .nx-pdf-pages-grid {
@@ -137,21 +137,21 @@
 }
 
 .nx-pdf-page-card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--shadow-ink) 30%, transparent);
   position: relative;
 }
 
 .nx-pdf-page-thumb-wrapper {
   width: 100%;
   height: 220px;
-  background: #0b0f19;
+  background: var(--bg);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -171,13 +171,13 @@
   position: absolute;
   top: 6px;
   left: 6px;
-  background: rgba(15, 23, 42, 0.85);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  color: var(--text-1);
   font-size: 10px;
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid color-mix(in srgb, var(--text-1) 20%, transparent);
 }
 
 .nx-pdf-page-actions {
@@ -188,9 +188,9 @@
 }
 
 .nx-pdf-page-action-btn {
-  background: #334155;
-  border: 1px solid #475569;
-  color: #f8fafc;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text-1);
   border-radius: 3px;
   padding: 4px;
   cursor: pointer;
@@ -200,5 +200,5 @@
 }
 
 .nx-pdf-page-action-btn:hover {
-  background: #475569;
+  background: var(--surface-3);
 }

@@ -504,8 +504,8 @@ export async function mount(container, ctx, args = {}) {
         'div',
         { class: 'nx-cal-mini-head' },
         iconButton({
-          icon: 'chevronLeft',
-          label: 'Previous month',
+          icon: 'chevron-left',
+          label: t('previousMonth'),
           onClick: () => {
             const prev = new Date(year, month - 1, 1, 12, 0, 0, 0);
             state.miniMonthDate = formatLocalDate(prev);
@@ -514,8 +514,8 @@ export async function mount(container, ctx, args = {}) {
         }),
         h('span', { text: monthLabel }),
         iconButton({
-          icon: 'chevronRight',
-          label: 'Next month',
+          icon: 'chevron-right',
+          label: t('nextMonth'),
           onClick: () => {
             const next = new Date(year, month + 1, 1, 12, 0, 0, 0);
             state.miniMonthDate = formatLocalDate(next);
@@ -765,7 +765,7 @@ export async function mount(container, ctx, args = {}) {
         h(
           'div',
           { class: 'nx-cal-nav-row' },
-          iconButton({ icon: 'chevronLeft', label: 'Previous', onClick: () => stepPeriod(-1) }),
+          iconButton({ icon: 'chevron-left', label: t('previous'), onClick: () => stepPeriod(-1) }),
           button({
             label: t('today'),
             onClick: () => {
@@ -775,7 +775,7 @@ export async function mount(container, ctx, args = {}) {
               renderMain();
             },
           }),
-          iconButton({ icon: 'chevronRight', label: 'Next', onClick: () => stepPeriod(1) }),
+          iconButton({ icon: 'chevron-right', label: t('next'), onClick: () => stepPeriod(1) }),
           h('span', { class: 'nx-cal-period-title', text: periodLabel }),
           h('span', { class: 'nx-cal-week-badge', text: `${t('weekPrefix')} ${isoWeek}` }),
         ),

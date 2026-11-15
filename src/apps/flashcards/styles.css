@@ -1,16 +1,16 @@
 .nx-fc {
   display: flex;
   height: 100%;
-  background: var(--nx-surface-0, #0d111a);
-  color: var(--nx-text-1, #e8edf7);
+  background: var(--surface-sunken);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
 }
 
 .nx-fc-sidebar {
   width: 260px;
-  background: var(--nx-surface-1, #131926);
-  border-right: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
 }
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-fc-deck-list {
@@ -43,12 +43,12 @@
 }
 
 .nx-fc-deck-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--text-1) 5%, transparent);
 }
 
 .nx-fc-deck-item.is-selected {
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--nx-accent, #38bdf8);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
 }
 
 .nx-fc-counts-pill {
@@ -59,13 +59,13 @@
 }
 
 .nx-fc-pill-new {
-  color: #38bdf8;
+  color: var(--accent);
 }
 .nx-fc-pill-learn {
-  color: #fbbf24;
+  color: var(--warning);
 }
 .nx-fc-pill-due {
-  color: #34d399;
+  color: var(--success);
 }
 
 .nx-fc-main {
@@ -80,8 +80,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
-  background: var(--nx-surface-1, #131926);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-1);
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -105,8 +105,8 @@
 .nx-fc-card-container {
   flex: 1;
   min-height: 280px;
-  background: var(--nx-surface-1, #131926);
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.1));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 24px;
   display: flex;
@@ -115,7 +115,7 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--shadow-ink) 30%, transparent);
   overflow-y: auto;
 }
 
@@ -128,7 +128,7 @@
 .nx-fc-divider {
   width: 80%;
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--text-1) 10%, transparent);
   margin: 20px auto;
 }
 
@@ -152,24 +152,24 @@
 }
 
 .nx-fc-rating-1 {
-  background: rgba(244, 63, 94, 0.15);
-  color: #fb7185;
-  border-color: rgba(244, 63, 94, 0.3);
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
 }
 .nx-fc-rating-2 {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border-color: rgba(245, 158, 11, 0.3);
+  background: color-mix(in srgb, var(--warning) 15%, transparent);
+  color: var(--warning);
+  border-color: color-mix(in srgb, var(--warning) 30%, transparent);
 }
 .nx-fc-rating-3 {
-  background: rgba(56, 189, 248, 0.15);
-  color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.3);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .nx-fc-rating-4 {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border-color: rgba(16, 185, 129, 0.3);
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 30%, transparent);
 }
 
 .nx-fc-rating-btn:hover {

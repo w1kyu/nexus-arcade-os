@@ -5,9 +5,9 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--gs-bg, #081c15);
-  background-image: radial-gradient(circle at 50% 30%, #0d281e 0%, #05140e 100%);
-  color: #e2e8f0;
+  background: var(--gs-bg, var(--surface-sunken));
+  background-image: radial-gradient(circle at 50% 30%, var(--surface-1) 0%, var(--bg) 100%);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   font-family:
@@ -42,29 +42,29 @@
 .nx-sol-slot {
   width: clamp(56px, 9vw, 84px);
   aspect-ratio: 2.5 / 3.5;
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border: 2px dashed color-mix(in srgb, var(--text-1) 20%, transparent);
   border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.15);
+  background: color-mix(in srgb, var(--bg) 15%, transparent);
 }
 
 .nx-sol-slot.clickable {
   cursor: pointer;
-  border-color: rgba(0, 240, 255, 0.4);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .nx-sol-slot.clickable:hover {
-  border-color: #00f0ff;
-  background: rgba(0, 240, 255, 0.08);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
 .nx-sol-slot-icon {
   font-size: 24px;
-  color: rgba(255, 255, 255, 0.15);
+  color: color-mix(in srgb, var(--text-1) 15%, transparent);
   pointer-events: none;
 }
 
@@ -163,9 +163,9 @@
 
 @keyframes nx-pulse-glow {
   from {
-    box-shadow: 0 0 4px #00ff88;
+    box-shadow: 0 0 4px var(--success);
   }
   to {
-    box-shadow: 0 0 14px #00ff88;
+    box-shadow: 0 0 14px var(--success);
   }
 }

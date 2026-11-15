@@ -152,19 +152,19 @@
   color: var(--text-2);
 }
 
-.nx-cal {
+.nx-tb-cal {
   display: grid;
   gap: var(--space-2);
   width: 272px;
 }
 
-.nx-cal-head {
+.nx-tb-cal-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.nx-cal-grid {
+.nx-tb-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
@@ -172,12 +172,12 @@
   font-size: var(--text-sm);
 }
 
-.nx-cal-dow {
+.nx-tb-cal-dow {
   color: var(--text-3);
   font-size: var(--text-xs);
 }
 
-.nx-cal-day {
+.nx-tb-cal-day {
   padding: 5px 0;
   border-radius: var(--radius-sm);
   font-variant-numeric: tabular-nums;
@@ -189,7 +189,7 @@
   }
 }
 
-.nx-cal-today {
+.nx-tb-cal-today {
   margin: 0;
   color: var(--text-2);
   font-size: var(--text-xs);

@@ -6,10 +6,10 @@
   grid-template-columns: repeat(var(--size), 1fr);
   width: min(100%, calc(100vh - 230px), 600px);
   aspect-ratio: 1;
-  border: 3px solid #2a3157;
+  border: 3px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 0 28px rgba(0, 240, 255, 0.12);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 12%, transparent);
   flex: none;
 }
 

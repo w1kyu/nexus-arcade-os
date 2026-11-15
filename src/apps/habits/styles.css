@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-habits-toolbar-title {
@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
   text-align: center;
   gap: 12px;
 }
@@ -58,8 +58,8 @@
 }
 
 .nx-habit-card {
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 14px 16px;
   display: flex;
@@ -69,7 +69,7 @@
 }
 
 .nx-habit-card:hover {
-  border-color: var(--nx-border-hover, #444c5e);
+  border-color: var(--border-strong);
 }
 
 .nx-habit-header {
@@ -92,8 +92,8 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background: rgba(255, 107, 0, 0.15);
-  color: #ff8a3d;
+  background: color-mix(in srgb, var(--warning) 15%, transparent);
+  color: var(--warning);
 }
 
 .nx-habit-info {
@@ -109,7 +109,7 @@
 
 .nx-habit-sub {
   font-size: 12px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
 }
 
 .nx-habit-stats {
@@ -123,13 +123,13 @@
   flex-direction: column;
   align-items: center;
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
 }
 
 .nx-habit-stat-val {
   font-size: 14px;
   font-weight: 700;
-  color: var(--nx-text-primary, #e6edf3);
+  color: var(--text-1);
 }
 
 .nx-habit-actions {
@@ -148,7 +148,7 @@
 
 .nx-habit-heatmap-title {
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
   font-weight: 500;
 }
 
@@ -166,23 +166,25 @@
   width: 10px;
   height: 10px;
   border-radius: 2px;
-  background: var(--nx-bg-subtle, #212631);
+  background: var(--surface-2);
 }
 
 .nx-heatmap-cell[data-level='1'] {
-  background: rgba(255, 107, 0, 0.25);
+  background: color-mix(in srgb, var(--warning) 25%, transparent);
 }
 
 .nx-heatmap-cell[data-level='2'] {
-  background: rgba(255, 107, 0, 0.5);
+  background: color-mix(in srgb, var(--warning) 50%, transparent);
 }
 
 .nx-heatmap-cell[data-level='3'] {
-  background: rgba(255, 107, 0, 0.75);
+  background: color-mix(in srgb, var(--warning) 75%, transparent);
 }
 
 .nx-heatmap-cell[data-level='4'] {
-  background: #ff8a3d;
+  background: var(--warning);
+
+  color: var(--bg);
 }
 
 /* Widget Styles */
@@ -201,9 +203,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 6px 8px;
-  background: var(--nx-bg-surface, #1a1d26);
+  background: var(--surface-1);
   border-radius: 6px;
-  border: 1px solid var(--nx-border, #2d3342);
+  border: 1px solid var(--border);
 }
 
 .nx-habits-widget-item.is-done {

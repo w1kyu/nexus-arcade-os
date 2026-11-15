@@ -6,8 +6,8 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: var(--gs-bg, #0a0c16);
-  color: var(--gs-text, #e2e8f0);
+  background: var(--gs-bg, var(--bg));
+  color: var(--gs-text, var(--text-1));
   font-family:
     system-ui,
     -apple-system,
@@ -46,13 +46,13 @@
   grid-template-rows: repeat(8, 1fr);
   width: min(80vmin, calc(100vh - 180px), 520px);
   aspect-ratio: 1;
-  border: 3px solid #2a3157;
+  border: 3px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
     0 0 24px rgba(0, 240, 255, 0.1);
-  background: #0c1024;
+  background: var(--bg);
 }
 
 .nx-chess-sq {
@@ -139,8 +139,8 @@
   flex-direction: column;
   width: 260px;
   height: min(80vmin, calc(100vh - 180px), 520px);
-  background: #11162d;
-  border: 1px solid #242c54;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px;
   box-sizing: border-box;
@@ -159,7 +159,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--gs-accent, #00f0ff);
+  color: var(--gs-accent, var(--accent));
   margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
@@ -169,8 +169,8 @@
 .nx-chess-history {
   flex: 1;
   overflow-y: auto;
-  background: #090c1a;
-  border: 1px solid #1c2345;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 8px;
   font-family: ui-monospace, monospace;
@@ -190,7 +190,7 @@
 
 .nx-chess-move-num {
   width: 28px;
-  color: #64748b;
+  color: var(--text-3);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -198,7 +198,7 @@
 .nx-chess-move-btn {
   background: none;
   border: none;
-  color: #cbd5e1;
+  color: var(--text-1);
   padding: 2px 6px;
   border-radius: 4px;
   cursor: pointer;
@@ -207,13 +207,13 @@
 }
 
 .nx-chess-move-btn:hover {
-  background: #1e293b;
-  color: #fff;
+  background: var(--surface-2);
+  color: var(--text-1);
 }
 
 .nx-chess-move-btn.active {
-  background: #00f0ff22;
-  color: #00f0ff;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -226,18 +226,18 @@
 
 .nx-chess-promo-btn {
   font-size: 36px;
-  background: #1e293b;
-  border: 2px solid #334155;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
   border-radius: 8px;
   padding: 12px 18px;
   cursor: pointer;
-  color: #fff;
+  color: var(--text-1);
   transition:
     border-color 0.15s,
     transform 0.1s;
 }
 
 .nx-chess-promo-btn:hover {
-  border-color: #00f0ff;
+  border-color: var(--accent);
   transform: translateY(-2px);
 }

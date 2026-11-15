@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--nx-bg-app, #090d16);
-  color: var(--nx-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
 }
@@ -14,16 +14,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background: var(--nx-surface-1, #1e293b);
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   gap: 12px;
 }
 
 /* Visualizer oscilloscope strip */
 .nx-synth-visualizer-bar {
   height: 70px;
-  background: #04060a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -46,8 +46,8 @@
 }
 
 .nx-synth-module {
-  background: var(--nx-surface-1, #1e293b);
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -60,8 +60,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #818cf8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--info);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 6%, transparent);
   padding-bottom: 4px;
 }
 
@@ -76,8 +76,8 @@
 /* Piano Keyboard */
 .nx-synth-keyboard-wrap {
   height: 140px;
-  background: #0f172a;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface-sunken);
+  border-top: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
   display: flex;
   justify-content: center;
   padding: 10px 20px;
@@ -94,9 +94,9 @@
 .nx-synth-key-white {
   width: 38px;
   height: 100%;
-  background: #ffffff;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
+  background: var(--surface-1);
+  color: var(--bg);
+  border: 1px solid var(--border-strong);
   border-radius: 0 0 5px 5px;
   display: flex;
   align-items: flex-end;
@@ -110,14 +110,16 @@
 
 .nx-synth-key-white:active,
 .nx-synth-key-white.is-active {
-  background: #c7d2fe;
+  background: var(--info);
+
+  color: var(--bg);
 }
 
 .nx-synth-key-black {
   width: 24px;
   height: 60%;
-  background: #0f172a;
-  color: #ffffff;
+  background: var(--surface-sunken);
+  color: var(--text-1);
   border-radius: 0 0 4px 4px;
   position: absolute;
   top: 0;
@@ -128,10 +130,12 @@
   font-size: 9px;
   cursor: pointer;
   z-index: 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--shadow-ink) 60%, transparent);
 }
 
 .nx-synth-key-black:active,
 .nx-synth-key-black.is-active {
-  background: #6366f1;
+  background: var(--info);
+
+  color: var(--bg);
 }

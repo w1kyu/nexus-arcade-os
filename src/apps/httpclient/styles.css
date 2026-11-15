@@ -70,24 +70,24 @@
 }
 
 .nx-http-method-badge.GET {
-  background: #10b981;
-  color: #fff;
+  background: var(--success);
+  color: var(--bg);
 }
 .nx-http-method-badge.POST {
-  background: #3b82f6;
-  color: #fff;
+  background: var(--info);
+  color: var(--bg);
 }
 .nx-http-method-badge.PUT {
-  background: #f59e0b;
-  color: #fff;
+  background: var(--warning);
+  color: var(--bg);
 }
 .nx-http-method-badge.DELETE {
-  background: #ef4444;
-  color: #fff;
+  background: var(--danger);
+  color: var(--danger-contrast);
 }
 .nx-http-method-badge.PATCH {
-  background: #8b5cf6;
-  color: #fff;
+  background: var(--accent-2);
+  color: var(--bg);
 }
 
 .nx-http-main {
@@ -215,19 +215,19 @@
 }
 
 .nx-http-status-tag.ok {
-  background: #10b981;
-  color: #fff;
+  background: var(--success);
+  color: var(--bg);
 }
 .nx-http-status-tag.error {
-  background: #ef4444;
-  color: #fff;
+  background: var(--danger);
+  color: var(--danger-contrast);
 }
 
 /* Diagnostics card */
 .nx-http-diag-card {
   padding: 16px;
-  background: color-mix(in srgb, var(--danger, #ef4444) 10%, var(--surface-2));
-  border: 1px solid var(--danger, #ef4444);
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface-2));
+  border: 1px solid var(--danger);
   border-radius: var(--radius-md);
   margin-bottom: 12px;
 }
@@ -235,7 +235,7 @@
 .nx-http-diag-title {
   font-weight: bold;
   font-size: 14px;
-  color: var(--danger, #ef4444);
+  color: var(--danger);
   margin-bottom: 6px;
 }
 

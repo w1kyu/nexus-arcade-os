@@ -257,7 +257,7 @@
 .nx-write-viewport {
   flex: 1;
   overflow: auto;
-  background-color: color-mix(in srgb, var(--surface-1) 85%, #000);
+  background-color: color-mix(in srgb, var(--surface-1) 85%, var(--bg));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -267,8 +267,8 @@
 
 /* The Page Sheet */
 .nx-write-page {
-  background-color: var(--surface-0, #ffffff);
-  color: #111827;
+  background-color: var(--surface-sunken);
+  color: var(--bg);
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.15),
     0 0 1px rgba(0, 0, 0, 0.2);
@@ -283,8 +283,8 @@
 
 /* Theme adaptation for document sheet */
 [data-theme='dark'] .nx-write-page {
-  background-color: #1a1c23;
-  color: #e5e7eb;
+  background-color: var(--surface-sunken);
+  color: var(--text-1);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.4),
     0 0 1px rgba(255, 255, 255, 0.1);
@@ -369,11 +369,11 @@
 }
 
 .nx-write-page blockquote {
-  border-left: 4px solid var(--accent, #3b82f6);
+  border-left: 4px solid var(--accent);
   margin: 1rem 0;
   padding: 0.4rem 1rem;
   color: color-mix(in srgb, currentColor 80%, transparent);
-  background-color: color-mix(in srgb, var(--accent, #3b82f6) 6%, transparent);
+  background-color: color-mix(in srgb, var(--accent) 6%, transparent);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
@@ -402,7 +402,7 @@
 }
 
 .nx-write-page a {
-  color: var(--accent, #2563eb);
+  color: var(--accent);
   text-decoration: underline;
 }
 
@@ -596,7 +596,7 @@
     box-shadow: none !important;
     border: none !important;
     background: transparent !important;
-    color: #000000 !important;
+    color: var(--bg) !important;
     padding: 0 !important;
     margin: 0 !important;
     transform: none !important;

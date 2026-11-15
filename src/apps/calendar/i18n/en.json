@@ -54,5 +54,9 @@
   "close": "Close",
   "noEvents": "No events in this period.",
   "weekPrefix": "CW",
-  "importedCount": "Imported {count} events."
+  "importedCount": "Imported {count} events.",
+  "previous": "Previous",
+  "next": "Next",
+  "previousMonth": "Previous month",
+  "nextMonth": "Next month"
 }

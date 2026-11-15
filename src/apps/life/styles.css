@@ -3,8 +3,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: #080a14;
-  color: #f1f5f9;
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--nx-font-family, system-ui, sans-serif);
   user-select: none;
   overflow: hidden;
@@ -15,8 +15,8 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background: #0f1626;
-  border-bottom: 1px solid #1e293b;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .nx-life-hud b {
-  color: #38bdf8;
+  color: var(--accent);
   font-family: monospace;
 }
 
@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #04060c;
+  background: var(--bg);
   overflow: hidden;
 }
 

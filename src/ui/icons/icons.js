@@ -187,7 +187,41 @@ export const ICONS = {
   bookmark: '<path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
   clipboard: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M9 3h6a1 1 0 0 1 1 1v2H8V4a1 1 0 0 1 1-1Z"/>',
   'nexus-mark': '<path d="M12 2.5 20.5 7.5v9L12 21.5 3.5 16.5v-9Z"/><path d="M8.5 15.5v-7l7 7v-7"/>',
+  // ─── Added in phase 14.5 (names apps already used; they rendered as blank squares) ───
+  message: '<path d="M4 5h16v11H9l-5 4V5Z"/>',
+  bot: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 17h5"/>',
+  disc: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+  paperclip: '<path d="m20 11-8.5 8.5a5 5 0 0 1-7-7L13 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L14 7"/>',
+  cloud: '<path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.1 11.5 3.3 3.3 0 0 0 7 18Z"/>',
+  headphones:
+    '<path d="M4 16v-4a8 8 0 0 1 16 0v4"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
+  navigation: '<path d="M3 11 21 3l-8 18-2-8-8-2Z"/>',
+  printer: '<path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/>',
+  save: '<path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M8 3v5h7V3M7 21v-7h10v7"/>',
+  video: '<rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10 6-3v10l-6-3"/>',
+  presentation: '<path d="M3 4h18M5 4v10h14V4M12 14v4M8 21l4-3 4 3"/>',
+  package: '<path d="M12 3 20 7.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>',
+  circle: '<circle cx="12" cy="12" r="8"/>',
+  square: '<rect x="4" y="4" width="16" height="16" rx="2"/>',
 };
+
+/** Common alternative names apps use (Lucide-style), mapped to icons of this set. */
+const ALIASES = /** @type {Record<string, string>} */ ({
+  'message-square': 'message',
+  chat: 'message',
+  columns: 'view-columns',
+  grid: 'apps',
+  'volume-2': 'volume',
+  'refresh-cw': 'refresh',
+  'rotate-cw': 'redo',
+  'rotate-ccw': 'undo',
+  'alert-triangle': 'warning',
+  'alert-circle': 'error',
+  'help-circle': 'help',
+  tv: 'presentation',
+});
+for (const [alias, target] of Object.entries(ALIASES)) ICONS[alias] = ICONS[target];
 
 /** Icon names, for validation and the icon gallery. */
 export const ICON_NAMES = Object.keys(ICONS);

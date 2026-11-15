@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--nx-bg-app, #0f172a);
-  color: var(--nx-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
   align-items: center;
@@ -17,15 +17,15 @@
   width: 100%;
   max-width: 720px;
   height: 380px;
-  background: #090d16;
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--shadow-ink) 50%, transparent);
 }
 
 .nx-screenrecorder-video {
@@ -43,9 +43,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
+  color: var(--danger);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
@@ -56,7 +56,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ef4444;
+  background: var(--danger);
+  color: var(--danger-contrast);
   animation: nx-pulse 1.2s infinite;
 }
 
@@ -64,8 +65,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--nx-surface-1, #1e293b);
+  background: var(--surface-1);
   padding: 10px 20px;
   border-radius: 30px;
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--border);
 }

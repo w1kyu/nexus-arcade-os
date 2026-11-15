@@ -144,6 +144,8 @@ export function computeTokens({
     // Shell frame (window border, dock, palette): accent-tinted in glowing themes.
     '--frame': hc ? c.border : dark && glow > 0 ? rgba(finalAccent, 0.2 + 0.16 * glow) : borderStrong,
     '--focus': focus,
+    // Base color for shadows and dark overlays mixed with transparency in app CSS.
+    '--shadow-ink': dark || hc ? '#000000' : '#101828',
     '--scrim': hc ? 'rgb(0 0 0 / 0.75)' : dark ? 'rgb(2 4 10 / 0.6)' : 'rgb(20 30 50 / 0.28)',
     ...soft,
     ...chart,

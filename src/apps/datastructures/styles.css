@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--bg, #05060d);
-  color: var(--text-1, #eef2ff);
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--font-sans, sans-serif);
   overflow: hidden;
 }
@@ -16,8 +16,8 @@
   justify-content: space-between;
   gap: var(--space-2, 8px);
   padding: var(--space-2, 8px) var(--space-3, 12px);
-  background: var(--surface-1, #0b0e1a);
-  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-ds-controls-row {
@@ -32,8 +32,8 @@
   align-items: center;
   gap: var(--space-2, 8px);
   padding: 6px var(--space-3, 12px);
-  background: var(--surface-2, #121628);
-  border-bottom: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-ds-cli-input {
@@ -56,7 +56,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: var(--surface-1, #0b0e1a);
+  background: var(--surface-1);
   padding: var(--space-4, 16px);
   overflow: auto;
 }
@@ -72,8 +72,8 @@
 
 .nx-ds-sidebar {
   width: 320px;
-  background: var(--surface-2, #121628);
-  border-left: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: var(--space-3, 12px);
@@ -82,8 +82,8 @@
 }
 
 .nx-ds-info {
-  background: var(--surface-1, #0b0e1a);
-  border: 1px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
   font-size: var(--text-xs, 0.75rem);
@@ -91,7 +91,7 @@
 
 .nx-ds-info h4 {
   margin: 0 0 6px 0;
-  color: var(--accent, #3ef0ff);
+  color: var(--accent);
   font-size: var(--text-sm, 0.875rem);
 }
 
@@ -102,29 +102,29 @@
   justify-content: center;
   min-width: 44px;
   height: 44px;
-  background: var(--surface-2, #121628);
-  border: 2px solid var(--border, rgb(120 150 255 / 0.18));
+  background: var(--surface-2);
+  border: 2px solid var(--border);
   border-radius: var(--radius-sm, 6px);
   font-family: var(--font-mono, monospace);
   font-weight: bold;
-  color: var(--text-1, #eef2ff);
+  color: var(--text-1);
   margin: 4px;
   transition: all var(--dur-fast, 120ms);
 }
 
 .nx-ds-box.highlight {
-  border-color: var(--accent, #3ef0ff);
-  background: rgba(62, 240, 255, 0.2);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
   transform: scale(1.08);
 }
 
 .nx-ds-box.found {
-  border-color: var(--success, #3ddc97);
-  background: rgba(61, 220, 151, 0.25);
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 25%, transparent);
 }
 
 .nx-ds-arrow {
-  color: var(--text-3, #8791b3);
+  color: var(--text-3);
   font-size: 16px;
   margin: 0 4px;
 }

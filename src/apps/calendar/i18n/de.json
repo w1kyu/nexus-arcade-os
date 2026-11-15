@@ -54,5 +54,9 @@
   "close": "Schließen",
   "noEvents": "Keine Termine in diesem Zeitraum.",
   "weekPrefix": "KW",
-  "importedCount": "{count} Termine importiert."
+  "importedCount": "{count} Termine importiert.",
+  "previous": "Zurück",
+  "next": "Weiter",
+  "previousMonth": "Vorheriger Monat",
+  "nextMonth": "Nächster Monat"
 }

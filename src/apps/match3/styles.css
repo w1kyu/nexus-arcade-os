@@ -3,8 +3,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: #090a16;
-  color: #f1f5f9;
+  background: var(--bg);
+  color: var(--text-1);
   font-family: var(--nx-font-family, system-ui, sans-serif);
   user-select: none;
   overflow: hidden;
@@ -15,8 +15,8 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background: #111424;
-  border-bottom: 1px solid #1f2937;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .nx-match3-hud b {
-  color: #38bdf8;
+  color: var(--accent);
   font-family: monospace;
 }
 
@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px;
-  background: #05060c;
+  background: var(--bg);
   overflow: auto;
 }
 
@@ -47,18 +47,18 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 6px;
-  background: #111827;
+  background: var(--surface-sunken);
   padding: 8px;
   border-radius: 12px;
-  border: 2px solid #1f2937;
+  border: 2px solid var(--border);
   max-width: 480px;
   width: 100%;
   aspect-ratio: 1;
 }
 
 .nx-match3-cell {
-  background: #1a2333;
-  border: 1px solid #283548;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -76,8 +76,8 @@
 }
 
 .nx-match3-cell.selected {
-  outline: 3px solid #00f0ff;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+  outline: 3px solid var(--accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
   transform: scale(1.1);
 }
 

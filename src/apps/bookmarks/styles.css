@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--nx-bg-app, #12141a);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -13,8 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-bottom: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-bm-body {
@@ -25,8 +25,8 @@
 
 .nx-bm-sidebar {
   width: 240px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border-right: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 12px;
@@ -42,18 +42,18 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 13px;
-  color: var(--nx-text-secondary, #94a3b8);
+  color: var(--text-2);
   transition: background 0.15s ease;
 }
 
 .nx-bm-nav-item:hover {
-  background: var(--nx-bg-hover, #232834);
-  color: var(--nx-text-primary, #e6edf3);
+  background: var(--surface-hover);
+  color: var(--text-1);
 }
 
 .nx-bm-nav-item.is-selected {
-  background: rgba(255, 138, 61, 0.15);
-  color: #ff8a3d;
+  background: color-mix(in srgb, var(--warning) 15%, transparent);
+  color: var(--warning);
   font-weight: 600;
 }
 
@@ -82,15 +82,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: var(--nx-bg-surface, #1a1d26);
-  border: 1px solid var(--nx-border, #2d3342);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   gap: 12px;
   transition: border-color 0.15s ease;
 }
 
 .nx-bm-card:hover {
-  border-color: var(--nx-border-hover, #444c5e);
+  border-color: var(--border-strong);
 }
 
 .nx-bm-card.is-read {
@@ -106,7 +106,7 @@
   justify-content: center;
   font-weight: 700;
   font-size: 16px;
-  color: #fff;
+  color: var(--text-1);
   flex-shrink: 0;
 }
 
@@ -124,18 +124,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--nx-text-primary, #e6edf3);
+  color: var(--text-1);
   text-decoration: none;
 }
 
 .nx-bm-title:hover {
-  color: #38bdf8;
+  color: var(--accent);
   text-decoration: underline;
 }
 
 .nx-bm-url {
   font-size: 11px;
-  color: var(--nx-text-muted, #7d8590);
+  color: var(--text-3);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

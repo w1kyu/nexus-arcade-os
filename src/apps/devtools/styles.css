@@ -79,7 +79,7 @@
 
 .nx-devtools-tool-btn.active {
   background: var(--accent);
-  color: var(--accent-contrast, #ffffff);
+  color: var(--accent-contrast);
   font-weight: 600;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .nx-json-key {
-  color: var(--accent, #60a5fa);
+  color: var(--accent);
   cursor: pointer;
 }
 
@@ -137,19 +137,19 @@
 }
 
 .nx-json-string {
-  color: #34d399;
+  color: var(--success);
 }
 
 .nx-json-number {
-  color: #f59e0b;
+  color: var(--warning);
 }
 
 .nx-json-boolean {
-  color: #ec4899;
+  color: var(--danger);
 }
 
 .nx-json-null {
-  color: #9ca3af;
+  color: var(--text-2);
 }
 
 /* Match highlight */

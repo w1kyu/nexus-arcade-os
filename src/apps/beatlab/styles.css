@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--nx-bg-app, #0f172a);
-  color: var(--nx-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
 }
@@ -14,8 +14,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 20px;
-  background: var(--nx-surface-1, #1e293b);
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   gap: 12px;
 }
 
@@ -56,22 +56,22 @@
   border-radius: 4px;
   font-size: 10px;
   font-weight: 700;
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.15));
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   cursor: pointer;
 }
 
 .nx-beatlab-track-btn.is-active-mute {
-  background: #ef4444;
-  color: #ffffff;
-  border-color: #ef4444;
+  background: var(--danger);
+  color: var(--danger-contrast);
+  border-color: var(--danger);
 }
 
 .nx-beatlab-track-btn.is-active-solo {
-  background: #eab308;
-  color: #000000;
-  border-color: #eab308;
+  background: var(--warning);
+  color: var(--bg);
+  border-color: var(--warning);
 }
 
 .nx-beatlab-steps {
@@ -84,27 +84,29 @@
   flex: 1;
   height: 38px;
   border-radius: 6px;
-  background: #182234;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface-1);
+  border: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   cursor: pointer;
   transition: all 0.1s ease;
   position: relative;
 }
 
 .nx-beatlab-step:hover {
-  background: #243247;
+  background: var(--surface-2);
 }
 
 .nx-beatlab-step.is-beat-start {
-  border-left: 2px solid rgba(99, 102, 241, 0.4);
+  border-left: 2px solid color-mix(in srgb, var(--info) 40%, transparent);
 }
 
 .nx-beatlab-step.is-active {
-  background: var(--nx-accent, #6366f1);
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  background: var(--accent);
+
+  color: var(--accent-contrast);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--info) 60%, transparent);
 }
 
 .nx-beatlab-step.is-current {
-  outline: 2px solid #22d3ee;
-  box-shadow: 0 0 12px #22d3ee;
+  outline: 2px solid var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }

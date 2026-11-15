@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--nx-bg-app, #0f172a);
-  color: var(--nx-text, #f8fafc);
+  background: var(--bg);
+  color: var(--text-1);
   overflow: hidden;
   user-select: none;
 }
@@ -19,8 +19,8 @@
 /* Sidebar */
 .nx-music-sidebar {
   width: 220px;
-  background: var(--nx-surface-1, #1e293b);
-  border-right: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 12px 8px;
@@ -35,7 +35,7 @@
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -44,13 +44,13 @@
 }
 
 .nx-music-nav-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--nx-text, #f8fafc);
+  background: color-mix(in srgb, var(--text-1) 6%, transparent);
+  color: var(--text-1);
 }
 
 .nx-music-nav-item.is-active {
-  background: var(--nx-accent-subtle, rgba(99, 102, 241, 0.18));
-  color: var(--nx-accent, #818cf8);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -58,7 +58,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--nx-text-subtle, #64748b);
+  color: var(--text-3);
   padding: 12px 12px 4px 12px;
   font-weight: 600;
 }
@@ -77,7 +77,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: var(--nx-surface-0, #090d16);
+  background: var(--surface-sunken);
   overflow-y: auto;
   position: relative;
 }
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  border-bottom: 1px solid var(--border);
   gap: 12px;
 }
 
@@ -111,14 +111,14 @@
 
 .nx-music-table th {
   padding: 10px 16px;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   font-weight: 600;
-  border-bottom: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  border-bottom: 1px solid var(--border);
 }
 
 .nx-music-table td {
   padding: 10px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-1) 4%, transparent);
 }
 
 .nx-music-row {
@@ -127,12 +127,12 @@
 }
 
 .nx-music-row:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: color-mix(in srgb, var(--text-1) 4%, transparent);
 }
 
 .nx-music-row.is-playing {
-  color: var(--nx-accent, #818cf8);
-  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--info) 10%, transparent);
 }
 
 /* Album & Artist Grid */
@@ -148,8 +148,8 @@
   flex-direction: column;
   padding: 12px;
   border-radius: 10px;
-  background: var(--nx-surface-1, #1e293b);
-  border: 1px solid var(--nx-border, rgba(255, 255, 255, 0.06));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   cursor: pointer;
   transition:
     transform 0.15s ease,
@@ -158,7 +158,7 @@
 
 .nx-music-card:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--text-1) 8%, transparent);
 }
 
 .nx-music-card-art {
@@ -166,7 +166,7 @@
   aspect-ratio: 1/1;
   border-radius: 6px;
   object-fit: cover;
-  background: #334155;
+  background: var(--surface-3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,7 +184,7 @@
 
 .nx-music-card-sub {
   font-size: 12px;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   margin-top: 2px;
   white-space: nowrap;
   overflow: hidden;
@@ -194,8 +194,8 @@
 /* Bottom Player Bar */
 .nx-music-player-bar {
   height: 80px;
-  background: var(--nx-surface-2, #182234);
-  border-top: 1px solid var(--nx-border, rgba(255, 255, 255, 0.08));
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -217,7 +217,7 @@
   height: 50px;
   border-radius: 6px;
   object-fit: cover;
-  background: #334155;
+  background: var(--surface-3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,7 +240,7 @@
 
 .nx-music-bar-artist {
   font-size: 12px;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -265,8 +265,8 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: var(--nx-accent, #6366f1);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-contrast);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,7 +288,7 @@
 
 .nx-music-time {
   font-size: 11px;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   font-variant-numeric: tabular-nums;
   width: 40px;
   text-align: center;
@@ -307,7 +307,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #000000;
+  background: var(--bg);
   position: relative;
 }
 
@@ -323,7 +323,7 @@
   right: 12px;
   display: flex;
   gap: 8px;
-  background: rgba(0, 0, 0, 0.6);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
   padding: 6px;
   border-radius: 8px;
   backdrop-filter: blur(8px);
@@ -342,15 +342,15 @@
 }
 
 .nx-music-lyric-line {
-  color: var(--nx-text-muted, #64748b);
+  color: var(--text-3);
   transition: all 0.2s ease;
 }
 
 .nx-music-lyric-line.is-active {
-  color: #38bdf8;
+  color: var(--accent);
   font-size: 22px;
   font-weight: 700;
-  text-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent) 50%, transparent);
 }
 
 /* Equalizer Panel */
@@ -380,7 +380,7 @@
   writing-mode: vertical-lr;
   direction: rtl;
   height: 120px;
-  accent-color: var(--nx-accent, #818cf8);
+  accent-color: var(--accent);
 }
 
 /* Mini Player Desktop Widget */
@@ -389,8 +389,8 @@
   flex-direction: column;
   height: 100%;
   padding: 12px;
-  background: var(--nx-surface-1, #1e293b);
-  color: var(--nx-text, #f8fafc);
+  background: var(--surface-1);
+  color: var(--text-1);
   border-radius: 12px;
   gap: 8px;
   justify-content: space-between;
@@ -406,7 +406,7 @@
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background: #334155;
+  background: var(--surface-3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,7 +429,7 @@
 
 .nx-music-widget-artist {
   font-size: 11px;
-  color: var(--nx-text-muted, #94a3b8);
+  color: var(--text-3);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

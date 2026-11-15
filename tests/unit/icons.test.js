@@ -24,3 +24,24 @@ describe('icon set', () => {
     expect(iconSvg('does-not-exist')).toContain('<rect');
   });
 });
+
+describe('icon names used in the code', () => {
+  // Regression (14.5): 29 names (chevronLeft, mic, save, printer, …) rendered as blank squares.
+  it('every literal icon name in apps, shell and games exists', async () => {
+    const { readdirSync, readFileSync, statSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    const walk = (/** @type {string} */ d) =>
+      readdirSync(d).flatMap((n) => {
+        const p = join(d, n);
+        return statSync(p).isDirectory() ? walk(p) : p.endsWith('.js') ? [p] : [];
+      });
+    const root = join(import.meta.dirname, '../../src');
+    const missing = [];
+    for (const file of ['apps', 'shell', 'games', 'ui'].flatMap((d) => walk(join(root, d)))) {
+      const code = readFileSync(file, 'utf8');
+      for (const m of code.matchAll(/(?:icon\(\s*|icon:\s*|iconName:\s*|iconSvg\(\s*)'([A-Za-z0-9-]+)'/g))
+        if (!ICONS[m[1]]) missing.push(`${m[1]} (${file.slice(root.length + 1)})`);
+    }
+    expect(missing).toEqual([]);
+  });
+});

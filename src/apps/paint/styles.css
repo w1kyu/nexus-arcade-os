@@ -168,7 +168,7 @@
 .nx-paint-viewport {
   flex: 1;
   overflow: auto;
-  background-color: #334155;
+  background-color: var(--surface-3);
   background-image:
     linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
@@ -189,7 +189,7 @@
 /* Canvas stage containing stacked layer canvases */
 .nx-paint-stage {
   position: relative;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--shadow-ink) 40%, transparent);
   background: transparent;
   flex-shrink: 0;
 }

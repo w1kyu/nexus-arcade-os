@@ -3,7 +3,7 @@
 .nx-game-modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(5, 6, 13, 0.85);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -13,8 +13,8 @@
 }
 
 .nx-game-modal {
-  background: #0f1221;
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: var(--surface-sunken);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.8),
     0 0 20px rgba(0, 240, 255, 0.2);
@@ -33,18 +33,18 @@
   font-size: 26px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #00f0ff;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  color: var(--accent);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 50%, transparent);
 }
 
 .nx-game-modal-title.nx-text-danger {
-  color: #ff3366;
-  text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+  color: var(--danger);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--danger) 50%, transparent);
 }
 
 .nx-game-score-box {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -57,37 +57,37 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  color: #8b9bb4;
+  color: var(--text-2);
 }
 
 .nx-game-score-num {
   font-size: 40px;
   font-weight: 900;
   font-family: monospace;
-  color: #ffffff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  color: var(--text-1);
+  text-shadow: 0 0 15px color-mix(in srgb, var(--text-1) 50%, transparent);
 }
 
 .nx-game-badge {
   font-size: 12px;
-  color: #8b9bb4;
+  color: var(--text-2);
   margin-top: 4px;
 }
 
 .nx-game-badge.nx-badge-high {
-  color: #ffd700;
+  color: var(--warning);
   font-weight: bold;
   font-size: 14px;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--warning) 60%, transparent);
   animation: nx-game-pulse 1s infinite alternate;
 }
 
 .nx-game-xp-badge {
   font-size: 13px;
   font-weight: bold;
-  color: #00ff88;
-  background: rgba(0, 255, 136, 0.15);
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
   padding: 3px 10px;
   border-radius: 12px;
 }
@@ -99,9 +99,9 @@
 }
 
 .nx-game-btn {
-  background: #1a1e36;
-  color: #e0e6ed;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--surface-1);
+  color: var(--text-1);
+  border: 1px solid color-mix(in srgb, var(--text-1) 15%, transparent);
   border-radius: 6px;
   padding: 10px 18px;
   font-size: 14px;
@@ -111,33 +111,35 @@
 }
 
 .nx-game-btn:hover {
-  background: #252b4a;
-  border-color: rgba(0, 240, 255, 0.5);
-  color: #ffffff;
+  background: var(--surface-2);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  color: var(--text-1);
   transform: translateY(-1px);
 }
 
 .nx-game-btn.nx-btn-primary {
-  background: #00f0ff;
-  color: #05060d;
-  border-color: #00f0ff;
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
   font-weight: 700;
 }
 
 .nx-game-btn.nx-btn-primary:hover {
-  background: #33f3ff;
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+  background: var(--accent);
+
+  color: var(--accent-contrast);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
 .nx-game-btn.nx-btn-danger {
-  background: rgba(255, 51, 102, 0.15);
-  color: #ff3366;
-  border-color: rgba(255, 51, 102, 0.4);
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
 .nx-game-btn.nx-btn-danger:hover {
-  background: #ff3366;
-  color: #ffffff;
+  background: var(--danger);
+  color: var(--danger-contrast);
 }
 
 @keyframes nx-game-fade-in {
@@ -164,15 +166,16 @@
 /* ── Game shell (shell.js): shared frame of board, card and puzzle games ─────────────────── */
 
 .nx-gs {
-  --gs-bg: #070914;
-  --gs-panel: #0f1221;
-  --gs-line: rgba(255, 255, 255, 0.12);
-  --gs-text: #e0e6ed;
-  --gs-dim: #8b9bb4;
-  --gs-accent: #00f0ff;
-  --gs-accent2: #ff3366;
-  --gs-good: #00ff88;
-  --gs-warn: #ffd700;
+  /* Game shell palette = the theme's roles (it used to be a fixed dark palette). */
+  --gs-bg: var(--bg);
+  --gs-panel: var(--surface-1);
+  --gs-line: var(--border);
+  --gs-text: var(--text-1);
+  --gs-dim: var(--text-2);
+  --gs-accent: var(--accent);
+  --gs-accent2: var(--accent-2);
+  --gs-good: var(--success);
+  --gs-warn: var(--warning);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -204,7 +207,7 @@
 
 .nx-gs-btn,
 .nx-gs-select {
-  background: #1a1e36;
+  background: var(--surface-1);
   color: var(--gs-text);
   border: 1px solid var(--gs-line);
   border-radius: 6px;
@@ -218,7 +221,7 @@
 .nx-gs-btn:hover:not(:disabled),
 .nx-gs-select:hover {
   border-color: var(--gs-accent);
-  color: #fff;
+  color: var(--text-1);
 }
 
 .nx-gs-btn:focus-visible,
@@ -236,13 +239,13 @@
 .nx-gs-btn[aria-pressed='true'] {
   background: var(--gs-accent);
   border-color: var(--gs-accent);
-  color: #05060d;
+  color: var(--bg);
 }
 
 .nx-gs-btn.primary {
   background: var(--gs-accent);
   border-color: var(--gs-accent);
-  color: #05060d;
+  color: var(--bg);
   font-weight: 700;
 }
 
@@ -252,7 +255,7 @@
   gap: 5px;
   padding: 4px 9px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.35);
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
   border: 1px solid var(--gs-line);
   font-size: 12px;
   color: var(--gs-dim);
@@ -260,7 +263,7 @@
 }
 
 .nx-gs-stat b {
-  color: #fff;
+  color: var(--text-1);
   font-family: ui-monospace, monospace;
   font-size: 14px;
   font-variant-numeric: tabular-nums;
@@ -297,7 +300,7 @@
   justify-content: center;
   gap: 14px;
   padding: 24px;
-  background: rgba(5, 6, 13, 0.96);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
   overflow: auto;
   text-align: center;
 }
@@ -308,7 +311,7 @@
   font-weight: 800;
   letter-spacing: 3px;
   color: var(--gs-accent);
-  text-shadow: 0 0 18px rgba(0, 240, 255, 0.55);
+  text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .nx-gs-menu p {
@@ -342,12 +345,14 @@
   border: none;
   cursor: pointer;
   background: var(--gs-accent);
-  color: #05060d;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
+  color: var(--bg);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .nx-gs-play:hover {
-  background: #5cf6ff;
+  background: var(--accent);
+
+  color: var(--accent-contrast);
 }
 
 .nx-gs-hint {
@@ -379,11 +384,11 @@
   z-index: 90;
   padding: 8px 16px;
   border-radius: 8px;
-  background: #1a1e36;
+  background: var(--surface-1);
   border: 1px solid var(--gs-accent);
-  color: #fff;
+  color: var(--text-1);
   font-weight: 600;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--shadow-ink) 60%, transparent);
   pointer-events: none;
   max-width: 90%;
   text-align: center;
@@ -408,7 +413,7 @@
   width: 100%;
   min-height: 160px;
   box-sizing: border-box;
-  background: #05060d;
+  background: var(--bg);
   color: var(--gs-text);
   border: 1px solid var(--gs-line);
   border-radius: 6px;
@@ -455,7 +460,7 @@
 .nx-gs-board li span {
   font-family: ui-monospace, monospace;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-1);
   margin-right: 12px;
 }
 

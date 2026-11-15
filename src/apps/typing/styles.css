@@ -5,8 +5,8 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: #090b10;
-  color: #e6edf3;
+  background: var(--bg);
+  color: var(--text-1);
   user-select: none;
   overflow: auto;
   align-items: center;
@@ -20,8 +20,8 @@
   width: 100%;
   max-width: 820px;
   padding: 12px 20px;
-  background: #10141d;
-  border-bottom: 1px solid #1f2737;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -34,9 +34,9 @@
 
 .nx-typing-btn {
   padding: 6px 12px;
-  background: #182030;
-  border: 1px solid #283650;
-  color: #94a3b8;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  color: var(--text-2);
   border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
@@ -45,15 +45,15 @@
 }
 
 .nx-typing-btn:hover {
-  background: #233048;
-  color: #ffffff;
+  background: var(--surface-2);
+  color: var(--text-1);
 }
 
 .nx-typing-btn.active {
-  background: #00f0ff;
-  border-color: #00f0ff;
-  color: #000000;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .nx-typing-stats-hud {
@@ -75,14 +75,14 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 32px;
   font-weight: 800;
-  color: #00f0ff;
-  text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  color: var(--accent);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .nx-typing-stat-lbl {
   font-size: 12px;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-3);
   margin-top: 2px;
 }
 
@@ -90,13 +90,13 @@
 .nx-typing-text-wrap {
   width: 100%;
   max-width: 760px;
-  background: #101522;
-  border: 1px solid #232d42;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px 24px;
   min-height: 120px;
   margin: 10px 0 20px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 2px 8px color-mix(in srgb, var(--shadow-ink) 40%, transparent);
   font-family: 'JetBrains Mono', monospace;
   font-size: 20px;
   line-height: 1.8;
@@ -106,30 +106,30 @@
 }
 
 .nx-typing-char {
-  color: #475569;
+  color: var(--text-3);
   position: relative;
 }
 
 .nx-typing-char.correct {
-  color: #00e676;
+  color: var(--success);
 }
 
 .nx-typing-char.incorrect {
-  color: #ff3838;
+  color: var(--danger);
   text-decoration: underline;
-  background: rgba(255, 56, 56, 0.2);
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
 }
 
 .nx-typing-char.current {
-  color: #00f0ff;
-  border-left: 2px solid #00f0ff;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
   animation: blink 0.9s infinite;
 }
 
 @keyframes blink {
   0%,
   100% {
-    border-color: #00f0ff;
+    border-color: var(--accent);
   }
   50% {
     border-color: transparent;
@@ -142,8 +142,8 @@
   flex-direction: column;
   gap: 5px;
   padding: 14px;
-  background: #10141f;
-  border: 1px solid #1f273b;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
   border-radius: 8px;
   margin-bottom: 20px;
 }
@@ -158,15 +158,15 @@
   min-width: 36px;
   height: 38px;
   padding: 0 8px;
-  background: #182030;
-  border: 1px solid #28374e;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-1);
   position: relative;
   transition: all 0.1s ease;
 }
@@ -180,15 +180,15 @@
 }
 
 .nx-typing-key.highlight-next {
-  box-shadow: 0 0 12px var(--finger-color, #00f0ff);
-  border-color: var(--finger-color, #00f0ff);
-  color: #ffffff;
+  box-shadow: 0 0 12px var(--finger-color, var(--accent));
+  border-color: var(--finger-color, var(--accent));
+  color: var(--text-1);
   transform: translateY(-2px);
 }
 
 .nx-typing-key.heatmap-error {
   background: rgba(255, 56, 56, var(--heat-opacity, 0.3)) !important;
-  border-color: #ff3838;
+  border-color: var(--danger);
 }
 
 /* Finger Legend */

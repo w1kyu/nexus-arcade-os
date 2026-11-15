@@ -290,6 +290,8 @@
 
 .nx-card-play-btn:hover {
   background: var(--accent);
+
+  color: var(--accent-contrast);
 }
 
 /* Achievements Gallery Section */
@@ -402,6 +404,8 @@
 
 .nx-featured-play-btn:hover {
   background: var(--accent);
+
+  color: var(--accent-contrast);
   transform: scale(1.04);
 }
 
@@ -622,5 +626,7 @@
 
 .nx-lobby-btn-start:hover {
   background: var(--accent);
+
+  color: var(--accent-contrast);
   transform: translateY(-1px);
 }

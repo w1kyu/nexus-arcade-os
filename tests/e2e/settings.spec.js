@@ -60,7 +60,8 @@ test.describe('settings', () => {
       .getByRole('radio', { name: /Strong/ })
       .click();
     await expect(page.locator('html')).toHaveAttribute('data-focus-ring', 'strong');
-    await row(page, 'system/largeTargets').locator('input').check({ force: true });
+    // The switch's checkbox covers the control, so a normal check waits until it is visible and stable.
+    await row(page, 'system/largeTargets').locator('input').check();
     await expect(page.locator('html')).toHaveAttribute('data-large-targets', 'true');
 
     // Language: the whole app switches.

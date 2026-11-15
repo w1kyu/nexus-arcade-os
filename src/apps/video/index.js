@@ -114,13 +114,18 @@ export async function mount(hostElement, ctx) {
     max: '100',
     value: '0',
     style: 'flex: 1;',
+    'aria-label': t('controls.seek'),
   });
 
   const timeLabel = h('span', { class: 'nx-video-time', text: '0:00 / 0:00' });
   const timelineRow = h('div', { class: 'nx-video-timeline-row' }, progressBar, timeLabel, scrubberPreview);
 
   // Control buttons
-  const btnPlay = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('play', { size: 20 }));
+  const btnPlay = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.playPause'), title: t('controls.playPause') },
+    icon('play', { size: 20 }),
+  );
   const btnStepBack = h(
     'button',
     { class: 'nx-btn is-ghost', type: 'button', title: t('video.stepBack', 'Step -1 frame') },
@@ -132,7 +137,11 @@ export async function mount(hostElement, ctx) {
     icon('chevron-right', { size: 16 }),
   );
 
-  const btnVol = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('volume', { size: 18 }));
+  const btnVol = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.mute'), title: t('controls.mute') },
+    icon('volume', { size: 18 }),
+  );
   const volSlider = h('input', {
     class: 'nx-slider',
     type: 'range',
@@ -141,12 +150,14 @@ export async function mount(hostElement, ctx) {
     step: '0.05',
     value: '1',
     style: 'width: 72px;',
+    'aria-label': t('controls.volume'),
   });
 
   const speedSelect = h(
     'select',
     {
       class: 'nx-select',
+      'aria-label': t('controls.speed'),
       style: 'background: rgba(30, 41, 59, 0.8); color: white; width: 68px; padding: 2px 4px; font-size: 11px;',
       onchange: (e) => {
         video.playbackRate = parseFloat(/** @type {HTMLSelectElement} */ (e.target).value);
@@ -166,6 +177,7 @@ export async function mount(hostElement, ctx) {
     'select',
     {
       class: 'nx-select',
+      'aria-label': t('controls.filter'),
       style: 'background: rgba(30, 41, 59, 0.8); color: white; width: 88px; padding: 2px 4px; font-size: 11px;',
       onchange: (e) => {
         const f = /** @type {HTMLSelectElement} */ (e.target).value;

@@ -17,6 +17,7 @@ import {
   fileOf,
   moveToUci,
   rankOf,
+  squareName,
   typeOf,
 } from './engine.js';
 import { CHESS_PUZZLES } from './puzzles.js';
@@ -273,6 +274,13 @@ export async function mount(container, ctx, args) {
       }
 
       const piece = pos.board[sq];
+      // "e4, white knight" for screen readers (the piece is a glyph).
+      btn.setAttribute(
+        'aria-label',
+        piece
+          ? `${squareName(sq)}, ${t(`pieces.${colorOf(piece) === WHITE ? 'w' : 'b'}${' PNBRQK'[typeOf(piece)]}`)}`
+          : squareName(sq),
+      );
       if (piece !== 0) {
         const color = colorOf(piece);
         const type = typeOf(piece);

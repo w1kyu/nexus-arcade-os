@@ -335,6 +335,11 @@ export async function mount(container, ctx) {
     }
   }
 
+  /** "B4, hit": column letter, row number, state. @param {number} i @param {string} state */
+  function cellLabel(i, state) {
+    return t('cell.label', { coord: `${'ABCDEFGHIJ'[i % 10]}${Math.floor(i / 10) + 1}`, state: t(`cell.${state}`) });
+  }
+
   function renderGrids() {
     // Render Player Grid
     for (let i = 0; i < 100; i++) {
@@ -346,6 +351,8 @@ export async function mount(container, ctx) {
       if (shot === CELL_MISS) btn.classList.add('miss');
       else if (shot === CELL_HIT) btn.classList.add('hit');
       else if (shot === CELL_SUNK) btn.classList.add('sunk');
+      const own = shot === CELL_MISS ? 'miss' : shot === CELL_HIT ? 'hit' : shot === CELL_SUNK ? 'sunk' : null;
+      btn.setAttribute('aria-label', cellLabel(i, own ?? (playerShipGrid[i] > 0 ? 'ship' : 'water')));
     }
 
     // Render Enemy Grid
@@ -353,6 +360,10 @@ export async function mount(container, ctx) {
       const btn = enemyCells[i];
       btn.className = 'nx-bs-cell';
       const shot = enemyShotsGrid[i];
+      btn.setAttribute(
+        'aria-label',
+        cellLabel(i, shot === CELL_MISS ? 'miss' : shot === CELL_HIT ? 'hit' : shot === CELL_SUNK ? 'sunk' : 'unknown'),
+      );
       if (shot === CELL_EMPTY) {
         btn.classList.add('unshot');
       } else if (shot === CELL_MISS) {

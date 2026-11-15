@@ -1,4 +1,12 @@
 {
-  "app.title": "Beat Lab",
-  "app.description": "Synthetischer 16-Step-Drumcomputer mit Lookahead-Timing und WAV-Export"
+  "app": {
+    "title": "Beat Lab",
+    "description": "Synthetischer 16-Step-Drumcomputer mit Lookahead-Timing und WAV-Export"
+  },
+  "controls": {
+    "tempo": "Tempo (BPM)",
+    "swing": "Swing",
+    "pattern": "Pattern",
+    "kit": "Schlagzeug-Set"
+  }
 }

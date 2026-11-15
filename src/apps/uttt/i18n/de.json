@@ -30,5 +30,9 @@
     "lost": "Niederlage! KI hat gewonnen!",
     "playerWon": "Spieler {n} gewinnt!",
     "draw": "Unentschieden!"
+  },
+  "cell": {
+    "label": "Feld {board}, Quadrat {cell}: {state}",
+    "empty": "leer"
   }
 }

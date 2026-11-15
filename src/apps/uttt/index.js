@@ -170,6 +170,14 @@ export async function mount(container, ctx, args) {
         const val = state.cells[b * 9 + c];
 
         btn.textContent = val === PLAYER_X ? 'X' : val === PLAYER_O ? 'O' : '';
+        btn.setAttribute(
+          'aria-label',
+          t('cell.label', {
+            board: b + 1,
+            cell: c + 1,
+            state: val === PLAYER_X ? 'X' : val === PLAYER_O ? 'O' : t('cell.empty'),
+          }),
+        );
         btn.classList.toggle('x', val === PLAYER_X);
         btn.classList.toggle('o', val === PLAYER_O);
         btn.disabled = !isActive || val !== EMPTY || thinking || state.winner !== EMPTY;

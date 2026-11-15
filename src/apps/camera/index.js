@@ -45,7 +45,11 @@ export async function mount(container, ctx) {
   // Topbar options
   const topbar = h('div', { class: 'nx-camera-topbar' });
 
-  const deviceSelect = h('select', { class: 'nx-select', style: 'background: rgba(15,23,42,0.8); color: white;' });
+  const deviceSelect = h('select', {
+    'aria-label': ctx.i18n.t('controls.device'),
+    class: 'nx-select',
+    style: 'background: rgba(15,23,42,0.8); color: white;',
+  });
   deviceSelect.onchange = () => {
     const devId = /** @type {HTMLSelectElement} */ (deviceSelect).value;
     startCamera(devId);
@@ -53,7 +57,11 @@ export async function mount(container, ctx) {
 
   const timerSelect = h(
     'select',
-    { class: 'nx-select', style: 'background: rgba(15,23,42,0.8); color: white;' },
+    {
+      'aria-label': ctx.i18n.t('controls.timer'),
+      class: 'nx-select',
+      style: 'background: rgba(15,23,42,0.8); color: white;',
+    },
     h('option', { value: '0', text: 'Timer: Off' }),
     h('option', { value: '3', text: 'Timer: 3s' }),
     h('option', { value: '5', text: 'Timer: 5s' }),
@@ -78,6 +86,7 @@ export async function mount(container, ctx) {
   const filterSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('controls.filter'),
       class: 'nx-select',
       style: 'background: rgba(15,23,42,0.8); color: white;',
       onchange: (e) => {

@@ -63,9 +63,25 @@ namespaces.unshift({
   sources: sourceFiles(join(root, 'src'), (p) => owned.some((dir) => p === dir || p.startsWith(dir + sep))),
 });
 
+/** Keys containing a dot never resolve: lookups split on dots and walk nested objects. */
+function dottedKeys(/** @type {Record<string, unknown>} */ messages, prefix = '') {
+  return Object.entries(messages).flatMap(([key, value]) => {
+    const path = prefix ? `${prefix}.${key}` : key;
+    const own = key.includes('.') ? [path] : [];
+    return value && typeof value === 'object' ? [...own, ...dottedKeys(/** @type {any} */ (value), path)] : own;
+  });
+}
+
 let errors = 0;
 let warnings = 0;
 for (const ns of namespaces) {
+  for (const locale of LOCALES) {
+    const raw = JSON.parse(readFileSync(join(ns.dir, `${locale}.json`), 'utf8'));
+    for (const key of dottedKeys(raw)) {
+      console.error(`✖ ${ns.name}: "${key}" in ${locale}.json has a dot in its name; nest it instead`);
+      errors++;
+    }
+  }
   const sets = Object.fromEntries(
     LOCALES.map((l) => [l, new Set(keysOf(JSON.parse(readFileSync(join(ns.dir, `${l}.json`), 'utf8'))))]),
   );

@@ -34,5 +34,14 @@
     "cruiser": "Kreuzer",
     "submarine": "U-Boot",
     "destroyer": "Zerstörer"
+  },
+  "cell": {
+    "label": "{coord}, {state}",
+    "water": "Wasser",
+    "ship": "eigenes Schiff",
+    "unknown": "noch nicht beschossen",
+    "miss": "daneben",
+    "hit": "Treffer",
+    "sunk": "versenkt"
   }
 }

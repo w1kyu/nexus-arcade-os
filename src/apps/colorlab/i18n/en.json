@@ -16,7 +16,10 @@
     "useAccent": "Use as OS Accent",
     "accentSet": "Accent color updated!",
     "copied": "Copied to clipboard!",
-    "eyedropper": "Pick screen color"
+    "eyedropper": "Pick screen color",
+    "red": "Red",
+    "green": "Green",
+    "blue": "Blue"
   },
   "palette": {
     "generate": "Generate",

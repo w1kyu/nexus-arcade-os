@@ -21,7 +21,8 @@
     "sortDesc": "Absteigend sortieren",
     "addChart": "Diagramm einfügen",
     "exportCsv": "CSV exportieren",
-    "newSheet": "Neues Blatt"
+    "newSheet": "Neues Blatt",
+    "format": "Zahlenformat"
   },
   "chart": {
     "bar": "Balkendiagramm",

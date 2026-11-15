@@ -75,15 +75,34 @@ export async function mount(container, ctx) {
 
   const previewBox = h('div', { class: 'nx-colorlab-preview-box' });
   const nativeColorInput = h('input', {
+    'aria-label': t('converter.pickerTitle'),
     type: 'color',
     value: '#4285f4',
     style: 'width: 100%; height: 38px; cursor: pointer;',
   });
 
   // Sliders
-  const rSlider = h('input', { type: 'range', min: '0', max: '255', value: '66' });
-  const gSlider = h('input', { type: 'range', min: '0', max: '255', value: '133' });
-  const bSlider = h('input', { type: 'range', min: '0', max: '255', value: '244' });
+  const rSlider = h('input', {
+    'aria-label': ctx.i18n.t('converter.red'),
+    type: 'range',
+    min: '0',
+    max: '255',
+    value: '66',
+  });
+  const gSlider = h('input', {
+    'aria-label': ctx.i18n.t('converter.green'),
+    type: 'range',
+    min: '0',
+    max: '255',
+    value: '133',
+  });
+  const bSlider = h('input', {
+    'aria-label': ctx.i18n.t('converter.blue'),
+    type: 'range',
+    min: '0',
+    max: '255',
+    value: '244',
+  });
 
   const rVal = h('span', { class: 'nx-colorlab-slider-val' }, '66');
   const gVal = h('span', { class: 'nx-colorlab-slider-val' }, '133');
@@ -147,7 +166,7 @@ export async function mount(container, ctx) {
 
   const formatList = h('div', { style: 'display: flex; flex-direction: column; gap: 8px;' });
   for (const f of formatNames) {
-    const inp = h('input', { class: 'nx-colorlab-format-input', spellcheck: 'false' });
+    const inp = h('input', { class: 'nx-colorlab-format-input', spellcheck: 'false', 'aria-label': f });
     formatInputs[f] = inp;
 
     const copyBtn = h('button', { class: 'nx-button ghost small', title: 'Copy' }, icon('copy', { size: 14 }));
@@ -397,13 +416,13 @@ export async function mount(container, ctx) {
       'div',
       { style: 'display: flex; gap: 8px; align-items: center;' },
       h('label', { style: 'font-weight: 600;' }, t('contrast.textColor')),
-      h('input', { type: 'color', value: txtHex, id: 'nx-contrast-txt' }),
+      h('input', { 'aria-label': t('contrast.textColor'), type: 'color', value: txtHex, id: 'nx-contrast-txt' }),
     ),
     h(
       'div',
       { style: 'display: flex; gap: 8px; align-items: center;' },
       h('label', { style: 'font-weight: 600;' }, t('contrast.bgColor')),
-      h('input', { type: 'color', value: bgHex, id: 'nx-contrast-bg' }),
+      h('input', { 'aria-label': t('contrast.bgColor'), type: 'color', value: bgHex, id: 'nx-contrast-bg' }),
     ),
   );
 
@@ -543,7 +562,13 @@ export async function mount(container, ctx) {
     h('option', { value: 'radial' }, t('gradient.radial')),
     h('option', { value: 'conic' }, t('gradient.conic')),
   );
-  const angleSlider = h('input', { type: 'range', min: '0', max: '360', value: '90' });
+  const angleSlider = h('input', {
+    'aria-label': t('gradient.angle').replace(/:$/, ''),
+    type: 'range',
+    min: '0',
+    max: '360',
+    value: '90',
+  });
   const angleLabel = h('span', { style: 'font-family: var(--font-mono); font-size: 12px; min-width: 36px;' }, '90°');
 
   const stop1Picker = h('input', { type: 'color', value: stop1 });

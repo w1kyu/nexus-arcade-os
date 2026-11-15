@@ -58,7 +58,7 @@ export async function mount(container, ctx) {
 
   const presetSelect = h(
     'select',
-    { class: 'nx-select' },
+    { 'aria-label': ctx.i18n.t('controls.preset'), class: 'nx-select' },
     Object.keys(SYNTH_PRESETS).map((k) =>
       h('option', { value: k, selected: k === 'cyberpunkLead' ? 'selected' : undefined }, SYNTH_PRESETS[k].name),
     ),
@@ -82,7 +82,7 @@ export async function mount(container, ctx) {
 
   const arpModeSelect = h(
     'select',
-    { class: 'nx-select' },
+    { 'aria-label': ctx.i18n.t('controls.arp'), class: 'nx-select' },
     h('option', { value: 'up' }, 'Arp: Up'),
     h('option', { value: 'down' }, 'Arp: Down'),
     h('option', { value: 'upDown' }, 'Arp: Up/Down'),
@@ -159,6 +159,7 @@ export async function mount(container, ctx) {
   function createSlider(label, min, max, step, getValue, setValue) {
     const valDisplay = h('span', { style: 'color:#94a3b8;font-size:10px;' }, String(getValue()));
     const slider = h('input', {
+      'aria-label': label,
       type: 'range',
       min: String(min),
       max: String(max),
@@ -183,7 +184,7 @@ export async function mount(container, ctx) {
   function createSelect(label, options, getValue, setValue) {
     const select = h(
       'select',
-      { class: 'nx-select', style: 'padding:2px 6px;font-size:11px;' },
+      { 'aria-label': label, class: 'nx-select', style: 'padding:2px 6px;font-size:11px;' },
       options.map((opt) => h('option', { value: opt, selected: opt === getValue() ? 'selected' : undefined }, opt)),
     );
     select.addEventListener('change', () => {

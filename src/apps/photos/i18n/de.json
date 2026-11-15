@@ -1,11 +1,19 @@
 {
-  "app.title": "Nexus Fotos",
-  "app.description": "Lokale Fotogalerie, EXIF-Metadaten-Inspektor und Foto-Editor",
-  "photos.title": "Nexus Fotos",
-  "photos.all": "Alle Fotos",
-  "photos.favorites": "Favoriten",
-  "photos.sortDate": "Nach Datum sortieren",
-  "photos.sortName": "Nach Name sortieren",
-  "photos.sortSize": "Nach Größe sortieren",
-  "photos.import": "Fotos importieren"
+  "app": {
+    "title": "Nexus Fotos",
+    "description": "Lokale Fotogalerie, EXIF-Metadaten-Inspektor und Foto-Editor"
+  },
+  "photos": {
+    "title": "Nexus Fotos",
+    "all": "Alle Fotos",
+    "favorites": "Favoriten",
+    "sortDate": "Nach Datum sortieren",
+    "sortName": "Nach Name sortieren",
+    "sortSize": "Nach Größe sortieren",
+    "import": "Fotos importieren",
+    "show": "Anzeigen",
+    "sort": "Sortieren",
+    "preset": "Look",
+    "mode": "Bearbeitungsmodus"
+  }
 }

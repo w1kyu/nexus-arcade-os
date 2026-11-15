@@ -58,7 +58,8 @@
   },
   "outline": {
     "title": "Gliederung",
-    "empty": "Noch keine Überschriften. Verwenden Sie Überschrift 1–3, um eine Gliederung aufzubauen."
+    "empty": "Noch keine Überschriften. Verwenden Sie Überschrift 1–3, um eine Gliederung aufzubauen.",
+    "close": "Gliederung schließen"
   },
   "stats": {
     "title": "Dokumentstatistiken",

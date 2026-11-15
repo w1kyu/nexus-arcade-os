@@ -27,14 +27,14 @@ export async function mount(container, ctx) {
     const settingsGrid = h('div', { class: 'nx-memory-settings-grid' });
 
     // Grid size
-    const sizeSelect = h('select');
+    const sizeSelect = h('select', { 'aria-label': t('menu.gridSize') });
     for (const sz of ['4x4', '4x5', '6x6', '8x8']) {
       sizeSelect.append(h('option', { value: sz }, sz));
     }
     const sizeGroup = h('div', { class: 'nx-memory-form-group' }, h('label', {}, t('menu.gridSize')), sizeSelect);
 
     // Theme select
-    const themeSelect = h('select');
+    const themeSelect = h('select', { 'aria-label': t('menu.theme') });
     for (const th of ['icons', 'colors', 'cs_terms', 'numbers']) {
       themeSelect.append(h('option', { value: th }, t(`themes.${th}`)));
     }

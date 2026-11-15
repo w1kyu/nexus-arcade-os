@@ -35,5 +35,8 @@
   },
   "dialog": {
     "confirmNew": "Create new presentation? Any unsaved edits will be lost."
+  },
+  "editor": {
+    "source": "Slides (Markdown)"
   }
 }

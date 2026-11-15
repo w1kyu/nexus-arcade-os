@@ -20,5 +20,11 @@
   "status": {
     "solved": "★ Rätsel gelöst! ★",
     "penaltyMsg": "Fehler! +20s Strafe"
+  },
+  "cell": {
+    "label": "Zeile {row}, Spalte {col}: {state}",
+    "filled": "gefüllt",
+    "crossed": "durchgestrichen",
+    "empty": "leer"
   }
 }

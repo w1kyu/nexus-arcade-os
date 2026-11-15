@@ -16,7 +16,10 @@
     "useAccent": "Als OS-Akzentfarbe nutzen",
     "accentSet": "Akzentfarbe aktualisiert!",
     "copied": "In die Zwischenablage kopiert!",
-    "eyedropper": "Farbe vom Bildschirm wählen"
+    "eyedropper": "Farbe vom Bildschirm wählen",
+    "red": "Rot",
+    "green": "Grün",
+    "blue": "Blau"
   },
   "palette": {
     "generate": "Generieren",

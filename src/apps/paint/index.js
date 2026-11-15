@@ -139,6 +139,7 @@ export async function mount(container, ctx, args) {
 
   // ─── Properties Bar (Horizontal) ─────────────────────────────────────────
   const sizeSlider = h('input', {
+    'aria-label': t('toolbar.size'),
     type: 'range',
     min: '1',
     max: '100',
@@ -152,6 +153,7 @@ export async function mount(container, ctx, args) {
   };
 
   const opacitySlider = h('input', {
+    'aria-label': t('toolbar.opacity'),
     type: 'range',
     min: '1',
     max: '100',
@@ -165,6 +167,7 @@ export async function mount(container, ctx, args) {
   };
 
   const colorInput = h('input', {
+    'aria-label': t('toolbar.color'),
     type: 'color',
     value: activeColor,
     style:

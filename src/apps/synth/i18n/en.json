@@ -1,4 +1,10 @@
 {
-  "app.title": "Synthesizer",
-  "app.description": "Polyphonic analog modeling synthesizer with dual oscillators, resonant filter, arpeggiator, effects and Web MIDI support"
+  "app": {
+    "title": "Synthesizer",
+    "description": "Polyphonic analog modeling synthesizer with dual oscillators, resonant filter, arpeggiator, effects and Web MIDI support"
+  },
+  "controls": {
+    "preset": "Sound preset",
+    "arp": "Arpeggiator"
+  }
 }

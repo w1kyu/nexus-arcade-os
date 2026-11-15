@@ -135,7 +135,11 @@ export async function mount(container, ctx, args) {
   ]);
 
   const textarea = /** @type {HTMLTextAreaElement} */ (
-    h('textarea', { class: 'nx-present-textarea', spellcheck: 'false' }, doc.source)
+    h(
+      'textarea',
+      { 'aria-label': ctx.i18n.t('editor.source'), class: 'nx-present-textarea', spellcheck: 'false' },
+      doc.source,
+    )
   );
 
   let debounceTimer = null;
@@ -421,7 +425,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.theme', 'Theme')),
   ]);
   const themeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.theme'), class: 'nx-present-select' }, [
       ...Object.values(PRESENT_THEMES).map((th) => h('option', { value: th.id }, th.name)),
     ])
   );
@@ -438,7 +442,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.ratio', 'Ratio')),
   ]);
   const ratioSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.ratio'), class: 'nx-present-select' }, [
       h('option', { value: '16:9' }, '16:9'),
       h('option', { value: '4:3' }, '4:3'),
     ])
@@ -456,7 +460,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.template', 'Template')),
   ]);
   const templateSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.template'), class: 'nx-present-select' }, [
       h('option', { value: '' }, 'Load template...'),
       ...Object.values(PRESENT_TEMPLATES).map((tpl) => h('option', { value: tpl.id }, tpl.title)),
     ])

@@ -20,5 +20,11 @@
   "status": {
     "solved": "★ Puzzle Solved! ★",
     "penaltyMsg": "Error! +20s penalty"
+  },
+  "cell": {
+    "label": "Row {row}, column {col}: {state}",
+    "filled": "filled",
+    "crossed": "crossed out",
+    "empty": "empty"
   }
 }

@@ -220,6 +220,14 @@ export async function mount(container, ctx) {
           cellEl.classList.add('crossed');
           cellEl.textContent = '✕';
         }
+        cellEl.setAttribute(
+          'aria-label',
+          t('cell.label', {
+            row: r + 1,
+            col: c + 1,
+            state: t(val === CELL_FILLED ? 'cell.filled' : val === CELL_CROSSED ? 'cell.crossed' : 'cell.empty'),
+          }),
+        );
 
         cellEl.onmousedown = (e) => {
           if (isGameOver) return;

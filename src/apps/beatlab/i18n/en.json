@@ -1,4 +1,12 @@
 {
-  "app.title": "Beat Lab",
-  "app.description": "16-step synthesized drum machine with lookahead scheduling and WAV export"
+  "app": {
+    "title": "Beat Lab",
+    "description": "16-step synthesized drum machine with lookahead scheduling and WAV export"
+  },
+  "controls": {
+    "tempo": "Tempo (BPM)",
+    "swing": "Swing",
+    "pattern": "Pattern",
+    "kit": "Drum kit"
+  }
 }

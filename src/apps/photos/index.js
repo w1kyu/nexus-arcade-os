@@ -88,6 +88,7 @@ export async function mount(container, ctx) {
   const filterSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('photos.show'),
       class: 'nx-select',
       onchange: (e) => {
         activeFilter = /** @type {'all' | 'favorites'} */ (/** @type {HTMLSelectElement} */ (e.target).value);
@@ -101,6 +102,7 @@ export async function mount(container, ctx) {
   const sortSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('photos.sort'),
       class: 'nx-select',
       onchange: (e) => {
         sortBy = /** @type {'date' | 'name' | 'size'} */ (/** @type {HTMLSelectElement} */ (e.target).value);
@@ -764,6 +766,7 @@ export async function mount(container, ctx) {
     const presetSelect = h(
       'select',
       {
+        'aria-label': ctx.i18n.t('photos.preset'),
         class: 'nx-select',
         onchange: (e) => {
           currentPreset = /** @type {HTMLSelectElement} */ (e.target).value;
@@ -781,6 +784,7 @@ export async function mount(container, ctx) {
     const makeSlider = (key, label, min, max) => {
       const valLabel = h('span', { text: String(currentAdjustments[key]) });
       const slider = h('input', {
+        'aria-label': label,
         class: 'nx-slider',
         type: 'range',
         min: String(min),
@@ -804,6 +808,7 @@ export async function mount(container, ctx) {
     const toolSelect = h(
       'select',
       {
+        'aria-label': ctx.i18n.t('photos.mode'),
         class: 'nx-select',
         onchange: (e) => {
           editorMode = /** @type {any} */ (/** @type {HTMLSelectElement} */ (e.target).value);

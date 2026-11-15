@@ -173,7 +173,7 @@ export async function mount(container, ctx, args) {
   ]);
 
   const paletteSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('palette.title'), class: 'nx-pixelart-select' }, [
       h('option', { value: 'pico8' }, 'PICO-8'),
       h('option', { value: 'gameboy' }, 'Game Boy'),
       h('option', { value: 'c64' }, 'Commodore 64'),
@@ -224,7 +224,12 @@ export async function mount(container, ctx, args) {
 
   // Custom color adder
   const addColorInput = /** @type {HTMLInputElement} */ (
-    h('input', { type: 'color', value: '#ff0055', style: 'opacity: 0; width: 0; height: 0; position: absolute;' })
+    h('input', {
+      'aria-label': t('palette.addColor'),
+      type: 'color',
+      value: '#ff0055',
+      style: 'opacity: 0; width: 0; height: 0; position: absolute;',
+    })
   );
   const addColorBtn = h(
     'button',
@@ -261,7 +266,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('timeline.fps', 'FPS')),
   ]);
   const fpsSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('timeline.fps'), class: 'nx-pixelart-select' }, [
       h('option', { value: '2' }, '2'),
       h('option', { value: '4' }, '4'),
       h('option', { value: '8' }, '8'),
@@ -755,7 +760,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.gridSize', 'Grid size')),
   ]);
   const sizeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('toolbar.gridSize'), class: 'nx-pixelart-select' }, [
       ...GRID_SIZES.map((sz) => h('option', { value: String(sz) }, `${sz}x${sz}`)),
     ])
   );
@@ -801,6 +806,7 @@ export async function mount(container, ctx, args) {
         h(
           'select',
           {
+            'aria-label': t('export.scale'),
             class: 'nx-pixelart-select',
             onchange: (e) => {
               selectedScale = parseInt(e.target.value, 10);

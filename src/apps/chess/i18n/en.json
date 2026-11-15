@@ -60,5 +60,19 @@
   "history": {
     "title": "Move History",
     "start": "Game Start"
+  },
+  "pieces": {
+    "wP": "white pawn",
+    "wN": "white knight",
+    "wB": "white bishop",
+    "wR": "white rook",
+    "wQ": "white queen",
+    "wK": "white king",
+    "bP": "black pawn",
+    "bN": "black knight",
+    "bB": "black bishop",
+    "bR": "black rook",
+    "bQ": "black queen",
+    "bK": "black king"
   }
 }

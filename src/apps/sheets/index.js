@@ -58,6 +58,7 @@ export async function mount(container, ctx, args = {}) {
   const formatSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('toolbar.format'),
       class: 'nx-sheets-select',
       onchange: (e) => applyFormat(/** @type {HTMLSelectElement} */ (e.target).value),
     },

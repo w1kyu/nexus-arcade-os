@@ -175,6 +175,12 @@ export async function mount(container, ctx, args) {
       const sq = squares[i];
       const p = shown[i];
       sq.dataset.piece = p ? `${p > 0 ? 1 : 2}${Math.abs(p) === 2 ? 'k' : ''}` : '';
+      if (sq.tagName === 'BUTTON') {
+        const n = Math.round(Math.sqrt(squares.length));
+        const coord = `${'abcdefghij'[i % n]}${n - Math.floor(i / n)}`;
+        const piece = p ? t(`piece.${p > 0 ? 'light' : 'dark'}${Math.abs(p) === 2 ? 'King' : ''}`) : t('piece.empty');
+        sq.setAttribute('aria-label', `${coord}, ${piece}`);
+      }
       sq.classList.toggle('target', targets.has(i));
       sq.classList.toggle('movable', humanTurn && !selection && movable.has(i));
       sq.classList.toggle('selected', !!selection && i === (step ? selection.prefix[step - 1] : selection.from));

@@ -138,11 +138,36 @@ export async function mount(hostElement, ctx) {
     h('div', { class: 'nx-music-bar-meta' }, barTitle, barArtist),
   );
 
-  const btnShuffle = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('refresh', { size: 16 }));
-  const btnPrev = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('skip-back', { size: 18 }));
-  const btnPlay = h('button', { class: 'nx-music-btn-play', type: 'button' }, icon('play', { size: 20 }));
-  const btnNext = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('skip-forward', { size: 18 }));
-  const btnRepeat = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('refresh', { size: 16 }));
+  const btnShuffle = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.shuffle'), title: t('controls.shuffle') },
+    icon('refresh', { size: 16 }),
+  );
+  const btnPrev = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.previous'), title: t('controls.previous') },
+    icon('skip-back', { size: 18 }),
+  );
+  const btnPlay = h(
+    'button',
+    {
+      class: 'nx-music-btn-play',
+      type: 'button',
+      'aria-label': t('controls.playPause'),
+      title: t('controls.playPause'),
+    },
+    icon('play', { size: 20 }),
+  );
+  const btnNext = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.next'), title: t('controls.next') },
+    icon('skip-forward', { size: 18 }),
+  );
+  const btnRepeat = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', 'aria-label': t('controls.repeat'), title: t('controls.repeat') },
+    icon('refresh', { size: 16 }),
+  );
 
   const btnSkipBack = h(
     'button',
@@ -176,6 +201,7 @@ export async function mount(hostElement, ctx) {
     max: '100',
     value: '0',
     style: 'flex: 1;',
+    'aria-label': t('controls.seek'),
   });
 
   const timeline = h('div', { class: 'nx-music-timeline' }, timeCurrent, progressBar, timeTotal);
@@ -185,6 +211,7 @@ export async function mount(hostElement, ctx) {
     'select',
     {
       class: 'nx-select',
+      'aria-label': t('controls.speed'),
       style: 'width: 68px; padding: 2px 4px; font-size: 11px;',
       onchange: (e) => engine.setSpeed(parseFloat(/** @type {HTMLSelectElement} */ (e.target).value)),
     },
@@ -197,17 +224,17 @@ export async function mount(hostElement, ctx) {
 
   const btnEq = h(
     'button',
-    { class: 'nx-btn is-ghost', type: 'button', title: 'Equalizer' },
+    { class: 'nx-btn is-ghost', type: 'button', title: t('music.equalizer') },
     icon('sliders', { size: 18 }),
   );
   const btnLyrics = h(
     'button',
-    { class: 'nx-btn is-ghost', type: 'button', title: 'Lyrics' },
+    { class: 'nx-btn is-ghost', type: 'button', title: t('music.lyrics') },
     icon('file-text', { size: 18 }),
   );
   const btnTimer = h(
     'button',
-    { class: 'nx-btn is-ghost', type: 'button', title: 'Sleep Timer' },
+    { class: 'nx-btn is-ghost', type: 'button', title: t('controls.sleepTimer') },
     icon('timer', { size: 18 }),
   );
 
@@ -219,6 +246,7 @@ export async function mount(hostElement, ctx) {
     step: '0.02',
     value: String(engine.volume),
     style: 'width: 80px;',
+    'aria-label': t('controls.volume'),
   });
 
   const barRight = h(
@@ -743,6 +771,7 @@ export async function mount(hostElement, ctx) {
       const gainLabel = h('span', { text: `${currentGain > 0 ? '+' : ''}${Math.round(currentGain)}dB` });
       const slider = h('input', {
         class: 'nx-music-eq-slider',
+        'aria-label': `${freq} Hz`,
         type: 'range',
         min: '-12',
         max: '12',

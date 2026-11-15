@@ -35,5 +35,8 @@
   },
   "dialog": {
     "confirmNew": "Neue Präsentation erstellen? Nicht gespeicherte Änderungen gehen verloren."
+  },
+  "editor": {
+    "source": "Folien (Markdown)"
   }
 }

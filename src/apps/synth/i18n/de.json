@@ -1,4 +1,10 @@
 {
-  "app.title": "Synthesizer",
-  "app.description": "Polyphoner Synthesizer mit dualen Oszillatoren, Resonanzfilter, Arpeggiator, Effekten und Web-MIDI-Unterstützung"
+  "app": {
+    "title": "Synthesizer",
+    "description": "Polyphoner Synthesizer mit dualen Oszillatoren, Resonanzfilter, Arpeggiator, Effekten und Web-MIDI-Unterstützung"
+  },
+  "controls": {
+    "preset": "Klang-Voreinstellung",
+    "arp": "Arpeggiator"
+  }
 }

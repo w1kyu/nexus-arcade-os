@@ -34,5 +34,14 @@
     "cruiser": "Cruiser",
     "submarine": "Submarine",
     "destroyer": "Destroyer"
+  },
+  "cell": {
+    "label": "{coord}, {state}",
+    "water": "water",
+    "ship": "your ship",
+    "unknown": "not fired at",
+    "miss": "miss",
+    "hit": "hit",
+    "sunk": "sunk"
   }
 }

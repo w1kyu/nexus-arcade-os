@@ -1135,6 +1135,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 
 **14.5 App migration**
 
+- [x] [P1] Accessibility across all apps: axe serious/critical 68 → 0 (sheet run, 91 apps). — _icon buttons, selects, sliders, text fields named (EN/DE); scroll regions focusable; board squares named; dotted message keys (raw keys in 8 media apps) nested, `check-i18n.js` rejects them (`check-i18n.test.js`)._
 - [ ] [P1] Wave 1 (system). — _in progress: phone layout fix for Settings/App Center (e2e `settings.spec.js` "system apps on a phone"), Help on `createAppFrame`, App Center tiles, Settings font tokens; 0 axe findings in the 8 apps._
 
 **14.4 Shell**

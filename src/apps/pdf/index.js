@@ -316,7 +316,7 @@ export async function mount(container, ctx, args) {
 
   // Page Size & Orientation selectors
   const sizeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-pdf-select' }, [
+    h('select', { 'aria-label': t('toolbar.pageSize'), class: 'nx-pdf-select' }, [
       h('option', { value: 'a4' }, 'A4'),
       h('option', { value: 'letter' }, 'US Letter'),
       h('option', { value: 'auto' }, 'Fit Image'),
@@ -328,7 +328,7 @@ export async function mount(container, ctx, args) {
   });
 
   const orientSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { class: 'nx-pdf-select' }, [
+    h('select', { 'aria-label': t('toolbar.orientation'), class: 'nx-pdf-select' }, [
       h('option', { value: 'portrait' }, t('toolbar.portrait', 'Portrait')),
       h('option', { value: 'landscape' }, t('toolbar.landscape', 'Landscape')),
     ])

@@ -1,4 +1,11 @@
 {
-  "app.title": "Kamera",
-  "app.description": "Foto-Automat mit Selbstauslöser, Serienbildern und Live-Filtern"
+  "app": {
+    "title": "Kamera",
+    "description": "Foto-Automat mit Selbstauslöser, Serienbildern und Live-Filtern"
+  },
+  "controls": {
+    "device": "Kamera",
+    "timer": "Selbstauslöser",
+    "filter": "Filter"
+  }
 }

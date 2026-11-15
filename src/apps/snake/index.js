@@ -29,7 +29,7 @@ export async function mount(container, ctx) {
     const settingsGrid = h('div', { class: 'nx-snake-settings-grid' });
 
     // Map selection
-    const mapSelect = h('select');
+    const mapSelect = h('select', { 'aria-label': t('menu.map') });
     for (const id of Object.keys(SNAKE_MAPS)) {
       const opt = h('option', { value: id }, t(`maps.${id}`));
       mapSelect.append(opt);
@@ -37,7 +37,7 @@ export async function mount(container, ctx) {
     const mapGroup = h('div', { class: 'nx-snake-form-group' }, h('label', {}, t('menu.map')), mapSelect);
 
     // Mode selection
-    const modeSelect = h('select');
+    const modeSelect = h('select', { 'aria-label': t('menu.mode') });
     for (const m of ['classic', 'timeAttack', 'survival', 'zen']) {
       const opt = h('option', { value: m }, t(`modes.${m}`));
       modeSelect.append(opt);
@@ -45,7 +45,7 @@ export async function mount(container, ctx) {
     const modeGroup = h('div', { class: 'nx-snake-form-group' }, h('label', {}, t('menu.mode')), modeSelect);
 
     // Difficulty / Speed
-    const diffSelect = h('select');
+    const diffSelect = h('select', { 'aria-label': t('menu.difficulty') });
     diffSelect.append(
       h('option', { value: 'normal' }, t('menu.normal')),
       h('option', { value: 'hard' }, t('menu.hard')),

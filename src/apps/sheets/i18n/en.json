@@ -21,7 +21,8 @@
     "sortDesc": "Sort Descending",
     "addChart": "Insert Chart",
     "exportCsv": "Export CSV",
-    "newSheet": "New Sheet"
+    "newSheet": "New Sheet",
+    "format": "Number format"
   },
   "chart": {
     "bar": "Bar Chart",

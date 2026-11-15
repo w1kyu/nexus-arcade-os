@@ -60,5 +60,19 @@
   "history": {
     "title": "Zugverlauf",
     "start": "Partiebeginn"
+  },
+  "pieces": {
+    "wP": "weißer Bauer",
+    "wN": "weißer Springer",
+    "wB": "weißer Läufer",
+    "wR": "weißer Turm",
+    "wQ": "weiße Dame",
+    "wK": "weißer König",
+    "bP": "schwarzer Bauer",
+    "bN": "schwarzer Springer",
+    "bB": "schwarzer Läufer",
+    "bR": "schwarzer Turm",
+    "bQ": "schwarze Dame",
+    "bK": "schwarzer König"
   }
 }

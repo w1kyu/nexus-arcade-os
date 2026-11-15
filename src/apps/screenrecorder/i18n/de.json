@@ -1,4 +1,6 @@
 {
-  "app.title": "Bildschirmaufnahme",
-  "app.description": "Bildschirm, Tabs oder Fenster mit Mikrofon-Ton aufnehmen"
+  "app": {
+    "title": "Bildschirmaufnahme",
+    "description": "Bildschirm, Tabs oder Fenster mit Mikrofon-Ton aufnehmen"
+  }
 }

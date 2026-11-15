@@ -13,8 +13,17 @@ export default function mountMusicWidget(ctx) {
   const art = h('div', { class: 'nx-music-widget-art' }, icon('music', { size: 24 }));
   const title = h('div', { class: 'nx-music-widget-title', text: 'No track playing' });
   const artist = h('div', { class: 'nx-music-widget-artist', text: 'Nexus Music' });
-  const playBtn = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('play', { size: 18 }));
-  const nextBtn = h('button', { class: 'nx-btn is-ghost', type: 'button' }, icon('skip-forward', { size: 18 }));
+  const label = (/** @type {string} */ key) => ({ 'aria-label': ctx.i18n.t(key), title: ctx.i18n.t(key) });
+  const playBtn = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', ...label('controls.playPause') },
+    icon('play', { size: 18 }),
+  );
+  const nextBtn = h(
+    'button',
+    { class: 'nx-btn is-ghost', type: 'button', ...label('controls.next') },
+    icon('skip-forward', { size: 18 }),
+  );
 
   const progress = h('input', {
     class: 'nx-slider',
@@ -22,6 +31,7 @@ export default function mountMusicWidget(ctx) {
     min: '0',
     max: '100',
     value: '0',
+    'aria-label': ctx.i18n.t('controls.seek'),
     style: 'height: 4px; margin: 0;',
   });
 

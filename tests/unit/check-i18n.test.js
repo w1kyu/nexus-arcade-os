@@ -52,6 +52,20 @@ describe('check-i18n', () => {
     expect(code).toBe(1);
   });
 
+  it('fails on message keys with a dot in their name (they never resolve)', () => {
+    // Regression (14.5): Photos, Music, Video and others shipped "photos.all" as one flat key, so
+    // t('photos.all') showed the raw key.
+    const { code, out } = fixture({
+      'src/i18n/en.json': messages({}),
+      'src/i18n/de.json': messages({}),
+      'src/apps/demo/i18n/en.json': messages({ 'photos.all': 'All photos' }),
+      'src/apps/demo/i18n/de.json': messages({ photos: { all: 'Alle Fotos' } }),
+      'src/apps/demo/index.js': "t('photos.all');",
+    });
+    expect(out).toContain('src/apps/demo: "photos.all" in en.json has a dot in its name');
+    expect(code).toBe(1);
+  });
+
   it('does not read the namespace argument of system.i18n.t(ns, key) as a key', () => {
     const { code } = fixture({
       'src/i18n/en.json': messages({ crash: { close: 'Close' } }),

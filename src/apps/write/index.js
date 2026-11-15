@@ -166,6 +166,7 @@ export async function mount(container, ctx, args) {
   };
 
   const textColorInput = h('input', {
+    'aria-label': t('toolbar.textColor'),
     type: 'color',
     style: 'opacity: 0; width: 0; height: 0; position: absolute;',
   });
@@ -177,6 +178,7 @@ export async function mount(container, ctx, args) {
   };
 
   const highlightColorInput = h('input', {
+    'aria-label': t('toolbar.highlight'),
     type: 'color',
     value: '#fef08a',
     style: 'opacity: 0; width: 0; height: 0; position: absolute;',
@@ -618,6 +620,8 @@ export async function mount(container, ctx, args) {
         {
           class: 'nx-write-btn',
           style: 'min-width: 20px; height: 20px; padding: 0;',
+          'aria-label': t('outline.close'),
+          title: t('outline.close'),
           onclick: () => outlineBtn.click(),
         },
         icon('close'),
@@ -752,13 +756,7 @@ export async function mount(container, ctx, args) {
     const outline = extractOutline(pageEl);
 
     if (outline.length === 0) {
-      outlineList.appendChild(
-        h(
-          'div',
-          { class: 'nx-write-outline-empty' },
-          t('outline.empty', 'No headings yet. Use Heading 1–3 to build an outline.'),
-        ),
-      );
+      outlineList.appendChild(h('li', { class: 'nx-write-outline-empty' }, t('outline.empty')));
       return;
     }
 

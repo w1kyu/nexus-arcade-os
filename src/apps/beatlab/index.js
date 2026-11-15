@@ -47,6 +47,7 @@ export async function mount(container, ctx) {
     text: `${scheduler.bpm} BPM`,
   });
   const bpmSlider = h('input', {
+    'aria-label': ctx.i18n.t('controls.tempo'),
     class: 'nx-slider',
     type: 'range',
     min: '50',
@@ -64,6 +65,7 @@ export async function mount(container, ctx) {
     text: `${scheduler.swing}% Swing`,
   });
   const swingSlider = h('input', {
+    'aria-label': ctx.i18n.t('controls.swing'),
     class: 'nx-slider',
     type: 'range',
     min: '0',
@@ -80,6 +82,7 @@ export async function mount(container, ctx) {
   const patternSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('controls.pattern'),
       class: 'nx-select',
       style: 'width: 100px;',
       onchange: (e) => {
@@ -97,6 +100,7 @@ export async function mount(container, ctx) {
   const presetSelect = h(
     'select',
     {
+      'aria-label': ctx.i18n.t('controls.kit'),
       class: 'nx-select',
       style: 'width: 130px;',
       onchange: (e) => {

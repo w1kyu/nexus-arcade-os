@@ -47,7 +47,7 @@ export async function mount(container, ctx) {
 
   // Controls bar
   const controlsBar = h('div', { class: 'nx-2048-controls-bar' });
-  const sizeSelect = h('select', { class: 'nx-2048-select' });
+  const sizeSelect = h('select', { class: 'nx-2048-select', 'aria-label': t('ui.boardSize') });
   for (let s = 3; s <= 8; s++) {
     const opt = h('option', { value: String(s) }, `${s}x${s}`);
     if (s === 4) opt.selected = true;

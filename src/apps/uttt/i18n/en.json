@@ -30,5 +30,9 @@
     "lost": "Defeat! AI won!",
     "playerWon": "Player {n} Wins!",
     "draw": "Draw Game!"
+  },
+  "cell": {
+    "label": "Board {board}, square {cell}: {state}",
+    "empty": "empty"
   }
 }

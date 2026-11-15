@@ -58,7 +58,8 @@
   },
   "outline": {
     "title": "Outline",
-    "empty": "No headings yet. Use Heading 1–3 to build an outline."
+    "empty": "No headings yet. Use Heading 1–3 to build an outline.",
+    "close": "Close the outline"
   },
   "stats": {
     "title": "Document Statistics",

@@ -2,8 +2,8 @@
 
 ## Status
 
-- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done.
-- **Next step:** 14.3 design system v2 (tokens incl. Nexus HUD, components, `createAppFrame`, icon grammar), then 14.4 shell.
+- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done.
+- **Next step:** 14.4 shell (dock style rail, launcher, palette, notifications, window titles, setup wizard), then the 14.5 waves.
 - **Phase 14.2 verification:** `npm run ux:shots` full run 546 views, 0 errors, axe 68 distinct serious/critical findings in 43 apps; token ratchet in `npm run lint` (baseline 1,813 colors / 101 control classes / 467 font sizes); 139 unit test files (1,106 tests) passing.
 - **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox); CI run `43659186226` for `6fe46cb` green on Chromium, Firefox and WebKit.
 - **Phase 13 (v1.0.1) verification:** 135 unit test files (1,086 tests) passing; GitHub Actions CI run `43542236713` passing across Chromium (`web`, `web-mobile`, `lite`: 44 passed, 35 skipped), Firefox (`web-firefox`, `lite-firefox`: 38 passed, 2 skipped), and WebKit (`web-webkit`, `lite-webkit`: 38 passed, 2 skipped); live `test:live` against `https://nexus-arcade-os.onrender.com` 43 passed / 35 skipped; Live Lighthouse Mobile `99` Perf (`FCP 0.8 s`, `LCP 2.0 s`, `TBT 0 ms`, `CLS 0.006`) / `100` A11y / `100` Best Practices / `100` SEO, Desktop `100` / `100` / `100` / `100` (`TBT 0 ms`); initial JS `161.88 kB` gzipped (≤ 200 KB); single-file Lite build `7.00 MB` (< 8.00 MB).
@@ -1132,6 +1132,16 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 ### Phase 14 — UI/UX rework (v1.1) — `specs/14-ui-ux-rework.md`
 
 **14.0 Decisions** — [x] taken 2026-11-15 (see Decisions).
+
+**14.3 Design system v2**
+
+- [x] [P1] Tokens: _Nexus HUD_ theme (default), `--bevel` + `corner-shape: var(--corner-shape)`, `--frame`, `--focus`, `--surface-sunken/-hover/-active`, `--border-strong`, `--scrim`, `--<status>-soft` + `--<status>-on-soft`, `--chart-1…8`, `--hue-<category>`, `--control-h-sm/md/lg`, type ramp, weights; settings _Window and dock corners_ (bevel/round) and _Spacing of controls_ (comfortable/compact). — _derived per theme in `computeTokens()`; `theme.test.js` checks every role in all 9 themes, on-soft ≥ 4.5, focus ≥ 3, charts ≥ 3._
+- [x] [P1] Glow budget: focused window (`--glow-window`), primary button (`--glow-btn`), active selection bar; removed from dock dots and workspace dots.
+- [x] [P1] Components: button sizes/icon-only, segmented, tabs, field, range with value, list row, panel, status badges, empty state, skeleton, toolbar, status bar (`src/ui/components.js`, `controls.css`); gallery in `/#debug`; catalogue in `docs/design-system.md`. — _`app-frame.test.js`._
+- [x] [P1] `createAppFrame` (`src/ui/frame/`): sticky toolbar with overflow menu, collapsible sidebar → sheet below 640 px, inspector, status bar; `tool-layout.js` now builds on it.
+- [x] [P1] Icon grammar: app tiles = glyph in category hue on a dark bevelled slot (`app-icon.css`), system apps neutral, tinted in light themes. Palette rows (14.4) and App Center (14.5) still to follow.
+- [x] [P1] Shell in direction D: bevelled windows/dock/palette/launcher, mono uppercase titles, accent tick on the focused titlebar, HUD grid wallpaper (`live:grid`, new default), palette opens instantly.
+- [ ] [P2] Typography pass in app CSS (ratchet counts literal font sizes; paid off per app in 14.5).
 
 **14.2 Measure before changing**
 

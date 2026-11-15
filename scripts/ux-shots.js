@@ -3,7 +3,7 @@
 // runs axe-core on the app window, and writes test-results/ux/index.html (a contact sheet with
 // the serious/critical findings per cell). A review tool, not a CI gate.
 //
-// Options: --apps=notes,files  --themes=neon-night,arctic-light  --sizes=desktop,phone  --no-axe
+// Options: --apps=notes,files  --themes=nexus-hud,arctic-light  --sizes=desktop,phone  --no-axe
 import AxeBuilder from '@axe-core/playwright';
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
@@ -22,7 +22,7 @@ const args = Object.fromEntries(
 );
 const list = (/** @type {unknown} */ v, /** @type {string[]} */ all) => (typeof v === 'string' ? v.split(',') : all);
 
-const THEMES = list(args.themes, ['neon-night', 'arctic-light', 'high-contrast']);
+const THEMES = list(args.themes, ['nexus-hud', 'arctic-light', 'high-contrast']);
 const SIZES = {
   desktop: { viewport: { width: 1440, height: 900 }, isMobile: false },
   phone: { viewport: { width: 390, height: 844 }, isMobile: true },

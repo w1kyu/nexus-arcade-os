@@ -110,6 +110,10 @@ export const personalization = {
 function describeWallpaper(pc, value) {
   const [kind, id = ''] = value.split(/:(.*)/s);
   if (kind === 'image') return id.split('/').pop() ?? id;
+  // Built-in wallpapers have names in the OS messages (the same as the gallery shows).
+  const nameKey = kind === 'live' ? `personalize.live.${id}` : `personalize.gradient.${id}`;
+  const name = /** @type {any} */ (pc.system).text?.(nameKey);
+  if (name && name !== nameKey) return pc.t(`wallpaper.kind.${kind}`, { id: name });
   return pc.t(`wallpaper.kind.${kind}`, { id }) === `wallpaper.kind.${kind}`
     ? value
     : pc.t(`wallpaper.kind.${kind}`, { id });
@@ -307,10 +311,7 @@ export const accessibility = {
         await pc.ctx.storage.kv.set('themeBeforeContrast', String(pc.value('theme')));
         await system.settings.set('theme', 'high-contrast');
       } else
-        await system.settings.set(
-          'theme',
-          String((await pc.ctx.storage.kv.get('themeBeforeContrast')) ?? 'neon-night'),
-        );
+        await system.settings.set('theme', String((await pc.ctx.storage.kv.get('themeBeforeContrast')) ?? 'nexus-hud'));
       pc.refresh();
     });
     return [

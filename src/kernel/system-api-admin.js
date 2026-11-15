@@ -331,6 +331,7 @@ export function createAdminApi(deps) {
     'fontFamily',
     'windowRadius',
     'titlebarStyle',
+    'cornerStyle',
     'iconStyle',
     'transparency',
   ];

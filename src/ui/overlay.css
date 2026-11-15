@@ -5,7 +5,7 @@
   display: grid;
   place-items: center;
   padding: var(--space-4);
-  background: rgb(0 0 0 / 0.45);
+  background: var(--scrim);
   animation: nx-fade-in var(--dur-med) var(--ease-out);
 
   &.is-closing {
@@ -21,7 +21,7 @@
   max-height: min(720px, calc(100vh - 32px));
   border-radius: var(--radius-lg);
   color: var(--text-1);
-  animation: nx-pop-in var(--dur-med) var(--ease-spring);
+  animation: nx-pop-in var(--dur-med) var(--ease-out);
 
   &.is-md {
     width: min(620px, 100%);

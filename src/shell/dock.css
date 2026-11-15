@@ -2,8 +2,10 @@
   --dock-size: 48px;
   position: absolute;
   z-index: var(--z-dock);
-  padding: 6px 8px;
-  border-radius: calc(var(--radius-lg) + 4px);
+  padding: 7px;
+  border-radius: var(--bevel);
+  corner-shape: var(--corner-shape);
+  border-color: var(--frame);
   transition: transform var(--dur-med) var(--ease-out);
 
   &[data-position='bottom'] {
@@ -100,7 +102,12 @@
   }
   &:focus-visible {
     outline-offset: 3px;
-    border-radius: 12px;
+    border-radius: var(--bevel-sm);
+  }
+  /* The app of the focused window: an accent bar instead of a dot. */
+  &.is-active .nx-dock-dots i:first-child {
+    width: 16px;
+    background: var(--accent);
   }
   &.is-dragging {
     z-index: 2;
@@ -118,9 +125,8 @@
   & i {
     width: 4px;
     height: 4px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
+    border-radius: 1px;
+    background: var(--text-2);
   }
 
   [data-position='left'] & {

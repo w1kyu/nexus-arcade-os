@@ -1,32 +1,58 @@
-/* Design tokens: the default "Neon Night" theme. The theme engine (phase 1) swaps these values. */
+/* Design tokens. Colors here are the default "Nexus HUD" theme for the first paint; the theme engine
+   (src/services/theme/engine.js) sets every color role, radius, glow and shadow at runtime.
+   Rules for using them: skill nexus-ui (.claude/skills/nexus-ui/SKILL.md), docs/design-system.md. */
 :root {
   color-scheme: dark;
 
-  --bg: #05060d;
-  --surface-1: #0b0e1a;
-  --surface-2: #121628;
-  --surface-3: #1a2036;
-  --glass: rgb(18 22 40 / 0.62);
-  --border: rgb(120 150 255 / 0.18);
-  --text-1: #eef2ff;
-  --text-2: #b4bdd8;
-  --text-3: #8791b3;
-  --accent: #3ef0ff;
-  --accent-2: #b36bff;
-  --accent-contrast: #021014;
-  --success: #3ddc97;
-  --warning: #ffc857;
-  --danger: #ff5c7a;
-  --info: #6aa8ff;
+  --bg: #07090d;
+  --surface-1: #1a1b20;
+  --surface-2: #212228;
+  --surface-3: #2a2c33;
+  --surface-sunken: #13151a;
+  --surface-hover: rgb(243 242 239 / 0.06);
+  --surface-active: #3a3127;
+  --glass: rgb(33 34 40 / 0.6);
+  --border: rgb(166 171 184 / 0.22);
+  --border-strong: rgb(166 171 184 / 0.4);
+  --frame: rgb(255 176 64 / 0.33);
+  --text-1: #f3f2ef;
+  --text-2: #c6c4be;
+  --text-3: #a3a19a;
+  --accent: #ffb040;
+  --accent-2: #5ce1ff;
+  --accent-contrast: #000000;
+  --focus: #5ce1ff;
+  --success: #4ade9a;
+  --warning: #ffd166;
+  --danger: #ff7a7a;
+  --danger-contrast: #000000;
+  --info: #7cb4ff;
+  --scrim: rgb(2 4 10 / 0.6);
+
+  /* App category hues (icon grammar, rule 13): glyph color on app tiles, also usable for tags. */
+  --hue-productivity: #34d399;
+  --hue-study: #fbbf24;
+  --hue-office: #60a5fa;
+  --hue-dev: #a3e635;
+  --hue-cslab: #22d3ee;
+  --hue-games: #f472b6;
+  --hue-media: #fb7185;
+  --hue-ai: #c084fc;
 
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 999px;
+  /* Shell surfaces (window, dock, palette, top-level menus) cut their corners; interiors stay round. */
+  --bevel: 12px;
+  --bevel-sm: 8px;
+  --corner-shape: bevel;
   --blur-glass: 18px;
-  --shadow-1: 0 2px 8px rgb(0 0 0 / 0.35);
-  --shadow-2: 0 12px 40px rgb(0 0 0 / 0.5);
-  --glow-accent: 0 0 24px rgb(62 240 255 / 0.25);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 12px -4px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 8px 20px -8px rgb(0 0 0 / 0.55), 0 30px 70px -20px rgb(0 0 0 / 0.7);
+  --glow-accent: 0 0 24px rgb(255 176 64 / 0.2);
+  --glow-window: 0 0 0 1px rgb(255 176 64 / 0.4), 0 0 36px -8px rgb(255 176 64 / 0.32);
+  --glow-btn: 0 0 18px -6px rgb(255 176 64 / 0.52);
 
   --space-1: 4px;
   --space-2: 8px;
@@ -36,20 +62,35 @@
   --space-6: 32px;
   --space-7: 48px;
 
+  /* Control heights (rule 5: ≥ 32 px pointer targets; mobile and large targets raise them). */
+  --control-h-sm: 28px;
+  --control-h-md: 34px;
+  --control-h-lg: 40px;
+
   --font-scale: 1;
+  /* Type ramp (rule 8): 12 / 13 / 14 body / 16 / 19 / 22 / 26 / 30 px at font scale 1. */
   --text-xs: calc(0.75rem * var(--font-scale));
+  --text-ui: calc(0.8125rem * var(--font-scale));
   --text-sm: calc(0.875rem * var(--font-scale));
   --text-md: calc(1rem * var(--font-scale));
+  --text-title: calc(1.1875rem * var(--font-scale));
   --text-lg: calc(1.25rem * var(--font-scale));
+  --text-headline: calc(1.375rem * var(--font-scale));
+  --text-display: calc(1.625rem * var(--font-scale));
   --text-xl: calc(1.75rem * var(--font-scale));
+  --text-hero: calc(1.875rem * var(--font-scale));
   --text-2xl: calc(2.5rem * var(--font-scale));
+  --weight-regular: 450;
+  --weight-medium: 550;
+  --weight-bold: 650;
   --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
 
   --dur-fast: 120ms;
   --dur-med: 220ms;
   --dur-slow: 420ms;
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Rule 9: strong ease-out for everything that enters or responds. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --z-desktop: 0;
@@ -57,6 +98,23 @@
   --z-dock: 1000;
   --z-overlay: 2000;
   --z-toast: 3000;
+}
+
+:root[data-corners='round'] {
+  --corner-shape: round;
+}
+
+:root[data-density='compact'] {
+  --control-h-sm: 24px;
+  --control-h-md: 30px;
+  --control-h-lg: 36px;
+}
+
+:root[data-large-targets='true'],
+:root[data-mobile] {
+  --control-h-sm: 36px;
+  --control-h-md: 44px;
+  --control-h-lg: 48px;
 }
 
 @media (prefers-reduced-motion: reduce) {

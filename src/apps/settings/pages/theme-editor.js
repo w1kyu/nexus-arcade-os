@@ -104,7 +104,7 @@ function downloadJson(filename, payload) {
 export const themeEditor = {
   id: 'themeEditor',
   icon: 'palette',
-  keys: ['titlebarStyle', 'windowRadius', 'fontFamily', 'iconStyle', 'customCssSafeMode'],
+  keys: ['titlebarStyle', 'cornerStyle', 'density', 'windowRadius', 'fontFamily', 'iconStyle', 'customCssSafeMode'],
   async render(pc) {
     const { t, system, ctx } = pc;
     const sysTheme = /** @type {any} */ (system.theme);
@@ -677,6 +677,8 @@ export const themeEditor = {
       group(
         t('themeEditor.groupChrome'),
         pc.row('titlebarStyle'),
+        pc.row('cornerStyle'),
+        pc.row('density'),
         pc.row('windowRadius'),
         pc.row('fontFamily'),
         pc.row('iconStyle'),

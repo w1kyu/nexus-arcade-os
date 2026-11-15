@@ -1,25 +1,13 @@
-/* Shared tool layout for developer tools */
-.nx-tool-layout {
+/* Shared tool layout for developer tools, built on createAppFrame (src/ui/frame/). */
+.nx-tool-body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: var(--surface-1);
-  color: var(--text-1);
-  font-size: 13px;
+  min-height: 0;
 }
 
 .nx-tool-header {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  gap: 8px;
-  flex-shrink: 0;
-  flex-wrap: wrap;
 }
 
 .nx-tool-header-title {
@@ -161,6 +149,7 @@
 }
 
 .nx-tool-status {
+  grid-area: status;
   padding: 4px 10px;
   font-size: 12px;
   display: flex;

@@ -6,8 +6,8 @@
   justify-items: center;
   align-content: start;
   padding: min(14vh, 120px) var(--space-4) var(--space-4);
-  background: rgb(0 0 0 / 0.3);
-  animation: nx-fade-in var(--dur-fast) var(--ease-out);
+  /* Opened from the keyboard: appears instantly (rule 9). */
+  background: var(--scrim);
 
   &[hidden] {
     display: none;
@@ -20,8 +20,9 @@
   width: min(640px, 100%);
   max-height: min(560px, 76vh);
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  animation: nx-pop-in var(--dur-med) var(--ease-spring);
+  border-radius: var(--bevel);
+  corner-shape: var(--corner-shape);
+  border-color: var(--frame);
 }
 
 .nx-palette-search {

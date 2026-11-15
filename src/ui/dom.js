@@ -44,12 +44,23 @@ export function icon(name, options) {
 }
 
 /**
- * @param {{ label?: string, icon?: string, variant?: 'primary' | 'danger' | 'ghost', onClick?: (e: MouseEvent) => void, type?: string, title?: string }} options
+ * Button. Variants: secondary (default), `primary` (one per view), `ghost`, `danger`.
+ * Without a label it is icon-only and `title` becomes its accessible name.
+ * @param {{ label?: string, icon?: string, variant?: 'primary' | 'danger' | 'ghost', size?: 'sm' | 'lg', onClick?: (e: MouseEvent) => void, type?: string, title?: string }} options
  */
-export function button({ label, icon: iconName, variant, onClick, type = 'button', title }) {
+export function button({ label, icon: iconName, variant, size, onClick, type = 'button', title }) {
+  const iconOnly = !label && !!iconName;
+  const cls = ['nx-btn', variant && `is-${variant}`, size && `is-${size}`, iconOnly && 'is-icon'].filter(Boolean);
   return h(
     'button',
-    { class: `nx-btn${variant ? ` is-${variant}` : ''}`, type, onclick: onClick, title },
+    {
+      class: cls.join(' '),
+      type,
+      onclick: onClick,
+      title: iconOnly ? undefined : title,
+      'aria-label': iconOnly ? title : undefined,
+      'data-tooltip': iconOnly ? title : undefined,
+    },
     iconName ? icon(iconName, { size: 16 }) : null,
     label ?? null,
   );

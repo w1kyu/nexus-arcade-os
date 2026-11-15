@@ -29,9 +29,11 @@
   display: grid;
   grid-template-rows: auto 1fr;
   min-width: 0;
-  border-radius: var(--radius-lg);
+  /* Shell shape (rule 2): bevelled where corner-shape is supported, rounded elsewhere. */
+  border-radius: var(--bevel);
+  corner-shape: var(--corner-shape);
   background: var(--surface-1);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-2);
   color: var(--text-1);
   pointer-events: auto;
@@ -39,9 +41,10 @@
   outline: none;
   contain: layout;
 
+  /* Glow budget slot 1: the focused window. */
   &.is-focused {
-    box-shadow: var(--shadow-2), var(--glow-accent);
-    border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+    box-shadow: var(--shadow-2), var(--glow-window);
+    border-color: var(--frame);
   }
 
   /* Cursor-following light on the focused window's border. */
@@ -52,6 +55,7 @@
     z-index: 3;
     padding: 1px;
     border-radius: inherit;
+    corner-shape: var(--corner-shape);
     background: radial-gradient(220px circle at var(--glow-x) var(--glow-y), var(--accent), transparent 70%);
     opacity: var(--glow-strength, 1);
     -webkit-mask:
@@ -98,13 +102,13 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  height: 38px;
+  position: relative;
+  height: 36px;
   padding: 0 var(--space-1) 0 var(--space-3);
   border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  background: var(--glass);
-  backdrop-filter: blur(var(--blur-glass));
-  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border-radius: var(--bevel) var(--bevel) 0 0;
+  corner-shape: var(--corner-shape);
+  background: var(--surface-sunken);
   cursor: default;
   touch-action: none;
   user-select: none;
@@ -112,6 +116,22 @@
   .is-maximized &,
   .is-snapped & {
     border-radius: 0;
+  }
+
+  /* HUD tick on the focused window. */
+  .is-focused > &::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: calc(var(--bevel) + var(--space-2));
+    width: 56px;
+    height: 2px;
+    background: var(--accent);
+    pointer-events: none;
+  }
+  :root[data-titlebar='macos'] .is-focused > &::after {
+    left: auto;
+    right: calc(var(--bevel) + var(--space-2));
   }
 }
 
@@ -121,15 +141,19 @@
   color: var(--accent);
 }
 
+/* The shell's voice (rule 8): mono, uppercase, tracked. */
 .nx-window-title {
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  font-size: var(--text-sm);
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--text-2);
+  color: var(--text-3);
 
   .is-focused & {
     color: var(--text-1);
@@ -159,7 +183,7 @@
   }
   &.is-close:hover {
     background: var(--danger);
-    color: #000;
+    color: var(--danger-contrast);
   }
 }
 
@@ -220,7 +244,8 @@
   position: relative;
   min-height: 0;
   overflow: auto;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-radius: 0 0 var(--bevel) var(--bevel);
+  corner-shape: var(--corner-shape);
 
   .is-maximized &,
   .is-snapped & {
@@ -306,7 +331,8 @@
   position: absolute;
   z-index: 5;
   border: 2px solid var(--accent);
-  border-radius: var(--radius-lg);
+  border-radius: var(--bevel);
+  corner-shape: var(--corner-shape);
   background: color-mix(in srgb, var(--accent) 14%, transparent);
   backdrop-filter: blur(6px);
   opacity: 0;
@@ -357,14 +383,14 @@
 @keyframes nx-window-open {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(8px);
+    transform: scale(0.95);
   }
 }
 
 .nx-focus-block-overlay {
   position: absolute;
   inset: 38px 0 0 0;
-  background: rgba(10, 14, 23, 0.94);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
@@ -372,7 +398,7 @@
   justify-content: center;
   gap: 12px;
   z-index: 50;
-  color: var(--nx-text-1, #f1f5f9);
+  color: var(--text-1);
   text-align: center;
   padding: 24px;
 }
@@ -380,5 +406,5 @@
   font-size: 20px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--nx-accent, #38bdf8);
+  color: var(--accent);
 }

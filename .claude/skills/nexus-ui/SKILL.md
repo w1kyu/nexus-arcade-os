@@ -7,13 +7,13 @@ description: Nexus design rules (tokens, shell vs. window shapes, components, mo
 
 Direction (owner, 2026-11-15): **HUD shell, calm interior**, variant D in `prototypes/phase-14-ui/` (screenshots `shots/D-*.png`; run `npx vite prototypes/phase-14-ui`, open `?variant=D`).
 
-- **Shell** = top bar, dock, window frame and titlebar, command palette: bevelled corners, mono uppercase titles, amber accent, glow on the focused window. Planned default theme: _Nexus HUD_ (amber `#ffb040`, focus cyan `#5ce1ff`); the other 8 themes stay.
+- **Shell** = top bar, dock, window frame and titlebar, command palette: bevelled corners, mono uppercase titles, amber accent, glow on the focused window. Default theme: _Nexus HUD_ (amber `#ffb040`, focus cyan `#5ce1ff`); the other 8 themes stay.
 - **Interior** = everything inside a window: solid surfaces, rounded cards, no glow, sentence case in Inter.
 
 ## Rules
 
 1. **Tokens only.** App CSS uses role tokens (`src/styles/tokens.css`, theme values in `src/services/theme/themes.js`) for every color, size, radius, shadow and duration. Every theme defines every role. Game canvases may keep their own palettes; the UI around them follows the tokens.
-2. **Two shapes.** Shell surfaces: `border-radius: var(--bevel); corner-shape: bevel` (Chromium bevels; Firefox and WebKit fall back to rounded, which is fine). Interior: `--radius-sm/md/lg`, a child's radius ≤ its parent's.
+2. **Two shapes.** Shell surfaces: `border-radius: var(--bevel); corner-shape: var(--corner-shape)` (Chromium bevels; Firefox and WebKit fall back to rounded, which is fine). Interior: `--radius-sm/md/lg`, a child's radius ≤ its parent's.
 3. **Glow budget of three:** focused window frame, primary button, active selection indicator. Depth everywhere else comes from `--shadow-*` (two layers: ambient + direct).
 4. **One primary action per view.** The rest are secondary or ghost. Destructive actions use the danger style and confirm or offer Undo.
 5. **Targets:** pointer controls ≥ 32 px (24 px absolute floor), ≥ 44 px on mobile (`html[data-mobile]`) and with large targets on, ≥ 8 px between touch targets.
@@ -28,11 +28,17 @@ Direction (owner, 2026-11-15): **HUD shell, calm interior**, variant D in `proto
 
 ## Building blocks
 
-Use the shared primitives over app-local classes: `src/ui/dom.js` (`h`, `icon`, `button`, `iconButton`, `toggle`) and `src/ui/controls.css` (`.nx-btn`, `.nx-icon-btn`, `.nx-input`, `.nx-select`, `.nx-textarea`, `.nx-toggle`, `.nx-slider`, `.nx-field`, `.nx-badge`, `.nx-kbd`, `.nx-empty`). Phase 14.3 adds the v2 components and `createAppFrame`; when they land, list them here.
+Use the shared primitives over app-local classes (catalogue with examples: `docs/design-system.md`; live gallery: `npm run dev`, then `/#debug`):
+
+- `src/ui/dom.js`: `h`, `icon`, `button({ label, icon, variant, size })`, `iconButton`, `toggle`.
+- `src/ui/components.js`: `segmented`, `tabs`, `field`, `rangeField`, `listRow`, `panel`, `badge(text, tone)`, `emptyState`, `skeleton`, `toolbar`, `statusBar`.
+- `src/ui/frame/app-frame.js`: `createAppFrame({ label, locale, toolbar, sidebar, content, inspector, status })`, the scaffold every app moves to in 14.5 (sticky toolbar with overflow menu, collapsible sidebar that becomes a sheet below 640 px).
+- `src/ui/controls.css` classes behind them: `.nx-btn` (`.is-primary/-ghost/-danger`, `.is-sm/-lg`, `.is-icon`), `.nx-icon-btn`, `.nx-segmented`, `.nx-tabs`, `.nx-input/-select/-textarea`, `.nx-field`, `.nx-toggle`, `.nx-range`, `.nx-list` + `.nx-list-row`, `.nx-panel` (not `.nx-card`, Solitaire owns it), `.nx-badge.is-<tone>`, `.nx-kbd`, `.nx-empty`, `.nx-skeleton`, `.nx-toolbar`, `.nx-statusbar`.
+- Tokens beyond the basics: `--surface-sunken/-hover/-active`, `--border-strong`, `--frame`, `--focus`, `--scrim`, `--<status>-soft` + `--<status>-on-soft`, `--chart-1…8`, `--hue-<category>`, `--control-h-sm/md/lg`, `--bevel` + `corner-shape: var(--corner-shape)`, `--text-ui/-title/-headline/-display/-hero`, `--weight-*`.
 
 ## Checks
 
-1. Screenshot every surface you changed in Nexus HUD (or Neon Night until it exists), Arctic Light and High Contrast, at 1440×900 and 390×844, from the production build: `npm run build && npm run ux:shots -- --apps=<folders>` writes them, with axe findings, to `test-results/ux/index.html`. Look at each one.
+1. Screenshot every surface you changed in Nexus HUD, Arctic Light and High Contrast, at 1440×900 and 390×844, from the production build: `npm run build && npm run ux:shots -- --apps=<folders>` writes them, with axe findings, to `test-results/ux/index.html`. Look at each one.
 2. `npm run lint` includes the token ratchet; after paying off debt, lower it with `node scripts/check-tokens.js --update`.
 3. App migrations: tick the per-app checklist in `specs/14-ui-ux-rework.md` §14.5.
 4. Specialist passes, all project skills:

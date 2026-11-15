@@ -1,0 +1,130 @@
+/* App scaffold (createAppFrame). Areas: toolbar / sidebar · content · inspector / status. */
+.nx-app-frame {
+  --frame-sidebar-w: 240px;
+  --frame-inspector-w: 280px;
+  position: relative;
+  display: grid;
+  grid-template:
+    'toolbar toolbar toolbar' auto
+    'sidebar content inspector' minmax(0, 1fr)
+    'status status status' auto
+    / var(--frame-sidebar-w) minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface-1);
+  color: var(--text-1);
+  font-size: var(--text-sm);
+
+  &.is-sidebar-collapsed,
+  &.has-no-sidebar {
+    grid-template-columns: 0 minmax(0, 1fr) auto;
+  }
+}
+
+.nx-app-frame-toolbar {
+  grid-area: toolbar;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  overflow: hidden;
+  & > .is-overflowed {
+    display: none;
+  }
+  & > .nx-app-frame-more {
+    margin-inline-start: auto;
+    &[hidden] {
+      display: none;
+    }
+  }
+  & > .nx-toolbar-spacer + .nx-app-frame-more,
+  & > .nx-app-frame-more:only-child {
+    margin-inline-start: 0;
+  }
+}
+
+.nx-app-frame-sidebar {
+  grid-area: sidebar;
+  min-width: 0;
+  overflow: auto;
+  padding: var(--space-2);
+  border-inline-end: 1px solid var(--border);
+  background: var(--surface-sunken);
+
+  .is-sidebar-collapsed > & {
+    visibility: hidden;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.nx-app-frame-content {
+  grid-area: content;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.nx-app-frame-inspector {
+  grid-area: inspector;
+  width: var(--frame-inspector-w);
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-4);
+  border-inline-start: 1px solid var(--border);
+  background: var(--surface-sunken);
+}
+
+.nx-app-frame > .nx-statusbar {
+  grid-area: status;
+}
+
+.nx-app-frame-scrim {
+  display: none;
+}
+
+/* Narrow windows and phones: the sidebar is a sheet over the content, the inspector stacks below. */
+.nx-app-frame.is-narrow {
+  grid-template:
+    'toolbar' auto
+    'content' minmax(0, 1fr)
+    'inspector' auto
+    'status' auto
+    / minmax(0, 1fr);
+
+  & > .nx-app-frame-sidebar {
+    position: absolute;
+    z-index: 4;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: min(300px, 85%);
+    visibility: visible;
+    padding: var(--space-2);
+    border-inline-end: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-2);
+    transform: translateX(-100%);
+    transition: transform var(--dur-med) var(--ease-out);
+  }
+  &.is-sidebar-open > .nx-app-frame-sidebar {
+    transform: none;
+  }
+  &.is-sidebar-collapsed > .nx-app-frame-sidebar {
+    visibility: hidden;
+    transition:
+      transform calc(var(--dur-med) * 0.6) var(--ease-out),
+      visibility 0s linear calc(var(--dur-med) * 0.6);
+  }
+  & > .nx-app-frame-scrim:not([hidden]) {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    display: block;
+    background: var(--scrim);
+  }
+  & > .nx-app-frame-inspector {
+    width: auto;
+    max-height: 40%;
+    border-inline-start: 0;
+    border-top: 1px solid var(--border);
+  }
+}

@@ -28,7 +28,7 @@
 
   &:focus {
     outline: none;
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    background: var(--surface-active);
   }
   &[aria-disabled='true'] {
     opacity: 0.45;

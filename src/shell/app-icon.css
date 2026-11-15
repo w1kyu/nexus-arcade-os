@@ -1,57 +1,56 @@
+/* App tiles (icon grammar, skill nexus-ui rule 13): the glyph in its category hue on a dark
+   bevelled slot; system apps neutral. Light themes tint the slot and darken the glyph. */
 .nx-app-icon {
   --size: 40px;
-  --from: #3ef0ff;
-  --to: #6a5cff;
+  --hue: var(--text-2);
   display: inline-grid;
   place-items: center;
   flex: none;
   width: var(--size);
   height: var(--size);
-  border-radius: calc(var(--size) * 0.26);
-  background: linear-gradient(145deg, var(--from), var(--to));
-  color: #fff;
+  border-radius: calc(var(--size) * 0.24);
+  corner-shape: var(--corner-shape);
+  background: color-mix(in srgb, var(--hue) 8%, var(--surface-2));
+  color: var(--hue);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.35),
-    0 4px 12px rgb(0 0 0 / 0.3);
-
-  & svg {
-    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.35));
-  }
+    inset 0 0 0 1px color-mix(in srgb, var(--hue) 38%, transparent),
+    var(--shadow-1);
 
   &[data-category='productivity'] {
-    --from: #34d399;
-    --to: #0e7c86;
+    --hue: var(--hue-productivity);
   }
   &[data-category='study'] {
-    --from: #fbbf24;
-    --to: #d9480f;
+    --hue: var(--hue-study);
   }
   &[data-category='office'] {
-    --from: #60a5fa;
-    --to: #2948c7;
+    --hue: var(--hue-office);
   }
   &[data-category='dev'] {
-    --from: #a3e635;
-    --to: #157f3b;
+    --hue: var(--hue-dev);
   }
   &[data-category='cslab'] {
-    --from: #22d3ee;
-    --to: #1d4ed8;
+    --hue: var(--hue-cslab);
   }
   &[data-category='games'] {
-    --from: #f472b6;
-    --to: #7c3aed;
+    --hue: var(--hue-games);
   }
   &[data-category='media'] {
-    --from: #fb7185;
-    --to: #be123c;
+    --hue: var(--hue-media);
   }
   &[data-category='ai'] {
-    --from: #c084fc;
-    --to: #4f46e5;
+    --hue: var(--hue-ai);
   }
-  &[data-category='system'] {
-    --from: #64748b;
-    --to: #1e293b;
-  }
+}
+
+:root[data-scheme='light'] .nx-app-icon {
+  background: color-mix(in srgb, var(--hue) 14%, var(--surface-1));
+  color: color-mix(in srgb, var(--hue) 55%, var(--text-1));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--hue) 40%, transparent),
+    var(--shadow-1);
+}
+
+:root[data-theme='high-contrast'] .nx-app-icon {
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--border);
 }

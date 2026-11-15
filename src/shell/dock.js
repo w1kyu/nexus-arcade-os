@@ -70,6 +70,13 @@ export function createDock(shell) {
     });
   }
 
+  /** Marks the dock item of the focused window's app. */
+  function markActive() {
+    const focused = wm.focusedId();
+    const appId = focused ? wm.get(focused)?.appId : null;
+    for (const [id, btn] of buttons) btn.classList.toggle('is-active', id === appId);
+  }
+
   function render() {
     const pinned = session.data.pinned.filter((id) => sys.registry.isEnabled(id));
     const running = [...new Set(wm.list().map((w) => w.appId))].filter((id) => !pinned.includes(id));
@@ -161,6 +168,7 @@ export function createDock(shell) {
         ),
       ),
     );
+    markActive();
   }
 
   /** Pointer-based reorder of pinned apps. @param {HTMLElement} btn @param {string} appId */
@@ -256,6 +264,7 @@ export function createDock(shell) {
     'i18n:changed',
   ])
     sys.bus.on(type, () => render());
+  sys.bus.on('window:focused', () => markActive());
   sys.settings.onChange('system', '*', (_v, key) => key.startsWith('dock') && applySettings());
   const originalSetPinned = session.setPinned.bind(session);
   session.setPinned = (pinned) => {

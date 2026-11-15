@@ -2,7 +2,7 @@
 // Theme engine: turns the theme + user options into CSS custom properties on :root.
 // `computeTokens` is pure (tested without a DOM); `createThemeService` applies it and keeps it
 // in sync with settings and with the system's light/dark and reduced-motion preferences.
-import { contrastRatio, ensureContrast, readableOn, rgba } from './color.js';
+import { contrastRatio, ensureContrast, mix, readableOn, rgba } from './color.js';
 import { allThemes, getTheme, registerDynamicThemes, THEMES, unregisterDynamicThemes } from './themes.js';
 
 /** @typedef {'full' | 'reduced' | 'off'} MotionLevel */
@@ -22,6 +22,11 @@ import { allThemes, getTheme, registerDynamicThemes, THEMES, unregisterDynamicTh
  * @property {MotionLevel} [motion]
  * @property {boolean} [batterySaver]   no blur, glow or particles
  */
+
+/** Status roles that get a tinted background (`--x-soft`) and a readable text color on it (`--x-on-soft`). */
+const SOFT_ROLES = /** @type {const} */ (['accent', 'success', 'warning', 'danger', 'info']);
+/** High Contrast keeps fully saturated, distinct chart colors instead of derived ones. */
+const HC_CHART = ['#ffff00', '#00ffff', '#00ff00', '#ff8cff', '#ffa94d', '#ffffff', '#8fb8ff', '#ff6b6b'];
 
 const MOTION = {
   full: { fast: '120ms', med: '220ms', slow: '420ms' },
@@ -89,6 +94,24 @@ export function computeTokens({
   const radiusLg = Math.min(24, Math.max(0, Number.isFinite(windowRadius) ? windowRadius : 16));
   const radiusMd = Math.max(0, Math.round(radiusLg * 0.625));
   const radiusSm = Math.max(0, Math.round(radiusLg * 0.375));
+  const hc = theme.id === 'high-contrast';
+  const focus = ensureContrast(c.focus || finalAccent, c.bg, 3);
+  /** @type {Record<string, string>} */
+  const roleColor = { accent: finalAccent, success: c.success, warning: c.warning, danger: c.danger, info: c.info };
+  /** @type {Record<string, string>} */
+  const soft = {};
+  for (const role of SOFT_ROLES) {
+    const tint = mix(c.surface1, roleColor[role], hc ? 0.18 : dark ? 0.16 : 0.12);
+    soft[`--${role}-soft`] = tint;
+    soft[`--${role}-on-soft`] = ensureContrast(roleColor[role], tint, 4.5);
+  }
+  const chartBase = hc
+    ? HC_CHART
+    : [finalAccent, c.accent2, c.info, c.success, c.warning, c.danger, mix(finalAccent, c.accent2, 0.5), c.text2];
+  /** @type {Record<string, string>} */
+  const chart = {};
+  chartBase.forEach((color, i) => (chart[`--chart-${i + 1}`] = ensureContrast(color, c.surface1, 3)));
+  const borderStrong = hc ? c.border : rgba(c.border, dark ? 0.4 : 0.5);
 
   /** @type {Record<string, string>} */
   const vars = {
@@ -107,16 +130,44 @@ export function computeTokens({
     '--success': c.success,
     '--warning': c.warning,
     '--danger': c.danger,
+    '--danger-contrast': readableOn(c.danger),
     '--info': c.info,
     '--radius-lg': `${radiusLg}px`,
     '--radius-md': `${radiusMd}px`,
     '--radius-sm': `${radiusSm}px`,
     '--font-sans': FONTS[fontFamily] ?? FONTS.inter,
     '--blur-glass': `${batterySaver ? 0 : Math.round(18 * glass)}px`,
+    '--surface-sunken': hc ? c.bg : mix(c.surface1, c.bg, dark ? 0.35 : 0.5),
+    '--surface-hover': hc ? c.surface3 : rgba(c.text1, dark ? 0.06 : 0.05),
+    '--surface-active': mix(c.surface1, finalAccent, hc ? 0.18 : dark ? 0.14 : 0.1),
+    '--border-strong': borderStrong,
+    // Shell frame (window border, dock, palette): accent-tinted in glowing themes.
+    '--frame': hc ? c.border : dark && glow > 0 ? rgba(finalAccent, 0.2 + 0.16 * glow) : borderStrong,
+    '--focus': focus,
+    '--scrim': hc ? 'rgb(0 0 0 / 0.75)' : dark ? 'rgb(2 4 10 / 0.6)' : 'rgb(20 30 50 / 0.28)',
+    ...soft,
+    ...chart,
+    '--bevel': `${Math.round(radiusLg * 0.75)}px`,
+    '--bevel-sm': `${Math.round(radiusLg * 0.5)}px`,
     '--glow-accent': glow > 0 ? `0 0 24px ${rgba(finalAccent, 0.25 * glow)}` : 'none',
+    // The glow budget (skill nexus-ui rule 3): focused window, primary button, active selection.
+    '--glow-window': hc
+      ? `0 0 0 1px ${finalAccent}`
+      : glow > 0
+        ? `0 0 0 1px ${rgba(finalAccent, 0.3 + 0.12 * glow)}, 0 0 36px -8px ${rgba(finalAccent, 0.4 * glow)}`
+        : `0 0 0 1px ${rgba(finalAccent, 0.3)}`,
+    '--glow-btn': glow >= 0.5 ? `0 0 18px -6px ${rgba(finalAccent, 0.65 * glow)}` : 'none',
     '--glow-strength': String(glow),
-    '--shadow-1': dark ? '0 2px 8px rgb(0 0 0 / 0.35)' : '0 2px 8px rgb(20 30 50 / 0.12)',
-    '--shadow-2': dark ? '0 12px 40px rgb(0 0 0 / 0.5)' : '0 12px 40px rgb(20 30 50 / 0.18)',
+    '--shadow-1': hc
+      ? 'none'
+      : dark
+        ? '0 1px 2px rgb(0 0 0 / 0.4), 0 4px 12px -4px rgb(0 0 0 / 0.4)'
+        : '0 1px 2px rgb(16 24 40 / 0.08), 0 2px 8px -2px rgb(16 24 40 / 0.1)',
+    '--shadow-2': hc
+      ? 'none'
+      : dark
+        ? '0 8px 20px -8px rgb(0 0 0 / 0.55), 0 30px 70px -20px rgb(0 0 0 / 0.7)'
+        : '0 1px 2px rgb(16 24 40 / 0.06), 0 12px 32px -8px rgb(16 24 40 / 0.18), 0 32px 64px -24px rgb(16 24 40 / 0.2)',
     '--font-scale': String(Math.min(1.5, Math.max(0.8, fontScale))),
     '--dur-fast': MOTION[level].fast,
     '--dur-med': MOTION[level].med,
@@ -318,6 +369,8 @@ export function createThemeService({
     root.dataset.largeTargets = String(!!sys('largeTargets'));
     root.dataset.titlebar = String(sys('titlebarStyle') ?? 'windows');
     root.dataset.iconStyle = String(sys('iconStyle') ?? 'outline');
+    root.dataset.corners = String(sys('cornerStyle') ?? 'bevel');
+    root.dataset.density = String(sys('density') ?? 'comfortable');
     root.style.colorScheme = next.theme.scheme;
     root.ownerDocument?.querySelector('meta[name="theme-color"]')?.setAttribute('content', next.theme.colors.bg);
     applyCustomCss();
@@ -345,6 +398,8 @@ export function createThemeService({
     'windowRadius',
     'titlebarStyle',
     'iconStyle',
+    'cornerStyle',
+    'density',
     'customCss',
     'customCssSafeMode',
     'transparency',

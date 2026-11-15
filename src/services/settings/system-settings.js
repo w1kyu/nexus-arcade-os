@@ -57,7 +57,7 @@ export const SYSTEM_SETTINGS = [
   {
     key: 'theme',
     type: 'enum',
-    default: 'neon-night',
+    default: 'nexus-hud',
     options: [
       { value: 'auto', label: L('Auto (follow system)', 'Automatisch (wie System)') },
       { value: 'schedule', label: L('Auto (by time of day)', 'Automatisch (nach Uhrzeit)') },
@@ -68,7 +68,7 @@ export const SYSTEM_SETTINGS = [
   {
     key: 'themeAutoDark',
     type: 'enum',
-    default: 'neon-night',
+    default: 'nexus-hud',
     options: darkThemes,
     label: L('Dark theme for Auto', 'Dunkles Design für Automatisch'),
   },
@@ -140,7 +140,7 @@ export const SYSTEM_SETTINGS = [
     label: L('Lock after idle minutes (0 = never)', 'Nach Minuten Inaktivität sperren (0 = nie)'),
   },
   // Desktop & wallpaper
-  { key: 'wallpaper', type: 'string', default: 'live:particles', label: L('Wallpaper', 'Hintergrundbild') },
+  { key: 'wallpaper', type: 'string', default: 'live:grid', label: L('Wallpaper', 'Hintergrundbild') },
   {
     key: 'wallpaperFit',
     type: 'enum',
@@ -335,6 +335,26 @@ export const SYSTEM_SETTINGS = [
       { value: 'macos', label: L('Traffic lights (left)', 'Ampel-Schaltflächen (links)') },
     ],
     label: L('Window title bar style', 'Fenster-Titelleiste'),
+  },
+  {
+    key: 'cornerStyle',
+    type: 'enum',
+    default: 'bevel',
+    options: [
+      { value: 'bevel', label: L('Bevelled', 'Abgeschrägt') },
+      { value: 'round', label: L('Rounded', 'Abgerundet') },
+    ],
+    label: L('Window and dock corners', 'Ecken von Fenstern und Dock'),
+  },
+  {
+    key: 'density',
+    type: 'enum',
+    default: 'comfortable',
+    options: [
+      { value: 'comfortable', label: L('Comfortable', 'Großzügig') },
+      { value: 'compact', label: L('Compact', 'Kompakt') },
+    ],
+    label: L('Spacing of controls', 'Abstand der Bedienelemente'),
   },
   {
     key: 'windowRadius',

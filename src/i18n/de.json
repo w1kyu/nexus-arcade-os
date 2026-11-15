@@ -283,6 +283,7 @@
     "batterySaver": "Energiesparmodus (keine Partikel, Unschärfe oder Live-Hintergründe)",
     "live": {
       "title": "Live-Hintergründe",
+      "grid": "HUD-Raster",
       "particles": "Partikelnetz",
       "aurora": "Polarlicht",
       "synthwave": "Synthwave-Gitter",

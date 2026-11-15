@@ -50,7 +50,7 @@ describe('system boot', () => {
     expect(system.profile).toMatchObject({ name: 'Benutzer', username: 'benutzer' });
     expect(await system.vfs.exists('/home/benutzer/Documents')).toBe(true);
     expect(system.registry.has('nexus.dev.test')).toBe(true);
-    expect(document.documentElement.dataset.theme).toBe('neon-night');
+    expect(document.documentElement.dataset.theme).toBe('nexus-hud');
     expect(document.documentElement.lang).toBe('de');
     expect(system.engine.kind).toBe('indexeddb');
     expect(system.logger.entries().some((e) => e.message.startsWith('Ready:'))).toBe(true);

@@ -48,8 +48,9 @@ describe('color math', () => {
 });
 
 describe('built-in themes', () => {
-  it('has the 8 themes from the brief, unique ids, EN and DE names', () => {
+  it('has Nexus HUD (phase 14 default) and the 8 themes from the brief, EN and DE names', () => {
     expect(THEMES.map((t) => t.id)).toEqual([
+      'nexus-hud',
       'neon-night',
       'synthwave',
       'matrix',
@@ -131,7 +132,53 @@ describe('computeTokens', () => {
   });
 
   it('falls back to the default theme for unknown ids', () => {
-    expect(computeTokens({ themeId: 'removed-theme' }).theme.id).toBe('neon-night');
+    expect(computeTokens({ themeId: 'removed-theme' }).theme.id).toBe('nexus-hud');
+  });
+});
+
+// Design system v2 roles (phase 14.3): every theme defines every role, and the derived pairs stay
+// readable (skill nexus-ui rule 7).
+describe('design system v2 roles', () => {
+  const ROLES = [
+    '--surface-sunken',
+    '--surface-hover',
+    '--surface-active',
+    '--border-strong',
+    '--frame',
+    '--focus',
+    '--scrim',
+    '--bevel',
+    '--glow-window',
+    '--glow-btn',
+    '--danger-contrast',
+    ...['accent', 'success', 'warning', 'danger', 'info'].flatMap((r) => [`--${r}-soft`, `--${r}-on-soft`]),
+    ...Array.from({ length: 8 }, (_, i) => `--chart-${i + 1}`),
+  ];
+
+  it.each(THEMES.map((t) => [t.id]))('%s defines every role', (id) => {
+    const { vars } = computeTokens({ themeId: id });
+    for (const role of ROLES) expect(vars[role], role).toBeTruthy();
+  });
+
+  it.each(THEMES.map((t) => [t.id, t]))('%s soft, focus and chart colors meet contrast', (id, theme) => {
+    const { vars } = computeTokens({ themeId: id });
+    const c = theme.colors;
+    for (const role of ['accent', 'success', 'warning', 'danger', 'info']) {
+      const ratio = contrastRatio(vars[`--${role}-on-soft`], vars[`--${role}-soft`]);
+      expect(ratio, `${role}-on-soft on ${role}-soft`).toBeGreaterThanOrEqual(4.5);
+    }
+    for (const bg of [c.bg, c.surface1, c.surface2, c.surface3])
+      expect(contrastRatio(vars['--focus'], bg), `focus on ${bg}`).toBeGreaterThanOrEqual(3);
+    for (let i = 1; i <= 8; i++)
+      expect(contrastRatio(vars[`--chart-${i}`], c.surface1), `chart-${i}`).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(vars['--danger-contrast'], c.danger)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(c.text1, vars['--surface-active']), 'text-1 on surface-active').toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(c.text1, vars['--surface-sunken']), 'text-1 on surface-sunken').toBeGreaterThanOrEqual(4.5);
+  });
+
+  it('keeps a custom accent visible as the focus ring when the theme has none', () => {
+    expect(computeTokens({ themeId: 'arctic-light', accent: '#7a3cff' }).vars['--focus']).toBe('#7a3cff');
+    expect(computeTokens({ themeId: 'nexus-hud', accent: '#ff00aa' }).vars['--focus']).toBe('#5ce1ff');
   });
 });
 
@@ -205,10 +252,12 @@ describe('theme service', () => {
 
   it('applies variables and data attributes to :root', async () => {
     const { root, theme } = await setup();
-    expect(root.style.getPropertyValue('--bg')).toBe('#05060d');
-    expect(root.dataset.theme).toBe('neon-night');
+    expect(root.style.getPropertyValue('--bg')).toBe('#07090d');
+    expect(root.dataset.theme).toBe('nexus-hud');
     expect(root.dataset.scheme).toBe('dark');
-    expect(theme.token('accent')).toBe('#3ef0ff');
+    expect(root.dataset.corners).toBe('bevel');
+    expect(root.dataset.density).toBe('comfortable');
+    expect(theme.token('accent')).toBe('#ffb040');
   });
 
   it('switches live when settings change, with a short transition', async () => {
@@ -236,8 +285,8 @@ describe('theme service', () => {
     expect(root.dataset.theme).toBe('arctic-light');
     lists['(prefers-color-scheme: light)'].matches = false;
     lists['(prefers-color-scheme: light)'].fire();
-    expect(root.dataset.theme).toBe('neon-night');
-    expect(theme.current).toBe('neon-night');
+    expect(root.dataset.theme).toBe('nexus-hud');
+    expect(theme.current).toBe('nexus-hud');
     await settings.set('system', 'themeAutoDark', 'deep-ocean');
     expect(root.dataset.theme).toBe('deep-ocean');
   });

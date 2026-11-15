@@ -1,92 +1,140 @@
-# Design System
+# Design system (v2, phase 14.3)
 
-Nexus Arcade OS uses a framework-free CSS Custom Property token architecture (`src/styles/tokens.css`, `src/styles/base.css`) paired with lightweight vanilla DOM primitives in `src/ui/`.
+Nexus is built from CSS custom properties (`src/styles/tokens.css`, theme values from `src/services/theme/`) and small vanilla DOM helpers in `src/ui/`. No UI framework.
 
----
+The rules for using all of this (tokens only, two shapes, glow budget, targets, focus, contrast, type, motion, states, copy, icons) live in one place: the project skill [`.claude/skills/nexus-ui/SKILL.md`](../.claude/skills/nexus-ui/SKILL.md). This page is the catalogue.
 
-## 1. Design Tokens (`src/styles/tokens.css`)
+**Direction:** HUD shell, calm interior. The shell (top bar, dock, window frame and titlebar, palette, launcher) has bevelled corners, a mono uppercase voice and the accent. Everything inside a window uses solid surfaces, rounded cards, no glow and sentence case.
 
-All themes override the color palette and glow intensity while preserving spacing, radii, typography, z-layers, and motion curves:
-
-### Colors & Surfaces
-
-| Token                                          | Role                                                                                                   |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `--bg`                                         | Desktop & root canvas background                                                                       |
-| `--surface-1`, `--surface-2`, `--surface-3`    | Layered panel, card, and elevated control surfaces                                                     |
-| `--glass`                                      | Translucent frosted overlay background (paired with `--blur-glass`)                                    |
-| `--border`                                     | Subtle borders & dividers                                                                              |
-| `--text-1`, `--text-2`, `--text-3`             | Primary, secondary, and muted text hierarchy                                                           |
-| `--accent`, `--accent-2`, `--accent-contrast`  | Primary interactive highlight, secondary gradient/highlight, and accessible text color over `--accent` |
-| `--success`, `--warning`, `--danger`, `--info` | Semantic status colors                                                                                 |
-
-### Spacing, Radii, Typography & Z-Layers
-
-- **Spacing:** `--space-1` (`4px`) through `--space-7` (`48px`).
-- **Radii:** `--radius-sm` (`6px`), `--radius-md` (`10px`), `--radius-lg` (`16px`), `--radius-full` (`999px`) — dynamically scaled by the user's Window Corner Radius setting.
-- **Fonts:** Self-hosted variable fonts in `src/styles/fonts/` (SIL OFL 1.1):
-  - `--font-sans`: `'Inter Variable', system-ui, sans-serif` (configurable in Theme Editor)
-  - `--font-mono`: `'JetBrains Mono Variable', ui-monospace, monospace`
-  - Scale multiplier `--font-scale` (`0.85`–`1.5`) driving `--text-xs` through `--text-2xl`.
-- **Z-Layers:** `--z-desktop` (`0`), `--z-windows` (`100`), `--z-dock` (`1000`), `--z-overlay` (`2000`), `--z-toast` (`3000`).
+**Live gallery:** `npm run dev`, open `/#debug`, scroll to _Components_. It renders every component below in the current theme.
 
 ---
 
-## 2. Themes & Live Personalization
+## 1. Tokens
 
-- **8 Built-in Themes (`src/services/theme/themes.js`):** Neon Night, Synthwave, Matrix, Blade, Deep Ocean, Arctic Light, Paper, High Contrast — all unit-tested (`tests/unit/theme.test.js`) for WCAG AA contrast.
-- **Auto Scheme:** Follows `prefers-color-scheme` when set to Auto.
-- **Theme Editor (`Settings → Theme Editor`):**
-  - Edit every color token live with instant preview across sample windows, buttons, and charts.
-  - Real-time **WCAG AA / AAA contrast warnings** (`text1` on `bg`, `text1` on `surface1`, `accentContrast` on `accent`, etc.).
-  - Generate themes from the current **wallpaper's dominant colors** (`src/ui/color-extract.js`) or export directly from **Color Lab**.
-  - Import and export `.nexus-theme` JSON files (`parseCustomThemeJson`).
-  - Customize **Titlebar Style** (`data-titlebar="windows"` right-aligned controls vs `data-titlebar="macos"` left traffic lights), **Icon Style** (`outline` vs `filled`), corner radius, and font family.
-  - Export/import full **Profile Cards** (theme, wallpaper, dock, widget layout).
+Every theme defines every role; `tests/unit/theme.test.js` checks the contrast pairs for all 9 themes.
+
+### Color roles
+
+| Token                                                                                                                     | Use                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `--bg`                                                                                                                    | Desktop and page background                                                            |
+| `--surface-1` / `-2` / `-3`                                                                                               | Window body / cards and controls / raised controls, hover on controls                  |
+| `--surface-sunken`                                                                                                        | Inputs, sidebars, titlebars, wells                                                     |
+| `--surface-hover`                                                                                                         | Hover on rows and ghost buttons (translucent, works on any surface)                    |
+| `--surface-active`                                                                                                        | Selected row, pressed toggle button (text-1 stays ≥ 4.5:1 on it)                       |
+| `--border` / `--border-strong`                                                                                            | Dividers / control outlines, unfocused window frames                                   |
+| `--frame`                                                                                                                 | Shell frame: focused window, dock, palette, launcher                                   |
+| `--text-1` / `-2` / `-3`                                                                                                  | Primary / secondary / muted text (all ≥ 4.5:1 on every surface)                        |
+| `--accent`, `--accent-2`, `--accent-contrast`                                                                             | Primary actions and selection; secondary hue; text on `--accent`                       |
+| `--focus`                                                                                                                 | Keyboard focus ring (cyan in Nexus HUD and High Contrast, the accent elsewhere)        |
+| `--success`, `--warning`, `--danger`, `--info`                                                                            | Status (≥ 4.5:1 as text on bg, surface-1, surface-2); `--danger-contrast` sits on them |
+| `--accent-soft`, `--success-soft` … and `--accent-on-soft`, `--success-on-soft` …                                         | Tinted status backgrounds with their readable text color (badges, banners)             |
+| `--chart-1` … `--chart-8`                                                                                                 | Data visualisation, ≥ 3:1 on `--surface-1`                                             |
+| `--hue-productivity`, `--hue-study`, `--hue-office`, `--hue-dev`, `--hue-cslab`, `--hue-games`, `--hue-media`, `--hue-ai` | App category hues (app tiles, category tags)                                           |
+| `--scrim`                                                                                                                 | Behind modals, sheets and the palette                                                  |
+| `--glass` + `--blur-glass`                                                                                                | Top bar, dock, menus (blur off in Battery saver and with transparency at 0)            |
+
+Game canvases may keep their own palettes; the UI around them uses these roles.
+
+### Shape, depth, glow
+
+- `--radius-sm` / `-md` / `-lg` / `-full`: interior corners (scaled by Settings → Theme Editor → window radius). A child's radius is ≤ its parent's.
+- `--bevel` / `--bevel-sm` with `corner-shape: var(--corner-shape)`: shell corners. Chromium cuts them; Firefox and WebKit fall back to rounded. Settings → Theme Editor → _Window and dock corners_ switches to rounded everywhere (`data-corners="round"`).
+- `--shadow-1` / `--shadow-2`: two-layer shadows (ambient + direct); none in High Contrast.
+- Glow budget of three: `--glow-window` (focused window), `--glow-btn` (primary button), the accent bar of the active selection. Nothing else glows.
+
+### Size and type
+
+- Spacing `--space-1` (4 px) … `--space-7` (48 px).
+- Control heights `--control-h-sm` / `-md` / `-lg`: 28 / 34 / 40 px; 24 / 30 / 36 with `data-density="compact"`; 36 / 44 / 48 on phones and with large targets on.
+- Type ramp (× `--font-scale`): `--text-xs` 12, `--text-ui` 13, `--text-sm` 14 (body), `--text-md` 16, `--text-title` 19, `--text-headline` 22, `--text-display` 26, `--text-hero` 30 px. (`--text-lg` 20, `--text-xl` 28 and `--text-2xl` 40 remain for existing screens.) Weights `--weight-regular` 450, `--weight-medium` 550, `--weight-bold` 650. `.nx-num` sets tabular figures.
+- `--font-sans` (Inter, or the user's choice), `--font-mono` (JetBrains Mono): the shell's voice is mono uppercase with 0.06em tracking.
+
+### Motion
+
+`--dur-fast` 120 ms (hover), `--dur-med` 220 ms (menus, sheets, windows), `--dur-slow` 420 ms; `--ease-out` is `cubic-bezier(0.23, 1, 0.32, 1)`. Durations drop to 0 with Animations off or reduced motion. Keyboard-opened surfaces (palette) appear instantly.
 
 ---
 
-## 3. Accessibility Attributes (`:root`)
+## 2. Components
 
-Controlled by Settings and enforced in [`src/styles/base.css`](../src/styles/base.css):
+CSS in `src/ui/controls.css`, helpers in `src/ui/dom.js` and `src/ui/components.js`. Prefer the helpers: they set the ARIA state.
 
-- `data-focus-ring="strong"`: High-visibility double-ring `:focus-visible` indicator (`3px solid var(--text-1)` + `6px` `--accent` halo).
-- `data-large-targets="true"`: Enforces `min-height: 44px` on `.nx-btn`, `.nx-icon-btn`, `[role="menuitem"]`, `[role="option"]`, and `[role="tab"]` (WCAG 2.5.5).
-- `data-motion="off"` (and `@media (prefers-reduced-motion: reduce)`): Zeroes animation and transition durations across the OS.
+| Component                 | Markup / helper                                                                                                        | Notes                                                                 |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Button                    | `button({ label, icon, variant, size })` → `.nx-btn` + `.is-primary` / `.is-ghost` / `.is-danger`, `.is-sm` / `.is-lg` | No label = icon-only, `title` becomes the name. One primary per view. |
+| Icon button               | `iconButton({ icon, label, pressed })` → `.nx-icon-btn`                                                                | 32 px; `aria-pressed` shows the active state                          |
+| Segmented                 | `segmented({ label, options, value, onChange })` → `.nx-segmented`                                                     | Radio group, arrow keys                                               |
+| Tabs                      | `tabs({ label, tabs, value, onChange })` → `.nx-tabs`                                                                  | Roving focus; the caller shows the panel                              |
+| Field                     | `field({ label, hint, error }, control)` → `.nx-field`                                                                 | Wires `for`, `aria-describedby`, `aria-invalid`                       |
+| Input / select / textarea | `.nx-input`, `.nx-select`, `.nx-textarea` (`.is-sm`)                                                                   | Sunken surface, focus ring in `--focus`                               |
+| Toggle                    | `toggle({ label, checked, onChange })` → `.nx-toggle`                                                                  | `role="switch"`                                                       |
+| Slider                    | `rangeField({ label, min, max, value, format, onInput })` → `.nx-range`                                                | Shows the formatted value, sets `aria-valuetext`                      |
+| List row                  | `listRow({ title, subtitle, meta, icon, selected, onClick })` inside `.nx-list`                                        | Selected rows get `--surface-active` and the accent bar               |
+| Panel (card)              | `panel({ title, sunken }, ...children)` → `.nx-panel`                                                                  | `.nx-card` is taken by Solitaire                                      |
+| Badge                     | `badge(text, tone)` → `.nx-badge.is-neutral/accent/success/warning/danger/info`; plain `.nx-badge` is a count          | Soft background + on-soft text                                        |
+| Kbd                       | `<kbd class="nx-kbd">`                                                                                                 |                                                                       |
+| Empty state               | `emptyState({ icon, title, text, action })` → `.nx-empty`                                                              | Says what's missing and offers one next action                        |
+| Skeleton                  | `skeleton({ lines, label })` → `.nx-skeleton`                                                                          | Show after 150–300 ms, keep ≥ 300 ms                                  |
+| Toolbar                   | `toolbar({ label, title }, ...items)`; `null` = spacer, `'\|'` = separator                                             | `role="toolbar"`                                                      |
+| Status bar                | `statusBar(...items)` → `.nx-statusbar`                                                                                | Tabular figures                                                       |
+| App frame                 | `createAppFrame({ label, locale, toolbar, sidebar, content, inspector, status })` (`src/ui/frame/`)                    | See below                                                             |
 
----
+Also in `src/ui/`: `overlay.js` (modals, popovers, tooltips: focus trap, Esc, focus return), `menu.js` (context menus), `markdown.js`, `diff.js`, `qr.js`, `color-extract.js`, `visualizer/` (CS Lab engine), `tool-layout.js` (input/output tools, built on the app frame).
 
-## 4. Shared UI Primitives (`src/ui/`)
-
-Apps and shell surfaces reuse these zero-dependency building blocks:
-
-| Module                                           | Purpose                                                                                              |
-| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| [`dom.js`](../src/ui/dom.js)                     | `h(tag, props, ...children)`, `replace()`, `icon(name, opts)`, `focusedElement()` (shadow-DOM aware) |
-| [`controls.css`](../src/ui/controls.css)         | Standard `.nx-btn`, `.nx-input`, `.nx-card`, `.nx-badge`, `.nx-tabs` classes                         |
-| [`overlay.js`](../src/ui/overlay.js)             | Accessible modal/popover controller with focus trapping, `Escape` handling, and focus restoration    |
-| [`menu.js`](../src/ui/menu.js)                   | Keyboard-navigable context menus and dropdowns                                                       |
-| [`tool-layout.js`](../src/ui/tool-layout.js)     | Shared split/workbench layout (`createToolLayout`) used across Developer Toolkit & CS apps           |
-| [`markdown.js`](../src/ui/markdown.js)           | Sanitized Markdown + syntax highlight + KaTeX MathML renderer                                        |
-| [`diff.js`](../src/ui/diff.js)                   | LCS side-by-side and unified diff viewer (`createDiffViewer`)                                        |
-| [`qr.js`](../src/ui/qr.js)                       | Zero-dependency SVG QR code generator used in DevTools and Device-to-Device transfer                 |
-| [`color-extract.js`](../src/ui/color-extract.js) | Dominant palette extractor from images & gradients                                                   |
-
-### Component Usage Example
+### App frame
 
 ```js
-import { h, icon, replace } from '../../ui/dom.js';
-import { showMenu } from '../../ui/menu.js';
+import { button } from '../../ui/dom.js';
+import { statusBar, toolbar } from '../../ui/components.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 
-const button = h(
-  'button',
-  {
-    type: 'button',
-    class: 'nx-btn is-primary',
-    onclick: (ev) => showMenu(ev.currentTarget, [{ label: 'Export', run: exportData }]),
-  },
-  icon('download', { size: 16 }),
-  'Save',
-);
-replace(container, button);
+const frame = createAppFrame({
+  label: ctx.i18n.t('app.name'),
+  locale: () => ctx.i18n.locale,
+  toolbar: toolbar(
+    { label: ctx.i18n.t('toolbar'), title: ctx.i18n.t('app.name') },
+    button({ label: ctx.i18n.t('new'), icon: 'plus', variant: 'primary', size: 'sm', onClick: create }),
+    null,
+    button({ label: ctx.i18n.t('export'), size: 'sm', onClick: exportAll }),
+  ),
+  sidebar: folderList,
+  content: noteView,
+  status: statusBar(wordCount),
+});
+root.append(frame.root);
 ```
+
+- Areas: toolbar (sticky) / sidebar · content · inspector / status bar. Content scrolls; the frame never does.
+- The sidebar toggle is added to the toolbar automatically. Below 640 px of window width the sidebar becomes a sheet over the content (scrim, Esc closes, focus moves in) and the inspector stacks under the content.
+- Toolbar items that don't fit move into a _More actions_ menu, last item first. Mark an item `data-overflow="never"` to keep it. Call `frame.refresh()` after changing the toolbar.
+
+---
+
+## 3. Shell
+
+- **Window:** `--bevel` corners, `--border-strong` frame, `--frame` + `--glow-window` when focused, a 56 px accent tick on the focused titlebar. The title is mono uppercase (`Document — App` or `App`).
+- **Dock and launcher:** bevelled `.nx-glass` slab with a `--frame` border. The focused window's app shows an accent bar instead of a dot.
+- **App tiles (icon grammar):** the app glyph in its category hue (`--hue-*`) on a dark bevelled slot; system apps neutral; light themes tint the slot. One component, `appIcon()` in `src/shell/app-icon.js`, used by dock, launcher, switcher, overview, desktop and dialogs. Apps can't import the shell, so App Center copies the tile style with the same tokens.
+- **Wallpaper:** the default _HUD grid_ (`live:grid`) draws the grid and glows in the theme's accent colors.
+
+---
+
+## 4. Themes and personalisation
+
+- **9 built-in themes** (`src/services/theme/themes.js`): Nexus HUD (default), Neon Night, Synthwave, Matrix, Blade, Deep Ocean, Arctic Light, Paper, High Contrast. A theme sets 14 base colors (+ optional `focus`) and a glow level; `computeTokens()` in `engine.js` derives every other role.
+- **Auto** follows the system light/dark preference; **By time of day** switches at set times.
+- **Theme Editor** (Settings): edit colors with live contrast warnings, generate from the wallpaper, import/export `.nexus-theme` JSON; titlebar style, corner style, density, window radius, font, icon style.
+
+## 5. Accessibility attributes on `:root`
+
+- `data-focus-ring="strong"`: a 3 px `--text-1` ring with a 6 px `--focus` halo.
+- `data-large-targets="true"` (and phones, `data-mobile`): control heights 36 / 44 / 48 px.
+- `data-motion="off"` and `prefers-reduced-motion`: durations 0.
+- `data-corners`, `data-density`, `data-titlebar`, `data-icon-style`: personalisation hooks.
+
+## 6. Checks
+
+- `npm run lint` runs the token ratchet (`scripts/check-tokens.js`): hard-coded colors, app-local control classes and literal font sizes per app may only go down.
+- `npm run build && npm run ux:shots` renders every app in Nexus HUD, Arctic Light and High Contrast at desktop and phone size, with axe findings (`test-results/ux/index.html`).

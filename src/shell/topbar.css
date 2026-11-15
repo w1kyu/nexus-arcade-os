@@ -50,10 +50,15 @@
   color: var(--accent);
 }
 
+/* The shell's voice: mono, uppercase, tracked. */
 .nx-tb-app {
   overflow: hidden;
   padding: 0 var(--space-2);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -88,9 +93,11 @@
   & span {
     width: 7px;
     height: 7px;
-    border-radius: var(--radius-full);
+    border-radius: 1px;
     border: 1.5px solid var(--text-3);
-    transition: all var(--dur-med) var(--ease-out);
+    transition:
+      width var(--dur-med) var(--ease-out),
+      background-color var(--dur-med) var(--ease-out);
   }
   &.has-windows span {
     background: var(--text-3);
@@ -99,7 +106,6 @@
     width: 18px;
     border-color: var(--accent);
     background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
   }
   &:hover {
     background: var(--surface-3);

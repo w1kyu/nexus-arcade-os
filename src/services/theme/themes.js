@@ -19,6 +19,7 @@
  * @property {string} warning
  * @property {string} danger
  * @property {string} info
+ * @property {string} [focus]      keyboard focus ring; defaults to the accent
  */
 
 /**
@@ -32,6 +33,30 @@
 
 /** @type {Theme[]} */
 export const THEMES = [
+  {
+    // Phase 14 default: HUD shell (amber, cyan focus) around calm graphite interiors.
+    id: 'nexus-hud',
+    name: { en: 'Nexus HUD', de: 'Nexus HUD' },
+    scheme: 'dark',
+    glow: 0.8,
+    colors: {
+      bg: '#07090d',
+      surface1: '#1a1b20',
+      surface2: '#212228',
+      surface3: '#2a2c33',
+      border: '#a6abb8',
+      text1: '#f3f2ef',
+      text2: '#c6c4be',
+      text3: '#a3a19a',
+      accent: '#ffb040',
+      accent2: '#5ce1ff',
+      success: '#4ade9a',
+      warning: '#ffd166',
+      danger: '#ff7a7a',
+      info: '#7cb4ff',
+      focus: '#5ce1ff',
+    },
+  },
   {
     id: 'neon-night',
     name: { en: 'Neon Night', de: 'Neon-Nacht' },
@@ -206,11 +231,12 @@ export const THEMES = [
       warning: '#ffff00',
       danger: '#ff6b6b',
       info: '#00ffff',
+      focus: '#00ffff',
     },
   },
 ];
 
-export const DEFAULT_THEME = 'neon-night';
+export const DEFAULT_THEME = 'nexus-hud';
 
 /** @type {Map<string, Theme[]>} source id -> themes */
 const dynamicBySource = new Map();

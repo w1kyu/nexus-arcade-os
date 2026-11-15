@@ -283,6 +283,7 @@
     "batterySaver": "Battery saver (no particles, blur or live wallpapers)",
     "live": {
       "title": "Live wallpapers",
+      "grid": "HUD grid",
       "particles": "Particle network",
       "aurora": "Aurora",
       "synthwave": "Synthwave grid",

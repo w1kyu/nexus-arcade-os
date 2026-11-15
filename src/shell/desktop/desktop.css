@@ -36,7 +36,7 @@
     background: color-mix(in srgb, var(--accent) 22%, transparent);
   }
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--focus);
   }
   &.is-dragging {
     z-index: 2;

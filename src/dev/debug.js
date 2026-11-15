@@ -3,6 +3,7 @@
 import { storageBreakdown } from '../services/storage/quota.js';
 import { downloadBlob } from '../services/vfs/transfer.js';
 import './debug.css';
+import { componentGallery } from './gallery.js';
 
 /**
  * Tiny DOM helper: h('button', { onclick }, 'Label').
@@ -307,6 +308,12 @@ export function renderDebugScreen(parent, system, appsHost = null) {
       section('Storage', storeList, records, h('button', { onclick: renderStorage }, 'Refresh')),
       section('Backup', backupRow, h('p', {}, `VFS home: ${vfs.home}`)),
       section('Event & system log', log),
+    ),
+    h(
+      'section',
+      { class: 'nx-debug-card nx-debug-wide' },
+      h('h2', {}, 'Components (design system v2)'),
+      componentGallery(),
     ),
   );
   parent.append(screen);

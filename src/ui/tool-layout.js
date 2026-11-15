@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon } from './dom.js';
+import { createAppFrame } from './frame/app-frame.js';
 import './tool-layout.css';
 
 /**
@@ -26,13 +27,11 @@ import './tool-layout.css';
  * @param {ToolLayoutOptions} opts
  */
 export function createToolLayout(opts) {
-  const root = h('div', { class: 'nx-tool-layout' });
-
-  // 1. Header (if title or options exist)
-  const header = h('div', { class: 'nx-tool-header' });
+  // 1. Header: the app frame's toolbar.
+  const header = h('div', { class: 'nx-toolbar nx-tool-header', role: 'toolbar', 'aria-label': opts.title || '' });
   const titleEl = h(
     'div',
-    { class: 'nx-tool-header-title' },
+    { class: 'nx-tool-header-title', 'data-overflow': 'never' },
     opts.iconName ? icon(opts.iconName, { size: 16 }) : '',
     h('span', {}, opts.title || ''),
   );
@@ -127,7 +126,15 @@ export function createToolLayout(opts) {
   historyDrawer.append(historyHeader, historyList);
   panes.append(historyDrawer);
 
-  root.append(header, optionsBar, panes, statusBar);
+  // A tool is an app frame: toolbar, content (options + panes), status line.
+  const frame = createAppFrame({
+    label: opts.title || '',
+    toolbar: header,
+    content: h('div', { class: 'nx-tool-body' }, optionsBar, panes),
+    status: statusBar,
+  });
+  const root = frame.root;
+  root.classList.add('nx-tool-layout');
 
   // Buttons & standard actions
   const clearBtn = h(

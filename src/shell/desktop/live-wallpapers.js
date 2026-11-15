@@ -29,6 +29,77 @@ function rng(seed) {
 
 /** @type {Record<string, (ctx: CanvasRenderingContext2D, p: Palette) => Live>} */
 export const LIVE_WALLPAPERS = {
+  // Nexus HUD default: a fine grid with two soft glows, a slow scan band and a cursor highlight.
+  grid(ctx, p) {
+    let w = 0;
+    let h = 0;
+    let mouse = { x: -1e4, y: -1e4 };
+    /** @type {HTMLCanvasElement | OffscreenCanvas | null} */
+    let layer = null;
+    const CELL = 32;
+    function paintLayer() {
+      const ratio = ctx.getTransform().a || 1;
+      const canvas =
+        typeof OffscreenCanvas === 'function'
+          ? new OffscreenCanvas(Math.max(1, w * ratio), Math.max(1, h * ratio))
+          : Object.assign(document.createElement('canvas'), { width: w * ratio, height: h * ratio });
+      const g = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d'));
+      g.scale(ratio, ratio);
+      g.fillStyle = p.bg;
+      g.fillRect(0, 0, w, h);
+      const top = g.createRadialGradient(w / 2, -h * 0.05, 0, w / 2, -h * 0.05, Math.max(w, h) * 0.7);
+      top.addColorStop(0, rgba(p.accent, 0.1));
+      top.addColorStop(1, rgba(p.accent, 0));
+      g.fillStyle = top;
+      g.fillRect(0, 0, w, h);
+      const corner = g.createRadialGradient(w, h, 0, w, h, Math.max(w, h) * 0.55);
+      corner.addColorStop(0, rgba(p.accent2, 0.07));
+      corner.addColorStop(1, rgba(p.accent2, 0));
+      g.fillStyle = corner;
+      g.fillRect(0, 0, w, h);
+      g.strokeStyle = rgba(p.accent, 0.045);
+      g.lineWidth = 1;
+      g.beginPath();
+      for (let x = 0.5; x < w; x += CELL) {
+        g.moveTo(x, 0);
+        g.lineTo(x, h);
+      }
+      for (let y = 0.5; y < h; y += CELL) {
+        g.moveTo(0, y);
+        g.lineTo(w, y);
+      }
+      g.stroke();
+      layer = canvas;
+    }
+    return {
+      resize(nw, nh) {
+        w = nw;
+        h = nh;
+        paintLayer();
+      },
+      pointer(x, y) {
+        mouse = { x, y };
+      },
+      draw(t) {
+        if (layer) ctx.drawImage(layer, 0, 0, w, h);
+        // Slow scan band (one pass every ~14 s).
+        const y = ((t / 14000) % 1) * (h + 240) - 120;
+        const band = ctx.createLinearGradient(0, y - 120, 0, y + 120);
+        band.addColorStop(0, rgba(p.accent, 0));
+        band.addColorStop(0.5, rgba(p.accent, 0.035));
+        band.addColorStop(1, rgba(p.accent, 0));
+        ctx.fillStyle = band;
+        ctx.fillRect(0, y - 120, w, 240);
+        if (mouse.x > -1e3) {
+          const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 160);
+          glow.addColorStop(0, rgba(p.accent2, 0.06));
+          glow.addColorStop(1, rgba(p.accent2, 0));
+          ctx.fillStyle = glow;
+          ctx.fillRect(mouse.x - 160, mouse.y - 160, 320, 320);
+        }
+      },
+    };
+  },
   particles(ctx, p) {
     /** @type {{ x: number, y: number, vx: number, vy: number }[]} */
     let pts = [];

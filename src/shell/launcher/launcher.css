@@ -23,7 +23,9 @@
   width: min(680px, 100%);
   height: min(620px, calc(100vh - 140px));
   overflow: hidden;
-  border-radius: calc(var(--radius-lg) + 4px);
+  border-radius: var(--bevel);
+  corner-shape: var(--corner-shape);
+  border-color: var(--frame);
   animation: nx-launcher-in var(--dur-med) var(--ease-out);
 }
 

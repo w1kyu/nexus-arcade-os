@@ -45,7 +45,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -53,7 +53,7 @@ body {
 :root[data-focus-ring='strong'] :focus-visible {
   outline: 3px solid var(--text-1) !important;
   outline-offset: 2px;
-  box-shadow: 0 0 0 6px var(--accent) !important;
+  box-shadow: 0 0 0 6px var(--focus) !important;
 }
 
 /* Settings → Accessibility: larger buttons and touch targets (WCAG 2.5.5: 44 × 44 px). */
@@ -79,6 +79,11 @@ body {
 button {
   font: inherit;
   color: inherit;
+}
+
+/* Compared numbers line up (rule 8). */
+.nx-num {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Smooth theme switching (the theme engine adds this class for ~0.4 s). */

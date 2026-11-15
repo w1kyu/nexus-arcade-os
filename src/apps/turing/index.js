@@ -170,7 +170,12 @@ export async function mount(container, ctx) {
   // Transition Table panel
   const transTablePanel = h('div', { class: 'nx-cs-pseudo-panel', style: 'padding:12px;' });
   transTablePanel.append(h('h4', { style: 'margin:0 0 8px 0;color:var(--accent)' }, t('info.tableTitle')));
-  const transTableContainer = h('div', { style: 'overflow-y:auto;max-height:260px;' });
+  const transTableContainer = h('div', {
+    style: 'overflow-y:auto;max-height:260px;',
+    role: 'region',
+    'aria-label': t('regions.transitions'),
+    tabindex: '0',
+  });
   transTablePanel.append(transTableContainer);
 
   sidebar.append(infoPanel, transTablePanel);

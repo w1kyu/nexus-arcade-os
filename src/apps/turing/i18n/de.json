@@ -20,5 +20,8 @@
     "steps": "Ausgeführte Schritte",
     "status": "Haltestatus",
     "tableTitle": "Übergangstabelle (δ)"
+  },
+  "regions": {
+    "transitions": "Übergangstabelle"
   }
 }

@@ -20,5 +20,8 @@
     "steps": "Steps Executed",
     "status": "Halt Status",
     "tableTitle": "Transition Table (δ)"
+  },
+  "regions": {
+    "transitions": "Transition table"
   }
 }

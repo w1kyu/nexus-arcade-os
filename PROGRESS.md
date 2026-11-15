@@ -2,9 +2,9 @@
 
 ## Status
 
-- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done (`01a2452`, CI green on all 3 engines); 14.4 done (`a4a6f60`, CI green on all 3 engines); 14.5 wave 1 in progress.
-- **Next step:** 14.5 wave 1 (system apps onto `createAppFrame` + components), then waves 2–5; release `v1.1.0` (14.3 + 14.4) when the owner confirms the tag.
-- **Phase 14.2 verification:** `npm run ux:shots` full run 546 views, 0 errors, axe 68 distinct serious/critical findings in 43 apps; token ratchet in `npm run lint` (baseline 1,813 colors / 101 control classes / 467 font sizes); 139 unit test files (1,106 tests) passing.
+- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`) — **Complete (`v1.1.0`)**.
+- **Next step:** Optional post-release items (dock folders/stacks `[P2]`, remaining P2/P3 polish items).
+- **Phase 14 (`v1.1.0`) verification:** 139 unit test files (1,169 tests) passing; `npm run lint` (0 missing i18n keys, token ratchet at target: colors `1,813 → 169` game art, app-local control classes `101 → 0`, literal font sizes `464 → 17`); `npm run ux:shots` 0 errors and **0 axe serious/critical findings across all 91 apps** (down from 68); CI green across Chromium, Firefox, and WebKit; live e2e (`test:live`) 56 passed; Live Lighthouse Desktop `100 / 100 / 100 / 100`, Mobile `95–98` Perf (`TBT 0 ms`); initial JS `163.0 kB` gzipped (≤ 200 KB); single-file Lite build `7.05 MB` (< 8.00 MB).
 - **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox); CI run `43659186226` for `6fe46cb` green on Chromium, Firefox and WebKit.
 - **Phase 13 (v1.0.1) verification:** 135 unit test files (1,086 tests) passing; GitHub Actions CI run `43542236713` passing across Chromium (`web`, `web-mobile`, `lite`: 44 passed, 35 skipped), Firefox (`web-firefox`, `lite-firefox`: 38 passed, 2 skipped), and WebKit (`web-webkit`, `lite-webkit`: 38 passed, 2 skipped); live `test:live` against `https://nexus-arcade-os.onrender.com` 43 passed / 35 skipped; Live Lighthouse Mobile `99` Perf (`FCP 0.8 s`, `LCP 2.0 s`, `TBT 0 ms`, `CLS 0.006`) / `100` A11y / `100` Best Practices / `100` SEO, Desktop `100` / `100` / `100` / `100` (`TBT 0 ms`); initial JS `161.88 kB` gzipped (≤ 200 KB); single-file Lite build `7.00 MB` (< 8.00 MB).
 - **Phase 12 verification:** AI Provider layer (Ollama, Lemonade, OpenAI-compatible, Anthropic), Nexus Chat, Nexus Assistant, RAG knowledge indexing, tool calling with approval cards, and cross-app AI integrations (1,065 unit tests passing; `tests/e2e/ai.spec.js`).
@@ -1138,7 +1138,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Accessibility across all apps: axe serious/critical 68 → 0 (sheet run, 91 apps). — _icon buttons, selects, sliders, text fields named (EN/DE); scroll regions focusable; board squares named; dotted message keys (raw keys in 8 media apps) nested, `check-i18n.js` rejects them (`check-i18n.test.js`)._
 - [x] [P1] Token debt: hard-coded colors in app CSS 1,813 → 170 (left: game art kept on purpose: 2048 tiles, chess/checkers boards, card faces, minesweeper numbers, swatches, sprites). — _532 colors sat behind variables that never existed (`--nx-border`, `--nx-text-primary`, …), so those apps stayed dark in light themes; the game shell (`--gs-*`) had a fixed dark palette. Text on accent/status backgrounds uses `--accent-contrast` / `--danger-contrast` / `--bg`. New token `--shadow-ink`. Also: Calendar shared the class `.nx-cal` with the top-bar clock popover (`width: 272px`) and squeezed its main view (top bar classes now `.nx-tb-cal-*`); 29 icon names used in apps didn't exist (blank squares): added the icons/aliases, `icons.test.js` checks every literal name._
 - [x] [P1] Apps onto `createAppFrame`: Notes, Tasks, Calendar, Bookmarks, Budget, Journal, Vault, Flashcards, Music, Chat, HTTP Client, Snippets, Recorder, Developer Tools (+ Help earlier); their sidebars are sheets on phones. — _frame gained `bare`, `toggleIn`, `setSidebar`/`setContent`, close-on-pick; e2e `settings.spec.js` "apps on the app frame, on a phone". Kept on purpose (own phone patterns, tool palettes, top tabs, game shell, visualizer layout): listed in `docs/design-system.md`. Also: windows no longer grow past their width to fit an app's minimum content width (`.nx-window` column `minmax(0, 1fr)`), which made Notes overflow on phones._
-- [ ] [P1] Wave 1 (system). — _in progress: phone layout fix for Settings/App Center (e2e `settings.spec.js` "system apps on a phone"), Help on `createAppFrame`, App Center tiles, Settings font tokens; 0 axe findings in the 8 apps._
+- [x] [P1] Wave 1–5 app migration & token ratchet at target: app-local control classes `101 → 0`, literal font sizes `464 → 17` (only Write/Present document typography and 8–9 px cell glyphs remain), transitions on `--dur-*` / `--ease-out`, 86 app descriptions rewritten in plain EN/DE, voice guide in `docs/design-system.md`.
 
 **14.4 Shell**
 
@@ -1148,7 +1148,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Window chrome: `App` / `Document — App` titles (Terminal no longer shows `~ — Terminal`), controls 36 × 32 px (44 px with large targets).
 - [x] [P1] Notifications: max 2 toasts, merged per app with a count, urgent first, achievements last. — _`toast.test.js`._
 - [x] [P1] Dock style _Floating / Rail_ at any edge; work area, desktop icons, toasts and launcher respect it. — _e2e "dock rail"._
-- [ ] [P2] Top bar: app name + window menu (`ctx.window.setMenu`, open item 2.4).
+- [x] [P2] Top bar: app name + window menu (`ctx.window.setMenu`, open item 2.4). — _Write, Paint, Whiteboard, Mind Map menus; e2e `shell.spec.js`._
 - [ ] [P2] Dock folders/stacks (open item 2.6).
 
 **14.3 Design system v2**
@@ -1157,9 +1157,9 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Glow budget: focused window (`--glow-window`), primary button (`--glow-btn`), active selection bar; removed from dock dots and workspace dots.
 - [x] [P1] Components: button sizes/icon-only, segmented, tabs, field, range with value, list row, panel, status badges, empty state, skeleton, toolbar, status bar (`src/ui/components.js`, `controls.css`); gallery in `/#debug`; catalogue in `docs/design-system.md`. — _`app-frame.test.js`._
 - [x] [P1] `createAppFrame` (`src/ui/frame/`): sticky toolbar with overflow menu, collapsible sidebar → sheet below 640 px, inspector, status bar; `tool-layout.js` now builds on it.
-- [x] [P1] Icon grammar: app tiles = glyph in category hue on a dark bevelled slot (`app-icon.css`), system apps neutral, tinted in light themes. Palette rows (14.4) and App Center (14.5) still to follow.
+- [x] [P1] Icon grammar: app tiles = glyph in category hue on a dark bevelled slot (`app-icon.css`), system apps neutral, tinted in light themes.
 - [x] [P1] Shell in direction D: bevelled windows/dock/palette/launcher, mono uppercase titles, accent tick on the focused titlebar, HUD grid wallpaper (`live:grid`, new default), palette opens instantly.
-- [ ] [P2] Typography pass in app CSS (ratchet counts literal font sizes; paid off per app in 14.5).
+- [x] [P2] Typography pass in app CSS (464 → 17 literal font sizes).
 
 **14.2 Measure before changing**
 

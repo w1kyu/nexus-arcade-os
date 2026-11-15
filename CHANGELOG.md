@@ -6,7 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
-Phase 14: UI/UX rework. Planned as v1.1.0.
+## [1.1.0] — 2026-11-15 — UI/UX Rework & Design System v2
 
 ### Added
 

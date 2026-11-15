@@ -428,7 +428,7 @@ export async function mount(container, ctx) {
         h(
           'option',
           { value: k, selected: k === selectedPresetKey },
-          p.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || p.name.en,
+          p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en,
         ),
       ),
     ]);
@@ -471,7 +471,7 @@ export async function mount(container, ctx) {
     wrap.append(controlsRow);
 
     // Visualizer Engine Controls
-    wrap.append(renderVisualizerControls(engine));
+    wrap.append(renderVisualizerControls(engine, { locale: () => ctx.i18n.locale }));
 
     // Split Layout: Editor on left, CPU inspection on right
     const split = h('div', { style: 'display:grid;grid-template-columns:1fr 1.2fr;gap:12px;flex:1;min-height:0;' });

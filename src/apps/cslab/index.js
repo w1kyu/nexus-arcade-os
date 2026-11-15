@@ -108,7 +108,7 @@ export const SYLLABUS_TOPICS = [
 /** @type {import('../../kernel/types').AppModule['mount']} */
 export async function mount(container, ctx) {
   const t = (/** @type {string} */ k, /** @type {Record<string, unknown>} */ v = {}) => ctx.i18n.t(k, v);
-  const isDe = ctx.i18n.currentLocale === 'de';
+  const isDe = ctx.i18n.locale === 'de';
 
   let searchQuery = '';
   let selectedCategory = 'all';

@@ -79,12 +79,13 @@
 
 .nx-cs-pseudo-lines {
   padding: 8px 0;
-  overflow-y: auto;
+  overflow: auto;
   max-height: 220px;
 }
 
 .nx-cs-pseudo-line {
   display: flex;
+  min-width: max-content;
   align-items: center;
   padding: 2px 12px;
   line-height: 1.5;
@@ -93,7 +94,7 @@
 }
 
 .nx-cs-pseudo-line-num {
-  width: 28px;
+  flex: 0 0 28px;
   color: var(--text-3, #8791b3);
   text-align: right;
   margin-right: 12px;
@@ -108,7 +109,8 @@
   background: rgb(62 240 255 / 0.15);
   color: var(--accent, #3ef0ff);
   font-weight: 600;
-  border-left: 3px solid var(--accent, #3ef0ff);
+  /* An inset bar instead of a border, so the active line's text does not shift. */
+  box-shadow: inset 3px 0 0 var(--accent, #3ef0ff);
 }
 
 .nx-cs-btn {

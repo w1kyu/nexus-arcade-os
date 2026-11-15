@@ -19,5 +19,8 @@
     "won": "★ Großartig! Wort erraten! ★",
     "lost": "Vorbei! Das gesuchte Wort war {word}",
     "copied": "Emoji-Raster in Zwischenablage kopiert!"
+  },
+  "hud": {
+    "guesses": "{n}/6 Versuche"
   }
 }

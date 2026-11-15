@@ -39,7 +39,8 @@
     "playTime": "Gesamtspielzeit",
     "level": "Stufe",
     "xp": "XP",
-    "achievements": "Erfolge"
+    "achievements": "Erfolge",
+    "achievementsEmpty": "Spiele, um Erfolge freizuschalten."
   },
   "actions": {
     "play": "SPIELEN",

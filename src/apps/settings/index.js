@@ -149,7 +149,7 @@ export function mount(container, ctx, args) {
               onclick: () => void show(p.id),
             },
             icon(p.icon, { size: 18 }),
-            h('span', { text: t(`pages.${p.id}.title`) }),
+            h('span', { class: 'nx-set-nav-label', text: t(`pages.${p.id}.title`) }),
           )
         );
         navButtons.set(p.id, btn);
@@ -164,7 +164,7 @@ export function mount(container, ctx, args) {
       btn.classList.toggle('is-current', isCurrent);
       if (isCurrent) btn.setAttribute('aria-current', 'page');
       else btn.removeAttribute('aria-current');
-      const label = btn.querySelector('span');
+      const label = btn.querySelector('.nx-set-nav-label');
       if (label) label.textContent = t(`pages.${p.id}.title`);
     }
   }

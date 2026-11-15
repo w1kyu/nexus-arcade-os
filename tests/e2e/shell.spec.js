@@ -92,6 +92,37 @@ test.describe('desktop', () => {
     await expect(page.locator('.nx-widget[data-key="nexus.widgets/clock"] .nx-wclock-time')).toBeVisible();
     expect(errors, errors.join('\n')).toEqual([]);
   });
+
+  for (const viewport of [
+    { width: 1280, height: 720 },
+    { width: 1440, height: 900 },
+  ]) {
+    test(`overview: strip, search and thumbnails do not overlap at ${viewport.width}×${viewport.height}`, async ({
+      page,
+    }) => {
+      // Regression: the translucent backdrop let windows behind collide with the strip and search.
+      await page.setViewportSize(viewport);
+      await startNexus(page);
+      await pressMod(page, 'Shift+Space');
+      const overview = page.locator('.nx-overview');
+      await expect(overview).toBeVisible();
+      const box = async (/** @type {string} */ sel) =>
+        /** @type {{ y: number, height: number }} */ (await page.locator(sel).first().boundingBox());
+      const [strip, search, thumb] = [await box('.nx-ov-strip'), await box('.nx-ov-search'), await box('.nx-ov-win')];
+      expect(strip.y + strip.height).toBeLessThanOrEqual(search.y);
+      expect(search.y + search.height).toBeLessThanOrEqual(thumb.y);
+      // The backdrop hides what is behind it, with or without blur.
+      const alpha = await overview.evaluate((el) => {
+        const probe = document.createElement('div');
+        probe.style.color = getComputedStyle(el).backgroundColor;
+        document.body.append(probe);
+        const m = getComputedStyle(probe).color.match(/[\d.]+/g) ?? [];
+        probe.remove();
+        return m.length === 4 ? Number(m[3]) : 1;
+      });
+      expect(alpha).toBeGreaterThanOrEqual(0.85);
+    });
+  }
 });
 
 test.describe('mobile', () => {
@@ -108,6 +139,18 @@ test.describe('mobile', () => {
     await page.locator(selector).dispatchEvent('pointerdown', { ...init, clientY: y });
     await page.locator(selector).dispatchEvent('pointerup', { ...init, clientY: y + dy });
   }
+
+  test('toasts sit above the app bar', async ({ page }) => {
+    // Regression: the "ready to work offline" toast covered Home and Switcher.
+    await startNexus(page);
+    await page.evaluate(() => {
+      const toast = Object.assign(document.createElement('div'), { className: 'nx-toast', textContent: 'Test toast' });
+      document.querySelector('.nx-toasts')?.append(toast);
+    });
+    const toast = await page.locator('.nx-toast', { hasText: 'Test toast' }).boundingBox();
+    const bar = await page.locator('.nx-mbar').boundingBox();
+    expect(toast && bar && toast.y + toast.height).toBeLessThanOrEqual(/** @type {any} */ (bar).y);
+  });
 
   test('touch only: app bar, sheets, switcher, swipes and long-press; restored after reload', async ({ page }) => {
     const errors = collectErrors(page);

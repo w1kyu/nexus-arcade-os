@@ -177,7 +177,7 @@ export async function mount(container, ctx) {
   cliBar.append(cliPrompt, cliInput);
 
   // Engine controls
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // Main Panes
   const main = h('div', { class: 'nx-ds-main' });
@@ -208,8 +208,7 @@ export async function mount(container, ctx) {
   };
 
   const pseudoPanel = renderPseudocodePanel(pseudocodeMap, () => (engine.getCurrentStep() ? 2 : 1), {
-    locale: ctx.i18n.currentLocale,
-    t,
+    locale: ctx.i18n.locale,
   });
 
   sidebar.append(infoPanel, pseudoPanel);

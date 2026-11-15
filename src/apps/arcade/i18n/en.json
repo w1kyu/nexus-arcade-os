@@ -39,7 +39,8 @@
     "playTime": "Total Playtime",
     "level": "Level",
     "xp": "XP",
-    "achievements": "Achievements"
+    "achievements": "Achievements",
+    "achievementsEmpty": "Play games to unlock achievements."
   },
   "actions": {
     "play": "PLAY",

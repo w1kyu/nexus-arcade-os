@@ -275,7 +275,7 @@ export async function mount(container, ctx) {
         mode,
         moves: guesses.length,
         title: t('status.won'),
-        scoreText: `${guesses.length}/6 ${t('hud.shots') ?? 'guesses'}`,
+        scoreText: t('hud.guesses', { n: guesses.length }),
         onRestart: () => newGame(),
       });
     } else {

@@ -645,7 +645,7 @@ export async function mount(container, ctx) {
       achievementsGrid.append(
         h('p', {
           class: 'nx-achievement-desc',
-          text: t('stats.achievementsEmpty') || 'Play games to unlock achievements!',
+          text: t('stats.achievementsEmpty'),
         }),
       );
       return;

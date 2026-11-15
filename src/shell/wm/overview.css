@@ -16,7 +16,9 @@
   justify-items: center;
   gap: var(--space-4);
   padding: 52px var(--space-5) var(--space-5);
-  background: rgb(0 0 0 / 0.55);
+  /* Nearly opaque: windows behind must not show through the strip, search or thumbnails, even
+     when blur is off (Battery saver) or unsupported. */
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   animation: nx-fade-in var(--dur-med) var(--ease-out);

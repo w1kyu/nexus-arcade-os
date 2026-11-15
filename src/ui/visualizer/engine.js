@@ -1,6 +1,18 @@
 // @ts-check
 import { h, icon } from '../dom.js';
+import { iconSvg } from '../icons/icons.js';
 import './engine.css';
+import de from './i18n/de.json';
+import en from './i18n/en.json';
+
+/**
+ * The engine's own texts (EN/DE). Apps pass their live locale, e.g. `() => ctx.i18n.locale`.
+ * @param {string | (() => string) | undefined} locale
+ */
+function texts(locale) {
+  const value = typeof locale === 'function' ? locale() : locale;
+  return (value === 'de' ? de : en).engine;
+}
 
 /**
  * @typedef {object} VisualizerStep
@@ -275,42 +287,42 @@ export class VisualizerEngine {
  * Renders standard visualizer toolbar controls (play/pause/step/speed/counters).
  * @param {VisualizerEngine} engine
  * @param {object} [opts]
- * @param {(k: string, v?: Record<string, any>) => string} [opts.t]
+ * @param {string | (() => string)} [opts.locale] - 'en' | 'de' (or a getter for the live locale)
  * @param {HTMLElement[]} [opts.customButtons]
  * @param {boolean} [opts.showCounters]
  * @returns {HTMLElement}
  */
 export function renderVisualizerControls(engine, opts = {}) {
-  const t = opts.t || ((k) => k);
+  const s = () => texts(opts.locale);
   const toolbar = h('div', { class: 'nx-cs-engine-toolbar' });
 
   const controls = h('div', { class: 'nx-cs-engine-controls' });
 
   const playBtn = h(
     'button',
-    { class: 'nx-cs-btn primary', title: t('engine.play', 'Play / Pause') },
+    { class: 'nx-cs-btn primary', title: s().playPause, 'aria-label': s().playPause },
     icon('play', { size: 14 }),
-    h('span', { class: 'nx-cs-btn-text' }, t('engine.play', 'Play')),
+    h('span', { class: 'nx-cs-btn-text' }, s().play),
   );
   playBtn.addEventListener('click', () => engine.togglePlay());
 
   const stepBackBtn = h(
     'button',
-    { class: 'nx-cs-btn', title: t('engine.stepBack', 'Step Back') },
+    { class: 'nx-cs-btn', title: s().stepBack, 'aria-label': s().stepBack },
     icon('skip-back', { size: 14 }),
   );
   stepBackBtn.addEventListener('click', () => engine.stepBackward());
 
   const stepForwardBtn = h(
     'button',
-    { class: 'nx-cs-btn', title: t('engine.stepForward', 'Step Forward') },
+    { class: 'nx-cs-btn', title: s().stepForward, 'aria-label': s().stepForward },
     icon('skip-forward', { size: 14 }),
   );
   stepForwardBtn.addEventListener('click', () => engine.stepForward());
 
   const resetBtn = h(
     'button',
-    { class: 'nx-cs-btn', title: t('engine.reset', 'Reset') },
+    { class: 'nx-cs-btn', title: s().reset, 'aria-label': s().reset },
     icon('refresh', { size: 14 }),
   );
   resetBtn.addEventListener('click', () => engine.reset());
@@ -323,14 +335,15 @@ export function renderVisualizerControls(engine, opts = {}) {
 
   // Speed slider
   const speedWrap = h('div', { class: 'nx-cs-engine-speed' });
-  const speedLabel = h('span', {}, t('engine.speed', 'Speed:'));
+  const speedLabel = h('span', {}, s().speed);
   const speedInput = h('input', {
     type: 'range',
     min: '10',
     max: '800',
     step: '10',
     value: String(810 - engine.speed),
-    title: t('engine.speedSlider', 'Adjust execution speed'),
+    title: s().speedSlider,
+    'aria-label': s().speedSlider,
   });
   speedInput.addEventListener('input', () => {
     // Inverted so right is faster (smaller ms)
@@ -353,20 +366,20 @@ export function renderVisualizerControls(engine, opts = {}) {
   function update() {
     const playText = playBtn.querySelector('.nx-cs-btn-text');
     if (playText) {
-      playText.textContent = engine.isPlaying ? t('engine.pause', 'Pause') : t('engine.play', 'Play');
+      playText.textContent = engine.isPlaying ? s().pause : s().play;
     }
     // Update play button icon
     const existingSvg = playBtn.querySelector('.nx-icon');
     if (existingSvg) {
-      existingSvg.outerHTML = icon(engine.isPlaying ? 'pause' : 'play', { size: 14 });
+      existingSvg.outerHTML = iconSvg(engine.isPlaying ? 'pause' : 'play', { size: 14 });
     }
 
     stepBackBtn.disabled = engine.currentIndex < 0 || engine.isPlaying;
     stepForwardBtn.disabled = engine.isDone || engine.isPlaying;
 
-    stepBadge.innerHTML = `${t('engine.step', 'Step')}: <strong>${Math.max(0, engine.currentIndex + 1)}</strong>`;
-    compBadge.innerHTML = `${t('engine.comparisons', 'Comparisons')}: <strong>${engine.counters.comparisons || 0}</strong>`;
-    swapBadge.innerHTML = `${t('engine.swaps', 'Swaps/Writes')}: <strong>${(engine.counters.swaps || 0) + (engine.counters.visited || 0)}</strong>`;
+    stepBadge.innerHTML = `${s().step}: <strong>${Math.max(0, engine.currentIndex + 1)}</strong>`;
+    compBadge.innerHTML = `${s().comparisons}: <strong>${engine.counters.comparisons || 0}</strong>`;
+    swapBadge.innerHTML = `${s().swaps}: <strong>${(engine.counters.swaps || 0) + (engine.counters.visited || 0)}</strong>`;
   }
 
   engine.subscribe(update);
@@ -382,18 +395,18 @@ export function renderVisualizerControls(engine, opts = {}) {
  * @param {object} [opts]
  * @param {string} [opts.locale] - 'en' | 'de'
  * @param {string} [opts.title] - panel title
- * @param {(k: string) => string} [opts.t]
+ * @param {string | (() => string)} [opts.uiLocale] - locale of the panel's own texts (defaults to `locale`)
  * @returns {HTMLElement & { update: () => void, setLocale: (loc: string) => void }}
  */
 export function renderPseudocodePanel(codeByLocale, getCurrentLine, opts = {}) {
-  const t = opts.t || ((k) => k);
+  const s = texts(opts.uiLocale ?? opts.locale);
   let activeLocale = opts.locale === 'de' ? 'de' : 'en';
 
   const panel = h('div', { class: 'nx-cs-pseudo-panel' });
   const header = h('div', { class: 'nx-cs-pseudo-header' });
-  const title = h('span', {}, opts.title || t('engine.pseudocode', 'Pseudocode'));
+  const title = h('span', {}, opts.title || s.pseudocode);
 
-  const langSelect = h('select', { class: 'nx-input small' }, [
+  const langSelect = h('select', { class: 'nx-input small', 'aria-label': s.pseudocodeLanguage }, [
     h('option', { value: 'en', selected: activeLocale === 'en' }, 'EN'),
     h('option', { value: 'de', selected: activeLocale === 'de' }, 'DE'),
   ]);

@@ -1,8 +1,18 @@
 // @ts-check
 // In-memory search index (runs inside the search worker; also usable in-thread).
-// Documents are matched on title (full weight), keywords/subtitle (lower weight) and body text
-// (substring only, with a snippet). Frequently and recently used items rank higher.
+// Documents are matched on title, keywords, subtitle and body text (substring only, with a
+// snippet). Ranking: exact title > title prefix > title word/substring > keywords > subtitle >
+// body; frequently and recently used items rank higher within that order.
 import { fold, fuzzyMatch } from './fuzzy.js';
+
+/**
+ * Score bands for matches outside the title. Every band stays below a title word or substring
+ * match (≥ ~390), so "Notes" finds Nexus Notes before Journal (which has the keyword "notes").
+ * A fuzzy match's tier score (≤ 1000) is compressed into the band.
+ */
+const BAND = { keyword: [300, 380], subtitle: [200, 280], body: [100, 180] };
+/** @param {keyof typeof BAND} band @param {number} tierScore */
+const inBand = (band, tierScore) => BAND[band][0] + (BAND[band][1] - BAND[band][0]) * Math.min(1, tierScore / 1000);
 
 /**
  * @typedef {object} SearchDoc
@@ -105,17 +115,18 @@ export function createSearchIndex({ now = Date.now } = {}) {
         if (types && !types.includes(doc.type)) continue;
         const title = fuzzyMatch(q, doc.title);
         let score = title?.score ?? 0;
-        for (const text of [doc.subtitle, ...(doc.keywords ?? [])]) {
-          if (!text) continue;
-          const m = fuzzyMatch(q, text);
-          if (m) score = Math.max(score, m.score * 0.6);
+        for (const keyword of doc.keywords ?? []) {
+          const m = keyword ? fuzzyMatch(q, keyword) : null;
+          if (m) score = Math.max(score, inBand('keyword', m.score));
         }
+        const sub = doc.subtitle ? fuzzyMatch(q, doc.subtitle) : null;
+        if (sub) score = Math.max(score, inBand('subtitle', sub.score));
         /** @type {string | undefined} */
         let excerpt;
         if (doc.foldedBody && doc.body && foldedQuery.length >= 2) {
           const at = doc.foldedBody.indexOf(foldedQuery);
           if (at !== -1) {
-            score = Math.max(score, 300 - Math.min(100, at / 100));
+            score = Math.max(score, BAND.body[1] - Math.min(BAND.body[1] - BAND.body[0], at / 100));
             excerpt = snippet(doc.body, at, foldedQuery.length);
           }
         }

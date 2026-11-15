@@ -1,10 +1,11 @@
-// Checks message files: every key must exist in every language (error), and keys that no
-// source file mentions are listed as possibly unused (warning — keys can be built dynamically,
-// e.g. `storage.${kind}Title`). Runs in CI as part of `npm run lint`.
+// Checks message files: every key must exist in every language (error), every literal key the
+// code looks up (`t('a.b')`, `ctx.i18n.t('a.b')`) must exist (error), and keys that no source file
+// mentions are listed as possibly unused (warning — keys can be built dynamically, e.g.
+// `storage.${kind}Title`). Runs in CI as part of `npm run lint`.
 import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { join, relative, resolve, sep } from 'node:path';
 
-const root = resolve(import.meta.dirname, '..');
+const root = resolve(process.env.I18N_ROOT ?? resolve(import.meta.dirname, '..'));
 const LOCALES = ['en', 'de'];
 
 /** Flattens nested messages; plural objects ({ one, other, … }) are leaves. */
@@ -26,15 +27,22 @@ function sourceFiles(dir, skip = () => false) {
   });
 }
 
+/**
+ * Literal keys looked up in code: `t('x.y')` or `ctx.i18n.t('x.y')` (quotes or a backtick string
+ * without `${`). Keys built at runtime are not checked. (`system.i18n.t(ns, key)` takes a
+ * namespace first, so other `.t(` calls are skipped.)
+ * @param {string} code
+ */
+function usedKeys(code) {
+  const keys = new Set();
+  const call = /(?<![\w$.])(?:ctx\.i18n\.)?t\(\s*(['"`])([A-Za-z][\w-]*(?:\.[\w-]+)*)\1/g;
+  for (const match of code.matchAll(call)) keys.add(match[2]);
+  return keys;
+}
+
 /** Message namespaces: the system messages and each app/game with an i18n folder. */
-const namespaces = [
-  {
-    name: 'system',
-    dir: join(root, 'src/i18n'),
-    sources: sourceFiles(join(root, 'src'), (p) => /[\\/](apps|games)[\\/]/.test(p)),
-  },
-];
-for (const base of ['src/apps', 'src/games', 'src/dev']) {
+const namespaces = [];
+for (const base of ['src/apps', 'src/games', 'src/dev', 'src/ui']) {
   const dir = join(root, base);
   for (const name of readdirSync(dir)) {
     const i18n = join(dir, name, 'i18n');
@@ -46,6 +54,14 @@ for (const base of ['src/apps', 'src/games', 'src/dev']) {
     }
   }
 }
+
+// System messages: every source outside a folder with its own i18n namespace.
+const owned = namespaces.map((n) => resolve(n.dir, '..'));
+namespaces.unshift({
+  name: 'system',
+  dir: join(root, 'src/i18n'),
+  sources: sourceFiles(join(root, 'src'), (p) => owned.some((dir) => p === dir || p.startsWith(dir + sep))),
+});
 
 let errors = 0;
 let warnings = 0;
@@ -60,6 +76,14 @@ for (const ns of namespaces) {
     errors += missing.length;
   }
   const code = ns.sources.map((f) => readFileSync(f, 'utf8')).join('\n');
+  for (const key of usedKeys(code)) {
+    // Present as a leaf, as a group (`t('a')` on `a.b`), or under a group whose subkey is called
+    // `one`/`other` and so reads as a plural object.
+    const prefixes = key.split('.').map((_, i, parts) => parts.slice(0, i + 1).join('.'));
+    if (prefixes.some((p) => all.has(p)) || [...all].some((k) => k.startsWith(`${key}.`))) continue;
+    console.error(`✖ ${ns.name}: "${key}" is used in code but missing in ${LOCALES.join('/')}.json`);
+    errors++;
+  }
   for (const key of all) {
     // Used if the key appears literally, or its parent appears in a template (`storage.${kind}Title`).
     const parent = key.includes('.') ? key.slice(0, key.lastIndexOf('.') + 1) : '';

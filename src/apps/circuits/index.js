@@ -88,7 +88,7 @@ export async function mount(container, ctx) {
         h(
           'option',
           { value: k, selected: k === selectedPresetKey },
-          p.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || p.name.en,
+          p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en,
         ),
       ),
     ]);

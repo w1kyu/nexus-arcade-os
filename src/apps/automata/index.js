@@ -69,7 +69,7 @@ export async function mount(container, ctx) {
   const presetSelect = h('select', { class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.preset')),
     ...Object.entries(AUTOMATA_PRESETS).map(([k, p]) =>
-      h('option', { value: k }, p.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || p.name.en),
+      h('option', { value: k }, p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en),
     ),
   ]);
   presetSelect.addEventListener('change', () => {
@@ -201,7 +201,7 @@ export async function mount(container, ctx) {
   simBar.append(wordLabel, wordInput, simBtn);
 
   // Engine controls
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // Main Canvas & Sidebar
   const main = h('div', { class: 'nx-automata-main' });

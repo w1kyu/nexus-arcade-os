@@ -25,6 +25,12 @@ test.describe('settings', () => {
     await startNexus(page);
     await openSettings(page);
 
+    // Each nav item shows its icon and its label once (regression: the label refresh used to
+    // overwrite the icon with a second copy of the label).
+    const personalization = nav(page, 'personalization');
+    await expect(personalization.locator('svg.nx-icon')).toHaveCount(1);
+    await expect(personalization).toHaveText('Personalization');
+
     // Search finds a single setting and jumps to it.
     await settings(page).getByTestId('settings-search').fill('dock position');
     await settings(page).getByTestId('settings-result').first().click();
@@ -33,16 +39,16 @@ test.describe('settings', () => {
 
     // Changing the theme applies at once, including time-based schedule controls.
     await nav(page, 'personalization').click();
+    await row(page, 'system/theme').locator('select').selectOption('schedule');
+    await expect(row(page, 'system/themeScheduleLightStart').locator('input[type="time"]')).toBeVisible();
+    await expect(row(page, 'system/themeScheduleDarkStart').locator('input[type="time"]')).toBeVisible();
+    await row(page, 'system/themeScheduleLightStart').locator('input[type="time"]').fill('06:30');
     await row(page, 'system/theme').locator('select').selectOption('synthwave');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'synthwave');
 
     // The palette's @ mode opens a setting in Settings.
     await pressMod(page, 'k');
     await page.keyboard.type('@Keyboard focus ring');
-    await row(page, 'system/theme').locator('select').selectOption('schedule');
-    await expect(row(page, 'system/themeScheduleLightStart').locator('input[type="time"]')).toBeVisible();
-    await expect(row(page, 'system/themeScheduleDarkStart').locator('input[type="time"]')).toBeVisible();
-    await row(page, 'system/themeScheduleLightStart').locator('input[type="time"]').fill('06:30');
     await expect(page.getByRole('option', { name: /Keyboard focus ring/ }).first()).toBeVisible();
     await page.keyboard.press('Enter');
     await page.getByRole('option', { name: 'Open in Settings' }).click();

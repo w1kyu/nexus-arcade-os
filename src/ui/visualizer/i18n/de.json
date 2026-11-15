@@ -1,0 +1,17 @@
+{
+  "engine": {
+    "play": "Abspielen",
+    "pause": "Pause",
+    "playPause": "Abspielen oder pausieren",
+    "stepBack": "Schritt zurück",
+    "stepForward": "Schritt vor",
+    "reset": "Zurücksetzen",
+    "speed": "Tempo",
+    "speedSlider": "Animationstempo",
+    "step": "Schritt",
+    "comparisons": "Vergleiche",
+    "swaps": "Tausch- und Schreibvorgänge",
+    "pseudocode": "Pseudocode",
+    "pseudocodeLanguage": "Sprache des Pseudocodes"
+  }
+}

@@ -47,6 +47,18 @@ test.describe('Phase 8 — CS Lab Educational Tools', () => {
     const sortWin = await openAppFromPalette(page, 'Sorting', 'nexus.sorting');
     await expect(sortWin.locator('.nx-sorting-app')).toBeVisible();
     await expect(sortWin.locator('.nx-sorting-canvas-wrap canvas')).toBeVisible();
+    // Regressions: the hidden race grid squeezed the canvas to ~24 px (flat bars), and the
+    // shared engine showed raw keys like "engine.play".
+    await expect(sortWin.locator('.nx-sorting-race-grid')).toBeHidden();
+    await expect
+      .poll(async () => (await sortWin.locator('.nx-sorting-canvas-wrap canvas').boundingBox())?.height ?? 0)
+      .toBeGreaterThan(200);
+    await expect(sortWin.locator('.nx-cs-engine-toolbar')).toContainText('Play');
+    await expect(sortWin).not.toContainText('engine.');
+    // Pseudocode line numbers keep one fixed column, also on long lines.
+    const nums = sortWin.locator('.nx-cs-pseudo-line-num');
+    const xs = await nums.evaluateAll((els) => els.map((el) => Math.round(el.getBoundingClientRect().left)));
+    expect(new Set(xs).size).toBe(1);
 
     // 4. Open Number & CPU Lab from Palette
     const archWin = await openAppFromPalette(page, 'Number & CPU', 'nexus.archlab');

@@ -134,7 +134,7 @@ export async function mount(container, ctx) {
       h(
         'option',
         { value: k, selected: k === currentAlgoKey },
-        meta.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || meta.name.en,
+        meta.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || meta.name.en,
       ),
     ),
   ]);
@@ -160,7 +160,7 @@ export async function mount(container, ctx) {
   const presetSelect = h('select', { class: 'nx-input small' }, [
     h('option', { value: '', disabled: true, selected: true }, t('controls.preset')),
     ...Object.entries(GRAPH_PRESETS).map(([k, p]) =>
-      h('option', { value: k }, p.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || p.name.en),
+      h('option', { value: k }, p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en),
     ),
   ]);
   presetSelect.addEventListener('change', () => {
@@ -315,7 +315,7 @@ export async function mount(container, ctx) {
   );
   header.append(controlsRow);
 
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // Main canvas wrap & SVG
   const main = h('div', { class: 'nx-graphlab-main' });
@@ -338,7 +338,7 @@ export async function mount(container, ctx) {
       const step = engine.getCurrentStep();
       return step ? step.line || -1 : -1;
     },
-    { locale: ctx.i18n.currentLocale, t },
+    { locale: ctx.i18n.locale },
   );
 
   sidebar.append(infoPanel, pseudoPanel);
@@ -372,7 +372,7 @@ export async function mount(container, ctx) {
       engine.init(meta.generator, nodes, edges, isDirected, startNodeId);
     }
     updateInfo();
-    pseudoPanel.setLocale(ctx.i18n.currentLocale);
+    pseudoPanel.setLocale(ctx.i18n.locale);
     renderSvg();
   }
 

@@ -1,0 +1,17 @@
+{
+  "engine": {
+    "play": "Play",
+    "pause": "Pause",
+    "playPause": "Play or pause",
+    "stepBack": "Step back",
+    "stepForward": "Step forward",
+    "reset": "Reset",
+    "speed": "Speed",
+    "speedSlider": "Animation speed",
+    "step": "Step",
+    "comparisons": "Comparisons",
+    "swaps": "Swaps and writes",
+    "pseudocode": "Pseudocode",
+    "pseudocodeLanguage": "Pseudocode language"
+  }
+}

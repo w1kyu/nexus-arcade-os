@@ -101,7 +101,7 @@ export async function mount(container, ctx) {
       h(
         'option',
         { value: k, selected: k === currentAlgoKey },
-        meta.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || meta.name.en,
+        meta.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || meta.name.en,
       ),
     ),
   ]);
@@ -288,7 +288,7 @@ export async function mount(container, ctx) {
   header.append(controlsRow);
 
   // Engine controls
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // Main Canvas Pane
   const main = h('div', { class: 'nx-pathfinding-main' });
@@ -355,7 +355,7 @@ export async function mount(container, ctx) {
       const step = engine.getCurrentStep();
       return step ? step.line || -1 : -1;
     },
-    { locale: ctx.i18n.currentLocale, t },
+    { locale: ctx.i18n.locale },
   );
 
   sidebar.append(statsPanel, pseudoPanel);
@@ -395,7 +395,7 @@ export async function mount(container, ctx) {
       });
     }
     updateStats();
-    pseudoPanel.setLocale(ctx.i18n.currentLocale);
+    pseudoPanel.setLocale(ctx.i18n.locale);
     draw();
   }
 

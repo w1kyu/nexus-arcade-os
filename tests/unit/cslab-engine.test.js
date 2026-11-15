@@ -92,6 +92,33 @@ describe('Shared Visualizer Engine', () => {
     expect(el.querySelector('.nx-cs-counter-badge')).toBeTruthy();
   });
 
+  it('shows its own localized texts, never raw keys, and swaps the play icon as SVG', () => {
+    function* dummy() {
+      yield { type: 'step' };
+      yield { type: 'step' };
+    }
+    const engine = new VisualizerEngine();
+    engine.init(dummy);
+    let locale = 'en';
+    const el = renderVisualizerControls(engine, { locale: () => locale });
+    const play = /** @type {HTMLButtonElement} */ (el.querySelector('.nx-cs-btn.primary'));
+    expect(play.textContent).toBe('Play');
+    expect(el.textContent).not.toMatch(/engine\.|\[object/);
+
+    locale = 'de';
+    engine.togglePlay();
+    expect(play.textContent).toBe('Pause');
+    expect(play.querySelector('svg.nx-icon')).toBeTruthy();
+    expect(el.textContent).toContain('Schritt');
+    expect(el.textContent).not.toMatch(/engine\.|\[object/);
+    engine.togglePlay();
+    expect(play.textContent).toBe('Abspielen');
+
+    const panel = renderPseudocodePanel({ en: ['a'], de: ['b'] }, () => 1, { locale: 'de' });
+    expect(panel.textContent).not.toMatch(/engine\./);
+    expect(panel.querySelector('select')?.getAttribute('aria-label')).toBe('Sprache des Pseudocodes');
+  });
+
   it('renders pseudocode panel and switches language', () => {
     let curLine = 2;
     const panel = renderPseudocodePanel(

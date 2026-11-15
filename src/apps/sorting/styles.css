@@ -120,6 +120,11 @@
   overflow-y: auto;
 }
 
+/* `display: grid` would override the hidden attribute and steal the canvas's height. */
+.nx-sorting-race-grid[hidden] {
+  display: none;
+}
+
 .nx-race-card {
   background: var(--surface-2, #121628);
   border: 1px solid var(--border, rgb(120 150 255 / 0.18));

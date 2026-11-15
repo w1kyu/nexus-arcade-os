@@ -257,7 +257,7 @@ export function createWidgetHost(shell) {
           label: t('widgets.moveTo'),
           icon: 'layers',
           submenu: shell.wm.workspaces.map((/** @type {{ name: string }} */ ws, /** @type {number} */ i) => ({
-            label: ws.name || t('wm.workspaceN', { n: i + 1, name: '' }).trim(),
+            label: ws.name || t('shell.workspaceN', { n: i + 1, name: '' }).trim(),
             checked: i === p.ws,
             run: () => moveToWorkspace(p, i),
           })),

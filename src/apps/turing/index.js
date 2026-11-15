@@ -74,7 +74,7 @@ export async function mount(container, ctx) {
       h(
         'option',
         { value: k, selected: k === selectedPresetKey },
-        p.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || p.name.en,
+        p.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || p.name.en,
       ),
     ),
   ]);
@@ -152,7 +152,7 @@ export async function mount(container, ctx) {
   controlsRow.append(presetSelect, inputLabel, tapeInput, resetBtn, saveBtn, loadBtn, exportPngBtn, exportSvgBtn);
   header.append(controlsRow);
 
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // Main Panes
   const main = h('div', { class: 'nx-turing-main' });

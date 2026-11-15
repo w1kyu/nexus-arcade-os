@@ -75,6 +75,28 @@ describe('search index', () => {
     expect(index.query('   ')).toEqual([]);
   });
 
+  it('ranks name matches above keyword, description and body matches', () => {
+    // Regression: "Notes" put Journal (keyword "notes") above Nexus Notes (name word match).
+    const index = createSearchIndex();
+    index.upsert([
+      { id: 'journal', type: 'app', title: 'Journal', subtitle: 'Daily notes', keywords: ['notes', 'diary'] },
+      { id: 'nexus-notes', type: 'app', title: 'Nexus Notes', keywords: ['notes', 'markdown'] },
+      { id: 'sticky', type: 'app', title: 'Sticky Notes app' },
+      { id: 'desc', type: 'app', title: 'Whiteboard', subtitle: 'Draw diagrams and notes' },
+      { id: 'file', type: 'file', title: 'todo.md', body: 'remember the lecture notes' },
+    ]);
+    expect(index.query('Notes').map((r) => r.id)).toEqual(['nexus-notes', 'sticky', 'journal', 'desc', 'file']);
+
+    index.upsert([{ id: 'exact', type: 'app', title: 'Notes' }]);
+    index.upsert([{ id: 'prefix', type: 'app', title: 'Notes Pro' }]);
+    expect(
+      index
+        .query('notes')
+        .slice(0, 3)
+        .map((r) => r.id),
+    ).toEqual(['exact', 'prefix', 'nexus-notes']);
+  });
+
   it('boosts recently and frequently used items', () => {
     let t = 1_000_000_000;
     const index = createSearchIndex({ now: () => t });

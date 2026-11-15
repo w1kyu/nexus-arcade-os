@@ -84,4 +84,9 @@
   & .nx-desktop {
     bottom: var(--mbar-height);
   }
+
+  /* Toasts sit above the app bar, never on top of Home/Switcher. */
+  & .nx-toasts {
+    bottom: calc(var(--mbar-height) + var(--space-2));
+  }
 }

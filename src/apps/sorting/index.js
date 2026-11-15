@@ -93,7 +93,7 @@ export async function mount(container, ctx) {
       h(
         'option',
         { value: key, selected: key === selectedAlgorithmKey },
-        meta.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || meta.name.en,
+        meta.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || meta.name.en,
       ),
     ),
   ]);
@@ -253,7 +253,7 @@ export async function mount(container, ctx) {
   header.append(controlsRow);
 
   // Engine Toolbar
-  const engineToolbar = renderVisualizerControls(engine, { t });
+  const engineToolbar = renderVisualizerControls(engine, { locale: () => ctx.i18n.locale });
 
   // ─── Main Content ───
   const main = h('div', { class: 'nx-sorting-main' });
@@ -285,8 +285,7 @@ export async function mount(container, ctx) {
       return step ? step.line || -1 : -1;
     },
     {
-      locale: ctx.i18n.currentLocale,
-      t,
+      locale: ctx.i18n.locale,
     },
   );
 
@@ -326,7 +325,7 @@ export async function mount(container, ctx) {
 
     engine.init(meta.generator, array);
     updateComplexity();
-    pseudoPanel.setLocale(ctx.i18n.currentLocale);
+    pseudoPanel.setLocale(ctx.i18n.locale);
     draw();
   }
 
@@ -468,7 +467,7 @@ export async function mount(container, ctx) {
       const gen = meta.generator(rArr);
       const card = h('div', { class: 'nx-race-card' });
       const rHeader = h('div', { class: 'nx-race-card-header' });
-      const titleSpan = h('span', {}, meta.name[ctx.i18n.currentLocale === 'de' ? 'de' : 'en'] || meta.name.en);
+      const titleSpan = h('span', {}, meta.name[ctx.i18n.locale === 'de' ? 'de' : 'en'] || meta.name.en);
       const rankBadge = h('span', { class: 'nx-cs-counter-badge' }, t('race.running'));
       rHeader.append(titleSpan, rankBadge);
 

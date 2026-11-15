@@ -19,5 +19,8 @@
     "won": "★ Impressive! You solved it! ★",
     "lost": "Game Over! The word was {word}",
     "copied": "Emoji grid copied to clipboard!"
+  },
+  "hud": {
+    "guesses": "{n}/6 guesses"
   }
 }

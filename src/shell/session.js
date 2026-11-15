@@ -23,11 +23,19 @@ export const DEFAULT_PINNED = [
  */
 
 /**
+ * @typedef {object} DockFolder
+ * @property {string} id
+ * @property {string} name
+ * @property {string[]} apps
+ */
+
+/**
  * @typedef {object} SessionData
  * @property {number} version
  * @property {{ count: number, names: string[], current: number }} workspaces
  * @property {SessionWindow[]} windows
  * @property {string[]} pinned
+ * @property {DockFolder[]} [dockFolders]
  * @property {string[]} recentApps
  */
 
@@ -42,12 +50,13 @@ export function createSession(store, log) {
     workspaces: { count: 4, names: [], current: 0 },
     windows: [],
     pinned: [...DEFAULT_PINNED],
+    dockFolders: [],
     recentApps: [],
   };
   let isNew = false;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   let timer;
-  /** @type {(() => Omit<SessionData, 'pinned' | 'recentApps' | 'version'>) | null} */
+  /** @type {(() => Omit<SessionData, 'pinned' | 'dockFolders' | 'recentApps' | 'version'>) | null} */
   let collect = null;
   /** @type {Set<() => void>} */
   const pinnedListeners = new Set();
@@ -66,8 +75,14 @@ export function createSession(store, log) {
   return {
     async load() {
       const saved = /** @type {Partial<SessionData> | undefined} */ (await store.get('session'));
-      if (saved && typeof saved === 'object') data = { ...data, ...saved, version: 1 };
-      else isNew = true;
+      if (saved && typeof saved === 'object') {
+        data = {
+          ...data,
+          ...saved,
+          dockFolders: Array.isArray(saved.dockFolders) ? saved.dockFolders : [],
+          version: 1,
+        };
+      } else isNew = true;
       return data;
     },
     /** True on a brand-new profile (nothing saved yet): the boot opens the first-run setup. */
@@ -77,7 +92,7 @@ export function createSession(store, log) {
     get data() {
       return data;
     },
-    /** @param {() => Omit<SessionData, 'pinned' | 'recentApps' | 'version'>} fn */
+    /** @param {() => Omit<SessionData, 'pinned' | 'dockFolders' | 'recentApps' | 'version'>} fn */
     setCollector(fn) {
       collect = fn;
     },
@@ -90,6 +105,12 @@ export function createSession(store, log) {
     /** @param {string[]} pinned */
     setPinned(pinned) {
       data.pinned = [...new Set(pinned)];
+      this.schedule();
+      for (const fn of pinnedListeners) fn();
+    },
+    /** @param {DockFolder[]} folders */
+    setFolders(folders) {
+      data.dockFolders = folders.filter((f) => f.apps.length > 0);
       this.schedule();
       for (const fn of pinnedListeners) fn();
     },

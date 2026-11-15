@@ -155,6 +155,13 @@
     "newWindow": "New window",
     "pin": "Keep in dock",
     "unpin": "Remove from dock",
+    "addToFolder": "Move to folder",
+    "newFolder": "New folder…",
+    "folderName": "Folder name",
+    "defaultFolder": "Folder",
+    "renameFolder": "Rename folder…",
+    "ungroupFolder": "Ungroup folder",
+    "removeFromFolder": "Move out of folder",
     "closeAll": "Close all windows",
     "openFailed": "{app} couldn't be opened",
     "cmd": {

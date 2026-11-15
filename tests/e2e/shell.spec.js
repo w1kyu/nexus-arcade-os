@@ -203,6 +203,42 @@ test.describe('desktop', () => {
     await page.getByRole('menuitem', { name: 'Minimize' }).click();
     await expect(bar.locator('.nx-tb-menu')).toHaveCount(0);
   });
+
+  test('dock folders: group pinned apps into a stack, launch from the popover, and ungroup', async ({ page }) => {
+    await startNexus(page);
+    const dock = page.locator('.nx-dock');
+    await dock.locator('[data-app="nexus.notes"]').click({ button: 'right' });
+    await page.getByRole('menuitem', { name: /move to folder/i }).hover();
+    await page.getByRole('menuitem', { name: /new folder/i }).click();
+    const modal = page.locator('.nx-modal');
+    await modal.getByRole('textbox').fill('Work');
+    await modal.getByRole('button', { name: 'OK' }).click();
+
+    const folderBtn = dock.getByRole('button', { name: 'Work' });
+    await expect(folderBtn).toBeVisible();
+    await expect(dock.locator('[data-app="nexus.notes"]')).toHaveCount(0);
+
+    // Move Tasks into the same folder.
+    await dock.locator('[data-app="nexus.tasks"]').click({ button: 'right' });
+    await page.getByRole('menuitem', { name: /move to folder/i }).hover();
+    await page.getByRole('menuitem', { name: 'Work' }).click();
+    await expect(dock.locator('[data-app="nexus.tasks"]')).toHaveCount(0);
+
+    // Clicking the folder opens the stack popover and launches Notes.
+    await folderBtn.click();
+    const pop = page.getByRole('dialog', { name: 'Work' });
+    await expect(pop.locator('.nx-dock-folder-app')).toHaveCount(2);
+    await pop.locator('[data-app="nexus.notes"]').click();
+    await expect(page.locator('.nx-windows .nx-window[data-app="nexus.notes"]')).toBeVisible();
+    await expect(folderBtn).toHaveClass(/is-active/);
+
+    // Ungroup puts the apps back in the dock.
+    await folderBtn.click({ button: 'right' });
+    await page.getByRole('menuitem', { name: /ungroup folder/i }).click();
+    await expect(dock.getByRole('button', { name: 'Work' })).toHaveCount(0);
+    await expect(dock.locator('[data-app="nexus.notes"]')).toBeVisible();
+    await expect(dock.locator('[data-app="nexus.tasks"]')).toBeVisible();
+  });
 });
 
 test.describe('mobile', () => {

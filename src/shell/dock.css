@@ -268,6 +268,65 @@
   }
 }
 
+.nx-dock-folder-icon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
+  padding: 4px;
+  place-items: center;
+
+  & .nx-app-icon {
+    box-shadow: none;
+  }
+}
+
+.nx-dock-folder-pop {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 180px;
+}
+
+.nx-dock-folder-title {
+  padding: 0 var(--space-1);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semi);
+}
+
+.nx-dock-folder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(64px, 1fr));
+  gap: var(--space-1);
+}
+
+.nx-dock-folder-app {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-1);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+    background: var(--surface-hover);
+  }
+  & > span:last-child {
+    max-width: 76px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 767px) {
   .nx-dock {
     display: none;

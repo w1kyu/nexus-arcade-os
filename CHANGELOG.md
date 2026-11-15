@@ -12,7 +12,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - **Nexus HUD**, the new default theme: amber accent, cyan focus ring, bevelled window, dock and palette frames, grid wallpaper. Every theme now derives the full set of color roles (surfaces, borders, focus, status tints with readable text, chart colors).
 - **Design system v2** (`src/ui/components.js`, `controls.css`): segmented control, tabs, list rows, panels, badges, empty states, skeletons, toolbars, status bars, sliders with values, and the `createAppFrame` app layout whose sidebar becomes a sheet in narrow windows. Catalogue and voice guide in `docs/design-system.md`.
-- **Shell:** first-boot setup inside the Welcome window, a dock _rail_ style at any edge, grouped command palette results, launcher category chips, at most two toasts at a time grouped per app.
+- **Shell:** first-boot setup inside the Welcome window, a dock _rail_ style at any edge, dock folders/stacks, grouped command palette results, launcher category chips, at most two toasts at a time grouped per app.
 - **Top-bar app menu:** the app name opens the window menu; apps add File/Edit/View menus with `ctx.window.setMenu()` (Write, Paint, Whiteboard, Mind Map).
 - Settings: window and dock corners (bevelled or rounded) and density (comfortable or compact).
 

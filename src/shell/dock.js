@@ -19,6 +19,8 @@ export function createDock(shell) {
   shell.layers.chrome.append(hotEdge, dock);
   /** @type {Map<string, HTMLElement>} */
   const buttons = new Map();
+  /** @type {Map<string, HTMLElement>} */
+  const iconTargets = new Map();
   /** @type {ReturnType<typeof openPopover> | null} */
   let preview = null;
 
@@ -71,17 +73,121 @@ export function createDock(shell) {
     });
   }
 
-  /** Marks the dock item of the focused window's app. */
+  /** Marks the dock item (or folder) of the focused window's app. */
   function markActive() {
     const focused = wm.focusedId();
     const appId = focused ? wm.get(focused)?.appId : null;
-    for (const [id, btn] of buttons) btn.classList.toggle('is-active', id === appId);
+    const folders = session.data.dockFolders ?? [];
+    for (const [id, btn] of buttons) {
+      if (id.startsWith('folder:')) {
+        const folder = folders.find((f) => `folder:${f.id}` === id);
+        btn.classList.toggle('is-active', !!appId && !!folder?.apps.includes(appId));
+      } else {
+        btn.classList.toggle('is-active', id === appId);
+      }
+    }
+  }
+
+  /** @param {string} appId @param {string} [folderId] */
+  async function moveToFolder(appId, folderId) {
+    const folders = (session.data.dockFolders ?? []).map((f) => ({
+      ...f,
+      apps: f.apps.filter((a) => a !== appId),
+    }));
+    let targetId = folderId;
+    if (!targetId) {
+      const name = await sys.dialogs.prompt(t('shell.folderName'), t('shell.defaultFolder'));
+      if (!name?.trim()) return;
+      targetId = Math.random().toString(36).slice(2, 8);
+      folders.push({ id: targetId, name: name.trim(), apps: [] });
+    }
+    const target = folders.find((f) => f.id === targetId);
+    if (target && !target.apps.includes(appId)) target.apps.push(appId);
+    if (session.data.pinned.includes(appId)) {
+      session.setPinned(session.data.pinned.filter((id) => id !== appId));
+    }
+    session.setFolders(folders);
+  }
+
+  /** @param {import('./session.js').DockFolder} folder @param {HTMLElement} anchor */
+  function showFolderPopover(folder, anchor) {
+    preview?.close();
+    const apps = folder.apps.filter((id) => sys.registry.isEnabled(id));
+    const grid = h(
+      'div',
+      { class: 'nx-dock-folder-grid' },
+      ...apps.map((appId) => {
+        const manifest = sys.registry.get(appId);
+        if (!manifest) return null;
+        const name = appName(sys, appId);
+        const tile = h(
+          'button',
+          {
+            class: 'nx-dock-folder-app',
+            type: 'button',
+            dataset: { app: appId },
+            onclick: () => {
+              preview?.close();
+              activate(appId);
+            },
+          },
+          appIcon(manifest, 36),
+          h('span', { text: name }),
+        );
+        attachContextMenu(tile, () => [
+          {
+            label: t('shell.removeFromFolder'),
+            icon: 'pin',
+            run: () => {
+              preview?.close();
+              const next = (session.data.dockFolders ?? []).map((f) =>
+                f.id === folder.id ? { ...f, apps: f.apps.filter((a) => a !== appId) } : f,
+              );
+              session.setFolders(next);
+              session.setPinned([...session.data.pinned, appId]);
+            },
+          },
+          {
+            label: t('shell.unpin'),
+            icon: 'pin-off',
+            run: () => {
+              preview?.close();
+              const next = (session.data.dockFolders ?? []).map((f) =>
+                f.id === folder.id ? { ...f, apps: f.apps.filter((a) => a !== appId) } : f,
+              );
+              session.setFolders(next);
+            },
+          },
+        ]);
+        return tile;
+      }),
+    );
+    preview = openPopover(
+      anchor,
+      h(
+        'div',
+        { class: 'nx-dock-folder-pop' },
+        h('header', { class: 'nx-dock-folder-title', text: folder.name }),
+        grid,
+      ),
+      {
+        label: folder.name,
+        onClose: () => (preview = null),
+      },
+    );
   }
 
   function render() {
-    const pinned = session.data.pinned.filter((id) => sys.registry.isEnabled(id));
-    const running = [...new Set(wm.list().map((w) => w.appId))].filter((id) => !pinned.includes(id));
+    const folders = (session.data.dockFolders ?? [])
+      .map((f) => ({ ...f, apps: f.apps.filter((id) => sys.registry.isEnabled(id)) }))
+      .filter((f) => f.apps.length > 0);
+    const inFolders = new Set(folders.flatMap((f) => f.apps));
+    const pinned = session.data.pinned.filter((id) => sys.registry.isEnabled(id) && !inFolders.has(id));
+    const running = [...new Set(wm.list().map((w) => w.appId))].filter(
+      (id) => !pinned.includes(id) && !inFolders.has(id),
+    );
     buttons.clear();
+    iconTargets.clear();
     const item = (/** @type {string} */ appId, /** @type {boolean} */ isPinned) => {
       const manifest = sys.registry.get(appId);
       if (!manifest) return null;
@@ -129,6 +235,23 @@ export function createDock(shell) {
               run: () => session.setPinned(session.data.pinned.filter((id) => id !== appId)),
             }
           : { label: t('shell.pin'), icon: 'pin', run: () => session.setPinned([...session.data.pinned, appId]) },
+        {
+          label: t('shell.addToFolder'),
+          icon: 'folder',
+          submenu: [
+            ...folders.map((f) => ({
+              label: f.name,
+              icon: 'folder',
+              run: () => void moveToFolder(appId, f.id),
+            })),
+            ...(folders.length ? [/** @type {'separator'} */ ('separator')] : []),
+            {
+              label: t('shell.newFolder'),
+              icon: 'plus',
+              run: () => void moveToFolder(appId),
+            },
+          ],
+        },
         'separator',
         {
           label: t('shell.closeAll'),
@@ -139,14 +262,83 @@ export function createDock(shell) {
       ]);
       if (isPinned) enableReorder(btn, appId);
       buttons.set(appId, btn);
+      iconTargets.set(appId, btn);
       return h('li', { role: 'none' }, btn);
     };
+
+    const folderItem = (/** @type {import('./session.js').DockFolder} */ folder) => {
+      const wins = folder.apps.flatMap((id) => windowsOf(id));
+      const badge = wins.reduce((sum, w) => sum + (w.badge ?? 0), 0);
+      const miniSize = Math.max(12, Math.floor((size() - 10) / 2));
+      const minis = folder.apps.slice(0, 4).map((id) => {
+        const m = sys.registry.get(id);
+        return m ? appIcon(m, miniSize) : null;
+      });
+      const tile = h(
+        'span',
+        { class: 'nx-app-icon nx-dock-folder-icon', style: { '--size': `${size()}px` } },
+        ...minis,
+      );
+      const btn = h(
+        'button',
+        {
+          class: 'nx-dock-item nx-dock-folder',
+          type: 'button',
+          'aria-label': folder.name,
+          'data-tooltip': folder.name,
+          dataset: { folder: folder.id },
+          onclick: () => showFolderPopover(folder, btn),
+        },
+        tile,
+        badge ? h('span', { class: 'nx-badge nx-dock-badge', text: badge > 99 ? '99+' : String(badge) }) : null,
+        h(
+          'span',
+          { class: 'nx-dock-dots', 'aria-hidden': 'true' },
+          ...Array.from({ length: Math.min(3, wins.length) }, () => h('i')),
+        ),
+      );
+      attachContextMenu(btn, () => [
+        {
+          label: t('shell.renameFolder'),
+          icon: 'edit',
+          run: async () => {
+            const nextName = await sys.dialogs.prompt(t('shell.folderName'), folder.name);
+            if (!nextName?.trim()) return;
+            session.setFolders(
+              (session.data.dockFolders ?? []).map((f) => (f.id === folder.id ? { ...f, name: nextName.trim() } : f)),
+            );
+          },
+        },
+        {
+          label: t('shell.ungroupFolder'),
+          icon: 'pin',
+          run: () => {
+            session.setFolders((session.data.dockFolders ?? []).filter((f) => f.id !== folder.id));
+            session.setPinned([...session.data.pinned, ...folder.apps]);
+          },
+        },
+        'separator',
+        {
+          label: t('shell.closeAll'),
+          icon: 'close',
+          disabled: !wins.length,
+          run: () => wins.forEach((w) => void sys.lifecycle.close(w.id)),
+        },
+      ]);
+      buttons.set(`folder:${folder.id}`, btn);
+      for (const appId of folder.apps) {
+        if (!iconTargets.has(appId)) iconTargets.set(appId, btn);
+      }
+      return h('li', { role: 'none' }, btn);
+    };
+
     replace(
       list,
       ...pinned
         .map((id) => item(id, true))
         .filter((x) => !!x)
         .map((x) => /** @type {HTMLElement} */ (x)),
+      ...folders.map(folderItem),
       ...(running.length ? [h('li', { class: 'nx-dock-sep', role: 'separator' })] : []),
       ...running
         .map((id) => item(id, false))
@@ -289,11 +481,7 @@ export function createDock(shell) {
     sys.bus.on(type, () => render());
   sys.bus.on('window:focused', () => markActive());
   sys.settings.onChange('system', '*', (_v, key) => key.startsWith('dock') && applySettings());
-  const originalSetPinned = session.setPinned.bind(session);
-  session.setPinned = (pinned) => {
-    originalSetPinned(pinned);
-    render();
-  };
+  session.onPinned(() => render());
   addEventListener('resize', publishInsets);
   applySettings();
 
@@ -301,7 +489,7 @@ export function createDock(shell) {
     element: dock,
     reserved,
     /** Where a window minimizes to. @param {string} appId */
-    iconRect: (appId) => buttons.get(appId)?.getBoundingClientRect() ?? null,
+    iconRect: (appId) => iconTargets.get(appId)?.getBoundingClientRect() ?? null,
     render,
   };
 }

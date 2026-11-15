@@ -316,7 +316,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Window previews on hover for running apps with multiple windows.
 - [x] [P1] **Top bar / system tray:** launcher button, active app name, workspace indicator, clock (click opens calendar popover), online/offline state, volume, notifications bell with count, profile menu (lock, switch profile, settings, log out).
 - [x] [P1] **Launcher / start menu:** search box, pinned apps, all apps by category, recent files, recent apps; fully keyboard-operable; opens with `Mod` key tap or `Mod+Space`.
-- [ ] [P2] Dock folders/stacks (e.g. "Games").
+- [x] [P2] Dock folders/stacks (e.g. "Games"). — _done in 14.4 (`session.data.dockFolders`, 2×2 mini-icon tile, folder popover, context menu Move to folder / Rename / Ungroup)._
 
 **2.7 Command palette (`Ctrl+K`)**
 
@@ -1149,7 +1149,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Notifications: max 2 toasts, merged per app with a count, urgent first, achievements last. — _`toast.test.js`._
 - [x] [P1] Dock style _Floating / Rail_ at any edge; work area, desktop icons, toasts and launcher respect it. — _e2e "dock rail"._
 - [x] [P2] Top bar: app name + window menu (`ctx.window.setMenu`, open item 2.4). — _Write, Paint, Whiteboard, Mind Map menus; e2e `shell.spec.js`._
-- [ ] [P2] Dock folders/stacks (open item 2.6).
+- [x] [P2] Dock folders/stacks (open item 2.6). — _`session.data.dockFolders`, 2×2 mini-icon tile, folder popover, context menu Move to folder / Rename / Ungroup; e2e `shell.spec.js`._
 
 **14.3 Design system v2**
 

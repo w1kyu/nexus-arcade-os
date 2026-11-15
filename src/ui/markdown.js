@@ -121,7 +121,8 @@ function extractFootnotes(text) {
  * @param {string} text
  */
 async function renderMathPlaceholders(text) {
-  if (!text.includes('$')) return { text, restore: (/** @type {string} */ html) => html };
+  const none = { text, restore: (/** @type {string} */ html) => html, tex: (/** @type {number} */ _i) => '' };
+  if (!text.includes('$')) return none;
   /** @type {{ tex: string, display: boolean }[]} */
   const expressions = [];
   const add = (/** @type {string} */ tex, /** @type {boolean} */ display) => {
@@ -135,7 +136,7 @@ async function renderMathPlaceholders(text) {
   out = out.replace(/(^|[^\\$])\$(?!\s)((?:\\.|[^$\n\\])+?)(?<!\s)\$(?!\d)/g, (m, lead, tex) => {
     return `${lead}${add(tex.trim(), false)}`;
   });
-  if (!expressions.length) return { text, restore: (/** @type {string} */ html) => html };
+  if (!expressions.length) return none;
   const katex = await loadKatex();
   const rendered = expressions.map(({ tex, display }) => {
     try {
@@ -156,6 +157,8 @@ async function renderMathPlaceholders(text) {
   return {
     text: out,
     restore: (/** @type {string} */ html) => html.replace(/@@NXMATH_(\d+)_END@@/g, (_, i) => rendered[Number(i)] ?? ''),
+    /** TeX source of a placeholder, for plain-text uses such as labels. */
+    tex: (/** @type {number} */ i) => expressions[i]?.tex ?? '',
   };
 }
 
@@ -203,7 +206,7 @@ export async function renderMarkdown(markdown, options = {}) {
 
   const mathResult = math
     ? await renderMathPlaceholders(working)
-    : { text: working, restore: (/** @type {string} */ h) => h };
+    : { text: working, restore: (/** @type {string} */ h) => h, tex: (/** @type {number} */ _i) => '' };
   working = unmask(mathResult.text);
 
   let taskIndex = 0;
@@ -230,7 +233,10 @@ export async function renderMarkdown(markdown, options = {}) {
             (item.text ?? '')
               .split('\n')[0]
               .replace(/^\[[ xX]\]\s*/, '')
+              // Math placeholders become their TeX: restore() must not put MathML into the attribute.
+              .replace(/@@NXMATH_(\d+)_END@@/g, (_, i) => mathResult.tex(Number(i)))
               .replace(/<[^>]+>/g, '')
+              .replace(/\*\*|__|~~|`/g, '')
               .trim() || `Task ${idx + 1}`;
           return `<li class="nx-task-item${item.checked ? ' is-done' : ''}" data-task-index="${idx}"><input type="checkbox"${checked}${disabled} data-task-index="${idx}" aria-label="${escapeHtml(labelText)}"> ${stripped}</li>\n`;
         }

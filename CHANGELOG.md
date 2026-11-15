@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+Phase 14: UI/UX rework. Planned as v1.1.0.
+
+### Added
+
+- **Nexus HUD**, the new default theme: amber accent, cyan focus ring, bevelled window, dock and palette frames, grid wallpaper. Every theme now derives the full set of color roles (surfaces, borders, focus, status tints with readable text, chart colors).
+- **Design system v2** (`src/ui/components.js`, `controls.css`): segmented control, tabs, list rows, panels, badges, empty states, skeletons, toolbars, status bars, sliders with values, and the `createAppFrame` app layout whose sidebar becomes a sheet in narrow windows. Catalogue and voice guide in `docs/design-system.md`.
+- **Shell:** first-boot setup inside the Welcome window, a dock _rail_ style at any edge, grouped command palette results, launcher category chips, at most two toasts at a time grouped per app.
+- **Top-bar app menu:** the app name opens the window menu; apps add File/Edit/View menus with `ctx.window.setMenu()` (Write, Paint, Whiteboard, Mind Map).
+- Settings: window and dock corners (bevelled or rounded) and density (comfortable or compact).
+
+### Changed
+
+- 14 sidebar apps (Notes, Tasks, Calendar, Bookmarks, Budget, Journal, Vault, Flashcards, Music, Chat, HTTP Client, Snippets, Recorder, Developer Tools) and Help use the shared app layout, so they work on phones and in narrow windows.
+- App CSS uses design tokens only: hard-coded colors 1,813 → 169 (game art), app-specific control styles 101 → 0, literal font sizes 464 → 17. Light themes and High Contrast now apply inside every app, app text follows the font-size setting, and transitions follow the animation level.
+- App descriptions are one plain sentence each in English and German; all-caps buttons are sentence case.
+
+### Fixed
+
+- The B1–B8 issues from the phase 14 audit, each with a regression test.
+- 0 axe serious/critical findings in all 91 apps (was 68): named icon buttons, fields and sliders, focusable scroll regions, game boards that name every square.
+- Message keys with dots in 8 media apps that showed as raw keys; 29 icons that rendered as empty boxes; Calendar's main view squeezed to 34 px; windows that grew wider than the screen; 63 buttons that used an undefined class and rendered unstyled; HTTP Client request editors that never showed their text; math in a Notes checklist item leaking markup into the text; a background window taking focus from the open palette; Present reacting to keys pressed in other windows.
+
 ## [1.0.1] — 2026-11-14 — Performance, Cross-Browser & Test Stability
 
 ### Performance

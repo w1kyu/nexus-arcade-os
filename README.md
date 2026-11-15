@@ -8,7 +8,7 @@ A complete, offline-first desktop operating system that runs inside your browser
 
 > **Version 1.0.1 — General Release.** All 13 development phases are complete: Kernel, Desktop Shell, System Utilities, Productivity Core, Study & Life Tools, Office & Creative Suite, Developer Toolkit, CS Lab, Game Engine & 31-Game Arcade, Media Center, AI Workspace, Sandboxed Plugin SDK, Theme Editor, Sync Folder, Gamification & Cross-Browser Audits.
 
-![The Nexus desktop: a Welcome window snapped left, clock, Pomodoro, calendar and system status widgets on the right](docs/screenshot.png)
+![The Nexus desktop in the Nexus HUD theme: Nexus Notes showing a rendered note, Calendar behind it, the top bar and the dock](docs/screenshot.png)
 
 **Live PWA:** https://nexus-arcade-os.onrender.com · **Nexus Lite:** [download `nexus-lite.html`](https://nexus-arcade-os.onrender.com/nexus-lite.html)
 

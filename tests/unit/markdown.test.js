@@ -11,6 +11,17 @@ describe('renderMarkdown', () => {
     expect(html).toContain('<code>code</code>');
   });
 
+  it('keeps math in a task item out of its checkbox label', async () => {
+    const html = await renderMarkdown('- [ ] **Math**: inline $E = mc^2$ or a block');
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    expect(doc.querySelector('input[type="checkbox"]')?.getAttribute('aria-label')).toBe(
+      'Math: inline E = mc^2 or a block',
+    );
+    // Before the fix the MathML landed inside the attribute and its tail leaked into the text.
+    expect(doc.querySelector('li')?.textContent).not.toContain('">');
+    expect(doc.querySelectorAll('li math')).toHaveLength(1);
+  });
+
   it('strips scripts, event handlers, styles and javascript: links', async () => {
     const html = await renderMarkdown(
       '<script>alert(1)</script><img src=x onerror="alert(1)"><p style="color:red" onclick="x()">hi</p>\n\n[a](javascript:alert(1))',

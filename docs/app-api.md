@@ -130,7 +130,8 @@ export async function mount(container, ctx, args) {
 - **`ctx.storage`**: `ctx.storage.kv` (key-value store) and `ctx.storage.collection(name)` (`get`, `all`, `query`, `count`, `put`, `create`, `update`, `delete`, `clear`, `onChange`).
 - **`ctx.fs`**: Full profile VFS (`readText`, `readFile`, `writeFile`, `mkdir`, `list`, `stat`, `trash`, `rename`, `move`, `copy`, `watch`, `importFiles`, `download`, `downloadBlob`, `zipFolder`, `recent`).
 - **`ctx.settings`**: `get(key)`, `set(key, val)`, `reset(key?)`, `onChange(key, fn)`, `system(key)`.
-- **`ctx.window`**: `setTitle`, `setBadge`, `setProgress`, `minimize`, `maximize`, `restore`, `close`, `focus`, `resize`, `setFullscreen`, `onResize`, `stateChanged()`.
+- **`ctx.window`**: `setTitle`, `setBadge`, `setProgress`, `minimize`, `maximize`, `restore`, `close`, `focus`, `resize`, `setFullscreen`, `onResize`, `stateChanged()`, `setMenu(menus)`.
+  - `setMenu([{ label: 'File', items: () => [...] }, …])` puts the app's menus next to its name in the top bar while the window is focused. Items use the context-menu shape (`label`, `icon`, `shortcut`, `checked`, `disabled`, `submenu`, `run`); pass a function so checked states are read when the menu opens. The top bar adds the window commands itself. Shortcuts shown there are labels only: register keys with `ctx.shortcuts`. Hidden on phones. Call it as `ctx.window?.setMenu?.(…)`: hosts without a top bar (tests) may not have it.
 - **`ctx.dialog`**: `alert`, `confirm`, `prompt`, `openFile`, `saveFile`, `openFolder`, `pickColor`.
 - **`ctx.intents`**: `open`, `share`, `openersFor`, `getDefault`, `setDefault`, `clearDefault`.
 - **`ctx.events`**: `on`, `once`, `off`, `emit` (wildcards supported; OS reserved prefixes listed in [docs/events.md](events.md) throw if emitted by apps).

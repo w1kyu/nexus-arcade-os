@@ -1075,98 +1075,120 @@ export async function mount(container, ctx, args) {
     }
   }
 
-  function showFileMenu(anchor) {
-    openMenu(
-      [
-        {
-          label: t('file.new', 'New Document'),
-          icon: 'file-plus',
-          run: () => {
-            doc = createDocument(t('app.untitled', 'Untitled Document'));
-            titleInput.value = doc.title;
-            pageEl.innerHTML = doc.content;
-            currentPath = null;
-            applyPageSettings();
-            updateStatus(false);
-            onContentChange(false);
+  function fileMenuEntries() {
+    return [
+      {
+        label: t('file.new', 'New Document'),
+        icon: 'file-plus',
+        run: () => {
+          doc = createDocument(t('app.untitled', 'Untitled Document'));
+          titleInput.value = doc.title;
+          pageEl.innerHTML = doc.content;
+          currentPath = null;
+          applyPageSettings();
+          updateStatus(false);
+          onContentChange(false);
+        },
+      },
+      {
+        label: t('file.open', 'Open...'),
+        icon: 'folder-open',
+        run: () => promptOpenFile(),
+      },
+      'separator',
+      {
+        label: t('file.save', 'Save'),
+        icon: 'download',
+        shortcut: 'Mod+S',
+        run: () => saveFile(),
+      },
+      {
+        label: t('file.saveAs', 'Save As...'),
+        icon: 'download',
+        run: () => saveAsFile(),
+      },
+      'separator',
+      {
+        label: t('file.export', 'Export'),
+        icon: 'share',
+        submenu: [
+          {
+            label: t('file.exportNdoc', 'Export as Nexus Document (.ndoc)'),
+            run: () => downloadFile(`${doc.title}.ndoc`, serializeDocument(doc), 'application/json'),
           },
-        },
-        {
-          label: t('file.open', 'Open...'),
-          icon: 'folder-open',
-          run: () => promptOpenFile(),
-        },
-        'separator',
-        {
-          label: t('file.save', 'Save'),
-          icon: 'download',
-          shortcut: 'Mod+S',
-          run: () => saveFile(),
-        },
-        {
-          label: t('file.saveAs', 'Save As...'),
-          icon: 'download',
-          run: () => saveAsFile(),
-        },
-        'separator',
-        {
-          label: t('file.export', 'Export'),
-          icon: 'share',
-          submenu: [
-            {
-              label: t('file.exportNdoc', 'Export as Nexus Document (.ndoc)'),
-              run: () => downloadFile(`${doc.title}.ndoc`, serializeDocument(doc), 'application/json'),
-            },
-            {
-              label: t('file.exportMd', 'Export as Markdown (.md)'),
-              run: () => downloadFile(`${doc.title}.md`, htmlToMarkdown(pageEl), 'text/markdown'),
-            },
-            {
-              label: t('file.exportHtml', 'Export as HTML (.html)'),
-              run: () => downloadFile(`${doc.title}.html`, pageEl.innerHTML, 'text/html'),
-            },
-            {
-              label: t('file.exportTxt', 'Export as Plain Text (.txt)'),
-              run: () => downloadFile(`${doc.title}.txt`, htmlToPlainText(pageEl), 'text/plain'),
-            },
-          ],
-        },
-        {
-          label: t('file.import', 'Import'),
-          icon: 'upload',
-          submenu: [
-            {
-              label: t('file.importMd', 'Import Markdown'),
-              run: () => promptImport('markdown'),
-            },
-            {
-              label: t('file.importHtml', 'Import HTML'),
-              run: () => promptImport('html'),
-            },
-          ],
-        },
-        'separator',
-        {
-          label: t('file.templates', 'Document Templates'),
-          icon: 'cards',
-          run: () => showTemplatesDialog(),
-        },
-        {
-          label: t('file.print', 'Print / PDF'),
-          icon: 'download',
-          shortcut: 'Mod+P',
-          run: () => window.print(),
-        },
-        'separator',
-        {
-          label: t('file.stats', 'Document Statistics'),
-          icon: 'info',
-          run: () => showStatsModal(),
-        },
-      ],
-      { anchor },
-    );
+          {
+            label: t('file.exportMd', 'Export as Markdown (.md)'),
+            run: () => downloadFile(`${doc.title}.md`, htmlToMarkdown(pageEl), 'text/markdown'),
+          },
+          {
+            label: t('file.exportHtml', 'Export as HTML (.html)'),
+            run: () => downloadFile(`${doc.title}.html`, pageEl.innerHTML, 'text/html'),
+          },
+          {
+            label: t('file.exportTxt', 'Export as Plain Text (.txt)'),
+            run: () => downloadFile(`${doc.title}.txt`, htmlToPlainText(pageEl), 'text/plain'),
+          },
+        ],
+      },
+      {
+        label: t('file.import', 'Import'),
+        icon: 'upload',
+        submenu: [
+          {
+            label: t('file.importMd', 'Import Markdown'),
+            run: () => promptImport('markdown'),
+          },
+          {
+            label: t('file.importHtml', 'Import HTML'),
+            run: () => promptImport('html'),
+          },
+        ],
+      },
+      'separator',
+      {
+        label: t('file.templates', 'Document Templates'),
+        icon: 'cards',
+        run: () => showTemplatesDialog(),
+      },
+      {
+        label: t('file.print', 'Print / PDF'),
+        icon: 'download',
+        shortcut: 'Mod+P',
+        run: () => window.print(),
+      },
+      'separator',
+      {
+        label: t('file.stats', 'Document Statistics'),
+        icon: 'info',
+        run: () => showStatsModal(),
+      },
+    ];
   }
+
+  function showFileMenu(anchor) {
+    openMenu(fileMenuEntries(), { anchor });
+  }
+
+  // Top-bar app menu (phase 14.4): the same commands as the toolbar.
+  ctx.window?.setMenu?.([
+    { label: t('menu.file'), items: () => fileMenuEntries() },
+    {
+      label: t('menu.edit'),
+      items: () => [
+        { label: t('toolbar.undo', 'Undo'), icon: 'undo', shortcut: 'Mod+Z', run: () => undoAction() },
+        { label: t('toolbar.redo', 'Redo'), icon: 'redo', shortcut: 'Mod+Shift+Z', run: () => redoAction() },
+        'separator',
+        { label: t('toolbar.findReplace', 'Find & Replace'), icon: 'search', run: () => findBtn.click() },
+      ],
+    },
+    {
+      label: t('menu.view'),
+      items: () => [
+        { label: t('toolbar.outline', 'Document Outline'), checked: isOutlineOpen, run: () => outlineBtn.click() },
+        { label: t('toolbar.spellcheck', 'Spell check'), checked: isSpellcheck, run: () => spellcheckBtn.click() },
+      ],
+    },
+  ]);
 
   async function promptOpenFile() {
     const input = h('input', { type: 'text', placeholder: '/home/documents/doc.ndoc', class: 'nx-input' });

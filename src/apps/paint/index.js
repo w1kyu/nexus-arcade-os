@@ -1143,71 +1143,75 @@ export async function mount(container, ctx, args) {
     }
   }
 
-  function showFileMenu(anchor) {
-    openMenu(
-      [
-        {
-          label: t('file.new', 'New Painting'),
-          icon: 'file-plus',
-          run: () => {
-            docTitle = t('app.untitled', 'Untitled Painting');
-            titleInput.value = docTitle;
-            currentPath = null;
-            layers = [createLayer('Background', true)];
-            activeLayerId = layers[0].id;
-            renderLayersUi();
-            updateStatus(false);
+  function fileMenuEntries() {
+    return [
+      {
+        label: t('file.new', 'New Painting'),
+        icon: 'file-plus',
+        run: () => {
+          docTitle = t('app.untitled', 'Untitled Painting');
+          titleInput.value = docTitle;
+          currentPath = null;
+          layers = [createLayer('Background', true)];
+          activeLayerId = layers[0].id;
+          renderLayersUi();
+          updateStatus(false);
+        },
+      },
+      {
+        label: t('file.open', 'Open...'),
+        icon: 'folder-open',
+        run: () => promptOpenFile(),
+      },
+      'separator',
+      {
+        label: t('file.save', 'Save'),
+        icon: 'download',
+        shortcut: 'Mod+S',
+        run: () => savePainting(),
+      },
+      {
+        label: t('file.saveAs', 'Save As...'),
+        icon: 'download',
+        run: () => saveAsPainting(),
+      },
+      'separator',
+      {
+        label: t('file.resizeCanvas', 'Resize Canvas...'),
+        icon: 'maximize',
+        run: () => promptResizeCanvas(),
+      },
+      {
+        label: t('file.export', 'Export'),
+        icon: 'share',
+        submenu: [
+          {
+            label: t('file.exportPng', 'Export as PNG (.png)'),
+            run: () => exportImage('image/png', `${docTitle}.png`),
           },
-        },
-        {
-          label: t('file.open', 'Open...'),
-          icon: 'folder-open',
-          run: () => promptOpenFile(),
-        },
-        'separator',
-        {
-          label: t('file.save', 'Save'),
-          icon: 'download',
-          shortcut: 'Mod+S',
-          run: () => savePainting(),
-        },
-        {
-          label: t('file.saveAs', 'Save As...'),
-          icon: 'download',
-          run: () => saveAsPainting(),
-        },
-        'separator',
-        {
-          label: t('file.resizeCanvas', 'Resize Canvas...'),
-          icon: 'maximize',
-          run: () => promptResizeCanvas(),
-        },
-        {
-          label: t('file.export', 'Export'),
-          icon: 'share',
-          submenu: [
-            {
-              label: t('file.exportPng', 'Export as PNG (.png)'),
-              run: () => exportImage('image/png', `${docTitle}.png`),
-            },
-            {
-              label: t('file.exportJpg', 'Export as JPEG (.jpg)'),
-              run: () => exportImage('image/jpeg', `${docTitle}.jpg`),
-            },
-            {
-              label: t('file.exportWebp', 'Export as WebP (.webp)'),
-              run: () => exportImage('image/webp', `${docTitle}.webp`),
-            },
-            {
-              label: t('file.exportNpaint', 'Export as Layered Paint (.npaint)'),
-              run: () => exportNpaintFile(),
-            },
-          ],
-        },
-      ],
-      { anchor },
-    );
+          {
+            label: t('file.exportJpg', 'Export as JPEG (.jpg)'),
+            run: () => exportImage('image/jpeg', `${docTitle}.jpg`),
+          },
+          {
+            label: t('file.exportWebp', 'Export as WebP (.webp)'),
+            run: () => exportImage('image/webp', `${docTitle}.webp`),
+          },
+          {
+            label: t('file.exportNpaint', 'Export as Layered Paint (.npaint)'),
+            run: () => exportNpaintFile(),
+          },
+        ],
+      },
+    ];
   }
+
+  function showFileMenu(anchor) {
+    openMenu(fileMenuEntries(), { anchor });
+  }
+
+  // Top-bar app menu (phase 14.4).
+  ctx.window?.setMenu?.([{ label: t('file.menu'), items: () => fileMenuEntries() }]);
 
   function showExportMenu(anchor) {
     openMenu(

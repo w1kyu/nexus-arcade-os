@@ -24,7 +24,8 @@ export function createTopBar(shell) {
     },
     icon('nexus-mark', { size: 18 }),
   );
-  const activeApp = h('span', { class: 'nx-tb-app', 'aria-live': 'polite' });
+  // Active app: its name opens the window menu; the app's own menus (ctx.window.setMenu) follow.
+  const activeApp = h('div', { class: 'nx-tb-appmenu', role: 'group' });
   const workspaces = h('div', { class: 'nx-tb-workspaces', role: 'group', 'aria-label': t('shell.workspaces') });
   const network = h('span', { class: 'nx-tb-status' });
   const volumeBtn = h('button', { class: 'nx-tb-btn', type: 'button' });
@@ -51,11 +52,79 @@ export function createTopBar(shell) {
   shell.layers.chrome.append(bar);
 
   // Active app ---------------------------------------------------------------
+  /** @param {import('../kernel/types.js').AppMenuEntry[]} entries @returns {import('../ui/menu.js').MenuEntry[]} */
+  const toMenu = (entries) =>
+    entries.map((e) => (e === 'separator' ? e : { ...e, submenu: e.submenu ? toMenu(e.submenu) : undefined }));
+
+  /** @param {string} id */
+  const windowMenu = (id) => {
+    const w = shell.wm.get(id);
+    if (!w) return [];
+    const manifest = sys.registry.get(w.appId);
+    /** @type {import('../ui/menu.js').MenuEntry[]} */
+    const entries = [];
+    if (!manifest?.window?.singleInstance)
+      entries.push({ label: t('shell.newWindow'), icon: 'plus', run: () => void shell.launch(w.appId) }, 'separator');
+    entries.push(
+      { label: t('wm.minimize'), icon: 'minimize', shortcut: 'Mod+M', run: () => shell.wm.minimize(id) },
+      {
+        label: t(w.state === 'maximized' ? 'wm.restore' : 'wm.maximize'),
+        icon: w.state === 'maximized' ? 'restore' : 'maximize',
+        run: () => shell.wm.toggleMaximize(id),
+      },
+      'separator',
+      { label: t('shell.cmd.close'), icon: 'close', shortcut: 'Alt+W', run: () => void sys.lifecycle.close(id) },
+    );
+    return entries;
+  };
+
+  /** @param {HTMLElement} anchor @param {import('../ui/menu.js').MenuEntry[]} entries @param {string} label */
+  const openFrom = (anchor, entries, label) => {
+    anchor.setAttribute('aria-expanded', 'true');
+    openMenu(entries, { anchor, label, onClose: () => anchor.setAttribute('aria-expanded', 'false') });
+  };
+
   const renderActive = () => {
     const id = shell.wm.focusedId();
     const w = id ? shell.wm.get(id) : null;
-    activeApp.textContent = w ? appName(sys, w.appId) : t('shell.desktop');
+    if (!id || !w) {
+      replace(activeApp, h('span', { class: 'nx-tb-app', text: t('shell.desktop') }));
+      activeApp.setAttribute('aria-label', t('shell.desktop'));
+      return;
+    }
+    const name = appName(sys, w.appId);
+    activeApp.setAttribute('aria-label', t('shell.appMenu', { app: name }));
+    const nameBtn = h('button', {
+      class: 'nx-tb-app is-button',
+      type: 'button',
+      text: name,
+      'aria-haspopup': 'menu',
+      'aria-expanded': 'false',
+      'data-tooltip': t('shell.windowMenu'),
+      onclick: () => openFrom(nameBtn, windowMenu(id), name),
+    });
+    const menus = (w.menu ?? []).map((menu) => {
+      const btn = h('button', {
+        class: 'nx-tb-menu',
+        type: 'button',
+        text: menu.label,
+        'aria-haspopup': 'menu',
+        'aria-expanded': 'false',
+        onclick: () => openFrom(btn, toMenu(typeof menu.items === 'function' ? menu.items() : menu.items), menu.label),
+      });
+      return btn;
+    });
+    replace(activeApp, nameBtn, ...menus);
   };
+  // Left/Right move between the app name and the menus, as in a menu bar.
+  activeApp.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const items = /** @type {HTMLElement[]} */ ([...activeApp.querySelectorAll('button')]);
+    const i = items.indexOf(/** @type {HTMLElement} */ (document.activeElement));
+    if (i < 0) return;
+    e.preventDefault();
+    items[(i + (e.key === 'ArrowRight' ? 1 : items.length - 1)) % items.length].focus();
+  });
 
   // Workspaces ---------------------------------------------------------------
   const renderWorkspaces = () =>
@@ -184,6 +253,8 @@ export function createTopBar(shell) {
   };
   for (const type of ['window:focused', 'window:closed', 'window:opened', 'app:focused', 'app:blurred'])
     sys.bus.on(type, renderActive);
+  // Menu changes of the focused window (setMenu) and maximize/restore re-label the window menu.
+  sys.bus.on('window:changed', (/** @type {{ id?: string }} */ p) => p?.id === shell.wm.focusedId() && renderActive());
   for (const type of ['workspace:changed', 'window:opened', 'window:closed', 'window:moved'])
     sys.bus.on(type, renderWorkspaces);
   for (const type of ['notifications:history-changed', 'notification:shown', 'notifications:dnd-changed'])

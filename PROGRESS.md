@@ -300,7 +300,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] Windows stay within the viewport on browser resize; nothing gets lost off-screen.
 - [ ] [P2] **Tiling mode** toggle per workspace: windows auto-arrange in a master/stack layout, keyboard-driven (like a tiling WM).
 - [ ] [P2] Always-on-top, window opacity, "roll up" (title bar only), pin to all workspaces.
-- [ ] [P2] App menu bar inside windows (File, Edit, View …) provided by apps through `ctx.window.setMenu`.
+- [x] [P2] App menu bar (File, Edit, View …) provided by apps through `ctx.window.setMenu`. _Phase 14.4: shown in the top bar next to the app name, not inside windows._
 - [ ] [P3] Shake a window to minimize all others.
 
 **2.5 Workspaces and overview**

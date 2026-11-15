@@ -1037,66 +1037,70 @@ export async function mount(container, ctx, args) {
     }
   }
 
-  function showFileMenu(anchor) {
-    openMenu(
-      [
-        {
-          label: t('file.new', 'New Whiteboard'),
-          icon: 'file-plus',
-          run: () => {
-            board = createBoard(t('app.untitled', 'Untitled Whiteboard'));
-            titleInput.value = board.title;
-            currentPath = null;
-            selectedIds = [];
-            updateStatus(false);
-            render();
+  function fileMenuEntries() {
+    return [
+      {
+        label: t('file.new', 'New Whiteboard'),
+        icon: 'file-plus',
+        run: () => {
+          board = createBoard(t('app.untitled', 'Untitled Whiteboard'));
+          titleInput.value = board.title;
+          currentPath = null;
+          selectedIds = [];
+          updateStatus(false);
+          render();
+        },
+      },
+      {
+        label: t('file.open', 'Open...'),
+        icon: 'folder-open',
+        run: () => promptOpenBoard(),
+      },
+      'separator',
+      {
+        label: t('file.save', 'Save'),
+        icon: 'download',
+        shortcut: 'Mod+S',
+        run: () => saveBoard(),
+      },
+      {
+        label: t('file.saveAs', 'Save As...'),
+        icon: 'download',
+        run: () => saveAsBoard(),
+      },
+      'separator',
+      {
+        label: t('file.templates', 'Board Templates'),
+        icon: 'cards',
+        run: () => showTemplatesDialog(),
+      },
+      {
+        label: t('file.export', 'Export'),
+        icon: 'share',
+        submenu: [
+          {
+            label: t('file.exportSvg', 'Export as SVG (.svg)'),
+            run: () => exportSvgFile(),
           },
-        },
-        {
-          label: t('file.open', 'Open...'),
-          icon: 'folder-open',
-          run: () => promptOpenBoard(),
-        },
-        'separator',
-        {
-          label: t('file.save', 'Save'),
-          icon: 'download',
-          shortcut: 'Mod+S',
-          run: () => saveBoard(),
-        },
-        {
-          label: t('file.saveAs', 'Save As...'),
-          icon: 'download',
-          run: () => saveAsBoard(),
-        },
-        'separator',
-        {
-          label: t('file.templates', 'Board Templates'),
-          icon: 'cards',
-          run: () => showTemplatesDialog(),
-        },
-        {
-          label: t('file.export', 'Export'),
-          icon: 'share',
-          submenu: [
-            {
-              label: t('file.exportSvg', 'Export as SVG (.svg)'),
-              run: () => exportSvgFile(),
-            },
-            {
-              label: t('file.exportPng', 'Export as PNG (.png)'),
-              run: () => exportPngFile(),
-            },
-            {
-              label: t('file.exportNboard', 'Export as Nexus Board (.nboard)'),
-              run: () => downloadFile(`${board.title}.nboard`, serializeBoard(board), 'application/json'),
-            },
-          ],
-        },
-      ],
-      { anchor },
-    );
+          {
+            label: t('file.exportPng', 'Export as PNG (.png)'),
+            run: () => exportPngFile(),
+          },
+          {
+            label: t('file.exportNboard', 'Export as Nexus Board (.nboard)'),
+            run: () => downloadFile(`${board.title}.nboard`, serializeBoard(board), 'application/json'),
+          },
+        ],
+      },
+    ];
   }
+
+  function showFileMenu(anchor) {
+    openMenu(fileMenuEntries(), { anchor });
+  }
+
+  // Top-bar app menu (phase 14.4).
+  ctx.window?.setMenu?.([{ label: t('file.menu'), items: () => fileMenuEntries() }]);
 
   function showExportMenu(anchor) {
     openMenu(

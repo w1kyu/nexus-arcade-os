@@ -117,5 +117,10 @@
     "imageUrl": "Bild-URL oder Data-URI",
     "imageAlt": "Alt-Text",
     "confirmUnsaved": "Es gibt ungespeicherte Änderungen. Trotzdem fortfahren?"
+  },
+  "menu": {
+    "file": "Datei",
+    "edit": "Bearbeiten",
+    "view": "Ansicht"
   }
 }

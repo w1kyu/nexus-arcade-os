@@ -32,6 +32,7 @@ import './wm.css';
  * @property {boolean} minimized
  * @property {number} workspace
  * @property {number | null} badge
+ * @property {import('../../kernel/types.js').AppMenu[] | null} menu  top-bar app menus (ctx.window.setMenu)
  * @property {number | null} progress
  * @property {boolean} fullscreen
  * @property {{ minW: number, minH: number }} min
@@ -619,6 +620,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
       workspace: queued ? Math.min(queued.workspace, workspaces.length - 1) : current,
       badge: null,
       progress: null,
+      menu: null,
       fullscreen: false,
       min: { minW: manifest.window?.minWidth ?? 280, minH: manifest.window?.minHeight ?? 180 },
     };
@@ -701,6 +703,11 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
       /** @param {number | null} count */
       setBadge(count) {
         w.badge = count && count > 0 ? Math.floor(count) : null;
+        emit('window:changed', { id: w.id });
+      },
+      /** @param {import('../../kernel/types.js').AppMenu[] | null} menus */
+      setMenu(menus) {
+        w.menu = menus?.length ? menus : null;
         emit('window:changed', { id: w.id });
       },
       /** @param {number | null} value 0–1, or null to hide */

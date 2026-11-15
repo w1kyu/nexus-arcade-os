@@ -794,75 +794,79 @@ export async function mount(container, ctx, args) {
     }
   }
 
-  function showFileMenu(anchor) {
-    openMenu(
-      [
-        {
-          label: t('file.new', 'New Mind Map'),
-          icon: 'file-plus',
-          run: () => {
-            mapData = createMindmap(t('app.untitled', 'Untitled Mind Map'));
-            titleInput.value = mapData.title;
-            currentPath = null;
-            selectedId = 'root';
-            updateStatus(false);
-            fitAllContent();
+  function fileMenuEntries() {
+    return [
+      {
+        label: t('file.new', 'New Mind Map'),
+        icon: 'file-plus',
+        run: () => {
+          mapData = createMindmap(t('app.untitled', 'Untitled Mind Map'));
+          titleInput.value = mapData.title;
+          currentPath = null;
+          selectedId = 'root';
+          updateStatus(false);
+          fitAllContent();
+        },
+      },
+      {
+        label: t('file.open', 'Open...'),
+        icon: 'folder-open',
+        run: () => promptOpenMap(),
+      },
+      'separator',
+      {
+        label: t('file.save', 'Save'),
+        icon: 'download',
+        shortcut: 'Mod+S',
+        run: () => saveMap(),
+      },
+      {
+        label: t('file.saveAs', 'Save As...'),
+        icon: 'download',
+        run: () => saveAsMap(),
+      },
+      'separator',
+      {
+        label: t('file.import', 'Import'),
+        icon: 'upload',
+        submenu: [
+          {
+            label: t('file.importMd', 'Import Markdown Outline'),
+            run: () => promptImportMarkdown(),
           },
-        },
-        {
-          label: t('file.open', 'Open...'),
-          icon: 'folder-open',
-          run: () => promptOpenMap(),
-        },
-        'separator',
-        {
-          label: t('file.save', 'Save'),
-          icon: 'download',
-          shortcut: 'Mod+S',
-          run: () => saveMap(),
-        },
-        {
-          label: t('file.saveAs', 'Save As...'),
-          icon: 'download',
-          run: () => saveAsMap(),
-        },
-        'separator',
-        {
-          label: t('file.import', 'Import'),
-          icon: 'upload',
-          submenu: [
-            {
-              label: t('file.importMd', 'Import Markdown Outline'),
-              run: () => promptImportMarkdown(),
-            },
-          ],
-        },
-        {
-          label: t('file.export', 'Export'),
-          icon: 'share',
-          submenu: [
-            {
-              label: t('file.exportMd', 'Export as Markdown (.md)'),
-              run: () => downloadFile(`${mapData.title}.md`, exportToMarkdown(mapData.root), 'text/markdown'),
-            },
-            {
-              label: t('file.exportSvg', 'Export as SVG (.svg)'),
-              run: () => exportSvgFile(),
-            },
-            {
-              label: t('file.exportPng', 'Export as PNG (.png)'),
-              run: () => exportPngFile(),
-            },
-            {
-              label: t('file.exportNmap', 'Export as Nexus Map (.nmap)'),
-              run: () => downloadFile(`${mapData.title}.nmap`, serializeMindmap(mapData), 'application/json'),
-            },
-          ],
-        },
-      ],
-      { anchor },
-    );
+        ],
+      },
+      {
+        label: t('file.export', 'Export'),
+        icon: 'share',
+        submenu: [
+          {
+            label: t('file.exportMd', 'Export as Markdown (.md)'),
+            run: () => downloadFile(`${mapData.title}.md`, exportToMarkdown(mapData.root), 'text/markdown'),
+          },
+          {
+            label: t('file.exportSvg', 'Export as SVG (.svg)'),
+            run: () => exportSvgFile(),
+          },
+          {
+            label: t('file.exportPng', 'Export as PNG (.png)'),
+            run: () => exportPngFile(),
+          },
+          {
+            label: t('file.exportNmap', 'Export as Nexus Map (.nmap)'),
+            run: () => downloadFile(`${mapData.title}.nmap`, serializeMindmap(mapData), 'application/json'),
+          },
+        ],
+      },
+    ];
   }
+
+  function showFileMenu(anchor) {
+    openMenu(fileMenuEntries(), { anchor });
+  }
+
+  // Top-bar app menu (phase 14.4).
+  ctx.window?.setMenu?.([{ label: t('file.menu'), items: () => fileMenuEntries() }]);
 
   function showExportMenu(anchor) {
     openMenu(

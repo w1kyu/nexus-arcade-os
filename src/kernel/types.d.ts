@@ -466,6 +466,22 @@ export interface VfsEntry {
   type: 'file' | 'folder';
   mime?: string;
 }
+export interface AppMenuItem {
+  label: string;
+  icon?: string;
+  /** Shown right-aligned, e.g. 'Mod+S'. Display only: register the key with `ctx.shortcuts`. */
+  shortcut?: string;
+  disabled?: boolean;
+  checked?: boolean;
+  danger?: boolean;
+  submenu?: AppMenuEntry[];
+  run?: () => void;
+}
+export type AppMenuEntry = AppMenuItem | 'separator';
+export interface AppMenu {
+  label: string;
+  items: AppMenuEntry[] | (() => AppMenuEntry[]);
+}
 export interface WindowHandle {
   readonly title: string;
   setTitle(title: string): void;
@@ -473,6 +489,12 @@ export interface WindowHandle {
   setBadge(count: number | null): void;
   /** Progress bar on the dock icon, 0–1 (null hides it). */
   setProgress(value: number | null): void;
+  /**
+   * Menus shown next to the app name in the top bar while this window is focused (File, Edit, View …).
+   * `items` may be a function: it runs each time the menu opens, so checked/disabled states stay current.
+   * `null` removes them. The top bar adds the window commands (new window, minimize, maximize, close) itself.
+   */
+  setMenu(menus: AppMenu[] | null): void;
   minimize(): void;
   maximize(): void;
   restore(): void;

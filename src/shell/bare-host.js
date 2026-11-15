@@ -46,6 +46,7 @@ export function createBareHost({ root, system }) {
           close: () => sys.lifecycle.close(instanceId),
           focus: () => sys.lifecycle.focus(instanceId),
           stateChanged: () => {},
+          setMenu: () => {},
         },
       };
     },

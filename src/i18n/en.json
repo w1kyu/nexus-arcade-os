@@ -173,7 +173,9 @@
       "workspaceAdd": "Add a workspace",
       "workspaceRemove": "Remove the last workspace",
       "launchApp": "Open app"
-    }
+    },
+    "appMenu": "{app} menu",
+    "windowMenu": "Window menu"
   },
   "palette": {
     "title": "Command palette",

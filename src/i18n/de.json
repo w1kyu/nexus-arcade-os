@@ -173,7 +173,9 @@
       "workspaceAdd": "Arbeitsfläche hinzufügen",
       "workspaceRemove": "Letzte Arbeitsfläche entfernen",
       "launchApp": "App öffnen"
-    }
+    },
+    "appMenu": "Menü von {app}",
+    "windowMenu": "Fenstermenü"
   },
   "palette": {
     "title": "Befehlspalette",

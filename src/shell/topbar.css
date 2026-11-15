@@ -50,9 +50,20 @@
   color: var(--accent);
 }
 
+/* Active app: its name (window menu) and the app's menus (ctx.window.setMenu). */
+.nx-tb-appmenu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  overflow: hidden;
+}
+
 /* The shell's voice: mono, uppercase, tracked. */
 .nx-tb-app {
   overflow: hidden;
+  flex: 0 1 auto;
+  min-width: 0;
   padding: 0 var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -204,4 +215,31 @@
   .nx-topbar {
     grid-template-columns: auto 1fr;
   }
+}
+
+.nx-tb-app.is-button,
+.nx-tb-menu {
+  height: 28px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-1);
+  cursor: pointer;
+  &:hover,
+  &[aria-expanded='true'] {
+    background: var(--surface-3);
+  }
+}
+
+.nx-tb-menu {
+  flex: none;
+  padding: 0 var(--space-2);
+  font: inherit;
+  font-size: var(--text-ui);
+  white-space: nowrap;
+}
+
+/* Phones: the app bar carries the app; the top bar keeps only the name. */
+:root[data-mobile] .nx-tb-menu {
+  display: none;
 }

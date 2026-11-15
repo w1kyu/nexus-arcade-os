@@ -178,6 +178,31 @@ test.describe('desktop', () => {
     // The description shows on the selected row only.
     await expect(list.getByRole('option').nth(1).locator('small')).toBeHidden();
   });
+
+  test('top-bar app menu: window commands and the app menus of the focused window', async ({ page }) => {
+    await startNexus(page);
+    await pressMod(page, 'k');
+    await page.keyboard.type('nexus write');
+    await expect(page.getByRole('option').first()).toHaveText(/^Nexus Write/);
+    await page.keyboard.press('Enter');
+    const write = page.locator('.nx-windows .nx-window[data-app="nexus.write"]');
+    await expect(write).toBeVisible();
+    const bar = page.locator('.nx-tb-appmenu');
+    await expect(bar.locator('.nx-tb-app')).toHaveText(/write/i);
+    await expect(bar.locator('.nx-tb-menu')).toHaveText(['File', 'Edit', 'View']);
+    // View shows the outline as checked; picking it hides the outline.
+    await bar.getByRole('button', { name: 'View' }).click();
+    const outline = page.getByRole('menuitemcheckbox', { name: /outline/i });
+    await expect(outline).toHaveAttribute('aria-checked', 'true');
+    await outline.click();
+    await bar.getByRole('button', { name: 'View' }).click();
+    await expect(page.getByRole('menuitemcheckbox', { name: /outline/i })).toHaveAttribute('aria-checked', 'false');
+    await page.keyboard.press('Escape');
+    // The app name opens the window menu; Minimize leaves the desktop without app menus.
+    await bar.locator('.nx-tb-app').click();
+    await page.getByRole('menuitem', { name: 'Minimize' }).click();
+    await expect(bar.locator('.nx-tb-menu')).toHaveCount(0);
+  });
 });
 
 test.describe('mobile', () => {

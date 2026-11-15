@@ -117,5 +117,10 @@
     "imageUrl": "Image URL or Data URI",
     "imageAlt": "Alt Text",
     "confirmUnsaved": "You have unsaved changes. Continue anyway?"
+  },
+  "menu": {
+    "file": "File",
+    "edit": "Edit",
+    "view": "View"
   }
 }

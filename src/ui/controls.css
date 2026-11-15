@@ -256,16 +256,23 @@
 
 /* Toggle: <label class="nx-toggle"><input type="checkbox" role="switch"><span></span>Label</label> */
 .nx-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
   font-size: var(--text-sm);
   cursor: pointer;
+  /* The real checkbox covers the whole control (invisible): it keeps a real hit area and is
+     never clipped by a scrolling parent, unlike a 1 px box. */
   & input {
     position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
     opacity: 0;
-    width: 1px;
-    height: 1px;
+    cursor: pointer;
   }
   & > span {
     position: relative;

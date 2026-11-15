@@ -36,6 +36,14 @@ export function validateSetting(decl, value) {
       return typeof value === 'string' && (value === '' || value.startsWith('/'))
         ? ok(value)
         : fail('must be an absolute path');
+    case 'date':
+      return typeof value === 'string' && (value === '' || /^\d{4}-\d{2}-\d{2}$/.test(value))
+        ? ok(value)
+        : fail('must be a date like "2026-11-14"');
+    case 'time':
+      return typeof value === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(value)
+        ? ok(value)
+        : fail('must be a time like "07:00"');
     case 'string':
       return typeof value === 'string' && value.length <= 10_000 ? ok(value) : fail('must be text');
     default:
@@ -54,6 +62,10 @@ export function coerceSetting(decl, value) {
   let candidate = value;
   if (decl.type === 'number' && typeof value === 'string' && value.trim() !== '') candidate = Number(value);
   if (decl.type === 'boolean' && (value === 'true' || value === 'false')) candidate = value === 'true';
+  if (decl.type === 'time' && typeof value === 'string') {
+    const m = value.trim().match(/^(\d{1,2}):([0-5]\d)(?::[0-5]\d)?$/);
+    if (m) candidate = `${m[1].padStart(2, '0')}:${m[2]}`;
+  }
   if (decl.type === 'number' && typeof candidate === 'number' && Number.isFinite(candidate)) {
     candidate = Math.min(decl.max ?? Infinity, Math.max(decl.min ?? -Infinity, candidate));
   }

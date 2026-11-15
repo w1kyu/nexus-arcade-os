@@ -212,7 +212,7 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 - [x] [P1] The 8 themes from master brief §6, accent color override, font scale, transparency/blur level, animation level (full, reduced, off).
 - [x] [P1] Follows system light/dark preference if the user picks "Auto".
 - [x] [P2] Automatic contrast check of accent color against backgrounds; warns or adjusts if below WCAG AA.
-- [ ] [P2] Time-based theme switching (e.g. light during the day, dark at night). — _open (P2)._
+- [x] [P2] Time-based theme switching (e.g. light during the day, dark at night). — _`"schedule"` theme mode (`Auto (by time of day)`) with `themeScheduleLightStart` (`07:00`) / `themeScheduleDarkStart` (`19:00`) time inputs in Settings → Personalization, Personalize panel, and Command Palette, live boundary timer + visibility re-sync._
 
 **1.7 i18n**
 

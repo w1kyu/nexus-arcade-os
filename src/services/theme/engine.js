@@ -136,12 +136,62 @@ export function accentContrast(accent, themeId) {
 }
 
 /**
+ * Parses an `HH:MM` (24-hour) string into minutes since midnight (`0`–`1439`).
+ * @param {unknown} raw
+ * @returns {number | null}
+ */
+export function parseTimeMinutes(raw) {
+  if (typeof raw !== 'string') return null;
+  const match = raw.match(/^([01]\d|2[0-3]):([0-5]\d)$/);
+  if (!match) return null;
+  return Number(match[1]) * 60 + Number(match[2]);
+}
+
+/**
+ * Determines whether `'light'` or `'dark'` applies at `now` for the configured daily schedule.
+ * Supports both daytime (`07:00`→`19:00`) and overnight (`20:00`→`06:00`) light windows.
+ * @param {Date} now
+ * @param {string} [lightStart]
+ * @param {string} [darkStart]
+ * @returns {'light' | 'dark'}
+ */
+export function resolveScheduledScheme(now, lightStart = '07:00', darkStart = '19:00') {
+  const lightMin = parseTimeMinutes(lightStart) ?? 7 * 60;
+  const darkMin = parseTimeMinutes(darkStart) ?? 19 * 60;
+  if (lightMin === darkMin) return 'dark';
+  const current = now.getHours() * 60 + now.getMinutes();
+  if (lightMin < darkMin) return current >= lightMin && current < darkMin ? 'light' : 'dark';
+  return current >= lightMin || current < darkMin ? 'light' : 'dark';
+}
+
+/**
+ * Milliseconds until the next scheduled light/dark boundary, or `null` when both times match.
+ * @param {Date} now
+ * @param {string} [lightStart]
+ * @param {string} [darkStart]
+ * @returns {number | null}
+ */
+export function msUntilNextScheduleChange(now, lightStart = '07:00', darkStart = '19:00') {
+  const lightMin = parseTimeMinutes(lightStart) ?? 7 * 60;
+  const darkMin = parseTimeMinutes(darkStart) ?? 19 * 60;
+  if (lightMin === darkMin) return null;
+  const DAY = 86_400_000;
+  const nowMs = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();
+  const nextDelta = (/** @type {number} */ targetMin) => {
+    const targetMs = targetMin * 60_000;
+    return targetMs > nowMs ? targetMs - nowMs : targetMs + DAY - nowMs;
+  };
+  return Math.min(nextDelta(lightMin), nextDelta(darkMin));
+}
+
+/**
  * @param {object} options
  * @param {import('../settings/settings.js').Settings} options.settings
  * @param {import('../../kernel/bus.js').EventBus} options.bus
  * @param {HTMLElement} options.root                document.documentElement
  * @param {(query: string) => MediaQueryList} [options.matchMedia]
  * @param {() => boolean} [options.isSafeMode]
+ * @param {() => Date} [options.now]
  */
 export function createThemeService({
   settings,
@@ -149,6 +199,7 @@ export function createThemeService({
   root,
   matchMedia = globalThis.matchMedia?.bind(globalThis),
   isSafeMode = () => false,
+  now = () => new Date(),
 }) {
   const prefersLight = matchMedia?.('(prefers-color-scheme: light)');
   const prefersReduced = matchMedia?.('(prefers-reduced-motion: reduce)');
@@ -156,8 +207,11 @@ export function createThemeService({
   let applied = null;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   let transitionTimer;
+  /** @type {ReturnType<typeof setTimeout> | undefined} */
+  let scheduleTimer;
   /** @type {CSSStyleSheet | null} */
   let customSheet = null;
+  let stopped = false;
 
   const sys = (/** @type {string} */ key) => {
     try {
@@ -169,14 +223,43 @@ export function createThemeService({
 
   function resolveThemeId() {
     const chosen = /** @type {string} */ (sys('theme'));
-    if (chosen !== 'auto') return chosen;
-    return /** @type {string} */ (prefersLight?.matches ? sys('themeAutoLight') : sys('themeAutoDark'));
+    if (chosen === 'auto') {
+      return /** @type {string} */ (prefersLight?.matches ? sys('themeAutoLight') : sys('themeAutoDark'));
+    }
+    if (chosen === 'schedule') {
+      const scheme = resolveScheduledScheme(
+        now(),
+        String(sys('themeScheduleLightStart') ?? '07:00'),
+        String(sys('themeScheduleDarkStart') ?? '19:00'),
+      );
+      return /** @type {string} */ (scheme === 'light' ? sys('themeAutoLight') : sys('themeAutoDark'));
+    }
+    return chosen;
   }
 
   function resolveMotion() {
     const chosen = /** @type {string} */ (sys('animation'));
     if (chosen === 'auto') return prefersReduced?.matches ? 'reduced' : 'full';
     return /** @type {MotionLevel} */ (chosen);
+  }
+
+  function syncScheduleTimer() {
+    clearTimeout(scheduleTimer);
+    scheduleTimer = undefined;
+    if (stopped || sys('theme') !== 'schedule') return;
+    const ms = msUntilNextScheduleChange(
+      now(),
+      String(sys('themeScheduleLightStart') ?? '07:00'),
+      String(sys('themeScheduleDarkStart') ?? '19:00'),
+    );
+    if (ms === null) return;
+    // Wake at the exact boundary (+50 ms) or at most hourly so sleep/DST shifts stay accurate.
+    const delay = Math.max(250, Math.min(ms + 50, 3_600_000));
+    scheduleTimer = setTimeout(() => {
+      if (stopped || sys('theme') !== 'schedule') return;
+      if (resolveThemeId() !== applied?.theme.id) apply({ animate: true });
+      else syncScheduleTimer();
+    }, delay);
   }
 
   /** Applies or clears Custom CSS safely using Constructed Stylesheets when available. */
@@ -240,6 +323,7 @@ export function createThemeService({
     applyCustomCss();
     const changed = applied?.theme.id !== next.theme.id;
     applied = next;
+    syncScheduleTimer();
     bus.emit('theme:changed', {
       theme: next.theme.id,
       scheme: next.theme.scheme,
@@ -252,6 +336,8 @@ export function createThemeService({
     'theme',
     'themeAutoLight',
     'themeAutoDark',
+    'themeScheduleLightStart',
+    'themeScheduleDarkStart',
     'customTheme',
     'accent',
     'fontScale',
@@ -267,18 +353,40 @@ export function createThemeService({
     'focusRing',
     'largeTargets',
   ]);
-  settings.onChange('system', '*', (_value, key) => {
+  const unsubSettings = settings.onChange('system', '*', (_value, key) => {
     if (key === 'theme' && _value && String(sys('customTheme') || '')) {
       // Clear custom override when switching explicitly to a built-in preset
       void settings.set('system', 'customTheme', '').catch(() => {});
     }
     if (THEME_KEYS.has(key)) apply({ animate: true });
   });
-  prefersLight?.addEventListener?.('change', () => sys('theme') === 'auto' && apply({ animate: true }));
-  prefersReduced?.addEventListener?.('change', () => sys('animation') === 'auto' && apply());
+  const onLightChange = () => {
+    if (sys('theme') === 'auto') apply({ animate: true });
+  };
+  const onReducedChange = () => {
+    if (sys('animation') === 'auto') apply();
+  };
+  const doc = root?.ownerDocument;
+  const onVisibilityChange = () => {
+    if (stopped || doc?.hidden || sys('theme') !== 'schedule') return;
+    if (resolveThemeId() !== applied?.theme.id) apply({ animate: true });
+    else syncScheduleTimer();
+  };
+  prefersLight?.addEventListener?.('change', onLightChange);
+  prefersReduced?.addEventListener?.('change', onReducedChange);
+  doc?.addEventListener?.('visibilitychange', onVisibilityChange);
 
   return {
     apply,
+    stop() {
+      stopped = true;
+      clearTimeout(transitionTimer);
+      clearTimeout(scheduleTimer);
+      unsubSettings?.();
+      prefersLight?.removeEventListener?.('change', onLightChange);
+      prefersReduced?.removeEventListener?.('change', onReducedChange);
+      doc?.removeEventListener?.('visibilitychange', onVisibilityChange);
+    },
     themes: () => allThemes(),
     builtInThemes: () => THEMES,
     /** Registers dynamic plugin themes; returns unregister callback. */
@@ -302,7 +410,7 @@ export function createThemeService({
       }
       await settings.set('system', 'customTheme', JSON.stringify(themeObj));
     },
-    /** Resolved theme id (never 'auto'). */
+    /** Resolved theme id (never 'auto' or 'schedule'). */
     get current() {
       return applied?.theme.id ?? resolveThemeId();
     },

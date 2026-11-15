@@ -31,7 +31,7 @@ export const LOCALES = /** @type {const} */ (['en', 'de']);
 const ID = /^[a-z0-9]+(\.[a-z0-9-]+)+$/;
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
 const NAME = /^[a-z0-9][a-z0-9_-]*$/;
-const SETTING_TYPES = ['string', 'number', 'boolean', 'enum', 'color', 'shortcut', 'path', 'date'];
+const SETTING_TYPES = ['string', 'number', 'boolean', 'enum', 'color', 'shortcut', 'path', 'date', 'time'];
 
 export class ManifestError extends Error {
   /** @param {string} id @param {string[]} problems */

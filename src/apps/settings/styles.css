@@ -283,6 +283,10 @@
   width: 100px;
 }
 
+.nx-set-time {
+  width: auto;
+}
+
 .nx-set-swatch {
   width: 14px;
   height: 14px;

@@ -586,6 +586,7 @@ export function createPalette(shell) {
       const current = sys.settings.get('system', 'theme');
       return [
         { value: 'auto', label: t('palette.themeAuto'), icon: 'contrast', current: current === 'auto' },
+        { value: 'schedule', label: t('palette.themeSchedule'), icon: 'clock', current: current === 'schedule' },
         ...sys.theme.themes().map((th) => ({
           value: th.id,
           label: sys.localize(th.name),

@@ -60,6 +60,7 @@ export function createPersonalize(shell) {
       'div',
       { class: 'nx-pz-themes', role: 'radiogroup', 'aria-label': t('personalize.theme') },
       themeCard('auto', t('palette.themeAuto'), null, current === 'auto'),
+      themeCard('schedule', t('palette.themeSchedule'), null, current === 'schedule', 'clock'),
       ...sys.theme.themes().map((th) => themeCard(th.id, sys.localize(th.name), th.colors, current === th.id)),
     );
     const accent = h('input', { type: 'color', class: 'nx-pz-color', 'aria-label': t('personalize.accent') });
@@ -112,8 +113,9 @@ export function createPersonalize(shell) {
    * @param {string} name
    * @param {import('../../services/theme/themes.js').ThemePalette | null} colors
    * @param {boolean} selected
+   * @param {string} [fallbackIcon]
    */
-  function themeCard(id, name, colors, selected) {
+  function themeCard(id, name, colors, selected, fallbackIcon = 'contrast') {
     const swatch = colors
       ? h(
           'span',
@@ -122,7 +124,7 @@ export function createPersonalize(shell) {
           h('b', { style: { background: colors.accent } }),
           h('b', { style: { background: colors.accent2 } }),
         )
-      : h('span', { class: 'nx-pz-swatch is-auto' }, icon('contrast', { size: 22 }));
+      : h('span', { class: 'nx-pz-swatch is-auto' }, icon(fallbackIcon, { size: 22 }));
     return h(
       'button',
       {

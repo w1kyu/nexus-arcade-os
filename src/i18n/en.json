@@ -192,6 +192,7 @@
     "off": "Off",
     "changeTheme": "Change theme…",
     "themeAuto": "Auto (follow system)",
+    "themeSchedule": "Auto (by time of day)",
     "kind": {
       "app": "App",
       "command": "Command",

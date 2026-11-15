@@ -90,7 +90,7 @@ interface SettingBase {
 }
 export type SettingDecl =
   | (SettingBase & { type: 'number'; default: number; min?: number; max?: number; step?: number })
-  | (SettingBase & { type: 'string' | 'color' | 'shortcut' | 'path' | 'date'; default: string })
+  | (SettingBase & { type: 'string' | 'color' | 'shortcut' | 'path' | 'date' | 'time'; default: string })
   | (SettingBase & { type: 'boolean'; default: boolean })
   | (SettingBase & { type: 'enum'; default: string; options: { value: string; label: L10n }[] });
 

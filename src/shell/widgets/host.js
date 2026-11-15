@@ -449,7 +449,8 @@ export function createWidgetHost(shell) {
       } else {
         const input = h('input', {
           class: 'nx-input',
-          type: { number: 'number', color: 'color', date: 'date' }[/** @type {string} */ (s.type)] ?? 'text',
+          type:
+            { number: 'number', color: 'color', date: 'date', time: 'time' }[/** @type {string} */ (s.type)] ?? 'text',
           min: s.type === 'number' ? s.min : undefined,
           max: s.type === 'number' ? s.max : undefined,
           step: s.type === 'number' ? s.step : undefined,

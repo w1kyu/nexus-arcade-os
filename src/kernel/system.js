@@ -773,6 +773,7 @@ async function openProfile(options, k, profile) {
     systemHost,
     network,
     async stop() {
+      theme.stop();
       sources.stop();
       scheduler.stop();
       plugins?.dispose();

@@ -14,7 +14,14 @@ import {
   readableOn,
   rgba,
 } from '../../src/services/theme/color.js';
-import { accentContrast, computeTokens, createThemeService } from '../../src/services/theme/engine.js';
+import {
+  accentContrast,
+  computeTokens,
+  createThemeService,
+  msUntilNextScheduleChange,
+  parseTimeMinutes,
+  resolveScheduledScheme,
+} from '../../src/services/theme/engine.js';
 import { THEMES } from '../../src/services/theme/themes.js';
 
 describe('color math', () => {
@@ -116,6 +123,40 @@ describe('computeTokens', () => {
   });
 });
 
+describe('time-based theme schedule math', () => {
+  it('parses HH:MM strings and rejects invalid values', () => {
+    expect(parseTimeMinutes('00:00')).toBe(0);
+    expect(parseTimeMinutes('07:30')).toBe(450);
+    expect(parseTimeMinutes('23:59')).toBe(1439);
+    expect(parseTimeMinutes('24:00')).toBeNull();
+    expect(parseTimeMinutes('7:00')).toBeNull();
+  });
+
+  it('resolves daytime and overnight windows inclusively on start', () => {
+    const at = (h, m) => new Date(2026, 10, 14, h, m, 0, 0);
+    expect(resolveScheduledScheme(at(6, 59), '07:00', '19:00')).toBe('dark');
+    expect(resolveScheduledScheme(at(7, 0), '07:00', '19:00')).toBe('light');
+    expect(resolveScheduledScheme(at(18, 59), '07:00', '19:00')).toBe('light');
+    expect(resolveScheduledScheme(at(19, 0), '07:00', '19:00')).toBe('dark');
+
+    // Overnight light window (20:00 -> 06:00)
+    expect(resolveScheduledScheme(at(22, 0), '20:00', '06:00')).toBe('light');
+    expect(resolveScheduledScheme(at(5, 59), '20:00', '06:00')).toBe('light');
+    expect(resolveScheduledScheme(at(6, 0), '20:00', '06:00')).toBe('dark');
+
+    // Equal start times fall back safely to dark with no scheduled transitions
+    expect(resolveScheduledScheme(at(12, 0), '08:00', '08:00')).toBe('dark');
+    expect(msUntilNextScheduleChange(at(12, 0), '08:00', '08:00')).toBeNull();
+  });
+
+  it('computes milliseconds to the next boundary across midnight', () => {
+    const at1859 = new Date(2026, 10, 14, 18, 59, 45, 0);
+    expect(msUntilNextScheduleChange(at1859, '07:00', '19:00')).toBe(15_000);
+    const at2350 = new Date(2026, 10, 14, 23, 50, 0, 0);
+    expect(msUntilNextScheduleChange(at2350, '07:00', '19:00')).toBe((7 * 60 + 10) * 60_000);
+  });
+});
+
 describe('theme service', () => {
   function mediaQueries({ light = false, reduced = false } = {}) {
     const lists = {};
@@ -124,6 +165,10 @@ describe('theme service', () => {
       lists[query] = {
         matches,
         addEventListener: (_t, fn) => listeners.push(fn),
+        removeEventListener: (_t, fn) => {
+          const idx = listeners.indexOf(fn);
+          if (idx >= 0) listeners.splice(idx, 1);
+        },
         fire: () => listeners.forEach((f) => f()),
       };
       return lists[query];
@@ -133,7 +178,7 @@ describe('theme service', () => {
     return { matchMedia: (q) => lists[q], lists };
   }
 
-  async function setup(media = {}) {
+  async function setup(media = {}, nowFn) {
     const bus = createEventBus();
     const db = await createMemoryEngine().open('p', SETTINGS_STORE_SCHEMA);
     const settings = createSettings({ db, bus, log: createLogger().child('s') });
@@ -141,7 +186,7 @@ describe('theme service', () => {
     await settings.load();
     const { matchMedia, lists } = mediaQueries(media);
     const root = document.documentElement;
-    const theme = createThemeService({ settings, bus, root, matchMedia });
+    const theme = createThemeService({ settings, bus, root, matchMedia, now: nowFn });
     theme.apply();
     return { bus, settings, theme, root, lists };
   }
@@ -183,6 +228,39 @@ describe('theme service', () => {
     expect(theme.current).toBe('neon-night');
     await settings.set('system', 'themeAutoDark', 'deep-ocean');
     expect(root.dataset.theme).toBe('deep-ocean');
+  });
+
+  it('switches themes automatically by time of day in schedule mode', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 10, 14, 18, 59, 50, 0));
+    const { root, settings, theme, bus } = await setup({}, () => new Date());
+    const changed = vi.fn();
+    bus.on('theme:changed', changed);
+
+    await settings.set('system', 'themeAutoLight', 'paper');
+    await settings.set('system', 'themeAutoDark', 'blade');
+    await settings.set('system', 'theme', 'schedule');
+    expect(root.dataset.theme).toBe('paper');
+    expect(theme.current).toBe('paper');
+
+    // Advance across 19:00 boundary -> switches automatically to dark theme.
+    await vi.advanceTimersByTimeAsync(11_000);
+    expect(root.dataset.theme).toBe('blade');
+    expect(theme.current).toBe('blade');
+    expect(changed).toHaveBeenLastCalledWith(
+      expect.objectContaining({ theme: 'blade', scheme: 'dark', themeSwitched: true }),
+      'theme:changed',
+    );
+
+    // Updating the dark cutoff later than current time switches back to light immediately.
+    await settings.set('system', 'themeScheduleDarkStart', '21:00');
+    expect(root.dataset.theme).toBe('paper');
+
+    // Stop detaches timers cleanly.
+    theme.stop();
+    await vi.advanceTimersByTimeAsync(2 * 3_600_000);
+    expect(root.dataset.theme).toBe('paper');
+    vi.useRealTimers();
   });
 
   it('respects prefers-reduced-motion when animation is Auto', async () => {

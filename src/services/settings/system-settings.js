@@ -58,7 +58,11 @@ export const SYSTEM_SETTINGS = [
     key: 'theme',
     type: 'enum',
     default: 'neon-night',
-    options: [{ value: 'auto', label: L('Auto (follow system)', 'Automatisch (wie System)') }, ...themeOptions],
+    options: [
+      { value: 'auto', label: L('Auto (follow system)', 'Automatisch (wie System)') },
+      { value: 'schedule', label: L('Auto (by time of day)', 'Automatisch (nach Uhrzeit)') },
+      ...themeOptions,
+    ],
     label: L('Theme', 'Design'),
   },
   {
@@ -74,6 +78,18 @@ export const SYSTEM_SETTINGS = [
     default: 'arctic-light',
     options: lightThemes,
     label: L('Light theme for Auto', 'Helles Design für Automatisch'),
+  },
+  {
+    key: 'themeScheduleLightStart',
+    type: 'time',
+    default: '07:00',
+    label: L('Light theme starts at', 'Helles Design ab'),
+  },
+  {
+    key: 'themeScheduleDarkStart',
+    type: 'time',
+    default: '19:00',
+    label: L('Dark theme starts at', 'Dunkles Design ab'),
   },
   { key: 'accent', type: 'color', default: '', label: L('Accent color', 'Akzentfarbe') },
   { key: 'fontScale', type: 'number', default: 1, min: 0.8, max: 1.5, step: 0.05, label: L('Text size', 'Textgröße') },

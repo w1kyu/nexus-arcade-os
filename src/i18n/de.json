@@ -192,6 +192,7 @@
     "off": "Aus",
     "changeTheme": "Design ändern …",
     "themeAuto": "Automatisch (wie System)",
+    "themeSchedule": "Automatisch (nach Uhrzeit)",
     "kind": {
       "app": "App",
       "command": "Befehl",

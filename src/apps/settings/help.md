@@ -12,7 +12,7 @@ immediately. The ↺ button next to a setting resets it to its default.
 
 ## Pages
 
-- **Personalization:** theme (or Auto to follow your system), accent color, wallpaper (gallery,
+- **Personalization:** theme (or Auto to follow your system or time of day), accent color, wallpaper (gallery,
   your own picture, slideshow from a folder), text size, transparency, animations, battery saver
   and sounds.
 - **Desktop & Dock:** dock position, size, auto-hide and magnification; widgets and workspaces.

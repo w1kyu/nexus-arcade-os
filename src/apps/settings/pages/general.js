@@ -15,6 +15,8 @@ export const personalization = {
     'theme',
     'themeAutoDark',
     'themeAutoLight',
+    'themeScheduleLightStart',
+    'themeScheduleDarkStart',
     'accent',
     'wallpaper',
     'wallpaperFit',
@@ -36,13 +38,16 @@ export const personalization = {
   render(pc) {
     const { t } = pc;
     const theme = String(pc.value('theme'));
+    const autoThemes = theme === 'auto' || theme === 'schedule';
     const wallpaper = String(pc.value('wallpaper'));
     return [
       group(
         t('group.theme'),
         pc.row('theme'),
-        theme === 'auto' ? pc.row('themeAutoDark') : null,
-        theme === 'auto' ? pc.row('themeAutoLight') : null,
+        autoThemes ? pc.row('themeAutoDark') : null,
+        autoThemes ? pc.row('themeAutoLight') : null,
+        theme === 'schedule' ? pc.row('themeScheduleLightStart') : null,
+        theme === 'schedule' ? pc.row('themeScheduleDarkStart') : null,
         pc.row('accent'),
         pc.row('transparency'),
         pc.row('animation'),

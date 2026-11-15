@@ -18,6 +18,7 @@ const decls = [
   },
   { key: 'accent', type: 'color', default: '', label: L('Accent') },
   { key: 'folder', type: 'path', default: '/home', label: L('Folder') },
+  { key: 'startAt', type: 'time', default: '07:00', label: L('Start at') },
 ];
 
 async function setup() {
@@ -32,7 +33,7 @@ async function setup() {
 
 describe('setting validation', () => {
   it('validates each type', () => {
-    const [num, bool, en, color, path] = decls;
+    const [num, bool, en, color, path, time] = decls;
     expect(validateSetting(num, 300)).toEqual({ ok: true, value: 300 });
     expect(validateSetting(num, 100).ok).toBe(false);
     expect(validateSetting(num, NaN).ok).toBe(false);
@@ -43,15 +44,20 @@ describe('setting validation', () => {
     expect(validateSetting(color, '').ok).toBe(true);
     expect(validateSetting(color, 'red').ok).toBe(false);
     expect(validateSetting(path, 'relative').ok).toBe(false);
+    expect(validateSetting(time, '07:30')).toEqual({ ok: true, value: '07:30' });
+    expect(validateSetting(time, '24:00').ok).toBe(false);
   });
 
   it('coerces old stored values when unambiguous, else uses the default', () => {
     const [num, bool, en] = decls;
+    const time = decls[5];
     expect(coerceSetting(num, '1000')).toBe(1000);
     expect(coerceSetting(num, 99999)).toBe(5000);
     expect(coerceSetting(num, 'fast')).toBe(800);
     expect(coerceSetting(bool, 'false')).toBe(false);
     expect(coerceSetting(en, 'removed-mode')).toBe('split');
+    expect(coerceSetting(time, '7:05:30')).toBe('07:05');
+    expect(coerceSetting(time, '99:99')).toBe('07:00');
   });
 });
 

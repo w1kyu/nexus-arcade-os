@@ -160,7 +160,12 @@ export function settingRow(fc, decl, { scope = 'system', onSaved } = {}) {
         : null,
     );
   } else {
-    const input = h('input', { type: decl.type === 'date' ? 'date' : 'text', class: 'nx-input', id: inputId });
+    const type = decl.type === 'date' ? 'date' : decl.type === 'time' ? 'time' : 'text';
+    const input = h('input', {
+      type,
+      class: `nx-input${type === 'time' ? ' nx-set-time' : ''}`,
+      id: inputId,
+    });
     input.value = String(decl.value ?? '');
     input.addEventListener('change', () => void save(input.value));
     control = input;

@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { parseAudioMetadata, parseLrcLyrics } from './metadata.js';
 import { EQ_PRESETS, getSharedAudioEngine } from './player.js';
 import './styles.css';
@@ -263,7 +264,15 @@ export async function mount(hostElement, ctx) {
   playerBar.append(barLeft, barCenter, barRight);
 
   // Layout assembly
-  const layout = h('div', { class: 'nx-music-layout' }, sidebar, main);
+  // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: t('app.title'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebar,
+    content: main,
+    bare: true,
+  });
+  const layout = h('div', { class: 'nx-music-layout' }, frame.root);
   main.append(header, contentArea);
   container.append(layout, playerBar);
 

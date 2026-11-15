@@ -3,6 +3,7 @@
 // nested subtasks, priority levels, recurring tasks & reminders, List/Kanban/Today/Upcoming/
 // Overdue/Calendar views, saved filters, completion sound & undo, and productivity statistics.
 import { button, h, icon, iconButton, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { renderMarkdownInto } from '../../ui/markdown.js';
 import { attachContextMenu } from '../../ui/menu.js';
 import { baseName, joinPath } from '../../ui/paths.js';
@@ -305,7 +306,15 @@ export async function mount(container, ctx, args = {}) {
   const sidebarEl = h('aside', { class: 'nx-tasks-sidebar' });
   const mainEl = h('main', { class: 'nx-tasks-main' });
   const detailEl = h('aside', { class: 'nx-tasks-detail' });
-  const rootEl = h('div', { class: 'nx-tasks' }, sidebarEl, mainEl, detailEl);
+  // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebarEl,
+    content: mainEl,
+    bare: true,
+  });
+  const rootEl = h('div', { class: 'nx-tasks' }, frame.root, detailEl);
   detailEl.hidden = true;
   container.replaceChildren(rootEl);
 

@@ -2,6 +2,7 @@
 // Nexus Journal: daily Markdown entries, 5-point mood tracking,
 // "On this day" historical recall, VFS photos, writing prompts, and AES-GCM password encryption.
 import { button, h, icon, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { openModal } from '../../ui/overlay.js';
 import { renderMarkdown } from '../../ui/markdown.js';
 import { computeMoodStats, countWords, findOnThisDay, MOOD_META, WRITING_PROMPTS } from './model.js';
@@ -103,6 +104,13 @@ export const commands = {
  * @param {import('../../kernel/types').AppContext} ctx
  */
 export async function mount(root, ctx) {
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: h('div'),
+    content: h('div'),
+    bare: true,
+  });
   const entriesCol = /** @type {import('../../kernel/types').Collection<JournalEntry>} */ (
     ctx.storage.collection('entries')
   );
@@ -257,7 +265,10 @@ export async function mount(root, ctx) {
       renderViewer(mainPane, selectedEntry, entries);
     }
 
-    const body = h('div', { class: 'nx-journal-body' }, sidebar, mainPane);
+    // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+    frame.setSidebar(sidebar);
+    frame.setContent(mainPane);
+    const body = h('div', { class: 'nx-journal-body' }, frame.root);
     replace(container, toolbar, body);
   }
 

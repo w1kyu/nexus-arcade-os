@@ -2,6 +2,7 @@
 // Nexus Bookmarks & Reading List: collections, tags, offline letter avatars,
 // read/unread states, and standard Netscape Bookmarks HTML import/export.
 import { button, h, icon, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { openModal } from '../../ui/overlay.js';
 import { exportNetscapeBookmarksHtml, getLetterAvatar, parseNetscapeBookmarksHtml } from './model.js';
 import './styles.css';
@@ -76,6 +77,13 @@ export const commands = {
  * @param {import('../../kernel/types').AppContext} ctx
  */
 export async function mount(root, ctx) {
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: h('div'),
+    content: h('div'),
+    bare: true,
+  });
   const col = /** @type {import('../../kernel/types').Collection<BookmarkItem>} */ (
     ctx.storage.collection('bookmarks')
   );
@@ -290,7 +298,10 @@ export async function mount(root, ctx) {
     }
 
     const mainPane = h('main', { class: 'nx-bm-main' }, searchIn, listContainer);
-    const body = h('div', { class: 'nx-bm-body' }, sidebar, mainPane);
+    // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+    frame.setSidebar(sidebar);
+    frame.setContent(mainPane);
+    const body = h('div', { class: 'nx-bm-body' }, frame.root);
 
     replace(container, toolbar, body);
   }

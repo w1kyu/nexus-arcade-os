@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import './styles.css';
 
 function formatRecorderTime(sec) {
@@ -134,7 +135,16 @@ export async function mount(container, ctx) {
   const listEl = h('div', { class: 'nx-recorder-list' });
   sidebar.append(sidebarHeader, listEl);
 
-  root.append(main, sidebar);
+  // App frame (phase 14.5): the recordings list is the inspector; it stacks under the recorder in
+  // narrow windows and on phones.
+  const frame = createAppFrame({
+    label: t('app.title'),
+    locale: () => ctx.i18n.locale,
+    content: main,
+    inspector: sidebar,
+    bare: true,
+  });
+  root.append(frame.root);
 
   // Canvas visualizer loop
   function drawLiveWaveform() {

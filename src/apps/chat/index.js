@@ -3,6 +3,7 @@
 // streaming, branching, personas, prompt templates, RAG citations, OS tools, and code assistant.
 
 import { h, icon, iconButton, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { renderMarkdownInto } from '../../ui/markdown.js';
 import './styles.css';
 import { DEFAULT_PERSONAS, DEFAULT_TEMPLATES, extractVariables, interpolateTemplate } from './templates.js';
@@ -88,6 +89,14 @@ export async function mount(container, ctx, args) {
   const root = h('div', { class: 'nx-chat', dataset: { testid: 'ai-chat' } });
   const sidebar = h('aside', { class: 'nx-chat-sidebar', 'aria-label': 'Chat history' });
   const main = h('main', { class: 'nx-chat-main' });
+  // App frame (phase 14.5): chat history becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: t('app.title'),
+    locale: () => ctx.i18n.locale,
+    sidebar,
+    content: main,
+    bare: true,
+  });
 
   // ─── Initialize Data ────────────────────────────────────────────────
   async function init() {
@@ -293,7 +302,7 @@ export async function mount(container, ctx, args) {
     // If AI is not available, show honest empty state
     if (!ctx.ai.isAvailable()) {
       main.appendChild(renderEmptyState());
-      replace(root, sidebar, main);
+      replace(root, frame.root);
       return;
     }
 
@@ -322,7 +331,7 @@ export async function mount(container, ctx, args) {
     const inputArea = renderInputArea();
     main.appendChild(inputArea);
 
-    replace(root, sidebar, main);
+    replace(root, frame.root);
   }
 
   function renderEmptyState() {

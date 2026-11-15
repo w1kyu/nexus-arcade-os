@@ -3,6 +3,7 @@
 // KaTeX math, GFM tables/tasklists/footnotes, wiki links + backlinks, image paste/drop,
 // per-note AES-GCM encryption + auto-lock, nested folders, search/filter/sort, and import/export.
 import { button, h, icon, iconButton, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { renderMarkdown, renderMarkdownInto } from '../../ui/markdown.js';
 import { attachContextMenu, openMenu } from '../../ui/menu.js';
 import { baseName, joinPath, parentOf } from '../../ui/paths.js';
@@ -270,14 +271,18 @@ export async function mount(container, ctx, args = {}) {
   const listPaneEl = h('section', { class: 'nx-notes-list-pane' });
   const mainEl = h('main', { class: 'nx-notes-main' });
   const inspectorEl = h('aside', { class: 'nx-notes-inspector' });
-  const rootEl = h(
-    'div',
-    { class: `nx-notes${state.showInspector ? ' has-inspector' : ''}` },
-    sidebarEl,
-    listPaneEl,
-    mainEl,
-    inspectorEl,
-  );
+  // App frame (phase 14.5): folders are the sidebar (a sheet in narrow windows); the note list and
+  // the editor share the content and stack when the window is narrow.
+  const frame = createAppFrame({
+    label: t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebarEl,
+    sidebarLabel: t('folders'),
+    content: h('div', { class: 'nx-notes-content' }, h('div', { class: 'nx-notes-split' }, listPaneEl, mainEl)),
+    inspector: inspectorEl,
+    bare: true,
+  });
+  const rootEl = h('div', { class: `nx-notes${state.showInspector ? ' has-inspector' : ''}` }, frame.root);
   inspectorEl.hidden = !state.showInspector;
   container.replaceChildren(rootEl);
 

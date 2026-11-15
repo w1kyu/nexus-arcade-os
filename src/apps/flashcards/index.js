@@ -2,6 +2,7 @@
 // Nexus Flashcards: decks & subdecks, Markdown + KaTeX math, cloze deletion,
 // FSRS spaced repetition, keyboard-only study, CSV & Anki .apkg import.
 import { button, h, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { renderMarkdownInto } from '../../ui/markdown.js';
 import { openModal } from '../../ui/overlay.js';
 import { createNewCardFSRS, nextIntervalDays, scheduleCard } from './fsrs.js';
@@ -148,6 +149,14 @@ export async function mount(container, ctx, args = {}) {
   }
 
   const root = h('div', { class: 'nx-fc' });
+  // App frame (phase 14.5): the deck list becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: h('div'),
+    content: h('div'),
+    bare: true,
+  });
   container.replaceChildren(root);
 
   function render() {
@@ -204,7 +213,9 @@ export async function mount(container, ctx, args = {}) {
       renderDeckManager(main);
     }
 
-    root.append(sidebar, main);
+    frame.setSidebar(sidebar);
+    frame.setContent(main);
+    root.append(frame.root);
   }
 
   function renderDeckManager(main) {

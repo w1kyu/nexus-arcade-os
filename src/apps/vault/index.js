@@ -2,6 +2,7 @@
 // Nexus Password Vault: master-password AES-GCM encrypted vault,
 // password & passphrase generator, RFC 6238 TOTP authenticator, and local security audit.
 import { button, h, icon, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { openModal } from '../../ui/overlay.js';
 import { generateTotp, getTotpRemainingSeconds } from './totp.js';
 import { estimateEntropy, generatePassphrase, generatePassword } from './generator.js';
@@ -74,6 +75,13 @@ export const commands = {
  * @param {import('../../kernel/types').AppContext} ctx
  */
 export async function mount(root, ctx) {
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: h('div'),
+    content: h('div'),
+    bare: true,
+  });
   const credsCol = /** @type {import('../../kernel/types').Collection<VaultEntry>} */ (
     ctx.storage.collection('credentials')
   );
@@ -247,7 +255,10 @@ export async function mount(root, ctx) {
       renderViewer(mainPane, selectedEntry);
     }
 
-    const body = h('div', { class: 'nx-vault-body' }, sidebar, mainPane);
+    // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+    frame.setSidebar(sidebar);
+    frame.setContent(mainPane);
+    const body = h('div', { class: 'nx-vault-body' }, frame.root);
     replace(container, toolbar, banner, body);
   }
 

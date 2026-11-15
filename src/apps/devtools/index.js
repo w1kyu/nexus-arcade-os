@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { createToolLayout } from '../../ui/tool-layout.js';
 import {
   aesDecrypt,
@@ -68,7 +69,15 @@ export async function mount(container, ctx) {
 
   // Main Tool Area
   const mainArea = h('main', { class: 'nx-devtools-main' });
-  root.append(sidebar, mainArea);
+  // App frame (phase 14.5): the tool list becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: ctx.i18n.t('app.name'),
+    locale: () => ctx.i18n.locale,
+    sidebar,
+    content: mainArea,
+    bare: true,
+  });
+  root.append(frame.root);
   container.append(root);
 
   const categories = [

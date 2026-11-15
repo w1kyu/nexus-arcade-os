@@ -174,3 +174,31 @@ test.describe('system apps on a phone', () => {
     });
   }
 });
+
+test.describe('apps on the app frame, on a phone', () => {
+  test.skip(({ isMobile }) => !isMobile, 'phone layout');
+
+  // 14.5: the sidebar of these apps is a sheet on phones, opened from the frame's toggle.
+  for (const [query, option, appId] of [
+    ['Nexus Notes', /^Nexus Notes/, 'nexus.notes'],
+    ['Tasks', /^Tasks/, 'nexus.tasks'],
+    ['Bookmarks', /^Bookmarks/, 'nexus.bookmarks'],
+  ]) {
+    test(`${query}: sidebar is a sheet, content is full width`, async ({ page }) => {
+      await startNexus(page);
+      await page.getByRole('navigation', { name: 'App bar' }).getByRole('button', { name: /Apps/ }).tap();
+      await page.locator('.nx-launcher-search').fill(String(query));
+      await page.locator('.nx-launcher-tile').filter({ hasText: option }).first().tap();
+      const win = page.locator(`.nx-windows .nx-window[data-app="${appId}"]`);
+      const frame = win.locator('.nx-app-frame.is-narrow').first();
+      await expect(frame).toBeVisible();
+      const sidebar = frame.locator('> .nx-app-frame-sidebar');
+      await expect(sidebar).toHaveJSProperty('inert', true);
+      const content = await frame.locator('> .nx-app-frame-content').boundingBox();
+      expect(content?.width ?? 0).toBeGreaterThan(330);
+      await frame.locator('.nx-app-frame-side-toggle').first().tap();
+      await expect(sidebar).toHaveJSProperty('inert', false);
+      await expect(frame.locator('> .nx-app-frame-scrim')).toBeVisible();
+    });
+  }
+});

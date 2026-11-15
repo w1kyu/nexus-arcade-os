@@ -1,6 +1,5 @@
 .nx-cal {
-  display: grid;
-  grid-template-columns: 230px 1fr;
+  display: flex;
   height: 100%;
   background: var(--surface-sunken);
   color: var(--text-1);
@@ -8,8 +7,13 @@
   user-select: none;
 }
 
-.nx-cal.has-inspector {
-  grid-template-columns: 230px 1fr 310px;
+.nx-cal-sidebar {
+  width: 230px;
+}
+
+.nx-cal-inspector {
+  flex: none;
+  width: 310px;
 }
 
 .nx-cal-sidebar {

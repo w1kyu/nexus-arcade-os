@@ -1,18 +1,54 @@
 .nx-notes {
-  display: grid;
-  grid-template-columns: 210px 250px 1fr;
+  display: flex;
   height: 100%;
   background: var(--surface-1);
   color: var(--text-1);
   overflow: hidden;
-  font-size: var(--text-sm);
 }
 
-.nx-notes.has-inspector {
-  grid-template-columns: 200px 240px 1fr 220px;
+/* Inside the app frame: note list + editor, side by side; stacked in narrow windows. */
+.nx-notes-content {
+  container-type: inline-size;
+  height: 100%;
+}
+
+.nx-notes-split {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  & > .nx-notes-list-pane {
+    flex: none;
+    width: 250px;
+  }
+  & > .nx-notes-main {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* Phones and narrow windows: the outline would leave no room for the note. */
+.nx-notes .nx-app-frame.is-narrow > .nx-app-frame-inspector {
+  display: none;
+}
+
+@container (max-width: 600px) {
+  .nx-notes-split {
+    flex-direction: column;
+    & > .nx-notes-list-pane {
+      width: auto;
+      max-height: 40%;
+      border-right: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    & > .nx-notes-main {
+      flex: 1 1 0;
+      min-height: 0;
+    }
+  }
 }
 
 .nx-notes-sidebar {
+  width: 210px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border);
@@ -328,6 +364,8 @@
 }
 
 .nx-notes-inspector {
+  flex: none;
+  width: 220px;
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--border);
@@ -441,4 +479,8 @@
 }
 .nx-notes-outline-4 {
   padding-left: 34px;
+}
+
+.nx-notes-inspector[hidden] {
+  display: none;
 }

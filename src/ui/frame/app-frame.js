@@ -29,6 +29,10 @@ const NARROW = 640;
  * @property {HTMLElement} [status]            usually from components.statusBar()
  * @property {boolean} [sidebarOpen]           initial state on wide windows (default true)
  * @property {(open: boolean) => void} [onSidebarChange]
+ * @property {boolean} [bare]                  wrap an app's existing panels: no padding or background of
+ *                                             the frame's own, and the sidebar keeps its own width
+ * @property {HTMLElement} [toggleIn]          put the sidebar toggle at the start of this element (the
+ *                                             app's own header) instead of a frame toolbar
  */
 
 /** @param {AppFrameOptions} options */
@@ -43,10 +47,12 @@ export function createAppFrame({
   status,
   sidebarOpen = true,
   onSidebarChange,
+  bare = false,
+  toggleIn,
 }) {
   const s = () => texts(locale);
   const root = h('div', {
-    class: `nx-app-frame${sidebar ? '' : ' has-no-sidebar'}`,
+    class: `nx-app-frame${sidebar ? '' : ' has-no-sidebar'}${bare ? ' is-bare' : ''}`,
     role: 'region',
     'aria-label': label,
   });
@@ -75,6 +81,12 @@ export function createAppFrame({
       },
       icon('sidebar', { size: 18 }),
     );
+    // In a sheet, picking something (a folder, a page) closes it; typing in its fields does not.
+    side.addEventListener('click', (e) => {
+      const t = /** @type {HTMLElement} */ (e.target);
+      if (narrow && open && t.closest('button, a, [role="option"], [role="treeitem"]') && !t.closest('input, textarea'))
+        setTimeout(() => setSidebarOpen(false), 0);
+    });
     side.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && narrow && open) {
         e.stopPropagation();
@@ -88,10 +100,23 @@ export function createAppFrame({
   let bar = null;
   /** @type {HTMLButtonElement | null} */
   let more = null;
-  if (toolbar || sideToggle) {
-    bar = toolbar ?? h('div', { class: 'nx-toolbar', role: 'toolbar', 'aria-label': label });
+  if (sideToggle && toggleIn) {
+    // The app's header hosts the toggle; it only shows in narrow windows (CSS).
+    sideToggle.classList.add('is-hosted');
+    toggleIn.prepend(sideToggle);
+  }
+  if (toolbar || (sideToggle && !toggleIn)) {
+    // Without a toolbar of the app's own, the bar only carries the toggle and the app name, and
+    // only shows in narrow windows.
+    bar =
+      toolbar ??
+      h(
+        'div',
+        { class: 'nx-toolbar is-auto', role: 'toolbar', 'aria-label': label },
+        h('h2', { class: 'nx-toolbar-title', text: label }),
+      );
     bar.classList.add('nx-app-frame-toolbar');
-    if (sideToggle) bar.prepend(sideToggle);
+    if (sideToggle && !toggleIn) bar.prepend(sideToggle);
     more = h(
       'button',
       {
@@ -205,6 +230,10 @@ export function createAppFrame({
     },
     /** Re-run the toolbar overflow check after changing toolbar items. */
     refresh: measure,
+    /** Swap the sidebar panel (apps that re-render keep one frame). @param {HTMLElement} el */
+    setSidebar: (el) => side?.replaceChildren(el),
+    /** Swap the main view. @param {HTMLElement} el */
+    setContent: (el) => main.replaceChildren(el),
     destroy: () => observer?.disconnect(),
   };
 }

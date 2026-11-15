@@ -2,6 +2,7 @@
 // Nexus Budget: personal accounts, transactions, category budgets, reports,
 // CSV bank import/export with column mapping, and expense splitting.
 import { button, h, icon, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { openModal } from '../../ui/overlay.js';
 import {
   computeAccountBalances,
@@ -100,6 +101,13 @@ export const commands = {
  * @param {import('../../kernel/types').AppContext} ctx
  */
 export async function mount(root, ctx) {
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: h('div'),
+    content: h('div'),
+    bare: true,
+  });
   const accountsCol = /** @type {import('../../kernel/types').Collection<Account>} */ (
     ctx.storage.collection('accounts')
   );
@@ -295,7 +303,10 @@ export async function mount(root, ctx) {
       renderReportsView(mainPane, totalIncome, totalExpenses, netBalance, byCategory);
     }
 
-    const content = h('div', { class: 'nx-budget-content' }, sidebar, mainPane);
+    // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+    frame.setSidebar(sidebar);
+    frame.setContent(mainPane);
+    const content = h('div', { class: 'nx-budget-content' }, frame.root);
     replace(container, toolbar, content);
   }
 

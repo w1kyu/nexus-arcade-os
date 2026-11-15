@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { executeHttpRequest, generateCurlSnippet, generateFetchSnippet } from './http-core.js';
 import './styles.css';
 
@@ -66,7 +67,15 @@ export async function mount(container, ctx) {
 
   // Main Area
   const mainArea = h('main', { class: 'nx-http-main' });
-  root.append(sidebar, mainArea);
+  // App frame (phase 14.5): saved requests become a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: t('app.name'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebar,
+    content: mainArea,
+    bare: true,
+  });
+  root.append(frame.root);
   container.append(root);
 
   // URL Bar

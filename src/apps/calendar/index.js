@@ -4,6 +4,7 @@
 // recurring events with single-instance & this-and-following exceptions;
 // overlays for Tasks, Timetable, and German public holidays; RFC 5545 .ics import/export.
 import { button, h, iconButton, replace } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { joinPath } from '../../ui/paths.js';
 import {
   addDays,
@@ -400,7 +401,15 @@ export async function mount(container, ctx, args = {}) {
   const sidebarEl = h('aside', { class: 'nx-cal-sidebar' });
   const mainEl = h('main', { class: 'nx-cal-main' });
   const inspectorEl = h('aside', { class: 'nx-cal-inspector' });
-  const rootEl = h('div', { class: 'nx-cal' }, sidebarEl, mainEl);
+  // App frame (phase 14.5): the sidebar becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: ctx.i18n.t('appTitle'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebarEl,
+    content: mainEl,
+    bare: true,
+  });
+  const rootEl = h('div', { class: 'nx-cal' }, frame.root);
   container.append(rootEl);
 
   function selectOccurrence(/** @type {ExpandedOccurrence | null} */ occ) {

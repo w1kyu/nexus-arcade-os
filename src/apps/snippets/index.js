@@ -1,5 +1,6 @@
 // @ts-check
 import { h, icon } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import './styles.css';
 
 /**
@@ -92,7 +93,15 @@ export async function mount(container, ctx) {
 
   // Main detail
   const mainEl = h('main', { class: 'nx-snippets-main' });
-  root.append(sidebar, mainEl);
+  // App frame (phase 14.5): the snippet list becomes a sheet in narrow windows and on phones.
+  const frame = createAppFrame({
+    label: t('app.name'),
+    locale: () => ctx.i18n.locale,
+    sidebar: sidebar,
+    content: mainEl,
+    bare: true,
+  });
+  root.append(frame.root);
   container.append(root);
 
   // Main Toolbar

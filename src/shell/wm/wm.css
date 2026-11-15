@@ -28,6 +28,8 @@
   position: absolute;
   display: grid;
   grid-template-rows: auto 1fr;
+  /* The body never grows past the window to fit its content's minimum width (it scrolls). */
+  grid-template-columns: minmax(0, 1fr);
   min-width: 0;
   /* Shell shape (rule 2): bevelled where corner-shape is supported, rounded elsewhere. */
   border-radius: var(--bevel);

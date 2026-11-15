@@ -1,6 +1,9 @@
 /* App scaffold (createAppFrame). Areas: toolbar / sidebar · content · inspector / status. */
 .nx-app-frame {
   --frame-sidebar-w: 240px;
+  /* Fills a flex parent as well (apps put the frame under their own header). */
+  flex: 1 1 auto;
+  min-width: 0;
   --frame-inspector-w: 280px;
   position: relative;
   display: grid;
@@ -75,12 +78,67 @@
   background: var(--surface-sunken);
 }
 
+/* An app that hides its inspector panel hides the slot too. */
+.nx-app-frame-inspector:has(> [hidden]) {
+  display: none;
+}
+
 .nx-app-frame > .nx-statusbar {
   grid-area: status;
 }
 
 .nx-app-frame-scrim {
   display: none;
+}
+
+/* The toggle and the automatic toolbar only matter when the sidebar is a sheet. */
+.nx-app-frame:not(.is-narrow) > .nx-app-frame-toolbar.is-auto,
+.nx-app-frame-side-toggle.is-hosted {
+  display: none;
+}
+.nx-app-frame.is-narrow .nx-app-frame-side-toggle.is-hosted {
+  display: inline-grid;
+}
+
+/* Bare: the frame wraps an app's existing panels, which keep their own look and width. */
+.nx-app-frame.is-bare {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  background: transparent;
+  & > .nx-app-frame-sidebar,
+  & > .nx-app-frame-inspector {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+  & > .nx-app-frame-sidebar > *,
+  & > .nx-app-frame-inspector > * {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  & > .nx-app-frame-content {
+    display: flex;
+    flex-direction: column;
+    & > * {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+  }
+  &.is-sidebar-collapsed {
+    grid-template-columns: 0 minmax(0, 1fr) auto;
+  }
+}
+.nx-app-frame.is-bare.is-narrow {
+  grid-template-columns: minmax(0, 1fr);
+  & > .nx-app-frame-sidebar {
+    background: var(--surface-1);
+  }
+  & > .nx-app-frame-sidebar > * {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 /* Narrow windows and phones: the sidebar is a sheet over the content, the inspector stacks below. */

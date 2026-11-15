@@ -93,7 +93,7 @@ test.describe('nexus ai workspace', () => {
     // 4. Return to Nexus Chat and test conversation flow
     await settingsWin(page).locator('[data-action="close"]').click();
     await chatWin(page).locator('.nx-titlebar').click();
-    await expect(chatWin(page).locator('.nx-chat-input-textarea')).toBeVisible();
+    await expect(chatWin(page).locator('.nx-chat-composer-field')).toBeVisible();
 
     // Open Templates & Personas dialog
     await chatWin(page).getByTestId('btn-templates').click();
@@ -108,7 +108,7 @@ test.describe('nexus ai workspace', () => {
     await templatesModal.getByRole('button', { name: 'Insert' }).click();
 
     // Verify input populated
-    const chatInput = chatWin(page).locator('.nx-chat-input-textarea');
+    const chatInput = chatWin(page).locator('.nx-chat-composer-field');
     await expect(chatInput).toHaveValue(/binary search algorithm/);
 
     // Send the prompt

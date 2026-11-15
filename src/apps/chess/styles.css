@@ -63,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(24px, 6vmin, 44px);
+  font-size: clamp(var(--text-display), 6vmin, var(--text-2xl));
   line-height: 1;
   cursor: pointer;
   outline: none;
@@ -155,7 +155,7 @@
 }
 
 .nx-chess-panel-header {
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -174,7 +174,7 @@
   border-radius: 6px;
   padding: 8px;
   font-family: ui-monospace, monospace;
-  font-size: 13px;
+  font-size: var(--text-ui);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -195,7 +195,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.nx-chess-move-btn {
+.nx-chess-move {
   background: none;
   border: none;
   color: var(--text-1);
@@ -206,12 +206,12 @@
   transition: background 0.1s;
 }
 
-.nx-chess-move-btn:hover {
+.nx-chess-move:hover {
   background: var(--surface-2);
   color: var(--text-1);
 }
 
-.nx-chess-move-btn.active {
+.nx-chess-move.active {
   background: color-mix(in srgb, var(--accent) 13%, transparent);
   color: var(--accent);
   font-weight: 700;
@@ -224,8 +224,8 @@
   padding: 16px;
 }
 
-.nx-chess-promo-btn {
-  font-size: 36px;
+.nx-chess-promo-piece {
+  font-size: var(--text-2xl);
   background: var(--surface-2);
   border: 2px solid var(--border);
   border-radius: 8px;
@@ -237,7 +237,7 @@
     transform 0.1s;
 }
 
-.nx-chess-promo-btn:hover {
+.nx-chess-promo-piece:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
 }

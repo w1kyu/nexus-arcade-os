@@ -155,12 +155,12 @@ export async function mount(container, ctx) {
 
   const btnPrev = h(
     'button',
-    { class: 'nx-photos-nav-btn nx-photos-nav-prev', type: 'button' },
+    { class: 'nx-photos-nav nx-photos-nav-prev', type: 'button' },
     icon('chevron-left', { size: 24 }),
   );
   const btnNext = h(
     'button',
-    { class: 'nx-photos-nav-btn nx-photos-nav-next', type: 'button' },
+    { class: 'nx-photos-nav nx-photos-nav-next', type: 'button' },
     icon('chevron-right', { size: 24 }),
   );
 
@@ -381,7 +381,7 @@ export async function mount(container, ctx) {
             h(
               'button',
               {
-                class: 'nx-photos-fav-btn',
+                class: 'nx-photos-fav',
                 type: 'button',
                 onclick: (e) => {
                   e.stopPropagation();

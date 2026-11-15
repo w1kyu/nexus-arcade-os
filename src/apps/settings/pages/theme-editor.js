@@ -166,9 +166,9 @@ export const themeEditor = {
             h('span', { class: 'nx-te-dot', style: { background: '#28c840' } }),
           ]
         : [
-            h('span', { class: 'nx-te-wbtn', text: '−', style: { color: c.text2 } }),
-            h('span', { class: 'nx-te-wbtn', text: '□', style: { color: c.text2 } }),
-            h('span', { class: 'nx-te-wbtn', text: '×', style: { color: c.danger } }),
+            h('span', { class: 'nx-te-wctl', text: '−', style: { color: c.text2 } }),
+            h('span', { class: 'nx-te-wctl', text: '□', style: { color: c.text2 } }),
+            h('span', { class: 'nx-te-wctl', text: '×', style: { color: c.danger } }),
           ];
 
       const sparkline = svgEl(
@@ -219,17 +219,17 @@ export const themeEditor = {
             'div',
             { class: 'nx-te-mini-row' },
             h('span', {
-              class: 'nx-te-mini-btn',
+              class: 'nx-te-mini-action',
               text: t('themeEditor.previewPrimary'),
               style: { background: c.accent, color: draft.scheme === 'dark' ? '#070910' : '#ffffff' },
             }),
             h('span', {
-              class: 'nx-te-mini-btn',
+              class: 'nx-te-mini-action',
               text: t('themeEditor.previewSecondary'),
               style: { background: c.surface3, color: c.text1, borderColor: c.border },
             }),
             h('span', {
-              class: 'nx-te-mini-input',
+              class: 'nx-te-mini-field',
               text: t('themeEditor.previewInput'),
               style: { background: c.bg, color: c.text3, borderColor: c.border },
             }),

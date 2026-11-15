@@ -28,7 +28,7 @@ test.describe('Phase 6 — Office & Creative Apps', () => {
     // 1. Nexus Sheets
     const sheetsWin = await openAppFromPalette(page, 'Nexus Sheets', 'nexus.sheets');
     await expect(sheetsWin.locator('.nx-sheets')).toBeVisible();
-    await expect(sheetsWin.locator('.nx-sheets-formula-input')).toBeVisible();
+    await expect(sheetsWin.locator('.nx-sheets-formula')).toBeVisible();
 
     // 2. Nexus Write
     const writeWin = await openAppFromPalette(page, 'Nexus Write', 'nexus.write');

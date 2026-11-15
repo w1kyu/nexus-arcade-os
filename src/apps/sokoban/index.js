@@ -106,7 +106,8 @@ export async function mount(container, ctx) {
         'button',
         {
           type: 'button',
-          class: `nx-sk-tool-btn ${editorTool === id ? 'active' : ''}`,
+          class: 'nx-sk-tool',
+          'aria-pressed': String(editorTool === id),
           onclick: () => {
             editorTool = id;
             Object.values(toolBtns).forEach((b) => b.classList.remove('active'));

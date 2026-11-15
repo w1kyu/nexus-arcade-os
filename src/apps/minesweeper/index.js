@@ -26,7 +26,7 @@ export async function mount(container, ctx) {
 
   // Header Elements
   const lcdMines = h('div', { class: 'nx-minesweeper-lcd' }, '010');
-  const faceBtn = h('button', { class: 'nx-minesweeper-face-btn' }, '🙂');
+  const faceBtn = h('button', { class: 'nx-minesweeper-face' }, '🙂');
   const lcdTimer = h('div', { class: 'nx-minesweeper-lcd' }, '000');
 
   const header = h('div', { class: 'nx-minesweeper-header' }, lcdMines, faceBtn, lcdTimer);
@@ -38,7 +38,7 @@ export async function mount(container, ctx) {
 
   for (const diff of ['beginner', 'intermediate', 'expert', 'custom']) {
     const btn = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-minesweeper-btn ${diff === currentDiffKey ? 'active' : ''}` }, t(`difficulty.${diff}`))
+      h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(diff === currentDiffKey) }, t(`difficulty.${diff}`))
     );
     btn.addEventListener('click', () => {
       if (diff === 'custom') {
@@ -55,16 +55,16 @@ export async function mount(container, ctx) {
 
   function updateDiffButtons() {
     for (const [k, b] of Object.entries(diffBtns)) {
-      b.classList.toggle('active', k === currentDiffKey);
+      b.setAttribute('aria-pressed', String(k === currentDiffKey));
     }
   }
 
   // Touch Flag mode toggle
-  const flagToggleBtn = h('button', { class: 'nx-minesweeper-btn' }, '⛏️ Dig');
+  const flagToggleBtn = h('button', { class: 'nx-btn is-sm' }, '⛏️ Dig');
   flagToggleBtn.addEventListener('click', () => {
     flagMode = !flagMode;
     flagToggleBtn.textContent = flagMode ? '🚩 Flag' : '⛏️ Dig';
-    flagToggleBtn.classList.toggle('active', flagMode);
+    flagToggleBtn.setAttribute('aria-pressed', String(!!flagMode));
   });
 
   const toolbar = h('div', { class: 'nx-minesweeper-toolbar' }, diffGroup, flagToggleBtn);
@@ -331,8 +331,8 @@ export async function mount(container, ctx) {
       h('input', { type: 'number', min: '1', max: '200', value: String(customConfig.mines) }),
     );
 
-    const btnOk = h('button', { class: 'nx-minesweeper-btn active' }, t('custom.apply'));
-    const btnCancel = h('button', { class: 'nx-minesweeper-btn' }, t('custom.cancel'));
+    const btnOk = h('button', { class: 'nx-btn is-sm', 'aria-pressed': 'true' }, t('custom.apply'));
+    const btnCancel = h('button', { class: 'nx-btn is-sm' }, t('custom.cancel'));
 
     btnOk.addEventListener('click', () => {
       const inputR = /** @type {HTMLInputElement} */ (rowR.querySelector('input'));

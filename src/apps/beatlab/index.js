@@ -210,7 +210,7 @@ export async function mount(container, ctx) {
 
         // Mute & Solo buttons
         const btnMute = h('button', {
-          class: `nx-beatlab-track-btn${cfg.mute ? ' is-active-mute' : ''}`,
+          class: `nx-beatlab-ms${cfg.mute ? ' is-active-mute' : ''}`,
           type: 'button',
           text: 'M',
           title: 'Mute',
@@ -221,7 +221,7 @@ export async function mount(container, ctx) {
         });
 
         const btnSolo = h('button', {
-          class: `nx-beatlab-track-btn${cfg.solo ? ' is-active-solo' : ''}`,
+          class: `nx-beatlab-ms${cfg.solo ? ' is-active-solo' : ''}`,
           type: 'button',
           text: 'S',
           title: 'Solo',

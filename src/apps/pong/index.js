@@ -35,22 +35,22 @@ export async function mount(container, ctx, args) {
     // Mode Selector (vs AI or 2-Player)
     const modeGroup = h('div', { class: 'nx-pong-btn-group' });
     const btnAi = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-pong-btn ${selectedMode === 'ai' ? 'active' : ''}` }, t('modes.ai'))
+      h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(selectedMode === 'ai') }, t('modes.ai'))
     );
     const btnPvp = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-pong-btn ${selectedMode === 'pvp' ? 'active' : ''}` }, t('modes.pvp'))
+      h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(selectedMode === 'pvp') }, t('modes.pvp'))
     );
 
     btnAi.addEventListener('click', () => {
       selectedMode = 'ai';
-      btnAi.classList.add('active');
-      btnPvp.classList.remove('active');
+      btnAi.setAttribute('aria-pressed', 'true');
+      btnPvp.setAttribute('aria-pressed', 'false');
       diffGroup.style.display = 'flex';
     });
     btnPvp.addEventListener('click', () => {
       selectedMode = 'pvp';
-      btnPvp.classList.add('active');
-      btnAi.classList.remove('active');
+      btnPvp.setAttribute('aria-pressed', 'true');
+      btnAi.setAttribute('aria-pressed', 'false');
       diffGroup.style.display = 'none';
     });
     modeGroup.append(btnAi, btnPvp);
@@ -61,12 +61,12 @@ export async function mount(container, ctx, args) {
     const diffBtns = {};
     for (const d of ['casual', 'skilled', 'master']) {
       const btn = /** @type {HTMLButtonElement} */ (
-        h('button', { class: `nx-pong-btn ${d === selectedDiff ? 'active' : ''}` }, t(`difficulty.${d}`))
+        h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(d === selectedDiff) }, t(`difficulty.${d}`))
       );
       btn.addEventListener('click', () => {
         selectedDiff = /** @type {any} */ (d);
         for (const [k, b] of Object.entries(diffBtns)) {
-          b.classList.toggle('active', k === selectedDiff);
+          b.setAttribute('aria-pressed', String(k === selectedDiff));
         }
       });
       diffBtns[d] = btn;
@@ -76,18 +76,18 @@ export async function mount(container, ctx, args) {
     // Power-ups toggle
     const btnPowerups = h(
       'button',
-      { class: `nx-pong-btn ${powerUpsEnabled ? 'active' : ''}` },
+      { class: 'nx-btn is-sm', 'aria-pressed': String(!!powerUpsEnabled) },
       t('menu.powerups') + ': ' + (powerUpsEnabled ? 'ON' : 'OFF'),
     );
     btnPowerups.addEventListener('click', () => {
       powerUpsEnabled = !powerUpsEnabled;
-      btnPowerups.classList.toggle('active', powerUpsEnabled);
+      btnPowerups.setAttribute('aria-pressed', String(!!powerUpsEnabled));
       btnPowerups.textContent = t('menu.powerups') + ': ' + (powerUpsEnabled ? 'ON' : 'OFF');
     });
 
     optionsWrap.append(modeGroup, diffGroup, btnPowerups);
 
-    const playBtn = h('button', { class: 'nx-pong-play-btn' }, t('menu.play'));
+    const playBtn = h('button', { class: 'nx-btn is-lg is-primary', 'data-testid': 'play' }, t('menu.play'));
     playBtn.addEventListener('click', () => {
       menu.remove();
       startGame();

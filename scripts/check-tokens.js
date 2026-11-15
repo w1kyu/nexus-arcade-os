@@ -1,6 +1,6 @@
 // Design-token ratchet (phase 14.2), part of `npm run lint`. For each app's CSS it counts
 //   colors    hard-coded colors (#hex, rgb(), hsl()), including var() fallbacks
-//   controls  app-local control classes (.nx-write-btn …) where src/ui has a shared one
+//   controls  app-local control classes (.nx-write-btn …; role classes like .nx-calc-key are fine) where src/ui has a shared one
 //   fontSizes literal font sizes (px/rem/em) instead of the --text-* tokens
 // and compares them with scripts/token-baseline.json. A count may go down, never up, so new
 // debt fails the build while old debt is paid off app by app (phase 14.5).

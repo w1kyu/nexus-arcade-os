@@ -86,21 +86,21 @@
 }
 
 .nx-focus-digits {
-  font-size: 42px;
+  font-size: var(--text-2xl);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
 
 .nx-focus-phase-badge {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--accent);
   margin-top: 4px;
 }
 
 .nx-focus-round-sub {
-  font-size: 11px;
+  font-size: var(--text-xs);
   opacity: 0.65;
 }
 
@@ -168,7 +168,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
 }
 
@@ -195,7 +195,7 @@
 }
 
 .nx-focus-stat-val {
-  font-size: 22px;
+  font-size: var(--text-headline);
   font-weight: 700;
   margin-top: 4px;
 }
@@ -217,7 +217,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .nx-focus-bar-svg {
@@ -238,5 +238,5 @@
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 13px;
+  font-size: var(--text-ui);
 }

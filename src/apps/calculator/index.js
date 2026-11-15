@@ -231,7 +231,7 @@ export async function mount(root, ctx) {
       for (const btn of sciButtons) {
         pad.appendChild(
           h('button', {
-            class: 'nx-calc-btn',
+            class: 'nx-calc-key',
             text: btn.label,
             onClick: btn.action,
           }),
@@ -242,7 +242,7 @@ export async function mount(root, ctx) {
     for (const btn of basicButtons) {
       pad.appendChild(
         h('button', {
-          class: `nx-calc-btn${btn.isOp ? ' is-op' : ''}${btn.isEquals ? ' is-equals' : ''}`,
+          class: `nx-calc-key${btn.isOp ? ' is-op' : ''}${btn.isEquals ? ' is-equals' : ''}`,
           text: btn.label,
           onClick: btn.action,
         }),

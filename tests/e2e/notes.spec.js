@@ -36,7 +36,7 @@ test.describe('nexus notes', () => {
 
     // Create a new note and write Markdown with math and a wiki link.
     await notesWin(page).getByRole('button', { name: 'New note' }).click();
-    const titleInput = notesWin(page).locator('.nx-notes-title-input');
+    const titleInput = notesWin(page).locator('[data-testid="note-title"]');
     await expect(titleInput).toHaveValue('Untitled note');
     await titleInput.fill('Quantum Physics');
     await titleInput.press('Enter');
@@ -53,7 +53,7 @@ test.describe('nexus notes', () => {
 
     // Clicking the missing wiki link creates "Experiment Log" and shows "Quantum Physics" in Backlinks.
     await wikiLink.click();
-    await expect(notesWin(page).locator('.nx-notes-title-input')).toHaveValue('Experiment Log');
+    await expect(notesWin(page).locator('[data-testid="note-title"]')).toHaveValue('Experiment Log');
     await expect(notesWin(page).locator('.nx-notes-backlink-item', { hasText: 'Quantum Physics' })).toBeVisible();
 
     // Encrypt "Experiment Log" with a password, lock it, and unlock it again.

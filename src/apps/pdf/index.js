@@ -80,7 +80,7 @@ export async function mount(container, ctx, args) {
       // Actions bar
       const actions = h('div', { class: 'nx-pdf-page-actions' });
 
-      const rotateBtn = h('button', { class: 'nx-pdf-page-action-btn', title: t('combiner.rotate', 'Rotate 90°') }, [
+      const rotateBtn = h('button', { class: 'nx-btn is-xs is-icon', title: t('combiner.rotate', 'Rotate 90°') }, [
         icon('rotate-cw', { size: 14 }),
       ]);
       rotateBtn.addEventListener('click', () => {
@@ -91,7 +91,7 @@ export async function mount(container, ctx, args) {
       const moveUpBtn = h(
         'button',
         {
-          class: 'nx-pdf-page-action-btn',
+          class: 'nx-btn is-xs is-icon',
           title: t('combiner.moveUp', 'Move up'),
           disabled: idx === 0,
         },
@@ -105,7 +105,7 @@ export async function mount(container, ctx, args) {
       const moveDownBtn = h(
         'button',
         {
-          class: 'nx-pdf-page-action-btn',
+          class: 'nx-btn is-xs is-icon',
           title: t('combiner.moveDown', 'Move down'),
           disabled: idx === doc.pages.length - 1,
         },
@@ -116,7 +116,7 @@ export async function mount(container, ctx, args) {
         renderCombinerGrid();
       });
 
-      const deleteBtn = h('button', { class: 'nx-pdf-page-action-btn', title: t('combiner.delete', 'Remove') }, [
+      const deleteBtn = h('button', { class: 'nx-btn is-xs is-icon', title: t('combiner.delete', 'Remove') }, [
         icon('trash', { size: 14 }),
       ]);
       deleteBtn.addEventListener('click', () => {
@@ -136,13 +136,13 @@ export async function mount(container, ctx, args) {
     if (mode === 'viewer') {
       viewerContainer.style.display = 'flex';
       combinerContainer.style.display = 'none';
-      viewerModeBtn.classList.add('active');
-      combinerModeBtn.classList.remove('active');
+      viewerModeBtn.setAttribute('aria-pressed', 'true');
+      combinerModeBtn.setAttribute('aria-pressed', 'false');
     } else {
       viewerContainer.style.display = 'none';
       combinerContainer.style.display = 'flex';
-      viewerModeBtn.classList.remove('active');
-      combinerModeBtn.classList.add('active');
+      viewerModeBtn.setAttribute('aria-pressed', 'false');
+      combinerModeBtn.setAttribute('aria-pressed', 'true');
       renderCombinerGrid();
     }
   }
@@ -264,35 +264,44 @@ export async function mount(container, ctx, args) {
   const toolbar = h('div', { class: 'nx-pdf-toolbar' });
 
   // View switch buttons
-  const combinerModeBtn = h('button', { class: 'nx-pdf-btn active' }, [icon('copy'), h('span', {}, 'Combiner')]);
+  const combinerModeBtn = h('button', { class: 'nx-btn is-xs', 'aria-pressed': 'true' }, [
+    icon('copy'),
+    h('span', {}, 'Combiner'),
+  ]);
   combinerModeBtn.addEventListener('click', () => setViewMode('combiner'));
 
-  const viewerModeBtn = h('button', { class: 'nx-pdf-btn' }, [icon('eye'), h('span', {}, 'Viewer')]);
+  const viewerModeBtn = h('button', { class: 'nx-btn is-xs' }, [icon('eye'), h('span', {}, 'Viewer')]);
   viewerModeBtn.addEventListener('click', () => setViewMode('viewer'));
 
   // Main actions
-  const openBtn = h('button', { class: 'nx-pdf-btn' }, [icon('folder'), h('span', {}, t('toolbar.open', 'Open PDF'))]);
+  const openBtn = h('button', { class: 'nx-btn is-xs' }, [
+    icon('folder'),
+    h('span', {}, t('toolbar.open', 'Open PDF')),
+  ]);
   openBtn.addEventListener('click', openPdfFile);
 
-  const addImgBtn = h('button', { class: 'nx-pdf-btn' }, [
+  const addImgBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('plus'),
     h('span', {}, t('toolbar.addImages', 'Add Images')),
   ]);
   addImgBtn.addEventListener('click', promptAddImages);
 
-  const generateBtn = h('button', { class: 'nx-pdf-btn primary' }, [
+  const generateBtn = h('button', { class: 'nx-btn is-xs is-primary' }, [
     icon('file-text'),
     h('span', {}, t('toolbar.generatePdf', 'Create PDF')),
   ]);
   generateBtn.addEventListener('click', compileAndPreviewPdf);
 
-  const saveBtn = h('button', { class: 'nx-pdf-btn' }, [
+  const saveBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('download'),
     h('span', {}, t('toolbar.download', 'Save PDF')),
   ]);
   saveBtn.addEventListener('click', savePdfToVfs);
 
-  const printBtn = h('button', { class: 'nx-pdf-btn' }, [icon('printer'), h('span', {}, t('toolbar.print', 'Print'))]);
+  const printBtn = h('button', { class: 'nx-btn is-xs' }, [
+    icon('printer'),
+    h('span', {}, t('toolbar.print', 'Print')),
+  ]);
   printBtn.addEventListener('click', () => {
     if (pdfFrame.contentWindow) {
       pdfFrame.contentWindow.print();
@@ -301,7 +310,7 @@ export async function mount(container, ctx, args) {
     }
   });
 
-  const clearBtn = h('button', { class: 'nx-pdf-btn' }, [
+  const clearBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('trash'),
     h('span', {}, t('toolbar.clear', 'Clear All')),
   ]);
@@ -316,7 +325,7 @@ export async function mount(container, ctx, args) {
 
   // Page Size & Orientation selectors
   const sizeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.pageSize'), class: 'nx-pdf-select' }, [
+    h('select', { 'aria-label': t('toolbar.pageSize'), class: 'nx-select is-xs' }, [
       h('option', { value: 'a4' }, 'A4'),
       h('option', { value: 'letter' }, 'US Letter'),
       h('option', { value: 'auto' }, 'Fit Image'),
@@ -328,7 +337,7 @@ export async function mount(container, ctx, args) {
   });
 
   const orientSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.orientation'), class: 'nx-pdf-select' }, [
+    h('select', { 'aria-label': t('toolbar.orientation'), class: 'nx-select is-xs' }, [
       h('option', { value: 'portrait' }, t('toolbar.portrait', 'Portrait')),
       h('option', { value: 'landscape' }, t('toolbar.landscape', 'Landscape')),
     ])

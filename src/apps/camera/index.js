@@ -131,7 +131,7 @@ export async function mount(container, ctx) {
   });
 
   const shutterBtn = h('button', {
-    class: 'nx-camera-shutter-btn',
+    class: 'nx-camera-shutter',
     type: 'button',
     title: 'Capture',
     onclick: () => handleShutterClick(),

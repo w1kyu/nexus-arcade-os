@@ -60,13 +60,13 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
-  font-size: var(--text-xs, 0.75rem);
+  font-size: var(--text-xs);
 }
 
 .nx-circuits-panel h4 {
   margin: 0 0 8px 0;
   color: var(--accent);
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--text-sm);
 }
 
 /* KV Map Grid */
@@ -74,7 +74,7 @@
   border-collapse: collapse;
   margin-top: 8px;
   font-family: var(--font-mono, monospace);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .nx-kv-table th,

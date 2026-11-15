@@ -20,12 +20,12 @@ export async function mount(container, ctx) {
   const inputA = h('input', { type: 'text', placeholder: 'Path or paste text...', value: 'original.js' });
   const btnFileA = h(
     'button',
-    { class: 'nx-button ghost small', title: t('labels.openVfs') },
+    { class: 'nx-btn is-sm is-ghost', title: t('labels.openVfs') },
     icon('folder', { size: 14 }),
   );
   const btnPasteA = h(
     'button',
-    { class: 'nx-button ghost small', title: t('labels.paste') },
+    { class: 'nx-btn is-sm is-ghost', title: t('labels.paste') },
     icon('clipboard', { size: 14 }),
   );
   slotA.append(labelA, inputA, btnFileA, btnPasteA);
@@ -33,7 +33,7 @@ export async function mount(container, ctx) {
   // Swap button
   const swapBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: t('labels.swap') },
+    { class: 'nx-btn is-sm is-ghost', title: t('labels.swap') },
     icon('arrow-left', { size: 14 }),
     icon('arrow-right', { size: 14 }),
   );
@@ -44,12 +44,12 @@ export async function mount(container, ctx) {
   const inputB = h('input', { type: 'text', placeholder: 'Path or paste text...', value: 'modified.js' });
   const btnFileB = h(
     'button',
-    { class: 'nx-button ghost small', title: t('labels.openVfs') },
+    { class: 'nx-btn is-sm is-ghost', title: t('labels.openVfs') },
     icon('folder', { size: 14 }),
   );
   const btnPasteB = h(
     'button',
-    { class: 'nx-button ghost small', title: t('labels.paste') },
+    { class: 'nx-btn is-sm is-ghost', title: t('labels.paste') },
     icon('clipboard', { size: 14 }),
   );
   slotB.append(labelB, inputB, btnFileB, btnPasteB);

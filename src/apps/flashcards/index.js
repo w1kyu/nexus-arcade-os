@@ -408,7 +408,7 @@ export async function mount(container, ctx, args = {}) {
         const btn = h(
           'button',
           {
-            class: `nx-fc-rating-btn nx-fc-rating-${r}`,
+            class: `nx-fc-rating nx-fc-rating-${r}`,
             type: 'button',
             onclick: () => handleCardRating(rating),
           },

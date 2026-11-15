@@ -190,7 +190,7 @@ export async function mount(container, ctx, args) {
     const newBtn = h(
       'button',
       {
-        class: 'nx-chat-new-btn',
+        class: 'nx-btn is-primary',
         dataset: { testid: 'btn-new-chat' },
         onclick: () => createNewConversation(),
       },
@@ -350,7 +350,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-chat-empty-btn',
+          class: 'nx-btn',
           dataset: { testid: 'btn-configure-ai' },
           onclick: () => {
             void ctx.commands.execute('settings.open', { page: 'ai' });
@@ -366,7 +366,7 @@ export async function mount(container, ctx, args) {
     if (activeConv) {
       const titleInput = h('input', {
         type: 'text',
-        class: 'nx-chat-title-input',
+        class: 'nx-input is-inline',
         value: activeConv.title,
         onchange: async (e) => {
           if (!activeConv) return;
@@ -385,7 +385,7 @@ export async function mount(container, ctx, args) {
     const modelSelect = h(
       'select',
       {
-        class: 'nx-chat-select',
+        class: 'nx-select is-xs',
         dataset: { testid: 'select-model' },
         onchange: async (e) => {
           if (!activeConv) return;
@@ -401,7 +401,7 @@ export async function mount(container, ctx, args) {
     const personaSelect = h(
       'select',
       {
-        class: 'nx-chat-select',
+        class: 'nx-select is-xs',
         dataset: { testid: 'select-persona' },
         onchange: async (e) => {
           if (!activeConv) return;
@@ -417,7 +417,8 @@ export async function mount(container, ctx, args) {
     const paramBtn = h(
       'button',
       {
-        class: `nx-chat-btn-toggle${showParameters ? ' active' : ''}`,
+        class: 'nx-btn is-xs',
+        'aria-pressed': String(!!showParameters),
         onclick: () => {
           showParameters = !showParameters;
           renderMain();
@@ -431,7 +432,8 @@ export async function mount(container, ctx, args) {
     const ragBtn = h(
       'button',
       {
-        class: `nx-chat-btn-toggle${useNotes ? ' active' : ''}`,
+        class: 'nx-btn is-xs',
+        'aria-pressed': String(!!useNotes),
         dataset: { testid: 'toggle-rag' },
         onclick: () => {
           useNotes = !useNotes;
@@ -446,7 +448,8 @@ export async function mount(container, ctx, args) {
     const compareBtn = h(
       'button',
       {
-        class: `nx-chat-btn-toggle${compareMode ? ' active' : ''}`,
+        class: 'nx-btn is-xs',
+        'aria-pressed': String(!!compareMode),
         dataset: { testid: 'toggle-compare' },
         onclick: () => {
           compareMode = !compareMode;
@@ -461,7 +464,8 @@ export async function mount(container, ctx, args) {
     const codeBtn = h(
       'button',
       {
-        class: `nx-chat-btn-toggle${codePanel ? ' active' : ''}`,
+        class: 'nx-btn is-xs',
+        'aria-pressed': String(!!codePanel),
         dataset: { testid: 'toggle-code-panel' },
         onclick: () => {
           codePanel = !codePanel;
@@ -919,7 +923,7 @@ export async function mount(container, ctx, args) {
     const row = h('div', { class: 'nx-chat-input-row' });
 
     const textarea = h('textarea', {
-      class: 'nx-chat-input-textarea',
+      class: 'nx-chat-composer-field',
       placeholder: isListening ? t('input.listening') : t('input.placeholder'),
       rows: 1,
       dataset: { testid: 'chat-input' },
@@ -943,7 +947,7 @@ export async function mount(container, ctx, args) {
     const attachBtn = h(
       'button',
       {
-        class: 'nx-chat-input-btn',
+        class: 'nx-icon-btn',
         title: t('actions.attach'),
         onclick: async () => {
           try {
@@ -972,7 +976,8 @@ export async function mount(container, ctx, args) {
     const voiceBtn = h(
       'button',
       {
-        class: `nx-chat-input-btn${isListening ? ' is-active' : ''}`,
+        class: 'nx-icon-btn',
+        'aria-pressed': String(!!isListening),
         title: t('actions.voice'),
         onclick: () => toggleVoiceInput(textarea),
       },
@@ -983,7 +988,7 @@ export async function mount(container, ctx, args) {
     const templatesBtn = h(
       'button',
       {
-        class: 'nx-chat-input-btn',
+        class: 'nx-icon-btn',
         title: t('actions.templates'),
         dataset: { testid: 'btn-templates' },
         onclick: () => showTemplatesModal(textarea),
@@ -1323,7 +1328,7 @@ export async function mount(container, ctx, args) {
     const insertBtn = h(
       'button',
       {
-        class: 'nx-chat-new-btn',
+        class: 'nx-btn is-primary',
         style: 'margin-top: 10px;',
         onclick: () => {
           const interpolated = interpolateTemplate(tpl.template, values);

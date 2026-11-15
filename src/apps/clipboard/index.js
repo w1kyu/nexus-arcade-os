@@ -195,7 +195,7 @@ export async function mount(root, ctx) {
       h('span', { class: 'nx-cb-search-icon' }, icon('search', 14)),
       h('input', {
         type: 'search',
-        class: 'nx-cb-search-input',
+        class: 'nx-input is-sm',
         placeholder: t('search.placeholder'),
         value: searchQuery,
         onInput: (/** @type {InputEvent} */ e) => {
@@ -216,7 +216,7 @@ export async function mount(root, ctx) {
       subbarActions.append(
         btn(
           {
-            class: 'nx-cb-btn nx-cb-btn-danger',
+            class: 'nx-btn is-xs nx-cb-btn-danger',
             onClick: async () => {
               const ok = await ctx.dialog.confirm(t('actions.clearConfirm'));
               if (ok) {
@@ -233,7 +233,7 @@ export async function mount(root, ctx) {
       subbarActions.append(
         btn(
           {
-            class: 'nx-cb-btn nx-cb-btn-accent',
+            class: 'nx-btn is-xs nx-cb-btn-accent',
             onClick: () => {
               editingSnippet = {
                 id: crypto.randomUUID(),
@@ -306,7 +306,7 @@ export async function mount(root, ctx) {
               { class: 'nx-cb-card-actions' },
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-icon',
+                  class: 'nx-btn is-xs is-icon',
                   title: isPinned ? t('actions.unpin') : t('actions.pin'),
                   onClick: async () => {
                     if (isPinned) {
@@ -328,7 +328,7 @@ export async function mount(root, ctx) {
               ),
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-icon nx-cb-btn-danger',
+                  class: 'nx-btn is-xs is-icon nx-cb-btn-danger',
                   title: t('actions.delete'),
                   onClick: async () => {
                     await ctx.clipboard.remove(item.id);
@@ -339,7 +339,7 @@ export async function mount(root, ctx) {
               ),
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-accent',
+                  class: 'nx-btn is-xs nx-cb-btn-accent',
                   onClick: async (/** @type {MouseEvent} */ e) => {
                     if (item.text) {
                       await ctx.clipboard.writeText(item.text);
@@ -404,7 +404,7 @@ export async function mount(root, ctx) {
               { class: 'nx-cb-card-actions' },
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-icon',
+                  class: 'nx-btn is-xs is-icon',
                   title: t('actions.unpin'),
                   onClick: async () => {
                     await pinnedCol.delete(item.id);
@@ -415,7 +415,7 @@ export async function mount(root, ctx) {
               ),
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-accent',
+                  class: 'nx-btn is-xs nx-cb-btn-accent',
                   onClick: async (/** @type {MouseEvent} */ e) => {
                     if (item.text) {
                       await ctx.clipboard.writeText(item.text);
@@ -483,7 +483,7 @@ export async function mount(root, ctx) {
               { class: 'nx-cb-card-actions' },
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-icon',
+                  class: 'nx-btn is-xs is-icon',
                   title: t('actions.editSnippet'),
                   onClick: () => {
                     editingSnippet = { ...item };
@@ -495,7 +495,7 @@ export async function mount(root, ctx) {
               ),
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-icon nx-cb-btn-danger',
+                  class: 'nx-btn is-xs is-icon nx-cb-btn-danger',
                   title: t('actions.delete'),
                   onClick: async () => {
                     await snippetsCol.delete(item.id);
@@ -506,7 +506,7 @@ export async function mount(root, ctx) {
               ),
               btn(
                 {
-                  class: 'nx-cb-btn nx-cb-btn-accent',
+                  class: 'nx-btn is-xs nx-cb-btn-accent',
                   onClick: async (/** @type {MouseEvent} */ e) => {
                     const expanded = expandSnippet(item.body, {
                       clipboard: historyItems.length ? historyItems[0].text : '',
@@ -545,7 +545,7 @@ export async function mount(root, ctx) {
     const titleInput = /** @type {HTMLInputElement} */ (
       h('input', {
         type: 'text',
-        class: 'nx-cb-input',
+        class: 'nx-input is-sm',
         value: editingSnippet.title,
         placeholder: 'e.g. Email Signature',
       })
@@ -554,7 +554,7 @@ export async function mount(root, ctx) {
     const shortcutInput = /** @type {HTMLInputElement} */ (
       h('input', {
         type: 'text',
-        class: 'nx-cb-input',
+        class: 'nx-input is-sm',
         value: editingSnippet.shortcut || '',
         placeholder: 'e.g. ;sig',
       })
@@ -562,7 +562,7 @@ export async function mount(root, ctx) {
 
     const bodyTextarea = /** @type {HTMLTextAreaElement} */ (
       h('textarea', {
-        class: 'nx-cb-input nx-cb-textarea',
+        class: 'nx-input is-sm nx-textarea',
         placeholder: 'Template with {{date}}, {{time}}, or {{clipboard}}',
       })
     );
@@ -580,7 +580,7 @@ export async function mount(root, ctx) {
           h('span', {}, isEditingNew ? t('actions.newSnippet') : t('actions.editSnippet')),
           btn(
             {
-              class: 'nx-cb-btn nx-cb-btn-icon',
+              class: 'nx-btn is-xs is-icon',
               onClick: () => {
                 editingSnippet = null;
                 modal.remove();
@@ -612,7 +612,7 @@ export async function mount(root, ctx) {
           { class: 'nx-cb-modal-footer' },
           btn(
             {
-              class: 'nx-cb-btn',
+              class: 'nx-btn is-xs',
               onClick: () => {
                 editingSnippet = null;
                 modal.remove();
@@ -622,7 +622,7 @@ export async function mount(root, ctx) {
           ),
           btn(
             {
-              class: 'nx-cb-btn nx-cb-btn-accent',
+              class: 'nx-btn is-xs nx-cb-btn-accent',
               onClick: async () => {
                 const title = titleInput.value.trim() || 'Untitled';
                 const body = bodyTextarea.value;

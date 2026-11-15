@@ -91,7 +91,7 @@ export async function mount(container, ctx, args) {
 
   // ─── Header ─────────────────────────────────────────────────────────────
   const titleInput = h('input', {
-    class: 'nx-whiteboard-title-input',
+    class: 'nx-input is-inline',
     type: 'text',
     value: board.title,
     title: t('app.title', 'Nexus Whiteboard'),
@@ -110,12 +110,17 @@ export async function mount(container, ctx, args) {
     updateStatus(true);
   };
 
-  const fileMenuBtn = h('button', { class: 'nx-whiteboard-btn', title: t('file.menu', 'File') }, icon('menu'), ' File');
+  const fileMenuBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('file.menu', 'File') },
+    icon('menu'),
+    ' File',
+  );
   fileMenuBtn.onclick = () => showFileMenu(fileMenuBtn);
 
   const templatesBtn = h(
     'button',
-    { class: 'nx-whiteboard-btn', title: t('file.templates', 'Board Templates') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.templates', 'Board Templates') },
     icon('cards'),
     ' Templates',
   );
@@ -123,7 +128,7 @@ export async function mount(container, ctx, args) {
 
   const exportBtn = h(
     'button',
-    { class: 'nx-whiteboard-btn', title: t('file.export', 'Export') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.export', 'Export') },
     icon('download'),
     ' Export',
   );
@@ -148,7 +153,7 @@ export async function mount(container, ctx, args) {
   function setTool(tool) {
     activeTool = tool;
     Object.keys(toolButtons).forEach((k) => {
-      toolButtons[k].classList.toggle('active', k === tool);
+      toolButtons[k].setAttribute('aria-pressed', String(k === tool));
     });
     viewport.className = `nx-whiteboard-viewport tool-${tool}`;
     updatePropsBar();
@@ -157,7 +162,7 @@ export async function mount(container, ctx, args) {
   function makeToolBtn(tool, iconName, labelKey) {
     const btn = h(
       'button',
-      { class: `nx-whiteboard-btn ${activeTool === tool ? 'active' : ''}`, title: t(labelKey) },
+      { class: 'nx-btn is-xs is-ghost', 'aria-pressed': String(activeTool === tool), title: t(labelKey) },
       icon(iconName),
     );
     btn.onclick = () => setTool(tool);
@@ -174,7 +179,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-whiteboard-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('actions.undo', 'Undo'),
           onclick: () => undoAction(),
         },
@@ -183,7 +188,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-whiteboard-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('actions.redo', 'Redo'),
           onclick: () => redoAction(),
         },
@@ -223,7 +228,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-whiteboard-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('actions.duplicate', 'Duplicate'),
           onclick: () => duplicateSelected(),
         },
@@ -232,7 +237,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-whiteboard-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('actions.delete', 'Delete'),
           onclick: () => deleteSelected(),
         },
@@ -283,7 +288,8 @@ export async function mount(container, ctx, args) {
       const btn = h(
         'button',
         {
-          class: `nx-whiteboard-btn ${activeStrokeWidth === w ? 'active' : ''}`,
+          class: 'nx-btn is-xs is-ghost',
+          'aria-pressed': String(activeStrokeWidth === w),
           onclick: () => {
             activeStrokeWidth = w;
             if (selectedIds.length > 0) {
@@ -341,20 +347,24 @@ export async function mount(container, ctx, args) {
 
   // Zoom Widget
   const zoomLabel = h('span', { class: 'nx-whiteboard-zoom-label' }, '100%');
-  const zoomInBtn = h('button', { class: 'nx-whiteboard-btn', title: t('actions.zoomIn', 'Zoom In') }, icon('zoom-in'));
+  const zoomInBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('actions.zoomIn', 'Zoom In') },
+    icon('zoom-in'),
+  );
   const zoomOutBtn = h(
     'button',
-    { class: 'nx-whiteboard-btn', title: t('actions.zoomOut', 'Zoom Out') },
+    { class: 'nx-btn is-xs is-ghost', title: t('actions.zoomOut', 'Zoom Out') },
     icon('zoom-out'),
   );
   const zoomResetBtn = h(
     'button',
-    { class: 'nx-whiteboard-btn', title: t('actions.zoomReset', 'Reset Zoom') },
+    { class: 'nx-btn is-xs is-ghost', title: t('actions.zoomReset', 'Reset Zoom') },
     icon('refresh'),
   );
   const zoomFitBtn = h(
     'button',
-    { class: 'nx-whiteboard-btn', title: t('actions.zoomFit', 'Fit Content') },
+    { class: 'nx-btn is-xs is-ghost', title: t('actions.zoomFit', 'Fit Content') },
     icon('maximize'),
   );
 

@@ -37,7 +37,7 @@ export async function mount(container, ctx) {
   for (const key of tabKeys) {
     const btn = h(
       'button',
-      { class: `nx-button ghost small${key === 'converter' ? ' primary' : ''}` },
+      { class: 'nx-btn is-sm is-ghost', 'aria-pressed': String(key === 'converter') },
       t(`tabs.${key}`),
     );
     tabBtns[key] = btn;
@@ -55,7 +55,7 @@ export async function mount(container, ctx) {
 
   function switchTab(/** @type {string} */ target) {
     for (const k of tabKeys) {
-      tabBtns[k].classList.toggle('primary', k === target);
+      tabBtns[k].setAttribute('aria-pressed', String(k === target));
       tabPanes[k].hidden = k !== target;
     }
   }
@@ -119,7 +119,7 @@ export async function mount(container, ctx) {
   const pickerActions = h('div', { style: 'display: flex; gap: 8px; flex-wrap: wrap;' });
   const useAccentBtn = h(
     'button',
-    { class: 'nx-button small primary' },
+    { class: 'nx-btn is-sm is-primary' },
     icon('sparkles', { size: 14 }),
     t('converter.useAccent'),
   );
@@ -130,7 +130,7 @@ export async function mount(container, ctx) {
   if (typeof window !== 'undefined' && 'EyeDropper' in window) {
     const eyeBtn = h(
       'button',
-      { class: 'nx-button small ghost' },
+      { class: 'nx-btn is-sm is-ghost' },
       icon('eye', { size: 14 }),
       t('converter.eyedropper'),
     );
@@ -166,10 +166,10 @@ export async function mount(container, ctx) {
 
   const formatList = h('div', { style: 'display: flex; flex-direction: column; gap: 8px;' });
   for (const f of formatNames) {
-    const inp = h('input', { class: 'nx-colorlab-format-input', spellcheck: 'false', 'aria-label': f });
+    const inp = h('input', { class: 'nx-colorlab-format', spellcheck: 'false', 'aria-label': f });
     formatInputs[f] = inp;
 
-    const copyBtn = h('button', { class: 'nx-button ghost small', title: 'Copy' }, icon('copy', { size: 14 }));
+    const copyBtn = h('button', { class: 'nx-btn is-sm is-ghost', title: 'Copy' }, icon('copy', { size: 14 }));
     copyBtn.addEventListener('click', async () => {
       await navigator.clipboard.writeText(inp.value);
       ctx.notifications?.notify?.({ title: t('converter.copied'), level: 'info' });
@@ -272,19 +272,19 @@ export async function mount(container, ctx) {
     h('option', { value: 'shades' }, 'Shades & Tints'),
   );
 
-  const generateBtn = h('button', { class: 'nx-button primary' }, icon('refresh', { size: 14 }), t('palette.generate'));
-  const exportCssBtn = h('button', { class: 'nx-button ghost small' }, t('palette.exportCss'));
-  const exportJsonBtn = h('button', { class: 'nx-button ghost small' }, t('palette.exportJson'));
-  const exportScssBtn = h('button', { class: 'nx-button ghost small' }, t('palette.exportScss'));
+  const generateBtn = h('button', { class: 'nx-btn is-primary' }, icon('refresh', { size: 14 }), t('palette.generate'));
+  const exportCssBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, t('palette.exportCss'));
+  const exportJsonBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, t('palette.exportJson'));
+  const exportScssBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, t('palette.exportScss'));
   const saveVfsBtn = h(
     'button',
-    { class: 'nx-button ghost small' },
+    { class: 'nx-btn is-sm is-ghost' },
     icon('download', { size: 14 }),
     t('palette.saveVfs'),
   );
   const createThemeBtn = h(
     'button',
-    { class: 'nx-button primary small' },
+    { class: 'nx-btn is-sm is-primary' },
     icon('palette', { size: 14 }),
     t('palette.createTheme'),
   );
@@ -585,10 +585,10 @@ export async function mount(container, ctx) {
   );
 
   const gradBox = h('div', { class: 'nx-colorlab-gradient-preview' });
-  const cssCode = h('input', { class: 'nx-colorlab-format-input', readonly: 'true', style: 'width: 100%;' });
+  const cssCode = h('input', { class: 'nx-colorlab-format', readonly: 'true', style: 'width: 100%;' });
   const copyCssBtn = h(
     'button',
-    { class: 'nx-button small primary' },
+    { class: 'nx-btn is-sm is-primary' },
     icon('copy', { size: 14 }),
     t('gradient.copyCss'),
   );
@@ -637,7 +637,7 @@ export async function mount(container, ctx) {
   const imgPane = tabPanes.image;
   const imgCard = h('div', { class: 'nx-colorlab-card' });
 
-  const openImgBtn = h('button', { class: 'nx-button primary' }, icon('folder', { size: 14 }), t('image.openButton'));
+  const openImgBtn = h('button', { class: 'nx-btn is-primary' }, icon('folder', { size: 14 }), t('image.openButton'));
   const imgPreviewCanvas = h('canvas', {
     width: 320,
     height: 200,

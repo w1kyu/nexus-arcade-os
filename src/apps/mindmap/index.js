@@ -86,7 +86,7 @@ export async function mount(container, ctx, args) {
 
   // ─── Header ─────────────────────────────────────────────────────────────
   const titleInput = h('input', {
-    class: 'nx-mindmap-title-input',
+    class: 'nx-input is-inline',
     type: 'text',
     value: mapData.title,
     title: t('app.title', 'Nexus Mind Map'),
@@ -106,12 +106,17 @@ export async function mount(container, ctx, args) {
     render();
   };
 
-  const fileMenuBtn = h('button', { class: 'nx-mindmap-btn', title: t('file.menu', 'File') }, icon('menu'), ' File');
+  const fileMenuBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('file.menu', 'File') },
+    icon('menu'),
+    ' File',
+  );
   fileMenuBtn.onclick = () => showFileMenu(fileMenuBtn);
 
   const exportBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('file.export', 'Export') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.export', 'Export') },
     icon('download'),
     ' Export',
   );
@@ -120,7 +125,7 @@ export async function mount(container, ctx, args) {
   // Layout mode switcher
   const layoutSelect = h(
     'select',
-    { class: 'nx-mindmap-select', title: t('toolbar.layout', 'Layout') },
+    { class: 'nx-select is-xs', title: t('toolbar.layout', 'Layout') },
     h('option', { value: 'right' }, t('toolbar.layoutRight', 'Right Tree')),
     h('option', { value: 'radial' }, t('toolbar.layoutRadial', 'Radial Tree')),
     h('option', { value: 'org' }, t('toolbar.layoutOrg', 'Org Chart')),
@@ -149,7 +154,7 @@ export async function mount(container, ctx, args) {
   // ─── Toolbar ─────────────────────────────────────────────────────────────
   const addChildBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.addChild', 'Add Subtopic (Tab)') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.addChild', 'Add Subtopic (Tab)') },
     icon('plus'),
     ' Subtopic',
   );
@@ -157,7 +162,7 @@ export async function mount(container, ctx, args) {
 
   const addSiblingBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.addSibling', 'Add Sibling (Enter)') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.addSibling', 'Add Sibling (Enter)') },
     icon('plus'),
     ' Sibling',
   );
@@ -165,7 +170,7 @@ export async function mount(container, ctx, args) {
 
   const deleteBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.delete', 'Delete (Del)') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.delete', 'Delete (Del)') },
     icon('trash'),
     ' Delete',
   );
@@ -173,7 +178,7 @@ export async function mount(container, ctx, args) {
 
   const collapseBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.collapse', 'Collapse / Expand (Space)') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.collapse', 'Collapse / Expand (Space)') },
     icon('minus'),
     ' Fold',
   );
@@ -181,7 +186,7 @@ export async function mount(container, ctx, args) {
 
   const toTasksBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.toTasks', 'Create Tasks from Branch') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.toTasks', 'Create Tasks from Branch') },
     icon('checklist'),
     ' To Tasks',
   );
@@ -213,12 +218,12 @@ export async function mount(container, ctx, args) {
       { class: 'nx-mindmap-toolbar-group' },
       h(
         'button',
-        { class: 'nx-mindmap-btn', title: t('toolbar.undo', 'Undo'), onclick: () => undoAction() },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.undo', 'Undo'), onclick: () => undoAction() },
         icon('undo'),
       ),
       h(
         'button',
-        { class: 'nx-mindmap-btn', title: t('toolbar.redo', 'Redo'), onclick: () => redoAction() },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.redo', 'Redo'), onclick: () => redoAction() },
         icon('redo'),
       ),
     ),
@@ -236,20 +241,24 @@ export async function mount(container, ctx, args) {
 
   // Zoom Widget
   const zoomLabel = h('span', { class: 'nx-mindmap-zoom-label' }, '100%');
-  const zoomInBtn = h('button', { class: 'nx-mindmap-btn', title: t('toolbar.zoomIn', 'Zoom In') }, icon('zoom-in'));
+  const zoomInBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomIn', 'Zoom In') },
+    icon('zoom-in'),
+  );
   const zoomOutBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.zoomOut', 'Zoom Out') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomOut', 'Zoom Out') },
     icon('zoom-out'),
   );
   const zoomResetBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.zoomReset', 'Reset Zoom') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomReset', 'Reset Zoom') },
     icon('refresh'),
   );
   const zoomFitBtn = h(
     'button',
-    { class: 'nx-mindmap-btn', title: t('toolbar.zoomFit', 'Fit Content') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomFit', 'Fit Content') },
     icon('maximize'),
   );
 

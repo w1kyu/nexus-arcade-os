@@ -64,7 +64,7 @@ export async function mount(container, ctx) {
 
   const btnRecord = h(
     'button',
-    { class: 'nx-recorder-record-btn', type: 'button', title: 'Record' },
+    { class: 'nx-recorder-record', type: 'button', title: 'Record' },
     icon('mic', { size: 28 }),
   );
   const btnPause = h(

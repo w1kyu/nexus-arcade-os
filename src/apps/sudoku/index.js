@@ -44,12 +44,12 @@ export async function mount(container, ctx) {
 
   for (const diff of ['veryEasy', 'easy', 'medium', 'hard', 'expert', 'daily']) {
     const btn = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-sudoku-btn ${diff === currentDiff ? 'active' : ''}` }, t(`difficulty.${diff}`))
+      h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(diff === currentDiff) }, t(`difficulty.${diff}`))
     );
     btn.addEventListener('click', () => {
       currentDiff = diff;
       for (const [k, b] of Object.entries(diffBtns)) {
-        b.classList.toggle('active', k === currentDiff);
+        b.setAttribute('aria-pressed', String(k === currentDiff));
       }
       startNewGame();
     });
@@ -69,17 +69,17 @@ export async function mount(container, ctx) {
 
   // Action buttons
   const actionsEl = h('div', { class: 'nx-sudoku-actions' });
-  const btnUndo = h('button', { class: 'nx-sudoku-btn' }, '↩ ' + t('actions.undo'));
-  const btnErase = h('button', { class: 'nx-sudoku-btn' }, '⌫ ' + t('actions.erase'));
-  const btnNotes = h('button', { class: 'nx-sudoku-btn' }, '✏️ ' + t('actions.notes'));
-  const btnAutoNotes = h('button', { class: 'nx-sudoku-btn' }, '⚡ ' + t('actions.autoNotes'));
-  const btnHint = h('button', { class: 'nx-sudoku-btn' }, '💡 ' + t('actions.hint'));
+  const btnUndo = h('button', { class: 'nx-btn is-sm' }, '↩ ' + t('actions.undo'));
+  const btnErase = h('button', { class: 'nx-btn is-sm' }, '⌫ ' + t('actions.erase'));
+  const btnNotes = h('button', { class: 'nx-btn is-sm' }, '✏️ ' + t('actions.notes'));
+  const btnAutoNotes = h('button', { class: 'nx-btn is-sm' }, '⚡ ' + t('actions.autoNotes'));
+  const btnHint = h('button', { class: 'nx-btn is-sm' }, '💡 ' + t('actions.hint'));
 
   btnUndo.addEventListener('click', () => undo());
   btnErase.addEventListener('click', () => eraseCell());
   btnNotes.addEventListener('click', () => {
     notesMode = !notesMode;
-    btnNotes.classList.toggle('active', notesMode);
+    btnNotes.setAttribute('aria-pressed', String(!!notesMode));
     audio.play('blip');
   });
   btnAutoNotes.addEventListener('click', () => autoNotes());
@@ -348,7 +348,7 @@ export async function mount(container, ctx) {
 
     const title = h('div', { class: 'nx-sudoku-hint-tech' }, '💡 ' + hint.technique);
     const desc = h('div', { class: 'nx-sudoku-hint-desc' }, hint.explanation);
-    const btnApply = h('button', { class: 'nx-sudoku-btn active' }, t('actions.applyHint'));
+    const btnApply = h('button', { class: 'nx-btn is-sm', 'aria-pressed': 'true' }, t('actions.applyHint'));
 
     btnApply.addEventListener('click', () => {
       overlay.remove();
@@ -428,7 +428,7 @@ export async function mount(container, ctx) {
       updateHighlights();
     } else if (e.key === 'KeyN') {
       notesMode = !notesMode;
-      btnNotes.classList.toggle('active', notesMode);
+      btnNotes.setAttribute('aria-pressed', String(!!notesMode));
     } else if (e.key === 'KeyH') {
       showHint();
     } else if (e.key === 'Escape') {

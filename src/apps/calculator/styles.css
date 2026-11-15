@@ -32,13 +32,13 @@
 }
 
 .nx-calc-expr {
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-3);
   min-height: 18px;
 }
 
 .nx-calc-display {
-  font-size: 32px;
+  font-size: var(--text-hero);
   font-weight: 700;
   color: var(--text-1);
   font-family: monospace;
@@ -66,8 +66,8 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
-.nx-calc-btn {
-  font-size: 16px;
+.nx-calc-key {
+  font-size: var(--text-md);
   font-weight: 500;
   border-radius: 6px;
   border: 1px solid var(--border);
@@ -82,17 +82,17 @@
   transition: background 0.1s ease;
 }
 
-.nx-calc-btn:hover {
+.nx-calc-key:hover {
   background: var(--surface-hover);
 }
 
-.nx-calc-btn.is-op {
+.nx-calc-key.is-op {
   background: var(--surface-2);
   color: var(--warning);
   font-weight: 600;
 }
 
-.nx-calc-btn.is-equals {
+.nx-calc-key.is-equals {
   background: var(--warning);
   color: var(--bg);
   font-weight: 700;
@@ -113,7 +113,7 @@
   flex-direction: column;
   gap: 6px;
   font-family: monospace;
-  font-size: 13px;
+  font-size: var(--text-ui);
 }
 
 .nx-calc-base-row {
@@ -148,7 +148,7 @@
 
 .nx-calc-bit {
   height: 24px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   display: flex;
   align-items: center;
   justify-content: center;

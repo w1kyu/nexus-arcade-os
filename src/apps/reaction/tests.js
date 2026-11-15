@@ -267,12 +267,12 @@ export function runNumberMemory(container, audio, onComplete) {
     root.innerHTML = `
       <div class="nx-reaction-center-content">
         <h2>What was the number?</h2>
-        <input type="text" class="nx-number-input" autofocus />
+        <input type="text" class="nx-input nx-reaction-answer" autofocus />
         <button class="nx-game-btn nx-btn-primary" style="margin-top: 14px;">Submit</button>
       </div>
     `;
 
-    const input = /** @type {HTMLInputElement} */ (root.querySelector('.nx-number-input'));
+    const input = /** @type {HTMLInputElement} */ (root.querySelector('.nx-input nx-reaction-answer'));
     const btn = root.querySelector('button');
     input?.focus();
 

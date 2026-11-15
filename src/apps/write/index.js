@@ -92,7 +92,7 @@ export async function mount(container, ctx, args) {
 
   // ─── Header ─────────────────────────────────────────────────────────────
   const titleInput = h('input', {
-    class: 'nx-write-title-input',
+    class: 'nx-input is-inline',
     type: 'text',
     value: doc.title,
     title: t('app.title', 'Nexus Write'),
@@ -111,12 +111,17 @@ export async function mount(container, ctx, args) {
     updateStatus(true);
   };
 
-  const fileMenuBtn = h('button', { class: 'nx-write-btn', title: t('file.menu', 'File') }, icon('menu'), ' File');
+  const fileMenuBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('file.menu', 'File') },
+    icon('menu'),
+    ' File',
+  );
   fileMenuBtn.onclick = () => showFileMenu(fileMenuBtn);
 
   const templatesBtn = h(
     'button',
-    { class: 'nx-write-btn', title: t('file.templates', 'Document Templates') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.templates', 'Document Templates') },
     icon('cards'),
     ' Templates',
   );
@@ -124,7 +129,7 @@ export async function mount(container, ctx, args) {
 
   const printBtn = h(
     'button',
-    { class: 'nx-write-btn', title: t('file.print', 'Print / PDF') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.print', 'Print / PDF') },
     icon('download'),
     ' Print',
   );
@@ -146,7 +151,7 @@ export async function mount(container, ctx, args) {
   // ─── Toolbar Elements ──────────────────────────────────────────────────
   const styleSelect = h(
     'select',
-    { class: 'nx-write-select', title: t('toolbar.heading', 'Heading') },
+    { class: 'nx-select is-xs', title: t('toolbar.heading', 'Heading') },
     h('option', { value: 'p' }, t('toolbar.paragraph', 'Normal Text')),
     h('option', { value: 'h1' }, t('toolbar.h1', 'Heading 1')),
     h('option', { value: 'h2' }, t('toolbar.h2', 'Heading 2')),
@@ -193,7 +198,7 @@ export async function mount(container, ctx, args) {
   // Zoom control
   const zoomSelect = h(
     'select',
-    { class: 'nx-write-select', title: t('toolbar.zoom', 'Zoom') },
+    { class: 'nx-select is-xs', title: t('toolbar.zoom', 'Zoom') },
     h('option', { value: '0.75' }, '75%'),
     h('option', { value: '1', selected: true }, '100%'),
     h('option', { value: '1.25' }, '125%'),
@@ -207,7 +212,7 @@ export async function mount(container, ctx, args) {
   // Page setup controls
   const pageSizeSelect = h(
     'select',
-    { class: 'nx-write-select', title: t('page.size', 'Page Size') },
+    { class: 'nx-select is-xs', title: t('page.size', 'Page Size') },
     h('option', { value: 'A4' }, 'A4'),
     h('option', { value: 'Letter' }, 'Letter'),
   );
@@ -220,7 +225,7 @@ export async function mount(container, ctx, args) {
 
   const orientationSelect = h(
     'select',
-    { class: 'nx-write-select', title: t('page.orientation', 'Orientation') },
+    { class: 'nx-select is-xs', title: t('page.orientation', 'Orientation') },
     h('option', { value: 'portrait' }, t('page.portrait', 'Portrait')),
     h('option', { value: 'landscape' }, t('page.landscape', 'Landscape')),
   );
@@ -233,7 +238,7 @@ export async function mount(container, ctx, args) {
 
   const marginsSelect = h(
     'select',
-    { class: 'nx-write-select', title: t('page.margins', 'Margins') },
+    { class: 'nx-select is-xs', title: t('page.margins', 'Margins') },
     h('option', { value: 'normal' }, t('page.normal', 'Normal (25 mm)')),
     h('option', { value: 'narrow' }, t('page.narrow', 'Narrow (12.7 mm)')),
     h('option', { value: 'wide' }, t('page.wide', 'Wide (38 mm)')),
@@ -249,7 +254,7 @@ export async function mount(container, ctx, args) {
   // Font family selector
   const fontSelect = h(
     'select',
-    { class: 'nx-write-select', title: 'Font' },
+    { class: 'nx-select is-xs', title: 'Font' },
     h('option', { value: 'sans' }, 'Sans-Serif'),
     h('option', { value: 'serif' }, 'Serif'),
     h('option', { value: 'mono' }, 'Monospace'),
@@ -263,23 +268,27 @@ export async function mount(container, ctx, args) {
 
   const outlineBtn = h(
     'button',
-    { class: `nx-write-btn ${isOutlineOpen ? 'active' : ''}`, title: t('toolbar.outline', 'Document Outline') },
+    {
+      class: 'nx-btn is-xs is-ghost',
+      'aria-pressed': String(!!isOutlineOpen),
+      title: t('toolbar.outline', 'Document Outline'),
+    },
     icon('sidebar'),
   );
   outlineBtn.onclick = () => {
     isOutlineOpen = !isOutlineOpen;
-    outlineBtn.classList.toggle('active', isOutlineOpen);
+    outlineBtn.setAttribute('aria-pressed', String(!!isOutlineOpen));
     sidebar.classList.toggle('collapsed', !isOutlineOpen);
   };
 
   const findBtn = h(
     'button',
-    { class: 'nx-write-btn', title: t('toolbar.findReplace', 'Find & Replace') },
+    { class: 'nx-btn is-xs is-ghost', title: t('toolbar.findReplace', 'Find & Replace') },
     icon('search'),
   );
   findBtn.onclick = () => {
     isFindOpen = !isFindOpen;
-    findBtn.classList.toggle('active', isFindOpen);
+    findBtn.setAttribute('aria-pressed', String(!!isFindOpen));
     findBar.style.display = isFindOpen ? 'flex' : 'none';
     if (isFindOpen) {
       findInput.focus();
@@ -288,12 +297,16 @@ export async function mount(container, ctx, args) {
 
   const spellcheckBtn = h(
     'button',
-    { class: `nx-write-btn ${isSpellcheck ? 'active' : ''}`, title: t('toolbar.spellcheck', 'Toggle Spell Check') },
+    {
+      class: 'nx-btn is-xs is-ghost',
+      'aria-pressed': String(!!isSpellcheck),
+      title: t('toolbar.spellcheck', 'Toggle Spell Check'),
+    },
     icon('check'),
   );
   spellcheckBtn.onclick = () => {
     isSpellcheck = !isSpellcheck;
-    spellcheckBtn.classList.toggle('active', isSpellcheck);
+    spellcheckBtn.setAttribute('aria-pressed', String(!!isSpellcheck));
     pageEl.setAttribute('spellcheck', String(isSpellcheck));
   };
 
@@ -308,7 +321,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.undo', 'Undo'),
           onclick: () => undoAction(),
         },
@@ -317,7 +330,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.redo', 'Redo'),
           onclick: () => redoAction(),
         },
@@ -333,7 +346,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.bold', 'Bold'),
           onclick: () => exec('bold'),
         },
@@ -342,7 +355,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.italic', 'Italic'),
           onclick: () => exec('italic'),
         },
@@ -351,7 +364,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.underline', 'Underline'),
           onclick: () => exec('underline'),
         },
@@ -360,7 +373,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.strike', 'Strikethrough'),
           onclick: () => exec('strikeThrough'),
         },
@@ -369,7 +382,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.textColor', 'Text Color'),
           onclick: () => textColorInput.click(),
         },
@@ -378,7 +391,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.highlight', 'Highlight Color'),
           onclick: () => highlightColorInput.click(),
         },
@@ -392,7 +405,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.alignLeft', 'Align Left'),
           onclick: () => exec('justifyLeft'),
         },
@@ -401,7 +414,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.alignCenter', 'Align Center'),
           onclick: () => exec('justifyCenter'),
         },
@@ -410,7 +423,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.alignRight', 'Align Right'),
           onclick: () => exec('justifyRight'),
         },
@@ -419,7 +432,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.alignJustify', 'Justify'),
           onclick: () => exec('justifyFull'),
         },
@@ -433,7 +446,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.bulletList', 'Bullet List'),
           onclick: () => exec('insertUnorderedList'),
         },
@@ -442,7 +455,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.numberList', 'Numbered List'),
           onclick: () => exec('insertOrderedList'),
         },
@@ -451,7 +464,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.checklist', 'Checklist'),
           onclick: () => insertChecklist(),
         },
@@ -460,7 +473,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.blockquote', 'Quote'),
           onclick: () => exec('formatBlock', '<blockquote>'),
         },
@@ -469,7 +482,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.code', 'Code Block'),
           onclick: () => insertCodeBlock(),
         },
@@ -478,7 +491,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.table', 'Insert Table'),
           onclick: () => promptInsertTable(),
         },
@@ -492,7 +505,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.link', 'Link'),
           onclick: () => promptInsertLink(),
         },
@@ -501,7 +514,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.image', 'Insert Image'),
           onclick: () => promptInsertImage(),
         },
@@ -510,7 +523,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.hr', 'Horizontal Rule'),
           onclick: () => exec('insertHorizontalRule'),
         },
@@ -519,7 +532,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.toc', 'Table of Contents'),
           onclick: () => insertTableOfContents(),
         },
@@ -528,7 +541,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           title: t('toolbar.clearFormat', 'Clear Formatting'),
           onclick: () => exec('removeFormat'),
         },
@@ -551,35 +564,47 @@ export async function mount(container, ctx, args) {
 
   // ─── Find & Replace Bar ─────────────────────────────────────────────────
   const findInput = h('input', {
-    class: 'nx-write-find-input',
+    class: 'nx-input is-xs nx-write-find-field',
     type: 'text',
     placeholder: t('find.find', 'Find'),
   });
 
   const replaceInput = h('input', {
-    class: 'nx-write-find-input',
+    class: 'nx-input is-xs nx-write-find-field',
     type: 'text',
     placeholder: t('find.replace', 'Replace'),
   });
 
   const matchLabel = h('span', { style: 'font-size: 11px; color: var(--text-3); min-width: 60px;' }, '');
 
-  const findNextBtn = h('button', { class: 'nx-write-btn', title: t('find.next', 'Next') }, icon('chevron-down'));
+  const findNextBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('find.next', 'Next') },
+    icon('chevron-down'),
+  );
   findNextBtn.onclick = () => navigateFind(1);
 
-  const findPrevBtn = h('button', { class: 'nx-write-btn', title: t('find.prev', 'Previous') }, icon('chevron-up'));
+  const findPrevBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('find.prev', 'Previous') },
+    icon('chevron-up'),
+  );
   findPrevBtn.onclick = () => navigateFind(-1);
 
-  const replaceBtn = h('button', { class: 'nx-write-btn', title: t('find.replaceOne', 'Replace') }, 'Replace');
+  const replaceBtn = h('button', { class: 'nx-btn is-xs is-ghost', title: t('find.replaceOne', 'Replace') }, 'Replace');
   replaceBtn.onclick = () => replaceCurrentMatch();
 
-  const replaceAllBtn = h('button', { class: 'nx-write-btn', title: t('find.replaceAll', 'Replace All') }, 'All');
+  const replaceAllBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('find.replaceAll', 'Replace All') },
+    'All',
+  );
   replaceAllBtn.onclick = () => replaceAllMatches();
 
-  const closeFindBtn = h('button', { class: 'nx-write-btn', title: 'Close' }, icon('close'));
+  const closeFindBtn = h('button', { class: 'nx-btn is-xs is-ghost', title: 'Close' }, icon('close'));
   closeFindBtn.onclick = () => {
     isFindOpen = false;
-    findBtn.classList.remove('active');
+    findBtn.setAttribute('aria-pressed', 'false');
     findBar.style.display = 'none';
     clearFindHighlights();
   };
@@ -618,7 +643,7 @@ export async function mount(container, ctx, args) {
       h(
         'button',
         {
-          class: 'nx-write-btn',
+          class: 'nx-btn is-xs is-ghost',
           style: 'min-width: 20px; height: 20px; padding: 0;',
           'aria-label': t('outline.close'),
           title: t('outline.close'),

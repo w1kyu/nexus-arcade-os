@@ -63,7 +63,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // 3. Open Memory Master and interact with cards
     const memWin = await openAppFromPalette(page, 'Memory Master', 'nexus.memory');
     await expect(memWin.locator('.nx-memory-app')).toBeVisible();
-    const playMemBtn = memWin.locator('.nx-memory-play-btn');
+    const playMemBtn = memWin.locator('[data-testid="play"]');
     await playMemBtn.click();
     await expect(memWin.locator('.nx-memory-grid')).toBeVisible();
     const firstCard = memWin.locator('.nx-memory-card').first();
@@ -74,7 +74,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // 4. Open Snake Evolution
     const snakeWin = await openAppFromPalette(page, 'Snake Evolution', 'nexus.snake');
     await expect(snakeWin.locator('.nx-snake-app')).toBeVisible();
-    const playSnakeBtn = snakeWin.locator('.nx-snake-play-btn');
+    const playSnakeBtn = snakeWin.locator('[data-testid="play"]');
     await playSnakeBtn.click();
     await expect(snakeWin.locator('.nx-snake-canvas')).toBeVisible();
     await closeWindow(snakeWin);
@@ -107,7 +107,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // 1. Blockfall
     const blockfallWin = await openAppFromPalette(page, 'Blockfall', 'nexus.blockfall');
     await expect(blockfallWin.locator('.nx-blockfall-app')).toBeVisible();
-    await blockfallWin.locator('.nx-blockfall-play-btn').click();
+    await blockfallWin.locator('[data-testid="play"]').click();
     await expect(blockfallWin.locator('.nx-blockfall-canvas')).toBeVisible();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Space');
@@ -124,7 +124,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // 3. Void Drifter
     const drifterWin = await openAppFromPalette(page, 'Void Drifter', 'nexus.drifter');
     await expect(drifterWin.locator('.nx-drifter-app')).toBeVisible();
-    await drifterWin.locator('.nx-drifter-play-btn').click();
+    await drifterWin.locator('[data-testid="play"]').click();
     await expect(drifterWin.locator('.nx-drifter-canvas')).toBeVisible();
     await page.keyboard.press('ArrowUp');
     await closeWindow(drifterWin);
@@ -149,7 +149,7 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     // 6. Neon Pong
     const pongWin = await openAppFromPalette(page, 'Neon Pong', 'nexus.pong');
     await expect(pongWin.locator('.nx-pong-app')).toBeVisible();
-    await pongWin.locator('.nx-pong-play-btn').click();
+    await pongWin.locator('[data-testid="play"]').click();
     await expect(pongWin.locator('.nx-pong-canvas')).toBeVisible();
     await page.keyboard.press('KeyW');
     await closeWindow(pongWin);
@@ -167,25 +167,25 @@ test.describe('Phase 9 — Game Engine & Arcade Hub', () => {
     const hubWin = await openAppFromPalette(page, 'Arcade Hub', 'nexus.arcade');
     await expect(hubWin.locator('.nx-arcade-app')).toBeVisible();
 
-    const cardsTab = hubWin.locator('.nx-filter-btn', { hasText: 'Cards' });
+    const cardsTab = hubWin.locator('[data-testid="arcade-filter"]', { hasText: 'Cards' });
     await expect(cardsTab).toBeVisible();
     await cardsTab.click();
     await expect(hubWin.locator('.nx-game-card')).toHaveCount(1);
     await expect(hubWin.locator('.nx-card-name')).toContainText('Solitaire Collection');
 
-    const boardTab = hubWin.locator('.nx-filter-btn', { hasText: 'Board' });
+    const boardTab = hubWin.locator('[data-testid="arcade-filter"]', { hasText: 'Board' });
     await expect(boardTab).toBeVisible();
     await boardTab.click();
     await expect(hubWin.locator('.nx-game-card')).toHaveCount(5);
 
     // Test Local 2-Player Lobby Modal
-    const lobbyBtn = hubWin.locator('.nx-lobby-btn');
+    const lobbyBtn = hubWin.locator('[data-testid="arcade-lobby"]');
     await expect(lobbyBtn).toBeVisible();
     await lobbyBtn.click();
     const lobbyModal = hubWin.locator('.nx-lobby-modal');
     await expect(lobbyModal).toBeVisible();
     // Close lobby modal
-    await lobbyModal.locator('.nx-lobby-close-btn').click();
+    await lobbyModal.locator('[data-testid="lobby-close"]').click();
     await expect(lobbyModal).not.toBeVisible();
     await closeWindow(hubWin);
 

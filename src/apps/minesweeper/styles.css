@@ -28,28 +28,6 @@
   gap: 6px;
 }
 
-.nx-minesweeper-btn {
-  padding: 6px 12px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  color: var(--text-1);
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.nx-minesweeper-btn:hover {
-  background: var(--surface-3);
-  color: var(--text-1);
-}
-
-.nx-minesweeper-btn.active {
-  background: var(--success);
-  border-color: var(--success);
-  color: var(--bg);
-}
-
 .nx-minesweeper-header {
   display: flex;
   align-items: center;
@@ -63,7 +41,7 @@
   background: var(--bg);
   color: var(--danger);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 24px;
+  font-size: var(--text-display);
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 4px;
@@ -73,8 +51,8 @@
   letter-spacing: 2px;
 }
 
-.nx-minesweeper-face-btn {
-  font-size: 26px;
+.nx-minesweeper-face {
+  font-size: var(--text-display);
   background: var(--surface-1);
   border: 2px solid var(--border);
   border-radius: 50%;
@@ -87,7 +65,7 @@
   transition: transform 0.1s ease;
 }
 
-.nx-minesweeper-face-btn:active {
+.nx-minesweeper-face:active {
   transform: scale(0.92);
 }
 
@@ -116,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: var(--text-md);
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
   background: var(--surface-3);

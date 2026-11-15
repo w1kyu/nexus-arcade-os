@@ -121,31 +121,31 @@ export async function mount(container, ctx, args) {
 
   // Tool buttons
   const toolButtons = {
-    pencil: h('button', { class: 'nx-pixelart-tool-btn active', title: t('tools.pencil', 'Pencil (B)') }, [
+    pencil: h('button', { class: 'nx-pixelart-tool', 'aria-pressed': 'true', title: t('tools.pencil', 'Pencil (B)') }, [
       icon('edit'),
       h('span', {}, 'Pencil'),
     ]),
-    eraser: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.eraser', 'Eraser (E)') }, [
+    eraser: h('button', { class: 'nx-pixelart-tool', title: t('tools.eraser', 'Eraser (E)') }, [
       icon('trash'),
       h('span', {}, 'Eraser'),
     ]),
-    fill: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.fill', 'Bucket fill (G)') }, [
+    fill: h('button', { class: 'nx-pixelart-tool', title: t('tools.fill', 'Bucket fill (G)') }, [
       icon('refresh'),
       h('span', {}, 'Fill'),
     ]),
-    line: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.line', 'Line (L)') }, [
+    line: h('button', { class: 'nx-pixelart-tool', title: t('tools.line', 'Line (L)') }, [
       icon('minus'),
       h('span', {}, 'Line'),
     ]),
-    rect: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.rect', 'Rectangle (U)') }, [
+    rect: h('button', { class: 'nx-pixelart-tool', title: t('tools.rect', 'Rectangle (U)') }, [
       icon('square'),
       h('span', {}, 'Rect'),
     ]),
-    circle: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.circle', 'Circle (C)') }, [
+    circle: h('button', { class: 'nx-pixelart-tool', title: t('tools.circle', 'Circle (C)') }, [
       icon('circle'),
       h('span', {}, 'Circle'),
     ]),
-    picker: h('button', { class: 'nx-pixelart-tool-btn', title: t('tools.picker', 'Color picker (I)') }, [
+    picker: h('button', { class: 'nx-pixelart-tool', title: t('tools.picker', 'Color picker (I)') }, [
       icon('search'),
       h('span', {}, 'Picker'),
     ]),
@@ -162,7 +162,7 @@ export async function mount(container, ctx, args) {
   function selectTool(tool) {
     activeTool = tool;
     Object.entries(toolButtons).forEach(([k, b]) => {
-      b.classList.toggle('active', k === tool);
+      b.setAttribute('aria-pressed', String(k === tool));
     });
   }
 
@@ -173,7 +173,7 @@ export async function mount(container, ctx, args) {
   ]);
 
   const paletteSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('palette.title'), class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('palette.title'), class: 'nx-select is-xs' }, [
       h('option', { value: 'pico8' }, 'PICO-8'),
       h('option', { value: 'gameboy' }, 'Game Boy'),
       h('option', { value: 'c64' }, 'Commodore 64'),
@@ -233,7 +233,7 @@ export async function mount(container, ctx, args) {
   );
   const addColorBtn = h(
     'button',
-    { class: 'nx-pixelart-btn', style: 'margin-top: 6px; width: 100%; justify-content: center;' },
+    { class: 'nx-btn is-xs', style: 'margin-top: 6px; width: 100%; justify-content: center;' },
     [icon('plus'), h('span', {}, t('palette.addColor', 'Add color'))],
   );
   addColorBtn.addEventListener('click', () => addColorInput.click());
@@ -258,7 +258,7 @@ export async function mount(container, ctx, args) {
   const timeline = h('div', { class: 'nx-pixelart-timeline' });
   const timelineControls = h('div', { class: 'nx-pixelart-timeline-controls' });
 
-  const playBtn = h('button', { class: 'nx-pixelart-btn' }, [icon('play'), h('span', {}, t('timeline.play', 'Play'))]);
+  const playBtn = h('button', { class: 'nx-btn is-xs' }, [icon('play'), h('span', {}, t('timeline.play', 'Play'))]);
 
   playBtn.addEventListener('click', togglePlayback);
 
@@ -266,7 +266,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('timeline.fps', 'FPS')),
   ]);
   const fpsSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('timeline.fps'), class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('timeline.fps'), class: 'nx-select is-xs' }, [
       h('option', { value: '2' }, '2'),
       h('option', { value: '4' }, '4'),
       h('option', { value: '8' }, '8'),
@@ -290,7 +290,7 @@ export async function mount(container, ctx, args) {
   fpsContainer.appendChild(fpsSelect);
 
   const frameActions = h('div', { class: 'nx-pixelart-group' });
-  const addFrameBtn = h('button', { class: 'nx-pixelart-btn' }, [
+  const addFrameBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('plus'),
     h('span', {}, t('timeline.addFrame', 'Add frame')),
   ]);
@@ -303,7 +303,7 @@ export async function mount(container, ctx, args) {
     renderTimeline();
   });
 
-  const duplicateFrameBtn = h('button', { class: 'nx-pixelart-btn' }, [
+  const duplicateFrameBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('copy'),
     h('span', {}, t('timeline.duplicateFrame', 'Duplicate')),
   ]);
@@ -316,7 +316,7 @@ export async function mount(container, ctx, args) {
     renderTimeline();
   });
 
-  const deleteFrameBtn = h('button', { class: 'nx-pixelart-btn' }, [
+  const deleteFrameBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('trash'),
     h('span', {}, t('timeline.deleteFrame', 'Delete frame')),
   ]);
@@ -663,7 +663,7 @@ export async function mount(container, ctx, args) {
   const toolbar = h('div', { class: 'nx-pixelart-toolbar' });
 
   // File menu
-  const newBtn = h('button', { class: 'nx-pixelart-btn' }, [icon('plus'), h('span', {}, t('toolbar.new', 'New'))]);
+  const newBtn = h('button', { class: 'nx-btn is-xs' }, [icon('plus'), h('span', {}, t('toolbar.new', 'New'))]);
   newBtn.addEventListener('click', async () => {
     if (isDirty) {
       const ok = await ctx.dialog.confirm(
@@ -680,7 +680,7 @@ export async function mount(container, ctx, args) {
     renderTimeline();
   });
 
-  const openBtn = h('button', { class: 'nx-pixelart-btn' }, [icon('folder'), h('span', {}, t('toolbar.open', 'Open'))]);
+  const openBtn = h('button', { class: 'nx-btn is-xs' }, [icon('folder'), h('span', {}, t('toolbar.open', 'Open'))]);
   openBtn.addEventListener('click', async () => {
     const res = await ctx.dialog.showOpenDialog({
       filters: [{ name: 'Pixel Art (*.npixel)', extensions: ['npixel', 'json'] }],
@@ -690,54 +690,54 @@ export async function mount(container, ctx, args) {
     }
   });
 
-  const saveBtn = h('button', { class: 'nx-pixelart-btn' }, [icon('save'), h('span', {}, t('toolbar.save', 'Save'))]);
+  const saveBtn = h('button', { class: 'nx-btn is-xs' }, [icon('save'), h('span', {}, t('toolbar.save', 'Save'))]);
   saveBtn.addEventListener('click', saveFile);
 
-  const exportBtn = h('button', { class: 'nx-pixelart-btn' }, [
+  const exportBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('download'),
     h('span', {}, t('toolbar.export', 'Export')),
   ]);
   exportBtn.addEventListener('click', openExportModal);
 
   // Undo / Redo
-  const undoBtn = h('button', { class: 'nx-pixelart-btn', title: 'Undo (Mod+Z)' }, [icon('rotate-ccw')]);
+  const undoBtn = h('button', { class: 'nx-btn is-xs', title: 'Undo (Mod+Z)' }, [icon('rotate-ccw')]);
   undoBtn.addEventListener('click', undo);
-  const redoBtn = h('button', { class: 'nx-pixelart-btn', title: 'Redo (Mod+Y)' }, [icon('rotate-cw')]);
+  const redoBtn = h('button', { class: 'nx-btn is-xs', title: 'Redo (Mod+Y)' }, [icon('rotate-cw')]);
   redoBtn.addEventListener('click', redo);
 
   // View toggles
-  const gridToggle = h('button', { class: `nx-pixelart-btn ${showGrid ? 'active' : ''}` }, [
+  const gridToggle = h('button', { class: 'nx-btn is-xs', 'aria-pressed': String(!!showGrid) }, [
     icon('grid'),
     h('span', {}, t('toolbar.grid', 'Grid')),
   ]);
   gridToggle.addEventListener('click', () => {
     showGrid = !showGrid;
-    gridToggle.classList.toggle('active', showGrid);
+    gridToggle.setAttribute('aria-pressed', String(!!showGrid));
     renderCanvas();
   });
 
-  const onionSkinToggle = h('button', { class: `nx-pixelart-btn ${onionSkin ? 'active' : ''}` }, [
+  const onionSkinToggle = h('button', { class: 'nx-btn is-xs', 'aria-pressed': String(!!onionSkin) }, [
     icon('eye'),
     h('span', {}, t('toolbar.onionSkin', 'Onion skin')),
   ]);
   onionSkinToggle.addEventListener('click', () => {
     onionSkin = !onionSkin;
-    onionSkinToggle.classList.toggle('active', onionSkin);
+    onionSkinToggle.setAttribute('aria-pressed', String(!!onionSkin));
     renderCanvas();
   });
 
-  const mirrorToggle = h('button', { class: `nx-pixelart-btn ${mirrorMode ? 'active' : ''}` }, [
+  const mirrorToggle = h('button', { class: 'nx-btn is-xs', 'aria-pressed': String(!!mirrorMode) }, [
     icon('columns'),
     h('span', {}, t('toolbar.mirror', 'Mirror')),
   ]);
   mirrorToggle.addEventListener('click', () => {
     mirrorMode = !mirrorMode;
-    mirrorToggle.classList.toggle('active', mirrorMode);
+    mirrorToggle.setAttribute('aria-pressed', String(!!mirrorMode));
     renderCanvas();
   });
 
   // Zoom controls
-  const zoomInBtn = h('button', { class: 'nx-pixelart-btn', title: t('toolbar.zoomIn', 'Zoom in') }, [icon('zoom-in')]);
+  const zoomInBtn = h('button', { class: 'nx-btn is-xs', title: t('toolbar.zoomIn', 'Zoom in') }, [icon('zoom-in')]);
   zoomInBtn.addEventListener('click', () => {
     if (zoomLevel < 48) {
       zoomLevel = Math.min(48, zoomLevel + 4);
@@ -745,7 +745,7 @@ export async function mount(container, ctx, args) {
     }
   });
 
-  const zoomOutBtn = h('button', { class: 'nx-pixelart-btn', title: t('toolbar.zoomOut', 'Zoom out') }, [
+  const zoomOutBtn = h('button', { class: 'nx-btn is-xs', title: t('toolbar.zoomOut', 'Zoom out') }, [
     icon('zoom-out'),
   ]);
   zoomOutBtn.addEventListener('click', () => {
@@ -760,7 +760,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.gridSize', 'Grid size')),
   ]);
   const sizeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.gridSize'), class: 'nx-pixelart-select' }, [
+    h('select', { 'aria-label': t('toolbar.gridSize'), class: 'nx-select is-xs' }, [
       ...GRID_SIZES.map((sz) => h('option', { value: String(sz) }, `${sz}x${sz}`)),
     ])
   );
@@ -807,7 +807,7 @@ export async function mount(container, ctx, args) {
           'select',
           {
             'aria-label': t('export.scale'),
-            class: 'nx-pixelart-select',
+            class: 'nx-select is-xs',
             onchange: (e) => {
               selectedScale = parseInt(e.target.value, 10);
             },
@@ -822,15 +822,15 @@ export async function mount(container, ctx, args) {
           ],
         ),
       ]),
-      h('button', { class: 'nx-pixelart-btn', style: 'padding: 8px;' }, [
+      h('button', { class: 'nx-btn is-xs', style: 'padding: 8px;' }, [
         icon('image'),
         h('span', {}, t('export.pngScaled', 'PNG (Current frame)')),
       ]),
-      h('button', { class: 'nx-pixelart-btn', style: 'padding: 8px;' }, [
+      h('button', { class: 'nx-btn is-xs', style: 'padding: 8px;' }, [
         icon('columns'),
         h('span', {}, t('export.spriteSheet', 'Sprite Sheet (PNG)')),
       ]),
-      h('button', { class: 'nx-pixelart-btn', style: 'padding: 8px;' }, [
+      h('button', { class: 'nx-btn is-xs', style: 'padding: 8px;' }, [
         icon('video'),
         h('span', {}, t('export.gif', 'Animated GIF')),
       ]),

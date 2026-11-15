@@ -59,7 +59,7 @@
   gap: 2px;
   padding: 4px 2px;
   font-family: ui-monospace, monospace;
-  font-size: clamp(10px, 1.8vmin, 13px);
+  font-size: clamp(var(--text-xs), 1.8vmin, var(--text-ui));
   font-weight: 700;
   color: var(--text-2);
   border-right: 1px solid var(--border);
@@ -84,7 +84,7 @@
   gap: 4px;
   padding: 2px 6px;
   font-family: ui-monospace, monospace;
-  font-size: clamp(10px, 1.8vmin, 13px);
+  font-size: clamp(var(--text-xs), 1.8vmin, var(--text-ui));
   font-weight: 700;
   color: var(--text-2);
   border-bottom: 1px solid var(--border);
@@ -117,7 +117,7 @@
   justify-content: center;
   cursor: pointer;
   box-sizing: border-box;
-  font-size: clamp(12px, 2.2vmin, 20px);
+  font-size: clamp(var(--text-xs), 2.2vmin, var(--text-lg));
   color: var(--text-3);
   transition: background-color 0.1s ease;
 }

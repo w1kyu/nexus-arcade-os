@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   margin-bottom: 6px;
 }
@@ -47,7 +47,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   text-align: center;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .nx-cal-mini-dow {
@@ -63,7 +63,7 @@
   padding: 4px 0;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .nx-cal-mini-day:hover {
@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -106,7 +106,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   cursor: pointer;
 }
 
@@ -183,13 +183,13 @@
 }
 
 .nx-cal-period-title {
-  font-size: 16px;
+  font-size: var(--text-md);
   font-weight: 700;
   margin: 0 6px;
 }
 
 .nx-cal-week-badge {
-  font-size: 11px;
+  font-size: var(--text-xs);
   padding: 2px 6px;
   border-radius: 4px;
   background: color-mix(in srgb, var(--text-1) 7%, transparent);
@@ -224,7 +224,7 @@
   grid-template-columns: repeat(7, 1fr);
   border-bottom: 1px solid var(--border);
   background: var(--surface-1);
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text-3);
   text-align: center;
@@ -262,14 +262,14 @@
 }
 
 .nx-cal-day-num {
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   display: flex;
   justify-content: space-between;
 }
 
 .nx-cal-pill {
-  font-size: 11px;
+  font-size: var(--text-xs);
   padding: 2px 6px;
   border-radius: 4px;
   background: color-mix(in srgb, var(--cal-color, var(--accent)) 22%, transparent);
@@ -324,7 +324,7 @@
 
 .nx-cal-gutter {
   border-right: 1px solid var(--border);
-  font-size: 10px;
+  font-size: var(--text-xs);
   color: var(--text-3);
   position: relative;
 }
@@ -351,7 +351,7 @@
   background: color-mix(in srgb, var(--cal-color, var(--accent)) 28%, var(--surface-sunken));
   border-left: 3px solid var(--cal-color, var(--accent));
   padding: 3px 6px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   overflow: hidden;
   cursor: grab;
   z-index: 2;
@@ -366,7 +366,7 @@
 }
 
 .nx-cal-timed-event-time {
-  font-size: 10px;
+  font-size: var(--text-xs);
   opacity: 0.82;
 }
 
@@ -405,7 +405,7 @@
 .nx-cal-agenda-day-head {
   padding: 8px 12px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--text-ui);
   background: color-mix(in srgb, var(--text-1) 3%, transparent);
   border-bottom: 1px solid var(--border);
 }
@@ -464,7 +464,7 @@
   padding: 4px 8px;
   border-radius: 4px;
   background: color-mix(in srgb, var(--text-1) 5%, transparent);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 @media print {

@@ -779,7 +779,7 @@ export async function mount(hostElement, ctx) {
       const currentGain = engine.eqFilters[i]?.gain?.value || 0;
       const gainLabel = h('span', { text: `${currentGain > 0 ? '+' : ''}${Math.round(currentGain)}dB` });
       const slider = h('input', {
-        class: 'nx-music-eq-slider',
+        class: 'nx-music-eq-gain',
         'aria-label': `${freq} Hz`,
         type: 'range',
         min: '-12',

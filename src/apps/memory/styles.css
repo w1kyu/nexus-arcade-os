@@ -27,7 +27,7 @@
 }
 
 .nx-memory-title {
-  font-size: 38px;
+  font-size: var(--text-2xl);
   font-weight: 900;
   letter-spacing: 3px;
   color: var(--accent);
@@ -36,7 +36,7 @@
 }
 
 .nx-memory-subtitle {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--text-2);
   letter-spacing: 1.5px;
   margin-top: -12px;
@@ -58,7 +58,7 @@
 }
 
 .nx-memory-form-group label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text-2);
   text-transform: uppercase;
@@ -71,31 +71,8 @@
   border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   padding: 8px 12px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: var(--text-sm);
   outline: none;
-}
-
-.nx-memory-play-btn {
-  background: var(--accent);
-  color: var(--accent-contrast);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 48px;
-  cursor: pointer;
-  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent);
-  transition: all 0.2s ease;
-  margin-top: 10px;
-}
-
-.nx-memory-play-btn:hover {
-  background: var(--accent);
-
-  color: var(--accent-contrast);
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 80%, transparent);
 }
 
 /* In-game board */
@@ -126,14 +103,14 @@
 }
 
 .nx-hud-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 700;
   color: var(--text-2);
   letter-spacing: 1px;
 }
 
 .nx-hud-val {
-  font-size: 18px;
+  font-size: var(--text-title);
   font-weight: 800;
   color: var(--text-1);
   font-family: monospace;
@@ -201,7 +178,7 @@
   background: #141a2e;
   border: 1px solid rgba(0, 240, 255, 0.3);
   color: #00f0ff;
-  font-size: 20px;
+  font-size: var(--text-lg);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -215,7 +192,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
   transform: rotateY(180deg);
-  font-size: 14px;
+  font-size: var(--text-sm);
   padding: 4px;
 }
 

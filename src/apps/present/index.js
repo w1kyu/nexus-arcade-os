@@ -137,7 +137,7 @@ export async function mount(container, ctx, args) {
   const textarea = /** @type {HTMLTextAreaElement} */ (
     h(
       'textarea',
-      { 'aria-label': ctx.i18n.t('editor.source'), class: 'nx-present-textarea', spellcheck: 'false' },
+      { 'aria-label': ctx.i18n.t('editor.source'), class: 'nx-present-source', spellcheck: 'false' },
       doc.source,
     )
   );
@@ -160,13 +160,13 @@ export async function mount(container, ctx, args) {
   const stage = h('div', { class: 'nx-present-stage' }, [slideFrame]);
 
   const navBar = h('div', { class: 'nx-present-nav-bar' });
-  const prevBtn = h('button', { class: 'nx-present-btn', title: t('nav.prev', 'Previous slide') }, [
+  const prevBtn = h('button', { class: 'nx-btn is-xs', title: t('nav.prev', 'Previous slide') }, [
     icon('chevron-left'),
     h('span', {}, 'Prev'),
   ]);
   prevBtn.addEventListener('click', prevSlide);
 
-  const nextBtn = h('button', { class: 'nx-present-btn', title: t('nav.next', 'Next slide') }, [
+  const nextBtn = h('button', { class: 'nx-btn is-xs', title: t('nav.next', 'Next slide') }, [
     h('span', {}, 'Next'),
     icon('chevron-right'),
   ]);
@@ -190,7 +190,7 @@ export async function mount(container, ctx, args) {
     fullFooter.append(fullTitle, fullCounter);
     fullFrame.append(fullBody, fullFooter);
 
-    const exitBtn = h('button', { class: 'nx-present-fullscreen-exit-btn' }, 'Exit Fullscreen (Esc)');
+    const exitBtn = h('button', { class: 'nx-present-exit' }, 'Exit Fullscreen (Esc)');
     exitBtn.addEventListener('click', closeFullscreen);
 
     overlay.append(fullFrame, exitBtn);
@@ -310,11 +310,11 @@ export async function mount(container, ctx, args) {
       h('div', { class: 'nx-present-group' }, [
         icon('clock'),
         h('span', { class: 'nx-presenter-timer' }, [timerDisplayEl]),
-        h('button', { class: 'nx-present-btn', onclick: resetTimer }, t('presenter.resetTimer', 'Reset timer')),
+        h('button', { class: 'nx-btn is-xs', onclick: resetTimer }, t('presenter.resetTimer', 'Reset timer')),
       ]),
       h('div', { class: 'nx-present-group' }, [
-        h('button', { class: 'nx-present-btn', onclick: prevSlide }, 'Previous'),
-        h('button', { class: 'nx-present-btn primary', onclick: nextSlide }, 'Next Slide'),
+        h('button', { class: 'nx-btn is-xs', onclick: prevSlide }, 'Previous'),
+        h('button', { class: 'nx-btn is-xs is-primary', onclick: nextSlide }, 'Next Slide'),
       ]),
     ]);
 
@@ -365,7 +365,7 @@ export async function mount(container, ctx, args) {
   const toolbar = h('div', { class: 'nx-present-toolbar' });
 
   // File buttons
-  const newBtn = h('button', { class: 'nx-present-btn' }, [icon('plus'), h('span', {}, t('toolbar.new', 'New'))]);
+  const newBtn = h('button', { class: 'nx-btn is-xs' }, [icon('plus'), h('span', {}, t('toolbar.new', 'New'))]);
   newBtn.addEventListener('click', async () => {
     if (isDirty) {
       const ok = await ctx.dialog.confirm(
@@ -382,7 +382,7 @@ export async function mount(container, ctx, args) {
     await refreshRenderedSlides();
   });
 
-  const openBtn = h('button', { class: 'nx-present-btn' }, [icon('folder'), h('span', {}, t('toolbar.open', 'Open'))]);
+  const openBtn = h('button', { class: 'nx-btn is-xs' }, [icon('folder'), h('span', {}, t('toolbar.open', 'Open'))]);
   openBtn.addEventListener('click', async () => {
     const res = await ctx.dialog.showOpenDialog({
       filters: [{ name: 'Presentation / Markdown (*.npresent, *.md)', extensions: ['npresent', 'md', 'markdown'] }],
@@ -392,29 +392,29 @@ export async function mount(container, ctx, args) {
     }
   });
 
-  const saveBtn = h('button', { class: 'nx-present-btn' }, [icon('save'), h('span', {}, t('toolbar.save', 'Save'))]);
+  const saveBtn = h('button', { class: 'nx-btn is-xs' }, [icon('save'), h('span', {}, t('toolbar.save', 'Save'))]);
   saveBtn.addEventListener('click', saveFile);
 
-  const exportHtmlBtn = h('button', { class: 'nx-present-btn' }, [
+  const exportHtmlBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('download'),
     h('span', {}, t('toolbar.export', 'Export HTML')),
   ]);
   exportHtmlBtn.addEventListener('click', exportStandaloneHtml);
 
-  const printBtn = h('button', { class: 'nx-present-btn' }, [
+  const printBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('printer'),
     h('span', {}, t('toolbar.print', 'Print / PDF')),
   ]);
   printBtn.addEventListener('click', () => window.print());
 
   // Present & Presenter mode buttons
-  const presentBtn = h('button', { class: 'nx-present-btn primary' }, [
+  const presentBtn = h('button', { class: 'nx-btn is-xs is-primary' }, [
     icon('play'),
     h('span', {}, t('toolbar.present', 'Present')),
   ]);
   presentBtn.addEventListener('click', launchFullscreenSlideShow);
 
-  const presenterModeBtn = h('button', { class: 'nx-present-btn' }, [
+  const presenterModeBtn = h('button', { class: 'nx-btn is-xs' }, [
     icon('tv'),
     h('span', {}, t('toolbar.presenterMode', 'Presenter Mode')),
   ]);
@@ -425,7 +425,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.theme', 'Theme')),
   ]);
   const themeSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.theme'), class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.theme'), class: 'nx-select is-xs' }, [
       ...Object.values(PRESENT_THEMES).map((th) => h('option', { value: th.id }, th.name)),
     ])
   );
@@ -442,7 +442,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.ratio', 'Ratio')),
   ]);
   const ratioSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.ratio'), class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.ratio'), class: 'nx-select is-xs' }, [
       h('option', { value: '16:9' }, '16:9'),
       h('option', { value: '4:3' }, '4:3'),
     ])
@@ -460,7 +460,7 @@ export async function mount(container, ctx, args) {
     h('span', { style: 'font-size: 11px;' }, t('toolbar.template', 'Template')),
   ]);
   const templateSelect = /** @type {HTMLSelectElement} */ (
-    h('select', { 'aria-label': t('toolbar.template'), class: 'nx-present-select' }, [
+    h('select', { 'aria-label': t('toolbar.template'), class: 'nx-select is-xs' }, [
       h('option', { value: '' }, 'Load template...'),
       ...Object.values(PRESENT_TEMPLATES).map((tpl) => h('option', { value: tpl.id }, tpl.title)),
     ])

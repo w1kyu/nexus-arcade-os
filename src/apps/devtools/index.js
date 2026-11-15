@@ -139,7 +139,7 @@ export async function mount(container, ctx) {
     for (const tool of cat.tools) {
       const btn = h(
         'button',
-        { class: `nx-devtools-tool-btn${tool.id === activeTool ? ' active' : ''}` },
+        { class: 'nx-devtools-tool', 'aria-pressed': String(tool.id === activeTool) },
         icon(tool.icon, { size: 14 }),
         tool.name,
       );
@@ -158,7 +158,7 @@ export async function mount(container, ctx) {
     if (!toolPanes[id]) return;
     activeTool = id;
     for (const k of Object.keys(toolButtons)) {
-      toolButtons[k].classList.toggle('active', k === id);
+      toolButtons[k].setAttribute('aria-pressed', String(k === id));
       toolPanes[k].hidden = k !== id;
     }
   }
@@ -195,7 +195,7 @@ export async function mount(container, ctx) {
   });
 
   // JSON action controls
-  const formatBtn = h('button', { class: 'nx-button small primary' }, t('common.format'));
+  const formatBtn = h('button', { class: 'nx-btn is-sm is-primary' }, t('common.format'));
   formatBtn.addEventListener('click', () => {
     try {
       jsonLayout.setOutput(formatJson(jsonLayout.inputTextarea.value, '2'));
@@ -205,7 +205,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const minifyBtn = h('button', { class: 'nx-button small ghost' }, t('common.minify'));
+  const minifyBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, t('common.minify'));
   minifyBtn.addEventListener('click', () => {
     try {
       jsonLayout.setOutput(minifyJson(jsonLayout.inputTextarea.value));
@@ -215,7 +215,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const sortBtn = h('button', { class: 'nx-button small ghost' }, 'Sort Keys');
+  const sortBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, 'Sort Keys');
   sortBtn.addEventListener('click', () => {
     try {
       const sorted = sortJsonKeys(JSON.parse(jsonLayout.inputTextarea.value));
@@ -226,7 +226,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const toCsvBtn = h('button', { class: 'nx-button small ghost' }, 'JSON → CSV');
+  const toCsvBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, 'JSON → CSV');
   toCsvBtn.addEventListener('click', () => {
     try {
       jsonLayout.setOutput(jsonToCsv(jsonLayout.inputTextarea.value));
@@ -236,7 +236,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const toYamlBtn = h('button', { class: 'nx-button small ghost' }, 'JSON → YAML');
+  const toYamlBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, 'JSON → YAML');
   toYamlBtn.addEventListener('click', () => {
     try {
       jsonLayout.setOutput(jsonToYaml(JSON.parse(jsonLayout.inputTextarea.value)));
@@ -246,7 +246,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const toTypesBtn = h('button', { class: 'nx-button small ghost' }, 'JSON → TS Types');
+  const toTypesBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, 'JSON → TS Types');
   toTypesBtn.addEventListener('click', () => {
     try {
       const types = jsonToTypes(jsonLayout.inputTextarea.value);
@@ -538,7 +538,7 @@ export async function mount(container, ctx) {
     style: 'width: 60px; padding: 4px; border: 1px solid var(--border); border-radius: var(--radius-sm);',
   });
 
-  const genUuidBtn = h('button', { class: 'nx-button primary small' }, t('common.generate'));
+  const genUuidBtn = h('button', { class: 'nx-btn is-sm is-primary' }, t('common.generate'));
 
   uuidLayout.optionsBar.append(
     h('label', { style: 'font-weight: 600;' }, 'Type:'),
@@ -585,7 +585,7 @@ export async function mount(container, ctx) {
       }
     },
   });
-  const nowBtn = h('button', { class: 'nx-button small primary' }, 'Set to Current Time');
+  const nowBtn = h('button', { class: 'nx-btn is-sm is-primary' }, 'Set to Current Time');
   nowBtn.addEventListener('click', () => {
     tsLayout.setInput(String(Math.floor(Date.now() / 1000)));
   });
@@ -663,7 +663,7 @@ export async function mount(container, ctx) {
     h('option', { value: 'lorem' }, 'Lorem Ipsum (3 paragraphs)'),
   );
 
-  const applyTextBtn = h('button', { class: 'nx-button small primary' }, 'Apply');
+  const applyTextBtn = h('button', { class: 'nx-btn is-sm is-primary' }, 'Apply');
   applyTextBtn.addEventListener('click', () => {
     // @ts-ignore
     const mode = caseSelect.value;
@@ -707,8 +707,8 @@ export async function mount(container, ctx) {
     h('option', { value: 'csv' }, 'CSV'),
   );
 
-  const addRowBtn = h('button', { class: 'nx-button small ghost' }, '+ Row');
-  const addColBtn = h('button', { class: 'nx-button small ghost' }, '+ Col');
+  const addRowBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, '+ Row');
+  const addColBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, '+ Col');
 
   tableLayout.optionsBar.append(tableModeSelect, addRowBtn, addColBtn);
   tableLayout.optionsBar.hidden = false;
@@ -840,7 +840,7 @@ export async function mount(container, ctx) {
     max: '100',
     style: 'width: 60px; padding: 4px; border: 1px solid var(--border); border-radius: 4px;',
   });
-  const genFakerBtn = h('button', { class: 'nx-button small primary' }, t('common.generate'));
+  const genFakerBtn = h('button', { class: 'nx-btn is-sm is-primary' }, t('common.generate'));
 
   fakerLayout.optionsBar.append(fakerLocale, fakerCount, genFakerBtn);
   fakerLayout.optionsBar.hidden = false;

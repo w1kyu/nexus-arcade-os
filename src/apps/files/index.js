@@ -110,7 +110,7 @@ export async function mount(container, ctx, args) {
     dataset: { testid: 'files-crumbs' },
   });
   const pathInput = h('input', {
-    class: 'nx-input nx-files-path-input',
+    class: 'nx-input nx-files-path',
     type: 'text',
     'aria-label': t('toolbar.editPath'),
     spellcheck: 'false',
@@ -162,8 +162,8 @@ export async function mount(container, ctx, args) {
     onClick: () => toggleSidebar(),
     pressed: false,
   });
-  placesBtn.classList.add('nx-files-places-btn');
-  previewBtn.classList.add('nx-files-preview-btn');
+  placesBtn.classList.add('nx-files-places');
+  previewBtn.classList.add('nx-files-show-preview');
   const toolbar = h(
     'div',
     { class: 'nx-files-toolbar', role: 'toolbar', 'aria-label': t('title') },

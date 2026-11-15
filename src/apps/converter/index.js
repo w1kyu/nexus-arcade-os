@@ -127,7 +127,7 @@ export async function mount(root, ctx) {
     const leftInput = h('input', {
       type: 'number',
       step: 'any',
-      class: 'nx-conv-val-input',
+      class: 'nx-conv-value',
       value: leftValStr,
       'aria-label': ctx.i18n.t('fromValue'),
     });
@@ -140,7 +140,7 @@ export async function mount(root, ctx) {
     const rightInput = h('input', {
       type: 'number',
       step: 'any',
-      class: 'nx-conv-val-input',
+      class: 'nx-conv-value',
       value: rightValStr,
       'aria-label': ctx.i18n.t('toValue'),
     });
@@ -187,7 +187,7 @@ export async function mount(root, ctx) {
     const swapBtn = h(
       'button',
       {
-        class: 'nx-conv-swap-btn',
+        class: 'nx-conv-swap',
         title: ctx.i18n.t('swap'),
         onClick: () => {
           const tmp = fromUnitId;

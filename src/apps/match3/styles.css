@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
 }
 
@@ -63,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: var(--text-display);
   cursor: pointer;
   aspect-ratio: 1;
   transition:

@@ -54,7 +54,7 @@
 .nx-fc-counts-pill {
   display: flex;
   gap: 4px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 700;
 }
 
@@ -121,7 +121,7 @@
 
 .nx-fc-card-face {
   width: 100%;
-  font-size: 18px;
+  font-size: var(--text-title);
   line-height: 1.6;
 }
 
@@ -138,7 +138,7 @@
   gap: 8px;
 }
 
-.nx-fc-rating-btn {
+.nx-fc-rating {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,6 +172,6 @@
   border-color: color-mix(in srgb, var(--success) 30%, transparent);
 }
 
-.nx-fc-rating-btn:hover {
+.nx-fc-rating:hover {
   filter: brightness(1.2);
 }

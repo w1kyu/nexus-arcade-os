@@ -38,7 +38,7 @@ export function createSession(host, { cwd } = {}) {
   const output = h('div', { class: 'nx-term-output', dataset: { testid: 'term-output' } });
   const promptEl = h('span', { class: 'nx-term-prompt' });
   const input = h('input', {
-    class: 'nx-term-input',
+    class: 'nx-term-field',
     type: 'text',
     spellcheck: 'false',
     autocomplete: 'off',

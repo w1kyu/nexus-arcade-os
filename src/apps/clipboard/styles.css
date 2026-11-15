@@ -38,7 +38,7 @@
   background: transparent;
   color: var(--text-2);
   border-radius: 6px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -61,22 +61,6 @@
   align-items: center;
 }
 
-.nx-cb-search-input {
-  width: 100%;
-  padding: 7px 12px 7px 32px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-1);
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-
-.nx-cb-search-input:focus {
-  border-color: var(--accent);
-}
-
 .nx-cb-search-icon {
   position: absolute;
   left: 10px;
@@ -91,7 +75,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
   border-bottom: 1px solid var(--border);
 }
@@ -99,25 +83,6 @@
 .nx-cb-subbar-actions {
   display: flex;
   gap: 8px;
-}
-
-.nx-cb-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  background: var(--surface-1);
-  color: var(--text-1);
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.nx-cb-btn:hover {
-  background: var(--surface-hover);
-  border-color: var(--border-strong);
 }
 
 .nx-cb-btn-accent {
@@ -134,10 +99,6 @@
   background: color-mix(in srgb, var(--danger) 15%, transparent);
   color: var(--danger);
   border-color: var(--danger);
-}
-
-.nx-cb-btn-icon {
-  padding: 5px;
 }
 
 .nx-cb-body {
@@ -186,7 +147,7 @@
   gap: 4px;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   background: var(--surface-2);
   color: var(--text-2);
 }
@@ -197,13 +158,13 @@
 }
 
 .nx-cb-time {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
 }
 
 .nx-cb-card-content {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 12px;
+  font-size: var(--text-xs);
   line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
@@ -224,7 +185,7 @@
 }
 
 .nx-cb-char-count {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
 }
 
@@ -250,13 +211,13 @@
 }
 
 .nx-cb-empty-title {
-  font-size: 15px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--text-1);
 }
 
 .nx-cb-empty-sub {
-  font-size: 12px;
+  font-size: var(--text-xs);
   max-width: 280px;
   line-height: 1.4;
 }
@@ -291,7 +252,7 @@
   justify-content: space-between;
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
@@ -309,32 +270,12 @@
 }
 
 .nx-cb-label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
 }
 
-.nx-cb-input {
-  padding: 8px 10px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-1);
-  font-size: 13px;
-  outline: none;
-}
-
-.nx-cb-input:focus {
-  border-color: var(--accent);
-}
-
-.nx-cb-textarea {
-  min-height: 100px;
-  resize: vertical;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-}
-
 .nx-cb-help-vars {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
 }
 

@@ -104,7 +104,7 @@ Depends on 14.0 (1) and (4).
 - [x] [P1] **Icon grammar:** one rule for app tiles (category hue + per-app glyph; system apps on neutral), applied in dock, launcher, palette and App Center. No emoji as primary art; games get SVG cover art from shared shapes.
 _14.3 done (2026-11-15): tokens derived per theme in `computeTokens()`, components in `src/ui/components.js` + `controls.css` (shared card is `.nx-panel`: Solitaire owns `.nx-card`), `createAppFrame` in `src/ui/frame/` (the frame of `tool-layout.js`), gallery in `/#debug`, catalogue in `docs/design-system.md`. Game cover art and the palette/App Center tiles move to 14.4/14.5. The type ramp tokens exist (`--text-ui/-title/-headline/-display/-hero`); app CSS moves to them in 14.5._
 
-- [P2] Typography pass: a fixed type ramp for window titles, page titles, section labels and body; no ad-hoc `font-size` in app CSS (the ratchet counts it).
+- [x] [P2] Typography pass: a fixed type ramp for window titles, page titles, section labels and body; no ad-hoc `font-size` in app CSS (the ratchet counts it). _Done 2026-11-15: 464 → 17 literal font sizes (left: Write/Present document typography, 8–9 px glyphs in game and visualizer cells). App text now follows the font-scale setting._
 
 ## 14.4 Shell
 
@@ -143,6 +143,7 @@ _Accessibility pass across all waves (2026-11-15): the 68 axe serious/critical f
 - [P1] **Wave 3 — CS Lab & dev tools:** the shared visualizer engine first (fixes all CS apps at once), then Sorting, Pathfinding, Graph Lab, Data Structures, Automata, Turing, Arch Lab, Circuits, Code, Editor, Diff, HTTP client, Playground, Snippets, Dev Tools.
 - [P1] **Wave 4 — office & creative:** Write, Sheets, Present, PDF, Paint, Pixel Art, Whiteboard, Mind Map, Color Lab, Photos, Music, Video, Recorder, Screen Recorder, Camera, Synth, Beat Lab.
 - [P1] **Wave 5 — Arcade:** the Hub and a shared game shell (HUD, pause, game over, high scores) on `games/engine`, then all games. Game canvases may keep their own palettes; the surrounding UI may not.
+_Ratchet at target (2026-11-15): colors 1,813 → 169 (game art), app-local controls 101 → 0, font sizes 464 → 17. Toolbar buttons use `.nx-btn.is-xs` with `aria-pressed` for toggles and the current tool; specialised controls without a shared equivalent got role names (`.nx-calc-key`). Found on the way: 63 buttons in HTTP Client, Snippets, Playground, Diff, Code, Dev Tools, Color Lab and the shared diff/tool views used a class that was never defined (`nx-button`), so they rendered as bare browser buttons; HTTP Client's request editors never showed their initial text and were unstyled; Arcade's play buttons and Write's/Paint's pressed states used `--surface-1` text on the accent._
 - [P1] Done when: hard-coded colors in app CSS are near 0, with exceptions listed in the baseline and justified (game sprites, color pickers); every app is readable in all 8 themes at both viewports.
 
 ## 14.6 Copy & content

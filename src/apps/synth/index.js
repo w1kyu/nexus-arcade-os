@@ -72,7 +72,7 @@ export async function mount(container, ctx) {
     }
   });
 
-  const arpToggleBtn = h('button', { class: 'nx-btn nx-btn-secondary' }, arpeggiator.enabled ? 'Arp: ON' : 'Arp: OFF');
+  const arpToggleBtn = h('button', { class: 'nx-btn' }, arpeggiator.enabled ? 'Arp: ON' : 'Arp: OFF');
   arpToggleBtn.onclick = () => {
     arpeggiator.enabled = !arpeggiator.enabled;
     arpToggleBtn.textContent = arpeggiator.enabled ? 'Arp: ON' : 'Arp: OFF';
@@ -92,7 +92,7 @@ export async function mount(container, ctx) {
     arpeggiator.mode = /** @type {'up' | 'down' | 'upDown' | 'random'} */ (arpModeSelect.value);
   });
 
-  const btnPanic = h('button', { class: 'nx-btn nx-btn-secondary' }, icon('activity'), 'Silence');
+  const btnPanic = h('button', { class: 'nx-btn' }, icon('activity'), 'Silence');
   btnPanic.onclick = () => {
     engine.allNotesOff();
     arpeggiator.stop();
@@ -102,7 +102,7 @@ export async function mount(container, ctx) {
     activeMidiNotes.clear();
   };
 
-  const btnSavePreset = h('button', { class: 'nx-btn nx-btn-secondary' }, icon('save'), 'Save');
+  const btnSavePreset = h('button', { class: 'nx-btn' }, icon('save'), 'Save');
   btnSavePreset.onclick = async () => {
     const filename = `Preset_${Date.now()}.nsynth`;
     const path = `/Music/${filename}`;
@@ -114,7 +114,7 @@ export async function mount(container, ctx) {
     }
   };
 
-  const btnLoadPreset = h('button', { class: 'nx-btn nx-btn-secondary' }, icon('folder'), 'Load');
+  const btnLoadPreset = h('button', { class: 'nx-btn' }, icon('folder'), 'Load');
   btnLoadPreset.onclick = async () => {
     try {
       const files = await ctx.vfs.list('/Music');

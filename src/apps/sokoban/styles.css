@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  font-size: clamp(16px, 3.5vmin, 28px);
+  font-size: clamp(var(--text-md), 3.5vmin, var(--text-xl));
   box-sizing: border-box;
   position: relative;
   transition: transform 0.1s ease;
@@ -105,17 +105,17 @@
   flex-wrap: wrap;
 }
 
-.nx-sk-tool-btn {
+.nx-sk-tool {
   padding: 4px 10px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 4px;
   color: var(--text-1);
-  font-size: 13px;
+  font-size: var(--text-ui);
   cursor: pointer;
 }
 
-.nx-sk-tool-btn.active {
+.nx-sk-tool.active {
   background: var(--accent);
   color: var(--accent-contrast);
   font-weight: 700;

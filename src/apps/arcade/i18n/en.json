@@ -31,7 +31,8 @@
     "noGamepads": "No gamepads connected (keyboard controls active)",
     "gamepadsDetected": "{count} gamepad(s) connected",
     "launch": "Start Match",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "close": "Close"
   },
   "stats": {
     "highScore": "Best",

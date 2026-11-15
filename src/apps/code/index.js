@@ -242,7 +242,7 @@ export async function mount(container, ctx, args = {}) {
     const splitBtn = h(
       'button',
       {
-        class: 'nx-button ghost small',
+        class: 'nx-btn is-sm is-ghost',
         style: 'margin-left: auto; margin-right: 8px;',
         title: isSplit ? t('tabs.unsplit') : t('tabs.split'),
         onclick: () => toggleSplit(),
@@ -298,7 +298,8 @@ export async function mount(container, ctx, args = {}) {
     const btn = h(
       'button',
       {
-        class: `nx-code-activity-btn ${act.id === activeActivity ? 'active' : ''}`,
+        class: 'nx-code-activity',
+        'aria-pressed': String(act.id === activeActivity),
         title: act.title,
         onclick: () => switchActivity(act.id),
       },
@@ -309,9 +310,9 @@ export async function mount(container, ctx, args = {}) {
 
   function switchActivity(/** @type {string} */ id) {
     activeActivity = id;
-    const buttons = activityBar.querySelectorAll('.nx-code-activity-btn');
+    const buttons = activityBar.querySelectorAll('.nx-code-activity');
     activities.forEach((act, idx) => {
-      buttons[idx].classList.toggle('active', act.id === id);
+      buttons[idx].setAttribute('aria-pressed', String(act.id === id));
     });
 
     sidebarActions.replaceChildren();
@@ -329,7 +330,7 @@ export async function mount(container, ctx, args = {}) {
       h(
         'button',
         {
-          class: 'nx-button ghost small icon-only',
+          class: 'nx-btn is-sm is-ghost is-icon',
           title: t('explorer.newFile'),
           onclick: () => promptNewFile(),
         },
@@ -338,7 +339,7 @@ export async function mount(container, ctx, args = {}) {
       h(
         'button',
         {
-          class: 'nx-button ghost small icon-only',
+          class: 'nx-btn is-sm is-ghost is-icon',
           title: t('explorer.newFolder'),
           onclick: () => promptNewFolder(),
         },
@@ -347,7 +348,7 @@ export async function mount(container, ctx, args = {}) {
       h(
         'button',
         {
-          class: 'nx-button ghost small icon-only',
+          class: 'nx-btn is-sm is-ghost is-icon',
           title: t('explorer.refresh'),
           onclick: () => renderExplorerView(),
         },
@@ -369,7 +370,7 @@ export async function mount(container, ctx, args = {}) {
             h(
               'button',
               {
-                class: 'nx-button primary small',
+                class: 'nx-btn is-sm is-primary',
                 onclick: async () => {
                   await commands['code.newProject'](ctx);
                   await renderExplorerView();
@@ -423,7 +424,7 @@ export async function mount(container, ctx, args = {}) {
       const delBtn = h(
         'button',
         {
-          class: 'nx-button ghost small icon-only',
+          class: 'nx-btn is-sm is-ghost is-icon',
           style: 'margin-left: auto; opacity: 0.6;',
           title: t('explorer.delete'),
           onclick: async (/** @type {MouseEvent} */ e) => {
@@ -484,9 +485,9 @@ export async function mount(container, ctx, args = {}) {
       autofocus: true,
     });
     const optionsRow = h('div', { class: 'nx-code-search-options' });
-    const matchCaseBtn = h('button', { class: 'nx-button ghost small' }, 'Aa');
-    const matchWordBtn = h('button', { class: 'nx-button ghost small' }, '\\b');
-    const regexBtn = h('button', { class: 'nx-button ghost small' }, '.*');
+    const matchCaseBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, 'Aa');
+    const matchWordBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, '\\b');
+    const regexBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, '.*');
     optionsRow.append(matchCaseBtn, matchWordBtn, regexBtn);
 
     let matchCase = false;
@@ -617,14 +618,14 @@ export async function mount(container, ctx, args = {}) {
 
     const runBtn = h(
       'button',
-      { class: 'nx-button primary small', onclick: () => triggerWebPreview() },
+      { class: 'nx-btn is-sm is-primary', onclick: () => triggerWebPreview() },
       icon('play', { size: 14 }),
       t('preview.run'),
     );
 
     const refreshBtn = h(
       'button',
-      { class: 'nx-button ghost small', onclick: () => triggerWebPreview() },
+      { class: 'nx-btn is-sm is-ghost', onclick: () => triggerWebPreview() },
       icon('refresh', { size: 14 }),
       t('preview.refresh'),
     );
@@ -658,7 +659,7 @@ export async function mount(container, ctx, args = {}) {
         'div',
         { class: 'nx-code-console-header' },
         h('span', 'Preview Console'),
-        h('button', { class: 'nx-button ghost small', onclick: () => consoleLogs.replaceChildren() }, 'Clear'),
+        h('button', { class: 'nx-btn is-sm is-ghost', onclick: () => consoleLogs.replaceChildren() }, 'Clear'),
       );
       const consoleLogs = h('div', { class: 'nx-code-console-logs' });
       consolePane.append(consoleHeader, consoleLogs);
@@ -691,7 +692,7 @@ export async function mount(container, ctx, args = {}) {
             h(
               'button',
               {
-                class: 'nx-button primary small',
+                class: 'nx-btn is-sm is-primary',
                 onclick: async () => {
                   await commands['code.newProject'](ctx);
                   await triggerWebPreview();
@@ -712,7 +713,7 @@ export async function mount(container, ctx, args = {}) {
 
     const runBtn = h(
       'button',
-      { class: 'nx-button primary small', onclick: () => runActiveJsInWorker() },
+      { class: 'nx-btn is-sm is-primary', onclick: () => runActiveJsInWorker() },
       icon('play', { size: 14 }),
       t('runner.run'),
     );
@@ -773,7 +774,7 @@ export async function mount(container, ctx, args = {}) {
     const backdrop = h('div', { class: 'nx-code-modal-backdrop' });
     const modal = h('div', { class: 'nx-code-modal' });
     const input = h('input', {
-      class: 'nx-code-modal-input',
+      class: 'nx-input',
       placeholder: t('quickOpen.placeholder'),
       autofocus: true,
     });

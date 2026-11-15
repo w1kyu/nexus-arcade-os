@@ -54,7 +54,7 @@ export async function mount(container, ctx) {
 
     settingsGrid.append(mapGroup, modeGroup, diffGroup);
 
-    const playBtn = h('button', { class: 'nx-snake-play-btn' }, t('menu.play'));
+    const playBtn = h('button', { class: 'nx-btn is-lg is-primary', 'data-testid': 'play' }, t('menu.play'));
     const hint = h('div', { class: 'nx-snake-controls-hint' }, t('menu.controls'));
     const pauseHint = h('div', { class: 'nx-snake-controls-hint' }, t('menu.pause'));
 

@@ -139,7 +139,7 @@ export function createToolLayout(opts) {
   // Buttons & standard actions
   const clearBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Clear input' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Clear input' },
     icon('trash', { size: 14 }),
     'Clear',
   );
@@ -152,7 +152,7 @@ export function createToolLayout(opts) {
 
   const pasteBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Paste from clipboard' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Paste from clipboard' },
     icon('clipboard', { size: 14 }),
     'Paste',
   );
@@ -173,7 +173,7 @@ export function createToolLayout(opts) {
 
   const copyBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Copy output to clipboard' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Copy output to clipboard' },
     icon('copy', { size: 14 }),
     'Copy',
   );
@@ -191,7 +191,7 @@ export function createToolLayout(opts) {
 
   const downloadBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Download output' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Download output' },
     icon('download', { size: 14 }),
     'Download',
   );
@@ -211,7 +211,7 @@ export function createToolLayout(opts) {
   if (opts.allowSwap) {
     const swapBtn = h(
       'button',
-      { class: 'nx-button ghost small', title: 'Swap input and output' },
+      { class: 'nx-btn is-sm is-ghost', title: 'Swap input and output' },
       icon('arrow-left', { size: 14 }),
       'Swap',
     );
@@ -228,7 +228,7 @@ export function createToolLayout(opts) {
   let isStacked = false;
   const layoutBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Toggle layout (side-by-side / stacked)' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Toggle layout (side-by-side / stacked)' },
     icon('layout-split', { size: 14 }),
   );
   layoutBtn.addEventListener('click', () => {
@@ -241,7 +241,7 @@ export function createToolLayout(opts) {
   const historyItems = /** @type {string[]} */ ([]);
   const historyBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'History of recent inputs' },
+    { class: 'nx-btn is-sm is-ghost', title: 'History of recent inputs' },
     icon('clock', { size: 14 }),
   );
   historyBtn.addEventListener('click', () => {

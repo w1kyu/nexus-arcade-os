@@ -72,7 +72,7 @@ export function mount(container, ctx, args) {
         h(
           'button',
           {
-            class: 'nx-assistant-action-btn',
+            class: 'nx-btn is-xs',
             dataset: { testid: `action-${act.id}` },
             onclick: () => runAction(act.prompt),
           },

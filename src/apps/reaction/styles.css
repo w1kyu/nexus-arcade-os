@@ -27,7 +27,7 @@
 }
 
 .nx-reaction-title {
-  font-size: 38px;
+  font-size: var(--text-2xl);
   font-weight: 900;
   letter-spacing: 3px;
   color: var(--accent);
@@ -36,7 +36,7 @@
 }
 
 .nx-reaction-subtitle {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--text-2);
   letter-spacing: 1.5px;
   margin-top: -12px;
@@ -71,17 +71,17 @@
 }
 
 .nx-reaction-card-icon {
-  font-size: 32px;
+  font-size: var(--text-hero);
 }
 
 .nx-reaction-card-name {
   font-weight: 800;
-  font-size: 15px;
+  font-size: var(--text-md);
   color: var(--text-1);
 }
 
 .nx-reaction-card-desc {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
 }
 
@@ -122,7 +122,7 @@
 }
 
 .nx-reaction-big-icon {
-  font-size: 54px;
+  font-size: calc(var(--text-2xl) * 1.35);
   margin-bottom: 10px;
 }
 
@@ -169,7 +169,7 @@
 
 .nx-sequence-header {
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: var(--text-lg);
   color: var(--accent);
 }
 
@@ -199,17 +199,4 @@
 
   color: var(--danger-contrast);
   box-shadow: 0 0 16px var(--danger);
-}
-
-.nx-number-input {
-  background: var(--surface-sunken);
-  color: var(--text-1);
-  border: 1px solid var(--accent);
-  border-radius: 6px;
-  font-size: 32px;
-  padding: 8px 16px;
-  text-align: center;
-  letter-spacing: 4px;
-  outline: none;
-  max-width: 320px;
 }

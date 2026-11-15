@@ -123,7 +123,7 @@ export async function mount(container, ctx) {
           'button',
           {
             type: 'button',
-            class: 'nx-quiz-opt-btn',
+            class: 'nx-quiz-option',
             'data-opt': String(i),
             onclick: () => onSelectOption(i),
           },
@@ -158,7 +158,7 @@ export async function mount(container, ctx) {
 
     const q = questions[currentQIdx];
     const isCorrect = index === q.correct;
-    const buttons = optionsWrap.querySelectorAll('.nx-quiz-opt-btn');
+    const buttons = optionsWrap.querySelectorAll('.nx-quiz-option');
 
     buttons.forEach((b) => /** @type {HTMLButtonElement} */ (b.disabled = true));
 
@@ -195,7 +195,7 @@ export async function mount(container, ctx) {
     audio.play('gameover');
 
     const q = questions[currentQIdx];
-    const buttons = optionsWrap.querySelectorAll('.nx-quiz-opt-btn');
+    const buttons = optionsWrap.querySelectorAll('.nx-quiz-option');
     buttons.forEach((b) => /** @type {HTMLButtonElement} */ (b.disabled = true));
     buttons[q.correct]?.classList.add('correct');
 
@@ -220,7 +220,7 @@ export async function mount(container, ctx) {
 
     const q = questions[currentQIdx];
     const elim = get5050Eliminations(q.correct);
-    const buttons = optionsWrap.querySelectorAll('.nx-quiz-opt-btn');
+    const buttons = optionsWrap.querySelectorAll('.nx-quiz-option');
 
     for (const idx of elim) {
       const b = /** @type {HTMLButtonElement} */ (buttons[idx]);

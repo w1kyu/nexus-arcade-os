@@ -97,18 +97,18 @@
 }
 
 .nx-clock-digital {
-  font-size: 24px;
+  font-size: var(--text-display);
   font-weight: 700;
   font-family: monospace;
 }
 
 .nx-clock-city {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
 .nx-clock-date {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
 }
 
@@ -124,7 +124,7 @@
 }
 
 .nx-stopwatch-display {
-  font-size: 54px;
+  font-size: calc(var(--text-2xl) * 1.35);
   font-weight: 700;
   font-family: monospace;
   color: var(--warning);
@@ -162,7 +162,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-family: monospace;
   border-radius: 2px;
   background: var(--surface-2);

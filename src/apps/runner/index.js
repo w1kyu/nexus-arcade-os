@@ -128,7 +128,8 @@ export async function mount(container, ctx) {
       h(
         'button',
         {
-          class: `nx-runner-tile-btn ${opt.tile === selectedEditorTile ? 'selected' : ''}`,
+          class: 'nx-runner-tile',
+          'aria-pressed': String(opt.tile === selectedEditorTile),
           onclick: () => {
             selectedEditorTile = opt.tile;
             editorTileButtons.forEach((b) => b.classList.remove('selected'));

@@ -34,7 +34,7 @@ export async function mount(container, ctx) {
     'div',
     { class: 'nx-http-sidebar-header' },
     h('span', { class: 'nx-http-sidebar-title' }, t('sidebar.requests')),
-    h('button', { class: 'nx-button ghost small', title: t('sidebar.newRequest') }, icon('file-plus', { size: 14 })),
+    h('button', { class: 'nx-btn is-sm is-ghost', title: t('sidebar.newRequest') }, icon('file-plus', { size: 14 })),
   );
   const requestsList = h('ul', { class: 'nx-http-sidebar-list' });
   sidebar.append(sidebarHeader, requestsList);
@@ -82,7 +82,7 @@ export async function mount(container, ctx) {
   const urlBar = h('div', { class: 'nx-http-url-bar' });
   const methodSelect = h(
     'select',
-    { class: 'nx-http-method-select', 'aria-label': t('request.method') },
+    { class: 'nx-select is-sm nx-http-method', 'aria-label': t('request.method') },
     h('option', { value: 'GET' }, 'GET'),
     h('option', { value: 'POST' }, 'POST'),
     h('option', { value: 'PUT' }, 'PUT'),
@@ -93,12 +93,12 @@ export async function mount(container, ctx) {
   );
   const urlInput = h('input', {
     type: 'text',
-    class: 'nx-http-url-input',
+    class: 'nx-input is-sm is-mono nx-http-url',
     placeholder: t('request.urlPlaceholder'),
     value: currentRequest.url,
     spellcheck: 'false',
   });
-  const sendBtn = h('button', { class: 'nx-button primary' }, icon('play', { size: 14 }), t('request.send'));
+  const sendBtn = h('button', { class: 'nx-btn is-primary' }, icon('play', { size: 14 }), t('request.send'));
   urlBar.append(methodSelect, urlInput, sendBtn);
 
   methodSelect.addEventListener('change', () => {
@@ -123,7 +123,11 @@ export async function mount(container, ctx) {
   const reqTabPanes = {};
 
   for (const key of reqTabKeys) {
-    const btn = h('button', { class: `nx-http-tab-btn${key === 'params' ? ' active' : ''}` }, t(`request.${key}`));
+    const btn = h(
+      'button',
+      { class: 'nx-btn is-xs is-ghost', 'aria-pressed': String(key === 'params') },
+      t(`request.${key}`),
+    );
     reqTabBtns[key] = btn;
     btn.addEventListener('click', () => switchReqTab(key));
     reqTabsHeader.append(btn);
@@ -138,7 +142,7 @@ export async function mount(container, ctx) {
 
   function switchReqTab(/** @type {string} */ target) {
     for (const k of reqTabKeys) {
-      reqTabBtns[k].classList.toggle('active', k === target);
+      reqTabBtns[k].setAttribute('aria-pressed', String(k === target));
       reqTabPanes[k].hidden = k !== target;
     }
     if (target === 'snippets') updateSnippets();
@@ -146,29 +150,29 @@ export async function mount(container, ctx) {
 
   // Params Tab
   const paramsText = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     placeholder: 'Query parameters as key=value (one per line)...',
-    value: 'limit=10\nsort=desc',
     spellcheck: 'false',
   });
+  paramsText.value = 'limit=10\nsort=desc';
   reqTabPanes.params.append(paramsText);
 
   // Headers Tab
   const headersText = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     placeholder: 'Headers as Key: Value (one per line)...',
-    value: 'Accept: application/json\nContent-Type: application/json',
     spellcheck: 'false',
   });
+  headersText.value = 'Accept: application/json\nContent-Type: application/json';
   reqTabPanes.headers.append(headersText);
 
   // Body Tab
   const bodyText = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     placeholder: 'Request body (JSON, form data, or raw text)...',
-    value: currentRequest.body,
     spellcheck: 'false',
   });
+  bodyText.value = currentRequest.body;
   reqTabPanes.body.append(bodyText);
 
   // Auth Tab
@@ -182,7 +186,7 @@ export async function mount(container, ctx) {
   );
   const tokenInput = h('input', {
     type: 'text',
-    class: 'nx-colorlab-format-input',
+    class: 'nx-input is-sm is-mono',
     placeholder: 'Bearer token or {{token}}...',
     value: '{{token}}',
   });
@@ -191,7 +195,7 @@ export async function mount(container, ctx) {
 
   // Snippets Tab
   const snippetArea = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     readonly: 'true',
     spellcheck: 'false',
   });
@@ -217,8 +221,8 @@ export async function mount(container, ctx) {
   const resPane = h('div', { class: 'nx-http-pane' });
   const resTabsHeader = h('div', { class: 'nx-http-tabs-header' });
 
-  const resBodyBtn = h('button', { class: 'nx-http-tab-btn active' }, t('response.body'));
-  const resHeadersBtn = h('button', { class: 'nx-http-tab-btn' }, t('response.headers'));
+  const resBodyBtn = h('button', { class: 'nx-btn is-xs is-ghost', 'aria-pressed': 'true' }, t('response.body'));
+  const resHeadersBtn = h('button', { class: 'nx-btn is-xs is-ghost' }, t('response.headers'));
 
   const resMeta = h('div', { class: 'nx-http-response-meta' });
   const statusTag = h('span', { class: 'nx-http-status-tag ok', style: 'display: none;' }, '200 OK');
@@ -226,7 +230,7 @@ export async function mount(container, ctx) {
   const sizeTag = h('span', { style: 'color: var(--text-2);' });
   const copyResBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: t('response.copy') },
+    { class: 'nx-btn is-sm is-ghost is-icon', title: t('response.copy') },
     icon('copy', { size: 14 }),
   );
 
@@ -236,13 +240,13 @@ export async function mount(container, ctx) {
   const resContent = h('div', { class: 'nx-http-pane-content' });
   const resPlaceholder = h('div', { style: 'color: var(--text-3); font-size: 13px;' }, t('response.empty'));
   const resTextarea = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     readonly: 'true',
     style: 'display: none;',
     spellcheck: 'false',
   });
   const resHeadersList = h('textarea', {
-    class: 'nx-tool-textarea',
+    class: 'nx-textarea is-mono nx-http-editor',
     readonly: 'true',
     style: 'display: none;',
     spellcheck: 'false',
@@ -254,15 +258,15 @@ export async function mount(container, ctx) {
   split.append(reqPane, resPane);
 
   resBodyBtn.addEventListener('click', () => {
-    resBodyBtn.classList.add('active');
-    resHeadersBtn.classList.remove('active');
+    resBodyBtn.setAttribute('aria-pressed', 'true');
+    resHeadersBtn.setAttribute('aria-pressed', 'false');
     if (resTextarea.value) resTextarea.style.display = 'block';
     resHeadersList.style.display = 'none';
   });
 
   resHeadersBtn.addEventListener('click', () => {
-    resHeadersBtn.classList.add('active');
-    resBodyBtn.classList.remove('active');
+    resHeadersBtn.setAttribute('aria-pressed', 'true');
+    resBodyBtn.setAttribute('aria-pressed', 'false');
     resTextarea.style.display = 'none';
     if (resHeadersList.value) resHeadersList.style.display = 'block';
   });

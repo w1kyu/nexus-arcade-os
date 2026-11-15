@@ -18,7 +18,7 @@ export async function mount(container, ctx) {
 
   // Toolbar
   const toolbar = h('div', { class: 'nx-playground-toolbar' });
-  const runBtn = h('button', { class: 'nx-button primary small' }, icon('play', { size: 14 }), t('toolbar.run'));
+  const runBtn = h('button', { class: 'nx-btn is-sm is-primary' }, icon('play', { size: 14 }), t('toolbar.run'));
 
   // Templates select
   const templateSelect = h('select', { class: 'nx-select', 'aria-label': t('toolbar.templates') });
@@ -38,18 +38,18 @@ export async function mount(container, ctx) {
 
   const exportBtn = h(
     'button',
-    { class: 'nx-button ghost small' },
+    { class: 'nx-btn is-sm is-ghost' },
     icon('download', { size: 14 }),
     t('toolbar.exportHtml'),
   );
   const importBtn = h(
     'button',
-    { class: 'nx-button ghost small' },
+    { class: 'nx-btn is-sm is-ghost' },
     icon('upload', { size: 14 }),
     t('toolbar.importHtml'),
   );
-  const saveBtn = h('button', { class: 'nx-button ghost small' }, icon('check', { size: 14 }), t('toolbar.save'));
-  const shareBtn = h('button', { class: 'nx-button ghost small' }, icon('share', { size: 14 }), t('toolbar.share'));
+  const saveBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, icon('check', { size: 14 }), t('toolbar.save'));
+  const shareBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, icon('share', { size: 14 }), t('toolbar.share'));
 
   const leftToolbar = h(
     'div',
@@ -70,7 +70,7 @@ export async function mount(container, ctx) {
           h(
             'button',
             {
-              class: 'nx-button ghost small',
+              class: 'nx-btn is-sm is-ghost',
               title: 'Ask AI Assistant',
               onclick: () => {
                 const codeToAssist = jsCode ? `// JavaScript:\n${jsCode}` : htmlCode;
@@ -103,7 +103,7 @@ export async function mount(container, ctx) {
   // Editors content
   const htmlPanel = h('div', { class: 'nx-playground-editor-panel' });
   const htmlTextarea = h('textarea', {
-    class: 'nx-playground-textarea',
+    class: 'nx-playground-code',
     value: htmlCode,
     spellcheck: 'false',
     'aria-label': t('editors.html'),
@@ -112,7 +112,7 @@ export async function mount(container, ctx) {
 
   const cssPanel = h('div', { class: 'nx-playground-editor-panel', hidden: true });
   const cssTextarea = h('textarea', {
-    class: 'nx-playground-textarea',
+    class: 'nx-playground-code',
     value: cssCode,
     spellcheck: 'false',
     'aria-label': t('editors.css'),
@@ -121,7 +121,7 @@ export async function mount(container, ctx) {
 
   const jsPanel = h('div', { class: 'nx-playground-editor-panel', hidden: true });
   const jsTextarea = h('textarea', {
-    class: 'nx-playground-textarea',
+    class: 'nx-playground-code',
     value: jsCode,
     spellcheck: 'false',
     'aria-label': 'JavaScript',
@@ -158,14 +158,14 @@ export async function mount(container, ctx) {
     'div',
     { class: 'nx-playground-console-header' },
     h('span', {}, t('console.title')),
-    h('button', { class: 'nx-button ghost small', style: 'padding: 2px 6px; font-size: 10px;' }, t('console.clear')),
+    h('button', { class: 'nx-btn is-sm is-ghost', style: 'padding: 2px 6px; font-size: 10px;' }, t('console.clear')),
   );
   const consoleLogs = h('div', { class: 'nx-playground-console-logs' });
   const consoleInputBar = h('div', { class: 'nx-playground-console-input-bar' });
   const promptSym = h('span', { class: 'nx-playground-console-prompt' }, '>');
   const consoleInput = h('input', {
     type: 'text',
-    class: 'nx-playground-console-input',
+    class: 'nx-playground-console-field',
     placeholder: t('console.placeholder'),
     spellcheck: 'false',
   });

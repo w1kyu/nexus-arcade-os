@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
   padding-right: 8px;
 }
@@ -50,11 +50,11 @@
   gap: 4px;
 }
 
-.nx-beatlab-track-btn {
+.nx-beatlab-ms {
   width: 22px;
   height: 22px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 700;
   border: 1px solid var(--border);
   background: transparent;
@@ -62,13 +62,13 @@
   cursor: pointer;
 }
 
-.nx-beatlab-track-btn.is-active-mute {
+.nx-beatlab-ms.is-active-mute {
   background: var(--danger);
   color: var(--danger-contrast);
   border-color: var(--danger);
 }
 
-.nx-beatlab-track-btn.is-active-solo {
+.nx-beatlab-ms.is-active-solo {
   background: var(--warning);
   color: var(--bg);
   border-color: var(--warning);

@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
 }
 

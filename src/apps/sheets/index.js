@@ -59,7 +59,7 @@ export async function mount(container, ctx, args = {}) {
     'select',
     {
       'aria-label': ctx.i18n.t('toolbar.format'),
-      class: 'nx-sheets-select',
+      class: 'nx-select is-xs',
       onchange: (e) => applyFormat(/** @type {HTMLSelectElement} */ (e.target).value),
     },
     h('option', { value: 'general' }, t('toolbar.formatGeneral', 'General')),
@@ -76,7 +76,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.undo', 'Undo'),
         onclick: () => {
           model.undo();
@@ -88,7 +88,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.redo', 'Redo'),
         onclick: () => {
           model.redo();
@@ -101,7 +101,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.bold', 'Bold'),
         onclick: () => toggleStyle('bold'),
       },
@@ -110,7 +110,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.italic', 'Italic'),
         onclick: () => toggleStyle('italic'),
       },
@@ -120,7 +120,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.alignLeft', 'Align Left'),
         onclick: () => setAlign('left'),
       },
@@ -129,7 +129,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.alignCenter', 'Align Center'),
         onclick: () => setAlign('center'),
       },
@@ -138,7 +138,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.alignRight', 'Align Right'),
         onclick: () => setAlign('right'),
       },
@@ -150,7 +150,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.sortAsc', 'Sort Ascending'),
         onclick: () => sortSelection(true),
       },
@@ -160,7 +160,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.sortDesc', 'Sort Descending'),
         onclick: () => sortSelection(false),
       },
@@ -171,7 +171,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.addChart', 'Insert Chart'),
         onclick: showAddChartDialog,
       },
@@ -181,7 +181,7 @@ export async function mount(container, ctx, args = {}) {
     h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('toolbar.exportCsv', 'Export CSV'),
         onclick: exportCsvFile,
       },
@@ -193,7 +193,7 @@ export async function mount(container, ctx, args = {}) {
   // 2. Formula Bar
   const cellAddrDisplay = h('div', { class: 'nx-sheets-cell-addr' }, 'A1');
   const formulaInput = h('input', {
-    class: 'nx-sheets-formula-input',
+    class: 'nx-input is-xs is-mono nx-sheets-formula',
     placeholder: t('formula.placeholder', 'Enter value or formula (e.g. =SUM(A1:B10))'),
     onkeydown: (e) => {
       if (e.key === 'Enter') {
@@ -304,7 +304,7 @@ export async function mount(container, ctx, args = {}) {
     const addBtn = h(
       'button',
       {
-        class: 'nx-sheets-btn',
+        class: 'nx-btn is-xs is-ghost',
         title: t('sheet.add', 'Add Sheet'),
         onclick: () => {
           model.addSheet();
@@ -475,7 +475,7 @@ export async function mount(container, ctx, args = {}) {
           h(
             'button',
             {
-              class: 'nx-sheets-btn',
+              class: 'nx-btn is-xs is-ghost',
               onclick: () => {
                 model.removeChart(sheet.id, chart.id);
                 renderGrid();
@@ -702,7 +702,7 @@ export async function mount(container, ctx, args = {}) {
     const rowH = getRowHeight(sheet, row);
 
     inlineInputEl = h('input', {
-      class: 'nx-sheets-inline-input',
+      class: 'nx-sheets-cell-editor',
       style: `left: ${colX}px; top: ${rowY}px; width: ${colW}px; height: ${rowH}px;`,
       value: initialRaw,
       onkeydown: (e) => {

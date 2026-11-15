@@ -68,7 +68,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  font-size: clamp(14px, 3.2vmin, 26px);
+  font-size: clamp(var(--text-sm), 3.2vmin, var(--text-display));
   color: #0a0d1c;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }

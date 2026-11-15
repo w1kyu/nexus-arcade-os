@@ -85,7 +85,7 @@ export async function mount(container, ctx) {
         'display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-bottom: 1px solid var(--border);',
     },
     h('span', { style: 'font-size: 12px; font-weight: 600;' }, t('sidebar.all')),
-    h('button', { class: 'nx-button small ghost', title: t('sidebar.newSnippet') }, icon('file-plus', { size: 14 })),
+    h('button', { class: 'nx-btn is-sm is-ghost', title: t('sidebar.newSnippet') }, icon('file-plus', { size: 14 })),
   );
 
   const listEl = h('ul', { class: 'nx-snippets-list' });
@@ -106,23 +106,23 @@ export async function mount(container, ctx) {
 
   // Main Toolbar
   const toolbar = h('div', { class: 'nx-snippets-toolbar' });
-  const copyBtn = h('button', { class: 'nx-button primary small' }, icon('copy', { size: 14 }), t('editor.copy'));
-  const saveBtn = h('button', { class: 'nx-button ghost small' }, icon('check', { size: 14 }), t('editor.save'));
+  const copyBtn = h('button', { class: 'nx-btn is-sm is-primary' }, icon('copy', { size: 14 }), t('editor.copy'));
+  const saveBtn = h('button', { class: 'nx-btn is-sm is-ghost' }, icon('check', { size: 14 }), t('editor.save'));
   const delBtn = h(
     'button',
-    { class: 'nx-button ghost small', style: 'color: var(--danger);' },
+    { class: 'nx-btn is-sm is-ghost', style: 'color: var(--danger);' },
     icon('trash', { size: 14 }),
     t('editor.delete'),
   );
   const exportBtn = h(
     'button',
-    { class: 'nx-button ghost small' },
+    { class: 'nx-btn is-sm is-ghost' },
     icon('download', { size: 14 }),
     t('editor.exportJson'),
   );
   const importBtn = h(
     'button',
-    { class: 'nx-button ghost small' },
+    { class: 'nx-btn is-sm is-ghost' },
     icon('upload', { size: 14 }),
     t('editor.importJson'),
   );
@@ -135,7 +135,7 @@ export async function mount(container, ctx) {
   const metaBar = h('div', { class: 'nx-snippets-meta-bar' });
   const titleInput = h('input', {
     type: 'text',
-    class: 'nx-snippets-title-input',
+    class: 'nx-input is-inline',
     placeholder: t('editor.titlePlaceholder'),
     spellcheck: 'false',
   });
@@ -165,7 +165,7 @@ export async function mount(container, ctx) {
   // Code area
   const codeArea = h('div', { class: 'nx-snippets-code-area' });
   const codeTextarea = h('textarea', {
-    class: 'nx-snippets-textarea',
+    class: 'nx-snippets-code',
     placeholder: '// Paste or write code snippet here...',
     spellcheck: 'false',
   });

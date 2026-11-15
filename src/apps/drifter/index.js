@@ -25,7 +25,7 @@ export async function mount(container, ctx) {
     const title = h('h1', { class: 'nx-drifter-title' }, t('app.title'));
     const subtitle = h('div', { class: 'nx-drifter-subtitle' }, t('app.description'));
 
-    const playBtn = h('button', { class: 'nx-drifter-play-btn' }, t('menu.play'));
+    const playBtn = h('button', { class: 'nx-btn is-lg is-primary', 'data-testid': 'play' }, t('menu.play'));
     playBtn.addEventListener('click', () => {
       menu.remove();
       startGame();

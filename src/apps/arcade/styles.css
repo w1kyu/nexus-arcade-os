@@ -30,7 +30,7 @@
 
 .nx-arcade-title-group h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--text-hero);
   font-weight: 900;
   letter-spacing: 2px;
   color: var(--accent);
@@ -38,7 +38,7 @@
 
 .nx-arcade-title-group p {
   margin: 4px 0 0 0;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-2);
 }
 
@@ -54,7 +54,7 @@
 }
 
 .nx-profile-avatar {
-  font-size: 28px;
+  font-size: var(--text-xl);
 }
 
 .nx-profile-info {
@@ -67,7 +67,7 @@
 .nx-profile-name-row {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
 }
 
@@ -108,30 +108,6 @@
   gap: 8px;
 }
 
-.nx-filter-btn {
-  background: var(--surface-2);
-  border: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
-  color: var(--text-2);
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.nx-filter-btn:hover {
-  color: var(--text-1);
-  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
-.nx-filter-btn.active {
-  background: var(--accent);
-  color: var(--surface-1);
-  border-color: var(--accent);
-  font-weight: 700;
-}
-
 .nx-arcade-search-box {
   display: flex;
   align-items: center;
@@ -147,7 +123,7 @@
   border: none;
   color: var(--text-1);
   outline: none;
-  font-size: 13px;
+  font-size: var(--text-ui);
   width: 160px;
 }
 
@@ -196,10 +172,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 52px;
+  font-size: calc(var(--text-2xl) * 1.3);
 }
 
-.nx-card-favorite-btn {
+.nx-card-favorite {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -213,11 +189,11 @@
   align-items: center;
   justify-content: center;
   color: var(--text-1);
-  font-size: 16px;
+  font-size: var(--text-md);
   transition: all 0.15s ease;
 }
 
-.nx-card-favorite-btn.favorited {
+.nx-card-favorite.favorited {
   color: var(--warning);
 }
 
@@ -236,13 +212,13 @@
 }
 
 .nx-card-name {
-  font-size: 18px;
+  font-size: var(--text-title);
   font-weight: 800;
   color: var(--text-1);
 }
 
 .nx-card-genre {
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
   color: var(--accent);
@@ -253,7 +229,7 @@
 }
 
 .nx-card-desc {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
   line-height: 1.4;
   flex: 1;
@@ -265,33 +241,13 @@
   background: color-mix(in srgb, var(--bg) 30%, transparent);
   padding: 8px 12px;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-2);
   margin-top: 6px;
 }
 
 .nx-card-stats strong {
   color: var(--text-1);
-}
-
-.nx-card-play-btn {
-  background: var(--accent);
-  color: var(--surface-1);
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  font-weight: 800;
-  font-size: 14px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  margin-top: 8px;
-  transition: all 0.15s ease;
-}
-
-.nx-card-play-btn:hover {
-  background: var(--accent);
-
-  color: var(--accent-contrast);
 }
 
 /* Achievements Gallery Section */
@@ -302,7 +258,7 @@
 }
 
 .nx-achievements-title {
-  font-size: 20px;
+  font-size: var(--text-lg);
   font-weight: 800;
   color: var(--accent);
   margin: 0 0 16px 0;
@@ -334,17 +290,17 @@
 }
 
 .nx-achievement-icon {
-  font-size: 24px;
+  font-size: var(--text-display);
 }
 
 .nx-achievement-name {
   font-weight: 700;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-1);
 }
 
 .nx-achievement-desc {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-2);
 }
 
@@ -364,7 +320,7 @@
 
 .nx-featured-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 800;
   letter-spacing: 1px;
   color: var(--warning);
@@ -377,75 +333,16 @@
 
 .nx-featured-title {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--text-lg);
   font-weight: 800;
   color: var(--text-1);
 }
 
 .nx-featured-desc {
   margin: 4px 0 0;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-2);
   max-width: 600px;
-}
-
-.nx-featured-play-btn {
-  padding: 10px 24px;
-  background: var(--accent);
-  color: var(--surface-1);
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.nx-featured-play-btn:hover {
-  background: var(--accent);
-
-  color: var(--accent-contrast);
-  transform: scale(1.04);
-}
-
-.nx-random-btn {
-  background: color-mix(in srgb, var(--accent-2) 18%, var(--surface-2));
-  border: 1px solid var(--accent-2);
-  color: var(--text-1);
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
-}
-
-.nx-random-btn:hover {
-  background: color-mix(in srgb, var(--accent-2) 30%, var(--surface-2));
-}
-
-/* Local Multiplayer Lobby Modal */
-.nx-lobby-btn {
-  background: var(--surface-2);
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
-}
-
-.nx-lobby-btn:hover {
-  background: var(--surface-3);
 }
 
 .nx-lobby-overlay {
@@ -480,28 +377,14 @@
 
 .nx-lobby-header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--text-lg);
   font-weight: 800;
   color: var(--accent);
 }
 
-.nx-lobby-close-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-2);
-  font-size: 18px;
-  cursor: pointer;
-  padding: 4px;
-  line-height: 1;
-}
-
-.nx-lobby-close-btn:hover {
-  color: var(--text-1);
-}
-
 .nx-lobby-subtitle {
   margin: -8px 0 0;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-2);
 }
 
@@ -512,7 +395,7 @@
 }
 
 .nx-lobby-label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
   color: var(--accent);
@@ -523,30 +406,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-}
-
-.nx-lobby-game-btn {
-  background: var(--surface-2);
-  border: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
-  color: var(--text-1);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.15s ease;
-}
-
-.nx-lobby-game-btn:hover {
-  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
-.nx-lobby-game-btn.active {
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 700;
 }
 
 .nx-lobby-players-row {
@@ -567,22 +426,12 @@
 
 .nx-lobby-player-card h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
-.nx-lobby-select {
-  background: var(--surface-1);
-  border: 1px solid color-mix(in srgb, var(--text-1) 20%, transparent);
-  color: var(--text-1);
-  border-radius: 6px;
-  padding: 8px 10px;
-  font-size: 12px;
-  outline: none;
-}
-
 .nx-lobby-status {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
   background: color-mix(in srgb, var(--bg) 30%, transparent);
   padding: 8px 12px;
@@ -603,7 +452,7 @@
   color: var(--text-2);
   border-radius: 6px;
   padding: 8px 16px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   cursor: pointer;
 }
 
@@ -618,7 +467,7 @@
   color: var(--surface-1);
   border-radius: 6px;
   padding: 8px 20px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 800;
   cursor: pointer;
   transition: all 0.15s ease;

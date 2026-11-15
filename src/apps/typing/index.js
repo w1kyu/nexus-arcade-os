@@ -54,12 +54,12 @@ export async function mount(container, ctx) {
 
   for (const m of ['words', 'quotes', 'code', 'german']) {
     const btn = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-typing-btn ${m === currentMode ? 'active' : ''}` }, t(`modes.${m}`))
+      h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(m === currentMode) }, t(`modes.${m}`))
     );
     btn.addEventListener('click', () => {
       currentMode = m;
       for (const [k, b] of Object.entries(modeBtns)) {
-        b.classList.toggle('active', k === currentMode);
+        b.setAttribute('aria-pressed', String(k === currentMode));
       }
       startSession();
     });
@@ -68,18 +68,18 @@ export async function mount(container, ctx) {
   }
 
   const optionsEl = h('div', { class: 'nx-typing-options' });
-  const btnLayout = h('button', { class: 'nx-typing-btn' }, 'Layout: QWERTY');
+  const btnLayout = h('button', { class: 'nx-btn is-sm' }, 'Layout: QWERTY');
   btnLayout.addEventListener('click', () => {
     currentLayout = currentLayout === 'qwerty' ? 'qwertz' : 'qwerty';
     btnLayout.textContent = `Layout: ${currentLayout.toUpperCase()}`;
     renderKeyboard();
   });
 
-  const btnHeatmap = h('button', { class: 'nx-typing-btn' }, 'Heatmap: OFF');
+  const btnHeatmap = h('button', { class: 'nx-btn is-sm' }, 'Heatmap: OFF');
   btnHeatmap.addEventListener('click', () => {
     showHeatmap = !showHeatmap;
     btnHeatmap.textContent = `Heatmap: ${showHeatmap ? 'ON' : 'OFF'}`;
-    btnHeatmap.classList.toggle('active', showHeatmap);
+    btnHeatmap.setAttribute('aria-pressed', String(!!showHeatmap));
     renderKeyboard();
   });
 

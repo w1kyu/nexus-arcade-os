@@ -133,7 +133,7 @@
   white-space: pre;
 }
 
-.nx-term-input {
+.nx-term-field {
   flex: 1;
   min-width: 2ch;
   padding: 0;

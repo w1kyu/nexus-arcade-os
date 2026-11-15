@@ -75,7 +75,8 @@ export class BreakoutEditor {
     const palette = h('div', { class: 'nx-editor-palette' });
     for (const bt of BLOCK_TYPES) {
       const btn = h('button', {
-        class: `nx-palette-btn ${this.selectedType === bt.id ? 'active' : ''}`,
+        class: 'nx-breakout-brick',
+        'aria-pressed': String(this.selectedType === bt.id),
         style: `border-color: ${bt.color}`,
       });
       const swatch = h('span', { class: 'nx-palette-swatch', style: `background: ${bt.color}` });
@@ -84,7 +85,7 @@ export class BreakoutEditor {
 
       btn.addEventListener('click', () => {
         this.selectedType = bt.id;
-        palette.querySelectorAll('.nx-palette-btn').forEach((b) => b.classList.remove('active'));
+        palette.querySelectorAll('.nx-breakout-brick').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
       });
       palette.append(btn);

@@ -132,7 +132,8 @@ export async function mount(container, ctx) {
       h(
         'button',
         {
-          class: `nx-gd-build-btn ${key === selectedBuildType ? 'selected' : ''}`,
+          class: 'nx-gd-build',
+          'aria-pressed': String(key === selectedBuildType),
           'data-type': key,
           onclick: () => {
             selectedBuildType = selectedBuildType === key ? null : key;
@@ -193,7 +194,7 @@ export async function mount(container, ctx) {
     const btnTarget = h(
       'button',
       {
-        class: 'nx-gd-btn',
+        class: 'nx-btn is-sm',
         onclick: () => {
           tower.targetMode = (tower.targetMode + 1) % 4;
           btnTarget.textContent = t(`targetModes.${targetModes[tower.targetMode]}`);
@@ -205,7 +206,7 @@ export async function mount(container, ctx) {
     const btnUpgrade = h(
       'button',
       {
-        class: 'nx-gd-btn primary',
+        class: 'nx-btn is-sm is-primary',
         disabled: tower.level >= 3 || state.credits < upgradeCost,
         onclick: () => {
           if (upgradeTower(state, selIdx)) {
@@ -220,7 +221,7 @@ export async function mount(container, ctx) {
     const btnSell = h(
       'button',
       {
-        class: 'nx-gd-btn danger',
+        class: 'nx-btn is-sm is-danger',
         onclick: () => {
           sellTower(state, selIdx);
           audio.play('drop');

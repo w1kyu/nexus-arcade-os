@@ -328,25 +328,29 @@ export async function mount(container, ctx) {
 
   for (const f of filterTabs) {
     const btn = /** @type {HTMLButtonElement} */ (
-      h('button', { class: `nx-filter-btn ${activeFilter === f ? 'active' : ''}` }, t(`toolbar.${f}`))
+      h(
+        'button',
+        { class: 'nx-btn is-sm', 'data-testid': 'arcade-filter', 'aria-pressed': String(activeFilter === f) },
+        t(`toolbar.${f}`),
+      )
     );
     btn.addEventListener('click', () => {
       activeFilter = f;
-      Object.values(filterBtns).forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
+      Object.values(filterBtns).forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
       renderGameGrid();
     });
     filterBtns[f] = btn;
     filtersEl.append(btn);
   }
 
-  const randomBtn = h('button', { class: 'nx-random-btn' }, `🎲 ${t('toolbar.random')}`);
+  const randomBtn = h('button', { class: 'nx-btn is-sm' }, `🎲 ${t('toolbar.random')}`);
   randomBtn.addEventListener('click', () => {
     const pick = ARCADE_GAMES[Math.floor(Math.random() * ARCADE_GAMES.length)];
     launchGame(pick.id);
   });
 
-  const lobbyBtn = h('button', { class: 'nx-lobby-btn' }, `👥 ${t('toolbar.lobby')}`);
+  const lobbyBtn = h('button', { class: 'nx-btn is-sm', 'data-testid': 'arcade-lobby' }, `👥 ${t('toolbar.lobby')}`);
   lobbyBtn.addEventListener('click', () => {
     openLobbyModal();
   });
@@ -375,7 +379,7 @@ export async function mount(container, ctx) {
     h('h2', { class: 'nx-featured-title' }, `${featuredGame.iconName} ${featuredGame.name}`),
     h('p', { class: 'nx-featured-desc' }, featuredGame.desc),
   );
-  const featuredPlayBtn = h('button', { class: 'nx-featured-play-btn' }, t('featured.play'));
+  const featuredPlayBtn = h('button', { class: 'nx-btn is-lg is-primary' }, t('featured.play'));
   featuredPlayBtn.addEventListener('click', () => launchGame(featuredGame.id));
   featuredBanner.append(featuredLeft, featuredPlayBtn);
 
@@ -446,7 +450,7 @@ export async function mount(container, ctx) {
 
       const favBtn = h(
         'button',
-        { class: `nx-card-favorite-btn ${favorites.has(g.id) ? 'favorited' : ''}` },
+        { class: `nx-card-favorite ${favorites.has(g.id) ? 'favorited' : ''}` },
         favorites.has(g.id) ? '★' : '☆',
       );
 
@@ -486,7 +490,7 @@ export async function mount(container, ctx) {
       `;
 
       // Play button
-      const playBtn = h('button', { class: 'nx-card-play-btn' }, t('actions.play'));
+      const playBtn = h('button', { class: 'nx-btn is-primary nx-card-play' }, t('actions.play'));
       playBtn.addEventListener('click', () => launchGame(g.id));
 
       body.append(headerRow, desc, statsRow, playBtn);
@@ -528,7 +532,11 @@ export async function mount(container, ctx) {
     // Header
     const mHeader = h('div', { class: 'nx-lobby-header' });
     const mTitle = h('h2', {}, t('lobby.title'));
-    const closeBtn = h('button', { class: 'nx-lobby-close-btn' }, '✕');
+    const closeBtn = h(
+      'button',
+      { class: 'nx-icon-btn', 'data-testid': 'lobby-close', 'aria-label': t('lobby.close') },
+      '✕',
+    );
     closeBtn.addEventListener('click', () => overlay.remove());
     mHeader.append(mTitle, closeBtn);
 
@@ -543,12 +551,12 @@ export async function mount(container, ctx) {
     const gameBtns = [];
     for (const g of MULTIPLAYER_GAMES) {
       const gBtn = /** @type {HTMLButtonElement} */ (
-        h('button', { class: `nx-lobby-game-btn ${g.id === selectedGame ? 'active' : ''}` }, `${g.icon} ${g.name}`)
+        h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(g.id === selectedGame) }, `${g.icon} ${g.name}`)
       );
       gBtn.addEventListener('click', () => {
         selectedGame = g.id;
-        gameBtns.forEach((b) => b.classList.remove('active'));
-        gBtn.classList.add('active');
+        gameBtns.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+        gBtn.setAttribute('aria-pressed', 'true');
       });
       gameBtns.push(gBtn);
       gameList.append(gBtn);
@@ -561,7 +569,7 @@ export async function mount(container, ctx) {
     // Player 1
     const p1Card = h('div', { class: 'nx-lobby-player-card' });
     p1Card.append(h('h3', {}, `🔴 ${t('lobby.player1')}`));
-    const p1Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-lobby-select' }));
+    const p1Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-select' }));
     p1Select.innerHTML = `
       <option value="keyboard">${t('lobby.keyboard')} (WASD / Left)</option>
       <option value="gamepad-0">${t('lobby.gamepad')} 1</option>
@@ -581,7 +589,7 @@ export async function mount(container, ctx) {
     // Player 2
     const p2Card = h('div', { class: 'nx-lobby-player-card' });
     p2Card.append(h('h3', {}, `🟡 ${t('lobby.player2')}`));
-    const p2Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-lobby-select' }));
+    const p2Select = /** @type {HTMLSelectElement} */ (h('select', { class: 'nx-select' }));
     p2Select.innerHTML = `
       <option value="keyboard" selected>${t('lobby.keyboard')} (Arrows / Right)</option>
       <option value="gamepad-0">${t('lobby.gamepad')} 1</option>
@@ -704,7 +712,7 @@ export async function mount(container, ctx) {
 
             // A button (button 0) to play
             if (gp.buttons[0]?.pressed) {
-              const activeBtn = cards[selectedCardIndex]?.querySelector('.nx-card-play-btn');
+              const activeBtn = cards[selectedCardIndex]?.querySelector('.nx-card-play');
               if (activeBtn) /** @type {HTMLButtonElement} */ (activeBtn).click();
               lastNavTime = now + 400;
             }

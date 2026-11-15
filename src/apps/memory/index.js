@@ -42,7 +42,7 @@ export async function mount(container, ctx) {
 
     settingsGrid.append(sizeGroup, themeGroup);
 
-    const playBtn = h('button', { class: 'nx-memory-play-btn' }, t('menu.play'));
+    const playBtn = h('button', { class: 'nx-btn is-lg is-primary', 'data-testid': 'play' }, t('menu.play'));
     playBtn.addEventListener('click', () => {
       menu.remove();
       startGame(sizeSelect.value, themeSelect.value);

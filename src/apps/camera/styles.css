@@ -36,7 +36,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
+  font-size: calc(var(--text-2xl) * 2);
   font-weight: 900;
   color: var(--text-1);
   text-shadow: 0 4px 20px color-mix(in srgb, var(--shadow-ink) 80%, transparent);
@@ -76,7 +76,7 @@
   z-index: 10;
 }
 
-.nx-camera-shutter-btn {
+.nx-camera-shutter {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -87,11 +87,11 @@
   box-shadow: 0 0 16px color-mix(in srgb, var(--info) 50%, transparent);
 }
 
-.nx-camera-shutter-btn:hover {
+.nx-camera-shutter:hover {
   transform: scale(1.06);
 }
 
-.nx-camera-shutter-btn.is-recording {
+.nx-camera-shutter.is-recording {
   background: var(--danger);
 
   color: var(--danger-contrast);

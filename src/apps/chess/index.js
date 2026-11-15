@@ -360,7 +360,7 @@ export async function mount(container, ctx, args) {
     const color = game.pos.turn;
     const pieces = [QUEEN, ROOK, BISHOP, KNIGHT];
     const buttons = pieces.map((type) => {
-      const btn = h('button', { type: 'button', class: 'nx-chess-promo-btn' }, PIECE_SYMBOLS[color][type]);
+      const btn = h('button', { type: 'button', class: 'nx-chess-promo-piece' }, PIECE_SYMBOLS[color][type]);
       btn.addEventListener('click', () => {
         close();
         onSelect(type);
@@ -518,7 +518,8 @@ export async function mount(container, ctx, args) {
         'button',
         {
           type: 'button',
-          class: `nx-chess-move-btn ${viewPly === i + 1 ? 'active' : ''}`,
+          class: 'nx-chess-move',
+          'aria-pressed': String(viewPly === i + 1),
           onclick: () => {
             viewPly = i + 1;
             renderBoard();
@@ -535,7 +536,8 @@ export async function mount(container, ctx, args) {
           'button',
           {
             type: 'button',
-            class: `nx-chess-move-btn ${viewPly === i + 2 ? 'active' : ''}`,
+            class: 'nx-chess-move',
+            'aria-pressed': String(viewPly === i + 2),
             onclick: () => {
               viewPly = i + 2;
               renderBoard();

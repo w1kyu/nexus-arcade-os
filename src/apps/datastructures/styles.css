@@ -36,10 +36,10 @@
   border-bottom: 1px solid var(--border);
 }
 
-.nx-ds-cli-input {
+.nx-ds-cli {
   flex: 1;
   font-family: var(--font-mono, monospace);
-  font-size: var(--text-xs, 0.75rem);
+  font-size: var(--text-xs);
 }
 
 .nx-ds-main {
@@ -86,13 +86,13 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md, 10px);
   padding: var(--space-3, 12px);
-  font-size: var(--text-xs, 0.75rem);
+  font-size: var(--text-xs);
 }
 
 .nx-ds-info h4 {
   margin: 0 0 6px 0;
   color: var(--accent);
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--text-sm);
 }
 
 /* Visualization elements */
@@ -125,6 +125,6 @@
 
 .nx-ds-arrow {
   color: var(--text-3);
-  font-size: 16px;
+  font-size: var(--text-md);
   margin: 0 4px;
 }

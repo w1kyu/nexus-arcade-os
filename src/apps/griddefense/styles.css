@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
 }
 
@@ -37,7 +37,7 @@
 .nx-gd-hud-item b {
   color: var(--accent);
   font-family: monospace;
-  font-size: 14px;
+  font-size: var(--text-sm);
 }
 
 .nx-gd-hud-item.lives b {
@@ -81,7 +81,7 @@
 }
 
 .nx-gd-panel-title {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--accent);
   margin: 0;
@@ -93,7 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .nx-gd-info-row {
@@ -116,7 +116,7 @@
   overflow-x: auto;
 }
 
-.nx-gd-build-btn {
+.nx-gd-build {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -125,19 +125,19 @@
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text-1);
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
 }
 
-.nx-gd-build-btn:hover:not(:disabled) {
+.nx-gd-build:hover:not(:disabled) {
   background: var(--surface-3);
   border-color: var(--accent);
 }
 
-.nx-gd-build-btn.selected {
+.nx-gd-build.selected {
   background: var(--accent);
 
   color: var(--accent-contrast);
@@ -145,7 +145,7 @@
   box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
-.nx-gd-build-btn:disabled {
+.nx-gd-build:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -153,35 +153,5 @@
 .nx-gd-build-cost {
   color: var(--warning);
   font-family: monospace;
-  font-size: 11px;
-}
-
-.nx-gd-btn {
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text-1);
-  font-size: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.15s;
-}
-
-.nx-gd-btn:hover:not(:disabled) {
-  background: var(--surface-3);
-}
-
-.nx-gd-btn.primary {
-  background: var(--accent);
-
-  color: var(--accent-contrast);
-  border-color: var(--accent);
-}
-
-.nx-gd-btn.danger {
-  background: var(--danger);
-
-  color: var(--danger-contrast);
-  border-color: var(--danger);
+  font-size: var(--text-xs);
 }

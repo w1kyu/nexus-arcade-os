@@ -77,7 +77,7 @@
 }
 
 .nx-tape-cell-val {
-  font-size: 18px;
+  font-size: var(--text-title);
   font-weight: bold;
   color: var(--text-1);
 }
@@ -92,7 +92,7 @@
   position: absolute;
   top: 4px;
   color: var(--accent);
-  font-size: 18px;
+  font-size: var(--text-title);
   animation: bounce 0.6s infinite alternate;
 }
 
@@ -120,7 +120,7 @@
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono, monospace);
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .nx-table-view th,

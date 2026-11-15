@@ -29,7 +29,7 @@
 }
 
 .nx-photos-title {
-  font-size: 18px;
+  font-size: var(--text-title);
   font-weight: 700;
   margin: 0;
 }
@@ -86,14 +86,14 @@
 }
 
 .nx-photos-thumb-name {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.nx-photos-fav-btn {
+.nx-photos-fav {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -154,7 +154,7 @@
   transform-origin: center center;
 }
 
-.nx-photos-nav-btn {
+.nx-photos-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -172,7 +172,7 @@
   transition: background 0.15s ease;
 }
 
-.nx-photos-nav-btn:hover {
+.nx-photos-nav:hover {
   background: color-mix(in srgb, var(--info) 80%, transparent);
 }
 
@@ -194,13 +194,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   z-index: 25;
 }
 
 .nx-photos-meta-heading {
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--text-sm);
   border-bottom: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
   padding-bottom: 6px;
   margin-top: 8px;
@@ -285,6 +285,6 @@
 .nx-photos-slider-header {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
 }

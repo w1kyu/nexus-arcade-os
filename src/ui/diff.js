@@ -146,12 +146,12 @@ export function createDiffViewer(opts = {}) {
 
   const prevBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Previous change' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Previous change' },
     icon('chevron-up', { size: 14 }),
   );
   const nextBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Next change' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Next change' },
     icon('chevron-down', { size: 14 }),
   );
   const changeCountEl = h(
@@ -164,7 +164,7 @@ export function createDiffViewer(opts = {}) {
   // View toggles
   const modeBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Toggle Split / Inline view' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Toggle Split / Inline view' },
     icon('layout-split', { size: 14 }),
     'Split',
   );
@@ -174,14 +174,14 @@ export function createDiffViewer(opts = {}) {
     render();
   });
 
-  const wsBtn = h('button', { class: 'nx-button ghost small', title: 'Ignore whitespace' }, 'Ignore WS');
+  const wsBtn = h('button', { class: 'nx-btn is-sm is-ghost', title: 'Ignore whitespace' }, 'Ignore WS');
   wsBtn.addEventListener('click', () => {
     ignoreWhitespace = !ignoreWhitespace;
     wsBtn.classList.toggle('primary', ignoreWhitespace);
     render();
   });
 
-  const caseBtn = h('button', { class: 'nx-button ghost small', title: 'Ignore case' }, 'Ignore Case');
+  const caseBtn = h('button', { class: 'nx-btn is-sm is-ghost', title: 'Ignore case' }, 'Ignore Case');
   caseBtn.addEventListener('click', () => {
     ignoreCase = !ignoreCase;
     caseBtn.classList.toggle('primary', ignoreCase);
@@ -190,7 +190,7 @@ export function createDiffViewer(opts = {}) {
 
   const patchBtn = h(
     'button',
-    { class: 'nx-button ghost small', title: 'Export .patch unified diff' },
+    { class: 'nx-btn is-sm is-ghost', title: 'Export .patch unified diff' },
     icon('download', { size: 14 }),
     'Export Patch',
   );

@@ -35,19 +35,19 @@ export async function mount(container, ctx) {
 
     for (const m of modes) {
       const btn = /** @type {HTMLButtonElement} */ (
-        h('button', { class: `nx-blockfall-mode-btn ${m === selectedMode ? 'active' : ''}` }, t(`modes.${m}`))
+        h('button', { class: 'nx-btn is-sm', 'aria-pressed': String(m === selectedMode) }, t(`modes.${m}`))
       );
       btn.addEventListener('click', () => {
         selectedMode = m;
         for (const k of modes) {
-          modeButtons[k].classList.toggle('active', k === selectedMode);
+          modeButtons[k].setAttribute('aria-pressed', String(k === selectedMode));
         }
       });
       modeButtons[m] = btn;
       modesWrap.append(btn);
     }
 
-    const playBtn = h('button', { class: 'nx-blockfall-play-btn' }, t('menu.play'));
+    const playBtn = h('button', { class: 'nx-btn is-lg is-primary', 'data-testid': 'play' }, t('menu.play'));
     playBtn.addEventListener('click', () => {
       menu.remove();
       startGame(selectedMode);

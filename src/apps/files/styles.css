@@ -71,7 +71,7 @@
   color: var(--text-3);
 }
 
-.nx-files-path-input {
+.nx-files-path {
   flex: 1;
   height: 28px;
   border: 0;
@@ -99,7 +99,7 @@
 }
 
 /* ─── Main area ───────────────────────────────────────────────────────── */
-.nx-files-places-btn {
+.nx-files-places {
   display: none;
 }
 
@@ -606,7 +606,7 @@
   .nx-files-preview {
     display: none;
   }
-  .nx-files-places-btn {
+  .nx-files-places {
     display: inline-flex;
   }
   .nx-files-main.show-sidebar .nx-files-sidebar {
@@ -623,7 +623,7 @@
   }
   /* Views and the preview stay reachable from the More menu. */
   .nx-files-views,
-  .nx-files-preview-btn {
+  .nx-files-show-preview {
     display: none;
   }
 }

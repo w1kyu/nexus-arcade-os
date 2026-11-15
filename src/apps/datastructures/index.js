@@ -170,7 +170,7 @@ export async function mount(container, ctx) {
   const cliPrompt = h('span', { style: 'color:var(--accent);font-family:var(--font-mono)' }, 'nexus:ds$');
   const cliInput = h('input', {
     type: 'text',
-    class: 'nx-input nx-ds-cli-input',
+    class: 'nx-input nx-ds-cli',
     placeholder: t('controls.cliPlaceholder'),
   });
   cliInput.addEventListener('keydown', (e) => {

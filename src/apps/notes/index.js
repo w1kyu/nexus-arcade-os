@@ -964,7 +964,8 @@ export async function mount(container, ctx, args = {}) {
     }
 
     const titleInput = h('input', {
-      class: 'nx-notes-title-input',
+      class: 'nx-input is-inline',
+      'data-testid': 'note-title',
       type: 'text',
       value: active.title,
       placeholder: t('titlePlaceholder'),
@@ -1089,7 +1090,7 @@ export async function mount(container, ctx, args = {}) {
     }
 
     const tagsInput = h('input', {
-      class: 'nx-notes-tags-input',
+      class: 'nx-notes-tag-field',
       type: 'text',
       value: active.meta.tags.join(', '),
       placeholder: t('tagsPlaceholder'),

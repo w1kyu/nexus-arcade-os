@@ -42,7 +42,7 @@ test.describe('Phase 5 — Study & Life Tools', () => {
     // Switch to Converter
     const convWin = await openAppFromPalette(page, 'Unit Converter', 'nexus.converter');
     await expect(convWin.locator('.nx-converter')).toBeVisible();
-    await expect(convWin.locator('.nx-conv-val-input').first()).toBeVisible();
+    await expect(convWin.locator('.nx-conv-value').first()).toBeVisible();
 
     expect(errors).toEqual([]);
   });
@@ -63,10 +63,10 @@ test.describe('Phase 5 — Study & Life Tools', () => {
     // Switch to Snippets tab
     const snippetsTab = tabs.nth(2);
     await snippetsTab.click();
-    await expect(win.locator('.nx-cb-btn', { hasText: 'New Snippet' })).toBeVisible();
+    await expect(win.locator('.nx-btn', { hasText: 'New Snippet' })).toBeVisible();
 
     // Open modal
-    await win.locator('.nx-cb-btn', { hasText: 'New Snippet' }).click();
+    await win.locator('.nx-btn', { hasText: 'New Snippet' }).click();
     await expect(win.locator('.nx-cb-modal')).toBeVisible();
 
     // Fill form

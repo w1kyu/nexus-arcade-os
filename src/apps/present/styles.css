@@ -28,50 +28,8 @@
   gap: 6px;
 }
 
-.nx-present-btn {
-  padding: 5px 10px;
-  background: var(--surface-2);
-  color: var(--text-1);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  transition:
-    background 0.15s,
-    border-color 0.15s;
-}
-
-.nx-present-btn:hover:not(:disabled) {
-  background: var(--surface-hover);
-  border-color: var(--accent);
-}
-
-.nx-present-btn.primary {
-  background: var(--accent);
-  color: var(--accent-contrast);
-  border-color: var(--accent);
-}
-
-.nx-present-btn.active {
-  background: var(--accent);
-  color: var(--accent-contrast);
-}
-
-.nx-present-select {
-  padding: 4px 8px;
-  background: var(--surface-2);
-  color: var(--text-1);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
 .nx-present-status {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-2);
   margin-left: 6px;
 }
@@ -96,7 +54,7 @@
 
 .nx-present-editor-header {
   padding: 6px 12px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -107,7 +65,7 @@
   justify-content: space-between;
 }
 
-.nx-present-textarea {
+.nx-present-source {
   flex: 1;
   background: transparent;
   color: var(--text-1);
@@ -115,7 +73,7 @@
   resize: none;
   padding: 12px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 13px;
+  font-size: var(--text-ui);
   line-height: 1.5;
   outline: none;
   white-space: pre-wrap;
@@ -237,7 +195,7 @@
   align-items: center;
   padding-top: 10px;
   border-top: 1px solid color-mix(in srgb, var(--text-1) 15%, transparent);
-  font-size: 0.8rem;
+  font-size: var(--text-ui);
   opacity: 0.65;
 }
 
@@ -253,7 +211,7 @@
 }
 
 .nx-present-slide-counter {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 500;
   color: var(--text-2);
 }
@@ -281,7 +239,7 @@
 }
 
 .nx-presenter-timer {
-  font-size: 18px;
+  font-size: var(--text-title);
   font-family: ui-monospace, monospace;
   font-weight: bold;
   color: var(--accent);
@@ -316,7 +274,7 @@
 }
 
 .nx-presenter-card-title {
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
   color: var(--text-2);
@@ -355,7 +313,7 @@
 }
 
 .nx-presenter-notes-body {
-  font-size: 14px;
+  font-size: var(--text-sm);
   line-height: 1.6;
   color: var(--text-1);
   white-space: pre-wrap;
@@ -374,7 +332,7 @@
   overflow: hidden;
 }
 
-.nx-present-fullscreen-exit-btn {
+.nx-present-exit {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -383,14 +341,14 @@
   border: 1px solid color-mix(in srgb, var(--text-1) 20%, transparent);
   border-radius: 20px;
   padding: 6px 14px;
-  font-size: 12px;
+  font-size: var(--text-xs);
   cursor: pointer;
   z-index: 100000;
   opacity: 0;
   transition: opacity 0.2s;
 }
 
-.nx-present-fullscreen-overlay:hover .nx-present-fullscreen-exit-btn {
+.nx-present-fullscreen-overlay:hover .nx-present-exit {
   opacity: 1;
 }
 

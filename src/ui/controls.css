@@ -80,6 +80,25 @@
       background: var(--surface-hover);
     }
   }
+  /* Toolbar density: 28 px tall, tight padding (editor toolbars, game menus). */
+  &.is-xs {
+    --btn-h: var(--control-h-sm);
+    min-width: var(--btn-h);
+    padding: 0 var(--space-2);
+    gap: var(--space-1);
+    font-size: var(--text-ui);
+    &.is-icon {
+      padding: 0;
+    }
+  }
+  /* Toggle buttons and the current item of a button group (tool, mode, filter). */
+  &[aria-pressed='true'],
+  &[aria-current='true'],
+  &[aria-current='page'] {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    background: var(--surface-active);
+    color: var(--text-1);
+  }
 }
 
 .nx-icon-btn {
@@ -233,6 +252,32 @@
   min-height: 80px;
   padding: var(--space-2) var(--space-3);
   resize: vertical;
+}
+
+/* Field modifiers: `.is-xs` toolbar height, `.is-mono` code and values, `.is-inline` a document
+   title edited in place (no frame until hover or focus). */
+:is(.nx-input, .nx-select).is-xs {
+  width: auto;
+  min-height: var(--control-h-sm);
+  height: var(--control-h-sm);
+  padding-block: 0;
+  font-size: var(--text-ui);
+}
+:is(.nx-input, .nx-textarea).is-mono {
+  font-family: var(--font-mono);
+}
+.nx-input.is-inline {
+  width: auto;
+  min-width: 0;
+  max-width: 320px;
+  border-color: transparent;
+  background: transparent;
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  &:hover {
+    border-color: var(--border);
+    background: var(--surface-sunken);
+  }
 }
 
 .nx-field {

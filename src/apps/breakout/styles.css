@@ -44,7 +44,7 @@
 }
 
 .nx-breakout-title {
-  font-size: 38px;
+  font-size: var(--text-2xl);
   font-weight: 900;
   letter-spacing: 3px;
   color: var(--accent);
@@ -53,7 +53,7 @@
 }
 
 .nx-breakout-subtitle {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--text-2);
   letter-spacing: 1.5px;
   margin-top: -12px;
@@ -87,7 +87,7 @@
 
 .nx-editor-title {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--text-title);
   color: var(--accent);
 }
 
@@ -104,7 +104,7 @@
   border-radius: 8px;
 }
 
-.nx-palette-btn {
+.nx-breakout-brick {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -114,11 +114,11 @@
   border-radius: 6px;
   padding: 6px 12px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
 }
 
-.nx-palette-btn.active {
+.nx-breakout-brick.active {
   box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 

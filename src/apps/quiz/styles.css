@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .nx-quiz-question {
-  font-size: 17px;
+  font-size: var(--text-title);
   font-weight: 700;
   line-height: 1.5;
   color: var(--text-1);
@@ -84,7 +84,7 @@
   gap: 10px;
 }
 
-.nx-quiz-opt-btn {
+.nx-quiz-option {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -93,31 +93,31 @@
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text-1);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   text-align: left;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-.nx-quiz-opt-btn:hover:not(:disabled) {
+.nx-quiz-option:hover:not(:disabled) {
   background: var(--surface-3);
   border-color: var(--accent);
 }
 
-.nx-quiz-opt-btn.correct {
+.nx-quiz-option.correct {
   background: color-mix(in srgb, var(--success) 25%, transparent);
   border-color: var(--success);
   color: var(--success);
 }
 
-.nx-quiz-opt-btn.incorrect {
+.nx-quiz-option.incorrect {
   background: color-mix(in srgb, var(--danger) 25%, transparent);
   border-color: var(--danger);
   color: var(--danger);
 }
 
-.nx-quiz-opt-btn:disabled {
+.nx-quiz-option:disabled {
   cursor: default;
 }
 
@@ -130,7 +130,7 @@
   border-radius: 50%;
   background: var(--surface-3);
   color: var(--accent);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .nx-quiz-explanation {
@@ -138,7 +138,7 @@
   border-left: 4px solid var(--accent);
   padding: 12px;
   border-radius: 0 6px 6px 0;
-  font-size: 13px;
+  font-size: var(--text-ui);
   line-height: 1.5;
   color: var(--text-1);
 }

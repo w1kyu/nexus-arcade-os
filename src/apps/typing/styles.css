@@ -32,30 +32,6 @@
   gap: 6px;
 }
 
-.nx-typing-btn {
-  padding: 6px 12px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.nx-typing-btn:hover {
-  background: var(--surface-2);
-  color: var(--text-1);
-}
-
-.nx-typing-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-contrast);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
 .nx-typing-stats-hud {
   display: flex;
   justify-content: space-around;
@@ -73,14 +49,14 @@
 
 .nx-typing-stat-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 32px;
+  font-size: var(--text-hero);
   font-weight: 800;
   color: var(--accent);
   text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .nx-typing-stat-lbl {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text-3);
   margin-top: 2px;
@@ -98,7 +74,7 @@
   margin: 10px 0 20px;
   box-shadow: inset 0 2px 8px color-mix(in srgb, var(--shadow-ink) 40%, transparent);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 20px;
+  font-size: var(--text-lg);
   line-height: 1.8;
   position: relative;
   outline: none;
@@ -164,7 +140,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
   color: var(--text-1);
   position: relative;
@@ -204,7 +180,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: #94a3b8;
 }
 

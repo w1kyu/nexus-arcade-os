@@ -44,7 +44,7 @@
 }
 
 .nx-bs-board-title {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -85,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: var(--text-sm);
   cursor: default;
   transition: background-color 0.1s ease;
 }
@@ -131,7 +131,7 @@
 
 .nx-bs-cell.hit::after {
   content: '💥';
-  font-size: clamp(12px, 2.4vmin, 18px);
+  font-size: clamp(var(--text-xs), 2.4vmin, var(--text-title));
 }
 
 .nx-bs-cell.sunk {
@@ -141,7 +141,7 @@
 
 .nx-bs-cell.sunk::after {
   content: '☠';
-  font-size: clamp(12px, 2.4vmin, 18px);
+  font-size: clamp(var(--text-xs), 2.4vmin, var(--text-title));
   color: var(--text-1);
 }
 
@@ -149,7 +149,7 @@
 .nx-bs-fleet {
   display: flex;
   gap: 8px;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .nx-bs-ship-pill {

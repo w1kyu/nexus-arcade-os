@@ -61,7 +61,7 @@ test.describe('Phase 11 — Media Center Suite', () => {
     // 4. Voice Recorder (nexus.recorder)
     const recorderWin = await openAppFromPalette(page, 'Voice Recorder', 'nexus.recorder');
     await expect(recorderWin.locator('.nx-recorder')).toBeVisible();
-    await expect(recorderWin.locator('.nx-recorder-record-btn')).toBeVisible();
+    await expect(recorderWin.locator('.nx-recorder-record')).toBeVisible();
     await recorderWin.locator('button[data-action="close"]').click();
 
     // 5. Camera (nexus.camera)

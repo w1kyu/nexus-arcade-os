@@ -63,7 +63,7 @@
 }
 
 .nx-sol-slot-icon {
-  font-size: 24px;
+  font-size: var(--text-display);
   color: color-mix(in srgb, var(--text-1) 15%, transparent);
   pointer-events: none;
 }
@@ -118,7 +118,7 @@
 
 .nx-card.face-down::after {
   content: '❖';
-  font-size: 24px;
+  font-size: var(--text-display);
   color: #00f0ff55;
 }
 
@@ -144,12 +144,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: clamp(10px, 1.8vw, 15px);
+  font-size: clamp(var(--text-xs), 1.8vw, var(--text-md));
   line-height: 1.1;
 }
 
 .nx-card-center {
-  font-size: clamp(16px, 3.2vw, 30px);
+  font-size: clamp(var(--text-md), 3.2vw, var(--text-hero));
   align-self: center;
 }
 

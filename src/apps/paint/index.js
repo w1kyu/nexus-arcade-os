@@ -84,7 +84,7 @@ export async function mount(container, ctx, args) {
 
   // ─── Header ─────────────────────────────────────────────────────────────
   const titleInput = h('input', {
-    class: 'nx-paint-title-input',
+    class: 'nx-input is-inline',
     type: 'text',
     value: docTitle,
     title: t('app.title', 'Nexus Paint'),
@@ -102,23 +102,32 @@ export async function mount(container, ctx, args) {
     updateStatus(true);
   };
 
-  const fileMenuBtn = h('button', { class: 'nx-paint-btn', title: t('file.menu', 'File') }, icon('menu'), ' File');
+  const fileMenuBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('file.menu', 'File') },
+    icon('menu'),
+    ' File',
+  );
   fileMenuBtn.onclick = () => showFileMenu(fileMenuBtn);
 
   const adjustMenuBtn = h(
     'button',
-    { class: 'nx-paint-btn', title: t('adjustments.title', 'Adjustments') },
+    { class: 'nx-btn is-xs is-ghost', title: t('adjustments.title', 'Adjustments') },
     icon('sliders'),
     ' Adjust',
   );
   adjustMenuBtn.onclick = () => showAdjustmentsMenu(adjustMenuBtn);
 
-  const resizeBtn = h('button', { class: 'nx-paint-btn', title: t('file.resizeCanvas', 'Resize') }, icon('maximize'));
+  const resizeBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('file.resizeCanvas', 'Resize') },
+    icon('maximize'),
+  );
   resizeBtn.onclick = () => promptResizeCanvas();
 
   const exportBtn = h(
     'button',
-    { class: 'nx-paint-btn', title: t('file.export', 'Export') },
+    { class: 'nx-btn is-xs is-ghost', title: t('file.export', 'Export') },
     icon('download'),
     ' Export',
   );
@@ -180,11 +189,12 @@ export async function mount(container, ctx, args) {
   const symmetryBtn = h(
     'button',
     {
-      class: `nx-paint-btn ${isSymmetry ? 'active' : ''}`,
+      class: 'nx-btn is-xs is-ghost',
+      'aria-pressed': String(!!isSymmetry),
       title: t('toolbar.symmetry', 'Symmetry'),
       onclick: () => {
         isSymmetry = !isSymmetry;
-        symmetryBtn.classList.toggle('active', isSymmetry);
+        symmetryBtn.setAttribute('aria-pressed', String(!!isSymmetry));
       },
     },
     icon('layout-split'),
@@ -198,12 +208,12 @@ export async function mount(container, ctx, args) {
       { class: 'nx-paint-prop-group' },
       h(
         'button',
-        { class: 'nx-paint-btn', title: t('toolbar.undo', 'Undo'), onclick: () => undoAction() },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.undo', 'Undo'), onclick: () => undoAction() },
         icon('undo'),
       ),
       h(
         'button',
-        { class: 'nx-paint-btn', title: t('toolbar.redo', 'Redo'), onclick: () => redoAction() },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.redo', 'Redo'), onclick: () => redoAction() },
         icon('redo'),
       ),
     ),
@@ -236,14 +246,14 @@ export async function mount(container, ctx, args) {
   function setTool(tool) {
     activeTool = tool;
     Object.keys(toolButtons).forEach((k) => {
-      toolButtons[k].classList.toggle('active', k === tool);
+      toolButtons[k].setAttribute('aria-pressed', String(k === tool));
     });
   }
 
   function makeToolBtn(tool, iconName, labelKey) {
     const btn = h(
       'button',
-      { class: `nx-paint-btn ${activeTool === tool ? 'active' : ''}`, title: t(labelKey) },
+      { class: 'nx-btn is-xs is-ghost', 'aria-pressed': String(activeTool === tool), title: t(labelKey) },
       icon(iconName),
     );
     btn.onclick = () => setTool(tool);
@@ -284,24 +294,32 @@ export async function mount(container, ctx, args) {
   // ─── Layers Panel (Right Vertical) ───────────────────────────────────────
   const layersList = h('ul', { class: 'nx-paint-layers-list' });
 
-  const addLayerBtn = h('button', { class: 'nx-paint-btn', title: t('layers.add', 'Add Layer') }, icon('plus'));
+  const addLayerBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('layers.add', 'Add Layer') },
+    icon('plus'),
+  );
   addLayerBtn.onclick = () => addNewLayer();
 
   const dupLayerBtn = h(
     'button',
-    { class: 'nx-paint-btn', title: t('layers.duplicate', 'Duplicate Layer') },
+    { class: 'nx-btn is-xs is-ghost', title: t('layers.duplicate', 'Duplicate Layer') },
     icon('copy'),
   );
   dupLayerBtn.onclick = () => duplicateActiveLayer();
 
   const mergeLayerBtn = h(
     'button',
-    { class: 'nx-paint-btn', title: t('layers.mergeDown', 'Merge Down') },
+    { class: 'nx-btn is-xs is-ghost', title: t('layers.mergeDown', 'Merge Down') },
     icon('chevron-down'),
   );
   mergeLayerBtn.onclick = () => mergeActiveLayerDown();
 
-  const delLayerBtn = h('button', { class: 'nx-paint-btn', title: t('layers.delete', 'Delete Layer') }, icon('trash'));
+  const delLayerBtn = h(
+    'button',
+    { class: 'nx-btn is-xs is-ghost', title: t('layers.delete', 'Delete Layer') },
+    icon('trash'),
+  );
   delLayerBtn.onclick = () => deleteActiveLayer();
 
   const layersPanel = h(
@@ -326,18 +344,18 @@ export async function mount(container, ctx, args) {
       { class: 'nx-paint-status-info' },
       h(
         'button',
-        { class: 'nx-paint-btn', title: t('toolbar.zoomOut', 'Zoom Out'), onclick: () => zoom(0.8) },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomOut', 'Zoom Out'), onclick: () => zoom(0.8) },
         icon('minus'),
       ),
       zoomLabel,
       h(
         'button',
-        { class: 'nx-paint-btn', title: t('toolbar.zoomIn', 'Zoom In'), onclick: () => zoom(1.25) },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomIn', 'Zoom In'), onclick: () => zoom(1.25) },
         icon('plus'),
       ),
       h(
         'button',
-        { class: 'nx-paint-btn', title: t('toolbar.zoomReset', 'Reset Zoom'), onclick: () => zoom(1, true) },
+        { class: 'nx-btn is-xs is-ghost', title: t('toolbar.zoomReset', 'Reset Zoom'), onclick: () => zoom(1, true) },
         icon('refresh'),
       ),
     ),
@@ -408,7 +426,7 @@ export async function mount(container, ctx, args) {
       const eyeBtn = h(
         'button',
         {
-          class: 'nx-paint-btn',
+          class: 'nx-btn is-xs is-ghost',
           style: 'padding: 0 4px; min-width: 20px;',
           title: t('layers.visibility', 'Visibility'),
           onclick: (e) => {

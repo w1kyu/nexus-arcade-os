@@ -52,7 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(18px, 4.5vw, 28px);
+  font-size: clamp(var(--text-title), 4.5vw, var(--text-xl));
   font-weight: 800;
   text-transform: uppercase;
   background: color-mix(in srgb, var(--bg) 60%, transparent);
@@ -121,7 +121,7 @@
   border-radius: 4px;
   background: var(--surface-2);
   color: var(--text-1);
-  font-size: clamp(12px, 2.5vw, 15px);
+  font-size: clamp(var(--text-xs), 2.5vw, var(--text-md));
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -133,7 +133,7 @@
 
 .nx-hw-key.wide {
   flex: 1.5;
-  font-size: 13px;
+  font-size: var(--text-ui);
 }
 
 .nx-hw-key:hover {

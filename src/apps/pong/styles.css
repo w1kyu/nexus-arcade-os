@@ -42,7 +42,7 @@
 }
 
 .nx-pong-title {
-  font-size: 36px;
+  font-size: var(--text-2xl);
   font-weight: 800;
   letter-spacing: 3px;
   color: var(--accent);
@@ -51,7 +51,7 @@
 }
 
 .nx-pong-subtitle {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--text-2);
   margin-bottom: 24px;
   text-align: center;
@@ -71,53 +71,9 @@
   gap: 8px;
 }
 
-.nx-pong-btn {
-  padding: 8px 16px;
-  background: var(--surface-sunken);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.nx-pong-btn:hover {
-  background: var(--surface-2);
-  color: var(--text-1);
-}
-
-.nx-pong-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-contrast);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
-.nx-pong-play-btn {
-  padding: 12px 42px;
-  background: var(--danger);
-  color: var(--danger-contrast);
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 16px color-mix(in srgb, var(--danger) 50%, transparent);
-  transition: all 0.2s ease;
-}
-
-.nx-pong-play-btn:hover {
-  background: var(--danger);
-
-  color: var(--danger-contrast);
-  transform: scale(1.04);
-}
-
 .nx-pong-hint {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--text-3);
   text-align: center;
   line-height: 1.6;

@@ -97,13 +97,13 @@ export async function mount(container, ctx, args) {
   const lang = h('span', { dataset: { testid: 'edit-language' } });
   const eolBtn = h('button', {
     type: 'button',
-    class: 'nx-edit-status-btn',
+    class: 'nx-edit-status-action',
     onclick: () => cycleEol(),
     dataset: { testid: 'edit-eol' },
   });
   const sizeBtn = h('button', {
     type: 'button',
-    class: 'nx-edit-status-btn',
+    class: 'nx-edit-status-action',
     onclick: () => setFont(FONT_SIZES.default),
   });
   const status = h(

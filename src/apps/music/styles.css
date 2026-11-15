@@ -36,7 +36,7 @@
   border: none;
   background: transparent;
   color: var(--text-3);
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 500;
   cursor: pointer;
   text-align: left;
@@ -55,7 +55,7 @@
 }
 
 .nx-music-sidebar-heading {
-  font-size: 11px;
+  font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-3);
@@ -92,7 +92,7 @@
 }
 
 .nx-music-title {
-  font-size: 20px;
+  font-size: var(--text-lg);
   font-weight: 700;
   margin: 0;
 }
@@ -105,7 +105,7 @@
 .nx-music-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: var(--text-ui);
   text-align: left;
 }
 
@@ -176,14 +176,14 @@
 
 .nx-music-card-title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--text-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .nx-music-card-sub {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-3);
   margin-top: 2px;
   white-space: nowrap;
@@ -232,14 +232,14 @@
 
 .nx-music-bar-title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--text-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .nx-music-bar-artist {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text-3);
   white-space: nowrap;
   overflow: hidden;
@@ -287,7 +287,7 @@
 }
 
 .nx-music-time {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
   font-variant-numeric: tabular-nums;
   width: 40px;
@@ -338,7 +338,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font-size: 18px;
+  font-size: var(--text-title);
 }
 
 .nx-music-lyric-line {
@@ -348,7 +348,7 @@
 
 .nx-music-lyric-line.is-active {
   color: var(--accent);
-  font-size: 22px;
+  font-size: var(--text-headline);
   font-weight: 700;
   text-shadow: 0 0 16px color-mix(in srgb, var(--accent) 50%, transparent);
 }
@@ -373,10 +373,10 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
-.nx-music-eq-slider {
+.nx-music-eq-gain {
   writing-mode: vertical-lr;
   direction: rtl;
   height: 120px;
@@ -420,7 +420,7 @@
 }
 
 .nx-music-widget-title {
-  font-size: 13px;
+  font-size: var(--text-ui);
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -428,7 +428,7 @@
 }
 
 .nx-music-widget-artist {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-3);
   white-space: nowrap;
   overflow: hidden;

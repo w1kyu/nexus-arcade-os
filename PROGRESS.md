@@ -2,9 +2,10 @@
 
 ## Status
 
-- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (to ship as `v1.0.2`).
-- **Next step:** 14.2 (screenshot sheet, token/class ratchet, contrast test), then 14.3 design system v2.
-- **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox), left to CI.
+- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done.
+- **Next step:** 14.3 design system v2 (tokens incl. Nexus HUD, components, `createAppFrame`, icon grammar), then 14.4 shell.
+- **Phase 14.2 verification:** `npm run ux:shots` full run 546 views, 0 errors, axe 68 distinct serious/critical findings in 43 apps; token ratchet in `npm run lint` (baseline 1,813 colors / 101 control classes / 467 font sizes); 139 unit test files (1,106 tests) passing.
+- **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox); CI run `43659186226` for `6fe46cb` green on Chromium, Firefox and WebKit.
 - **Phase 13 (v1.0.1) verification:** 135 unit test files (1,086 tests) passing; GitHub Actions CI run `43542236713` passing across Chromium (`web`, `web-mobile`, `lite`: 44 passed, 35 skipped), Firefox (`web-firefox`, `lite-firefox`: 38 passed, 2 skipped), and WebKit (`web-webkit`, `lite-webkit`: 38 passed, 2 skipped); live `test:live` against `https://nexus-arcade-os.onrender.com` 43 passed / 35 skipped; Live Lighthouse Mobile `99` Perf (`FCP 0.8 s`, `LCP 2.0 s`, `TBT 0 ms`, `CLS 0.006`) / `100` A11y / `100` Best Practices / `100` SEO, Desktop `100` / `100` / `100` / `100` (`TBT 0 ms`); initial JS `161.88 kB` gzipped (≤ 200 KB); single-file Lite build `7.00 MB` (< 8.00 MB).
 - **Phase 12 verification:** AI Provider layer (Ollama, Lemonade, OpenAI-compatible, Anthropic), Nexus Chat, Nexus Assistant, RAG knowledge indexing, tool calling with approval cards, and cross-app AI integrations (1,065 unit tests passing; `tests/e2e/ai.spec.js`).
 - **Phase 11 verification:** 126 unit test files (1,040 tests) passing; Playwright e2e test suite passing (`tests/e2e/media.spec.js`); 0 missing i18n keys across 91 namespaces; single-file Lite build 6.78 MB (well under 8.00 MB budget).
@@ -1131,6 +1132,13 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 ### Phase 14 — UI/UX rework (v1.1) — `specs/14-ui-ux-rework.md`
 
 **14.0 Decisions** — [x] taken 2026-11-15 (see Decisions).
+
+**14.2 Measure before changing**
+
+- [x] [P1] `scripts/ux-shots.js` → `npm run ux:shots`: every app × {Neon Night, Arctic Light, High Contrast} × {1440×900, 390×844}, contact sheet `test-results/ux/index.html`. — _first run: 546 views, 0 errors._
+- [x] [P1] `scripts/check-tokens.js` in `npm run lint`: ratchet on hard-coded colors, app-local control classes and literal font sizes vs `scripts/token-baseline.json`. — _fixture test `check-tokens.test.js`._
+- [x] [P1] axe-core pass in the sheet run. — _68 distinct findings in 43 apps (unnamed selects/inputs/buttons, unfocusable scroll regions); fixed per app in 14.5._
+- [x] [P1] Theme contrast test. — _extended `theme.test.js`: accent/status as text ≥ 4.5 on bg/surface-1/surface-2._
 
 **14.1 Fix what's broken**
 

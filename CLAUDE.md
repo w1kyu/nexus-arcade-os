@@ -4,18 +4,19 @@ Read with `NEXUS_BRIEF.md`, `PROGRESS.md` and the current phase's spec in `specs
 
 ## Commands
 
-| Command                           | What                                                                                       |
-| --------------------------------- | ------------------------------------------------------------------------------------------ |
-| `npm run dev`                     | Vite dev server (website edition, no Service Worker, no CSP)                               |
-| `npm run build`                   | Website → `dist/`, then Lite → `dist/nexus-lite.html` (order matters: web empties `dist/`) |
-| `npm run preview`                 | Serve `dist/` (SW works on localhost)                                                      |
-| `npm test`                        | Vitest unit tests                                                                          |
-| `npm run test:e2e`                | Playwright against the **built** app — run `npm run build` first                           |
-| `npm run test:live [url]`         | Website e2e projects against the deployed site (default: Render URL)                       |
-| `npm run dev` then open `/#debug` | Kernel debug screen (dev only): apps, instances, storage, search, log, backup              |
-| `npm run lint` / `format`         | ESLint + Prettier check + i18n key check (`scripts/check-i18n.js`) / Prettier write        |
-| `npm run typecheck`               | `tsc -p jsconfig.json` (checks `src/kernel`, `src/services`, `src/env.js`)                 |
-| `npm run icons`                   | Re-render `public/icons/*` from `src/ui/brand/logo.svg`; commit the output                 |
+| Command                           | What                                                                                         |
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
+| `npm run dev`                     | Vite dev server (website edition, no Service Worker, no CSP)                                 |
+| `npm run build`                   | Website → `dist/`, then Lite → `dist/nexus-lite.html` (order matters: web empties `dist/`)   |
+| `npm run preview`                 | Serve `dist/` (SW works on localhost)                                                        |
+| `npm test`                        | Vitest unit tests                                                                            |
+| `npm run test:e2e`                | Playwright against the **built** app — run `npm run build` first                             |
+| `npm run test:live [url]`         | Website e2e projects against the deployed site (default: Render URL)                         |
+| `npm run dev` then open `/#debug` | Kernel debug screen (dev only): apps, instances, storage, search, log, backup                |
+| `npm run lint` / `format`         | ESLint + Prettier + i18n check (`check-i18n.js`) + token ratchet (`check-tokens.js`) / write |
+| `npm run ux:shots`                | Every app × 3 themes × desktop/phone + axe → `test-results/ux/index.html` (build first)      |
+| `npm run typecheck`               | `tsc -p jsconfig.json` (checks `src/kernel`, `src/services`, `src/env.js`)                   |
+| `npm run icons`                   | Re-render `public/icons/*` from `src/ui/brand/logo.svg`; commit the output                   |
 
 ## Layout
 
@@ -49,6 +50,12 @@ As in NEXUS_BRIEF.md §5.1, plus:
 - `ctx` subscriptions (events, settings, collection/i18n/theme changes, shortcuts, `fs.watch`) end on unmount; anything else must use `ctx.signal` / `ctx.timers`. Apps can't emit OS event namespaces (docs/events.md).
 - Mark testable elements with `data-testid`; expose state with `data-state`.
 - Workers: `import W from './x.worker.js?worker'` — the Lite build inlines these automatically.
+
+## Design system (phase 14)
+
+- Rules: skill `nexus-ui` (`.claude/skills/nexus-ui/SKILL.md`). Plan: `specs/14-ui-ux-rework.md`.
+- `scripts/token-baseline.json` may only go down: after removing hard-coded colors, app-local control classes or literal font sizes from an app, run `node scripts/check-tokens.js --update` and commit the lowered baseline.
+- `npm run ux:shots -- --apps=notes,files --themes=arctic-light --sizes=phone --no-axe` limits the sheet run.
 
 ## Budgets
 

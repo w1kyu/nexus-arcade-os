@@ -20,12 +20,13 @@
     "test:e2e:firefox": "playwright test --project=web-firefox --project=lite-firefox",
     "test:e2e:webkit": "playwright test --project=web-webkit --project=lite-webkit",
     "test:e2e:all": "playwright test",
-    "lint": "eslint . && prettier --check . && node scripts/check-i18n.js",
+    "lint": "eslint . && prettier --check . && node scripts/check-i18n.js && node scripts/check-tokens.js",
     "format": "prettier --write .",
     "typecheck": "tsc -p jsconfig.json",
     "icons": "node scripts/build-icons.js",
     "test:live": "node scripts/test-live.js",
-    "screenshots": "node scripts/screenshots.js"
+    "screenshots": "node scripts/screenshots.js",
+    "ux:shots": "node scripts/ux-shots.js"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

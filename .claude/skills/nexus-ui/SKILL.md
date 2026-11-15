@@ -32,9 +32,10 @@ Use the shared primitives over app-local classes: `src/ui/dom.js` (`h`, `icon`, 
 
 ## Checks
 
-1. Screenshot every surface you changed in Nexus HUD (or Neon Night until it exists), Arctic Light and High Contrast, at 1440×900 and 390×844, from the production build (`npm run build`, `npm run preview`, Playwright; `scripts/ux-shots.js` once 14.2 adds it). Look at each one.
-2. App migrations: tick the per-app checklist in `specs/14-ui-ux-rework.md` §14.5.
-3. Specialist passes, all project skills:
+1. Screenshot every surface you changed in Nexus HUD (or Neon Night until it exists), Arctic Light and High Contrast, at 1440×900 and 390×844, from the production build: `npm run build && npm run ux:shots -- --apps=<folders>` writes them, with axe findings, to `test-results/ux/index.html`. Look at each one.
+2. `npm run lint` includes the token ratchet; after paying off debt, lower it with `node scripts/check-tokens.js --update`.
+3. App migrations: tick the per-app checklist in `specs/14-ui-ux-rework.md` §14.5.
+4. Specialist passes, all project skills:
    - controls, dialogs, forms → `fixing-accessibility`
    - any motion → `fixing-motion-performance`, then `/review-animations`
    - lists and data-driven views → `break-ui`

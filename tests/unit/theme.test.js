@@ -81,6 +81,18 @@ describe('built-in themes', () => {
     }
     expect(contrastRatio(readableOn(c.accent), c.accent)).toBeGreaterThanOrEqual(4.5);
   });
+
+  // Accent and status colors also appear as small text (links, selected tabs, error and
+  // status messages) on the page and on cards, so there they need text contrast (skill nexus-ui
+  // rule 7). surface3 is for controls and hover states, not for colored text.
+  it.each(THEMES.map((t) => [t.id, t]))('%s accent and status colors are readable as text', (_id, theme) => {
+    const c = theme.colors;
+    for (const [bgRole, bg] of Object.entries({ bg: c.bg, surface1: c.surface1, surface2: c.surface2 })) {
+      for (const role of /** @type {const} */ (['accent', 'success', 'warning', 'danger', 'info'])) {
+        expect(contrastRatio(c[role], bg), `${role} ${c[role]} on ${bgRole} ${bg}`).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
 });
 
 describe('computeTokens', () => {

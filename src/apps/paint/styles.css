@@ -204,8 +204,8 @@
   cursor: pointer;
   font-size: var(--text-ui);
   transition:
-    border-color 0.15s,
-    background-color 0.15s;
+    border-color var(--dur-fast),
+    background-color var(--dur-fast);
 }
 
 .nx-paint-layer-item:hover {

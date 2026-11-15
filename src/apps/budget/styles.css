@@ -177,7 +177,7 @@
   background: var(--accent);
   color: var(--accent-contrast);
   border-radius: 4px;
-  transition: width 0.2s ease;
+  transition: width var(--dur-med) var(--ease-out);
 }
 
 .nx-budget-progress-fill.is-over {

@@ -41,7 +41,7 @@
   font-size: var(--text-ui);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-cb-tab:hover {
@@ -118,7 +118,7 @@
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 8px;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
 
 .nx-cb-card:hover {

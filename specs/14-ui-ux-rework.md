@@ -154,7 +154,7 @@ _Ratchet at target (2026-11-15): colors 1,813 → 169 (game art), app-local cont
 
 ## 14.7 Motion, sound, accessibility, release
 
-- [P1] Motion tokens applied consistently (window open/close, sheets, menus); everything respects `data-motion` and reduced motion.
+- [x] [P1] Motion tokens applied consistently (window open/close, sheets, menus); everything respects `data-motion` and reduced motion. _Done 2026-11-15: 180 literal transition durations/easings in app and shell CSS → `--dur-*` / `--ease-out` (only linear progress transitions and timers ≥ 1 s keep literals), so the Reduced animation level now applies to them; window move/minimize/close animations read the same tokens._
 - [P1] Re-run the 13.6 audits: Lighthouse (no regression from mobile 99 / desktop 100), keyboard-only pass, contrast tests for the new tokens in all themes, Firefox + WebKit CI.
 - [P1] Budgets hold: initial JS ≤ 200 KB gz; Lite ≤ 8 MB. The CSS reduction should shrink Lite.
 - [P1] README screenshot and `docs/screenshot.png` refreshed; CHANGELOG entry; release per §14.0 (3).

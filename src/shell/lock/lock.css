@@ -12,7 +12,7 @@
   -webkit-backdrop-filter: blur(28px) saturate(120%);
   color: #fff;
   animation: nx-fade-in var(--dur-slow) var(--ease-out);
-  transition: opacity 300ms var(--ease-out);
+  transition: opacity var(--dur-med) var(--ease-out);
 
   &.is-login {
     background:

@@ -50,7 +50,7 @@
   font-size: clamp(var(--text-md), 3.5vmin, var(--text-xl));
   box-sizing: border-box;
   position: relative;
-  transition: transform 0.1s ease;
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 .nx-sk-cell.wall {

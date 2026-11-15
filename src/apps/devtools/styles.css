@@ -68,8 +68,8 @@
   width: 100%;
   text-align: left;
   transition:
-    background 0.1s ease,
-    color 0.1s ease;
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
 }
 
 .nx-devtools-tool:hover {

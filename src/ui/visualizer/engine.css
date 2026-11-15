@@ -90,7 +90,7 @@
   padding: 2px 12px;
   line-height: 1.5;
   color: var(--text-2, #b4bdd8);
-  transition: background var(--dur-fast, 120ms);
+  transition: background var(--dur-fast, var(--dur-fast));
 }
 
 .nx-cs-pseudo-line-num {
@@ -125,7 +125,7 @@
   color: var(--text-1, #eef2ff);
   font-size: var(--text-xs, 0.75rem);
   cursor: pointer;
-  transition: all var(--dur-fast, 120ms);
+  transition: all var(--dur-fast, var(--dur-fast));
 }
 
 .nx-cs-btn:hover:not(:disabled) {

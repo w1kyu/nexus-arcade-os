@@ -61,7 +61,7 @@
   border-right: none;
   font-family: var(--font-mono, monospace);
   position: relative;
-  transition: all var(--dur-fast, 120ms);
+  transition: all var(--dur-fast, var(--dur-fast));
 }
 
 .nx-tape-cell:last-child {

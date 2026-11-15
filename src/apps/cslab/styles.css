@@ -51,8 +51,8 @@
   justify-content: space-between;
   gap: 10px;
   transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
 }
 
 .nx-cslab-card:hover {

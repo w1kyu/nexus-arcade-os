@@ -91,7 +91,7 @@
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--success));
   border-radius: 4px;
-  transition: width 0.3s ease;
+  transition: width var(--dur-med) var(--ease-out);
 }
 
 /* Navigation tabs & filters */
@@ -146,7 +146,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
+  transition: all var(--dur-med) var(--ease-out);
   position: relative;
 }
 
@@ -190,7 +190,7 @@
   justify-content: center;
   color: var(--text-1);
   font-size: var(--text-md);
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-card-favorite.favorited {
@@ -470,7 +470,7 @@
   font-size: var(--text-ui);
   font-weight: 800;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-lobby-btn-start:hover {

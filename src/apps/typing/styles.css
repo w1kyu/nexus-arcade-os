@@ -144,7 +144,7 @@
   font-weight: 600;
   color: var(--text-1);
   position: relative;
-  transition: all 0.1s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-typing-key.space {

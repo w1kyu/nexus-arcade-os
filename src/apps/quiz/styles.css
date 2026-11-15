@@ -45,7 +45,7 @@
   color: var(--accent-contrast);
   transition:
     width 0.1s linear,
-    background-color 0.3s;
+    background-color var(--dur-med);
 }
 
 .nx-quiz-main {
@@ -97,7 +97,7 @@
   font-weight: 600;
   text-align: left;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-quiz-option:hover:not(:disabled) {

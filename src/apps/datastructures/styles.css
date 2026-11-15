@@ -109,7 +109,7 @@
   font-weight: bold;
   color: var(--text-1);
   margin: 4px;
-  transition: all var(--dur-fast, 120ms);
+  transition: all var(--dur-fast, var(--dur-fast));
 }
 
 .nx-ds-box.highlight {

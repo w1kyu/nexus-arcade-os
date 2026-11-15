@@ -131,7 +131,7 @@
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform var(--dur-fast);
 }
 
 .nx-pixelart-swatch:hover {
@@ -215,7 +215,7 @@
   justify-content: center;
   position: relative;
   flex-shrink: 0;
-  transition: border-color 0.15s;
+  transition: border-color var(--dur-fast);
 }
 
 .nx-pixelart-frame-card:hover {

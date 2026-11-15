@@ -60,8 +60,8 @@
   overflow: hidden;
   cursor: pointer;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
   position: relative;
 }
 
@@ -150,7 +150,7 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  transition: transform 0.08s ease-out;
+  transition: transform var(--dur-fast) var(--ease-out);
   transform-origin: center center;
 }
 
@@ -169,7 +169,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 22;
-  transition: background 0.15s ease;
+  transition: background var(--dur-fast) var(--ease-out);
 }
 
 .nx-photos-nav:hover {

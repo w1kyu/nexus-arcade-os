@@ -87,7 +87,7 @@
   justify-content: center;
   font-size: var(--text-sm);
   cursor: default;
-  transition: background-color 0.1s ease;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 
 .nx-bs-grid.enemy .nx-bs-cell.unshot {

@@ -67,8 +67,8 @@
   cursor: pointer;
   aspect-ratio: 1;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .nx-match3-cell:hover {

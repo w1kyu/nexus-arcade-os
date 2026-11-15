@@ -111,9 +111,9 @@
   flex-direction: column;
   padding: 40px 50px 30px 50px;
   transition:
-    transform 0.2s ease,
-    width 0.2s,
-    height 0.2s;
+    transform var(--dur-med) var(--ease-out),
+    width var(--dur-med),
+    height var(--dur-med);
   user-select: text;
 }
 
@@ -345,7 +345,7 @@
   cursor: pointer;
   z-index: 100000;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity var(--dur-med);
 }
 
 .nx-present-fullscreen-overlay:hover .nx-present-exit {

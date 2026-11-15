@@ -67,7 +67,7 @@
   line-height: 1;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.15s ease;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 
 .nx-chess-sq.light {
@@ -203,7 +203,7 @@
   border-radius: 4px;
   cursor: pointer;
   font: inherit;
-  transition: background 0.1s;
+  transition: background var(--dur-fast);
 }
 
 .nx-chess-move:hover {
@@ -233,8 +233,8 @@
   cursor: pointer;
   color: var(--text-1);
   transition:
-    border-color 0.15s,
-    transform 0.1s;
+    border-color var(--dur-fast),
+    transform var(--dur-fast);
 }
 
 .nx-chess-promo-piece:hover {

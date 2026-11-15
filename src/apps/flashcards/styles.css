@@ -39,7 +39,7 @@
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background var(--dur-fast);
 }
 
 .nx-fc-deck-item:hover {
@@ -148,7 +148,7 @@
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background 0.15s;
+  transition: background var(--dur-fast);
 }
 
 .nx-fc-rating-1 {

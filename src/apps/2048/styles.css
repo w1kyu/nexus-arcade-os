@@ -94,7 +94,7 @@
   justify-content: center;
   font-size: clamp(var(--text-sm), 4vw, var(--text-xl));
   font-weight: 800;
-  transition: all 0.15s ease-out;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 /* Cyber color map for tile values */

@@ -66,8 +66,8 @@
   cursor: pointer;
   color: #0f172a;
   transition:
-    transform 0.1s ease,
-    box-shadow 0.1s ease;
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .nx-mahjong-tile:hover {

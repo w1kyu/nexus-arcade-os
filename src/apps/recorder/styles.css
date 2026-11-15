@@ -70,8 +70,8 @@
   justify-content: center;
   color: var(--danger-contrast);
   transition:
-    transform 0.1s ease,
-    box-shadow 0.2s ease;
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
   box-shadow: 0 0 20px color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
@@ -118,7 +118,7 @@
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--dur-fast) var(--ease-out);
   text-align: left;
 }
 

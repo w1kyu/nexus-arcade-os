@@ -11,7 +11,7 @@
     radial-gradient(50rem 30rem at 50% 40%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
     var(--bg);
   color: var(--text-1);
-  transition: opacity 300ms var(--ease-out);
+  transition: opacity var(--dur-med) var(--ease-out);
 
   &.is-leaving {
     opacity: 0;
@@ -52,7 +52,7 @@
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 12px var(--accent);
-  transition: width 250ms var(--ease-out);
+  transition: width var(--dur-med) var(--ease-out);
 }
 
 .nx-boot-step {

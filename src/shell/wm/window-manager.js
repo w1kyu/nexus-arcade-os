@@ -76,6 +76,13 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
   const motion = () => sys().theme.motion;
   const t = (/** @type {string} */ key, /** @type {Record<string, unknown>} */ vars = {}) =>
     sys().i18n.t('system', key, vars);
+  // Window motion follows the motion tokens (Settings → animation level scales them).
+  const EASE_OUT = 'cubic-bezier(0.23, 1, 0.32, 1)';
+  /** @param {string} name @param {number} fallback */
+  const tokenMs = (name, fallback) => {
+    const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+    return Number.isFinite(v) ? v : fallback;
+  };
   // Layout events can fire (e.g. a resize) while the profile is still opening: nothing listens yet.
   const emit = (/** @type {string} */ type, /** @type {unknown} */ payload) => sys()?.bus.emit(type, payload);
 
@@ -189,7 +196,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
         },
         { transform: 'none', transformOrigin: '0 0' },
       ],
-      { duration: 200, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' },
+      { duration: tokenMs('--dur-med', 220), easing: EASE_OUT },
     );
   }
 
@@ -280,7 +287,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
             opacity: 0,
           },
         ],
-        { duration: 260, easing: 'cubic-bezier(0.4, 0, 0.6, 1)' },
+        { duration: tokenMs('--dur-med', 220) + 40, easing: 'cubic-bezier(0.4, 0, 0.6, 1)' },
       );
       anim.onfinish = finish;
     } else finish();
@@ -303,7 +310,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
           },
           { transform: 'none', opacity: 1 },
         ],
-        { duration: 240, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' },
+        { duration: tokenMs('--dur-med', 220) + 20, easing: EASE_OUT },
       );
     }
     changed();
@@ -769,7 +776,7 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
             { opacity: 1, transform: 'none' },
             { opacity: 0, transform: 'scale(0.96)' },
           ],
-          { duration: 140, easing: 'ease-in' },
+          { duration: tokenMs('--dur-fast', 120), easing: 'ease-in' },
         ).onfinish = remove;
       } else remove();
       emit('window:closed', { id: instanceId, appId: w.appId });

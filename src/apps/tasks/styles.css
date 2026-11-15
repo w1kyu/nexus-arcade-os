@@ -246,8 +246,8 @@
   background: var(--surface-2);
   cursor: pointer;
   transition:
-    transform 0.14s ease,
-    opacity 0.14s ease;
+    transform var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
 }
 
 .nx-tasks-row:hover {

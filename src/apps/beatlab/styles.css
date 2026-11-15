@@ -87,7 +87,7 @@
   background: var(--surface-1);
   border: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: all var(--dur-fast) var(--ease-out);
   position: relative;
 }
 

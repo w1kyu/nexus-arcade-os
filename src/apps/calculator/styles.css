@@ -79,7 +79,7 @@
   justify-content: center;
   padding: 12px;
   user-select: none;
-  transition: background 0.1s ease;
+  transition: background var(--dur-fast) var(--ease-out);
 }
 
 .nx-calc-key:hover {

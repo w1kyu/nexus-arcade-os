@@ -62,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s ease;
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 .nx-minesweeper-face:active {

@@ -132,8 +132,8 @@
   overflow: hidden;
   cursor: pointer;
   transition:
-    transform 0.15s,
-    box-shadow 0.15s;
+    transform var(--dur-fast),
+    box-shadow var(--dur-fast);
   display: flex;
   flex-direction: column;
   gap: 2px;

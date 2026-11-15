@@ -43,7 +43,7 @@
   cursor: pointer;
   font-size: var(--text-ui);
   color: var(--text-2);
-  transition: background 0.15s ease;
+  transition: background var(--dur-fast) var(--ease-out);
 }
 
 .nx-bm-nav-item:hover {
@@ -86,7 +86,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   gap: 12px;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
 
 .nx-bm-card:hover {

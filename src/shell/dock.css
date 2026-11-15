@@ -142,7 +142,7 @@
   cursor: pointer;
   transform: scale(var(--mag));
   transform-origin: bottom center;
-  transition: transform 90ms ease-out;
+  transition: transform var(--dur-fast) var(--ease-out);
   touch-action: none;
 
   [data-position='left'] & {

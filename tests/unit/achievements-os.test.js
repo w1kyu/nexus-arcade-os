@@ -44,16 +44,20 @@ describe('OS-wide achievements, tips, demo workspace & changelog extraction', ()
     bus.emit('storage:changed', { scope: 'system:backup', key: 'lastAt' });
     bus.emit('easter-egg:konami', { at: Date.now() });
 
-    await new Promise((r) => setTimeout(r, 40));
-
-    const systemList = await achievements.list('system');
-    const unlockedIds = new Set(systemList.filter((a) => a.unlockedAt).map((a) => a.id));
-    expect(unlockedIds.has('explorer')).toBe(true);
-    expect(unlockedIds.has('theme_artist')).toBe(true);
-    expect(unlockedIds.has('focus_initiate')).toBe(true);
-    expect(unlockedIds.has('backup_guardian')).toBe(true);
-    expect(unlockedIds.has('konami_secret')).toBe(true);
-    expect(unlockedIds.has('all_apps')).toBe(false);
+    // Unlocks are written to IndexedDB asynchronously: poll instead of a fixed wait (flaky under load).
+    await vi.waitFor(
+      async () => {
+        const systemList = await achievements.list('system');
+        const unlockedIds = new Set(systemList.filter((a) => a.unlockedAt).map((a) => a.id));
+        expect(unlockedIds.has('explorer')).toBe(true);
+        expect(unlockedIds.has('theme_artist')).toBe(true);
+        expect(unlockedIds.has('focus_initiate')).toBe(true);
+        expect(unlockedIds.has('backup_guardian')).toBe(true);
+        expect(unlockedIds.has('konami_secret')).toBe(true);
+        expect(unlockedIds.has('all_apps')).toBe(false);
+      },
+      { timeout: 3000, interval: 20 },
+    );
 
     const allStats = achievements.allStats();
     expect(allStats.system.appsLaunched).toBe(6);

@@ -182,7 +182,7 @@
   flex-direction: column;
   z-index: 10;
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  transition: transform var(--dur-med) var(--ease-out);
 }
 
 .nx-tool-history-drawer[hidden] {

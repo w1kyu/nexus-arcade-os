@@ -36,7 +36,7 @@
   text-align: center;
   pointer-events: none;
   z-index: 5;
-  transition: bottom 0.2s ease;
+  transition: bottom var(--dur-med) var(--ease-out);
 }
 
 .nx-video-subtitle-cue {
@@ -69,8 +69,8 @@
   padding: 12px 20px 16px 20px;
   gap: 8px;
   transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
+    opacity var(--dur-med) var(--ease-out),
+    transform var(--dur-med) var(--ease-out);
   z-index: 10;
 }
 
@@ -143,7 +143,7 @@
   border-left: 1px solid color-mix(in srgb, var(--text-1) 8%, transparent);
   display: flex;
   flex-direction: column;
-  transition: width 0.2s ease;
+  transition: width var(--dur-med) var(--ease-out);
 }
 
 .nx-video-sidebar.is-collapsed {
@@ -181,7 +181,7 @@
   border: none;
   color: var(--text-2);
   text-align: left;
-  transition: all 0.12s ease;
+  transition: all var(--dur-fast) var(--ease-out);
 }
 
 .nx-video-playlist-item:hover {

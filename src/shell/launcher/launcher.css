@@ -5,7 +5,8 @@
   display: grid;
   justify-items: center;
   align-content: end;
-  padding: var(--space-3) var(--space-3) 88px;
+  padding: var(--space-3) calc(var(--space-3) + var(--dock-inset-right, 0px))
+    calc(var(--space-3) + var(--dock-inset-bottom, 0px)) calc(var(--space-3) + var(--dock-inset-left, 0px));
 
   &[data-dock='left'],
   &[data-dock='right'] {
@@ -18,11 +19,14 @@
 }
 
 .nx-launcher {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   width: min(680px, 100%);
-  height: min(620px, calc(100vh - 140px));
+  /* Sized to its content, up to the space above the dock. */
+  max-height: min(620px, calc(100dvh - 36px - var(--dock-inset-bottom, 0px) - 2 * var(--space-3)));
   overflow: hidden;
+  /* Opaque enough to read over windows even at full transparency. */
+  background: color-mix(in srgb, var(--surface-1) 97%, transparent);
   border-radius: var(--bevel);
   corner-shape: var(--corner-shape);
   border-color: var(--frame);
@@ -31,6 +35,7 @@
 
 .nx-launcher-top {
   display: flex;
+  flex: none;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-4);
@@ -43,8 +48,49 @@
   }
 }
 
+.nx-launcher-chips {
+  display: flex;
+  flex: none;
+  gap: var(--space-1);
+  overflow-x: auto;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.nx-launcher-chip {
+  flex: none;
+  min-height: 28px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: var(--text-ui);
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text-1);
+  }
+  &[aria-pressed='true'] {
+    border-color: transparent;
+    background: var(--accent-soft);
+    color: var(--accent-on-soft);
+    font-weight: var(--weight-medium);
+  }
+}
+
 .nx-launcher-body {
   display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
   align-content: start;
   gap: var(--space-4);
   overflow-y: auto;
@@ -87,7 +133,7 @@
   }
   &:hover,
   &:focus-visible {
-    background: var(--surface-3);
+    background: var(--surface-hover);
   }
 }
 
@@ -144,6 +190,7 @@
   .nx-launcher {
     width: 100%;
     height: 100%;
+    max-height: none;
     border-radius: 0;
   }
   .nx-launcher-tile {

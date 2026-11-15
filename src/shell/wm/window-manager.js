@@ -215,7 +215,10 @@ export function createWindowManager({ layer, system, workArea, dockIconRect = ()
     raise(w);
     for (const other of windows.values()) other.el.classList.toggle('is-focused', other === w);
     mru = [id, ...mru.filter((x) => x !== id)];
-    if (!w.el.contains(document.activeElement))
+    // Never pull focus out of an open modal (palette, launcher, dialog): a window that finishes
+    // loading behind it would otherwise take the keystrokes meant for the modal.
+    const inModal = document.activeElement?.closest?.('[aria-modal="true"]');
+    if (!w.el.contains(document.activeElement) && !inModal)
       (w.body.querySelector('[autofocus]') ?? w.el).focus({ preventScroll: true });
     emit('window:focused', { id });
     if (sys().lifecycle.focusedId !== id && sys().lifecycle.get(id)) sys().lifecycle.focus(id);

@@ -23,6 +23,8 @@
   border-radius: var(--bevel);
   corner-shape: var(--corner-shape);
   border-color: var(--frame);
+  /* Readable over windows even at full transparency. */
+  background: color-mix(in srgb, var(--surface-1) 97%, transparent);
 }
 
 .nx-palette-search {
@@ -38,10 +40,10 @@
   flex: none;
   padding: 2px 8px;
   border-radius: var(--radius-full);
-  background: color-mix(in srgb, var(--accent) 20%, transparent);
-  color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: var(--weight-bold);
 }
 
 .nx-palette-input {
@@ -63,19 +65,45 @@
   list-style: none;
 }
 
+.nx-palette-group {
+  padding: var(--space-3) var(--space-3) var(--space-1);
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  &:first-child {
+    padding-top: var(--space-1);
+  }
+}
+
 .nx-palette-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  min-height: 44px;
+  min-height: 40px;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-sm);
   cursor: pointer;
 
+  /* Active selection: surface + accent bar (glow-budget slot 3). */
   &.is-active {
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    background: var(--surface-active);
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      border-radius: 0 2px 2px 0;
+      background: var(--accent);
+    }
     & .nx-palette-icon {
-      color: var(--accent);
+      color: var(--accent-on-soft, var(--accent));
     }
   }
 }
@@ -84,24 +112,33 @@
   display: grid;
   place-items: center;
   flex: none;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: var(--radius-sm);
   background: var(--surface-2);
   color: var(--text-2);
 }
 
 .nx-palette-text {
-  display: grid;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
   flex: 1;
   min-width: 0;
 
+  /* Description on the selected row only, after the name on the same line. */
   & small {
+    display: none;
+    flex: 1 1 0;
+    min-width: 0;
     overflow: hidden;
     color: var(--text-3);
     font-size: var(--text-xs);
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .is-active > & small {
+    display: block;
   }
 }
 
@@ -109,22 +146,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
 
   & mark {
     background: none;
-    color: var(--accent);
-    font-weight: 700;
+    color: var(--accent-on-soft, var(--accent));
+    font-weight: var(--weight-bold);
   }
 }
 
 .nx-palette-current {
   color: var(--accent);
-}
-
-.nx-palette-kind {
-  flex: none;
-  color: var(--text-3);
-  font-size: var(--text-xs);
 }
 
 .nx-palette-empty {

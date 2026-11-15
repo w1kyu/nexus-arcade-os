@@ -133,7 +133,9 @@ export async function mount(container, ctx, args) {
         ),
       ),
     );
-    ctx.window?.setTitle(`${sessions[active]?.title() ?? '~'} — ${t('title')}`);
+    // `Document — App`, or just `App` in the home folder (never `~ — Terminal`).
+    const where = sessions[active]?.title() ?? '~';
+    ctx.window?.setTitle(where === '~' ? t('title') : `${where} — ${t('title')}`);
   }
 
   // Window shortcuts: they win over system ones (Ctrl+L would lock, Ctrl+W would close).

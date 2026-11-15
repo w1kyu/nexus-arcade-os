@@ -1,4 +1,5 @@
 {
+  "appName": "Willkommen",
   "title": "Willkommen bei Nexus",
   "lead": "Ein Desktop in deinem Browser. Alles bleibt auf diesem Gerät und funktioniert offline.",
   "tour": {
@@ -37,5 +38,19 @@
     "demo": "Demo-Profil testen",
     "another": "Weiteres Fenster öffnen"
   },
-  "opened": "Fenster {n}"
+  "opened": "Fenster {n}",
+  "setup": {
+    "title": "Nexus einrichten",
+    "windowTitle": "Einrichtung",
+    "lead": "Dauert etwa 20 Sekunden. Alles lässt sich später in den Einstellungen ändern.",
+    "name": "Dein Name",
+    "picture": "Bild hinzufügen…",
+    "language": "Sprache",
+    "languageAuto": "Wie im Browser",
+    "theme": "Design",
+    "accent": "Akzentfarbe",
+    "themeAccent": "Designfarbe",
+    "start": "Nexus verwenden",
+    "skip": "Überspringen"
+  }
 }

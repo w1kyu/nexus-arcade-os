@@ -115,7 +115,9 @@ root.append(frame.root);
 ## 3. Shell
 
 - **Window:** `--bevel` corners, `--border-strong` frame, `--frame` + `--glow-window` when focused, a 56 px accent tick on the focused titlebar. The title is mono uppercase (`Document — App` or `App`).
-- **Dock and launcher:** bevelled `.nx-glass` slab with a `--frame` border. The focused window's app shows an accent bar instead of a dot.
+- **Dock:** bevelled `.nx-glass` slab with a `--frame` border, or a flush _rail_ along the edge (Settings → Desktop & Dock → Dock style). The focused window's app shows an accent bar instead of a dot. The dock publishes `--dock-inset-left/-right/-bottom` on `:root`; anything fixed to the screen edge (toasts, desktop icons, the launcher) adds them so it never sits under the dock.
+- **Launcher and palette:** bevelled, 97 % opaque. The palette groups results (Apps, Commands, Settings, Files) with app tiles and one line per result; the launcher filters by category chips.
+- **Toasts:** at most two visible; one per app (merged with a count); urgent first, achievements last.
 - **App tiles (icon grammar):** the app glyph in its category hue (`--hue-*`) on a dark bevelled slot; system apps neutral; light themes tint the slot. One component, `appIcon()` in `src/shell/app-icon.js`, used by dock, launcher, switcher, overview, desktop and dialogs. Apps can't import the shell, so App Center copies the tile style with the same tokens.
 - **Wallpaper:** the default _HUD grid_ (`live:grid`) draws the grid and glows in the theme's accent colors.
 

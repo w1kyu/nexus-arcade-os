@@ -529,6 +529,11 @@ export async function mount(container, ctx, args) {
   }
 
   function handleKeyDown(e) {
+    // Only keys pressed inside this window: the listener is on `window`, and other apps, the
+    // palette or a focused editor must not change slides or start the slideshow ("F").
+    const owner = container.closest('.nx-window') ?? container;
+    if (!(e.target instanceof Node) || !owner.contains(e.target)) return;
+    if (e.target instanceof HTMLElement && e.target.isContentEditable) return;
     // If typing in any input or textarea, don't capture navigation keys
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {

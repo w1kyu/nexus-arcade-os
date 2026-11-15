@@ -108,14 +108,16 @@ _14.3 done (2026-11-15): tokens derived per theme in `computeTokens()`, componen
 
 ## 14.4 Shell
 
-- [P1] **First boot:** a setup wizard (open item 2.1: name, avatar, language, theme, accent, under 30 s). Then a short Welcome with **one** primary action ("Take the tour") and secondary links. One toast at a time; achievements queue behind system toasts.
-- [P1] **Launcher:** search-first, sized to its content, no overlap with windows behind (opaque enough even at 0 % transparency), categories as filter chips, Pinned/Recent only when non-empty and not duplicating each other.
-- [P1] **Palette:** ranking (14.1), one-line results (name + type badge; description only for the selected row), grouped sections (Apps, Commands, Settings, Files).
-- [P1] **Window chrome:** consistent titles (`App` or `Document — App`, never `~ — App`), clearer focused vs unfocused contrast, hit targets ≥ 32 px (44 px with large targets on).
-- [P1] **Notifications:** stacking, grouping per app, max 2 visible toasts.
+- [x] [P1] **First boot:** a setup wizard (open item 2.1: name, avatar, language, theme, accent, under 30 s). Then a short Welcome with **one** primary action ("Take the tour") and secondary links. One toast at a time; achievements queue behind system toasts.
+- [x] [P1] **Launcher:** search-first, sized to its content, no overlap with windows behind (opaque enough even at 0 % transparency), categories as filter chips, Pinned/Recent only when non-empty and not duplicating each other.
+- [x] [P1] **Palette:** ranking (14.1), one-line results (name + type badge; description only for the selected row), grouped sections (Apps, Commands, Settings, Files).
+- [x] [P1] **Window chrome:** consistent titles (`App` or `Document — App`, never `~ — App`), clearer focused vs unfocused contrast, hit targets ≥ 32 px (44 px with large targets on).
+- [x] [P1] **Notifications:** stacking, grouping per app, max 2 visible toasts.
 - [P2] **Top bar:** a richer active-app area (app name + window menu when `ctx.window.setMenu` exists, which is open item 2.4).
-- [P1] **Dock style** (owner, 2026-11-15): new setting _Dock style: Floating | Rail_ next to the existing `dockPosition` (bottom / left / right). Rail = variant C's side bar: flush, full-length edge bar under the top bar; launcher pinned to the far end. Windows, snapping and maximize respect the rail's width. Prototype: `?variant=D&dock=left|right|bottom&dockstyle=rail|float`, shots `D-dock-*`.
-- [P2] Dock: separators and running indicators follow the icon grammar; dock folders/stacks (open item 2.6).
+- [x] [P1] **Dock style** (owner, 2026-11-15): new setting _Dock style: Floating | Rail_ next to the existing `dockPosition` (bottom / left / right). Rail = variant C's side bar: flush, full-length edge bar under the top bar; launcher pinned to the far end. Windows, snapping and maximize respect the rail's width. Prototype: `?variant=D&dock=left|right|bottom&dockstyle=rail|float`, shots `D-dock-*`.
+- [P2] Dock: separators and running indicators follow the icon grammar; dock folders/stacks (open item 2.6). _Indicators done in 14.3 (square dots, accent bar for the focused app); folders/stacks open._
+
+_14.4 done (2026-11-15): setup is the Welcome window's first step on a new profile (`session.isNew` → `setup: true`), not a blocking modal, so it never traps a first-time keyboard user or the e2e suite; the default dock pins Files, Notes, Tasks, Calendar, Terminal and Settings. Toasts: at most 2 visible, one per app (merged with a count), urgent first, achievements last (`toast.test.js`). Palette: grouped sections, app tiles, one line per result with the description on the selected row; keyword/description matches need a real substring (fixes "Notes" → Arcade Hub); Enter waits for the search of what's typed. Launcher: category chips, Recent never repeats Pinned, content-sized, 97 % opaque. Dock rail: `dockStyle` setting; the dock publishes `--dock-inset-*` so the desktop, toasts and launcher keep clear. Found on the way: Nexus Present reacted to arrow keys and "F" from other windows (scoped to its window), and a window finishing loading could pull focus out of an open palette (the window manager now leaves an open `aria-modal` alone). The top-bar app menu (P2) is still open._
 
 ## 14.5 App migration (waves)
 

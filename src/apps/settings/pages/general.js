@@ -123,13 +123,14 @@ function describeWallpaper(pc, value) {
 export const desktop = {
   id: 'desktop',
   icon: 'dock',
-  keys: ['dockPosition', 'dockAutoHide', 'dockMagnification', 'dockSize'],
+  keys: ['dockPosition', 'dockStyle', 'dockAutoHide', 'dockMagnification', 'dockSize'],
   render(pc) {
     const { t } = pc;
     return [
       group(
         t('group.dock'),
         pc.row('dockPosition'),
+        pc.row('dockStyle'),
         pc.row('dockSize'),
         pc.row('dockAutoHide'),
         pc.row('dockMagnification'),

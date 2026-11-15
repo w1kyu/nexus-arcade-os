@@ -2,8 +2,8 @@
 
 ## Status
 
-- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done.
-- **Next step:** 14.4 shell (dock style rail, launcher, palette, notifications, window titles, setup wizard), then the 14.5 waves.
+- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done (`01a2452`, CI green on all 3 engines); 14.4 done.
+- **Next step:** 14.5 wave 1 (system apps onto `createAppFrame` + components), then waves 2–5; release `v1.1.0` (14.3 + 14.4) when the owner confirms the tag.
 - **Phase 14.2 verification:** `npm run ux:shots` full run 546 views, 0 errors, axe 68 distinct serious/critical findings in 43 apps; token ratchet in `npm run lint` (baseline 1,813 colors / 101 control classes / 467 font sizes); 139 unit test files (1,106 tests) passing.
 - **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox); CI run `43659186226` for `6fe46cb` green on Chromium, Firefox and WebKit.
 - **Phase 13 (v1.0.1) verification:** 135 unit test files (1,086 tests) passing; GitHub Actions CI run `43542236713` passing across Chromium (`web`, `web-mobile`, `lite`: 44 passed, 35 skipped), Firefox (`web-firefox`, `lite-firefox`: 38 passed, 2 skipped), and WebKit (`web-webkit`, `lite-webkit`: 38 passed, 2 skipped); live `test:live` against `https://nexus-arcade-os.onrender.com` 43 passed / 35 skipped; Live Lighthouse Mobile `99` Perf (`FCP 0.8 s`, `LCP 2.0 s`, `TBT 0 ms`, `CLS 0.006`) / `100` A11y / `100` Best Practices / `100` SEO, Desktop `100` / `100` / `100` / `100` (`TBT 0 ms`); initial JS `161.88 kB` gzipped (≤ 200 KB); single-file Lite build `7.00 MB` (< 8.00 MB).
@@ -1132,6 +1132,17 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 ### Phase 14 — UI/UX rework (v1.1) — `specs/14-ui-ux-rework.md`
 
 **14.0 Decisions** — [x] taken 2026-11-15 (see Decisions).
+
+**14.4 Shell**
+
+- [x] [P1] First boot: setup (name, picture, language, theme, accent) as the Welcome window's first step on a new profile; Welcome then has one primary action ("Start interactive tour"). — _e2e `shell.spec.js` "first boot"._
+- [x] [P1] Launcher: category chips, Recent without Pinned duplicates, sized to content, opaque at full transparency.
+- [x] [P1] Palette: grouped sections (Apps, Commands, Settings, Files, Recent, Help), app tiles, one line per result, description on the selected row; description/keyword matches need a real substring; Enter waits for the pending search. — _`search.test.js`, e2e "palette groups"._
+- [x] [P1] Window chrome: `App` / `Document — App` titles (Terminal no longer shows `~ — Terminal`), controls 36 × 32 px (44 px with large targets).
+- [x] [P1] Notifications: max 2 toasts, merged per app with a count, urgent first, achievements last. — _`toast.test.js`._
+- [x] [P1] Dock style _Floating / Rail_ at any edge; work area, desktop icons, toasts and launcher respect it. — _e2e "dock rail"._
+- [ ] [P2] Top bar: app name + window menu (`ctx.window.setMenu`, open item 2.4).
+- [ ] [P2] Dock folders/stacks (open item 2.6).
 
 **14.3 Design system v2**
 

@@ -194,17 +194,7 @@
     "themeAuto": "Auto (follow system)",
     "themeSchedule": "Auto (by time of day)",
     "kind": {
-      "app": "App",
-      "command": "Command",
-      "setting": "Setting",
-      "file": "File",
-      "folder": "Folder",
-      "provider": "Result",
-      "calc": "Calculator",
-      "help": "Help",
-      "option": "",
-      "input": "",
-      "recent": "Recent"
+      "app": "App"
     },
     "help": {
       "shortcuts": "Keyboard shortcuts",
@@ -213,7 +203,15 @@
       "open": "Open Help",
       "app": "Help: {app}"
     },
-    "openInSettings": "Open in Settings"
+    "openInSettings": "Open in Settings",
+    "group": {
+      "apps": "Apps",
+      "commands": "Commands",
+      "settings": "Settings",
+      "files": "Files",
+      "recent": "Recent",
+      "help": "Help"
+    }
   },
   "launcher": {
     "title": "Apps",
@@ -225,6 +223,8 @@
     "recentFiles": "Recent files",
     "noResults": "Nothing found",
     "noApps": "No apps installed",
+    "categories": "Categories",
+    "allCategories": "All",
     "category": {
       "productivity": "Productivity",
       "study": "Study",
@@ -322,6 +322,11 @@
       "other": "{count} minutes"
     },
     "startSlideshow": "Start slideshow",
+    "dockStyle": "Dock style",
+    "dockStyles": {
+      "floating": "Floating",
+      "rail": "Rail along the edge"
+    },
     "dockPosition": "Position",
     "side": {
       "bottom": "Bottom",

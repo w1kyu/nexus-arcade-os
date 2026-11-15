@@ -26,10 +26,15 @@ export function createLauncher(shell) {
     spellcheck: 'false',
   });
   const body = h('div', { class: 'nx-launcher-body' });
+  // Category filter chips (search-first: the box stays on top, chips narrow the list below it).
+  const chips = h('div', { class: 'nx-launcher-chips', role: 'toolbar' });
+  /** @type {string} '' = all categories */
+  let category = '';
   const panel = h(
     'div',
     { class: 'nx-launcher nx-glass', role: 'dialog', 'aria-modal': 'true' },
     h('div', { class: 'nx-launcher-top' }, icon('search', { size: 18 }), search),
+    chips,
     body,
   );
   const backdrop = h('div', { class: 'nx-launcher-backdrop', hidden: true }, panel);
@@ -50,8 +55,27 @@ export function createLauncher(shell) {
     search.placeholder = t('launcher.search');
     search.setAttribute('aria-label', t('launcher.search'));
     search.value = '';
+    category = '';
     render();
     search.focus();
+  }
+
+  function renderChips() {
+    chips.setAttribute('aria-label', t('launcher.categories'));
+    const cats = Object.keys(sys.registry.byCategory());
+    const chip = (/** @type {string} */ value, /** @type {string} */ label) =>
+      h('button', {
+        class: 'nx-launcher-chip',
+        type: 'button',
+        text: label,
+        'aria-pressed': String(category === value),
+        onclick: () => {
+          category = category === value ? '' : value;
+          render();
+        },
+      });
+    replace(chips, chip('', t('launcher.allCategories')), ...cats.map((c) => chip(c, t(`launcher.category.${c}`))));
+    chips.hidden = !!search.value.trim();
   }
 
   function close() {
@@ -95,6 +119,7 @@ export function createLauncher(shell) {
     children.length ? h('section', {}, h('h2', { text: title }), h('div', { class: className }, ...children)) : null;
 
   async function render() {
+    renderChips();
     const query = search.value.trim();
     const apps = sys.registry.list();
     if (query) {
@@ -119,11 +144,18 @@ export function createLauncher(shell) {
     const pinned = session.data.pinned
       .map((id) => sys.registry.get(id))
       .filter((m) => m && sys.registry.isEnabled(m.id));
+    // Recent never repeats what is pinned; both only appear when they have something to show.
     const recentApps = session.data.recentApps
+      .filter((id) => !session.data.pinned.includes(id))
       .map((id) => sys.registry.get(id))
       .filter((m) => m && sys.registry.isEnabled(m.id))
       .slice(0, 6);
     const groups = Object.entries(sys.registry.byCategory());
+    if (category) {
+      const list = /** @type {any[]} */ (groups.find(([c]) => c === category)?.[1] ?? []);
+      replace(body, h('div', { class: 'nx-launcher-grid' }, ...list.map(tile)));
+      return;
+    }
     replace(
       body,
       ...[

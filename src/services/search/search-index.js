@@ -3,7 +3,7 @@
 // Documents are matched on title, keywords, subtitle and body text (substring only, with a
 // snippet). Ranking: exact title > title prefix > title word/substring > keywords > subtitle >
 // body; frequently and recently used items rank higher within that order.
-import { fold, fuzzyMatch } from './fuzzy.js';
+import { fold, fuzzyMatch, TIER } from './fuzzy.js';
 
 /**
  * Score bands for matches outside the title. Every band stays below a title word or substring
@@ -115,12 +115,14 @@ export function createSearchIndex({ now = Date.now } = {}) {
         if (types && !types.includes(doc.type)) continue;
         const title = fuzzyMatch(q, doc.title);
         let score = title?.score ?? 0;
+        // Keywords and subtitles (descriptions) count only as real substrings: scattered letters
+        // in a long sentence match almost any query ("Notes" found Arcade Hub).
         for (const keyword of doc.keywords ?? []) {
           const m = keyword ? fuzzyMatch(q, keyword) : null;
-          if (m) score = Math.max(score, inBand('keyword', m.score));
+          if (m && m.score >= TIER.substring - 100) score = Math.max(score, inBand('keyword', m.score));
         }
         const sub = doc.subtitle ? fuzzyMatch(q, doc.subtitle) : null;
-        if (sub) score = Math.max(score, inBand('subtitle', sub.score));
+        if (sub && sub.score >= TIER.substring - 100) score = Math.max(score, inBand('subtitle', sub.score));
         /** @type {string | undefined} */
         let excerpt;
         if (doc.foldedBody && doc.body && foldedQuery.length >= 2) {

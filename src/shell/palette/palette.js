@@ -8,6 +8,7 @@ import { formatShortcut } from '../../services/commands/keys.js';
 import { focusedElement, h, icon, replace } from '../../ui/dom.js';
 import { closeMenus } from '../../ui/menu.js';
 import { trapFocus } from '../../ui/overlay.js';
+import { appIcon } from '../app-icon.js';
 import { registerCommand } from '../util.js';
 import { evaluate, formatResult } from '../../ui/calc.js';
 import './palette.css';
@@ -34,7 +35,32 @@ const RECENT_LIMIT = 8;
  * @property {() => unknown} activate
  * @property {() => void} [onFocus]
  * @property {boolean} [current]
+ * @property {string} [appId]   app results show the app's tile
  */
+
+/** Section of each result kind (results are grouped, in the order their best hit ranks). */
+const GROUP = /** @type {Record<string, string>} */ ({
+  app: 'apps',
+  command: 'commands',
+  provider: 'commands',
+  setting: 'settings',
+  file: 'files',
+  folder: 'files',
+  recent: 'recent',
+  help: 'help',
+});
+
+/** Stable-sorts items so each group is contiguous, groups ordered by their first (best) item. @param {Item[]} list */
+function groupItems(list) {
+  /** @type {Map<string, Item[]>} */
+  const groups = new Map();
+  for (const item of list) {
+    const key = GROUP[item.kind] ?? '';
+    if (!groups.has(key)) groups.set(key, []);
+    /** @type {Item[]} */ (groups.get(key)).push(item);
+  }
+  return [...groups.values()].flat();
+}
 
 /** @param {import('../shell.js').ShellContext} shell */
 export function createPalette(shell) {
@@ -261,6 +287,7 @@ export function createPalette(shell) {
           ...base,
           kind: 'app',
           icon: r.icon ?? 'apps',
+          appId: r.data.appId,
           activate: () => {
             rec(r.id, r.title, t('palette.kind.app'), r.icon, r.data);
             void sys.search.recordUse(r.id);
@@ -428,6 +455,7 @@ export function createPalette(shell) {
                 title: r.title,
                 subtitle: r.subtitle,
                 icon: r.icon ?? 'clock',
+                appId: r.data?.appId,
                 activate: () => {
                   if (r.data?.commandId) return runCommand(r.data.commandId);
                   if (r.data?.scope) return settingStep(r.data.scope, r.data.key);
@@ -453,7 +481,8 @@ export function createPalette(shell) {
       }
     }
     if (mySeq !== seq) return; // a newer keystroke is already being handled
-    items = next;
+    items = step ? next : groupItems(next);
+    renderedFor = raw;
     active = Math.max(
       0,
       items.findIndex((i) => i.current),
@@ -477,9 +506,18 @@ export function createPalette(shell) {
       input.removeAttribute('aria-activedescendant');
       return;
     }
-    replace(
-      list,
-      ...items.map((item, i) =>
+    /** @type {HTMLElement[]} */
+    const rows = [];
+    let group = '';
+    const grouped = !step;
+    items.forEach((item, i) => {
+      const key = GROUP[item.kind] ?? '';
+      if (grouped && key && key !== group) {
+        rows.push(h('li', { class: 'nx-palette-group', role: 'presentation', text: t(`palette.group.${key}`) }));
+      }
+      group = key;
+      const manifest = item.appId ? sys.registry.get(item.appId) : null;
+      rows.push(
         h(
           'li',
           {
@@ -495,7 +533,10 @@ export function createPalette(shell) {
             },
             onclick: () => item.activate(),
           },
-          h('span', { class: 'nx-palette-icon' }, icon(item.icon ?? 'arrow-right', { size: 18 })),
+          manifest
+            ? appIcon(manifest, 28)
+            : h('span', { class: 'nx-palette-icon' }, icon(item.icon ?? 'arrow-right', { size: 16 })),
+          // One line per result; the description shows on the selected row only.
           h(
             'span',
             { class: 'nx-palette-text' },
@@ -504,10 +545,10 @@ export function createPalette(shell) {
           ),
           item.current ? h('span', { class: 'nx-palette-current' }, icon('check', { size: 16 })) : null,
           item.shortcut ? h('kbd', { class: 'nx-kbd', text: formatShortcut(item.shortcut) }) : null,
-          h('span', { class: 'nx-palette-kind', text: t(`palette.kind.${item.kind}`) }),
         ),
-      ),
-    );
+      );
+    });
+    replace(list, ...rows);
     input.setAttribute('aria-activedescendant', `nx-palette-opt-${active}`);
   }
 
@@ -536,6 +577,8 @@ export function createPalette(shell) {
   }
 
   let timer = 0;
+  /** The input value the shown results belong to. @type {string | null} */
+  let renderedFor = null;
   input.addEventListener('input', () => {
     clearTimeout(timer);
     timer = window.setTimeout(update, 50);
@@ -549,6 +592,14 @@ export function createPalette(shell) {
       setActive(active - 1);
     } else if (e.key === 'Enter') {
       e.preventDefault();
+      // Typed fast: the shown results may still be for an earlier, shorter query ("Pi" → the
+      // Pictures folder). Finish the search for what is in the box first.
+      const value = input.value;
+      if (renderedFor !== value) {
+        clearTimeout(timer);
+        void update().then(() => renderedFor === value && items[active]?.activate());
+        return;
+      }
       items[active]?.activate();
     } else if (e.key === 'Escape') {
       e.preventDefault();

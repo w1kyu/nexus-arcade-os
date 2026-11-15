@@ -373,6 +373,7 @@ async function openProfile(options, k, profile) {
           app,
           icon: decl.icon,
           silent: true,
+          group: 'achievement',
         })
         .catch(() => {});
     },

@@ -25,6 +25,7 @@ export function createDock(shell) {
   const setting = (/** @type {string} */ key) => sys.settings.get('system', key);
   const position = () => /** @type {'bottom' | 'left' | 'right'} */ (setting('dockPosition'));
   const size = () => /** @type {number} */ (setting('dockSize'));
+  const isRail = () => setting('dockStyle') === 'rail';
 
   /** Windows of an app, most recently focused first. @param {string} appId */
   const windowsOf = (appId) => wm.list().filter((w) => w.appId === appId);
@@ -219,7 +220,7 @@ export function createDock(shell) {
 
   // Hover magnification (macOS-like): icons near the pointer grow.
   dock.addEventListener('pointermove', (e) => {
-    if (!setting('dockMagnification') || sys.theme.motion !== 'full' || e.pointerType === 'touch') return;
+    if (!setting('dockMagnification') || isRail() || sys.theme.motion !== 'full' || e.pointerType === 'touch') return;
     const horizontal = position() === 'bottom';
     for (const btn of list.querySelectorAll('.nx-dock-item')) {
       const r = btn.getBoundingClientRect();
@@ -245,9 +246,31 @@ export function createDock(shell) {
   dock.addEventListener('focusin', () => setRevealed(true));
   dock.addEventListener('focusout', () => !dock.matches(':hover') && setRevealed(false));
 
+  /** Space the dock takes from the work area. */
+  function reserved() {
+    if (setting('dockAutoHide') || window.innerWidth < 768) return { bottom: 0, left: 0, right: 0 };
+    // Floating: icon + 2 × 7 px padding + 2 px border + 8 px gap; rail: icon + padding + 1 px border, flush.
+    const full = isRail() ? size() + 15 : size() + 24;
+    const p = position();
+    return { bottom: p === 'bottom' ? full : 0, left: p === 'left' ? full : 0, right: p === 'right' ? full : 0 };
+  }
+
+  /** Lets other shell parts (toasts, desktop icons, launcher) keep clear of the dock. */
+  function publishInsets() {
+    const r = reserved();
+    const style = document.documentElement.style;
+    style.setProperty('--dock-inset-bottom', `${r.bottom}px`);
+    style.setProperty('--dock-inset-left', `${r.left}px`);
+    style.setProperty('--dock-inset-right', `${r.right}px`);
+  }
+
   function applySettings() {
     dock.dataset.position = position();
+    dock.dataset.style = isRail() ? 'rail' : 'floating';
     hotEdge.dataset.position = position();
+    for (const btn of list.querySelectorAll('.nx-dock-item'))
+      /** @type {HTMLElement} */ (btn).style.setProperty('--mag', '1');
+    publishInsets();
     dock.classList.toggle('is-autohide', !!setting('dockAutoHide'));
     hotEdge.hidden = !setting('dockAutoHide');
     dock.style.setProperty('--dock-size', `${size()}px`);
@@ -271,17 +294,12 @@ export function createDock(shell) {
     originalSetPinned(pinned);
     render();
   };
+  addEventListener('resize', publishInsets);
   applySettings();
 
   return {
     element: dock,
-    /** Space the dock takes from the work area. */
-    reserved() {
-      const full = size() + 20;
-      if (setting('dockAutoHide') || window.innerWidth < 768) return { bottom: 0, left: 0, right: 0 };
-      const p = position();
-      return { bottom: p === 'bottom' ? full : 0, left: p === 'left' ? full : 0, right: p === 'right' ? full : 0 };
-    },
+    reserved,
     /** Where a window minimizes to. @param {string} appId */
     iconRect: (appId) => buttons.get(appId)?.getBoundingClientRect() ?? null,
     render,

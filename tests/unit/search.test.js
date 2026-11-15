@@ -97,6 +97,19 @@ describe('search index', () => {
     ).toEqual(['exact', 'prefix', 'nexus-notes']);
   });
 
+  it('ignores scattered-letter matches in descriptions and keywords', () => {
+    // Regression (14.4): "Notes" listed Arcade Hub because n…o…t…e…s appear in its description.
+    const index = createSearchIndex();
+    index.upsert([
+      { id: 'arcade', type: 'app', title: 'Arcade Hub', subtitle: 'Play the games, track scores and see stats' },
+      { id: 'tagged', type: 'app', title: 'Planner', keywords: ['know the rules'] },
+      { id: 'nexus-notes', type: 'app', title: 'Nexus Notes' },
+    ]);
+    expect(index.query('Notes').map((r) => r.id)).toEqual(['nexus-notes']);
+    // A title still matches as a subsequence ("nxn" → Nexus Notes).
+    expect(index.query('nxnt').map((r) => r.id)).toEqual(['nexus-notes']);
+  });
+
   it('boosts recently and frequently used items', () => {
     let t = 1_000_000_000;
     const index = createSearchIndex({ now: () => t });

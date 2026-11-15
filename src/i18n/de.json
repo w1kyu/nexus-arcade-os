@@ -194,17 +194,7 @@
     "themeAuto": "Automatisch (wie System)",
     "themeSchedule": "Automatisch (nach Uhrzeit)",
     "kind": {
-      "app": "App",
-      "command": "Befehl",
-      "setting": "Einstellung",
-      "file": "Datei",
-      "folder": "Ordner",
-      "provider": "Ergebnis",
-      "calc": "Rechner",
-      "help": "Hilfe",
-      "option": "",
-      "input": "",
-      "recent": "Zuletzt"
+      "app": "App"
     },
     "help": {
       "shortcuts": "Tastenkürzel",
@@ -213,7 +203,15 @@
       "open": "Hilfe öffnen",
       "app": "Hilfe: {app}"
     },
-    "openInSettings": "In den Einstellungen öffnen"
+    "openInSettings": "In den Einstellungen öffnen",
+    "group": {
+      "apps": "Apps",
+      "commands": "Befehle",
+      "settings": "Einstellungen",
+      "files": "Dateien",
+      "recent": "Zuletzt verwendet",
+      "help": "Hilfe"
+    }
   },
   "launcher": {
     "title": "Apps",
@@ -225,6 +223,8 @@
     "recentFiles": "Zuletzt geöffnete Dateien",
     "noResults": "Nichts gefunden",
     "noApps": "Keine Apps installiert",
+    "categories": "Kategorien",
+    "allCategories": "Alle",
     "category": {
       "productivity": "Produktivität",
       "study": "Lernen",
@@ -322,6 +322,11 @@
       "other": "{count} Minuten"
     },
     "startSlideshow": "Diashow starten",
+    "dockStyle": "Dock-Stil",
+    "dockStyles": {
+      "floating": "Schwebend",
+      "rail": "Leiste am Rand"
+    },
     "dockPosition": "Position",
     "side": {
       "bottom": "Unten",

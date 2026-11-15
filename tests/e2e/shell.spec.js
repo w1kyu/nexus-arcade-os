@@ -123,6 +123,61 @@ test.describe('desktop', () => {
       expect(alpha).toBeGreaterThanOrEqual(0.85);
     });
   }
+
+  test('first boot: setup sets name, theme and language, then Welcome offers one primary action', async ({ page }) => {
+    const errors = collectErrors(page);
+    await startNexus(page);
+    const setup = page.locator('.nx-setup');
+    await expect(setup).toBeVisible();
+    await setup.getByLabel('Your name').fill('Ada');
+    await setup.getByRole('radio', { name: 'Arctic Light' }).click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'arctic-light');
+    await setup.getByRole('radio', { name: 'Deutsch' }).click();
+    await expect(setup.getByLabel('Dein Name')).toHaveValue('Ada'); // kept across the language switch
+    await setup.getByRole('button', { name: 'Nexus verwenden' }).click();
+    await expect(page.locator('.nx-welcome-actions .nx-btn.is-primary')).toHaveCount(1);
+    await expect(welcome(page).locator('.nx-window-title')).toHaveText('Willkommen');
+    // Done once: a reload shows the Welcome page, not the setup.
+    await reloadDesktop(page);
+    await expect(page.locator('.nx-setup')).toHaveCount(0);
+    expect(errors).toEqual([]);
+  });
+
+  test('dock rail: flush edge bar, maximized windows keep clear of it', async ({ page }) => {
+    await startNexus(page);
+    /** Sets a system setting through the palette's `@` mode. @param {string} label @param {RegExp} option */
+    const setting = async (label, option) => {
+      await pressMod(page, 'k');
+      await page.keyboard.type(`@${label}`);
+      await expect(page.getByRole('option', { name: new RegExp(`^${label}`) }).first()).toBeVisible();
+      await page.keyboard.press('Enter');
+      await page.getByRole('option', { name: option }).click();
+    };
+    await setting('Dock style', /^Rail/);
+    await setting('Dock position', /^Left/);
+    const dock = page.locator('.nx-dock');
+    await expect(dock).toHaveAttribute('data-style', 'rail');
+    await expect.poll(async () => (await dock.boundingBox())?.x).toBe(0); // after the slide-in
+    const rail = /** @type {{ x: number, y: number, width: number, height: number }} */ (await dock.boundingBox());
+    expect(rail.y).toBe(36);
+    expect(rail.y + rail.height).toBe(page.viewportSize()?.height);
+    await welcome(page).locator('[data-action="maximize"]').click();
+    const win = /** @type {{ x: number }} */ (await welcome(page).boundingBox());
+    expect(win.x).toBeGreaterThanOrEqual(rail.width);
+  });
+
+  test('palette groups results by kind with app tiles and one line per result', async ({ page }) => {
+    await startNexus(page);
+    await pressMod(page, 'k');
+    await page.keyboard.type('notes');
+    const list = page.locator('.nx-palette-list');
+    await expect(list.locator('.nx-palette-group').first()).toHaveText(/apps/i);
+    const first = list.getByRole('option').first();
+    await expect(first).toHaveText(/^Nexus Notes/);
+    await expect(first.locator('.nx-app-icon')).toHaveCount(1);
+    // The description shows on the selected row only.
+    await expect(list.getByRole('option').nth(1).locator('small')).toBeHidden();
+  });
 });
 
 test.describe('mobile', () => {

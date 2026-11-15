@@ -194,6 +194,16 @@ export const SYSTEM_SETTINGS = [
     label: L('Dock position', 'Dock-Position'),
   },
   {
+    key: 'dockStyle',
+    type: 'enum',
+    default: 'floating',
+    options: [
+      { value: 'floating', label: L('Floating', 'Schwebend') },
+      { value: 'rail', label: L('Rail along the edge', 'Leiste am Rand') },
+    ],
+    label: L('Dock style', 'Dock-Stil'),
+  },
+  {
     key: 'dockAutoHide',
     type: 'boolean',
     default: false,

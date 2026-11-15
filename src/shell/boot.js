@@ -92,7 +92,8 @@ export function boot(root) {
       void bootScreen.done();
       shell.wm.relayout();
       await yieldMain();
-      if (!shell.wm.list().length && !shell.session.data.windows.length) void shell.launch('nexus.welcome');
+      if (!shell.wm.list().length && !shell.session.data.windows.length)
+        void shell.launch('nexus.welcome', shell.session.isNew ? { setup: true } : undefined);
       void shell.ui.whatsNew.checkOnBoot().catch(() => {});
       const tips = createTipsService({
         kv: sys.kv('system:tips'),
@@ -121,7 +122,7 @@ export function boot(root) {
     t,
     system,
     /** @param {Omit<import('./toast.js').ToastOptions, 'dismissLabel'>} options */
-    toast: (options) => toasts.show({ ...options, dismissLabel: t.dismiss }),
+    toast: (options) => toasts.show({ priority: 'high', ...options, dismissLabel: t.dismiss }),
   };
 }
 
@@ -136,11 +137,15 @@ function showNotificationToasts(system, toasts, dismissLabel) {
   const open = new Map();
   system.bus.on('notification:shown', (n) => {
     const action = n.actions[0];
+    const achievement = n.group === 'achievement';
     const close = toasts.show({
       message: n.title,
       body: n.body,
       timeoutMs: n.timeoutMs,
       dismissLabel,
+      // One toast per app (and one for achievements); alarms first, achievements last.
+      group: achievement ? 'achievement' : n.app !== 'system' ? `app:${n.app}` : undefined,
+      priority: n.urgent ? 'high' : achievement ? 'low' : 'normal',
       action: action && { label: action.label, run: () => system.notifications.triggerAction(n.id, action.id) },
     });
     open.set(n.id, close);

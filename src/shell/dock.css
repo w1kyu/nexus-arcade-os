@@ -25,6 +25,61 @@
     right: 8px;
   }
 
+  /* Rail (Settings → Dock style): a flush, full-length bar along the edge, under the top bar. */
+  &[data-style='rail'] {
+    display: flex;
+    border-radius: 0;
+    corner-shape: round;
+    box-shadow: none;
+    background: color-mix(in srgb, var(--surface-1) 88%, transparent);
+    &[data-position='bottom'] {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      justify-content: center;
+      padding: 7px var(--space-3);
+      border-width: 1px 0 0;
+      transform: none;
+    }
+    &[data-position='left'],
+    &[data-position='right'] {
+      top: 36px;
+      bottom: 0;
+      padding: var(--space-3) 7px;
+      transform: none;
+    }
+    &[data-position='left'] {
+      left: 0;
+      border-width: 0 1px 0 0;
+    }
+    &[data-position='right'] {
+      right: 0;
+      border-width: 0 0 0 1px;
+    }
+    &.is-autohide[data-position='bottom']:not(.is-revealed) {
+      transform: translateY(100%);
+    }
+    &.is-autohide[data-position='left']:not(.is-revealed) {
+      transform: translateX(-100%);
+    }
+    &.is-autohide[data-position='right']:not(.is-revealed) {
+      transform: translateX(100%);
+    }
+    & .nx-dock-list {
+      flex: 1;
+      min-height: 0;
+    }
+    /* The launcher sits at the far end of a side rail. */
+    &[data-position='left'] .nx-dock-list > li:last-child,
+    &[data-position='right'] .nx-dock-list > li:last-child {
+      margin-top: auto;
+    }
+    &[data-position='left'] .nx-dock-sep:nth-last-child(2),
+    &[data-position='right'] .nx-dock-sep:nth-last-child(2) {
+      display: none;
+    }
+  }
+
   &.is-autohide[data-position='bottom']:not(.is-revealed) {
     transform: translate(-50%, calc(100% + 12px));
   }

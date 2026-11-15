@@ -24,7 +24,8 @@
 
 .nx-desktop {
   position: absolute;
-  inset: 36px 0 0;
+  /* Desktop icons keep clear of the top bar and the dock (insets published by dock.js). */
+  inset: 36px var(--dock-inset-right, 0px) var(--dock-inset-bottom, 0px) var(--dock-inset-left, 0px);
   z-index: 1;
 }
 
@@ -37,9 +38,4 @@
   & > * {
     pointer-events: auto;
   }
-}
-
-.nx-toasts {
-  z-index: var(--z-toast);
-  bottom: 84px;
 }

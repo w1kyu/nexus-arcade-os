@@ -7,26 +7,34 @@
 
   & .nx-welcome-head h1 {
     margin: 0;
-    font-size: var(--text-xl);
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--text-1);
+    font-size: var(--text-headline);
+    font-weight: var(--weight-bold);
   }
   & .nx-welcome-head p {
     margin: var(--space-1) 0 0;
     color: var(--text-2);
+    font-size: var(--text-sm);
   }
   & h2 {
     margin: var(--space-2) 0 0;
     font-size: var(--text-md);
+    font-weight: var(--weight-bold);
   }
 }
 
+/* One primary action, then quiet secondary links (rule 4). */
 .nx-welcome-actions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.nx-welcome-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-1);
+  margin-inline-start: calc(-1 * var(--space-3));
 }
 
 .nx-welcome-tour {
@@ -44,10 +52,11 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--surface-2);
-    color: var(--accent);
+    color: var(--text-3);
   }
   & strong {
     color: var(--text-1);
+    font-size: var(--text-sm);
   }
   & p {
     margin: var(--space-1) 0 0;
@@ -71,4 +80,118 @@
     margin: 0;
     color: var(--text-2);
   }
+}
+
+/* ── First-boot setup ───────────────────────────────────────────────────────────────────── */
+.nx-setup {
+  gap: var(--space-4);
+}
+
+.nx-setup-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nx-setup-identity-fields {
+  display: grid;
+  flex: 1;
+  justify-items: start;
+  gap: var(--space-2);
+  & .nx-field {
+    width: min(100%, 320px);
+  }
+}
+
+.nx-setup-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: var(--text-display);
+  font-weight: var(--weight-bold);
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.nx-setup-row {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.nx-setup-label {
+  color: var(--text-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.nx-setup-themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--space-2);
+}
+
+.nx-setup-theme {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-1);
+  font: inherit;
+  font-size: var(--text-ui);
+  text-align: start;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--border-strong);
+  }
+  &[aria-checked='true'] {
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+}
+
+.nx-setup-theme-swatch {
+  display: block;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.nx-setup-accents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.nx-setup-accent {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid var(--surface-1);
+  border-radius: var(--radius-full);
+  background: conic-gradient(var(--accent) 0 50%, var(--accent-2) 50%);
+  box-shadow: 0 0 0 1px var(--border-strong);
+  cursor: pointer;
+
+  &[aria-checked='true'] {
+    box-shadow: 0 0 0 2px var(--text-1);
+  }
+}
+
+.nx-setup-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }

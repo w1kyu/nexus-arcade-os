@@ -1,8 +1,9 @@
 .nx-toasts {
   position: fixed;
-  right: var(--space-4);
-  bottom: var(--space-4);
-  left: var(--space-4);
+  /* Clear of the dock (insets published by dock.js; 0 before the shell starts). */
+  right: calc(var(--space-4) + var(--dock-inset-right, 0px));
+  bottom: calc(var(--space-4) + var(--dock-inset-bottom, 0px));
+  left: calc(var(--space-4) + var(--dock-inset-left, 0px));
   z-index: var(--z-toast);
   display: flex;
   flex-direction: column;

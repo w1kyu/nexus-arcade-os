@@ -168,8 +168,9 @@
 .nx-window-ctrl {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 28px;
+  /* Rule 5: ≥ 32 px pointer targets (44 px with large targets or touch). */
+  width: 36px;
+  height: 32px;
   padding: 0;
   border: 0;
   border-radius: var(--radius-sm);
@@ -313,6 +314,16 @@
   }
 }
 
+:root[data-large-targets='true'] {
+  & .nx-titlebar {
+    height: 46px;
+  }
+  & .nx-window-ctrl {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 @media (pointer: coarse) {
   .nx-resize.is-se {
     width: 28px;
@@ -389,7 +400,7 @@
 
 .nx-focus-block-overlay {
   position: absolute;
-  inset: 38px 0 0 0;
+  inset: 36px 0 0 0;
   background: color-mix(in srgb, var(--bg) 94%, transparent);
   backdrop-filter: blur(10px);
   display: flex;

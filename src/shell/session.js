@@ -5,7 +5,14 @@
 
 const SAVE_DELAY_MS = 600;
 const RECENT_LIMIT = 12;
-export const DEFAULT_PINNED = ['nexus.welcome'];
+export const DEFAULT_PINNED = [
+  'nexus.files',
+  'nexus.notes',
+  'nexus.tasks',
+  'nexus.calendar',
+  'nexus.terminal',
+  'nexus.settings',
+];
 
 /**
  * @typedef {object} SessionWindow
@@ -37,6 +44,7 @@ export function createSession(store, log) {
     pinned: [...DEFAULT_PINNED],
     recentApps: [],
   };
+  let isNew = false;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   let timer;
   /** @type {(() => Omit<SessionData, 'pinned' | 'recentApps' | 'version'>) | null} */
@@ -59,7 +67,12 @@ export function createSession(store, log) {
     async load() {
       const saved = /** @type {Partial<SessionData> | undefined} */ (await store.get('session'));
       if (saved && typeof saved === 'object') data = { ...data, ...saved, version: 1 };
+      else isNew = true;
       return data;
+    },
+    /** True on a brand-new profile (nothing saved yet): the boot opens the first-run setup. */
+    get isNew() {
+      return isNew;
     },
     get data() {
       return data;

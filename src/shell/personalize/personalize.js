@@ -297,6 +297,11 @@ export function createPersonalize(shell) {
         'dockPosition',
         ['bottom', 'left', 'right'].map((v) => ({ value: v, label: t(`personalize.side.${v}`) })),
       ),
+      select(
+        t('personalize.dockStyle'),
+        'dockStyle',
+        ['floating', 'rail'].map((v) => ({ value: v, label: t(`personalize.dockStyles.${v}`) })),
+      ),
       slider(t('personalize.dockSize'), 'dockSize', { min: 32, max: 72, step: 2, format: (v) => `${v} px` }),
       toggle({
         label: t('personalize.dockAutoHide'),

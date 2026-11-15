@@ -6,3 +6,9 @@ package-lock.json
 NEXUS_BRIEF.md
 specs/
 *.txt
+# Vendored agent skills: kept byte-identical to upstream (see each SOURCE.md)
+.claude/skills/fixing-accessibility/
+.claude/skills/fixing-motion-performance/
+.claude/skills/review-animations/
+.claude/skills/break-ui/
+.claude/skills/web-design-guidelines/GUIDELINES.md

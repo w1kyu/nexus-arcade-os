@@ -1,0 +1,2 @@
+Adapted from https://github.com/vercel-labs/agent-skills (skill, 1a2c79d) and https://github.com/vercel-labs/web-interface-guidelines (GUIDELINES.md = command.md at 434b7f9), MIT, see LICENSE. Reviewed 2026-11-15.
+Change from upstream: the rules are pinned in GUIDELINES.md instead of fetched from GitHub on every run, so no unreviewed remote text steers the agent. Update by re-copying command.md and re-reading the diff.

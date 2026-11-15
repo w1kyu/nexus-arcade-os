@@ -1,7 +1,9 @@
 // Help: general guides (EN/DE) and every app's help page, with search and a table of contents.
 // F1 anywhere opens the page of the focused app. Links like `help:nexus.files` or
 // `help:general/backups` jump between pages. Nothing runs at import time.
+import { toolbar } from '../../ui/components.js';
 import { h, icon } from '../../ui/dom.js';
+import { createAppFrame } from '../../ui/frame/app-frame.js';
 import { highlight } from '../../ui/highlight.js';
 import { renderMarkdownInto } from '../../ui/markdown.js';
 import './styles.css';
@@ -52,13 +54,21 @@ export function mount(container, ctx, args) {
   });
   const toc = h('nav', { class: 'nx-help-toc', 'aria-label': t('toc') });
   const notice = h('p', { class: 'nx-help-notice', hidden: true });
-  const root = h(
-    'div',
-    { class: 'nx-help', dataset: { testid: 'help' } },
-    h('aside', { class: 'nx-help-side' }, search, results, nav),
-    h('main', { class: 'nx-help-main' }, notice, article),
-    toc,
-  );
+  // App frame (phase 14.5): page list as the sidebar (a sheet in narrow windows), the article as
+  // content, the table of contents as the inspector. The toolbar only shows in narrow windows.
+  const heading = toolbar({ label: t('pages'), title: t('title') });
+  const frame = createAppFrame({
+    label: t('pages'),
+    locale: () => ctx.i18n.locale,
+    toolbar: heading,
+    sidebar: h('div', { class: 'nx-help-side' }, search, results, nav),
+    sidebarLabel: t('pages'),
+    content: h('main', { class: 'nx-help-main' }, notice, article),
+    inspector: toc,
+  });
+  const root = frame.root;
+  root.classList.add('nx-help');
+  root.dataset.testid = 'help';
   container.replaceChildren(root);
 
   const appPages = () =>
@@ -126,6 +136,9 @@ export function mount(container, ctx, args) {
     const mine = ++token;
     page = id;
     renderNav();
+    const title = heading.querySelector('.nx-toolbar-title');
+    if (title) title.textContent = titleOf(id);
+    if (root.classList.contains('is-narrow')) frame.setSidebarOpen(false);
     const doc = await source(id);
     if (mine !== token) return;
     if (!doc) {
@@ -271,6 +284,7 @@ export function mount(container, ctx, args) {
   void show(page);
   return {
     saveState: () => ({ page }),
+    unmount: () => frame.destroy(),
     onIntent(intent) {
       const next = /** @type {any} */ (intent.data)?.page;
       if (typeof next === 'string') void show(next);

@@ -2,7 +2,7 @@
 
 ## Status
 
-- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done (`01a2452`, CI green on all 3 engines); 14.4 done.
+- **Current phase:** 14 — UI/UX rework (`specs/14-ui-ux-rework.md`). 14.0 decisions taken 2026-11-15 (direction D: HUD shell + calm window interiors; prototype in `prototypes/phase-14-ui/`); 14.1 done (`6fe46cb`, CI green on all 3 engines); 14.2 done (`2d1e3d3`); 14.3 done (`01a2452`, CI green on all 3 engines); 14.4 done (`a4a6f60`, CI green on all 3 engines); 14.5 wave 1 in progress.
 - **Next step:** 14.5 wave 1 (system apps onto `createAppFrame` + components), then waves 2–5; release `v1.1.0` (14.3 + 14.4) when the owner confirms the tag.
 - **Phase 14.2 verification:** `npm run ux:shots` full run 546 views, 0 errors, axe 68 distinct serious/critical findings in 43 apps; token ratchet in `npm run lint` (baseline 1,813 colors / 101 control classes / 467 font sizes); 139 unit test files (1,106 tests) passing.
 - **Phase 14.1 verification:** 137 unit test files (1,096 tests) passing; `npm run lint` incl. the extended i18n check (0 missing, now also code→message keys); Playwright `web` + `web-mobile` + `lite` 47 passed / 38 skipped; `web-webkit` changed specs 12 passed / 4 skipped; Firefox not run locally (browser cannot start in the agent sandbox); CI run `43659186226` for `6fe46cb` green on Chromium, Firefox and WebKit.
@@ -1132,6 +1132,10 @@ Every item from every spec, grouped by phase. Untagged items inherit the priorit
 ### Phase 14 — UI/UX rework (v1.1) — `specs/14-ui-ux-rework.md`
 
 **14.0 Decisions** — [x] taken 2026-11-15 (see Decisions).
+
+**14.5 App migration**
+
+- [ ] [P1] Wave 1 (system). — _in progress: phone layout fix for Settings/App Center (e2e `settings.spec.js` "system apps on a phone"), Help on `createAppFrame`, App Center tiles, Settings font tokens; 0 axe findings in the 8 apps._
 
 **14.4 Shell**
 

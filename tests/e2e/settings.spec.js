@@ -152,3 +152,25 @@ test.describe('settings', () => {
     expect(errors).toEqual([]);
   });
 });
+
+test.describe('system apps on a phone', () => {
+  test.skip(({ isMobile }) => !isMobile, 'phone layout');
+
+  // Regression (14.5): the narrow-window rules sat in a container query on the container itself,
+  // so Settings pages and App Center's list stayed in the 200-px sidebar column on phones.
+  for (const [query, option, selector] of [
+    ['Settings', /^Settings/, '.nx-windows .nx-set-main'],
+    ['App Center', /^App Center/, '.nx-windows .nx-ac-main'],
+    ['Help', /^Help/, '.nx-windows .nx-help-main'],
+  ]) {
+    test(`${query} content uses the full width`, async ({ page }) => {
+      await startNexus(page);
+      await page.getByRole('navigation', { name: 'App bar' }).getByRole('button', { name: /Apps/ }).tap();
+      await page.locator('.nx-launcher-search').fill(String(query));
+      await page.locator('.nx-launcher-tile').filter({ hasText: option }).first().tap();
+      // Settings opens on its last page; on a fresh profile that is Personalization.
+      const box = await page.locator(String(selector)).first().boundingBox();
+      expect(box?.width ?? 0).toBeGreaterThan(330);
+    });
+  }
+});

@@ -50,11 +50,11 @@ export function mount(container, ctx, args) {
   });
   const nav = h('nav', { class: 'nx-ac-nav', 'aria-label': t('categories') });
   const main = h('main', { class: 'nx-ac-main', tabindex: '-1' });
+  // .nx-ac is the size container; the grid is the inner element so narrow windows can restyle it.
   const root = h(
     'div',
     { class: 'nx-ac', dataset: { testid: 'appcenter' } },
-    h('aside', { class: 'nx-ac-side' }, search, nav),
-    main,
+    h('div', { class: 'nx-ac-layout' }, h('aside', { class: 'nx-ac-side' }, search, nav), main),
   );
   container.replaceChildren(root);
 
@@ -239,7 +239,7 @@ export function mount(container, ctx, args) {
           onclick: () => open(a.id),
           'aria-label': t('details', { name: local(a.name) }),
         },
-        h('span', { class: 'nx-ac-icon' }, icon(a.icon, { size: 28 })),
+        h('span', { class: 'nx-ac-icon', dataset: { category: a.category } }, icon(a.icon, { size: 26 })),
         h(
           'span',
           { class: 'nx-ac-card-text' },
@@ -377,7 +377,7 @@ export function mount(container, ctx, args) {
       h(
         'header',
         { class: 'nx-ac-hero' },
-        h('span', { class: 'nx-ac-icon is-large' }, icon(a.icon, { size: 44 })),
+        h('span', { class: 'nx-ac-icon is-large', dataset: { category: a.category } }, icon(a.icon, { size: 40 })),
         h(
           'div',
           {},

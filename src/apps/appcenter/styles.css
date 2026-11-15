@@ -1,11 +1,16 @@
 .nx-ac {
   container-type: inline-size;
-  display: grid;
-  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
   height: 100%;
   min-height: 0;
   color: var(--text-1);
   font-size: var(--text-sm);
+}
+
+.nx-ac-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
 }
 
 .nx-ac-side {
@@ -130,25 +135,60 @@
   cursor: pointer;
 }
 
+/* App tile, same grammar as the shell's (src/shell/app-icon.css): glyph in the category hue on a
+   bevelled slot; system apps neutral. */
 .nx-ac-icon {
+  --hue: var(--text-2);
   display: inline-grid;
   place-items: center;
   flex: none;
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent) 30%, var(--surface-2)),
-    color-mix(in srgb, var(--accent-2) 30%, var(--surface-2))
-  );
-  color: var(--text-1);
+  corner-shape: var(--corner-shape);
+  background: color-mix(in srgb, var(--hue) 8%, var(--surface-2));
+  color: var(--hue);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) 38%, transparent);
 
   &.is-large {
     width: 72px;
     height: 72px;
-    border-radius: 18px;
+    border-radius: 17px;
   }
+  &[data-category='productivity'] {
+    --hue: var(--hue-productivity);
+  }
+  &[data-category='study'] {
+    --hue: var(--hue-study);
+  }
+  &[data-category='office'] {
+    --hue: var(--hue-office);
+  }
+  &[data-category='dev'] {
+    --hue: var(--hue-dev);
+  }
+  &[data-category='cslab'] {
+    --hue: var(--hue-cslab);
+  }
+  &[data-category='games'] {
+    --hue: var(--hue-games);
+  }
+  &[data-category='media'] {
+    --hue: var(--hue-media);
+  }
+  &[data-category='ai'] {
+    --hue: var(--hue-ai);
+  }
+}
+
+:root[data-scheme='light'] .nx-ac-icon {
+  background: color-mix(in srgb, var(--hue) 14%, var(--surface-1));
+  color: color-mix(in srgb, var(--hue) 55%, var(--text-1));
+}
+
+:root[data-theme='high-contrast'] .nx-ac-icon {
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .nx-ac-card-text {
@@ -275,9 +315,9 @@
 }
 
 @container (max-width: 600px) {
-  .nx-ac {
+  .nx-ac-layout {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
   }
   .nx-ac-side {
     border-right: 0;

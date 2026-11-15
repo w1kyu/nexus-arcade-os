@@ -136,6 +136,7 @@ Per-app checklist (definition of done, from the UI UX Pro Max pre-delivery list 
 - [ ] No axe serious/critical findings.
 
 - [P1] **Wave 1 — system:** Settings, Files, Terminal, App Center, Help, Welcome, Profile, Monitor.
+  _Started 2026-11-15. Sheet run: 0 axe serious/critical findings in all 8. Fixed: Settings and App Center kept a 200-px column on phones (their narrow rules queried the element that was itself the container); Help moved onto `createAppFrame` (page list → sheet, TOC → inspector); App Center tiles follow the icon grammar; Welcome got the setup step and one primary action (14.4); Settings font sizes → tokens. Kept on purpose: Settings' list → page navigation on phones (a better phone pattern than a sheet) and Files' own toolbar/places sheet (same behavior as the frame). Open: Profile and Monitor onto the frame, Terminal tab bar on phones._
 - [P1] **Wave 2 — productivity & study:** Notes, Tasks, Calendar, Journal, Flashcards, Timetable, Grades, Habits, Focus, Budget, Bookmarks, Clipboard, Clock, Calculator, Converter.
 - [P1] **Wave 3 — CS Lab & dev tools:** the shared visualizer engine first (fixes all CS apps at once), then Sorting, Pathfinding, Graph Lab, Data Structures, Automata, Turing, Arch Lab, Circuits, Code, Editor, Diff, HTTP client, Playground, Snippets, Dev Tools.
 - [P1] **Wave 4 — office & creative:** Write, Sheets, Present, PDF, Paint, Pixel Art, Whiteboard, Mind Map, Color Lab, Photos, Music, Video, Recorder, Screen Recorder, Camera, Synth, Beat Lab.

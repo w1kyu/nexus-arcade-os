@@ -1,21 +1,29 @@
+/* Help on createAppFrame: sidebar = page list, content = article, inspector = table of contents. */
 .nx-help {
-  container-type: inline-size;
-  display: grid;
-  grid-template-columns: minmax(180px, 230px) minmax(0, 1fr) minmax(150px, 200px);
-  height: 100%;
-  min-height: 0;
-  color: var(--text-1);
-  font-size: var(--text-sm);
+  --frame-inspector-w: 210px;
+  /* Wide windows: no toolbar and no sidebar toggle; the page list is always there. */
+  &:not(.is-narrow) > .nx-app-frame-toolbar {
+    display: none;
+  }
+  /* Narrow windows: the table of contents would push the article down. */
+  &.is-narrow > .nx-app-frame-inspector {
+    display: none;
+  }
+  & > .nx-app-frame-sidebar {
+    padding: 0;
+  }
+  & > .nx-app-frame-inspector {
+    padding: 0;
+  }
 }
 
 .nx-help-side {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  height: 100%;
   min-height: 0;
   padding: var(--space-3) var(--space-2);
-  border-right: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
 }
 
 .nx-help-nav {
@@ -120,9 +128,7 @@
 }
 
 .nx-help-toc {
-  overflow-y: auto;
   padding: var(--space-4) var(--space-3);
-  border-left: 1px solid var(--border);
   & h3 {
     margin: 0 0 var(--space-2);
     font-size: var(--text-xs);
@@ -154,29 +160,5 @@
   cursor: pointer;
   &:hover {
     color: var(--accent);
-  }
-}
-
-@container (max-width: 820px) {
-  .nx-help {
-    grid-template-columns: minmax(160px, 200px) minmax(0, 1fr);
-  }
-  .nx-help-toc {
-    display: none;
-  }
-}
-
-@container (max-width: 560px) {
-  .nx-help {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-  }
-  .nx-help-side {
-    max-height: 40vh;
-    border-right: 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .nx-help-article {
-    padding: var(--space-3);
   }
 }
